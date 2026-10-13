@@ -6,19 +6,20 @@
  *
  * @summary
  * Styles for HomPagCom. The page fades up into view like every page. Its
- * full-height ivory hero clears the fixed bar, with three faint shapes
- * turning slowly behind it, the pitch fading up beside a dark code window
- * and a white badge that follow it in, a pulsing availability dot, and a
- * ticker of skills scrolling under the buttons; a slanted white edge leads
- * into the stats strip. Below come the featured projects, the services in
- * white cards that lift on hover, and a dark closing banner. Below 1024px
- * the code window drops away and the grids step down, reaching one column on
- * a phone. The shapes, the entrances, and the dot play the shared
- * shapeLoopSpin, contentEnterFadeUp, and statusLoopPulse keyframes from the
- * global sheet; the ticker plays its own. The page's centered columns take
- * the shared container values, and its sections the shared section padding,
- * merged into their own rules. Everything that moves holds still under
- * reduced motion.
+ * ivory hero clears the fixed bar by a gap that grows with the screen, with
+ * three faint shapes turning slowly behind it, the pitch fading up beside a
+ * dark code window and a white badge that follow it in, a pulsing
+ * availability dot, and a ticker of skills scrolling under the buttons; a
+ * slanted white edge leads into the stats strip. Below come the featured
+ * projects, the services in white cards that lift on hover, and an orange
+ * closing card. On a tablet the code window keeps its natural width beside
+ * the pitch, and on a phone it stacks under it, while the grids step down,
+ * reaching one column on a phone. The shapes, the entrances, and the dot play
+ * the shared shapeLoopSpin, contentEnterFadeUp, and statusLoopPulse keyframes
+ * from the global sheet; the ticker plays its own. The page's centered
+ * columns take the shared container values, and its sections the shared
+ * section padding, merged into their own rules. Everything that moves holds
+ * still under reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -162,6 +163,19 @@
 	position              : relative;
 	width                 : 100%;
 	z-index               : 1;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Hero Inner Div. Why: On a tablet the code window would squeeze the pitch in a quarter of the row. How: This applies at 1024px and below. */
+
+
+	.herInnDiv { /* What: Tablet Hero Inner Div Columns. Why: The window keeps its natural width beside the pitch, which takes the rest. How: This sets a flexible pitch column and a column sized to the window. */
+
+
+		grid-template-columns : minmax( 0, 1fr ) auto;
+
+
+	}
 
 
 }
@@ -519,26 +533,16 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Visual Div. Why: The code window crowds the pitch below a desktop. How: This applies at 1024px and below. */
+@media ( max-width : 768px ) { /* What: Phone Hero Visual Div. Why: On a phone the code window stacks under the pitch rather than beside it. How: This applies at 768px and below. */
 
 
-	.herVisDiv { /* What: Hidden Hero Visual Div. Why: The pitch reads on its own on a smaller screen. How: This hides the code window and badge. */
+	.herVisDiv { /* What: Stacked Hero Visual Div. Why: The window should fill a phone's column without stretching too wide on a large phone, sit centered under the pitch, and never push the page sideways. How: This centers it at the column's full width, capped at the p12 rhythm step, and lets it shrink below its code's width. */
 
 
-		display : none;
-
-
-	}
-
-
-}
-@media ( max-width : 768px ) { /* What: Phone Hero Visual Div. Why: The code window stays hidden on a phone. How: This applies at 768px and below. */
-
-
-	.herVisDiv { /* What: Hidden Phone Hero Visual Div. Why: The pitch reads on its own on a phone. How: This hides the code window and badge. */
-
-
-		display : none;
+		margin    : 0 auto;
+		max-width : calc( var( --ver-rhy-p12 ) * 1rem ); /* Vertical Rhythm Base Plus 12 ~= 425.592px */
+		min-width : 0;
+		width     : 100%;                                /* What: Full Width. Why: The auto margins would otherwise shrink the window to its content. How: This keeps it at the column's width up to its cap. */
 
 
 	}
@@ -651,6 +655,20 @@
 
 
 }
+@media ( max-width : 1024px ) { /* What: Tablet Code Block Pre. Why: Below a desktop the window has to fit beside the pitch on a tablet and inside a 320px phone. How: This applies at 1024px and below. */
+
+
+	.codBloPre { /* What: Compact Code Block Pre. Why: The code's longest line has to fit a narrow window. How: This sets the code at the base size with tighter padding. */
+
+
+		font-size : var( --fon-siz-bas );                      /* Font Size Base = 11px */
+		padding   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+
+
+	}
+
+
+}
 
 .codTexCod { /* What: Code Text Code. Why: The code element takes the block's light color. How: This inherits the color. */
 
@@ -696,6 +714,19 @@
 	left          : calc( var( --spa-hor-p02 ) * -1 );                                                                /* Spacing Horizontal Base Plus 2 ~= 25.572px */
 	padding       : var( --spa-ver-bas ) var( --spa-hor-p02 );                                                        /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	position      : absolute;
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Floating Badge Div. Why: Once the window stacks and centers, the room beside it shrinks with the screen, and the badge's full overhang would cross the gutter on a narrow phone. How: This applies at 768px and below. */
+
+
+	.floBadDiv { /* What: Fitted Floating Badge Div. Why: The badge should stick out past the window as far as the screen allows, like on a desktop, and tuck in on a narrow phone. How: The overhang is the room left beside the centered window, less the gutter, held between the m02 and p02 steps, so it reaches the full p02 from about 525px wide and eases down to m02 below about 490px. */
+
+
+		left : calc( clamp( var( --spa-hor-m02 ), calc( ( 100vw - var( --ver-rhy-p12 ) * 1rem ) / 2 - var( --gut-sid-pad ) ), var( --spa-hor-p02 ) ) * -1 ); /* Spacing Horizontal Base Minus 2 ~= 8.304px, Vertical Rhythm Base Plus 12 ~= 425.592px, Gutter Side Padding, about 19.304px - 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+
+
+	}
 
 
 }
