@@ -314,6 +314,18 @@
 
 }
 
+.forHonPar { /* What: Form Honeypot Paragraph. Why: Bots should find and fill the honeypot while people never see it, and some bots skip fields hidden with display none. How: This moves it off screen into a 1px box instead, the same as ease-my-life's. */
+
+
+	height   : 1px;
+	left     : -9999px;
+	overflow : hidden;
+	position : absolute;
+	width    : 1px;
+
+
+}
+
 
 /* #region forRowDiv */
 

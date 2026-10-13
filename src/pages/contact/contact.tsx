@@ -24,9 +24,9 @@ import type { JSX         } from 'react'; // What: JSX. Why: The component decla
  * @summary
  * The Contact page: a hero inviting a visitor to get in touch, the message
  * form, and a sidebar with the contact details, availability, and response
- * time. The form posts to the site's email function, which sends the message
- * through EmailJS to contact@techgeek.dev, then shows a thank-you in its place,
- * or an error under the fields when the send fails.
+ * time. The form posts to Netlify Forms, which emails each message to the
+ * address set in Netlify's dashboard, then shows a thank-you in its place, or
+ * an error under the fields when the send fails.
  *
  * Sections:
  *  - Constants
@@ -159,7 +159,7 @@ const CON_ITE_ARR = [ // What: Contact Item Array. Why: The sidebar lists the sa
 
 
 
-const EMP_FOR_OBJ = { budget : '', email : '', message : '', name : '' }; // What: Empty Form Object. Why: The form starts empty and empties again for another message. How: This holds a blank value for each field, keyed by the field's name attribute, which browsers read for autofill.
+const EMP_FOR_OBJ = { 'bot-field' : '', budget : '', email : '', message : '', name : '' }; // What: Empty Form Object. Why: The form starts empty and empties again for another message. How: This holds a blank value for each field, keyed by the field's name attribute, which browsers read for autofill. // The bot-field key is the honeypot Netlify reads by that exact name, so it keeps Netlify's spelling.
 
 // #endregion Constants
 
@@ -229,12 +229,15 @@ function ConPagCom () : JSX.Element {
 	 * subForFun = Submit Form Function
 	 *
 	 * @summary
-	 * Sends the form. It stops the browser's own submission, marks the form as
-	 * sending, and clears any earlier error, then posts the fields to the email
-	 * function with the contact template, a fixed subject, and the budget or
-	 * Not specified when none was chosen. Only a reply the function marks as
-	 * sent counts as success; a failed reply or a network failure is logged
-	 * and shown as an error under the fields. Sending ends either way.
+	 * Sends the form through Netlify Forms. It stops the browser's own
+	 * submission, marks the form as sending, and clears any earlier error,
+	 * then posts the fields form-encoded to the site's root under the contact
+	 * form's name, which Netlify matches to the hidden copy of the form in
+	 * index.html, with the budget or Not specified when none was chosen and
+	 * the honeypot as it stands. Netlify then emails the submission to the
+	 * address set in its dashboard. Only an ok reply counts as success; a
+	 * failed reply or a network failure is logged and shown as an error under
+	 * the fields. Sending ends either way.
 	 *
 	 * @author z4nta0 <https://github.com/z4nta0>
 	 *
@@ -250,7 +253,7 @@ function ConPagCom () : JSX.Element {
 	 *
 	*/
 
-	const subForFun = async ( subEveObj : FormEvent ) => { // What: Submit Form Function. Why: The form's submission sends the message. How: This posts the fields to the email function and records the outcome.
+	const subForFun = async ( subEveObj : FormEvent ) => { // What: Submit Form Function. Why: The form's submission sends the message. How: This posts the fields to Netlify Forms and records the outcome.
 
 
 		subEveObj.preventDefault(); // What: Default Submission Prevention Call. Why: The browser would otherwise reload the page to submit the form. How: This stops it, so the message is sent in the background.
@@ -264,30 +267,30 @@ function ConPagCom () : JSX.Element {
 		try {
 
 
-			const senResObj = await fetch( '../../.netlify/functions/send-email', { // What: Send Response Object. Why: The email function sends the message and reports how it went. How: This posts the fields as JSON.
+			const senResObj = await fetch( '/', { // What: Send Response Object. Why: Netlify Forms takes a form-encoded POST on any path of the site, matches it to a detected form by its form-name field, and emails it on. How: This posts the fields to the site's root.
 
 
-				body : JSON.stringify({ // What: Body. Why: The function and the EmailJS template read these field names. How: This serializes the fields under those names.
+				body    : new URLSearchParams({ // What: Body. Why: Netlify reads a standard form-encoded body whose field names match the hidden form in index.html. How: This encodes the form's name, the honeypot, and the four real fields.
 
 
-					budget       : forDatObj.budget || 'Not specified', // What: Budget. Why: The template shows the visitor's budget range. How: This sends the choice, or Not specified when none was made.
-					from_email   : forDatObj.email,                     // What: From Email. Why: A reply goes back to the visitor. How: This sends the address they entered.
-					from_name    : forDatObj.name,                      // What: From Name. Why: The template greets the sender by name. How: This sends the name they entered.
-					message      : forDatObj.message,                   // What: Message. Why: The message is the point of the email. How: This sends what they wrote.
-					subject      : 'Portfolio Contact',                 // What: Subject. Why: The template's subject line reads it, and the form no longer asks for one. How: This sends a fixed subject.
-					templateType : 'contact',                           // What: Template Type. Why: The function picks its EmailJS template from it. How: This names the contact template.
-					to_email     : 'contact@techgeek.dev'               // What: To Email. Why: The template sends to this address. How: This names the site's contact address.
+					'bot-field' : forDatObj[ 'bot-field' ],              // What: Bot Field. Why: Netlify drops a submission whose honeypot is filled, which a person never does. How: This posts the hidden field as it stands.
+					budget      : forDatObj.budget || 'Not specified', // What: Budget. Why: The email shows the visitor's budget range. How: This sends the choice, or Not specified when none was made.
+					email       : forDatObj.email,                     // What: Email. Why: Netlify sets a field named email as the notification's reply-to, so a reply goes straight back to the visitor. How: This sends the address they entered.
+					'form-name' : 'contact',                           // What: Form Name. Why: Netlify matches the POST to its detected form by this field. How: This names the contact form.
+					message     : forDatObj.message,                   // What: Message. Why: The message is the point of the email. How: This sends what they wrote.
+					name        : forDatObj.name                       // What: Name. Why: The email says who wrote. How: This sends the name they entered.
 
 
-				}),
+				}).toString(),
 
-				method : 'POST' // What: Method. Why: The function only accepts a POST. How: This sets it.
+				headers : { 'Content-Type' : 'application/x-www-form-urlencoded' }, // What: Headers. Why: Netlify only parses a form-encoded body. How: This sets the matching content type.
+				method  : 'POST'                                                    // What: Method. Why: A form submission is a POST. How: This sets it.
 
 
 			} );
 
 
-			if ( !senResObj.ok ) throw new Error( `The email function answered with status ${ senResObj.status }.` ); // What: Failed Reply Guard. Why: A reply the function marks as failed means the message wasn't sent, and must not show the thank-you. How: This throws into the catch below.
+			if ( !senResObj.ok ) throw new Error( `Netlify Forms answered with status ${ senResObj.status }.` ); // What: Failed Reply Guard. Why: Netlify can take the connection yet reject the submission, which must not show the thank-you. How: This throws into the catch below.
 
 
 
@@ -423,6 +426,35 @@ function ConPagCom () : JSX.Element {
 
 
 								<h2 className={ cssModObj.forTitHea }>Send a Message</h2>{ /* What: Form Title Heading Element. Why: The form's heading names it. How: This shows Send a Message as an h2. */ }
+
+								<p
+									className={ cssModObj.forHonPar }
+
+									aria-hidden='true'
+								>{ /* What: Form Honeypot Paragraph Element. Why: A person never sees or fills this field, so a bot that does gives itself away, and Netlify drops its submission. How: This holds a label and input moved off screen and hidden from screen readers. */ }
+
+
+									<label>{ /* What: Honeypot Label Element. Why: A hidden field still needs a label. How: This wraps the honeypot input in its label text. */ }
+
+
+										Leave this field blank:
+
+										<input
+											name='bot-field'
+
+											autoComplete='off'
+											value={ forDatObj[ 'bot-field' ] }
+
+											tabIndex={ -1 }
+
+											onChange={ chaFieFun }
+										/>{ /* What: Bot Field Input Element. Why: A filled honeypot marks a bot. How: This writes into the form's bot-field through the shared change handler and posts with the other fields. */ }
+
+
+									</label>
+
+
+								</p>
 
 
 								<div className={ cssModObj.forRowDiv }>{ /* What: Form Row Div Element. Why: The name and email fields share a row on wide screens. How: This sets them side by side. */ }

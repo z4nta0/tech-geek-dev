@@ -29,8 +29,12 @@ the demo treatment.
 - **Name**: z4nta0 wherever the owner's name appears (the author meta, the
   structured data, copy), and https://github.com/z4nta0 as the GitHub link.
 - **Contact email**: contact@techgeek.dev (mailbox not set up yet). The
-  contact form sends through `netlify/functions/send-email`, which calls
-  EmailJS with keys held in Netlify's environment variables.
+  contact form sends through Netlify Forms (decided by the user 2026-10-13,
+  as in ease-my-life, replacing a Netlify function that called EmailJS): a
+  hidden copy of the form in `index.html` registers its fields, the page
+  posts them form-encoded to `/` as form `contact` with a `bot-field`
+  honeypot, and Netlify emails each submission to the address set in its
+  dashboard, with the visitor's email as the reply-to.
 
 ## Content
 Decided 2026-10-12 by the user, in the step 7 content review.
@@ -105,7 +109,7 @@ src/
 ```
 Outside `src/`: `public/` (the favicon set, the social preview card,
 `robots.txt`, the sitemap, and Netlify's `_redirects` and `_headers`),
-`netlify/functions/` (the contact form's email function), `design/` (the
+`design/` (the
 original images and the scripts that render them, and the business card
 artwork in `design/business-cards/`), and `tests/`.
 
@@ -220,7 +224,8 @@ on `close-out`.
      `@netlify/functions` now a dev dependency for its types. Checked with a
      stubbed fetch on every path. It also fixes a bug: a send EmailJS refused
      read the reply twice, so the page always got a generic 500 rather than
-     EmailJS's own status and explanation.
+     EmailJS's own status and explanation. Replaced by Netlify Forms on
+     2026-10-13 (see "## Kind of site").
 6. **Formatting, naming, and comment pass**, one file per commit, including
    `vite.config.ts` (adding the shipped-page minifier), `index.html`, and the
    email function, with the copy fixes (no em dashes). Done 2026-10-12:
@@ -406,7 +411,7 @@ on `close-out`.
      fails its screenshot in WebKit and Chromium, with nothing on the page
      changed; it passes on rerun.
 11. **New features**: the 404 page brought in line, pages opening at the top,
-    security headers (allowing the form's call to the email function), image
+    security headers (the form posts to the site itself), image
     optimization and the favicon set, the SEO pass and social preview card
     per "## Kind of site", interaction feedback, and the phone menu's scrim
     and inert page.
@@ -482,10 +487,10 @@ Decided 2026-10-12 to leave these until the cleanup plan is finished.
 - **Business card SVGs** (`design/business-cards/`): kept as the
   starting point for new business cards based on this site. Update their
   URL and email to techgeek.dev once everything else is done.
-- **Contact email setup**: create the contact@techgeek.dev mailbox and point
-  the EmailJS contact template and the Netlify environment variables at it.
-  The support template variable (`EMAILJS_SUPPORT_TEMPLATE_ID`) isn't used
-  here any more.
+- **Contact email setup**: create the contact@techgeek.dev mailbox; in
+  Netlify, turn on form detection and add an email notification for the
+  `contact` form sent to that address; and remove the old EmailJS
+  environment variables, which nothing reads any more.
 - **Shared design package** (suggested 2026-10-12, once this project is
   done): a repository holding what has to match across the three sites (the
   tokens, the self-hosted fonts and base element styles, the logo and favicon
