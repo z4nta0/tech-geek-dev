@@ -185,7 +185,7 @@ function AboPagCom () : JSX.Element {
 	return (
 
 
-		<div className='page-enter'>{ /* What: About Page Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
+		<div className={ cssModObj.page }>{ /* What: About Page Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
 
 
 			<section className={ cssModObj.hero }>{ /* What: Hero Section Element. Why: The page opens by introducing z4nta0. How: This holds the pattern and the hero's two columns. */ }
@@ -198,7 +198,7 @@ function AboPagCom () : JSX.Element {
 
 
 
-				<div className={` container   ${ cssModObj.heroGrid } `}>{ /* What: Hero Grid Div Element. Why: The introduction and the portrait sit side by side in the page's centered column. How: This lays out the two columns. */ }
+				<div className={ cssModObj.heroGrid }>{ /* What: Hero Grid Div Element. Why: The introduction and the portrait sit side by side in the page's centered column. How: This lays out the two columns. */ }
 
 
 					<div className={ cssModObj.heroText }>{ /* What: Hero Text Div Element. Why: The introduction reads as one column. How: This stacks the label, heading, paragraphs, and button. */ }
@@ -251,11 +251,7 @@ function AboPagCom () : JSX.Element {
 						<div className={ cssModObj.portraitWrap }>{ /* What: Portrait Wrap Div Element. Why: The portrait sits inside its hexagon frame. How: This layers the frame and the photo. */ }
 
 
-							<div
-								className={ cssModObj.portraitFrame }
-
-								aria-hidden='true'
-							>{ /* What: Portrait Frame Div Element. Why: Hexagons frame the portrait in the site's geometric style. How: This holds the frame drawing, hidden from screen readers as decoration. */ }
+							<div aria-hidden='true'>{ /* What: Portrait Frame Div Element. Why: Hexagons frame the portrait in the site's geometric style. How: This holds the frame drawing, hidden from screen readers as decoration. */ }
 
 
 								<svg
@@ -322,10 +318,10 @@ function AboPagCom () : JSX.Element {
 
 
 
-			<section className={` section   ${ cssModObj.skillsSection } `}>{ /* What: Skills Section Element. Why: A visitor sees what z4nta0 works with. How: This holds the heading block and the skill groups. */ }
+			<section className={ cssModObj.skillsSection }>{ /* What: Skills Section Element. Why: A visitor sees what z4nta0 works with. How: This holds the heading block and the skill groups. */ }
 
 
-				<div className='container'>{ /* What: Skills Container Div Element. Why: The section sits in the page's centered column. How: This stacks the heading block and the grid. */ }
+				<div className={ cssModObj.skillsInner }>{ /* What: Skills Inner Div Element. Why: The section sits in the page's centered column. How: This stacks the heading block and the grid. */ }
 
 
 					<SecHeaCom
@@ -396,7 +392,7 @@ function AboPagCom () : JSX.Element {
 
 
 
-			<section className={` section   ${ cssModObj.timelineSection } `}>{ /* What: Timeline Section Element. Why: A visitor sees how z4nta0 got here. How: This holds the pattern, the heading block, and the timeline. */ }
+			<section className={ cssModObj.timelineSection }>{ /* What: Timeline Section Element. Why: A visitor sees how z4nta0 got here. How: This holds the pattern, the heading block, and the timeline. */ }
 
 
 				<GeoBacCom
@@ -406,7 +402,7 @@ function AboPagCom () : JSX.Element {
 
 
 
-				<div className={` container   ${ cssModObj.timelineInner } `}>{ /* What: Timeline Inner Div Element. Why: The timeline sits in the page's centered column. How: This stacks the heading block and the milestones. */ }
+				<div className={ cssModObj.timelineInner }>{ /* What: Timeline Inner Div Element. Why: The timeline sits in the page's centered column. How: This stacks the heading block and the milestones. */ }
 
 
 					<SecHeaCom
@@ -486,10 +482,10 @@ function AboPagCom () : JSX.Element {
 
 
 
-			<section className={` section   ${ cssModObj.valuesSection } `}>{ /* What: Values Section Element. Why: The page closes with what drives the work. How: This holds the heading block and the value cards. */ }
+			<section className={ cssModObj.valuesSection }>{ /* What: Values Section Element. Why: The page closes with what drives the work. How: This holds the heading block and the value cards. */ }
 
 
-				<div className='container'>{ /* What: Values Container Div Element. Why: The section sits in the page's centered column. How: This stacks the heading block and the grid. */ }
+				<div className={ cssModObj.valuesInner }>{ /* What: Values Inner Div Element. Why: The section sits in the page's centered column. How: This stacks the heading block and the grid. */ }
 
 
 					<SecHeaCom

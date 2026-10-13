@@ -1,346 +1,858 @@
-.hero {
-  position: relative;
-  background: var(--ivory);
-  padding: calc(var(--nav-height) + var(--sp-9)) 0 var(--sp-9);
-  overflow: hidden;
+
+
+
+/**
+ * about.module.css = About Page Module
+ *
+ * @summary
+ * Styles for AboPagCom. The page fades up into view like every page. Its
+ * ivory hero clears the fixed bar and sets the introduction beside the
+ * portrait in its hexagon frame, with two white fact cards floating off the
+ * portrait's corners; below 1024px the portrait drops away. The skills grid
+ * steps from four groups across to two to one, the timeline runs each
+ * milestone's year, dot, and line, and text in three columns, and the values
+ * grid steps like the skills and lifts a card on hover. The page's centered
+ * columns take the shared container values, and its sections the shared
+ * section padding, merged into their own rules. Everything that moves holds
+ * still under reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region page */
+
+.page { /* What: About Page. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global fadeUp keyframe. */
+
+
+	animation : global( fadeUp ) 400ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion About Page. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.page { /* What: Motionless About Page. Why: The page should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
 }
 
-.heroGrid {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr 420px;
-  gap: var(--sp-10);
-  align-items: center;
+
+
+/* #region hero */
+
+.hero { /* What: About Hero. Why: The page opens with its introduction clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips the pattern behind it. */
+
+
+	background : var( --ivory );                                              /* Ivory = #F5F0E8 */
+	overflow   : hidden;
+	padding    : calc( var( --nav-height ) + var( --sp-9 ) ) 0 var( --sp-9 ); /* Navigation Height = 72px, Spacing 9 = 96px */
+	position   : relative;
+
+
 }
 
-.heroText {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-5);
+
+/* #region heroGrid */
+
+.heroGrid { /* What: Hero Grid. Why: The introduction and the portrait sit side by side in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and lays out the text beside a 420px portrait column. */
+
+
+	align-items           : center;
+	display               : grid;
+	gap                   : var( --sp-10 );     /* Spacing 10 = 128px */
+	grid-template-columns : 1fr 420px;
+	margin                : 0 auto;
+	max-width             : var( --max-width ); /* Maximum Width = 1200px */
+	padding               : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	position              : relative;
+	width                 : 100%;
+	z-index               : 1;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Hero Grid. Why: The portrait column crowds a tablet. How: This applies at 1024px and below. */
+
+
+	.heroGrid { /* What: One Column Hero Grid. Why: The introduction takes the full width once the portrait drops away. How: This sets one column. */
+
+
+		grid-template-columns : 1fr;
+
+
+	}
+
+
 }
 
-.heroLabel {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-3);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--orange);
-}
-.heroLine { display: inline-block; width: 28px; height: 1.5px; background: var(--orange); }
 
-.heroTitle { color: var(--ink); }
-.accent    { color: var(--blue-dark); }
+/* #region heroText */
 
-.lead {
-  font-family: var(--font-serif);
-  font-size: 1.15rem;
-  line-height: 1.8;
-  color: var(--ink-mid);
-  font-style: italic;
+.heroText { /* What: Hero Text. Why: The introduction reads as one column. How: This stacks the label, heading, paragraphs, and button with gaps. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-5 ); /* Spacing 5 = 24px */
+
+
 }
 
-.body {
-  font-size: 1rem;
-  line-height: 1.8;
-  color: var(--ink-mid);
+
+/* #region heroLabel */
+
+.heroLabel { /* What: Hero Label. Why: A small label names the page above its heading. How: This sets it in orange mono capitals after its rule. */
+
+
+	align-items    : center;
+	color          : var( --orange );    /* Orange = #F26419 */
+	display        : inline-flex;
+	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.72rem;
+	gap            : var( --sp-3 );      /* Spacing 3 = 12px */
+	letter-spacing : 0.12em;
+	text-transform : uppercase;
+
+
 }
 
-.ctaRow {
-  display: flex;
-  gap: var(--sp-4);
-  flex-wrap: wrap;
+.heroLine { /* What: Hero Line. Why: A short rule leads into the label. How: This draws a 28px orange stroke. */
+
+
+	background : var( --orange ); /* Orange = #F26419 */
+	display    : inline-block;
+	height     : 1.5px;
+	width      : 28px;
+
+
 }
 
-.ctaPrimary {
-  display: inline-flex;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  background: var(--orange);
-  color: var(--white);
-  padding: 12px var(--sp-6);
-  border-radius: var(--radius-sm);
-  transition: background var(--duration-fast), transform var(--duration-fast);
-}
-.ctaPrimary:hover { background: var(--orange-dark); transform: translateY(-1px); }
+/* #endregion heroLabel */
 
-.ctaSecondary {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink);
-  border: 1.5px solid var(--ivory-dark);
-  padding: 12px var(--sp-6);
-  border-radius: var(--radius-sm);
-  transition: border-color var(--duration-fast), transform var(--duration-fast);
-}
-.ctaSecondary:hover { border-color: var(--blue); color: var(--blue-dark); transform: translateY(-1px); }
 
-/* ── Portrait ── */
-.heroVisual {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* #region heroTitle */
+
+.heroTitle { /* What: Hero Title. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
+
+
+	color : var( --ink ); /* Ink = #1A1A2E */
+
+
 }
 
-.portraitWrap {
-  position: relative;
-  width: 280px;
-  height: 320px;
+.accent { /* What: Hero Title Accent. Why: The heading's second line carries the accent. How: This sets it in the dark blue. */
+
+
+	color : var( --blue-dark ); /* Blue Dark = #4A91B8 */
+
+
 }
 
-.frameSvg {
-  position: absolute;
-  inset: -20px;
-  width: calc(100% + 40px);
-  height: calc(100% + 40px);
+/* #endregion heroTitle */
+
+
+.lead { /* What: Lead Paragraph. Why: The opening line reads as a quiet pull quote. How: This sets it a little larger in italic Lora, muted. */
+
+
+	color       : var( --ink-mid );    /* Ink Mid = #3D3D5C */
+	font-family : var( --font-serif ); /* Font Serif = 'Lora', serif */
+	font-size   : 1.15rem;
+	font-style  : italic;
+	line-height : 1.8;
+
+
 }
 
-.portrait {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: var(--radius-lg);
-  position: relative;
-  z-index: 1;
+.body { /* What: Body Paragraph. Why: The longer story reads comfortably. How: This sets it muted with roomy lines. */
+
+
+	color       : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	font-size   : 1rem;
+	line-height : 1.8;
+
+
 }
 
-.floatCard {
-  position: absolute;
-  background: var(--white);
-  border: 1px solid var(--ivory-dark);
-  border-radius: var(--radius-lg);
-  padding: var(--sp-4) var(--sp-5);
-  display: flex;
-  flex-direction: column;
-  box-shadow: var(--shadow-md);
-  z-index: 2;
+
+/* #region ctaRow */
+
+.ctaRow { /* What: Button Row. Why: The introduction ends with its button. How: This lines the button up, wrapping if more join it. */
+
+
+	display   : flex;
+	flex-wrap : wrap;
+	gap       : var( --sp-4 ); /* Spacing 4 = 16px */
+
+
 }
 
-.floatTop  { top: -16px; right: -24px; }
-.floatBottom { bottom: -16px; left: -24px; }
+.ctaPrimary { /* What: Work With Me Button. Why: The way to get in touch stands out. How: This sets an orange button in mono capitals, easing its color and lift. */
 
-.floatNum {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 800;
-  color: var(--ink);
-  letter-spacing: -0.04em;
-  line-height: 1;
+
+	align-items    : center;
+	background     : var( --orange );                                                     /* Orange = #F26419 */
+	border-radius  : var( --radius-sm );                                                  /* Radius Small = 3px */
+	color          : var( --white );                                                      /* White = #FFFFFF */
+	display        : inline-flex;
+	font-family    : var( --font-mono );                                                  /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.82rem;
+	font-weight    : 500;
+	letter-spacing : 0.06em;
+	padding        : 12px var( --sp-6 );                                                  /* Spacing 6 = 32px */
+	text-transform : uppercase;
+	transition     : background var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
+
+
+}
+.ctaPrimary:hover { /* What: Hovered Work With Me Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
+
+
+	background : var( --orange-dark ); /* Orange Dark = #D4530E */
+	transform  : translateY( -1px );
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Work With Me Button. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.ctaPrimary { /* What: Motionless Work With Me Button. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-.floatLabel {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--ink-light);
+/* #endregion ctaRow */
+
+/* #endregion heroText */
+
+
+/* #region heroVisual */
+
+.heroVisual { /* What: Hero Visual. Why: The portrait and its facts sit centered in their column. How: This centers them, positioning the floating cards against the column. */
+
+
+	align-items     : center;
+	display         : flex;
+	justify-content : center;
+	position        : relative;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Hero Visual. Why: The portrait column crowds a tablet. How: This applies at 1024px and below. */
+
+
+	.heroVisual { /* What: Hidden Hero Visual. Why: The introduction reads on its own on a smaller screen. How: This hides the portrait and its facts. */
+
+
+		display : none;
+
+
+	}
+
+
 }
 
-/* ── Skills ── */
-.skillsSection { background: var(--white); }
 
-.skillsGrid {
-  margin-top: var(--sp-8);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--sp-6);
+/* #region portraitWrap */
+
+.portraitWrap { /* What: Portrait Wrap. Why: The portrait and its frame share one 280 by 320px box. How: This sizes the box and positions the frame against it. */
+
+
+	height   : 320px;
+	position : relative;
+	width    : 280px;
+
+
 }
 
-.skillGroup {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-4);
+.frameSvg { /* What: Frame SVG. Why: The hexagon frame reaches 20px past the portrait on every side. How: This stretches the drawing 20px beyond the box. */
+
+
+	height   : calc( 100% + 40px );
+	inset    : -20px;
+	position : absolute;
+	width    : calc( 100% + 40px );
+
+
 }
 
-.skillGroupHeader {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-3);
+.portrait { /* What: Portrait. Why: The photo fills its box above the frame. How: This sizes and crops it, rounds its corners, and lifts it over the frame. */
+
+
+	border-radius : var( --radius-lg ); /* Radius Large = 12px */
+	height        : 100%;
+	object-fit    : cover;
+	position      : relative;
+	width         : 100%;
+	z-index       : 1;
+
+
 }
 
-.skillGroupDot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--orange);
-  flex-shrink: 0;
+/* #endregion portraitWrap */
+
+
+/* #region floatCard */
+
+.floatCard { /* What: Floating Fact Card. Why: Each fact sits on a small white card over the portrait's corner. How: This sets the bordered card with a soft shadow, stacking its figure over its label above the portrait. */
+
+
+	background     : var( --white );                /* White = #FFFFFF */
+	border         : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	border-radius  : var( --radius-lg );            /* Radius Large = 12px */
+	box-shadow     : var( --shadow-md );            /* Shadow Medium = 0 4px 16px rgba( 26, 26, 46, 0.10 ) */
+	display        : flex;
+	flex-direction : column;
+	padding        : var( --sp-4 ) var( --sp-5 );   /* Spacing 4 = 16px, Spacing 5 = 24px */
+	position       : absolute;
+	z-index        : 2;
+
+
+}
+.floatTop { /* What: Top Fact Card. Why: The first fact sits off the portrait's top right corner. How: This places it just past that corner. */
+
+
+	right : -24px;
+	top   : -16px;
+
+
+}
+.floatBottom { /* What: Bottom Fact Card. Why: The second fact sits off the portrait's bottom left corner. How: This places it just past that corner. */
+
+
+	bottom : -16px;
+	left   : -24px;
+
+
 }
 
-.skillGroupTitle {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ink-mid);
+.floatNum { /* What: Fact Figure. Why: The figure is the card's point. How: This sets it large and bold in the display font, tight. */
+
+
+	color          : var( --ink );          /* Ink = #1A1A2E */
+	font-family    : var( --font-display ); /* Font Display = 'Syne', sans-serif */
+	font-size      : 1.6rem;
+	font-weight    : 800;
+	letter-spacing : -0.04em;
+	line-height    : 1;
+
+
 }
 
-.skillTags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--sp-2);
+.floatLabel { /* What: Fact Label. Why: The label says what the figure counts, quietly. How: This sets it small in muted mono capitals. */
+
+
+	color          : var( --ink-light ); /* Ink Light = #7A7A99 */
+	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.7rem;
+	letter-spacing : 0.06em;
+	text-transform : uppercase;
+
+
 }
 
-/* ── Timeline ── */
-.timelineSection {
-  position: relative;
-  background: var(--ivory);
-  overflow: hidden;
+/* #endregion floatCard */
+
+/* #endregion heroVisual */
+
+/* #endregion heroGrid */
+
+/* #endregion hero */
+
+
+
+/* #region skillsSection */
+
+.skillsSection { /* What: Skills Section. Why: The skills sit on white with the section spacing. How: This sets the background and the shared section padding. */
+
+
+	background : var( --white );   /* White = #FFFFFF */
+	padding    : var( --sp-10 ) 0; /* Spacing 10 = 128px */
+
+
 }
 
-.timelineInner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-8);
+
+/* #region skillsInner */
+
+.skillsInner { /* What: Skills Inner. Why: The section sits in the page's centered column. How: This caps and centers the column with its side padding. */
+
+
+	margin    : 0 auto;
+	max-width : var( --max-width ); /* Maximum Width = 1200px */
+	padding   : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	width     : 100%;
+
+
 }
 
-.timeline {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
+
+/* #region skillsGrid */
+
+.skillsGrid { /* What: Skills Grid. Why: The groups line up in even columns under the heading. How: This sets four columns with gaps, dropped below the heading. */
+
+
+	display               : grid;
+	gap                   : var( --sp-6 ); /* Spacing 6 = 32px */
+	grid-template-columns : repeat( 4, 1fr );
+	margin-top            : var( --sp-8 ); /* Spacing 8 = 64px */
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Skills Grid. Why: Four groups crowd a tablet. How: This applies at 1024px and below. */
+
+
+	.skillsGrid { /* What: Two Column Skills Grid. Why: Two groups fit side by side on a tablet. How: This sets two columns. */
+
+
+		grid-template-columns : repeat( 2, 1fr );
+
+
+	}
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Skills Grid. Why: Two groups crowd a phone. How: This applies at 640px and below. */
+
+
+	.skillsGrid { /* What: One Column Skills Grid. Why: One group fits across a phone. How: This sets one column. */
+
+
+		grid-template-columns : 1fr;
+
+
+	}
+
+
 }
 
-.timelineItem {
-  display: grid;
-  grid-template-columns: 80px 40px 1fr;
-  gap: 0 var(--sp-5);
+
+/* #region skillGroup */
+
+.skillGroup { /* What: Skill Group. Why: Each group stacks its heading over its tags. How: This stacks them with a gap. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-4 ); /* Spacing 4 = 16px */
+
+
 }
 
-.timelineLeft {
-  display: flex;
-  justify-content: flex-end;
-  padding-top: 4px;
+
+/* #region skillGroupHeader */
+
+.skillGroupHeader { /* What: Skill Group Header. Why: A dot leads into the group's name. How: This sets them side by side. */
+
+
+	align-items : center;
+	display     : flex;
+	gap         : var( --sp-3 ); /* Spacing 3 = 12px */
+
+
 }
 
-.timelineYear {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 500;
-  color: var(--orange);
-  letter-spacing: 0.04em;
+.skillGroupDot { /* What: Skill Group Dot. Why: A small orange dot marks each group. How: This draws an 8px circle that never shrinks. */
+
+
+	background    : var( --orange ); /* Orange = #F26419 */
+	border-radius : 50%;
+	flex-shrink   : 0;
+	height        : 8px;
+	width         : 8px;
+
+
 }
 
-.timelineConnector {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.skillGroupTitle { /* What: Skill Group Title. Why: The group's name reads as a small label. How: This sets it in muted mono capitals. */
+
+
+	color          : var( --ink-mid );   /* Ink Mid = #3D3D5C */
+	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.75rem;
+	font-weight    : 500;
+	letter-spacing : 0.08em;
+	text-transform : uppercase;
+
+
 }
 
-.timelineDot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--white);
-  border: 2.5px solid var(--blue-dark);
-  flex-shrink: 0;
-  margin-top: 4px;
+/* #endregion skillGroupHeader */
+
+
+.skillTags { /* What: Skill Tags. Why: The group's technologies read as one cluster. How: This wraps the tags with small gaps. */
+
+
+	display   : flex;
+	flex-wrap : wrap;
+	gap       : var( --sp-2 ); /* Spacing 2 = 8px */
+
+
 }
 
-.timelineLine {
-  flex: 1;
-  width: 2px;
-  background: var(--ivory-dark);
-  margin: var(--sp-2) 0;
-  min-height: 32px;
+/* #endregion skillGroup */
+
+/* #endregion skillsGrid */
+
+/* #endregion skillsInner */
+
+/* #endregion skillsSection */
+
+
+
+/* #region timelineSection */
+
+.timelineSection { /* What: Timeline Section. Why: The timeline sits on the ivory with the section spacing. How: This sets the background and the shared section padding, and clips the pattern behind it. */
+
+
+	background : var( --ivory );   /* Ivory = #F5F0E8 */
+	overflow   : hidden;
+	padding    : var( --sp-10 ) 0; /* Spacing 10 = 128px */
+	position   : relative;
+
+
 }
 
-.timelineContent {
-  padding-bottom: var(--sp-8);
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-2);
+
+/* #region timelineInner */
+
+.timelineInner { /* What: Timeline Inner. Why: The timeline sits in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the heading block over the milestones. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-8 );      /* Spacing 8 = 64px */
+	margin         : 0 auto;
+	max-width      : var( --max-width ); /* Maximum Width = 1200px */
+	padding        : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	position       : relative;
+	width          : 100%;
+	z-index        : 1;
+
+
 }
 
-.timelineTitle {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1.3;
+
+/* #region timeline */
+
+.timeline { /* What: Timeline. Why: The milestones stack with no gaps, so their lines join. How: This stacks them flush. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : 0;
+
+
 }
 
-.timelineOrg {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--blue-dark);
+
+/* #region timelineItem */
+
+.timelineItem { /* What: Timeline Item. Why: Each milestone sets its year, its connector, and its text in columns. How: This lays out an 80px year column, a 40px connector, and the text. */
+
+
+	display               : grid;
+	gap                   : 0 var( --sp-5 ); /* Spacing 5 = 24px */
+	grid-template-columns : 80px 40px 1fr;
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Timeline Item. Why: The year and connector columns crowd a phone. How: This applies at 640px and below. */
+
+
+	.timelineItem { /* What: Narrow Timeline Item. Why: The text needs more of a phone's width. How: This narrows the year and connector columns. */
+
+
+		grid-template-columns : 60px 32px 1fr;
+
+
+	}
+
+
 }
 
-.timelineDesc {
-  font-size: 0.9rem;
-  color: var(--ink-mid);
-  line-height: 1.65;
+
+/* #region timelineLeft */
+
+.timelineLeft { /* What: Timeline Left. Why: The year sits against the connector. How: This pushes it to the column's right edge, nudged down to the dot. */
+
+
+	display         : flex;
+	justify-content : flex-end;
+	padding-top     : 4px;
+
+
 }
 
-/* ── Values ── */
-.valuesSection { background: var(--ivory-warm); }
+.timelineYear { /* What: Timeline Year. Why: Each milestone is dated in the accent. How: This sets the year in orange mono. */
 
-.valuesGrid {
-  margin-top: var(--sp-8);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--sp-5);
+
+	color          : var( --orange );    /* Orange = #F26419 */
+	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.78rem;
+	font-weight    : 500;
+	letter-spacing : 0.04em;
+
+
 }
 
-.valueCard {
-  background: var(--white);
-  border: 1px solid var(--ivory-dark);
-  border-radius: var(--radius-lg);
-  padding: var(--sp-6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-3);
-  transition: box-shadow var(--duration-base), transform var(--duration-base);
+/* #endregion timelineLeft */
+
+
+/* #region timelineConnector */
+
+.timelineConnector { /* What: Timeline Connector. Why: The dot and its line stack in the middle column. How: This centers them in a column. */
+
+
+	align-items    : center;
+	display        : flex;
+	flex-direction : column;
+
+
 }
 
-.valueCard:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
+.timelineDot { /* What: Timeline Dot. Why: Each milestone has its own ring. How: This draws a 12px white circle with a dark blue ring, never shrinking. */
+
+
+	background    : var( --white );                 /* White = #FFFFFF */
+	border        : 2.5px solid var( --blue-dark ); /* Blue Dark = #4A91B8 */
+	border-radius : 50%;
+	flex-shrink   : 0;
+	height        : 12px;
+	margin-top    : 4px;
+	width         : 12px;
+
+
 }
 
-.valueIcon {
-  font-size: 1.8rem;
-  color: var(--orange);
-  line-height: 1;
+.timelineLine { /* What: Timeline Line. Why: A line leads down to the next milestone. How: This draws a 2px pale stroke that fills the rest of the item. */
+
+
+	background : var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	flex       : 1;
+	margin     : var( --sp-2 ) 0;     /* Spacing 2 = 8px */
+	min-height : 32px;
+	width      : 2px;
+
+
 }
 
-.valueTitle {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--ink);
+/* #endregion timelineConnector */
+
+
+/* #region timelineContent */
+
+.timelineContent { /* What: Timeline Content. Why: The milestone's text stacks in the last column, with room before the next. How: This stacks the title, organization, and description, padded below. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-2 ); /* Spacing 2 = 8px */
+	padding-bottom : var( --sp-8 ); /* Spacing 8 = 64px */
+
+
 }
 
-.valueDesc {
-  font-size: 0.87rem;
-  color: var(--ink-mid);
-  line-height: 1.65;
+.timelineTitle { /* What: Timeline Title. Why: Each milestone is named. How: This sets the title bold in the main text color. */
+
+
+	color       : var( --ink ); /* Ink = #1A1A2E */
+	font-size   : 1.05rem;
+	font-weight : 700;
+	line-height : 1.3;
+
+
 }
 
-@media (max-width: 1024px) {
-  .heroGrid    { grid-template-columns: 1fr; }
-  .heroVisual  { display: none; }
-  .skillsGrid  { grid-template-columns: repeat(2, 1fr); }
-  .valuesGrid  { grid-template-columns: repeat(2, 1fr); }
+.timelineOrg { /* What: Timeline Organization. Why: Who the work was for reads as a small label. How: This sets it in dark blue mono capitals. */
+
+
+	color          : var( --blue-dark ); /* Blue Dark = #4A91B8 */
+	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.75rem;
+	letter-spacing : 0.06em;
+	text-transform : uppercase;
+
+
 }
 
-@media (max-width: 640px) {
-  .skillsGrid  { grid-template-columns: 1fr; }
-  .valuesGrid  { grid-template-columns: 1fr; }
-  .timelineItem { grid-template-columns: 60px 32px 1fr; }
+.timelineDesc { /* What: Timeline Description. Why: A sentence says what happened, quietly. How: This sets it small and muted. */
+
+
+	color       : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	font-size   : 0.9rem;
+	line-height : 1.65;
+
+
 }
+
+/* #endregion timelineContent */
+
+/* #endregion timelineItem */
+
+/* #endregion timeline */
+
+/* #endregion timelineInner */
+
+/* #endregion timelineSection */
+
+
+
+/* #region valuesSection */
+
+.valuesSection { /* What: Values Section. Why: The page closes on a warmer band with the section spacing. How: This sets the warm ivory and the shared section padding. */
+
+
+	background : var( --ivory-warm ); /* Ivory Warm = #EDE6D8 */
+	padding    : var( --sp-10 ) 0;    /* Spacing 10 = 128px */
+
+
+}
+
+
+/* #region valuesInner */
+
+.valuesInner { /* What: Values Inner. Why: The section sits in the page's centered column. How: This caps and centers the column with its side padding. */
+
+
+	margin    : 0 auto;
+	max-width : var( --max-width ); /* Maximum Width = 1200px */
+	padding   : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	width     : 100%;
+
+
+}
+
+
+/* #region valuesGrid */
+
+.valuesGrid { /* What: Values Grid. Why: The value cards line up in even columns under the heading. How: This sets four columns with gaps, dropped below the heading. */
+
+
+	display               : grid;
+	gap                   : var( --sp-5 ); /* Spacing 5 = 24px */
+	grid-template-columns : repeat( 4, 1fr );
+	margin-top            : var( --sp-8 ); /* Spacing 8 = 64px */
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Values Grid. Why: Four cards crowd a tablet. How: This applies at 1024px and below. */
+
+
+	.valuesGrid { /* What: Two Column Values Grid. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
+
+
+		grid-template-columns : repeat( 2, 1fr );
+
+
+	}
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Values Grid. Why: Two cards crowd a phone. How: This applies at 640px and below. */
+
+
+	.valuesGrid { /* What: One Column Values Grid. Why: One card fits across a phone. How: This sets one column. */
+
+
+		grid-template-columns : 1fr;
+
+
+	}
+
+
+}
+
+
+/* #region valueCard */
+
+.valueCard { /* What: Value Card. Why: Each value is one white card. How: This sets the bordered card, stacks its symbol, title, and description, and eases its lift and shadow. */
+
+
+	background     : var( --white );                                                      /* White = #FFFFFF */
+	border         : 1px solid var( --ivory-dark );                                       /* Ivory Dark = #D8CFBE */
+	border-radius  : var( --radius-lg );                                                  /* Radius Large = 12px */
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-3 );                                                       /* Spacing 3 = 12px */
+	padding        : var( --sp-6 );                                                       /* Spacing 6 = 32px */
+	transition     : box-shadow var( --duration-base ), transform var( --duration-base ); /* Duration Base = 280ms */
+
+
+}
+.valueCard:hover { /* What: Hovered Value Card. Why: A card should respond to the pointer. How: This lifts it 3px and casts the medium shadow. */
+
+
+	box-shadow : var( --shadow-md ); /* Shadow Medium = 0 4px 16px rgba( 26, 26, 46, 0.10 ) */
+	transform  : translateY( -3px );
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Value Card. Why: Someone who asked for less motion shouldn't see the cards glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.valueCard { /* What: Motionless Value Card. Why: The lift and shadow should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.valueIcon { /* What: Value Icon. Why: A geometric symbol marks each value. How: This sets it large in orange. */
+
+
+	color       : var( --orange ); /* Orange = #F26419 */
+	font-size   : 1.8rem;
+	line-height : 1;
+
+
+}
+
+.valueTitle { /* What: Value Title. Why: Each value is named. How: This sets the title bold in the main text color. */
+
+
+	color       : var( --ink ); /* Ink = #1A1A2E */
+	font-size   : 1rem;
+	font-weight : 700;
+
+
+}
+
+.valueDesc { /* What: Value Description. Why: A sentence says what the value means, quietly. How: This sets it small and muted. */
+
+
+	color       : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	font-size   : 0.87rem;
+	line-height : 1.65;
+
+
+}
+
+/* #endregion valueCard */
+
+/* #endregion valuesGrid */
+
+/* #endregion valuesInner */
+
+/* #endregion valuesSection */
+
+/* #endregion page */
+
+
