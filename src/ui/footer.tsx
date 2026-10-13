@@ -75,7 +75,7 @@ function SitFooCom () : JSX.Element {
 		<footer className={ cssModObj.footer }>{ /* What: Site Footer Element. Why: Every page ends with the brand, its page links, and the copyright. How: This holds the footer's centered column. */ }
 
 
-			<div className={` container   ${ cssModObj.inner } `}>{ /* What: Footer Inner Div Element. Why: The footer's content sits in the page's centered column. How: This lays out the brand, the links, and the copyright. */ }
+			<div className={ cssModObj.inner }>{ /* What: Footer Inner Div Element. Why: The footer's content sits in the page's centered column. How: This lays out the brand, the links, and the copyright. */ }
 
 
 				<div className={ cssModObj.brand }>{ /* What: Footer Brand Div Element. Why: The mark and the tagline read as one block. How: This sets them side by side. */ }
@@ -148,7 +148,7 @@ function SitFooCom () : JSX.Element {
 				<div className={ cssModObj.copy }>{ /* What: Footer Copy Div Element. Why: The copyright and the profile links share the footer's last row. How: This sets them side by side. */ }
 
 
-					<span className='mono text-muted'>© { curYeaNum } TechGeek.dev. All rights reserved.</span>{ /* What: Copyright Span Element. Why: The footer ends with the copyright. How: This prints the current year read on each render. */ }
+					<span className={ cssModObj.copyright }>© { curYeaNum } TechGeek.dev. All rights reserved.</span>{ /* What: Copyright Span Element. Why: The footer ends with the copyright. How: This prints the current year read on each render. */ }
 
 					<div className={ cssModObj.social }>{ /* What: Social Links Div Element. Why: The footer links to z4nta0's profiles. How: This holds the GitHub and LinkedIn links. */ }
 
