@@ -352,36 +352,59 @@ on `close-out`.
      darkened to about #8d8475, which reaches the 3:1 large-text minimum.
 10. **Horizontal layout**: discussed with the user before converting, per the
     user-level rules (the siblings chose the fluid horizontal rhythm). Done
-    2026-10-13 in three commits.
+    2026-10-13, followed the same day by a page-by-page review with the user.
    - **The horizontal rhythm** (the user's choice, matching every sibling
      but ease-my-life): applied in one commit (`7d027eb`), so `git revert`
      restores the fixed layout if it doesn't suit this site. The-bernie-bears'
-     `--hor-rhy-*` steps join the tokens; `--con-max-wid` replaces
-     `--max-width`, first at 1,920px over the second power (about 1,094px,
-     the nearest step to the old 1,200px), then raised one step on
-     2026-10-13 to the first power (about 1,449px), since the user found the
-     content too narrow on large screens; and `--gut-sid-pad` (step 016 between spacing
-     p01 and p04, about 19.3px to 44.9px) pads every centered column, the
-     bar, the phone menu, the footer, and the 404 page. The hero, Contact, and
-     footer column gaps and Contact's form card padding clamp a horizontal
-     step between spacing steps; About's picture column and Contact's sidebar
-     clamp step 022 between rhythm steps; the section header caps at its
-     subtitle's measure (about 564px); and the timeline's year and connector
-     columns take rhythm steps. Everything inside a component stays on fixed
-     rem steps, and the breakpoints stay `@media` queries, as in
-     the-bernie-bears.
+     `--hor-rhy-*` steps join the tokens. `--con-max-wid` replaces
+     `--max-width`, first at 1,920px over the second power (about 1,094px),
+     then raised one step to the first power (about 1,449px, as in
+     seal-and-shield, reese-roofing, and tonys-toppers), since the user found
+     the content too narrow on large screens. `--gut-sid-pad` (step 016
+     between spacing p01 and p04, about 19.3px to 44.9px) pads every centered
+     column, the bar, the phone menu, the footer, and the 404 page. Column
+     gaps and the larger card paddings clamp a horizontal step between
+     spacing steps, the picture and sidebar columns clamp one between rhythm
+     steps, and the section header caps at its subtitle's measure (about
+     564px). Everything inside a component stays on fixed rem steps, and the
+     breakpoints stay `@media` queries, as in the-bernie-bears.
    - **Overflow fixes**: Home's hero heading ("Experiences" is about 10em)
      and its stat figures size themselves by their own column or item
      through container units (`cqi`), the `h1` and the 404 number let their
-     floors follow the screen below about 450px and 386px, the wordmark eases
-     smaller below about 364px with a snug phone gap beside the menu toggle,
-     and Work's phone filter row takes its own full-width line.
+     floors follow the screen below about 450px and 386px, and the wordmark
+     eases smaller below about 364px with a snug phone gap beside the menu
+     toggle.
+   - **Hero gap**: every page's hero sits the same distance below the bar,
+     `--her-gap-pad` (10vw between spacing p05 and p08, about 59px to 138px),
+     and follows its content rather than the window's height, which had left
+     about 421px of gap on an iPad Pro and none on a short phone.
+   - **Home** (reviewed with the user): a fourth service, Hosting &
+     Maintenance; the closing banner as an orange card on the ivory (see
+     "## Content"); and the code window kept below desktop widths in its own
+     revertible commit (`df46c7c`), beside the pitch at its natural width
+     from 769px to 1,024px and centered under it on phones, its code at the
+     base size and its badge's overhang following the room beside it.
+   - **Work** (reviewed with the user): the process steps share one height
+     in a row, form a two-by-two grid on tablets, and stack full width with
+     down arrows on phones; the filter row takes its own line on phones and
+     fades whichever edge still hides buttons, through ease-my-life's
+     edge-fade helper (`pages/work/edge-fade.ts`); and a short last row of
+     projects sits centered (see "## Card Grids exception").
+   - **About** (reviewed with the user): the timeline alternates its
+     milestones either side of a center line above 768px, interlocking by
+     the p03 step, and centers its single column below that, under a centered
+     heading; the portrait sits beside the paragraphs from 769px to 1,024px,
+     the text column's children joining the hero's grid through
+     `display : contents`, and stacks centered and wider on phones.
+   - **Contact**: reviewed by the user and left as it was.
    - **Card grids**: Home shows four random featured projects two by two (see
      "## Content"), Work's grid is the user's exception (see "## Card Grids
-     exception"), and every other grid keeps even rows, Home's services once
-     the user added a fourth card (see "## Content").
+     exception"), and every other grid keeps even rows.
    - **Verified**: the responsive and accessibility suites pass in all three
-     engines, and the rendering baselines are refreshed for each change.
+     engines after every change, and the rendering baselines are refreshed
+     for each intended change. Contact's faint circuit pattern now and then
+     fails its screenshot in WebKit and Chromium, with nothing on the page
+     changed; it passes on rerun.
 11. **New features**: the 404 page brought in line, pages opening at the top,
     security headers (allowing the form's call to the email function), image
     optimization and the favicon set, the SEO pass and social preview card
