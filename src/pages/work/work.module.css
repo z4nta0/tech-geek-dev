@@ -1,203 +1,345 @@
-.pageHero {
-  position: relative;
-  background: var(--ivory);
-  padding: calc(var(--nav-height) + var(--sp-9)) 0 var(--sp-9);
-  overflow: hidden;
+
+
+
+/**
+ * work.module.css = Work Page Module
+ *
+ * @summary
+ * Styles for WorPagCom. The page fades up into view like every page. Its
+ * ivory hero clears the fixed bar and stacks an orange label, the heading
+ * with its blue accent, and a muted line, with two faint triangles in the
+ * corner. Below it a white filter bar sticks under the bar as the page
+ * scrolls, holding the label, a sideways-scrolling row of pill buttons (the
+ * active one marked with data-filter-button-active), and the count. The
+ * projects grid steps from three columns to two to one, and the closing
+ * process section lays its four step cards in a row with arrows between
+ * them, stacking with turned arrows below 1024px. The page's centered
+ * columns take the shared container values, and its sections the shared
+ * section padding, merged into their own rules. Everything that moves holds
+ * still under reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region page */
+
+.page { /* What: Work Page. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global fadeUp keyframe. */
+
+
+	animation : global( fadeUp ) 400ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Work Page. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.page { /* What: Motionless Work Page. Why: The page should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
 }
 
-.heroInner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-5);
-  max-width: 640px;
+
+
+/* #region pageHero */
+
+.pageHero { /* What: Page Hero. Why: The page opens with its heading block clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips its corner drawing. */
+
+
+	background : var( --ivory );                                              /* Ivory = #F5F0E8 */
+	overflow   : hidden;
+	padding    : calc( var( --nav-height ) + var( --sp-9 ) ) 0 var( --sp-9 ); /* Navigation Height = 72px, Spacing 9 = 96px */
+	position   : relative;
+
+
 }
 
-.heroLabel {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-3);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--orange);
+
+/* #region heroInner */
+
+.heroInner { /* What: Hero Inner. Why: The hero's text sits in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the label, heading, and line. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-5 );      /* Spacing 5 = 24px */
+	margin         : 0 auto;
+	max-width      : var( --max-width ); /* Maximum Width = 1200px */ /* What: Container Cap. Why: The global container rule loaded after this module, so its cap always beat the 640px this rule once asked for. How: This keeps the cap that has always applied. */
+	padding        : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	position       : relative;
+	width          : 100%;
+	z-index        : 1;
+
+
 }
 
-.heroLine {
-  display: inline-block;
-  width: 28px;
-  height: 1.5px;
-  background: var(--orange);
+
+/* #region heroLabel */
+
+.heroLabel { /* What: Hero Label. Why: A small label names the page above its heading. How: This sets it in orange mono capitals after its rule. */
+
+
+	align-items    : center;
+	color          : var( --orange );    /* Orange = #F26419 */
+	display        : inline-flex;
+	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.72rem;
+	gap            : var( --sp-3 );      /* Spacing 3 = 12px */
+	letter-spacing : 0.12em;
+	text-transform : uppercase;
+
+
 }
 
-.heroTitle { color: var(--ink); }
+.heroLine { /* What: Hero Line. Why: A short rule leads into the label. How: This draws a 28px orange stroke. */
 
-.accent { color: var(--blue-dark); }
 
-.heroSub {
-  font-size: 1.05rem;
-  color: var(--ink-mid);
-  max-width: 480px;
+	background : var( --orange ); /* Orange = #F26419 */
+	display    : inline-block;
+	height     : 1.5px;
+	width      : 28px;
+
+
 }
 
-.cornerAccent {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  pointer-events: none;
+/* #endregion heroLabel */
+
+
+/* #region heroTitle */
+
+.heroTitle { /* What: Hero Title. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
+
+
+	color : var( --ink ); /* Ink = #1A1A2E */
+
+
 }
 
-/* ── Filter bar ── */
-.filterBar {
-  background: var(--white);
-  border-top: 1px solid var(--ivory-dark);
-  border-bottom: 1px solid var(--ivory-dark);
-  padding: var(--sp-4) 0;
-  position: sticky;
-  top: var(--nav-height);
-  z-index: 10;
+.accent { /* What: Hero Title Accent. Why: The heading's second line carries the accent. How: This sets it in the dark blue. */
+
+
+	color : var( --blue-dark ); /* Blue Dark = #4A91B8 */
+
+
 }
 
-.filterInner {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-5);
+/* #endregion heroTitle */
+
+
+.heroSub { /* What: Hero Subtitle. Why: The line under the heading reads a little larger and quieter. How: This sets it muted and caps it at 480px. */
+
+
+	color     : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	font-size : 1.05rem;
+	max-width : 480px;
+
+
 }
 
-.filterLabel {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--ink-light);
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  flex-shrink: 0;
+/* #endregion heroInner */
+
+
+.cornerAccent { /* What: Corner Accent. Why: The triangles sit in the hero's bottom right corner. How: This pins the drawing there, letting the pointer pass through. */
+
+
+	bottom         : 0;
+	pointer-events : none;
+	position       : absolute;
+	right          : 0;
+
+
 }
 
-.filterScroll {
-  display: flex;
-  gap: var(--sp-2);
-  overflow-x: auto;
-  scrollbar-width: none;
-  flex: 1;
-}
-.filterScroll::-webkit-scrollbar { display: none; }
+/* #endregion pageHero */
 
-.filterBtn {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 6px 14px;
-  border-radius: 100px;
-  border: 1.5px solid var(--ivory-dark);
-  color: var(--ink-mid);
-  background: transparent;
-  white-space: nowrap;
-  transition: all var(--duration-fast);
+
+
+/* #region filterBar */
+
+.filterBar { /* What: Filter Bar. Why: The filter stays reachable while the visitor scrolls the projects. How: This sets a white band between two rules that sticks just under the fixed bar. */
+
+
+	background    : var( --white );                /* White = #FFFFFF */
+	border-bottom : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	border-top    : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	padding       : var( --sp-4 ) 0;               /* Spacing 4 = 16px */
+	position      : sticky;
+	top           : var( --nav-height );           /* Navigation Height = 72px */
+	z-index       : 10;
+
+
 }
 
-.filterBtn:hover {
-  border-color: var(--blue);
-  color: var(--blue-dark);
+
+/* #region filterInner */
+
+.filterInner { /* What: Filter Inner. Why: The filter sits in the page's centered column. How: This caps and centers the row with its side padding and lines up the label, the buttons, and the count. */
+
+
+	align-items : center;
+	display     : flex;
+	gap         : var( --sp-5 );      /* Spacing 5 = 24px */
+	margin      : 0 auto;
+	max-width   : var( --max-width ); /* Maximum Width = 1200px */
+	padding     : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	width       : 100%;
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Filter Inner. Why: The label, buttons, and count can't share one row on a phone. How: This applies at 640px and below. */
+
+
+	.filterInner { /* What: Wrapping Filter Inner. Why: The row needs room on a phone. How: This lets it wrap. */
+
+
+		flex-wrap : wrap;
+
+
+	}
+
+
 }
 
-.filterBtn.active {
-  background: var(--blue-dark);
-  border-color: var(--blue-dark);
-  color: var(--white);
+.filterLabel { /* What: Filter Label. Why: The row says what its buttons do. How: This sets the label in muted mono capitals beside its funnel icon, never shrinking. */
+
+
+	align-items    : center;
+	color          : var( --ink-light ); /* Ink Light = #7A7A99 */
+	display        : flex;
+	flex-shrink    : 0;
+	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.72rem;
+	gap            : var( --sp-2 );      /* Spacing 2 = 8px */
+	letter-spacing : 0.06em;
+	text-transform : uppercase;
+
+
 }
 
-.filterCount {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--ink-light);
-  flex-shrink: 0;
+
+/* #region filterScroll */
+
+.filterScroll { /* What: Filter Scroll. Why: The buttons can outgrow the row. How: This lays them in a row that fills the space and scrolls sideways with its scrollbar hidden. */
+
+
+	display         : flex;
+	flex            : 1;
+	gap             : var( --sp-2 ); /* Spacing 2 = 8px */
+	overflow-x      : auto;
+	scrollbar-width : none;
+
+
+}
+.filterScroll::-webkit-scrollbar { /* What: Filter Scroll Scrollbar. Why: WebKit and Chromium ignore scrollbar-width on older versions. How: This hides their scrollbar too. */
+
+
+	display : none;
+
+
 }
 
-/* ── Grid ── */
-.projectsSection { background: var(--ivory); }
+.filterBtn { /* What: Filter Button. Why: Each technology is a pill the visitor can choose. How: This sets an outlined pill in mono capitals that never wraps, easing every change. */
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-5);
+
+	background     : transparent;
+	border         : 1.5px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	border-radius  : 100px;
+	color          : var( --ink-mid );                /* Ink Mid = #3D3D5C */
+	font-family    : var( --font-mono );              /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.72rem;
+	letter-spacing : 0.04em;
+	padding        : 6px 14px;
+	text-transform : uppercase;
+	transition     : all var( --duration-fast );      /* Duration Fast = 150ms */
+	white-space    : nowrap;
+
+
+}
+.filterBtn:hover { /* What: Hovered Filter Button. Why: A button should respond to the pointer. How: This turns its border and text blue. */
+
+
+	border-color : var( --blue );      /* Blue = #7DB9D8 */
+	color        : var( --blue-dark ); /* Blue Dark = #4A91B8 */
+
+
+}
+.filterBtn[data-filter-button-active] { /* What: Active Filter Button. Why: The chosen technology stands out. How: This fills the pill dark blue with white text. */
+
+
+	background   : var( --blue-dark ); /* Blue Dark = #4A91B8 */
+	border-color : var( --blue-dark ); /* Blue Dark = #4A91B8 */
+	color        : var( --white );     /* White = #FFFFFF */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Filter Button. Why: Someone who asked for less motion shouldn't see the pills fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.filterBtn { /* What: Motionless Filter Button. Why: The hover and active looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-.empty {
-  text-align: center;
-  padding: var(--sp-10) 0;
-  color: var(--ink-light);
-  font-family: var(--font-mono);
+/* #endregion filterScroll */
+
+
+.filterCount { /* What: Filter Count. Why: The row says how many projects remain. How: This sets the count in muted mono, never shrinking. */
+
+
+	color       : var( --ink-light ); /* Ink Light = #7A7A99 */
+	flex-shrink : 0;
+	font-family : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size   : 0.72rem;
+
+
 }
 
-/* ── Process ── */
-.process {
-  background: var(--ivory-warm);
-  position: relative;
-  overflow: hidden;
+/* #endregion filterInner */
+
+/* #endregion filterBar */
+
+
+
+/* #region projectsSection */
+
+.projectsSection { /* What: Projects Section. Why: The grid sits on the ivory with the page's section spacing. How: This sets the background and the shared section padding. */
+
+
+	background : var( --ivory );   /* Ivory = #F5F0E8 */
+	padding    : var( --sp-10 ) 0; /* Spacing 10 = 128px */
+
+
 }
 
-.processInner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-9);
-  align-items: center;
+
+/* #region projectsInner */
+
+.projectsInner { /* What: Projects Inner. Why: The grid sits in the page's centered column. How: This caps and centers the column with its side padding. */
+
+
+	margin    : 0 auto;
+	max-width : var( --max-width ); /* Maximum Width = 1200px */
+	padding   : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	width     : 100%;
+
+
 }
 
-.steps {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--sp-3);
-  width: 100%;
-}
-
-.step {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-3);
-  background: var(--white);
-  border: 1px solid var(--ivory-dark);
-  border-radius: var(--radius-lg);
-  padding: var(--sp-6);
-}
-
-.stepNum {
-  font-family: var(--font-mono);
-  font-size: 2rem;
-  font-weight: 500;
-  color: var(--orange);
-  line-height: 1;
-  letter-spacing: -0.04em;
-}
-
-.stepTitle {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--ink);
-}
-
-.stepDesc {
-  font-size: 0.85rem;
-  color: var(--ink-mid);
-  line-height: 1.6;
-}
-
-.stepArrow {
-  display: flex;
-  align-items: center;
-  padding-top: var(--sp-7);
-  flex-shrink: 0;
-}
-
-.visuallyHidden { /* What: Visually Hidden Rule. Why: The projects grid's h2 keeps the headings in order for screen readers, while the hero already introduces the grid on screen. How: This shrinks the heading to a clipped 1px box out of the layout, the standard technique that keeps it in the accessibility tree. */
+.visuallyHidden { /* What: Visually Hidden. Why: The projects grid's h2 keeps the headings in order for screen readers, while the hero already introduces the grid on screen. How: This shrinks the heading to a clipped 1px box out of the layout, the standard technique that keeps it in the accessibility tree. */
 
 
 	border      : 0;
@@ -213,13 +355,204 @@
 
 }
 
-@media (max-width: 1024px) {
-  .grid { grid-template-columns: repeat(2, 1fr); }
-  .steps { flex-direction: column; }
-  .stepArrow { transform: rotate(90deg); align-self: center; }
+.grid { /* What: Projects Grid. Why: The cards line up in even columns. How: This sets three columns with gaps. */
+
+
+	display               : grid;
+	gap                   : var( --sp-5 ); /* Spacing 5 = 24px */
+	grid-template-columns : repeat( 3, 1fr );
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Projects Grid. Why: Three columns crowd a tablet. How: This applies at 1024px and below. */
+
+
+	.grid { /* What: Two Column Projects Grid. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
+
+
+		grid-template-columns : repeat( 2, 1fr );
+
+
+	}
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Projects Grid. Why: Two columns crowd a phone. How: This applies at 640px and below. */
+
+
+	.grid { /* What: One Column Projects Grid. Why: One card fits across a phone. How: This sets one column. */
+
+
+		grid-template-columns : 1fr;
+
+
+	}
+
+
 }
 
-@media (max-width: 640px) {
-  .grid { grid-template-columns: 1fr; }
-  .filterInner { flex-wrap: wrap; }
+.empty { /* What: Empty Message. Why: A filter that finds nothing should say so clearly. How: This centers the message in muted mono with generous room around it. */
+
+
+	color       : var( --ink-light ); /* Ink Light = #7A7A99 */
+	font-family : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	padding     : var( --sp-10 ) 0;   /* Spacing 10 = 128px */
+	text-align  : center;
+
+
 }
+
+/* #endregion projectsInner */
+
+/* #endregion projectsSection */
+
+
+
+/* #region process */
+
+.process { /* What: Process Section. Why: The page closes on a warmer band with the section spacing. How: This sets the warm ivory, the shared section padding, and clips the pattern behind it. */
+
+
+	background : var( --ivory-warm ); /* Ivory Warm = #EDE6D8 */
+	overflow   : hidden;
+	padding    : var( --sp-10 ) 0;    /* Spacing 10 = 128px */
+	position   : relative;
+
+
+}
+
+
+/* #region processInner */
+
+.processInner { /* What: Process Inner. Why: The process sits in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the heading block over the steps. */
+
+
+	align-items    : center;
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-9 );      /* Spacing 9 = 96px */
+	margin         : 0 auto;
+	max-width      : var( --max-width ); /* Maximum Width = 1200px */
+	padding        : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	position       : relative;
+	width          : 100%;
+	z-index        : 1;
+
+
+}
+
+
+/* #region steps */
+
+.steps { /* What: Process Steps. Why: The four steps read left to right. How: This lays the cards and arrows in a full-width row, aligned to their tops. */
+
+
+	align-items : flex-start;
+	display     : flex;
+	gap         : var( --sp-3 ); /* Spacing 3 = 12px */
+	width       : 100%;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Process Steps. Why: Four cards in a row crowd a tablet. How: This applies at 1024px and below. */
+
+
+	.steps { /* What: Stacked Process Steps. Why: The steps read top to bottom on a narrower screen. How: This stacks the cards and arrows. */
+
+
+		flex-direction : column;
+
+
+	}
+
+
+}
+
+
+/* #region step */
+
+.step { /* What: Process Step. Why: Each step is one white card. How: This sets the card, sharing the row evenly, and stacks its number, title, and description. */
+
+
+	background     : var( --white );                /* White = #FFFFFF */
+	border         : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	border-radius  : var( --radius-lg );            /* Radius Large = 12px */
+	display        : flex;
+	flex           : 1;
+	flex-direction : column;
+	gap            : var( --sp-3 );                 /* Spacing 3 = 12px */
+	padding        : var( --sp-6 );                 /* Spacing 6 = 32px */
+
+
+}
+
+.stepNum { /* What: Step Number. Why: The number shows the step's place at a glance. How: This sets it large in orange mono, tight. */
+
+
+	color          : var( --orange );    /* Orange = #F26419 */
+	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size      : 2rem;
+	font-weight    : 500;
+	letter-spacing : -0.04em;
+	line-height    : 1;
+
+
+}
+
+.stepTitle { /* What: Step Title. Why: Each step is named. How: This sets the title bold in the main text color. */
+
+
+	color       : var( --ink ); /* Ink = #1A1A2E */
+	font-size   : 1rem;
+	font-weight : 700;
+
+
+}
+
+.stepDesc { /* What: Step Description. Why: A sentence explains the step more quietly. How: This sets it small and muted. */
+
+
+	color       : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	font-size   : 0.85rem;
+	line-height : 1.6;
+
+
+}
+
+/* #endregion step */
+
+
+.stepArrow { /* What: Step Arrow. Why: An arrow leads from one card to the next. How: This holds the arrow, dropped to sit beside the cards' titles, never shrinking. */
+
+
+	align-items : center;
+	display     : flex;
+	flex-shrink : 0;
+	padding-top : var( --sp-7 ); /* Spacing 7 = 48px */
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Step Arrow. Why: The stacked steps read top to bottom. How: This applies at 1024px and below. */
+
+
+	.stepArrow { /* What: Turned Step Arrow. Why: The arrow has to point down to the next card. How: This turns it a quarter turn and centers it. */
+
+
+		align-self : center;
+		transform  : rotate( 90deg );
+
+
+	}
+
+
+}
+
+/* #endregion steps */
+
+/* #endregion processInner */
+
+/* #endregion process */
+
+/* #endregion page */
+
+

@@ -123,7 +123,7 @@ function WorPagCom () : JSX.Element {
 	return (
 
 
-		<div className='page-enter'>{ /* What: Work Page Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
+		<div className={ cssModObj.page }>{ /* What: Work Page Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
 
 
 			<section className={ cssModObj.pageHero }>{ /* What: Page Hero Section Element. Why: The page opens by introducing the catalog. How: This holds the pattern, the heading block, and the corner accent. */ }
@@ -136,7 +136,7 @@ function WorPagCom () : JSX.Element {
 
 
 
-				<div className={` container   ${ cssModObj.heroInner } `}>{ /* What: Hero Inner Div Element. Why: The hero's text sits in the page's centered column. How: This stacks the label, heading, and line. */ }
+				<div className={ cssModObj.heroInner }>{ /* What: Hero Inner Div Element. Why: The hero's text sits in the page's centered column. How: This stacks the label, heading, and line. */ }
 
 
 					<span className={ cssModObj.heroLabel }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows My Work after a short rule. */ }
@@ -197,7 +197,7 @@ function WorPagCom () : JSX.Element {
 			<section className={ cssModObj.filterBar }>{ /* What: Filter Bar Section Element. Why: A visitor can narrow the projects to one technology. How: This holds the label, the buttons, and the count. */ }
 
 
-				<div className={` container   ${ cssModObj.filterInner } `}>{ /* What: Filter Inner Div Element. Why: The filter sits in the page's centered column. How: This lines up the label, the buttons, and the count. */ }
+				<div className={ cssModObj.filterInner }>{ /* What: Filter Inner Div Element. Why: The filter sits in the page's centered column. How: This lines up the label, the buttons, and the count. */ }
 
 
 					<span className={ cssModObj.filterLabel }>{ /* What: Filter Label Span Element. Why: The row says what its buttons do. How: This shows Filter by tech after a funnel icon. */ }
@@ -228,10 +228,12 @@ function WorPagCom () : JSX.Element {
 							<button
 								key={ tagNamStr }
 
-								className={` ${ cssModObj.filterBtn }   ${ actTagStr === tagNamStr ? cssModObj.active : '' } `}
+								className={ cssModObj.filterBtn }
+
+								data-filter-button-active={ actTagStr === tagNamStr || undefined }
 
 								onClick={ () => setActTagStr( tagNamStr ) }
-							>{ tagNamStr }</button> // What: Filter Button Element. Why: Each button narrows the grid to its technology. How: This sets the active tag, marked with the active class while chosen.
+							>{ tagNamStr }</button> // What: Filter Button Element. Why: Each button narrows the grid to its technology. How: This sets the active tag, marked with data-filter-button-active while chosen, which its module styles.
 
 
 						))}
@@ -251,10 +253,10 @@ function WorPagCom () : JSX.Element {
 
 
 
-			<section className={` section   ${ cssModObj.projectsSection } `}>{ /* What: Projects Section Element. Why: The grid of cards is the page's main content. How: This holds the grid or the empty message. */ }
+			<section className={ cssModObj.projectsSection }>{ /* What: Projects Section Element. Why: The grid of cards is the page's main content. How: This holds the grid or the empty message. */ }
 
 
-				<div className='container'>{ /* What: Projects Container Div Element. Why: The grid sits in the page's centered column. How: This holds the hidden heading and the grid. */ }
+				<div className={ cssModObj.projectsInner }>{ /* What: Projects Inner Div Element. Why: The grid sits in the page's centered column. How: This holds the hidden heading and the grid. */ }
 
 
 					<h2 className={ cssModObj.visuallyHidden }>Projects</h2>{ /* What: Projects Heading Element. Why: The cards' h3 titles need an h2 between them and the page's h1, and the hero already introduces the grid visually. How: This names the section for screen readers while staying out of sight. */ }
@@ -304,7 +306,7 @@ function WorPagCom () : JSX.Element {
 
 
 
-			<section className={` section   ${ cssModObj.process } `}>{ /* What: Process Section Element. Why: The page closes with how every project is run. How: This holds the pattern, the heading block, and the steps. */ }
+			<section className={ cssModObj.process }>{ /* What: Process Section Element. Why: The page closes with how every project is run. How: This holds the pattern, the heading block, and the steps. */ }
 
 
 				<GeoBacCom
@@ -314,7 +316,7 @@ function WorPagCom () : JSX.Element {
 
 
 
-				<div className={` container   ${ cssModObj.processInner } `}>{ /* What: Process Inner Div Element. Why: The process sits in the page's centered column. How: This stacks the heading block and the steps. */ }
+				<div className={ cssModObj.processInner }>{ /* What: Process Inner Div Element. Why: The process sits in the page's centered column. How: This stacks the heading block and the steps. */ }
 
 
 					<SecHeaCom

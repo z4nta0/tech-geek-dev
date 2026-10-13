@@ -283,6 +283,10 @@ ticker, and the status dots) when waiting for the page to settle.
   that gets a rerun, not new baselines, until step 8 stops them.
 
 ## Found for later
+- **Work's filter row crowds a phone** (step 10): at 390px the label, the
+  sideways-scrolling pills, and the count share one line, so a focused pill
+  near the row's edge is clipped by the row and partly covered by the count,
+  which the keyboard walk reports as "Node.js" covered.
 - **The Hire Me buttons reload the whole site** (step 11): the bar's and the
   drawer's Hire Me are plain `<a href='/contact'>` links rather than router
   links, so they load the page from scratch instead of switching routes.
