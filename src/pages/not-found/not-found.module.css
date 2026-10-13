@@ -77,7 +77,7 @@
 
 }
 
-.hexDraSvg { /* What: Hexagon Drawing SVG. Why: Nested hexagons turn slowly behind the number, echoing the site's mark. How: This centers the 200px drawing over the block through translate, which combines with the turning transform, and plays the shared slow rotation forever. */
+.hexDraSvg { /* What: Hexagon Drawing SVG. Why: Nested hexagons turn slowly behind the number, echoing the site's mark. How: This centers the 183px drawing over the block through translate, which combines with the turning transform, and plays the shared slow rotation forever. */
 
 
 	animation      : global( shapeLoopSpin ) var( --dur-ani-p18 ) linear infinite; /* Duration Animation Base Plus 18 ~= 24,914.0ms */
@@ -116,7 +116,7 @@
 
 }
 
-.nofDesPar { /* What: Not-Found Description Paragraph. Why: The line explaining the missing page stays short. How: This sets it muted and caps it at 360px. */
+.nofDesPar { /* What: Not-Found Description Paragraph. Why: The line explaining the missing page stays short. How: This sets it muted and caps it at the small text measure, about 51 characters. */
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */

@@ -98,7 +98,7 @@
 
 }
 
-.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws a 28px orange stroke. */
+.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws a 26px orange stroke. */
 
 
 	background : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
@@ -243,7 +243,7 @@
 
 }
 
-.sucTexPar { /* What: Success Text Paragraph. Why: The line under the heading says when to expect a reply. How: This sets it muted and capped at 360px. */
+.sucTexPar { /* What: Success Text Paragraph. Why: The line under the heading says when to expect a reply. How: This sets it muted and capped at the small text measure, about 51 characters. */
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -423,7 +423,7 @@
 
 }
 
-.forConTex { /* What: Form Control Textarea. Why: A message needs room and only grows downward. How: This sets a 140px minimum, roomy lines, and vertical resizing only. */
+.forConTex { /* What: Form Control Textarea. Why: A message needs room and only grows downward. How: This sets a 138px minimum, roomy lines, and vertical resizing only. */
 
 
 	line-height : var( --ver-rhy-p01 );                /* Vertical Rhythm Base Plus 1 ~= 1.755 */
@@ -622,7 +622,7 @@
 
 }
 
-.conIcoSpa { /* What: Contact Icon Span. Why: Each detail's icon sits on a pale blue tile. How: This draws a 36px rounded tile centering the icon in dark blue, never shrinking. */
+.conIcoSpa { /* What: Contact Icon Span. Why: Each detail's icon sits on a pale blue tile. How: This draws a 34px rounded tile centering the icon in dark blue, never shrinking. */
 
 
 	align-items     : center;
@@ -679,7 +679,7 @@
 
 }
 
-.staDotSpa { /* What: Status Dot Span. Why: A pulsing green dot signals availability. How: This draws a 10px green circle, never shrinking, playing the shared pulse forever. */
+.staDotSpa { /* What: Status Dot Span. Why: A pulsing green dot signals availability. How: This draws an 11px green circle, never shrinking, playing the shared pulse forever. */
 
 
 	animation     : global( statusLoopPulse ) var( --dur-ani-p10 ) var( --mot-sta-eas ) infinite; /* Duration Animation Base Plus 10 ~= 2,627.0ms, Motion Standard Easing = ease */

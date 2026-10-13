@@ -86,7 +86,7 @@
 
 
 }
-.herShaDiv--hexagon { /* What: Hexagon Hero Shape Div. Why: A large blue hexagon echoes the site's mark at the hero's right. How: This clips a 320px blue square to a hexagon past the right edge and turns it once every 30 seconds. */
+.herShaDiv--hexagon { /* What: Hexagon Hero Shape Div. Why: A large blue hexagon echoes the site's mark at the hero's right. How: This clips a 321px blue square to a hexagon past the right edge and turns it once every 33 seconds. */
 
 
 	animation  : global( shapeLoopSpin ) var( --dur-ani-p19 ) linear infinite; /* Duration Animation Base Plus 19 ~= 33,004.0ms */
@@ -99,7 +99,7 @@
 
 
 }
-.herShaDiv--circle { /* What: Circle Hero Shape Div. Why: An orange ring varies the shapes at the hero's lower left. How: This draws a 200px ring a little stronger than the others and turns it backward every 20 seconds. */
+.herShaDiv--circle { /* What: Circle Hero Shape Div. Why: An orange ring varies the shapes at the hero's lower left. How: This draws a 183px ring a little stronger than the others and turns it backward every 25 seconds. */
 
 
 	animation     : global( shapeLoopSpin ) var( --dur-ani-p18 ) linear infinite reverse; /* Duration Animation Base Plus 18 ~= 24,914.0ms */
@@ -114,7 +114,7 @@
 
 
 }
-.herShaDiv--square { /* What: Square Hero Shape Div. Why: A tilted outlined square varies the shapes near the hero's top. How: This draws a 120px dark blue square tipped 45 degrees through rotate, which the turning transform adds to, and turns it every 15 seconds. */
+.herShaDiv--square { /* What: Square Hero Shape Div. Why: A tilted outlined square varies the shapes near the hero's top. How: This draws a 104px dark blue square tipped 45 degrees through rotate, which the turning transform adds to, and turns it every 19 seconds. */
 
 
 	animation  : global( shapeLoopSpin ) var( --dur-ani-p17 ) linear infinite; /* Duration Animation Base Plus 17 ~= 18,807.0ms */
@@ -454,7 +454,7 @@
 
 /* #region ticInnDiv */
 
-.ticInnDiv { /* What: Ticker Inner Div. Why: The strip slides along endlessly. How: This lines up the items and plays the ticker's own scroll once every 60 seconds, forever. */
+.ticInnDiv { /* What: Ticker Inner Div. Why: The strip slides along endlessly. How: This lines up the items and plays the ticker's own scroll once every 77 seconds, forever. */
 
 
 	animation : ticInnDivLoopScroll var( --dur-ani-p22 ) linear infinite; /* Duration Animation Base Plus 22 ~= 76,725.0ms */
@@ -756,7 +756,7 @@
 /* #endregion herInnDiv */
 
 
-.herDivDiv { /* What: Hero Divider Div. Why: A slanted white edge leads from the hero into the stats strip. How: This clips a 64px white band along the hero's bottom to a triangle. */
+.herDivDiv { /* What: Hero Divider Div. Why: A slanted white edge leads from the hero into the stats strip. How: This clips a 59px white band along the hero's bottom to a triangle. */
 
 
 	background : var( --bac-sur-col );                /* Background Surface Color = #FFFFFF */
@@ -889,7 +889,7 @@
 
 
 }
-.staValSpa::after { /* What: Stat Value Span Underline. Why: A short orange stroke sits under each figure. How: This draws a 24px rounded orange bar centered below it. */
+.staValSpa::after { /* What: Stat Value Span Underline. Why: A short orange stroke sits under each figure. How: This draws a 26px rounded orange bar centered below it. */
 
 
 	background    : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
@@ -1173,7 +1173,7 @@
 
 }
 
-.serIcoDiv { /* What: Service Icon Div. Why: Each service's icon sits on a pale blue tile. How: This draws a 52px rounded tile centering the icon in dark blue. */
+.serIcoDiv { /* What: Service Icon Div. Why: Each service's icon sits on a pale blue tile. How: This draws a 45px rounded tile centering the icon in dark blue. */
 
 
 	align-items     : center;

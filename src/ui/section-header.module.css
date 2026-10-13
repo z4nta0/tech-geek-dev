@@ -56,7 +56,7 @@
 
 }
 
-.labLinSpa { /* What: Label Line Span. Why: A short rule leads into the label. How: This draws a 28px orange stroke that never shrinks. */
+.labLinSpa { /* What: Label Line Span. Why: A short rule leads into the label. How: This draws a 26px orange stroke that never shrinks. */
 
 
 	background  : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
@@ -86,7 +86,7 @@
 
 }
 
-.secSubPar { /* What: Section Subtitle Paragraph. Why: The subtitle expands on the heading more quietly. How: This sets it muted, a little larger than body text, and capped at 540px. */
+.secSubPar { /* What: Section Subtitle Paragraph. Why: The subtitle expands on the heading more quietly. How: This sets it muted, a little larger than body text, and capped at the paragraph measure, about 68 characters. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */

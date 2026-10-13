@@ -124,7 +124,7 @@
 
 }
 
-.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws a 28px orange stroke. */
+.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws a 26px orange stroke. */
 
 
 	background : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
@@ -270,7 +270,7 @@
 
 /* #region porWraDiv */
 
-.porWraDiv { /* What: Portrait Wrap Div. Why: The portrait and its frame share one 280 by 320px box. How: This sizes the box and positions the frame against it. */
+.porWraDiv { /* What: Portrait Wrap Div. Why: The portrait and its frame share one 243 by 321px box. How: This sizes the box and positions the frame against it. */
 
 
 	height   : calc( var( --ver-rhy-p11 ) * 1rem ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
@@ -280,7 +280,7 @@
 
 }
 
-.porFraSvg { /* What: Portrait Frame SVG. Why: The hexagon frame reaches 20px past the portrait on every side. How: This stretches the drawing 20px beyond the box. */
+.porFraSvg { /* What: Portrait Frame SVG. Why: The hexagon frame reaches about 19px past the portrait on every side. How: This stretches the drawing about 19px beyond the box. */
 
 
 	height   : calc( 100% + var( --spa-ver-p01 ) * 2 );                             /* Spacing Vertical Base Plus 1 ~= 19.304px */
@@ -626,7 +626,7 @@
 
 }
 
-.timDotDiv { /* What: Timeline Dot Div. Why: Each milestone has its own ring. How: This draws a 12px white circle with a dark blue ring, never shrinking. */
+.timDotDiv { /* What: Timeline Dot Div. Why: Each milestone has its own ring. How: This draws an 11px white circle with a dark blue ring, never shrinking. */
 
 
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */

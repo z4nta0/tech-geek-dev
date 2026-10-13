@@ -99,7 +99,7 @@
 
 }
 
-.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws a 28px orange stroke. */
+.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws a 26px orange stroke. */
 
 
 	background : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
@@ -134,7 +134,7 @@
 /* #endregion herTitHea */
 
 
-.herSubPar { /* What: Hero Subtitle Paragraph. Why: The line under the heading reads a little larger and quieter. How: This sets it muted and caps it at 480px. */
+.herSubPar { /* What: Hero Subtitle Paragraph. Why: The line under the heading reads a little larger and quieter. How: This sets it muted and caps it at the paragraph measure, about 68 characters. */
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */

@@ -307,7 +307,7 @@
 
 }
 
-.togBarSpa { /* What: Toggle Bar Span. Why: Three bars draw the menu icon. How: This draws one 22px rounded ink bar, easing its turn and fade. */
+.togBarSpa { /* What: Toggle Bar Span. Why: Three bars draw the menu icon. How: This draws one 19px rounded ink bar, easing its turn and fade. */
 
 
 	background    : var( --bac-inv-col );                                                              /* Background Inverse Color = #1A1A2E */
