@@ -4,7 +4,7 @@
 // #region Imports
 
 import { AboPagCom   } from './pages/about/about.tsx';         // What: About Page Component. Why: The About route shows who built the projects. How: The about route renders it.
-import { Contact     } from './pages/contact/contact.tsx';     // What: Contact. Why: The Contact route shows the form and the contact details. How: The contact route renders it.
+import { ConPagCom   } from './pages/contact/contact.tsx';     // What: Contact Page Component. Why: The Contact route shows the form and the contact details. How: The contact route renders it.
 import { HomPagCom   } from './pages/home/home.tsx';           // What: Home Page Component. Why: The site's root address is its home page. How: The home route renders it.
 import { NavBarCom   } from './ui/nav.tsx';                    // What: Navigation Bar Component. Why: Every page starts with the shared bar. How: This renders above the routes.
 import { NotFouCom   } from './pages/not-found/not-found.tsx'; // What: Not Found Component. Why: Every unknown address shows the 404 page. How: The catch-all route renders it.
@@ -117,9 +117,9 @@ function AppRooCom () : JSX.Element {
 
 
 					<Route
-						element={ <Contact /> }
+						element={ <ConPagCom /> }
 						path='/contact'
-					/>{ /* What: Contact Route. Why: The ways to get in touch have their own page. How: This renders Contact at /contact. */ }
+					/>{ /* What: Contact Route. Why: The ways to get in touch have their own page. How: This renders ConPagCom at /contact. */ }
 
 
 
