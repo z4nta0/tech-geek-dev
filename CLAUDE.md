@@ -60,6 +60,10 @@ Decided 2026-10-12 by the user, in the step 7 content review.
   picked at random on each visit (`ranPicFun`, once per page load), set two by
   two on desktops and tablets and one column on phones. Four keeps every row
   even; the pick changes from visit to visit.
+- **Services** (decided 2026-10-13): Local SEO Optimized, Frontend
+  Development, Backend Development, and Hosting & Maintenance, the fourth
+  added after the greeting cards service was cut, so the four-column grid
+  keeps even rows and the section covers a site from build to upkeep.
 
 ## Card Grids exception
 Decided 2026-10-13 by the user, for this project only. Work's project grid
@@ -366,8 +370,8 @@ on `close-out`.
      and Work's phone filter row takes its own full-width line.
    - **Card grids**: Home shows four random featured projects two by two (see
      "## Content"), Work's grid is the user's exception (see "## Card Grids
-     exception"), and every other grid already kept even rows except Home's
-     services, which wait on the deferred decision below.
+     exception"), and every other grid keeps even rows, Home's services once
+     the user added a fourth card (see "## Content").
    - **Verified**: the responsive and accessibility suites pass in all three
      engines, and the rendering baselines are refreshed for each change.
 11. **New features**: the 404 page brought in line, pages opening at the top,
@@ -424,10 +428,6 @@ ticker, and the status dots) when waiting for the page to settle.
 
 ## Deferred items
 Decided 2026-10-12 to leave these until the cleanup plan is finished.
-- **Home services grid**: removing the greeting cards service left 3 cards
-  in a grid built for 4 columns (2 below 1024px), so desktop has an empty
-  slot and tablet a short last row, which the Card Grids rule forbids. The
-  user will decide whether to add a service or remove the section.
 - **Linking the three sites**: this site should link out to techgeek.support
   and techgeek.cards, but where and how isn't decided. The Home call to
   action's "Need Tech Help?" link to `/support` was removed until then.

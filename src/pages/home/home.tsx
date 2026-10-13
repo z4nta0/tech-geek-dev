@@ -223,6 +223,39 @@ const SER_CAR_ARR = [ // What: Service Card Array. Why: The services section sho
 		)
 
 
+	},
+
+	{ // What: Hosting Service Row. Why: A site has to launch and keep running after it's built, which completes the end-to-end story. How: This describes the hosting and maintenance service.
+
+
+		titStr : 'Hosting & Maintenance',
+
+		desStr : 'Fast, secure launches on modern hosting, with updates, backups, and fixes so your site keeps running smoothly.',
+
+		icoEle : ( // What: Cloud Check Icon. Why: A cloud with a check stands for a site hosted and looked after. How: This draws it at the card's icon size.
+
+
+			<svg
+				fill='none'
+				height='28'
+				stroke='currentColor'
+				strokeWidth='1.8'
+				viewBox='0 0 24 24'
+				width='28'
+			>{ /* What: Cloud Check Icon SVG Element. Why: The icon marks the hosting service. How: This draws a cloud holding a check mark. */ }
+
+
+				<path d='M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z' />{ /* What: Cloud Path Element. Why: The cloud stands for hosting. How: This draws its outline. */ }
+
+				<path d='M9 14.5l2 2 4-4' />{ /* What: Check Path Element. Why: The check says the site is kept in good shape. How: This draws a check mark inside the cloud. */ }
+
+
+			</svg>
+
+
+		)
+
+
 	}
 
 
