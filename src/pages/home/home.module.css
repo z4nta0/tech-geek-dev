@@ -58,10 +58,10 @@
 
 
 	align-items : center;
-	background  : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
+	background  : var( --bac-pag-col );                                                                                            /* Background Page Color = #F5F0E8 */
 	display     : flex;
 	overflow    : hidden;
-	padding     : calc( var( --nav-bar-hei ) + clamp( var( --spa-ver-p05 ), 10vw, var( --spa-ver-p08 ) ) ) 0 clamp( var( --spa-ver-p06 ), 12vw, var( --spa-ver-p08 ) ); /* Navigation Bar Height ~= 78.751px, Spacing Vertical Base Plus 5 ~= 59.447px, Spacing Vertical Base Plus 8 ~= 138.199px, Spacing Vertical Base Plus 6 ~= 78.751px */ /* What: Hero Padding. Why: The gap under the bar and above the slanted edge should suit the screen. How: The top clears the bar plus 10vw, about 59px to 138px, and the bottom is 12vw, about 79px to 138px, which keeps the content clear of the 59px slanted edge. */
+	padding     : calc( var( --nav-bar-hei ) + var( --her-gap-pad ) ) 0 clamp( var( --spa-ver-p06 ), 12vw, var( --spa-ver-p08 ) ); /* Navigation Bar Height ~= 78.751px, Hero Gap Padding, about 59.447px - 138.199px, Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Vertical Base Plus 8 ~= 138.199px */ /* What: Hero Padding. Why: The gap under the bar and above the slanted edge should suit the screen. How: The top clears the bar plus the shared hero gap, and the bottom is 12vw, about 79px to 138px, which keeps the content clear of the 59px slanted edge. */
 	position    : relative;
 
 
