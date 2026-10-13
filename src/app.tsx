@@ -1,7 +1,7 @@
 import React from 'react'
 import { Routes, Route, useLocation } from 'react-router'
 import { Nav } from './ui/nav.tsx'
-import { Footer } from './ui/footer.tsx'
+import { SitFooCom } from './ui/footer.tsx'
 import { Home } from './pages/home/home.tsx'
 import { Work } from './pages/work/work.tsx'
 import { About } from './pages/about/about.tsx'
@@ -23,7 +23,7 @@ const App: React.FC = () => {
           <Route path="*"        element={<NotFound />} />
         </Routes>
       </main>
-      <Footer />
+      <SitFooCom />
     </>
   )
 }
