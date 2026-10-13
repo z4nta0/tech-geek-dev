@@ -49,7 +49,7 @@
 	backdrop-filter         : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
 	background              : oklch( from var( --bac-pag-col ) l c h / 0.92 ); /* Background Page Color = #F5F0E8 @ 0.92 opacity */
 	border-bottom-color     : var( --bor-mai-col );                            /* Border Main Color = #D8CFBE */
-	box-shadow              : var( --shadow-sm );                              /* Shadow Small = 0 1px 3px rgba( 26, 26, 46, 0.08 ) */
+	box-shadow              : var( --ele-sma-sha );                            /* Elevation Small Shadow, about 0 1.2px 2.7px */
 
 
 }

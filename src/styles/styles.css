@@ -235,6 +235,18 @@
 
 
 
+	/* #region Elevation Tokens */
+
+	--ele-sma-sha : 0 calc( var( --ver-rhy-m09 ) * 1rem ) calc( var( --ver-rhy-m06 ) * 1rem ) oklch( from var( --sha-mai-col ) l c h / var( --cdn-pow-009-rec ) ); /* What: Elevation Small Shadow, about 0 1.2px 2.7px. Why: The scrolled bar lifts just off the page under it. How: This is one tight contact shadow in the ink at about 0.08. */
+	--ele-med-sha : 0 calc( var( --ver-rhy-m04 ) * 1rem ) calc( var( --ver-rhy-bas ) * 1rem ) oklch( from var( --sha-mai-col ) l c h / var( --cdn-pow-008-rec ) ), 0 calc( var( --ver-rhy-m08 ) * 1rem ) calc( var( --ver-rhy-m05 ) * 1rem ) calc( var( --ver-rhy-m09 ) * -1rem ) oklch( from var( --sha-mai-col ) l c h / var( --cdn-pow-010-rec ) );                                      /* What: Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px. Why: Hovered value and service cards and the floating fact cards and badge float just off the page. How: This pairs a soft key shadow in the ink at about 0.105 with a crisp contact layer at 0.06. */
+	--ele-lar-sha : 0 calc( var( --ver-rhy-m01 ) * 1rem ) calc( var( --ver-rhy-p04 ) * 1rem ) oklch( from var( --sha-mai-col ) l c h / var( --cdn-pow-007-rec ) ), 0 calc( var( --ver-rhy-m05 ) * 1rem ) calc( var( --ver-rhy-m01 ) * 1rem ) calc( var( --ver-rhy-m06 ) * -1rem ) oklch( from var( --sha-mai-col ) l c h / var( --cdn-pow-009-rec ) );                                      /* What: Elevation Large Shadow, about 0 11px 44.9px plus 0 3.6px 11px -2.7px. Why: Hovered project cards and the code window lift well clear of the page. How: This pairs a deep key shadow in the ink at about 0.14 with a crisp contact layer at 0.08. */
+	--ele-xla-sha : 0 calc( var( --ver-rhy-p01 ) * 1rem ) calc( var( --ver-rhy-p05 ) * 1rem ) calc( var( --ver-rhy-m01 ) * -1rem ) oklch( from var( --sha-mai-col ) l c h / var( --cdn-pow-006-rec ) ), 0 calc( var( --ver-rhy-m03 ) * 1rem ) calc( var( --ver-rhy-bas ) * 1rem ) calc( var( --ver-rhy-m05 ) * -1rem ) oklch( from var( --sha-mai-col ) l c h / var( --cdn-pow-009-rec ) ); /* What: Elevation Extra Large Shadow, about 0 19.3px 59.4px -11px plus 0 6.3px 14.6px -3.6px. Why: Modals would float highest; this site has none yet. How: This pairs the deepest key shadow with a crisp contact layer. */
+	--ele-sid-sha : calc( var( --ver-rhy-m01 ) * 1rem ) 0 calc( var( --ver-rhy-p04 ) * 1rem ) oklch( from var( --sha-mai-col ) l c h / var( --cdn-pow-007-rec ) ), calc( var( --ver-rhy-m05 ) * 1rem ) 0 calc( var( --ver-rhy-m01 ) * 1rem ) calc( var( --ver-rhy-m06 ) * -1rem ) oklch( from var( --sha-mai-col ) l c h / var( --cdn-pow-009-rec ) );                                      /* What: Elevation Side Shadow, about 11px 0 44.9px plus 3.6px 0 11px -2.7px. Why: A drawer sliding in from a side would cast its shadow sideways; this site has none. How: This is the large shadow with its offsets swapped. */
+
+	/* #endregion Elevation Tokens */
+
+
+
 	/* #region Font Family Tokens */
 
 	--fon-fam-acc : 'Lora', serif;        /* What: Font Family Accent. Why: Lora sets the occasional italic pull quote. How: The About page's lead reads it. */
@@ -280,16 +292,6 @@
 	--rad-bor-xla : calc( var( --ver-rhy-p01 ) * 1rem ); /* What: Radius Border Extra Large ~= 19.304px. Why: The scale's largest step, which nothing on this site rounds to yet. How: This multiplies the p01 rhythm step by 1rem. */
 
 	/* #endregion Radius Tokens */
-
-
-
-	/* #region Shadow Tokens */
-
-	--shadow-sm : 0 1px 3px rgba( 26, 26, 46, 0.08 );   /* What: Shadow Small. Why: The scrolled bar lifts just off the page. How: The bar reads it once the page scrolls. */
-	--shadow-md : 0 4px 16px rgba( 26, 26, 46, 0.10 );  /* What: Shadow Medium. Why: Hovered cards and floating badges lift a little more. How: Modules read it for medium elevation. */
-	--shadow-lg : 0 12px 40px rgba( 26, 26, 46, 0.14 ); /* What: Shadow Large. Why: Hovered project cards and the code window float highest. How: Modules read it for large elevation. */
-
-	/* #endregion Shadow Tokens */
 
 
 

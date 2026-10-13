@@ -35,7 +35,7 @@
 .card:hover { /* What: Hovered Project Card. Why: A card should respond to the pointer. How: This lifts it 4px and casts the large shadow. */
 
 
-	box-shadow : var( --shadow-lg ); /* Shadow Large = 0 12px 40px rgba( 26, 26, 46, 0.14 ) */
+	box-shadow : var( --ele-lar-sha ); /* Elevation Large Shadow, about 0 11px 44.9px plus 0 3.6px 11px -2.7px */
 	transform  : translateY( -4px );
 
 
