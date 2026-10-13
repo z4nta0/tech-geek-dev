@@ -6,7 +6,7 @@
  *
  * @summary
  * Styles for NotFouCom: a full-screen ivory panel that fades up into view
- * like every page, centering a huge pale 404 with a hexagon drawing slowly
+ * like every page, centering a huge quiet 404 with a hexagon drawing slowly
  * turning behind it, the heading and line above the drawing, and an orange
  * Go Home button. The page's entrance and the drawing's turn play the shared
  * contentEnterFadeUp and shapeLoopSpin keyframes from the global sheet.
@@ -25,11 +25,11 @@
 
 	align-items     : center;
 	animation       : global( contentEnterFadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
-	background      : var( --bac-pag-col );                                            /* Background Page Color = #F5F0E8 */
+	background      : var( --bac-pag-col );                                                        /* Background Page Color = #F5F0E8 */
 	display         : flex;
 	justify-content : center;
 	min-height      : 100vh;
-	padding         : var( --spa-ver-p04 ) var( --spa-hor-p04 );                       /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 4 ~= 44.876px */
+	padding         : var( --spa-ver-p04 ) var( --spa-hor-p04 );                                   /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 
 
 }
@@ -63,10 +63,10 @@
 
 }
 
-.errCodDiv { /* What: Error Code Div. Why: A huge pale 404 says what happened at a glance without shouting. How: This sets it in the display font, scaling with the screen, in the pale ivory, and keeps it from being selected. */
+.errCodDiv { /* What: Error Code Div. Why: A huge quiet 404 says what happened at a glance without shouting. How: This sets it in the display font, scaling with the screen, in a deep beige that still reaches the 3:1 large-text contrast, and keeps it from being selected. */
 
 
-	color          : var( --bor-mai-col );                                      /* Border Main Color = #D8CFBE */
+	color          : oklch( from var( --bor-mai-col ) calc( l - 0.24 ) c h );   /* Border Main Color = #D8CFBE, darkened to about #8d8475 */
 	font-family    : var( --fon-fam-mai );                                      /* Font Family Main = 'Syne', sans-serif */
 	font-size      : clamp( var( --fon-siz-p08 ), 20vw, var( --fon-siz-p10 ) ); /* Font Size Base Plus 8 ~= 104.323px, Font Size Base Plus 10 ~= 183.074px */
 	font-weight    : 800;
@@ -81,13 +81,13 @@
 
 
 	animation      : global( shapeLoopSpin ) var( --dur-ani-p18 ) linear infinite; /* Duration Animation Base Plus 18 ~= 24,914.0ms */
-	height         : calc( var( --ver-rhy-p09 ) * 1rem );                       /* Vertical Rhythm Base Plus 9 ~= 183.074px */
+	height         : calc( var( --ver-rhy-p09 ) * 1rem );                          /* Vertical Rhythm Base Plus 9 ~= 183.074px */
 	left           : 50%;
 	pointer-events : none;
 	position       : absolute;
 	top            : 50%;
 	translate      : -50% -50%;
-	width          : calc( var( --ver-rhy-p09 ) * 1rem );                       /* Vertical Rhythm Base Plus 9 ~= 183.074px */
+	width          : calc( var( --ver-rhy-p09 ) * 1rem );                          /* Vertical Rhythm Base Plus 9 ~= 183.074px */
 
 
 }

@@ -318,14 +318,14 @@ on `close-out`.
      `statusLoopPulse`, and Home's ticker plays `ticInnDivLoopScroll`.
    - **Verified** with the built CSS compared rule by rule wherever the
      output shouldn't change, and the rendering suite in all three engines,
-     its baselines refreshed for each visible change. axe passes everywhere
-     except one failure that surfaced with the type scale (below).
+     its baselines refreshed for each visible change. axe passes everywhere.
    - **Checkpoint**, for step 10: the Home hero heading still spills and
      scrolls the page sideways on phones, Work's filter row crowds its last
      pill, and WebKit's reflow check also scrolls sideways on Contact and the
-     404 page at 320px. The 404 page's huge pale number now fails axe's
-     contrast check on phones in every engine (it is aria-hidden decoration,
-     but axe still checks it), which needs the user's call.
+     404 page at 320px. The 404 page's huge pale number failed axe's contrast
+     check on phones once the type scale moved it clear of the hexagons; at
+     the user's choice (2026-10-13) it reads a deeper beige, the border color
+     darkened to about #8d8475, which reaches the 3:1 large-text minimum.
 10. **Horizontal layout**: discussed with the user before converting, per the
     user-level rules (the siblings chose the fluid horizontal rhythm).
 11. **New features**: the 404 page brought in line, pages opening at the top,
