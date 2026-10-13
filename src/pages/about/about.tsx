@@ -265,14 +265,14 @@ function AboPagCom () : JSX.Element {
 									<polygon
 										opacity='0.5'
 										points='160,10 310,90 310,270 160,350 10,270 10,90'
-										stroke='var(--orange)' // Orange = #F26419
+										stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
 										strokeWidth='2'
 									/>{ /* What: Outer Frame Polygon Element. Why: The frame's outer hexagon is orange. How: This traces it at half strength. */ }
 
 									<polygon
 										opacity='0.35'
 										points='160,30 290,100 290,260 160,330 30,260 30,100'
-										stroke='var(--blue)' // Blue = #7DB9D8
+										stroke='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
 										strokeWidth='1'
 									/>{ /* What: Inner Frame Polygon Element. Why: A thinner blue hexagon nests inside the first. How: This traces it at 35% strength. */ }
 

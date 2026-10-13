@@ -53,7 +53,7 @@
 .hero { /* What: Contact Hero. Why: The page opens with its invitation clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips the pattern behind it. */
 
 
-	background : var( --ivory );                                              /* Ivory = #F5F0E8 */
+	background : var( --bac-pag-col );                                        /* Background Page Color = #F5F0E8 */
 	overflow   : hidden;
 	padding    : calc( var( --nav-height ) + var( --sp-9 ) ) 0 var( --sp-9 ); /* Navigation Height = 72px, Spacing 9 = 96px */
 	position   : relative;
@@ -87,11 +87,11 @@
 
 
 	align-items    : center;
-	color          : var( --orange );    /* Orange = #F26419 */
+	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
 	display        : inline-flex;
-	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.72rem;
-	gap            : var( --sp-3 );      /* Spacing 3 = 12px */
+	gap            : var( --sp-3 );        /* Spacing 3 = 12px */
 	letter-spacing : 0.12em;
 	text-transform : uppercase;
 
@@ -101,7 +101,7 @@
 .heroLine { /* What: Hero Line. Why: A short rule leads into the label. How: This draws a 28px orange stroke. */
 
 
-	background : var( --orange ); /* Orange = #F26419 */
+	background : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
 	display    : inline-block;
 	height     : 1.5px;
 	width      : 28px;
@@ -117,7 +117,7 @@
 .heroTitle { /* What: Hero Title. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
 
 
-	color : var( --ink ); /* Ink = #1A1A2E */
+	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 
 
 }
@@ -125,7 +125,7 @@
 .accent { /* What: Hero Title Accent. Why: One word of the heading carries the accent. How: This sets it in orange. */
 
 
-	color : var( --orange ); /* Orange = #F26419 */
+	color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
 
 
 }
@@ -136,7 +136,7 @@
 .heroSub { /* What: Hero Subtitle. Why: The line under the heading reads a little larger and quieter. How: This sets it muted. */
 
 
-	color     : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	font-size : 1.05rem;
 
 
@@ -153,8 +153,8 @@
 .contactSection { /* What: Contact Section. Why: The form and the sidebar sit on the ivory with the section spacing. How: This sets the background and the shared section padding. */
 
 
-	background : var( --ivory );   /* Ivory = #F5F0E8 */
-	padding    : var( --sp-10 ) 0; /* Spacing 10 = 128px */
+	background : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
+	padding    : var( --sp-10 ) 0;     /* Spacing 10 = 128px */
 
 
 }
@@ -196,10 +196,10 @@
 .formWrap { /* What: Form Wrap. Why: The form and its thank-you sit on one white card. How: This sets the bordered card with generous padding. */
 
 
-	background    : var( --white );                /* White = #FFFFFF */
-	border        : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
-	border-radius : var( --radius-lg );            /* Radius Large = 12px */
-	padding       : var( --sp-7 );                 /* Spacing 7 = 48px */
+	background    : var( --bac-sur-col );           /* Background Surface Color = #FFFFFF */
+	border        : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
+	border-radius : var( --radius-lg );             /* Radius Large = 12px */
+	padding       : var( --sp-7 );                  /* Spacing 7 = 48px */
 
 
 }
@@ -236,7 +236,7 @@
 .successTitle { /* What: Success Title. Why: The thank-you's heading says the message went out. How: This sets it in the main text color, a little smaller than the global h2. */
 
 
-	color     : var( --ink ); /* Ink = #1A1A2E */
+	color     : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 	font-size : 1.5rem;
 
 
@@ -245,7 +245,7 @@
 .successText { /* What: Success Text. Why: The line under the heading says when to expect a reply. How: This sets it muted and capped at 360px. */
 
 
-	color     : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	max-width : 360px;
 
 
@@ -254,10 +254,10 @@
 .resetBtn { /* What: Reset Button. Why: A visitor may want to send another message. How: This sets an orange outlined button in mono capitals, easing its fill. */
 
 
-	border         : 1.5px solid var( --orange );                                     /* Orange = #F26419 */
+	border         : 1.5px solid var( --acc-mai-col );                                /* Accent Main Color = #F26419 */
 	border-radius  : var( --radius-sm );                                              /* Radius Small = 3px */
-	color          : var( --orange );                                                 /* Orange = #F26419 */
-	font-family    : var( --font-mono );                                              /* Font Mono = 'DM Mono', monospace */
+	color          : var( --acc-dar-col );                                            /* Accent Dark Color ~= #bd3000 */
+	font-family    : var( --fon-fam-sec );                                            /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.8rem;
 	letter-spacing : 0.04em;
 	padding        : 10px var( --sp-5 );                                              /* Spacing 5 = 24px */
@@ -269,8 +269,8 @@
 .resetBtn:hover { /* What: Hovered Reset Button. Why: A button should respond to the pointer. How: This fills it orange with white text. */
 
 
-	background : var( --orange ); /* Orange = #F26419 */
-	color      : var( --white );  /* White = #FFFFFF */
+	background : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
+	color      : var( --tex-acc-col ); /* Text Accent Color = #1A1A2E */
 
 
 }
@@ -306,9 +306,9 @@
 .formTitle { /* What: Form Title. Why: The form's heading is a little smaller than the page's sections. How: This sets it in the main text color with room below. */
 
 
-	color         : var( --ink );  /* Ink = #1A1A2E */
+	color         : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 	font-size     : 1.3rem;
-	margin-bottom : var( --sp-6 ); /* Spacing 6 = 32px */
+	margin-bottom : var( --sp-6 );        /* Spacing 6 = 32px */
 
 
 }
@@ -355,8 +355,8 @@
 .label { /* What: Field Label. Why: Each field's name reads as a small label. How: This sets it in muted mono capitals. */
 
 
-	color          : var( --ink-mid );   /* Ink Mid = #3D3D5C */
-	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	color          : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.72rem;
 	font-weight    : 500;
 	letter-spacing : 0.08em;
@@ -370,11 +370,11 @@
 .textarea { /* What: Form Controls. Why: The inputs, the select, and the textarea share one look. How: This sets them full width on the ivory with a pale border and rounded corners, easing their focus border and glow. */
 
 
-	background    : var( --ivory );                                                         /* Ivory = #F5F0E8 */
-	border        : 1.5px solid var( --ivory-dark );                                        /* Ivory Dark = #D8CFBE */
+	background    : var( --bac-pag-col );                                                   /* Background Page Color = #F5F0E8 */
+	border        : 1.5px solid var( --bor-mai-col );                                       /* Border Main Color = #D8CFBE */
 	border-radius : var( --radius-md );                                                     /* Radius Medium = 6px */
-	color         : var( --ink );                                                           /* Ink = #1A1A2E */
-	font-family   : var( --font-display );                                                  /* Font Display = 'Syne', sans-serif */
+	color         : var( --tex-mai-col );                                                   /* Text Main Color = #1A1A2E */
+	font-family   : var( --fon-fam-mai );                                                   /* Font Family Main = 'Syne', sans-serif */
 	font-size     : 0.95rem;
 	padding       : 12px var( --sp-4 );                                                     /* Spacing 4 = 16px */
 	transition    : border-color var( --duration-fast ), box-shadow var( --duration-fast ); /* Duration Fast = 150ms */
@@ -387,8 +387,8 @@
 .textarea:focus { /* What: Focused Form Controls. Why: A visitor has to see which field they're typing in. How: This swaps the default outline for an orange border and a pale orange glow. */
 
 
-	border-color : var( --orange );                 /* Orange = #F26419 */
-	box-shadow   : 0 0 0 3px var( --orange-light ); /* Orange Light = #FDDCC8 */
+	border-color : var( --foc-rin-col );           /* Focus Ring Color ~= #bd3000 */
+	box-shadow   : 0 0 0 3px var( --acc-tin-col ); /* Accent Tint Color = #FDDCC8 */
 	outline      : none;
 
 
@@ -440,12 +440,12 @@
 .errorMsg { /* What: Error Message. Why: A failed send has to stand out. How: This sets the message on a pale red panel with a red border and text. */
 
 
-	background    : #fdf0ee;
-	border        : 1px solid #e8b4ae;
-	border-radius : var( --radius-md );          /* Radius Medium = 6px */
-	color         : #c0392b;
+	background    : var( --err-tin-col );           /* Error Tint Color = #fdf0ee */
+	border        : 1px solid var( --err-mai-col ); /* Error Main Color = #e8b4ae */
+	border-radius : var( --radius-md );             /* Radius Medium = 6px */
+	color         : var( --err-dar-col );           /* Error Dark Color = #c0392b */
 	font-size     : 0.88rem;
-	padding       : var( --sp-3 ) var( --sp-4 ); /* Spacing 3 = 12px, Spacing 4 = 16px */
+	padding       : var( --sp-3 ) var( --sp-4 );    /* Spacing 3 = 12px, Spacing 4 = 16px */
 
 
 }
@@ -455,11 +455,11 @@
 
 	align-items    : center;
 	align-self     : flex-start;
-	background     : var( --orange );                                                     /* Orange = #F26419 */
+	background     : var( --acc-mai-col );                                                /* Accent Main Color = #F26419 */
 	border-radius  : var( --radius-sm );                                                  /* Radius Small = 3px */
-	color          : var( --white );                                                      /* White = #FFFFFF */
+	color          : var( --tex-acc-col );                                                /* Text Accent Color = #1A1A2E */
 	display        : inline-flex;
-	font-family    : var( --font-mono );                                                  /* Font Mono = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec );                                                /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.85rem;
 	font-weight    : 500;
 	gap            : var( --sp-3 );                                                       /* Spacing 3 = 12px */
@@ -473,7 +473,7 @@
 .submitBtn:hover { /* What: Hovered Submit Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
 
 
-	background : var( --orange-dark ); /* Orange Dark = #D4530E */
+	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
 	transform  : translateY( -1px );
 
 
@@ -553,10 +553,10 @@
 .sidebarCard { /* What: Sidebar Card. Why: Each group of details sits on its own white card. How: This sets the bordered, rounded, padded card. */
 
 
-	background    : var( --white );                /* White = #FFFFFF */
-	border        : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
-	border-radius : var( --radius-lg );            /* Radius Large = 12px */
-	padding       : var( --sp-5 );                 /* Spacing 5 = 24px */
+	background    : var( --bac-sur-col );           /* Background Surface Color = #FFFFFF */
+	border        : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
+	border-radius : var( --radius-lg );             /* Radius Large = 12px */
+	padding       : var( --sp-5 );                  /* Spacing 5 = 24px */
 
 
 }
@@ -564,10 +564,10 @@
 .sidebarTitle { /* What: Sidebar Title. Why: Each card is named. How: This sets the title small and bold with room below. */
 
 
-	color         : var( --ink );  /* Ink = #1A1A2E */
+	color         : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 	font-size     : 0.9rem;
 	font-weight   : 700;
-	margin-bottom : var( --sp-4 ); /* Spacing 4 = 16px */
+	margin-bottom : var( --sp-4 );        /* Spacing 4 = 16px */
 
 
 }
@@ -603,7 +603,7 @@
 .contactItem:hover { /* What: Hovered Contact Item. Why: A row should respond to the pointer. How: This tints it ivory. */
 
 
-	background : var( --ivory ); /* Ivory = #F5F0E8 */
+	background : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
 
 
 }
@@ -625,9 +625,9 @@
 
 
 	align-items     : center;
-	background      : var( --blue-light ); /* Blue Light = #B8D9EC */
-	border-radius   : var( --radius-md );  /* Radius Medium = 6px */
-	color           : var( --blue-dark );  /* Blue Dark = #4A91B8 */
+	background      : var( --acs-tin-col ); /* Accent-Secondary Tint Color = #B8D9EC */
+	border-radius   : var( --radius-md );   /* Radius Medium = 6px */
+	color           : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
 	display         : flex;
 	flex-shrink     : 0;
 	height          : 36px;
@@ -640,9 +640,9 @@
 .contactLabel { /* What: Contact Label. Why: The detail's name reads as a small label. How: This sets it on its own line in muted mono capitals. */
 
 
-	color          : var( --ink-light ); /* Ink Light = #7A7A99 */
+	color          : var( --tex-mut-col ); /* Text Muted Color = #646482 */
 	display        : block;
-	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.7rem;
 	letter-spacing : 0.06em;
 	text-transform : uppercase;
@@ -653,7 +653,7 @@
 .contactValue { /* What: Contact Value. Why: The address reads clearly under its name. How: This sets it on its own line in the main text color. */
 
 
-	color       : var( --ink ); /* Ink = #1A1A2E */
+	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 	display     : block;
 	font-size   : 0.85rem;
 	font-weight : 500;
@@ -682,7 +682,7 @@
 
 
 	animation     : global( pulse ) 2s ease-in-out infinite;
-	background    : #22c55e;
+	background    : var( --suc-mai-col ); /* Success Main Color = #22c55e */
 	border-radius : 50%;
 	flex-shrink   : 0;
 	height        : 10px;
@@ -707,7 +707,7 @@
 .statusText { /* What: Status Text. Why: The status reads clearly. How: This sets it on its own line, semibold in the main text color. */
 
 
-	color       : var( --ink ); /* Ink = #1A1A2E */
+	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 	display     : block;
 	font-size   : 0.88rem;
 	font-weight : 600;
@@ -718,12 +718,12 @@
 .statusSub { /* What: Status Sub. Why: The earliest start reads quietly under the status. How: This sets it on its own line in small muted mono. */
 
 
-	color          : var( --ink-light ); /* Ink Light = #7A7A99 */
+	color          : var( --tex-mut-col ); /* Text Muted Color = #646482 */
 	display        : block;
-	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.7rem;
 	letter-spacing : 0.04em;
-	margin-top     : var( --sp-1 );      /* Spacing 1 = 4px */
+	margin-top     : var( --sp-1 );        /* Spacing 1 = 4px */
 
 
 }
@@ -736,7 +736,7 @@
 .responseText { /* What: Response Text. Why: The response promise reads as small body text. How: This sets it muted with roomy lines. */
 
 
-	color       : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	font-size   : 0.88rem;
 	line-height : 1.65;
 
@@ -746,7 +746,7 @@
 .responseStrong { /* What: Response Strong. Why: The 24 hours is the promise's point. How: This sets it in the main text color. */
 
 
-	color : var( --ink ); /* Ink = #1A1A2E */
+	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 
 
 }

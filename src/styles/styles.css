@@ -31,31 +31,50 @@
 
 	/* #region Color Tokens */
 
-	--blue         : #7DB9D8; /* What: Blue. Why: Powder blue is the site's primary brand color. How: Modules read it for structure, borders, and links. */
-	--blue-dark    : #4A91B8; /* What: Blue Dark. Why: A deeper blue holds up as text and active states. How: Modules read it for accents, tags, and the active filter. */
-	--blue-light   : #B8D9EC; /* What: Blue Light. Why: A pale blue fills tags and icon tiles. How: Modules read it for subtle fills. */
-	--ink          : #1A1A2E; /* What: Ink. Why: A near-black reads as the main text and the dark bands. How: Modules read it for headings, body text, and dark backgrounds. */
-	--ink-light    : #7A7A99; /* What: Ink Light. Why: Muted text sits back from the main text. How: Modules read it for captions and labels. */
-	--ink-mid      : #3D3D5C; /* What: Ink Mid. Why: Secondary text reads softer than the headings. How: Modules and the base paragraph style read it. */
-	--ivory        : #F5F0E8; /* What: Ivory. Why: A creamy ivory is the page's background. How: The body and most sections read it. */
-	--ivory-dark   : #D8CFBE; /* What: Ivory Dark. Why: Borders and rules need a quiet line color. How: Modules read it for dividers and outlines. */
-	--ivory-warm   : #EDE6D8; /* What: Ivory Warm. Why: Some bands and pills sit a little warmer than the page. How: Modules read it for panels and pills. */
-	--orange       : #F26419; /* What: Orange. Why: A sharp orange is the site's accent. How: Modules read it for buttons, labels, and highlights. */
-	--orange-dark  : #D4530E; /* What: Orange Dark. Why: Orange buttons darken on hover. How: Modules read it for hover states. */
-	--orange-light : #FDDCC8; /* What: Orange Light. Why: A pale orange tints the focus glow and orange tags. How: Modules read it for soft orange fills. */
-	--white        : #FFFFFF; /* What: White. Why: Cards and strips sit on pure white. How: Modules read it for card backgrounds and text on dark. */
+	--acc-dar-col : oklch( from var( --acc-mai-col ) calc( l - 0.15 ) c h ); /* What: Accent Dark Color ~= #bd3000. Why: The bright orange only reaches about 2.8:1 as text on the ivory, so orange text needs a deeper shade that reaches 4.5:1 on every light background it sits on. How: This darkens the main accent by 0.15 OKLCH lightness, the least that passes on the ivory, white, warm ivory, and pale orange, and orange labels, links, and accents read it. */
+	--acc-hov-col : oklch( from var( --acc-mai-col ) calc( l - 0.04 ) c h ); /* What: Accent Hover Color ~= #e45700. Why: Orange buttons darken a touch under the pointer, while their dark text has to keep 4.5:1. How: This darkens the main accent by 0.04 OKLCH lightness, the most that keeps the text at about 4.6:1. */
+	--acc-mai-col : #F26419;                                                  /* What: Accent Main Color = #F26419. Why: The brand's sharp orange marks the main actions and the site's accents. How: Buttons, rules, dots, underlines, and borders read it as a fill, never as text on a light background. */
+	--acc-sec-col : #7DB9D8;                                                  /* What: Accent Secondary Color = #7DB9D8. Why: The brand's powder blue is its second color. How: The hero shape, card and tag borders, hover borders, and the blue text on dark bands read it. */
+	--acc-tin-col : #FDDCC8;                                                  /* What: Accent Tint Color = #FDDCC8. Why: A pale orange softens the focus glow and fills orange tags. How: The fields' focus glow and the orange tag read it. */
+	--acs-dar-col : oklch( from var( --acs-str-col ) calc( l - 0.16 ) c h ); /* What: Accent-Secondary Dark Color ~= #126186. Why: The strong blue only reaches about 3.1:1 as text on the ivory and 2.4:1 on the pale blue, so blue text and icons need a deeper shade. How: This darkens the strong blue by 0.16 OKLCH lightness, the least that reaches 4.5:1 on the ivory, white, warm ivory, and pale blue, and blue text, tags, and icons read it. */
+	--acs-str-col : #4A91B8;                                                  /* What: Accent-Secondary Strong Color = #4A91B8. Why: A stronger blue draws the site's blue strokes and fills. How: The background patterns, the timeline dots, the tilted hero square, and the active filter pill read it. */
+	--acs-tin-col : #B8D9EC;                                                  /* What: Accent-Secondary Tint Color = #B8D9EC. Why: A pale blue fills tags and icon tiles. How: Blue tags and the contact and service icon tiles read it. */
+	--att-rin-col : ;                                                         /* What: Attention Ring Color. Why: The standard role set includes an attention ring. How: This site has nothing that pulses for attention, so it stays empty. */
+	--bac-hov-col : ;                                                         /* What: Background Hover Color. Why: The standard role set includes a hover overlay. How: This site's hovers change their own colors instead, so it stays empty. */
+	--bac-inv-col : var( --tex-mai-col );                                     /* What: Background Inverse Color. Why: The footer, the closing banner, and the code window sit on dark bands. How: This reads the main text color, the site's near-black ink. */
+	--bac-pag-col : #F5F0E8;                                                  /* What: Background Page Color = #F5F0E8. Why: The page sits on a creamy ivory. How: The body, the heroes, and most sections read it, and text on dark bands reads it as the light color. */
+	--bac-sun-col : #EDE6D8;                                                  /* What: Background Sunken Color = #EDE6D8. Why: Some bands and pills sit a little warmer and deeper than the page. How: The process, values, and services bands and the ivory pills read it. */
+	--bac-sur-col : #FFFFFF;                                                  /* What: Background Surface Color = #FFFFFF. Why: Cards and strips sit on white. How: Cards, panels, the stats strip, and the filter bar read it, and white text over dark overlays reads it too. */
+	--bor-mai-col : #D8CFBE;                                                  /* What: Border Main Color = #D8CFBE. Why: Borders and dividers need a quiet line color. How: Every card, field, and divider outline reads it, and the 404 page's pale number. */
+	--err-dar-col : #c0392b;                                                  /* What: Error Dark Color = #c0392b. Why: An error message has to read as one. How: The contact form's error text reads it. */
+	--err-mai-col : #e8b4ae;                                                  /* What: Error Main Color = #e8b4ae. Why: An error panel needs a red edge. How: The contact form's error border reads it. */
+	--err-tin-col : #fdf0ee;                                                  /* What: Error Tint Color = #fdf0ee. Why: An error panel sits on a pale red. How: The contact form's error background reads it. */
+	--foc-rin-col : var( --acc-dar-col );                                     /* What: Focus Ring Color. Why: Keyboard focus rings need 3:1 against the page, which the bright orange misses on the ivory. How: This reads the dark orange, which the focus ring and the fields' focus border draw in. */
+	--scr-mai-col : ;                                                         /* What: Scrim Main Color. Why: The standard role set includes a scrim behind open menus. How: The phone menu gains one with the new features step, so it stays empty until then. */
+	--sha-mai-col : var( --tex-mai-col );                                     /* What: Shadow Main Color. Why: The site's shadows have always been cast in its ink. How: This reads the main text color, which the elevation shadows read with their own alpha. */
+	--suc-dar-col : ;                                                         /* What: Success Dark Color. Why: The standard role set includes the success family. How: This site has no success text, so it stays empty. */
+	--suc-mai-col : #22c55e;                                                  /* What: Success Main Color = #22c55e. Why: A green dot signals availability. How: The availability dots on Home and Contact read it. */
+	--suc-tin-col : ;                                                         /* What: Success Tint Color. Why: The standard role set includes the success family. How: This site has no success panel, so it stays empty. */
+	--tex-acc-col : var( --tex-mai-col );                                     /* What: Text Accent Color. Why: White text on the bright orange only reaches about 3.2:1, while the ink reaches about 5.4:1. How: This reads the main text color, which every orange button's label reads. */
+	--tex-inm-col : #8181a1;                                                  /* What: Text Inverse-Muted Color = #8181a1. Why: Quiet text on the dark footer needs 4.5:1, which the muted grey misses on the ink. How: The footer's tagline, links, copyright, and icons read this lighter grey. */
+	--tex-mai-col : #1A1A2E;                                                  /* What: Text Main Color = #1A1A2E. Why: Headings and strong text read in a near-black ink. How: Headings, titles, and the dark bands read it. */
+	--tex-mut-col : #646482;                                                  /* What: Text Muted Color = #646482. Why: Quiet labels need 4.5:1 on the ivory, white, and warm ivory, which the original #7A7A99 missed. How: Captions, labels, and counts read it. */
+	--tex-sec-col : #3D3D5C;                                                  /* What: Text Secondary Color = #3D3D5C. Why: Paragraphs sit in a softer ink than headings. How: The base paragraph style and the muted copy read it. */
+	--war-dar-col : ;                                                         /* What: Warning Dark Color. Why: The standard role set includes the warning family. How: This site has no warnings, so it stays empty. */
+	--war-mai-col : ;                                                         /* What: Warning Main Color. Why: The standard role set includes the warning family. How: This site has no warnings, so it stays empty. */
+	--war-tin-col : ;                                                         /* What: Warning Tint Color. Why: The standard role set includes the warning family. How: This site has no warnings, so it stays empty. */
 
 	/* #endregion Color Tokens */
 
 
 
-	/* #region Font Tokens */
+	/* #region Font Family Tokens */
 
-	--font-display : 'Syne', sans-serif;   /* What: Font Display. Why: Syne is the site's main face for headings and body text. How: The body and headings read it. */
-	--font-mono    : 'DM Mono', monospace; /* What: Font Mono. Why: DM Mono sets labels, tags, buttons, and code. How: Modules read it for every mono element. */
-	--font-serif   : 'Lora', serif;        /* What: Font Serif. Why: Lora sets the occasional italic pull quote. How: The About page's lead reads it. */
+	--fon-fam-acc : 'Lora', serif;         /* What: Font Family Accent. Why: Lora sets the occasional italic pull quote. How: The About page's lead reads it. */
+	--fon-fam-mai : 'Syne', sans-serif;    /* What: Font Family Main. Why: Syne is the site's main face for headings and body text. How: The body, headings, buttons, and fields read it. */
+	--fon-fam-sec : 'DM Mono', monospace;  /* What: Font Family Secondary. Why: DM Mono sets the labels, tags, buttons, and code. How: Every mono element reads it. */
 
-	/* #endregion Font Tokens */
+	/* #endregion Font Family Tokens */
 
 
 
@@ -164,9 +183,9 @@ html { /* What: Root Element. Why: The page should scroll smoothly to its anchor
 body { /* What: Page Body. Why: Every page sits on the ivory in the main face and color. How: This sets the background, text color, font, and line height, fills the screen, and hides sideways overflow. */
 
 
-	background-color : var( --ivory );        /* Ivory = #F5F0E8 */
-	color            : var( --ink );          /* Ink = #1A1A2E */
-	font-family      : var( --font-display ); /* Font Display = 'Syne', sans-serif */
+	background-color : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
+	color            : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+	font-family      : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
 	height           : 100%;
 	line-height      : 1.6;
 	margin           : 0;
@@ -185,7 +204,7 @@ h5,
 h6 { /* What: Headings. Why: Every heading shares the bold, tight display style. How: This sets the display font at weight 700 with tight lines and letters. */
 
 
-	font-family    : var( --font-display ); /* Font Display = 'Syne', sans-serif */
+	font-family    : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
 	font-weight    : 700;
 	letter-spacing : -0.02em;
 	line-height    : 1.15;
@@ -229,8 +248,8 @@ h4 { /* What: Heading Level 4. Why: The smallest heading stays a fixed size. How
 p { /* What: Paragraph. Why: Body text reads comfortably in the secondary text color. How: This sets the display font at 1rem with roomy lines. */
 
 
-	color       : var( --ink-mid );      /* Ink Mid = #3D3D5C */
-	font-family : var( --font-display ); /* Font Display = 'Syne', sans-serif */
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
+	font-family : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
 	font-size   : 1rem;
 	font-weight : 400;
 	line-height : 1.75;
@@ -263,7 +282,7 @@ button { /* What: Button. Why: Buttons start from a blank slate that modules sty
 	background  : none;
 	border      : none;
 	cursor      : pointer;
-	font-family : var( --font-display ); /* Font Display = 'Syne', sans-serif */
+	font-family : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
 
 
 }
@@ -288,7 +307,7 @@ ul { /* What: Lists. Why: Lists are only used for layout, never bullets. How: Th
 ::-webkit-scrollbar-track { /* What: Scrollbar Track. Why: The track blends into the page. How: This paints it ivory. */
 
 
-	background : var( --ivory ); /* Ivory = #F5F0E8 */
+	background : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
 
 
 }
@@ -296,7 +315,7 @@ ul { /* What: Lists. Why: Lists are only used for layout, never bullets. How: Th
 ::-webkit-scrollbar-thumb { /* What: Scrollbar Thumb. Why: The thumb carries the brand blue. How: This paints it blue with rounded ends. */
 
 
-	background    : var( --blue ); /* Blue = #7DB9D8 */
+	background    : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
 	border-radius : 3px;
 
 
@@ -304,7 +323,7 @@ ul { /* What: Lists. Why: Lists are only used for layout, never bullets. How: Th
 ::-webkit-scrollbar-thumb:hover { /* What: Hovered Scrollbar Thumb. Why: The thumb responds to the pointer. How: This darkens it. */
 
 
-	background : var( --blue-dark ); /* Blue Dark = #4A91B8 */
+	background : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
 
 
 }
@@ -312,8 +331,8 @@ ul { /* What: Lists. Why: Lists are only used for layout, never bullets. How: Th
 :focus-visible { /* What: Focus Visible. Why: A keyboard user has to see where focus is. How: This draws a 2px orange ring held 3px off the element, with the small rounding. */
 
 
-	border-radius  : var( --radius-sm );        /* Radius Small = 3px */
-	outline        : 2px solid var( --orange ); /* Orange = #F26419 */
+	border-radius  : var( --radius-sm );             /* Radius Small = 3px */
+	outline        : 2px solid var( --foc-rin-col ); /* Focus Ring Color ~= #bd3000 */
 	outline-offset : 3px;
 
 

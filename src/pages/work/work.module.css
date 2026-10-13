@@ -54,7 +54,7 @@
 .pageHero { /* What: Page Hero. Why: The page opens with its heading block clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips its corner drawing. */
 
 
-	background : var( --ivory );                                              /* Ivory = #F5F0E8 */
+	background : var( --bac-pag-col );                                        /* Background Page Color = #F5F0E8 */
 	overflow   : hidden;
 	padding    : calc( var( --nav-height ) + var( --sp-9 ) ) 0 var( --sp-9 ); /* Navigation Height = 72px, Spacing 9 = 96px */
 	position   : relative;
@@ -88,11 +88,11 @@
 
 
 	align-items    : center;
-	color          : var( --orange );    /* Orange = #F26419 */
+	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
 	display        : inline-flex;
-	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.72rem;
-	gap            : var( --sp-3 );      /* Spacing 3 = 12px */
+	gap            : var( --sp-3 );        /* Spacing 3 = 12px */
 	letter-spacing : 0.12em;
 	text-transform : uppercase;
 
@@ -102,7 +102,7 @@
 .heroLine { /* What: Hero Line. Why: A short rule leads into the label. How: This draws a 28px orange stroke. */
 
 
-	background : var( --orange ); /* Orange = #F26419 */
+	background : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
 	display    : inline-block;
 	height     : 1.5px;
 	width      : 28px;
@@ -118,7 +118,7 @@
 .heroTitle { /* What: Hero Title. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
 
 
-	color : var( --ink ); /* Ink = #1A1A2E */
+	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 
 
 }
@@ -126,7 +126,7 @@
 .accent { /* What: Hero Title Accent. Why: The heading's second line carries the accent. How: This sets it in the dark blue. */
 
 
-	color : var( --blue-dark ); /* Blue Dark = #4A91B8 */
+	color : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
 
 
 }
@@ -137,7 +137,7 @@
 .heroSub { /* What: Hero Subtitle. Why: The line under the heading reads a little larger and quieter. How: This sets it muted and caps it at 480px. */
 
 
-	color     : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	font-size : 1.05rem;
 	max-width : 480px;
 
@@ -167,12 +167,12 @@
 .filterBar { /* What: Filter Bar. Why: The filter stays reachable while the visitor scrolls the projects. How: This sets a white band between two rules that sticks just under the fixed bar. */
 
 
-	background    : var( --white );                /* White = #FFFFFF */
-	border-bottom : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
-	border-top    : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
-	padding       : var( --sp-4 ) 0;               /* Spacing 4 = 16px */
+	background    : var( --bac-sur-col );           /* Background Surface Color = #FFFFFF */
+	border-bottom : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
+	border-top    : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
+	padding       : var( --sp-4 ) 0;                /* Spacing 4 = 16px */
 	position      : sticky;
-	top           : var( --nav-height );           /* Navigation Height = 72px */
+	top           : var( --nav-height );            /* Navigation Height = 72px */
 	z-index       : 10;
 
 
@@ -212,12 +212,12 @@
 
 
 	align-items    : center;
-	color          : var( --ink-light ); /* Ink Light = #7A7A99 */
+	color          : var( --tex-mut-col ); /* Text Muted Color = #646482 */
 	display        : flex;
 	flex-shrink    : 0;
-	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.72rem;
-	gap            : var( --sp-2 );      /* Spacing 2 = 8px */
+	gap            : var( --sp-2 );        /* Spacing 2 = 8px */
 	letter-spacing : 0.06em;
 	text-transform : uppercase;
 
@@ -250,15 +250,15 @@
 
 
 	background     : transparent;
-	border         : 1.5px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	border         : 1.5px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
 	border-radius  : 100px;
-	color          : var( --ink-mid );                /* Ink Mid = #3D3D5C */
-	font-family    : var( --font-mono );              /* Font Mono = 'DM Mono', monospace */
+	color          : var( --tex-sec-col );             /* Text Secondary Color = #3D3D5C */
+	font-family    : var( --fon-fam-sec );             /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.72rem;
 	letter-spacing : 0.04em;
 	padding        : 6px 14px;
 	text-transform : uppercase;
-	transition     : all var( --duration-fast );      /* Duration Fast = 150ms */
+	transition     : all var( --duration-fast );       /* Duration Fast = 150ms */
 	white-space    : nowrap;
 
 
@@ -266,17 +266,17 @@
 .filterBtn:hover { /* What: Hovered Filter Button. Why: A button should respond to the pointer. How: This turns its border and text blue. */
 
 
-	border-color : var( --blue );      /* Blue = #7DB9D8 */
-	color        : var( --blue-dark ); /* Blue Dark = #4A91B8 */
+	border-color : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
+	color        : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
 
 
 }
 .filterBtn[data-filter-button-active] { /* What: Active Filter Button. Why: The chosen technology stands out. How: This fills the pill dark blue with white text. */
 
 
-	background   : var( --blue-dark ); /* Blue Dark = #4A91B8 */
-	border-color : var( --blue-dark ); /* Blue Dark = #4A91B8 */
-	color        : var( --white );     /* White = #FFFFFF */
+	background   : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
+	border-color : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
+	color        : var( --tex-acc-col ); /* Text Accent Color = #1A1A2E */
 
 
 }
@@ -300,9 +300,9 @@
 .filterCount { /* What: Filter Count. Why: The row says how many projects remain. How: This sets the count in muted mono, never shrinking. */
 
 
-	color       : var( --ink-light ); /* Ink Light = #7A7A99 */
+	color       : var( --tex-mut-col ); /* Text Muted Color = #646482 */
 	flex-shrink : 0;
-	font-family : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size   : 0.72rem;
 
 
@@ -319,8 +319,8 @@
 .projectsSection { /* What: Projects Section. Why: The grid sits on the ivory with the page's section spacing. How: This sets the background and the shared section padding. */
 
 
-	background : var( --ivory );   /* Ivory = #F5F0E8 */
-	padding    : var( --sp-10 ) 0; /* Spacing 10 = 128px */
+	background : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
+	padding    : var( --sp-10 ) 0;     /* Spacing 10 = 128px */
 
 
 }
@@ -394,9 +394,9 @@
 .empty { /* What: Empty Message. Why: A filter that finds nothing should say so clearly. How: This centers the message in muted mono with generous room around it. */
 
 
-	color       : var( --ink-light ); /* Ink Light = #7A7A99 */
-	font-family : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
-	padding     : var( --sp-10 ) 0;   /* Spacing 10 = 128px */
+	color       : var( --tex-mut-col ); /* Text Muted Color = #646482 */
+	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
+	padding     : var( --sp-10 ) 0;     /* Spacing 10 = 128px */
 	text-align  : center;
 
 
@@ -413,9 +413,9 @@
 .process { /* What: Process Section. Why: The page closes on a warmer band with the section spacing. How: This sets the warm ivory, the shared section padding, and clips the pattern behind it. */
 
 
-	background : var( --ivory-warm ); /* Ivory Warm = #EDE6D8 */
+	background : var( --bac-sun-col ); /* Background Sunken Color = #EDE6D8 */
 	overflow   : hidden;
-	padding    : var( --sp-10 ) 0;    /* Spacing 10 = 128px */
+	padding    : var( --sp-10 ) 0;     /* Spacing 10 = 128px */
 	position   : relative;
 
 
@@ -474,14 +474,14 @@
 .step { /* What: Process Step. Why: Each step is one white card. How: This sets the card, sharing the row evenly, and stacks its number, title, and description. */
 
 
-	background     : var( --white );                /* White = #FFFFFF */
-	border         : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
-	border-radius  : var( --radius-lg );            /* Radius Large = 12px */
+	background     : var( --bac-sur-col );           /* Background Surface Color = #FFFFFF */
+	border         : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
+	border-radius  : var( --radius-lg );             /* Radius Large = 12px */
 	display        : flex;
 	flex           : 1;
 	flex-direction : column;
-	gap            : var( --sp-3 );                 /* Spacing 3 = 12px */
-	padding        : var( --sp-6 );                 /* Spacing 6 = 32px */
+	gap            : var( --sp-3 );                  /* Spacing 3 = 12px */
+	padding        : var( --sp-6 );                  /* Spacing 6 = 32px */
 
 
 }
@@ -489,8 +489,8 @@
 .stepNum { /* What: Step Number. Why: The number shows the step's place at a glance. How: This sets it large in orange mono, tight. */
 
 
-	color          : var( --orange );    /* Orange = #F26419 */
-	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 2rem;
 	font-weight    : 500;
 	letter-spacing : -0.04em;
@@ -502,7 +502,7 @@
 .stepTitle { /* What: Step Title. Why: Each step is named. How: This sets the title bold in the main text color. */
 
 
-	color       : var( --ink ); /* Ink = #1A1A2E */
+	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 	font-size   : 1rem;
 	font-weight : 700;
 
@@ -512,7 +512,7 @@
 .stepDesc { /* What: Step Description. Why: A sentence explains the step more quietly. How: This sets it small and muted. */
 
 
-	color       : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	font-size   : 0.85rem;
 	line-height : 1.6;
 

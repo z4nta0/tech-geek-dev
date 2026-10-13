@@ -30,9 +30,9 @@
 
 	-webkit-backdrop-filter : blur( 12px );
 	backdrop-filter         : blur( 12px );
-	background              : rgba( 245, 240, 232, 0.85 );
+	background              : oklch( from var( --bac-pag-col ) l c h / 0.85 ); /* Background Page Color = #F5F0E8 @ 0.85 opacity */
 	border-bottom           : 1px solid transparent;
-	height                  : var( --nav-height ); /* Navigation Height = 72px */
+	height                  : var( --nav-height );                             /* Navigation Height = 72px */
 	left                    : 0;
 	position                : fixed;
 	right                   : 0;
@@ -47,9 +47,9 @@
 
 	-webkit-backdrop-filter : blur( 12px );
 	backdrop-filter         : blur( 12px );
-	background              : rgba( 245, 240, 232, 0.92 );
-	border-bottom-color     : var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
-	box-shadow              : var( --shadow-sm );  /* Shadow Small = 0 1px 3px rgba( 26, 26, 46, 0.08 ) */
+	background              : oklch( from var( --bac-pag-col ) l c h / 0.92 ); /* Background Page Color = #F5F0E8 @ 0.92 opacity */
+	border-bottom-color     : var( --bor-mai-col );                            /* Border Main Color = #D8CFBE */
+	box-shadow              : var( --shadow-sm );                              /* Shadow Small = 0 1px 3px rgba( 26, 26, 46, 0.08 ) */
 
 
 }
@@ -106,7 +106,7 @@
 .wordmark { /* What: Wordmark. Why: The site's name reads beside its mark. How: This sets it bold in the display font, a little tight. */
 
 
-	font-family    : var( --font-display ); /* Font Display = 'Syne', sans-serif */
+	font-family    : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
 	font-size      : 1.1rem;
 	font-weight    : 800;
 	letter-spacing : -0.03em;
@@ -117,7 +117,7 @@
 .first { /* What: Wordmark First. Why: The brand reads in the main text color. How: This sets TechGeek in the ink. */
 
 
-	color : var( --ink ); /* Ink = #1A1A2E */
+	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 
 
 }
@@ -125,7 +125,7 @@
 .last { /* What: Wordmark Last. Why: The domain ending carries the accent. How: This sets .dev in orange. */
 
 
-	color : var( --orange ); /* Orange = #F26419 */
+	color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
 
 
 }
@@ -165,8 +165,8 @@
 
 
 	border-radius  : var( --radius-sm );                                              /* Radius Small = 3px */
-	color          : var( --ink-mid );                                                /* Ink Mid = #3D3D5C */
-	font-family    : var( --font-mono );                                              /* Font Mono = 'DM Mono', monospace */
+	color          : var( --tex-sec-col );                                            /* Text Secondary Color = #3D3D5C */
+	font-family    : var( --fon-fam-sec );                                            /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.8rem;
 	font-weight    : 400;
 	letter-spacing : 0.04em;
@@ -180,7 +180,7 @@
 .link::after { /* What: Bar Link Underline. Why: An orange underline marks a hovered or current link. How: This draws it inside the link's padding, collapsed to nothing until needed, easing its growth from the left. */
 
 
-	background       : var( --orange );                                    /* Orange = #F26419 */
+	background       : var( --acc-mai-col );                               /* Accent Main Color = #F26419 */
 	bottom           : 4px;
 	content          : '';
 	height           : 2px;
@@ -197,7 +197,7 @@
 .link[aria-current='page'] { /* What: Hovered Or Current Bar Link. Why: The link under the pointer and the page that's showing stand out. How: This darkens the text to the ink. */
 
 
-	color : var( --ink ); /* Ink = #1A1A2E */
+	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 
 
 }
@@ -230,11 +230,11 @@
 .cta { /* What: Hire Me Button. Why: The bar's one call to action stands out from the links. How: This sets it as an orange button in mono capitals that never shrinks, easing its color and lift. */
 
 
-	background     : var( --orange );                                                     /* Orange = #F26419 */
+	background     : var( --acc-mai-col );                                                /* Accent Main Color = #F26419 */
 	border-radius  : var( --radius-sm );                                                  /* Radius Small = 3px */
-	color          : var( --white );                                                      /* White = #FFFFFF */
+	color          : var( --tex-acc-col );                                                /* Text Accent Color = #1A1A2E */
 	flex-shrink    : 0;
-	font-family    : var( --font-mono );                                                  /* Font Mono = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec );                                                /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.78rem;
 	font-weight    : 500;
 	letter-spacing : 0.06em;
@@ -247,7 +247,7 @@
 .cta:hover { /* What: Hovered Hire Me Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
 
 
-	background : var( --orange-dark ); /* Orange Dark = #D4530E */
+	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
 	transform  : translateY( -1px );
 
 
@@ -310,7 +310,7 @@
 .bar { /* What: Toggle Bar. Why: Three bars draw the menu icon. How: This draws one 22px rounded ink bar, easing its turn and fade. */
 
 
-	background    : var( --ink );                                                                       /* Ink = #1A1A2E */
+	background    : var( --bac-inv-col );                                                               /* Background Inverse Color = #1A1A2E */
 	border-radius : 2px;
 	display       : block;
 	height        : 2px;
@@ -364,18 +364,18 @@
 .drawer { /* What: Menu Drawer. Why: On a phone the page links drop down under the bar. How: This fixes the drawer under the bar, stacks its links, and starts it slid up, faded, and invisible once its slide ends, so its links leave the Tab order. */
 
 
-	background     : var( --ivory );                /* Ivory = #F5F0E8 */
-	border-bottom  : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	background     : var( --bac-pag-col );           /* Background Page Color = #F5F0E8 */
+	border-bottom  : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --sp-2 );                 /* Spacing 2 = 8px */
+	gap            : var( --sp-2 );                  /* Spacing 2 = 8px */
 	left           : 0;
 	opacity        : 0;
-	padding        : var( --sp-5 ) var( --sp-6 );   /* Spacing 5 = 24px, Spacing 6 = 32px */
+	padding        : var( --sp-5 ) var( --sp-6 );    /* Spacing 5 = 24px, Spacing 6 = 32px */
 	pointer-events : none;
 	position       : fixed;
 	right          : 0;
-	top            : var( --nav-height );           /* Navigation Height = 72px */
+	top            : var( --nav-height );            /* Navigation Height = 72px */
 	transform      : translateY( -100% );
 	transition     : transform var( --duration-base ) var( --ease-out ), opacity var( --duration-base ), visibility 0s linear var( --duration-base ); /* Duration Base = 280ms, Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */ /* What: Delayed Visibility. Why: The drawer has to stay visible while it slides away. How: Visibility flips to hidden only once the 280ms slide has finished. */
 	visibility     : hidden;
@@ -412,14 +412,14 @@
 .drawerLink { /* What: Drawer Link. Why: Each page link in the drawer is a full-width row. How: This sets it in muted mono capitals with a divider under it, easing its color. */
 
 
-	border-bottom  : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
-	color          : var( --ink-mid );              /* Ink Mid = #3D3D5C */
-	font-family    : var( --font-mono );            /* Font Mono = 'DM Mono', monospace */
+	border-bottom  : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
+	color          : var( --tex-sec-col );           /* Text Secondary Color = #3D3D5C */
+	font-family    : var( --fon-fam-sec );           /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.9rem;
 	letter-spacing : 0.04em;
-	padding        : var( --sp-3 ) 0;               /* Spacing 3 = 12px */
+	padding        : var( --sp-3 ) 0;                /* Spacing 3 = 12px */
 	text-transform : uppercase;
-	transition     : color var( --duration-fast );  /* Duration Fast = 150ms */
+	transition     : color var( --duration-fast );   /* Duration Fast = 150ms */
 
 
 }
@@ -434,7 +434,7 @@
 .drawerLink:hover { /* What: Current Or Hovered Drawer Link. Why: The page that's showing and the link under the pointer stand out. How: This turns the text orange. */
 
 
-	color : var( --orange ); /* Orange = #F26419 */
+	color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
 
 
 }
@@ -455,16 +455,16 @@
 .drawerCta { /* What: Drawer Hire Me Button. Why: The drawer repeats the bar's call to action. How: This sets it as a full-width orange button in mono capitals under the links. */
 
 
-	background      : var( --orange );    /* Orange = #F26419 */
-	border-radius   : var( --radius-sm ); /* Radius Small = 3px */
-	color           : var( --white );     /* White = #FFFFFF */
+	background      : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
+	border-radius   : var( --radius-sm );   /* Radius Small = 3px */
+	color           : var( --tex-acc-col ); /* Text Accent Color = #1A1A2E */
 	display         : inline-flex;
-	font-family     : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-family     : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size       : 0.8rem;
 	font-weight     : 500;
 	justify-content : center;
 	letter-spacing  : 0.06em;
-	margin-top      : var( --sp-3 );      /* Spacing 3 = 12px */
+	margin-top      : var( --sp-3 );        /* Spacing 3 = 12px */
 	padding         : 12px;
 	text-transform  : uppercase;
 

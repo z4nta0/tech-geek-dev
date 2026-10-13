@@ -56,11 +56,11 @@
 
 
 	align-items : center;
-	background  : var( --ivory );      /* Ivory = #F5F0E8 */
+	background  : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
 	display     : flex;
 	min-height  : 100vh;
 	overflow    : hidden;
-	padding-top : var( --nav-height ); /* Navigation Height = 72px */
+	padding-top : var( --nav-height );  /* Navigation Height = 72px */
 	position    : relative;
 
 
@@ -89,7 +89,7 @@
 
 
 	animation  : global( rotateSlow ) 30s linear infinite;
-	background : var( --blue ); /* Blue = #7DB9D8 */
+	background : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
 	clip-path  : polygon( 50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25% );
 	height     : 320px;
 	right      : -80px;
@@ -103,7 +103,7 @@
 
 	animation     : global( rotateSlow ) 20s linear infinite reverse;
 	background    : transparent;
-	border        : 3px solid var( --orange ); /* Orange = #F26419 */
+	border        : 3px solid var( --acc-mai-col ); /* Accent Main Color = #F26419 */
 	border-radius : 50%;
 	bottom        : 10%;
 	height        : 200px;
@@ -118,7 +118,7 @@
 
 	animation  : global( rotateSlow ) 15s linear infinite;
 	background : transparent;
-	border     : 2px solid var( --blue-dark ); /* Blue Dark = #4A91B8 */
+	border     : 2px solid var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
 	height     : 120px;
 	left       : 45%;
 	opacity    : 0.12;
@@ -229,14 +229,14 @@
 
 
 	align-items    : center;
-	background     : var( --ivory-warm );           /* Ivory Warm = #EDE6D8 */
-	border         : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	background     : var( --bac-sun-col );           /* Background Sunken Color = #EDE6D8 */
+	border         : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
 	border-radius  : 100px;
-	color          : var( --ink-mid );              /* Ink Mid = #3D3D5C */
+	color          : var( --tex-sec-col );           /* Text Secondary Color = #3D3D5C */
 	display        : inline-flex;
-	font-family    : var( --font-mono );            /* Font Mono = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec );           /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.78rem;
-	gap            : var( --sp-2 );                 /* Spacing 2 = 8px */
+	gap            : var( --sp-2 );                  /* Spacing 2 = 8px */
 	letter-spacing : 0.08em;
 	padding        : 6px 14px;
 	text-transform : uppercase;
@@ -249,7 +249,7 @@
 
 
 	animation     : global( pulse ) 2s ease-in-out infinite;
-	background    : #22c55e;
+	background    : var( --suc-mai-col ); /* Success Main Color = #22c55e */
 	border-radius : 50%;
 	flex-shrink   : 0;
 	height        : 8px;
@@ -274,7 +274,7 @@
 .mono { /* What: Availability Text. Why: The label's words read in the mono font, a little smaller than the pill. How: This sets the mono font at 0.875em. */
 
 
-	font-family : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size   : 0.875em;
 
 
@@ -288,7 +288,7 @@
 .heroTitle { /* What: Hero Title. Why: The heading reads large and tight. How: This sets its color and a tight line height, the size coming from the global heading styles. */
 
 
-	color       : var( --ink ); /* Ink = #1A1A2E */
+	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 	line-height : 1.05;
 
 
@@ -297,7 +297,7 @@
 .accent { /* What: Hero Title Accent. Why: Digital carries the accent with an underline stroke. How: This sets it dark blue and positions its stroke. */
 
 
-	color    : var( --blue-dark ); /* Blue Dark = #4A91B8 */
+	color    : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
 	display  : inline-block;
 	position : relative;
 
@@ -306,7 +306,7 @@
 .accent::after { /* What: Hero Title Accent Stroke. Why: A soft orange stroke underlines the accent word. How: This draws a 4px rounded orange bar along its bottom, partly faded. */
 
 
-	background    : var( --orange ); /* Orange = #F26419 */
+	background    : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
 	border-radius : 2px;
 	bottom        : 4px;
 	content       : '';
@@ -322,7 +322,7 @@
 .dot { /* What: Hero Title Dot. Why: The heading ends on an orange full stop. How: This sets the dot orange. */
 
 
-	color : var( --orange ); /* Orange = #F26419 */
+	color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
 
 
 }
@@ -333,7 +333,7 @@
 .heroSub { /* What: Hero Subtitle. Why: The pitch line reads a little larger and quieter. How: This sets it muted with roomy lines. */
 
 
-	color       : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	font-size   : 1.05rem;
 	line-height : 1.75;
 
@@ -357,11 +357,11 @@
 
 
 	align-items    : center;
-	background     : var( --orange );                                                     /* Orange = #F26419 */
+	background     : var( --acc-mai-col );                                                /* Accent Main Color = #F26419 */
 	border-radius  : var( --radius-sm );                                                  /* Radius Small = 3px */
-	color          : var( --white );                                                      /* White = #FFFFFF */
+	color          : var( --tex-acc-col );                                                /* Text Accent Color = #1A1A2E */
 	display        : inline-flex;
-	font-family    : var( --font-mono );                                                  /* Font Mono = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec );                                                /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.85rem;
 	font-weight    : 500;
 	gap            : var( --sp-2 );                                                       /* Spacing 2 = 8px */
@@ -375,7 +375,7 @@
 .ctaPrimary:hover { /* What: Hovered View Work Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 2px. */
 
 
-	background : var( --orange-dark ); /* Orange Dark = #D4530E */
+	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
 	transform  : translateY( -2px );
 
 
@@ -398,11 +398,11 @@
 
 
 	align-items    : center;
-	border         : 1.5px solid var( --ivory-dark );                                                                     /* Ivory Dark = #D8CFBE */
+	border         : 1.5px solid var( --bor-mai-col );                                                                    /* Border Main Color = #D8CFBE */
 	border-radius  : var( --radius-sm );                                                                                  /* Radius Small = 3px */
-	color          : var( --ink );                                                                                        /* Ink = #1A1A2E */
+	color          : var( --tex-mai-col );                                                                                /* Text Main Color = #1A1A2E */
 	display        : inline-flex;
-	font-family    : var( --font-mono );                                                                                  /* Font Mono = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec );                                                                                /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.85rem;
 	font-weight    : 500;
 	letter-spacing : 0.04em;
@@ -415,8 +415,8 @@
 .ctaSecondary:hover { /* What: Hovered Get In Touch Button. Why: A button should respond to the pointer. How: This turns its border and text dark blue and lifts it 2px. */
 
 
-	border-color : var( --blue-dark ); /* Blue Dark = #4A91B8 */
-	color        : var( --blue-dark ); /* Blue Dark = #4A91B8 */
+	border-color : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
+	color        : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
 	transform    : translateY( -2px );
 
 
@@ -500,11 +500,11 @@
 .tickerItem { /* What: Ticker Item. Why: Each skill reads as a small pill. How: This sets a warm ivory pill in muted mono capitals that never wraps. */
 
 
-	background     : var( --ivory-warm );           /* Ivory Warm = #EDE6D8 */
-	border         : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	background     : var( --bac-sun-col );           /* Background Sunken Color = #EDE6D8 */
+	border         : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
 	border-radius  : 100px;
-	color          : var( --ink-light );            /* Ink Light = #7A7A99 */
-	font-family    : var( --font-mono );            /* Font Mono = 'DM Mono', monospace */
+	color          : var( --tex-mut-col );           /* Text Muted Color = #646482 */
+	font-family    : var( --fon-fam-sec );           /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.72rem;
 	letter-spacing : 0.06em;
 	padding        : 4px 12px;
@@ -577,10 +577,10 @@
 .codeWindow { /* What: Code Window. Why: z4nta0 is introduced as code in a dark editor window. How: This sets a dark rounded window with a faint light border, a large shadow, and a faint blue outline. */
 
 
-	background    : var( --ink );                                              /* Ink = #1A1A2E */
-	border        : 1px solid rgba( 255, 255, 255, 0.08 );
-	border-radius : var( --radius-lg );                                        /* Radius Large = 12px */
-	box-shadow    : var( --shadow-lg ), 0 0 0 1px rgba( 125, 185, 216, 0.15 ); /* Shadow Large = 0 12px 40px rgba( 26, 26, 46, 0.14 ) */
+	background    : var( --bac-inv-col );                                                          /* Background Inverse Color = #1A1A2E */
+	border        : 1px solid oklch( from var( --bac-sur-col ) l c h / 0.08 );                     /* Background Surface Color = #FFFFFF @ 0.08 opacity */
+	border-radius : var( --radius-lg );                                                            /* Radius Large = 12px */
+	box-shadow    : var( --shadow-lg ), 0 0 0 1px oklch( from var( --acc-sec-col ) l c h / 0.15 ); /* Shadow Large = 0 12px 40px rgba( 26, 26, 46, 0.14 ), Accent Secondary Color = #7DB9D8 @ 0.15 opacity */
 	overflow      : hidden;
 	position      : relative;
 
@@ -594,11 +594,11 @@
 
 
 	align-items   : center;
-	background    : rgba( 255, 255, 255, 0.04 );
-	border-bottom : 1px solid rgba( 255, 255, 255, 0.06 );
+	background    : oklch( from var( --bac-sur-col ) l c h / 0.04 );           /* Background Surface Color = #FFFFFF @ 0.04 opacity */
+	border-bottom : 1px solid oklch( from var( --bac-sur-col ) l c h / 0.06 ); /* Background Surface Color = #FFFFFF @ 0.06 opacity */
 	display       : flex;
-	gap           : var( --sp-2 );      /* Spacing 2 = 8px */
-	padding       : 12px var( --sp-5 ); /* Spacing 5 = 24px */
+	gap           : var( --sp-2 );                                             /* Spacing 2 = 8px */
+	padding       : 12px var( --sp-5 );                                        /* Spacing 5 = 24px */
 
 
 }
@@ -639,10 +639,10 @@
 .windowTitle { /* What: Window Title. Why: The file name sits quietly after the dots. How: This sets it small in faint mono, spaced from the dots. */
 
 
-	color       : rgba( 255, 255, 255, 0.35 );
-	font-family : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	color       : oklch( from var( --bac-sur-col ) l c h / 0.35 ); /* Background Surface Color = #FFFFFF @ 0.35 opacity */
+	font-family : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
 	font-size   : 0.75rem;
-	margin-left : var( --sp-3 );      /* Spacing 3 = 12px */
+	margin-left : var( --sp-3 );                                   /* Spacing 3 = 12px */
 
 
 }
@@ -656,11 +656,11 @@
 
 
 	color       : #e2e8f0;
-	font-family : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size   : 0.88rem;
 	line-height : 1.8;
 	overflow    : auto;
-	padding     : var( --sp-6 );      /* Spacing 6 = 32px */
+	padding     : var( --sp-6 );        /* Spacing 6 = 32px */
 	white-space : pre;
 
 
@@ -700,8 +700,8 @@
 
 	align-items   : center;
 	animation     : global( fadeUp ) 800ms 300ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
-	background    : var( --white );                                      /* White = #FFFFFF */
-	border        : 1px solid var( --ivory-dark );                       /* Ivory Dark = #D8CFBE */
+	background    : var( --bac-sur-col );                                /* Background Surface Color = #FFFFFF */
+	border        : 1px solid var( --bor-mai-col );                      /* Border Main Color = #D8CFBE */
 	border-radius : var( --radius-lg );                                  /* Radius Large = 12px */
 	bottom        : -33px;
 	box-shadow    : var( --shadow-md );                                  /* Shadow Medium = 0 4px 16px rgba( 26, 26, 46, 0.10 ) */
@@ -730,8 +730,8 @@
 .badgeValue { /* What: Badge Value. Why: The figure is the badge's point. How: This sets it bold in the display font. */
 
 
-	color       : var( --ink );          /* Ink = #1A1A2E */
-	font-family : var( --font-display ); /* Font Display = 'Syne', sans-serif */
+	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+	font-family : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
 	font-size   : 1.3rem;
 	font-weight : 800;
 
@@ -741,8 +741,8 @@
 .badgeLabel { /* What: Badge Label. Why: The label says what the figure counts, quietly. How: This sets it small in muted mono capitals. */
 
 
-	color          : var( --ink-light ); /* Ink Light = #7A7A99 */
-	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	color          : var( --tex-mut-col ); /* Text Muted Color = #646482 */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.7rem;
 	letter-spacing : 0.06em;
 	text-transform : uppercase;
@@ -760,7 +760,7 @@
 .heroDivider { /* What: Hero Divider. Why: A slanted white edge leads from the hero into the stats strip. How: This clips a 64px white band along the hero's bottom to a triangle. */
 
 
-	background : var( --white ); /* White = #FFFFFF */
+	background : var( --bac-sur-col ); /* Background Surface Color = #FFFFFF */
 	bottom     : -1px;
 	clip-path  : polygon( 0 100%, 100% 0, 100% 100% );
 	height     : 64px;
@@ -780,9 +780,9 @@
 .stats { /* What: Stats Section. Why: The figures sit on a white strip under the hero. How: This sets the background, pads the strip, and rules it off below. */
 
 
-	background    : var( --white );                /* White = #FFFFFF */
-	border-bottom : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
-	padding       : var( --sp-8 ) 0;               /* Spacing 8 = 64px */
+	background    : var( --bac-sur-col );           /* Background Surface Color = #FFFFFF */
+	border-bottom : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
+	padding       : var( --sp-8 ) 0;                /* Spacing 8 = 64px */
 
 
 }
@@ -847,11 +847,11 @@
 
 
 	align-items    : center;
-	border-right   : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	border-right   : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --sp-2 );                 /* Spacing 2 = 8px */
-	padding        : var( --sp-5 );                 /* Spacing 5 = 24px */
+	gap            : var( --sp-2 );                  /* Spacing 2 = 8px */
+	padding        : var( --sp-5 );                  /* Spacing 5 = 24px */
 	text-align     : center;
 
 
@@ -869,7 +869,7 @@
 	.statItem { /* What: Underlined Stat Item. Why: The paired figures divide better from the row below. How: This swaps the right rule for one underneath. */
 
 
-		border-bottom : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+		border-bottom : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
 		border-right  : none;
 
 
@@ -881,8 +881,8 @@
 .statValue { /* What: Stat Value. Why: The figure is the stat's point. How: This sets it large and bold in the display font, tight. */
 
 
-	color          : var( --ink );          /* Ink = #1A1A2E */
-	font-family    : var( --font-display ); /* Font Display = 'Syne', sans-serif */
+	color          : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+	font-family    : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
 	font-size      : 2.5rem;
 	font-weight    : 800;
 	letter-spacing : -0.04em;
@@ -893,7 +893,7 @@
 .statValue::after { /* What: Stat Value Underline. Why: A short orange stroke sits under each figure. How: This draws a 24px rounded orange bar centered below it. */
 
 
-	background    : var( --orange );      /* Orange = #F26419 */
+	background    : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
 	border-radius : 2px;
 	content       : '';
 	display       : block;
@@ -907,8 +907,8 @@
 .statLabel { /* What: Stat Label. Why: The label says what the figure counts, quietly. How: This sets it small in muted mono capitals. */
 
 
-	color          : var( --ink-light ); /* Ink Light = #7A7A99 */
-	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	color          : var( --tex-mut-col ); /* Text Muted Color = #646482 */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.72rem;
 	letter-spacing : 0.06em;
 	text-transform : uppercase;
@@ -931,8 +931,8 @@
 .featuredWork { /* What: Featured Work Section. Why: The featured projects sit on the ivory with the section spacing. How: This sets the background and the shared section padding. */
 
 
-	background : var( --ivory );   /* Ivory = #F5F0E8 */
-	padding    : var( --sp-10 ) 0; /* Spacing 10 = 128px */
+	background : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
+	padding    : var( --sp-10 ) 0;     /* Spacing 10 = 128px */
 
 
 }
@@ -984,10 +984,10 @@
 
 
 	align-items    : center;
-	color          : var( --orange );            /* Orange = #F26419 */
+	color          : var( --acc-dar-col );       /* Accent Dark Color ~= #bd3000 */
 	display        : inline-flex;
 	flex-shrink    : 0;
-	font-family    : var( --font-mono );         /* Font Mono = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec );       /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.78rem;
 	gap            : var( --sp-2 );              /* Spacing 2 = 8px */
 	letter-spacing : 0.06em;
@@ -1067,9 +1067,9 @@
 .services { /* What: Services Section. Why: The services sit on a warmer band with the section spacing. How: This sets the warm ivory, the shared section padding, and clips the pattern behind it. */
 
 
-	background : var( --ivory-warm ); /* Ivory Warm = #EDE6D8 */
+	background : var( --bac-sun-col ); /* Background Sunken Color = #EDE6D8 */
 	overflow   : hidden;
-	padding    : var( --sp-10 ) 0;    /* Spacing 10 = 128px */
+	padding    : var( --sp-10 ) 0;     /* Spacing 10 = 128px */
 	position   : relative;
 
 
@@ -1141,8 +1141,8 @@
 .serviceCard { /* What: Service Card. Why: Each service is one white card. How: This sets the bordered card, stacks its icon, title, and description, and eases its lift and shadow. */
 
 
-	background     : var( --white );                                                      /* White = #FFFFFF */
-	border         : 1px solid var( --ivory-dark );                                       /* Ivory Dark = #D8CFBE */
+	background     : var( --bac-sur-col );                                                /* Background Surface Color = #FFFFFF */
+	border         : 1px solid var( --bor-mai-col );                                      /* Border Main Color = #D8CFBE */
 	border-radius  : var( --radius-lg );                                                  /* Radius Large = 12px */
 	display        : flex;
 	flex-direction : column;
@@ -1178,9 +1178,9 @@
 
 
 	align-items     : center;
-	background      : var( --blue-light ); /* Blue Light = #B8D9EC */
-	border-radius   : var( --radius-md );  /* Radius Medium = 6px */
-	color           : var( --blue-dark );  /* Blue Dark = #4A91B8 */
+	background      : var( --acs-tin-col ); /* Accent-Secondary Tint Color = #B8D9EC */
+	border-radius   : var( --radius-md );   /* Radius Medium = 6px */
+	color           : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
 	display         : flex;
 	height          : 52px;
 	justify-content : center;
@@ -1192,7 +1192,7 @@
 .serviceTitle { /* What: Service Title. Why: Each service is named. How: This sets the title bold in the main text color. */
 
 
-	color       : var( --ink ); /* Ink = #1A1A2E */
+	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 	font-size   : 1rem;
 	font-weight : 700;
 
@@ -1202,7 +1202,7 @@
 .serviceDesc { /* What: Service Description. Why: A sentence says what the service covers, quietly. How: This sets it small and muted. */
 
 
-	color       : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	font-size   : 0.87rem;
 	line-height : 1.65;
 
@@ -1224,8 +1224,8 @@
 .ctaBanner { /* What: Call To Action Banner. Why: The page ends on a dark band inviting a visitor to start. How: This sets the ink background and pads the band. */
 
 
-	background : var( --ink );    /* Ink = #1A1A2E */
-	padding    : var( --sp-9 ) 0; /* Spacing 9 = 96px */
+	background : var( --bac-inv-col ); /* Background Inverse Color = #1A1A2E */
+	padding    : var( --sp-9 ) 0;      /* Spacing 9 = 96px */
 
 
 }
@@ -1265,12 +1265,12 @@
 .ctaBannerLabel { /* What: Banner Label. Why: A question leads into the invitation. How: This sets it on its own line in blue mono capitals, above the heading. */
 
 
-	color          : var( --blue );      /* Blue = #7DB9D8 */
+	color          : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
 	display        : block;
-	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.78rem;
 	letter-spacing : 0.08em;
-	margin-bottom  : var( --sp-3 );      /* Spacing 3 = 12px */
+	margin-bottom  : var( --sp-3 );        /* Spacing 3 = 12px */
 	text-transform : uppercase;
 
 
@@ -1279,7 +1279,7 @@
 .ctaBannerTitle { /* What: Banner Title. Why: The invitation reads light on the dark band. How: This sets it ivory, scaling with the screen. */
 
 
-	color     : var( --ivory ); /* Ivory = #F5F0E8 */
+	color     : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
 	font-size : clamp( 1.8rem, 3.5vw, 2.8rem );
 
 
@@ -1302,10 +1302,10 @@
 .ctaBannerBtn { /* What: Start A Project Button. Why: The banner's one action stands out. How: This sets an orange button in mono capitals, easing its color and lift. */
 
 
-	background     : var( --orange );                                                     /* Orange = #F26419 */
+	background     : var( --acc-mai-col );                                                /* Accent Main Color = #F26419 */
 	border-radius  : var( --radius-sm );                                                  /* Radius Small = 3px */
-	color          : var( --white );                                                      /* White = #FFFFFF */
-	font-family    : var( --font-mono );                                                  /* Font Mono = 'DM Mono', monospace */
+	color          : var( --tex-acc-col );                                                /* Text Accent Color = #1A1A2E */
+	font-family    : var( --fon-fam-sec );                                                /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.85rem;
 	font-weight    : 500;
 	letter-spacing : 0.04em;
@@ -1318,7 +1318,7 @@
 .ctaBannerBtn:hover { /* What: Hovered Start A Project Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 2px. */
 
 
-	background : var( --orange-dark ); /* Orange Dark = #D4530E */
+	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
 	transform  : translateY( -2px );
 
 

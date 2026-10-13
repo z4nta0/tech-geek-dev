@@ -21,7 +21,7 @@
 .geo { /* What: Geometric Background. Why: The pattern fills its section behind the content without catching clicks. How: This pins it over the whole section at the bottom of the stack, in the dark blue the patterns draw with. */
 
 
-	color          : var( --blue-dark ); /* Blue Dark = #4A91B8 */
+	color          : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
 	inset          : 0;
 	pointer-events : none;
 	position       : absolute;
@@ -33,7 +33,7 @@
 .circuit { /* What: Circuit Pattern SVG. Why: The circuit draws in the same dark blue as the wrapper. How: This sets its color. */
 
 
-	color : var( --blue-dark ); /* Blue Dark = #4A91B8 */
+	color : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
 
 
 }

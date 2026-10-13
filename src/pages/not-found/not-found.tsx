@@ -89,14 +89,14 @@ function NotFouCom () : JSX.Element {
 					<polygon
 						opacity='0.5'
 						points='100,10 190,55 190,145 100,190 10,145 10,55'
-						stroke='var(--blue)' // Blue = #7DB9D8
+						stroke='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
 						strokeWidth='1.5'
 					/>{ /* What: Outer Hexagon Polygon Element. Why: The drawing's outer shape is a faint blue hexagon. How: This traces it at half strength. */ }
 
 					<polygon
 						opacity='0.4'
 						points='100,30 170,67.5 170,132.5 100,170 30,132.5 30,67.5'
-						stroke='var(--orange)' // Orange = #F26419
+						stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
 						strokeWidth='1'
 					/>{ /* What: Inner Hexagon Polygon Element. Why: A thinner orange hexagon sits inside the blue one. How: This traces it at 40% strength. */ }
 
@@ -106,7 +106,7 @@ function NotFouCom () : JSX.Element {
 						fill='none'
 						opacity='0.6'
 						r='20'
-						stroke='var(--orange)' // Orange = #F26419
+						stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
 						strokeWidth='1.5'
 					/>{ /* What: Center Ring Circle Element. Why: An orange ring marks the drawing's center. How: This traces it at 60% strength. */ }
 

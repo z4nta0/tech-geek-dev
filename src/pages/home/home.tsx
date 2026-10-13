@@ -463,7 +463,7 @@ function HomPagCom () : JSX.Element {
 								<circle
 									cx='280'
 									cy='20'
-									fill='var(--orange)' // Orange = #F26419
+									fill='var(--acc-mai-col)' // Accent Main Color = #F26419
 									opacity='0.8'
 									r='4'
 								/>{ /* What: Node Circle Element. Why: Each node is a dot. How: This draws one in orange. */ }
@@ -471,7 +471,7 @@ function HomPagCom () : JSX.Element {
 								<circle
 									cx='300'
 									cy='60'
-									fill='var(--blue)' // Blue = #7DB9D8
+									fill='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
 									opacity='0.7'
 									r='2.5'
 								/>{ /* What: Node Circle Element. Why: Each node is a dot. How: This draws one in blue. */ }
@@ -479,14 +479,14 @@ function HomPagCom () : JSX.Element {
 								<circle
 									cx='260'
 									cy='200'
-									fill='var(--orange)' // Orange = #F26419
+									fill='var(--acc-mai-col)' // Accent Main Color = #F26419
 									opacity='0.6'
 									r='4'
 								/>{ /* What: Node Circle Element. Why: Each node is a dot. How: This draws one in orange. */ }
 
 								<line
 									opacity='0.5'
-									stroke='var(--blue-light)' // Blue Light = #B8D9EC
+									stroke='var(--acs-tin-col)' // Accent-Secondary Tint Color = #B8D9EC
 									strokeWidth='1'
 									x1='280'
 									x2='300'
@@ -496,7 +496,7 @@ function HomPagCom () : JSX.Element {
 
 								<line
 									opacity='0.5'
-									stroke='var(--blue-light)' // Blue Light = #B8D9EC
+									stroke='var(--acs-tin-col)' // Accent-Secondary Tint Color = #B8D9EC
 									strokeWidth='1'
 									x1='300'
 									x2='260'
@@ -525,14 +525,14 @@ function HomPagCom () : JSX.Element {
 								<polygon
 									fill='none'
 									points='14,2 26,8 26,20 14,26 2,20 2,8'
-									stroke='var(--orange)' // Orange = #F26419
+									stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
 									strokeWidth='1.5'
 								/>{ /* What: Badge Hexagon Polygon Element. Why: The mark's outline is an orange hexagon. How: This traces it. */ }
 
 								<circle
 									cx='14'
 									cy='14'
-									fill='var(--blue)' // Blue = #7DB9D8
+									fill='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
 									r='4'
 								/>{ /* What: Badge Center Circle Element. Why: A blue dot fills the mark's center. How: This draws it. */ }
 

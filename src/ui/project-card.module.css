@@ -23,8 +23,8 @@
 .card { /* What: Project Card. Why: Each project is one self-contained card. How: This sets the white card with its border and rounded corners, clipping what spills, and eases its lift and shadow. */
 
 
-	background    : var( --white );                                                                                          /* White = #FFFFFF */
-	border        : 1px solid var( --ivory-dark );                                                                           /* Ivory Dark = #D8CFBE */
+	background    : var( --bac-sur-col );                                                                                    /* Background Surface Color = #FFFFFF */
+	border        : 1px solid var( --bor-mai-col );                                                                          /* Border Main Color = #D8CFBE */
 	border-radius : var( --radius-lg );                                                                                      /* Radius Large = 12px */
 	overflow      : hidden;
 	position      : relative;
@@ -43,7 +43,7 @@
 .featured { /* What: Featured Project Card. Why: Featured projects stand apart from the rest. How: This turns the card's border blue. */
 
 
-	border-color : var( --blue ); /* Blue = #7DB9D8 */
+	border-color : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
 
 
 }
@@ -113,7 +113,7 @@
 
 	align-items     : center;
 	backdrop-filter : blur( 4px );
-	background      : rgba( 26, 26, 46, 0.72 );
+	background      : oklch( from var( --bac-inv-col ) l c h / 0.72 );  /* Background Inverse Color = #1A1A2E @ 0.72 opacity */
 	display         : flex;
 	inset           : 0;
 	justify-content : center;
@@ -160,11 +160,11 @@
 
 
 	align-items    : center;
-	background     : var( --orange );                   /* Orange = #F26419 */
+	background     : var( --acc-mai-col );              /* Accent Main Color = #F26419 */
 	border-radius  : var( --radius-sm );                /* Radius Small = 3px */
-	color          : var( --white );                    /* White = #FFFFFF */
+	color          : var( --tex-acc-col );              /* Text Accent Color = #1A1A2E */
 	display        : inline-flex;
-	font-family    : var( --font-mono );                /* Font Mono = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec );              /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.78rem;
 	font-weight    : 500;
 	gap            : var( --sp-2 );                     /* Spacing 2 = 8px */
@@ -178,7 +178,7 @@
 .btn:hover { /* What: Hovered Overlay Button. Why: A button should respond to the pointer. How: This darkens its orange. */
 
 
-	background : var( --orange-dark ); /* Orange Dark = #D4530E */
+	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
 
 
 }
@@ -186,15 +186,15 @@
 
 
 	background : transparent;
-	border     : 1.5px solid rgba( 255, 255, 255, 0.5 );
-	color      : var( --white ); /* White = #FFFFFF */
+	border     : 1.5px solid oklch( from var( --bac-sur-col ) l c h / 0.5 ); /* Background Surface Color = #FFFFFF @ 0.5 opacity */
+	color      : var( --bac-sur-col );                                       /* Background Surface Color = #FFFFFF */
 
 
 }
 .btnGhost:hover { /* What: Hovered Ghost Button. Why: The ghost button should respond to the pointer too. How: This gives it a faint white fill. */
 
 
-	background : rgba( 255, 255, 255, 0.12 );
+	background : oklch( from var( --bac-sur-col ) l c h / 0.12 ); /* Background Surface Color = #FFFFFF @ 0.12 opacity */
 
 
 }
@@ -221,16 +221,16 @@
 
 
 	backdrop-filter : blur( 4px );
-	background      : rgba( 26, 26, 46, 0.65 );
-	border-radius   : var( --radius-sm ); /* Radius Small = 3px */
-	color           : var( --white );     /* White = #FFFFFF */
-	font-family     : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	background      : oklch( from var( --bac-inv-col ) l c h / 0.65 ); /* Background Inverse Color = #1A1A2E @ 0.65 opacity */
+	border-radius   : var( --radius-sm );                              /* Radius Small = 3px */
+	color           : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
+	font-family     : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
 	font-size       : 0.68rem;
-	left            : var( --sp-3 );      /* Spacing 3 = 12px */
+	left            : var( --sp-3 );                                   /* Spacing 3 = 12px */
 	letter-spacing  : 0.06em;
 	padding         : 3px 8px;
 	position        : absolute;
-	top             : var( --sp-3 );      /* Spacing 3 = 12px */
+	top             : var( --sp-3 );                                   /* Spacing 3 = 12px */
 
 
 }
@@ -254,7 +254,7 @@
 .title { /* What: Project Title. Why: The card names its project. How: This sets the title bold in the main text color. */
 
 
-	color       : var( --ink ); /* Ink = #1A1A2E */
+	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 	font-size   : 1.1rem;
 	font-weight : 700;
 
@@ -266,7 +266,7 @@
 
 	-webkit-box-orient : vertical;
 	-webkit-line-clamp : 3;
-	color              : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	color              : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	display            : -webkit-box;
 	font-size          : 0.88rem;
 	line-height        : 1.65;

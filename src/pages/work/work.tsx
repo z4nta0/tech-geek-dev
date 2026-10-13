@@ -174,7 +174,7 @@ function WorPagCom () : JSX.Element {
 						fill='none'
 						opacity='0.25'
 						points='200,0 200,200 0,200'
-						stroke='var(--orange)' // Orange = #F26419
+						stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
 						strokeWidth='2'
 					/>{ /* What: Outer Triangle Polygon Element. Why: The larger triangle fills the corner. How: This traces it in orange at 25% strength. */ }
 
@@ -182,7 +182,7 @@ function WorPagCom () : JSX.Element {
 						fill='none'
 						opacity='0.2'
 						points='200,40 200,200 40,200'
-						stroke='var(--blue)' // Blue = #7DB9D8
+						stroke='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
 						strokeWidth='1'
 					/>{ /* What: Inner Triangle Polygon Element. Why: A smaller triangle nests inside the first. How: This traces it in blue at 20% strength. */ }
 
@@ -363,7 +363,7 @@ function WorPagCom () : JSX.Element {
 										<svg
 											fill='none'
 											height='24'
-											stroke='var(--orange)' // Orange = #F26419
+											stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
 											strokeWidth='2'
 											viewBox='0 0 24 24'
 											width='24'

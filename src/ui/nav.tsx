@@ -146,12 +146,12 @@ function NavBarCom () : JSX.Element {
 						<polygon
 							fill='none'
 							points='14,2 26,8 26,20 14,26 2,20 2,8'
-							stroke='var(--orange)' // Orange = #F26419
+							stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
 							strokeWidth='2'
 						/>{ /* What: Outer Hexagon Polygon Element. Why: The mark's outline is an orange hexagon. How: This traces it around the whole mark. */ }
 
 						<polygon
-							fill='var(--blue)' // Blue = #7DB9D8
+							fill='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
 							opacity='0.6'
 							points='14,7 21,11 21,17 14,21 7,17 7,11'
 						/>{ /* What: Inner Hexagon Polygon Element. Why: A softer blue hexagon fills the mark's center. How: This draws it at 60% strength inside the outline. */ }
@@ -159,7 +159,7 @@ function NavBarCom () : JSX.Element {
 						<circle
 							cx='14'
 							cy='14'
-							fill='var(--orange)' // Orange = #F26419
+							fill='var(--acc-mai-col)' // Accent Main Color = #F26419
 							r='3'
 						/>{ /* What: Center Dot Circle Element. Why: An orange dot finishes the mark's center. How: This draws it in the middle of the hexagons. */ }
 

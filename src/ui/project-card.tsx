@@ -229,7 +229,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 				<path
 					d='M0 0 L24 0 L24 24'
 					fill='none'
-					stroke='var(--orange)' // Orange = #F26419
+					stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
 					strokeWidth='2'
 				/>{ /* What: Corner Path Element. Why: The accent is two strokes meeting at the card's corner. How: This traces them in the site's orange. */ }
 

@@ -45,11 +45,11 @@
 
 
 	align-items    : center;
-	color          : var( --orange );    /* Orange = #F26419 */
+	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
 	display        : inline-flex;
-	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.72rem;
-	gap            : var( --sp-3 );      /* Spacing 3 = 12px */
+	gap            : var( --sp-3 );        /* Spacing 3 = 12px */
 	letter-spacing : 0.12em;
 	text-transform : uppercase;
 
@@ -59,7 +59,7 @@
 .line { /* What: Label Line. Why: A short rule leads into the label. How: This draws a 28px orange stroke that never shrinks. */
 
 
-	background  : var( --orange ); /* Orange = #F26419 */
+	background  : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
 	display     : inline-block;
 	flex-shrink : 0;
 	height      : 1.5px;
@@ -81,7 +81,7 @@
 .title { /* What: Section Title. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
 
 
-	color : var( --ink ); /* Ink = #1A1A2E */
+	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 
 
 }
@@ -89,7 +89,7 @@
 .subtitle { /* What: Section Subtitle. Why: The subtitle expands on the heading more quietly. How: This sets it muted, a little larger than body text, and capped at 540px. */
 
 
-	color       : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	font-size   : 1.05rem;
 	line-height : 1.7;
 	max-width   : 540px;

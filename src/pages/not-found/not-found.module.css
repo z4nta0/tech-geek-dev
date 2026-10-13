@@ -25,7 +25,7 @@
 
 	align-items     : center;
 	animation       : global( fadeUp ) 400ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
-	background      : var( --ivory );                                /* Ivory = #F5F0E8 */
+	background      : var( --bac-pag-col );                          /* Background Page Color = #F5F0E8 */
 	display         : flex;
 	justify-content : center;
 	min-height      : 100vh;
@@ -66,8 +66,8 @@
 .code { /* What: Error Code. Why: A huge pale 404 says what happened at a glance without shouting. How: This sets it in the display font, scaling with the screen, in the pale ivory, and keeps it from being selected. */
 
 
-	color          : var( --ivory-dark );   /* Ivory Dark = #D8CFBE */
-	font-family    : var( --font-display ); /* Font Display = 'Syne', sans-serif */
+	color          : var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
+	font-family    : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
 	font-size      : clamp( 6rem, 20vw, 12rem );
 	font-weight    : 800;
 	letter-spacing : -0.06em;
@@ -108,7 +108,7 @@
 .title { /* What: Not Found Title. Why: The heading sits above the turning drawing. How: This sets its size and color and lifts it over the drawing. */
 
 
-	color     : var( --ink ); /* Ink = #1A1A2E */
+	color     : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 	font-size : 1.8rem;
 	position  : relative;
 	z-index   : 1;
@@ -119,7 +119,7 @@
 .desc { /* What: Not Found Description. Why: The line explaining the missing page stays short. How: This sets it muted and caps it at 360px. */
 
 
-	color     : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	max-width : 360px;
 
 
@@ -129,11 +129,11 @@
 
 
 	align-items    : center;
-	background     : var( --orange );                                                     /* Orange = #F26419 */
+	background     : var( --acc-mai-col );                                                /* Accent Main Color = #F26419 */
 	border-radius  : var( --radius-sm );                                                  /* Radius Small = 3px */
-	color          : var( --white );                                                      /* White = #FFFFFF */
+	color          : var( --tex-acc-col );                                                /* Text Accent Color = #1A1A2E */
 	display        : inline-flex;
-	font-family    : var( --font-mono );                                                  /* Font Mono = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec );                                                /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.82rem;
 	font-weight    : 500;
 	letter-spacing : 0.06em;
@@ -146,7 +146,7 @@
 .btn:hover { /* What: Hovered Go Home Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
 
 
-	background : var( --orange-dark ); /* Orange Dark = #D4530E */
+	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
 	transform  : translateY( -1px );
 
 

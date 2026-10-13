@@ -24,10 +24,10 @@
 .footer { /* What: Site Footer. Why: Every page ends on a dark band set apart from the content above. How: This fills it with the ink color, sets its text ivory, pads it, and pushes it to the bottom of a short page. */
 
 
-	background : var( --ink );    /* Ink = #1A1A2E */
-	color      : var( --ivory );  /* Ivory = #F5F0E8 */
+	background : var( --bac-inv-col ); /* Background Inverse Color = #1A1A2E */
+	color      : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
 	margin-top : auto;
-	padding    : var( --sp-8 ) 0; /* Spacing 8 = 64px */
+	padding    : var( --sp-8 ) 0;      /* Spacing 8 = 64px */
 
 
 }
@@ -94,8 +94,8 @@
 .tagline { /* What: Footer Tagline. Why: The tagline sits quietly under the mark. How: This sets it small in the mono font and the muted ink. */
 
 
-	color          : var( --ink-light ); /* Ink Light = #7A7A99 */
-	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	color          : var( --tex-inm-col ); /* Text Inverse-Muted Color = #8181a1 */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.78rem;
 	letter-spacing : 0.02em;
 
@@ -121,8 +121,8 @@
 .link { /* What: Footer Link. Why: The page links read quietly on the dark band. How: This sets them small in muted mono capitals and eases their color. */
 
 
-	color          : var( --ink-light );           /* Ink Light = #7A7A99 */
-	font-family    : var( --font-mono );           /* Font Mono = 'DM Mono', monospace */
+	color          : var( --tex-inm-col );         /* Text Inverse-Muted Color = #8181a1 */
+	font-family    : var( --fon-fam-sec );         /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.78rem;
 	letter-spacing : 0.06em;
 	text-transform : uppercase;
@@ -133,7 +133,7 @@
 .link:hover { /* What: Hovered Footer Link. Why: A link should respond to the pointer. How: This turns it orange. */
 
 
-	color : var( --orange ); /* Orange = #F26419 */
+	color : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
 
 
 }
@@ -183,8 +183,8 @@
 .copyright { /* What: Footer Copyright. Why: The copyright line sits quietly in the mono font. How: This sets it a little smaller than its surroundings, in the muted ink. */
 
 
-	color       : var( --ink-light ); /* Ink Light = #7A7A99 */
-	font-family : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	color       : var( --tex-inm-col ); /* Text Inverse-Muted Color = #8181a1 */
+	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size   : 0.875em;
 
 
@@ -205,7 +205,7 @@
 .icon { /* What: Footer Icon. Why: Each profile link is a bare icon on the dark band. How: This sets it in the muted ink and eases its color and lift. */
 
 
-	color      : var( --ink-light );                                             /* Ink Light = #7A7A99 */
+	color      : var( --tex-inm-col );                                           /* Text Inverse-Muted Color = #8181a1 */
 	display    : flex;
 	transition : color var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
 
@@ -214,7 +214,7 @@
 .icon:hover { /* What: Hovered Footer Icon. Why: An icon should respond to the pointer. How: This turns it blue and lifts it 2px. */
 
 
-	color     : var( --blue ); /* Blue = #7DB9D8 */
+	color     : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
 	transform : translateY( -2px );
 
 

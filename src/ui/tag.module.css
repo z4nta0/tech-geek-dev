@@ -19,9 +19,9 @@
 
 
 	align-items    : center;
-	border-radius  : var( --radius-sm ); /* Radius Small = 3px */
+	border-radius  : var( --radius-sm );   /* Radius Small = 3px */
 	display        : inline-flex;
-	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	letter-spacing : 0.04em;
 	white-space    : nowrap;
 
@@ -46,27 +46,27 @@
 .neutral { /* What: Neutral Tag. Why: A tag with no color of its own stays quiet. How: This sets it on the warm ivory with a matching border. */
 
 
-	background : var( --ivory-warm );           /* Ivory Warm = #EDE6D8 */
-	border     : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
-	color      : var( --ink-mid );              /* Ink Mid = #3D3D5C */
+	background : var( --bac-sun-col );           /* Background Sunken Color = #EDE6D8 */
+	border     : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
+	color      : var( --tex-sec-col );           /* Text Secondary Color = #3D3D5C */
 
 
 }
 .blue { /* What: Blue Tag. Why: Technologies show in the site's blue. How: This sets the pale blue fill, blue border, and dark blue text. */
 
 
-	background : var( --blue-light );     /* Blue Light = #B8D9EC */
-	border     : 1px solid var( --blue ); /* Blue = #7DB9D8 */
-	color      : var( --blue-dark );      /* Blue Dark = #4A91B8 */
+	background : var( --acs-tin-col );           /* Accent-Secondary Tint Color = #B8D9EC */
+	border     : 1px solid var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
+	color      : var( --acs-dar-col );           /* Accent-Secondary Dark Color ~= #126186 */
 
 
 }
 .orange { /* What: Orange Tag. Why: A tag can stand out in the site's accent. How: This sets the pale orange fill, orange border, and dark orange text. */
 
 
-	background : var( --orange-light );     /* Orange Light = #FDDCC8 */
-	border     : 1px solid var( --orange ); /* Orange = #F26419 */
-	color      : var( --orange-dark );      /* Orange Dark = #D4530E */
+	background : var( --acc-tin-col );           /* Accent Tint Color = #FDDCC8 */
+	border     : 1px solid var( --acc-mai-col ); /* Accent Main Color = #F26419 */
+	color      : var( --acc-dar-col );           /* Accent Dark Color ~= #bd3000 */
 
 
 }

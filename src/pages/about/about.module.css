@@ -52,7 +52,7 @@
 .hero { /* What: About Hero. Why: The page opens with its introduction clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips the pattern behind it. */
 
 
-	background : var( --ivory );                                              /* Ivory = #F5F0E8 */
+	background : var( --bac-pag-col );                                        /* Background Page Color = #F5F0E8 */
 	overflow   : hidden;
 	padding    : calc( var( --nav-height ) + var( --sp-9 ) ) 0 var( --sp-9 ); /* Navigation Height = 72px, Spacing 9 = 96px */
 	position   : relative;
@@ -113,11 +113,11 @@
 
 
 	align-items    : center;
-	color          : var( --orange );    /* Orange = #F26419 */
+	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
 	display        : inline-flex;
-	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.72rem;
-	gap            : var( --sp-3 );      /* Spacing 3 = 12px */
+	gap            : var( --sp-3 );        /* Spacing 3 = 12px */
 	letter-spacing : 0.12em;
 	text-transform : uppercase;
 
@@ -127,7 +127,7 @@
 .heroLine { /* What: Hero Line. Why: A short rule leads into the label. How: This draws a 28px orange stroke. */
 
 
-	background : var( --orange ); /* Orange = #F26419 */
+	background : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
 	display    : inline-block;
 	height     : 1.5px;
 	width      : 28px;
@@ -143,7 +143,7 @@
 .heroTitle { /* What: Hero Title. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
 
 
-	color : var( --ink ); /* Ink = #1A1A2E */
+	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 
 
 }
@@ -151,7 +151,7 @@
 .accent { /* What: Hero Title Accent. Why: The heading's second line carries the accent. How: This sets it in the dark blue. */
 
 
-	color : var( --blue-dark ); /* Blue Dark = #4A91B8 */
+	color : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
 
 
 }
@@ -162,8 +162,8 @@
 .lead { /* What: Lead Paragraph. Why: The opening line reads as a quiet pull quote. How: This sets it a little larger in italic Lora, muted. */
 
 
-	color       : var( --ink-mid );    /* Ink Mid = #3D3D5C */
-	font-family : var( --font-serif ); /* Font Serif = 'Lora', serif */
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
+	font-family : var( --fon-fam-acc ); /* Font Family Accent = 'Lora', serif */
 	font-size   : 1.15rem;
 	font-style  : italic;
 	line-height : 1.8;
@@ -174,7 +174,7 @@
 .body { /* What: Body Paragraph. Why: The longer story reads comfortably. How: This sets it muted with roomy lines. */
 
 
-	color       : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	font-size   : 1rem;
 	line-height : 1.8;
 
@@ -198,11 +198,11 @@
 
 
 	align-items    : center;
-	background     : var( --orange );                                                     /* Orange = #F26419 */
+	background     : var( --acc-mai-col );                                                /* Accent Main Color = #F26419 */
 	border-radius  : var( --radius-sm );                                                  /* Radius Small = 3px */
-	color          : var( --white );                                                      /* White = #FFFFFF */
+	color          : var( --tex-acc-col );                                                /* Text Accent Color = #1A1A2E */
 	display        : inline-flex;
-	font-family    : var( --font-mono );                                                  /* Font Mono = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec );                                                /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.82rem;
 	font-weight    : 500;
 	letter-spacing : 0.06em;
@@ -215,7 +215,7 @@
 .ctaPrimary:hover { /* What: Hovered Work With Me Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
 
 
-	background : var( --orange-dark ); /* Orange Dark = #D4530E */
+	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
 	transform  : translateY( -1px );
 
 
@@ -310,13 +310,13 @@
 .floatCard { /* What: Floating Fact Card. Why: Each fact sits on a small white card over the portrait's corner. How: This sets the bordered card with a soft shadow, stacking its figure over its label above the portrait. */
 
 
-	background     : var( --white );                /* White = #FFFFFF */
-	border         : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
-	border-radius  : var( --radius-lg );            /* Radius Large = 12px */
-	box-shadow     : var( --shadow-md );            /* Shadow Medium = 0 4px 16px rgba( 26, 26, 46, 0.10 ) */
+	background     : var( --bac-sur-col );           /* Background Surface Color = #FFFFFF */
+	border         : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
+	border-radius  : var( --radius-lg );             /* Radius Large = 12px */
+	box-shadow     : var( --shadow-md );             /* Shadow Medium = 0 4px 16px rgba( 26, 26, 46, 0.10 ) */
 	display        : flex;
 	flex-direction : column;
-	padding        : var( --sp-4 ) var( --sp-5 );   /* Spacing 4 = 16px, Spacing 5 = 24px */
+	padding        : var( --sp-4 ) var( --sp-5 );    /* Spacing 4 = 16px, Spacing 5 = 24px */
 	position       : absolute;
 	z-index        : 2;
 
@@ -342,8 +342,8 @@
 .floatNum { /* What: Fact Figure. Why: The figure is the card's point. How: This sets it large and bold in the display font, tight. */
 
 
-	color          : var( --ink );          /* Ink = #1A1A2E */
-	font-family    : var( --font-display ); /* Font Display = 'Syne', sans-serif */
+	color          : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+	font-family    : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
 	font-size      : 1.6rem;
 	font-weight    : 800;
 	letter-spacing : -0.04em;
@@ -355,8 +355,8 @@
 .floatLabel { /* What: Fact Label. Why: The label says what the figure counts, quietly. How: This sets it small in muted mono capitals. */
 
 
-	color          : var( --ink-light ); /* Ink Light = #7A7A99 */
-	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	color          : var( --tex-mut-col ); /* Text Muted Color = #646482 */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.7rem;
 	letter-spacing : 0.06em;
 	text-transform : uppercase;
@@ -379,8 +379,8 @@
 .skillsSection { /* What: Skills Section. Why: The skills sit on white with the section spacing. How: This sets the background and the shared section padding. */
 
 
-	background : var( --white );   /* White = #FFFFFF */
-	padding    : var( --sp-10 ) 0; /* Spacing 10 = 128px */
+	background : var( --bac-sur-col ); /* Background Surface Color = #FFFFFF */
+	padding    : var( --sp-10 ) 0;     /* Spacing 10 = 128px */
 
 
 }
@@ -468,7 +468,7 @@
 .skillGroupDot { /* What: Skill Group Dot. Why: A small orange dot marks each group. How: This draws an 8px circle that never shrinks. */
 
 
-	background    : var( --orange ); /* Orange = #F26419 */
+	background    : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
 	border-radius : 50%;
 	flex-shrink   : 0;
 	height        : 8px;
@@ -480,8 +480,8 @@
 .skillGroupTitle { /* What: Skill Group Title. Why: The group's name reads as a small label. How: This sets it in muted mono capitals. */
 
 
-	color          : var( --ink-mid );   /* Ink Mid = #3D3D5C */
-	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	color          : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.75rem;
 	font-weight    : 500;
 	letter-spacing : 0.08em;
@@ -518,9 +518,9 @@
 .timelineSection { /* What: Timeline Section. Why: The timeline sits on the ivory with the section spacing. How: This sets the background and the shared section padding, and clips the pattern behind it. */
 
 
-	background : var( --ivory );   /* Ivory = #F5F0E8 */
+	background : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
 	overflow   : hidden;
-	padding    : var( --sp-10 ) 0; /* Spacing 10 = 128px */
+	padding    : var( --sp-10 ) 0;     /* Spacing 10 = 128px */
 	position   : relative;
 
 
@@ -600,8 +600,8 @@
 .timelineYear { /* What: Timeline Year. Why: Each milestone is dated in the accent. How: This sets the year in orange mono. */
 
 
-	color          : var( --orange );    /* Orange = #F26419 */
-	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.78rem;
 	font-weight    : 500;
 	letter-spacing : 0.04em;
@@ -627,8 +627,8 @@
 .timelineDot { /* What: Timeline Dot. Why: Each milestone has its own ring. How: This draws a 12px white circle with a dark blue ring, never shrinking. */
 
 
-	background    : var( --white );                 /* White = #FFFFFF */
-	border        : 2.5px solid var( --blue-dark ); /* Blue Dark = #4A91B8 */
+	background    : var( --bac-sur-col );             /* Background Surface Color = #FFFFFF */
+	border        : 2.5px solid var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
 	border-radius : 50%;
 	flex-shrink   : 0;
 	height        : 12px;
@@ -641,9 +641,9 @@
 .timelineLine { /* What: Timeline Line. Why: A line leads down to the next milestone. How: This draws a 2px pale stroke that fills the rest of the item. */
 
 
-	background : var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	background : var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
 	flex       : 1;
-	margin     : var( --sp-2 ) 0;     /* Spacing 2 = 8px */
+	margin     : var( --sp-2 ) 0;      /* Spacing 2 = 8px */
 	min-height : 32px;
 	width      : 2px;
 
@@ -669,7 +669,7 @@
 .timelineTitle { /* What: Timeline Title. Why: Each milestone is named. How: This sets the title bold in the main text color. */
 
 
-	color       : var( --ink ); /* Ink = #1A1A2E */
+	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 	font-size   : 1.05rem;
 	font-weight : 700;
 	line-height : 1.3;
@@ -680,8 +680,8 @@
 .timelineOrg { /* What: Timeline Organization. Why: Who the work was for reads as a small label. How: This sets it in dark blue mono capitals. */
 
 
-	color          : var( --blue-dark ); /* Blue Dark = #4A91B8 */
-	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	color          : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : 0.75rem;
 	letter-spacing : 0.06em;
 	text-transform : uppercase;
@@ -692,7 +692,7 @@
 .timelineDesc { /* What: Timeline Description. Why: A sentence says what happened, quietly. How: This sets it small and muted. */
 
 
-	color       : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	font-size   : 0.9rem;
 	line-height : 1.65;
 
@@ -716,8 +716,8 @@
 .valuesSection { /* What: Values Section. Why: The page closes on a warmer band with the section spacing. How: This sets the warm ivory and the shared section padding. */
 
 
-	background : var( --ivory-warm ); /* Ivory Warm = #EDE6D8 */
-	padding    : var( --sp-10 ) 0;    /* Spacing 10 = 128px */
+	background : var( --bac-sun-col ); /* Background Sunken Color = #EDE6D8 */
+	padding    : var( --sp-10 ) 0;     /* Spacing 10 = 128px */
 
 
 }
@@ -782,8 +782,8 @@
 .valueCard { /* What: Value Card. Why: Each value is one white card. How: This sets the bordered card, stacks its symbol, title, and description, and eases its lift and shadow. */
 
 
-	background     : var( --white );                                                      /* White = #FFFFFF */
-	border         : 1px solid var( --ivory-dark );                                       /* Ivory Dark = #D8CFBE */
+	background     : var( --bac-sur-col );                                                /* Background Surface Color = #FFFFFF */
+	border         : 1px solid var( --bor-mai-col );                                      /* Border Main Color = #D8CFBE */
 	border-radius  : var( --radius-lg );                                                  /* Radius Large = 12px */
 	display        : flex;
 	flex-direction : column;
@@ -818,7 +818,7 @@
 .valueIcon { /* What: Value Icon. Why: A geometric symbol marks each value. How: This sets it large in orange. */
 
 
-	color       : var( --orange ); /* Orange = #F26419 */
+	color       : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
 	font-size   : 1.8rem;
 	line-height : 1;
 
@@ -828,7 +828,7 @@
 .valueTitle { /* What: Value Title. Why: Each value is named. How: This sets the title bold in the main text color. */
 
 
-	color       : var( --ink ); /* Ink = #1A1A2E */
+	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 	font-size   : 1rem;
 	font-weight : 700;
 
@@ -838,7 +838,7 @@
 .valueDesc { /* What: Value Description. Why: A sentence says what the value means, quietly. How: This sets it small and muted. */
 
 
-	color       : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	font-size   : 0.87rem;
 	line-height : 1.65;
 

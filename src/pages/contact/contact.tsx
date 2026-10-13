@@ -382,7 +382,7 @@ function ConPagCom () : JSX.Element {
 								<svg
 									fill='none'
 									height='56'
-									stroke='var(--orange)' // Orange = #F26419
+									stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
 									strokeWidth='1.5'
 									viewBox='0 0 24 24'
 									width='56'
