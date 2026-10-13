@@ -11,6 +11,9 @@ import { GeoBacCom   } from '../../ui/geo-bg.tsx';           // What: Geometric 
 import { PRO_REC_ARR } from '../../ui/projects.ts';          // What: Project Record Array. Why: The page shows every project. How: This is the list it filters and renders.
 import { ProCarCom   } from '../../ui/project-card.tsx';     // What: Project Card Component. Why: Each project shows as a card. How: This renders one card per project.
 import { SecHeaCom   } from '../../ui/section-header.tsx';   // What: Section Header Component. Why: The process section opens with a heading block. How: This renders its label, title, and subtitle.
+import { togFadFun   } from './edge-fade.ts';                // What: Toggle Fade Function. Why: The filter row fades whichever edge still hides buttons. How: This sets the row's edge attributes from its scroll position.
+import { useEffect   } from 'react';                         // What: Use Effect. Why: The filter row's fades have to follow its scrolling and resizing. How: This wires and tears down those listeners with the page.
+import { useRef      } from 'react';                         // What: Use Ref. Why: The fade effect needs the filter row's element. How: This holds it.
 import { useState    } from 'react';                         // What: Use State. Why: The page remembers which technology the visitor filtered by. How: This holds the active tag.
 
 
@@ -113,6 +116,46 @@ function WorPagCom () : JSX.Element {
 
 
 	const [ actTagStr, setActTagStr ] = useState( 'All' ); // What: Active Tag String And Setter. Why: The grid shows only the projects using the chosen technology. How: This starts on All, showing every project.
+
+	const filScrRef = useRef< HTMLDivElement | null >( null ); // What: Filter Scroll Reference. Why: The fade effect below measures the filter row. How: This is attached to the row's ref prop.
+
+
+	useEffect( () => { // What: Filter Row Fade Effect. Why: Once the filter buttons outgrow the row, its edges fade on whichever side still hides buttons, so a visitor can tell it scrolls. How: This measures the row now and on every scroll and resize, and removes the listeners when the page leaves.
+
+
+		const filScrEle = filScrRef.current; // What: Filter Scroll Element. Why: The listeners attach to the row itself. How: This reads it from its ref.
+
+
+		if ( !filScrEle ) return; // What: Missing Row Guard. Why: There's nothing to measure before the row mounts. How: This stops early when the ref is empty.
+
+
+
+		const updFadFun = () => togFadFun( filScrEle ); // What: Update Fade Function. Why: The first measurement, the scroll listener, and the resize observer all recompute the same attributes. How: This calls togFadFun on the row.
+
+
+		updFadFun(); // What: Initial Update Call. Why: The fades have to be right as soon as the page shows. How: This measures the row once.
+
+		filScrEle.addEventListener( 'scroll', updFadFun, { passive : true } ); // What: Scroll Listener Call. Why: Each fade has to come and go as the visitor scrolls the row. How: This re-measures on every scroll without blocking it.
+
+
+		const resObsObj = new ResizeObserver( updFadFun ); // What: Resize Observer Object. Why: Resizing the window can make the row start or stop scrolling. How: This re-measures whenever the row's size changes.
+
+
+		resObsObj.observe( filScrEle ); // What: Resize Observer Start Call. Why: The observer does nothing until it's given an element. How: This starts watching the row.
+
+
+
+		return () => { // What: Fade Cleanup Return. Why: The listener and the observer shouldn't outlive the page. How: This removes the scroll listener and disconnects the observer.
+
+
+			filScrEle.removeEventListener( 'scroll', updFadFun ); // What: Scroll Unsubscribe Call. Why: The listener must not outlive the page. How: This removes updFadFun from the row.
+			resObsObj.disconnect();                               // What: Observer Disconnect Call. Why: The observer must not outlive the page either. How: This disconnects resObsObj.
+
+
+		};
+
+
+	}, [] ); // What: Effect Dependency Array. Why: The row and its buttons never change while the page is open, so the listeners are wired once. How: This empty list runs the effect only on mount and cleans it up on unmount.
 
 	const filProArr = actTagStr === 'All' // What: Filtered Project Array. Why: The grid and the count show only what the filter allows. How: This keeps every project for All, or only those tagged with the active technology.
 		? PRO_REC_ARR                                                                    // What: All Projects Branch. Why: All means no filter. How: This keeps the whole list.
@@ -219,7 +262,14 @@ function WorPagCom () : JSX.Element {
 						Filter by tech
 					</span>
 
-					<div className={ cssModObj.filScrDiv }>{ /* What: Filter Scroll Div Element. Why: The buttons can outgrow a narrow screen. How: This lets the row scroll sideways. */ }
+					<div
+						ref={ filScrRef }
+
+						className={ cssModObj.filScrDiv }
+
+						data-scroll-end-active // What: Scroll End Active Attribute. Why: The row starts with no fades until edge-fade.ts first measures it, so no fade flashes on load. How: This presence-only attribute hides the right fade until togFadFun says otherwise.
+						data-scroll-start-active // What: Scroll Start Active Attribute. Why: The row starts with no fades until edge-fade.ts first measures it, so no fade flashes on load. How: This presence-only attribute hides the left fade until togFadFun says otherwise.
+					>{ /* What: Filter Scroll Div Element. Why: The buttons can outgrow a narrow screen. How: This lets the row scroll sideways, fading whichever edge still hides buttons. */ }
 
 
 						{ TAG_FIL_ARR.map( ( tagNamStr ) => ( // What: Filter Button Map Call. Why: Every technology gets a button. How: This renders one per tag.

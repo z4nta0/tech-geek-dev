@@ -228,14 +228,20 @@
 
 /* #region filScrDiv */
 
-.filScrDiv { /* What: Filter Scroll Div. Why: The buttons can outgrow the row. How: This lays them in a row that fills the space and scrolls sideways with its scrollbar hidden. */
+.filScrDiv { /* What: Filter Scroll Div. Why: The buttons can outgrow the row, and a faded edge tells a visitor there's more to scroll to. How: This lays them in a row that fills the space and scrolls sideways with its scrollbar hidden, with a gradient mask fading each end, the same as ease-my-life's filter rails. */
 
 
-	display         : flex;
-	flex            : 1;
-	gap             : var( --spa-hor-m02 ); /* Spacing Horizontal Base Minus 2 ~= 8.304px */
-	overflow-x      : auto;
-	scrollbar-width : none;
+	--fad-edg-off : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */ /* What: Fade Edge Offset. Why: This is how far each edge fade reaches into the row. How: --fad-lef-off and --fad-rig-off start from it. */
+	--fad-lef-off : var( --fad-edg-off );                /* Fade Edge Offset ~= 25.572px */ /* What: Fade Left Offset. Why: The left edge fades until the row reaches its start. How: The mask reads this, and edge-fade.ts zeroes it through data-scroll-start-active. */
+	--fad-rig-off : var( --fad-edg-off );                /* Fade Edge Offset ~= 25.572px */ /* What: Fade Right Offset. Why: The right edge fades until the row reaches its end. How: The mask reads this, and edge-fade.ts zeroes it through data-scroll-end-active. */
+
+	-webkit-mask-image : linear-gradient( to right, transparent 0, #000 var( --fad-lef-off ), #000 calc( 100% - var( --fad-rig-off ) ), transparent 100% ); /* Fade Left Offset ~= 25.572px, Fade Right Offset ~= 25.572px */
+	display            : flex;
+	flex               : 1;
+	gap                : var( --spa-hor-m02 ); /* Spacing Horizontal Base Minus 2 ~= 8.304px */
+	mask-image         : linear-gradient( to right, transparent 0, #000 var( --fad-lef-off ), #000 calc( 100% - var( --fad-rig-off ) ), transparent 100% ); /* Fade Left Offset ~= 25.572px, Fade Right Offset ~= 25.572px */
+	overflow-x         : auto;
+	scrollbar-width    : none;
 
 
 }
@@ -257,6 +263,20 @@
 
 
 	display : none;
+
+
+}
+.filScrDiv[data-scroll-start-active] { /* What: Filter Scroll Div At Start. Why: No buttons hide past the left edge. How: This zeroes the left fade. */
+
+
+	--fad-lef-off : 0px;
+
+
+}
+.filScrDiv[data-scroll-end-active] { /* What: Filter Scroll Div At End. Why: No buttons hide past the right edge. How: This zeroes the right fade. */
+
+
+	--fad-rig-off : 0px;
 
 
 }
