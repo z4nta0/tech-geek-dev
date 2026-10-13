@@ -75,7 +75,10 @@ Decided 2026-10-13 by the user, for this project only. Work's project grid
 is exempt from the user-level Card Grids rule: its cards change with the
 filter and grow as projects are added, so even rows can't be kept. Its rule
 here is to keep the rows as even as possible, with an unequal last row
-allowed; it steps through three, two, and one columns at 1,024px and 640px.
+allowed; it steps through three, two, and one columns at 1,024px and 640px,
+and a short last row sits centered (decided 2026-10-13), the cards laid out
+as a centered wrapping row whose widths match those columns, so it holds for
+any number of projects.
 Every other card grid on the site keeps even rows.
 
 ## Directory structure

@@ -370,22 +370,25 @@
 
 }
 
-.proGriDiv { /* What: Projects Grid Div. Why: The cards line up in even columns. How: This sets three columns with gaps. */
+.proGriDiv { /* What: Projects Grid Div. Why: The cards line up in columns, and since the list changes with the filter and grows as projects are added, a short last row should sit centered rather than leave empty slots at one side, which the user's Card Grids exception allows. How: This wraps the cards in rows with gaps, centering each row, and hands every card a third of the row less the gaps, so full rows look like a three-column grid. */
 
 
-	display               : grid;
-	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
-	grid-template-columns : repeat( 3, 1fr );
+	--pro-car-wid : calc( ( 100% - var( --spa-hor-p02 ) * 2 ) / 3 ); /* Spacing Horizontal Base Plus 2 ~= 25.572px */ /* What: Project Card Width. Why: Each card takes one column's share of the row. How: This is a third of the row less its two gaps, which the card reads as its flex basis. */
+
+	display         : flex;
+	flex-wrap       : wrap;
+	gap             : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	justify-content : center;
 
 
 }
 @media ( max-width : 1024px ) { /* What: Tablet Projects Grid Div. Why: Three columns crowd a tablet. How: This applies at 1024px and below. */
 
 
-	.proGriDiv { /* What: Two Column Projects Grid Div. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
+	.proGriDiv { /* What: Two Column Projects Grid Div. Why: Two cards fit side by side on a tablet. How: This hands each card half the row less the gap. */
 
 
-		grid-template-columns : repeat( 2, 1fr );
+		--pro-car-wid : calc( ( 100% - var( --spa-hor-p02 ) ) / 2 ); /* Spacing Horizontal Base Plus 2 ~= 25.572px */
 
 
 	}
@@ -395,10 +398,10 @@
 @media ( max-width : 640px ) { /* What: Phone Projects Grid Div. Why: Two columns crowd a phone. How: This applies at 640px and below. */
 
 
-	.proGriDiv { /* What: One Column Projects Grid Div. Why: One card fits across a phone. How: This sets one column. */
+	.proGriDiv { /* What: One Column Projects Grid Div. Why: One card fits across a phone. How: This hands each card the full row. */
 
 
-		grid-template-columns : 1fr;
+		--pro-car-wid : 100%;
 
 
 	}
