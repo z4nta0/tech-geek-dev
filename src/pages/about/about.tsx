@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import { GeoBacCom } from '../../ui/geo-bg.tsx'
 import { TagLabCom } from '../../ui/tag.tsx'
-import { SectionHeader } from '../../ui/section-header.tsx'
+import { SecHeaCom } from '../../ui/section-header.tsx'
 import styles from './about.module.css'
 import selfPortrait from './self-portrait.webp'
 
@@ -95,10 +95,10 @@ export const About: React.FC = () => (
     {/* ── Skills ── */}
     <section className={`section ${styles.skillsSection}`}>
       <div className="container">
-        <SectionHeader
-          label="Technical Skills"
-          title="What I Work With"
-          subtitle="The tools and technologies I reach for — and know deeply enough to teach."
+        <SecHeaCom
+          labTexStr="Technical Skills"
+          titTexStr="What I Work With"
+          subTexStr="The tools and technologies I reach for — and know deeply enough to teach."
         />
         <div className={styles.skillsGrid}>
           {Object.entries(skills).map(([category, items]) => (
@@ -122,9 +122,9 @@ export const About: React.FC = () => (
     <section className={`section ${styles.timelineSection}`}>
       <GeoBacCom patOpaNum={0.12} patVarStr="grid" />
       <div className={`container ${styles.timelineInner}`}>
-        <SectionHeader
-          label="Experience"
-          title="My Journey"
+        <SecHeaCom
+          labTexStr="Experience"
+          titTexStr="My Journey"
         />
         <div className={styles.timeline}>
           {timeline.map(({ year, title, org, desc }, i) => (
@@ -150,10 +150,10 @@ export const About: React.FC = () => (
     {/* ── Values ── */}
     <section className={`section ${styles.valuesSection}`}>
       <div className="container">
-        <SectionHeader
-          label="How I Think"
-          title="My Values"
-          align="center"
+        <SecHeaCom
+          labTexStr="How I Think"
+          titTexStr="My Values"
+          aliPosStr="center"
         />
         <div className={styles.valuesGrid}>
           {[

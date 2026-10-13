@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { SectionHeader } from '../../ui/section-header.tsx'
+import { SecHeaCom } from '../../ui/section-header.tsx'
 import { ProjectCard } from '../../ui/project-card.tsx'
 import { GeoBacCom } from '../../ui/geo-bg.tsx'
 import { projects } from '../../ui/projects.ts'
@@ -88,11 +88,11 @@ export const Work: React.FC = () => {
       <section className={`section ${styles.process}`}>
         <GeoBacCom patOpaNum={0.2} patVarStr="dots" />
         <div className={`container ${styles.processInner}`}>
-          <SectionHeader
-            label="How I Work"
-            title="My Process"
-            subtitle="Every project follows the same disciplined approach — from first conversation to final deployment."
-            align="center"
+          <SecHeaCom
+            labTexStr="How I Work"
+            titTexStr="My Process"
+            subTexStr="Every project follows the same disciplined approach — from first conversation to final deployment."
+            aliPosStr="center"
           />
           <div className={styles.steps}>
             {[

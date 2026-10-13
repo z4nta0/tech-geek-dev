@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { GeoBacCom } from '../../ui/geo-bg.tsx'
-import { SectionHeader } from '../../ui/section-header.tsx'
+import { SecHeaCom } from '../../ui/section-header.tsx'
 import { ProjectCard } from '../../ui/project-card.tsx'
 import { projects } from '../../ui/projects.ts'
 import styles from './home.module.css'
@@ -150,10 +150,10 @@ export const Home: React.FC = () => {
       <section className={`section ${styles.featuredWork}`}>
         <div className="container">
           <div className={styles.featuredHeader}>
-            <SectionHeader
-              label="Selected Work"
-              title="Projects I'm Proud Of"
-              subtitle="A curated selection of full-stack projects — from idea to deployed product."
+            <SecHeaCom
+              labTexStr="Selected Work"
+              titTexStr="Projects I'm Proud Of"
+              subTexStr="A curated selection of full-stack projects — from idea to deployed product."
             />
             <Link to="/work" className={styles.viewAllLink}>
               View all projects
@@ -175,11 +175,11 @@ export const Home: React.FC = () => {
       <section className={`section ${styles.services}`}>
         <GeoBacCom patOpaNum={0.25} patVarStr="dots" />
         <div className={`container ${styles.servicesInner}`}>
-          <SectionHeader
-            label="What I Do"
-            title="End-to-End Development"
-            subtitle="From backend architecture to frontend UI — I handle the full picture."
-            align="center"
+          <SecHeaCom
+            labTexStr="What I Do"
+            titTexStr="End-to-End Development"
+            subTexStr="From backend architecture to frontend UI — I handle the full picture."
+            aliPosStr="center"
           />
 
           <div className={styles.serviceGrid}>
