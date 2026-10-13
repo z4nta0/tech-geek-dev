@@ -23,10 +23,11 @@ import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why:
  * the repository again. Each image is scaled so it covers its box, which is
  * twice the largest size the site shows it at, never scaled up, and encoded
  * at 0.85 quality, the lowest that showed no difference from the original at
- * 3x zoom. Everything is written as WebP into src/assets, though a box can
- * cut an image to exactly its size instead, and an output named .jpg is
- * written as a JPEG. Run it with npm run images whenever an image is added or
- * replaced, or a display size changes.
+ * 3x zoom. Everything is written as WebP where the site imports it (the
+ * project screenshots into src/assets/images, the portrait beside the About
+ * page), though a box can cut an image to exactly its size instead, and an
+ * output named .jpg is written as a JPEG. Run it with npm run images whenever
+ * an image is added or replaced, or a display size changes.
  *
  * Sections:
  *  - Constants
@@ -58,9 +59,9 @@ type ImaRecTyp = { boxStr : string, outStr : string, souStr : string }; // What:
 const IMA_REC_ARR : ImaRecTyp[] = [ // What: Image Record Array. Why: Every image the site shows is rebuilt from this one list. How: Each row names the original, where it's written, and which box it fits.
 
 
-	...[ 'ease-my-life', 'hair-designs', 'reese-roofing', 'seal-and-shield', 'tech-geek', 'the-bernie-bears', 'tonys-toppers' ].map( ( proNamStr ) => ( { boxStr : 'project', outStr : `src/assets/${ proNamStr }-website.webp`, souStr : `${ proNamStr }-website.png` } ) ), // What: Project Screenshot Rows. Why: Every project card shows a screenshot of its site. How: This builds one row per project.
+	...[ 'ease-my-life', 'hair-designs', 'reese-roofing', 'seal-and-shield', 'tech-geek', 'the-bernie-bears', 'tonys-toppers' ].map( ( proNamStr ) => ( { boxStr : 'project', outStr : `src/assets/images/${ proNamStr }-website.webp`, souStr : `${ proNamStr }-website.png` } ) ), // What: Project Screenshot Rows. Why: Every project card shows a screenshot of its site. How: This builds one row per project.
 
-	{ boxStr : 'portrait', outStr : 'src/assets/self-portrait.webp', souStr : 'self-portrait.jpg' } // What: Portrait Row. Why: The About page shows the portrait. How: This fits it to the portrait box.
+	{ boxStr : 'portrait', outStr : 'src/pages/about/self-portrait.webp', souStr : 'self-portrait.jpg' } // What: Portrait Row. Why: The About page shows the portrait. How: This fits it to the portrait box.
 
 
 ];

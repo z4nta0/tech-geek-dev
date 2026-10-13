@@ -40,7 +40,8 @@ target layout step 5 moves to.
 src/
   main.tsx               entry point
   app.tsx                the route table, the bar, and the footer
-  assets/                fonts/ (the self-hosted fonts)
+  assets/                fonts/ (the self-hosted fonts) and images/ (the
+                         project screenshots Home and Work both show)
   pages/
     home/                the home page
     work/                the Work page
@@ -56,7 +57,8 @@ src/
 Outside `src/`: `public/` (the favicon set, the social preview card,
 `robots.txt`, the sitemap, and Netlify's `_redirects` and `_headers`),
 `netlify/functions/` (the contact form's email function), `design/` (the
-original images and the scripts that render them), and `tests/`.
+original images and the scripts that render them, and the business card
+artwork in `design/business-cards/`), and `tests/`.
 
 ## Unused files
 Decided 2026-10-12, the same as the siblings. An unused image is listed for
@@ -227,7 +229,7 @@ Decided 2026-10-12 to leave these until the cleanup plan is finished.
 - **Tech Geek project entry** (Work and Home): it stays, but its screenshot
   (and possibly its description and GitHub link) needs updating once
   `../tech-geek-support` is finished.
-- **Business card SVGs** (`src/assets/business-card-*.svg`): kept as the
+- **Business card SVGs** (`design/business-cards/`): kept as the
   starting point for new business cards based on this site. Update their
   URL and email to techgeek.dev once everything else is done.
 - **Contact email setup**: create the contact@techgeek.dev mailbox and point

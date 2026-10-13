@@ -1,10 +1,10 @@
-import easeMyLifeImg from '../assets/ease-my-life-website.webp';
-import hairDesignsImg from '../assets/hair-designs-website.webp';
-import bernieBearsImg from '../assets/the-bernie-bears-website.webp';
-import tonysToppersImg from '../assets/tonys-toppers-website.webp';
-import sealAndShieldImg from '../assets/seal-and-shield-website.webp';
-import reeseRoofingImg from '../assets/reese-roofing-website.webp';
-import techGeekImg from '../assets/tech-geek-website.webp';
+import easeMyLifeImg from '../assets/images/ease-my-life-website.webp';
+import hairDesignsImg from '../assets/images/hair-designs-website.webp';
+import bernieBearsImg from '../assets/images/the-bernie-bears-website.webp';
+import tonysToppersImg from '../assets/images/tonys-toppers-website.webp';
+import sealAndShieldImg from '../assets/images/seal-and-shield-website.webp';
+import reeseRoofingImg from '../assets/images/reese-roofing-website.webp';
+import techGeekImg from '../assets/images/tech-geek-website.webp';
 
 // ── Project types ──────────────────────────────────────────
 interface Project {
