@@ -8,13 +8,16 @@
  * Styles for AboPagCom. The page fades up into view like every page. Its
  * ivory hero clears the fixed bar and sets the introduction beside the
  * portrait in its hexagon frame, with two white fact cards floating off the
- * portrait's corners; below 1024px the portrait drops away. The skills grid
- * steps from four groups across to two to one, the timeline runs each
- * milestone's year, dot, and line, and text in three columns, and the values
- * grid steps like the skills and lifts a card on hover. The page's centered
- * columns take the shared container values, and its sections the shared
- * section padding, merged into their own rules. Everything that moves holds
- * still under reduced motion.
+ * portrait's corners; on a tablet the heading spans the row with the
+ * portrait beside the paragraphs, and on a phone the portrait stacks
+ * centered under the introduction. The skills grid steps from four groups
+ * across to two to one, the timeline alternates its milestones either side
+ * of a center line on a desktop and runs each one's year, dot, and line, and
+ * text in three columns below that, and the values grid steps like the
+ * skills and lifts a card on hover. The page's centered columns take the
+ * shared container values, and its sections the shared section padding,
+ * merged into their own rules. Everything that moves holds still under
+ * reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -79,13 +82,27 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Grid Div. Why: The portrait column crowds a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Grid Div. Why: The portrait column crowds a tablet's row beside the heading. How: This applies at 1024px and below. */
 
 
-	.herGriDiv { /* What: One Column Hero Grid Div. Why: The introduction takes the full width once the portrait drops away. How: This sets one column. */
+	.herGriDiv { /* What: Tablet Hero Grid Div Layout. Why: The heading takes the full width, with the portrait beside the paragraphs below it. How: This sets a flexible text column and a column sized to the portrait, with the text's own row gap. */
 
 
-		grid-template-columns : 1fr;
+		gap                   : var( --spa-ver-p02 ) clamp( var( --spa-hor-p05 ), var( --hor-rhy-018 ), var( --spa-hor-p08 ) ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 5 ~= 59.447px, Horizontal Rhythm 18 ~= 152.824px @ 1,920px width, Spacing Horizontal Base Plus 8 ~= 138.199px */
+		grid-template-columns : minmax( 0, 1fr ) auto;
+
+
+	}
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Hero Grid Div. Why: A phone has no room for a second column. How: This applies at 768px and below. */
+
+
+	.herGriDiv { /* What: One Column Hero Grid Div. Why: The portrait stacks under the introduction on a phone. How: This sets one column. */
+
+
+		grid-template-columns : minmax( 0, 1fr );
 
 
 	}
@@ -105,6 +122,19 @@
 
 
 }
+@media ( max-width : 1024px ) { /* What: Tablet Hero Text Div. Why: On a tablet the portrait sits beside the paragraphs rather than the whole column, so the column's pieces have to join the hero's grid. How: This applies at 1024px and below. */
+
+
+	.herTexDiv { /* What: Dissolved Hero Text Div. Why: The label, heading, paragraphs, and button each take their own place in the hero's grid. How: This lets its children act as the grid's own items, leaving their reading order unchanged. */
+
+
+		display : contents;
+
+
+	}
+
+
+}
 
 
 /* #region herLabSpa */
@@ -120,6 +150,19 @@
 	gap            : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
 	letter-spacing : 0.12em;
 	text-transform : uppercase;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Hero Label Span. Why: The label sits above the portrait's row on a tablet. How: This applies at 1024px and below. */
+
+
+	.herLabSpa { /* What: Spanning Hero Label Span. Why: The label leads the whole hero. How: This spans both columns. */
+
+
+		grid-column : 1 / -1;
+
+
+	}
 
 
 }
@@ -144,6 +187,19 @@
 
 
 	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Hero Title Heading. Why: The heading sits above the portrait's row on a tablet. How: This applies at 1024px and below. */
+
+
+	.herTitHea { /* What: Spanning Hero Title Heading. Why: The heading keeps the full width so it reads large. How: This spans both columns. */
+
+
+		grid-column : 1 / -1;
+
+
+	}
 
 
 }
@@ -253,13 +309,31 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Visual Div. Why: The portrait column crowds a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Visual Div. Why: The portrait and facts still fit on a tablet, beside the paragraphs rather than the heading. How: This applies at 1024px and below. */
 
 
-	.herVisDiv { /* What: Hidden Hero Visual Div. Why: The introduction reads on its own on a smaller screen. How: This hides the portrait and its facts. */
+	.herVisDiv { /* What: Beside Paragraphs Hero Visual Div. Why: The portrait sits to the right of the paragraphs and button, below the full-width heading. How: This places it in the second column across the paragraphs' three rows. */
 
 
-		display : none;
+		grid-column : 2;
+		grid-row    : 3 / span 3;
+
+
+	}
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Hero Visual Div. Why: On a phone the portrait stacks under the introduction. How: This applies at 768px and below. */
+
+
+	.herVisDiv { /* What: Stacked Hero Visual Div. Why: The portrait should sit centered under the button, larger than beside text, while its frame and facts stay inside the screen's margin. How: This returns it to the single column, centers it, and sets its width to the p11 rhythm step or the column less the facts' overhang, whichever is smaller. */
+
+
+		grid-column  : auto;
+		grid-row     : auto;
+		justify-self : center;
+		margin-top   : var( --spa-ver-p03 );                                                                /* Spacing Vertical Base Plus 3 ~= 33.876px */
+		width        : min( calc( var( --ver-rhy-p11 ) * 1rem ), calc( 100% - var( --spa-hor-p02 ) * 2 ) ); /* Vertical Rhythm Base Plus 11 ~= 321.273px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 
 
 	}
@@ -276,6 +350,21 @@
 	height   : calc( var( --ver-rhy-p11 ) * 1rem ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
 	position : relative;
 	width    : calc( var( --ver-rhy-p10 ) * 1rem ); /* Vertical Rhythm Base Plus 10 ~= 242.522px */
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Portrait Wrap Div. Why: The stacked portrait grows with its column. How: This applies at 768px and below. */
+
+
+	.porWraDiv { /* What: Fluid Portrait Wrap Div. Why: The portrait fills the stacked column while keeping its desktop proportions. How: This takes the full width with its height following the same ratio as the desktop's p10 by p11 box. */
+
+
+		aspect-ratio : 1 / var( --cdn-pow-001 ); /* Core-Design-Number to the Power of 1 ~= 1.325 */
+		height       : auto;
+		width        : 100%;
+
+
+	}
 
 
 }
