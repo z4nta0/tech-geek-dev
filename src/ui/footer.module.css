@@ -126,7 +126,7 @@
 	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
 	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em ); /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	text-transform : uppercase;
-	transition     : color var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+	transition     : color var( --dur-tra-bas );             /* Duration Transition Base ~= 157.8ms */
 
 
 }
@@ -205,7 +205,7 @@
 .icon { /* What: Footer Icon. Why: Each profile link is a bare icon on the dark band. How: This sets it in the muted ink and eases its color and lift. */
 
 
-	color      : var( --tex-inm-col );                                           /* Text Inverse-Muted Color = #8181a1 */
+	color      : var( --tex-inm-col );                                       /* Text Inverse-Muted Color = #8181a1 */
 	display    : flex;
 	transition : color var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
 

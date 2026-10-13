@@ -258,7 +258,7 @@
 	letter-spacing : 0.04em;
 	padding        : var( --spa-ver-m03 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 3 ~= 6.268px, Spacing Horizontal Base ~= 14.572px */
 	text-transform : uppercase;
-	transition     : all var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+	transition     : all var( --dur-tra-bas );                        /* Duration Transition Base ~= 157.8ms */
 	white-space    : nowrap;
 
 

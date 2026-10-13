@@ -25,11 +25,11 @@
 
 	align-items     : center;
 	animation       : global( fadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
-	background      : var( --bac-pag-col );                          /* Background Page Color = #F5F0E8 */
+	background      : var( --bac-pag-col );                                            /* Background Page Color = #F5F0E8 */
 	display         : flex;
 	justify-content : center;
 	min-height      : 100vh;
-	padding         : var( --spa-ver-p04 ) var( --spa-hor-p04 );     /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 4 ~= 44.876px */
+	padding         : var( --spa-ver-p04 ) var( --spa-hor-p04 );                       /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 
 
 }
@@ -81,13 +81,13 @@
 
 
 	animation      : global( rotateSlow ) var( --dur-ani-p18 ) linear infinite; /* Duration Animation Base Plus 18 ~= 24,914.0ms */
-	height         : calc( var( --ver-rhy-p09 ) * 1rem ); /* Vertical Rhythm Base Plus 9 ~= 183.074px */
+	height         : calc( var( --ver-rhy-p09 ) * 1rem );                       /* Vertical Rhythm Base Plus 9 ~= 183.074px */
 	left           : 50%;
 	pointer-events : none;
 	position       : absolute;
 	top            : 50%;
 	translate      : -50% -50%;
-	width          : calc( var( --ver-rhy-p09 ) * 1rem ); /* Vertical Rhythm Base Plus 9 ~= 183.074px */
+	width          : calc( var( --ver-rhy-p09 ) * 1rem );                       /* Vertical Rhythm Base Plus 9 ~= 183.074px */
 
 
 }
@@ -129,15 +129,15 @@
 
 
 	align-items    : center;
-	background     : var( --acc-mai-col );                                                /* Accent Main Color = #F26419 */
-	border-radius  : var( --rad-bor-xsm );                                                /* Radius Border Extra Small ~= 3.571px */
-	color          : var( --tex-acc-col );                                                /* Text Accent Color = #1A1A2E */
+	background     : var( --acc-mai-col );                                            /* Accent Main Color = #F26419 */
+	border-radius  : var( --rad-bor-xsm );                                            /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --tex-acc-col );                                            /* Text Accent Color = #1A1A2E */
 	display        : inline-flex;
-	font-family    : var( --fon-fam-sec );                                                /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : var( --fon-siz-p01 );                                                /* Font Size Base Plus 1 ~= 14.572px */
+	font-family    : var( --fon-fam-sec );                                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                                            /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight    : 500;
-	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );                              /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
-	padding        : var( --spa-ver-m01 ) var( --spa-hor-p03 );                           /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );                          /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	padding        : var( --spa-ver-m01 ) var( --spa-hor-p03 );                       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	text-transform : uppercase;
 	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
 

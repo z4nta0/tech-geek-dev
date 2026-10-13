@@ -200,15 +200,15 @@
 
 
 	align-items    : center;
-	background     : var( --acc-mai-col );                                                /* Accent Main Color = #F26419 */
-	border-radius  : var( --rad-bor-xsm );                                                /* Radius Border Extra Small ~= 3.571px */
-	color          : var( --tex-acc-col );                                                /* Text Accent Color = #1A1A2E */
+	background     : var( --acc-mai-col );                                            /* Accent Main Color = #F26419 */
+	border-radius  : var( --rad-bor-xsm );                                            /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --tex-acc-col );                                            /* Text Accent Color = #1A1A2E */
 	display        : inline-flex;
-	font-family    : var( --fon-fam-sec );                                                /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : var( --fon-siz-p01 );                                                /* Font Size Base Plus 1 ~= 14.572px */
+	font-family    : var( --fon-fam-sec );                                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                                            /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight    : 500;
-	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );                              /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
-	padding        : var( --spa-ver-m01 ) var( --spa-hor-p03 );                           /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );                          /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	padding        : var( --spa-ver-m01 ) var( --spa-hor-p03 );                       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	text-transform : uppercase;
 	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
 
@@ -785,13 +785,13 @@
 .valueCard { /* What: Value Card. Why: Each value is one white card. How: This sets the bordered card, stacks its symbol, title, and description, and eases its lift and shadow. */
 
 
-	background     : var( --bac-sur-col );                                                /* Background Surface Color = #FFFFFF */
-	border         : var( --bor-wid-bas ) solid var( --bor-mai-col );                     /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
-	border-radius  : var( --rad-bor-med );                                                /* Radius Border Medium = 11px */
+	background     : var( --bac-sur-col );                                            /* Background Surface Color = #FFFFFF */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col );                 /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : var( --rad-bor-med );                                            /* Radius Border Medium = 11px */
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --spa-ver-m01 );                                                /* Spacing Vertical Base Minus 1 = 11px */
-	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );                           /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	gap            : var( --spa-ver-m01 );                                            /* Spacing Vertical Base Minus 1 = 11px */
+	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );                       /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	transition     : box-shadow var( --dur-tra-p02 ), transform var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms */
 
 
