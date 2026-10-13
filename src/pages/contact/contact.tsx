@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { GeoBg } from '../../ui/geo-bg.tsx'
+import { GeoBacCom } from '../../ui/geo-bg.tsx'
 import styles from './contact.module.css'
 
 export const Contact: React.FC = () => {
@@ -44,7 +44,7 @@ export const Contact: React.FC = () => {
 
       {/* ── Hero ── */}
       <section className={styles.hero}>
-        <GeoBg variant="circuit" opacity={0.14} />
+        <GeoBacCom patOpaNum={0.14} patVarStr="circuit" />
         <div className={`container ${styles.heroInner}`}>
           <span className={styles.heroLabel}>
             <span className={styles.heroLine} />

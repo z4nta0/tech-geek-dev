@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { GeoBg } from '../../ui/geo-bg.tsx'
+import { GeoBacCom } from '../../ui/geo-bg.tsx'
 import { SectionHeader } from '../../ui/section-header.tsx'
 import { ProjectCard } from '../../ui/project-card.tsx'
 import { projects } from '../../ui/projects.ts'
@@ -27,7 +27,7 @@ export const Home: React.FC = () => {
 
       {/* ── Hero ───────────────────────────────────────────── */}
       <section className={styles.hero}>
-        <GeoBg variant="circuit" opacity={0.18} />
+        <GeoBacCom patOpaNum={0.18} patVarStr="circuit" />
 
         {/* Floating geometric shapes */}
         <div className={styles.shapes} aria-hidden>
@@ -173,7 +173,7 @@ export const Home: React.FC = () => {
 
       {/* ── Services / What I Do ────────────────────────────── */}
       <section className={`section ${styles.services}`}>
-        <GeoBg variant="dots" opacity={0.25} />
+        <GeoBacCom patOpaNum={0.25} patVarStr="dots" />
         <div className={`container ${styles.servicesInner}`}>
           <SectionHeader
             label="What I Do"

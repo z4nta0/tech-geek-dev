@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { GeoBg } from '../../ui/geo-bg.tsx'
+import { GeoBacCom } from '../../ui/geo-bg.tsx'
 import { Tag } from '../../ui/tag.tsx'
 import { SectionHeader } from '../../ui/section-header.tsx'
 import styles from './about.module.css'
@@ -28,7 +28,7 @@ export const About: React.FC = () => (
 
     {/* ── Hero ── */}
     <section className={styles.hero}>
-      <GeoBg variant="dots" opacity={0.2} />
+      <GeoBacCom patOpaNum={0.2} patVarStr="dots" />
       <div className={`container ${styles.heroGrid}`}>
         <div className={styles.heroText}>
           <span className={styles.heroLabel}>
@@ -120,7 +120,7 @@ export const About: React.FC = () => (
 
     {/* ── Timeline ── */}
     <section className={`section ${styles.timelineSection}`}>
-      <GeoBg variant="grid" opacity={0.12} />
+      <GeoBacCom patOpaNum={0.12} patVarStr="grid" />
       <div className={`container ${styles.timelineInner}`}>
         <SectionHeader
           label="Experience"

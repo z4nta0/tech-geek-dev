@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { SectionHeader } from '../../ui/section-header.tsx'
 import { ProjectCard } from '../../ui/project-card.tsx'
-import { GeoBg } from '../../ui/geo-bg.tsx'
+import { GeoBacCom } from '../../ui/geo-bg.tsx'
 import { projects } from '../../ui/projects.ts'
 import styles from './work.module.css'
 
@@ -19,7 +19,7 @@ export const Work: React.FC = () => {
 
       {/* ── Page hero ── */}
       <section className={styles.pageHero}>
-        <GeoBg variant="grid" opacity={0.15} />
+        <GeoBacCom patOpaNum={0.15} patVarStr="grid" />
         <div className={`container ${styles.heroInner}`}>
           <span className={styles.heroLabel}>
             <span className={styles.heroLine} />
@@ -86,7 +86,7 @@ export const Work: React.FC = () => {
 
       {/* ── Process section ── */}
       <section className={`section ${styles.process}`}>
-        <GeoBg variant="dots" opacity={0.2} />
+        <GeoBacCom patOpaNum={0.2} patVarStr="dots" />
         <div className={`container ${styles.processInner}`}>
           <SectionHeader
             label="How I Work"
