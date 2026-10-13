@@ -115,7 +115,34 @@ on `close-out`.
    every route at phone and desktop widths and the open phone menu, taken
    before anything moves. Its dev server runs on port 5194 (the siblings use
    5190 through 5193). Whatever the current site already fails is listed
-   here for the step that fixes it.
+   here for the step that fixes it. Done 2026-10-12 (see "## Test suites").
+   The interaction and SEO suites join in step 11, once there's something
+   for them to check. Everything below fails on the current site, in every
+   engine unless noted:
+   - **The closed phone menu stays live** (every page, every width): the
+     drawer is only moved out of view, so its links take Tab stops while off
+     screen ("Home", "Work", "About", "Contact" focused but not on screen),
+     and its "Hire Me" link overlaps the bar's logo, links, button, and
+     toggle, which accounts for most of the responsive suite's overlap
+     failures: step 8, when the menu's state moves to attributes.
+   - **Contrast** (serious, every page): the orange text and buttons, the
+     wordmark's ".dev", the code window, filter labels, tags, the footer, and
+     Contact's labels and submit button: step 9, raised with the user first.
+   - **No reduced motion**: `fadeUp`, `tickerScroll`, and the other
+     animations all play: step 8.
+   - **Contact's fields have no visible focus indicator** (the name, email,
+     budget, and message fields): step 8, with the focus ring rule in step 11.
+   - **Heading order** on Work (a project card's `h3` under the page's `h1`
+     with no `h2` between): step 6.
+   - **Sideways scrolling**: the Home hero's heading is wider than a small
+     phone, scrolling the page about 75px at 320px, 35px at 360px, and 5 to
+     10px at 390px (the reflow check fails Home and the menu state at 320px),
+     and the hero heading spills its box at most widths up to 480px and again
+     from 1,025px: steps 9 and 10.
+   - **Other spills** the responsive suite reports at a few widths each, on
+     About (around 1,024px), Contact (320px to 641px), Work (320px, 480px,
+     768px), and the 404 page (360px to 480px): steps 9 and 10, rechecked
+     once the menu no longer overlaps everything.
 5. **Directory structure**: kebab-case files in the layout above, the fonts
    (Syne, DM Mono, Lora) self-hosted instead of loaded from Google Fonts,
    the single-page fallback moved from `netlify.toml` to
@@ -150,6 +177,38 @@ on `close-out`.
 12. **Deferred items** below, as the user decides them.
 13. **Close-out**: the README, the design scripts type checked, rule audit
     rounds until clean, and the version bump.
+
+## Test suites
+Added 2026-10-12, adapted from the-bernie-bears'. Playwright suites live in
+`tests/`, one project per suite and engine in `tests/playwright.config.ts`,
+which starts its own dev server on port 5194 (never the usual 5173, nor the
+sibling projects' 5190 through 5193) and stops it afterwards. Every suite
+runs in Chromium, Firefox, and WebKit. Results, screenshots, and traces go to
+`tests/output/` (git-ignored); `npx playwright show-report
+tests/output/report` opens the HTML report. The states the suites visit
+(every route and the 404 page at 390px and 1,440px, plus the phone menu open
+at 390px) are listed in `tests/support/states.ts`, whose `opeStaFun` skips
+animations that repeat forever (the hero's turning shapes, the skills
+ticker, and the status dots) when waiting for the page to settle.
+- `npm run test:accessibility`: the pre-commit accessibility scan. axe-core
+  checks each state against WCAG 2.2 A and AA plus best practices
+  (`axe.spec.ts`), and scripted checks (`scripted.spec.ts`) cover link and
+  button names, a Tab walk (order, traps, focus on screen, uncovered, and
+  visible), reflow at 320px, and motion under reduced motion. axe's "needs
+  review" results are printed and attached to the report rather than failing
+  the run.
+- `npm run test:rendering`: compares a full-page screenshot of every state
+  with its baseline in `tests/rendering/baselines/`, with zero tolerance,
+  under reduced motion and with the page's clock fixed to one date, since the
+  footer's year comes from it. Baselines are captured on Linux. After an
+  intended visual change, refresh with `npm run test:rendering --
+  --update-snapshots` and commit the baselines with it.
+- `npm run test:responsive`: measures every route, the 404 page, and the
+  open menu at 14 widths from 320 to 1,920px (the 640px, 768px, and 1,024px
+  breakpoints and the pixel past each included), failing on sideways
+  scrolling, an unclipped element past either edge, text spilling its box,
+  or two reachable controls overlapping.
+- `npm test` runs every suite.
 
 ## Found for later
 - **The contact form reports success on a failed send** (step 6 or 7): it
