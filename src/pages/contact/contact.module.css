@@ -71,7 +71,7 @@
 	flex-direction : column;
 	gap            : var( --spa-ver-p02 );   /* Spacing Vertical Base Plus 2 ~= 25.572px */
 	margin         : 0 auto;
-	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */ /* What: Container Cap. Why: The global container rule loaded after this module, so its cap always beat the 640px this rule once asked for. How: This keeps the cap that has always applied. */
+	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */ /* What: Container Cap. Why: The global container rule loaded after this module, so its cap always beat the 640px this rule once asked for. How: This keeps the cap that has always applied. */
 	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position       : relative;
 	width          : 100%;
@@ -171,7 +171,7 @@
 	gap                   : var( --spa-ver-p05 ) clamp( var( --spa-hor-p03 ), var( --hor-rhy-016 ), var( --spa-hor-p05 ) );              /* Spacing Vertical Base Plus 5 ~= 59.447px, Spacing Horizontal Base Plus 3 ~= 33.876px, Horizontal Rhythm 16 ~= 87.085px @ 1,920px width, Spacing Horizontal Base Plus 5 ~= 59.447px */
 	grid-template-columns : 1fr clamp( calc( var( --ver-rhy-p10 ) * 1rem ), var( --hor-rhy-022 ), calc( var( --ver-rhy-p11 ) * 1rem ) ); /* Vertical Rhythm Base Plus 10 ~= 242.522px, Horizontal Rhythm 22 ~= 470.635px @ 1,920px width, Vertical Rhythm Base Plus 11 ~= 321.273px */
 	margin                : 0 auto;
-	max-width             : var( --con-max-wid );                                                                                        /* Container Maximum Width ~= 1,094.093px */
+	max-width             : var( --con-max-wid );                                                                                        /* Container Maximum Width ~= 1,449.365px */
 	padding               : 0 var( --gut-sid-pad );                                                                                      /* Gutter Side Padding, about 19.304px - 44.876px */
 	width                 : 100%;
 

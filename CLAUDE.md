@@ -344,9 +344,11 @@ on `close-out`.
    - **The horizontal rhythm** (the user's choice, matching every sibling
      but ease-my-life): applied in one commit (`7d027eb`), so `git revert`
      restores the fixed layout if it doesn't suit this site. The-bernie-bears'
-     `--hor-rhy-*` steps join the tokens; `--con-max-wid` (1,920px over the
-     second power, about 1,094px, the nearest step to the old 1,200px)
-     replaces `--max-width`; and `--gut-sid-pad` (step 016 between spacing
+     `--hor-rhy-*` steps join the tokens; `--con-max-wid` replaces
+     `--max-width`, first at 1,920px over the second power (about 1,094px,
+     the nearest step to the old 1,200px), then raised one step on
+     2026-10-13 to the first power (about 1,449px), since the user found the
+     content too narrow on large screens; and `--gut-sid-pad` (step 016 between spacing
      p01 and p04, about 19.3px to 44.9px) pads every centered column, the
      bar, the phone menu, the footer, and the 404 page. The hero, Contact, and
      footer column gaps and Contact's form card padding clamp a horizontal

@@ -71,7 +71,7 @@
 	gap                   : var( --spa-ver-p08 ) clamp( var( --spa-hor-p05 ), var( --hor-rhy-018 ), var( --spa-hor-p08 ) );              /* Spacing Vertical Base Plus 8 ~= 138.199px, Spacing Horizontal Base Plus 5 ~= 59.447px, Horizontal Rhythm 18 ~= 152.824px @ 1,920px width, Spacing Horizontal Base Plus 8 ~= 138.199px */
 	grid-template-columns : 1fr clamp( calc( var( --ver-rhy-p10 ) * 1rem ), var( --hor-rhy-022 ), calc( var( --ver-rhy-p12 ) * 1rem ) ); /* Vertical Rhythm Base Plus 10 ~= 242.522px, Horizontal Rhythm 22 ~= 470.635px @ 1,920px width, Vertical Rhythm Base Plus 12 ~= 425.592px */
 	margin                : 0 auto;
-	max-width             : var( --con-max-wid );                                                                                        /* Container Maximum Width ~= 1,094.093px */
+	max-width             : var( --con-max-wid );                                                                                        /* Container Maximum Width ~= 1,449.365px */
 	padding               : 0 var( --gut-sid-pad );                                                                                      /* Gutter Side Padding, about 19.304px - 44.876px */
 	position              : relative;
 	width                 : 100%;
@@ -394,7 +394,7 @@
 
 
 	margin    : 0 auto;
-	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
 	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	width     : 100%;
 
@@ -538,7 +538,7 @@
 	flex-direction : column;
 	gap            : var( --spa-ver-p05 );   /* Spacing Vertical Base Plus 5 ~= 59.447px */
 	margin         : 0 auto;
-	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
 	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position       : relative;
 	width          : 100%;
@@ -732,7 +732,7 @@
 
 
 	margin    : 0 auto;
-	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
 	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	width     : 100%;
 

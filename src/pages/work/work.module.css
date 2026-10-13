@@ -72,7 +72,7 @@
 	flex-direction : column;
 	gap            : var( --spa-ver-p02 );   /* Spacing Vertical Base Plus 2 ~= 25.572px */
 	margin         : 0 auto;
-	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */ /* What: Container Cap. Why: The global container rule loaded after this module, so its cap always beat the 640px this rule once asked for. How: This keeps the cap that has always applied. */
+	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */ /* What: Container Cap. Why: The global container rule loaded after this module, so its cap always beat the 640px this rule once asked for. How: This keeps the cap that has always applied. */
 	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position       : relative;
 	width          : 100%;
@@ -188,7 +188,7 @@
 	display     : flex;
 	gap         : var( --spa-hor-p02 );   /* Spacing Horizontal Base Plus 2 ~= 25.572px */
 	margin      : 0 auto;
-	max-width   : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	max-width   : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
 	padding     : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	width       : 100%;
 
@@ -347,7 +347,7 @@
 
 
 	margin    : 0 auto;
-	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
 	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	width     : 100%;
 
@@ -447,7 +447,7 @@
 	flex-direction : column;
 	gap            : var( --spa-ver-p07 );   /* Spacing Vertical Base Plus 7 ~= 104.323px */
 	margin         : 0 auto;
-	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
 	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position       : relative;
 	width          : 100%;

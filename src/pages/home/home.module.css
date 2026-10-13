@@ -158,7 +158,7 @@
 	gap                   : var( --spa-ver-p08 ) clamp( var( --spa-hor-p05 ), var( --hor-rhy-018 ), var( --spa-hor-p08 ) ); /* Spacing Vertical Base Plus 8 ~= 138.199px, Spacing Horizontal Base Plus 5 ~= 59.447px, Horizontal Rhythm 18 ~= 152.824px @ 1,920px width, Spacing Horizontal Base Plus 8 ~= 138.199px */
 	grid-template-columns : 3fr 1fr;
 	margin                : 0 auto;
-	max-width             : var( --con-max-wid );                                                                           /* Container Maximum Width ~= 1,094.093px */
+	max-width             : var( --con-max-wid );                                                                           /* Container Maximum Width ~= 1,449.365px */
 	padding               : 0 var( --gut-sid-pad );                                                                         /* Gutter Side Padding, about 19.304px - 44.876px */ /* What: Container Padding. Why: The global container rule loaded after this module, so its padding always zeroed the 96px top and 128px bottom padding this rule once asked for. How: This keeps the padding that has always applied. */
 	position              : relative;
 	width                 : 100%;
@@ -781,7 +781,7 @@
 
 
 	margin    : 0 auto;
-	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
 	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	width     : 100%;
 
@@ -933,7 +933,7 @@
 
 
 	margin    : 0 auto;
-	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
 	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	width     : 100%;
 
@@ -1062,7 +1062,7 @@
 	flex-direction : column;
 	gap            : var( --spa-ver-p07 );   /* Spacing Vertical Base Plus 7 ~= 104.323px */
 	margin         : 0 auto;
-	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
 	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position       : relative;
 	width          : 100%;
@@ -1217,7 +1217,7 @@
 	gap             : var( --spa-hor-p04 );   /* Spacing Horizontal Base Plus 4 ~= 44.876px */
 	justify-content : space-between;
 	margin          : 0 auto;
-	max-width       : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	max-width       : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
 	padding         : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	width           : 100%;
 

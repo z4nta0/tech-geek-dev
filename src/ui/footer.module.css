@@ -43,7 +43,7 @@
 	gap                   : var( --spa-ver-p04 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-016 ), var( --spa-hor-p04 ) ); /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 16 ~= 87.085px @ 1,920px width, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	grid-template-columns : 1fr auto 1fr;
 	margin                : 0 auto;
-	max-width             : var( --con-max-wid );                                                                           /* Container Maximum Width ~= 1,094.093px */
+	max-width             : var( --con-max-wid );                                                                           /* Container Maximum Width ~= 1,449.365px */
 	padding               : 0 var( --gut-sid-pad );                                                                         /* Gutter Side Padding, about 19.304px - 44.876px */
 	width                 : 100%;
 

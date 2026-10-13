@@ -78,7 +78,7 @@
 	gap         : var( --spa-hor-p03 );   /* Spacing Horizontal Base Plus 3 ~= 33.876px */
 	height      : 100%;
 	margin      : 0 auto;
-	max-width   : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	max-width   : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
 	padding     : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	width       : 100%;
 
