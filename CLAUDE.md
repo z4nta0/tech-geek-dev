@@ -234,12 +234,13 @@ ticker, and the status dots) when waiting for the page to settle.
   scrolling, an unclipped element past either edge, text spilling its box,
   or two reachable controls overlapping.
 - `npm test` runs every suite.
-- **Known flake**: WebKit now and then redraws the first screen of a page
-  (most often Home or the open menu at 390px) up to 10 color levels
-  differently from run to run, about 5,000 pixels spread over the top 840px,
-  likely a translucent layer such as the bar's blur. A failure like that gets
-  a rerun, not new baselines; Chromium flickered once the same way on
-  Contact at 1,440px.
+- **Known flakes**: WebKit's Home at 390px (about 5,000 pixels over the top
+  840px, up to 10 color levels) and Chromium's Contact at 1,440px (a few
+  pixels) often differ from their baselines, and now and then another WebKit
+  state does. The cause is the infinite animations (Home's turning shapes and
+  skills ticker, Contact's pulsing status dot), which have no reduced-motion
+  variant yet, so they keep moving while the suite captures. A failure like
+  that gets a rerun, not new baselines, until step 8 stops them.
 
 ## Found for later
 - **The contact form reports success on a failed send** (step 6 or 7): it
