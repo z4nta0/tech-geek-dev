@@ -15,7 +15,7 @@
   border-bottom: 1px solid transparent;
 }
 
-.header.scrolled {
+.header[data-nav-bar-scrolled] {
   background: rgba(245, 240, 232, 0.92);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -84,12 +84,12 @@
 }
 
 .link:hover,
-.link.active {
+.link[aria-current='page'] {
   color: var(--ink);
 }
 
 .link:hover::after,
-.link.active::after {
+.link[aria-current='page']::after {
   transform: scaleX(1);
 }
 
@@ -132,9 +132,9 @@
               opacity var(--duration-base);
 }
 
-.burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.burger.open span:nth-child(2) { opacity: 0; }
-.burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.burger[aria-expanded='true'] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.burger[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
+.burger[aria-expanded='true'] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ─── Mobile drawer ────────────────────────────────── */
 .drawer {
@@ -151,15 +151,21 @@
   transform: translateY(-100%);
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
   transition: transform var(--duration-base) var(--ease-out),
-              opacity var(--duration-base);
+              opacity var(--duration-base),
+              visibility 0s linear var(--duration-base);
   z-index: 99;
 }
 
-.drawer.drawerOpen {
+.drawer[data-mobile-menu-open] {
   transform: translateY(0);
   opacity: 1;
   pointer-events: all;
+  visibility: visible;
+  transition: transform var(--duration-base) var(--ease-out),
+              opacity var(--duration-base),
+              visibility 0s;
 }
 
 .drawerLink {
@@ -175,7 +181,7 @@
 
 .drawerLink:last-of-type { border-bottom: none; }
 
-.drawerLink.active,
+.drawerLink[aria-current='page'],
 .drawerLink:hover { color: var(--orange); }
 
 .drawerCta {

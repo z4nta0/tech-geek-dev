@@ -50,8 +50,8 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * Renders the bar and the phone drawer. It tracks whether the page has
  * scrolled past 24px, switching the bar to its scrolled style, and whether
  * the drawer is open, which the toggle flips and any change of page resets.
- * Both the bar's and the drawer's links come from the shared page list, each
- * adding the active class while its route shows. The Hire Me buttons are
+ * Both the bar's and the drawer's links come from the shared page list, and
+ * React Router marks the one whose route shows with aria-current. The Hire Me buttons are
  * plain links to the Contact page.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -116,7 +116,11 @@ function NavBarCom () : JSX.Element {
 	return (
 
 
-		<header className={` ${ cssModObj.header }   ${ isaScrBoo ? cssModObj.scrolled : '' } `}>{ /* What: Navigation Header Element. Why: The bar sits at the top of every page. How: This holds the bar's row and the phone drawer, with the scrolled class once the page moves. */ }
+		<header
+			className={ cssModObj.header }
+
+			data-nav-bar-scrolled={ isaScrBoo || undefined }
+		>{ /* What: Navigation Header Element. Why: The bar sits at the top of every page. How: This holds the bar's row and the phone drawer, marked with data-nav-bar-scrolled once the page moves, which its module styles. */ }
 
 
 			<div className={` container   ${ cssModObj.inner } `}>{ /* What: Navigation Inner Div Element. Why: The bar's content sits in the page's centered column. How: This lays out the brand, the links, the button, and the toggle in a row. */ }
@@ -186,10 +190,10 @@ function NavBarCom () : JSX.Element {
 						<NavLink
 							key={ pagLinObj.patStr }
 
-							className={ ( linStaObj ) => ` ${ cssModObj.link }   ${ linStaObj.isActive ? cssModObj.active : '' } ` } // What: Bar Link Class Function. Why: The link for the page that's showing is marked. How: React Router passes the link's state, and this adds the active class while its route matches.
+							className={ cssModObj.link }
 
 							to={ pagLinObj.patStr }
-						>{ pagLinObj.labStr }</NavLink> // What: Bar Page Link. Why: Each page has its own link in the bar. How: This routes to the row's path, labelled with its name.
+						>{ pagLinObj.labStr }</NavLink> // What: Bar Page Link. Why: Each page has its own link in the bar. How: This routes to the row's path, labelled with its name, and NavLink sets aria-current on the one whose route is showing, which its module styles.
 
 
 					))}
@@ -205,13 +209,13 @@ function NavBarCom () : JSX.Element {
 				>Hire Me</a>{ /* What: Hire Me Anchor Element. Why: The bar's one call to action leads to the Contact page. How: This links there as a button. */ }
 
 				<button
-					className={` ${ cssModObj.burger }   ${ menOpeBoo ? cssModObj.open : '' } `}
+					className={ cssModObj.burger }
 
 					aria-expanded={ menOpeBoo }
 					aria-label='Toggle menu'
 
 					onClick={ () => setMenOpeBoo( ( preOpeBoo ) => !preOpeBoo ) }
-				>{ /* What: Menu Toggle Button Element. Why: On phones the page links live in the drawer, opened and closed here. How: This flips the open flag, reporting it through aria-expanded and turning its bars into a cross while open. */ }
+				>{ /* What: Menu Toggle Button Element. Why: On phones the page links live in the drawer, opened and closed here. How: This flips the open flag, reporting it through aria-expanded, which its module also reads to turn the bars into a cross. */ }
 					<span />{ /* What: Toggle Bar Span Element. Why: Three bars draw the menu icon. How: This is one bar, which turns into half of the cross while the drawer is open. */ }
 
 					<span />{ /* What: Toggle Bar Span Element. Why: Three bars draw the menu icon. How: This is one bar, which fades out while the drawer is open. */ }
@@ -223,7 +227,11 @@ function NavBarCom () : JSX.Element {
 			</div>
 
 
-			<div className={` ${ cssModObj.drawer }   ${ menOpeBoo ? cssModObj.drawerOpen : '' } `}>{ /* What: Menu Drawer Div Element. Why: On phones the page links and the button move into a drawer under the bar. How: This holds them, sliding into view while the menu is open. */ }
+			<div
+				className={ cssModObj.drawer }
+
+				data-mobile-menu-open={ menOpeBoo || undefined }
+			>{ /* What: Menu Drawer Div Element. Why: On phones the page links and the button move into a drawer under the bar. How: This holds them, marked with data-mobile-menu-open while the menu is open, which its module styles to slide the drawer into view. */ }
 
 
 				{ PAG_LIN_ARR.map( ( pagLinObj ) => ( // What: Drawer Link Map Call. Why: The drawer links to every page in the shared order. How: This renders one link per row.
@@ -232,10 +240,10 @@ function NavBarCom () : JSX.Element {
 					<NavLink
 						key={ pagLinObj.patStr }
 
-						className={ ( linStaObj ) => ` ${ cssModObj.drawerLink }   ${ linStaObj.isActive ? cssModObj.active : '' } ` } // What: Drawer Link Class Function. Why: The link for the page that's showing is marked. How: React Router passes the link's state, and this adds the active class while its route matches.
+						className={ cssModObj.drawerLink }
 
 						to={ pagLinObj.patStr }
-					>{ pagLinObj.labStr }</NavLink> // What: Drawer Page Link. Why: Each page has its own link in the drawer. How: This routes to the row's path, labelled with its name.
+					>{ pagLinObj.labStr }</NavLink> // What: Drawer Page Link. Why: Each page has its own link in the drawer. How: This routes to the row's path, labelled with its name, and NavLink sets aria-current on the one whose route is showing, which its module styles.
 
 
 				))}
