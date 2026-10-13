@@ -387,6 +387,11 @@ on `close-out`.
     optimization and the favicon set, the SEO pass and social preview card
     per "## Kind of site", interaction feedback, and the phone menu's scrim
     and inert page.
+    - **Phone menu extras** (asked for by the user 2026-10-13, after the
+      sibling sites' menus, which they found too plain until dressed up):
+      modeled on the-bernie-bears' and hair-designs', done together with the
+      scrim and the inert page since they change the same component. The
+      extras under the links are proposed to the user first.
 12. **Deferred items** below, as the user decides them.
 13. **Close-out**: the README, the design scripts type checked, rule audit
     rounds until clean, and the version bump.
