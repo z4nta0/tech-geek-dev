@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router'
 import { GeoBacCom } from '../../ui/geo-bg.tsx'
-import { Tag } from '../../ui/tag.tsx'
+import { TagLabCom } from '../../ui/tag.tsx'
 import { SectionHeader } from '../../ui/section-header.tsx'
 import styles from './about.module.css'
 import selfPortrait from './self-portrait.webp'
@@ -109,7 +109,7 @@ export const About: React.FC = () => (
               </div>
               <div className={styles.skillTags}>
                 {items.map(skill => (
-                  <Tag key={skill} label={skill} variant="blue" size="md" />
+                  <TagLabCom key={skill} labTexStr={skill} tagSizStr="md" tagVarStr="blue" />
                 ))}
               </div>
             </div>

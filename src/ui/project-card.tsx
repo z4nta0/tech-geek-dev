@@ -1,5 +1,5 @@
 import React from 'react'
-import { Tag } from './tag.tsx'
+import { TagLabCom } from './tag.tsx'
 import type { Project } from './projects.ts'
 import styles from './project-card.module.css'
 
@@ -42,7 +42,7 @@ export const ProjectCard: React.FC<Props> = ({ project, featured = false }) => {
         <h3 className={styles.title}>{project.title}</h3>
         <p className={styles.desc}>{project.description}</p>
         <div className={styles.tags}>
-          {project.tags.map(t => <Tag key={t} label={t} variant="blue" />)}
+          {project.tags.map(t => <TagLabCom key={t} labTexStr={t} tagVarStr="blue" />)}
         </div>
       </div>
 
