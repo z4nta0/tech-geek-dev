@@ -211,6 +211,12 @@ ticker, and the status dots) when waiting for the page to settle.
   scrolling, an unclipped element past either edge, text spilling its box,
   or two reachable controls overlapping.
 - `npm test` runs every suite.
+- **Known flake**: WebKit now and then redraws the first screen of a page
+  (most often Home or the open menu at 390px) up to 10 color levels
+  differently from run to run, about 5,000 pixels spread over the top 840px,
+  likely a translucent layer such as the bar's blur. A failure like that gets
+  a rerun, not new baselines; Chromium flickered once the same way on
+  Contact at 1,440px.
 
 ## Found for later
 - **The contact form reports success on a failed send** (step 6 or 7): it

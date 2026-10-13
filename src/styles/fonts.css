@@ -1,0 +1,111 @@
+
+
+
+/**
+ * fonts.css = Fonts
+ *
+ * @summary
+ * The site's self-hosted fonts: Syne for headings and body text, DM Mono for
+ * labels, tags, and the bar's links, and Lora for the italic pull quotes,
+ * replacing the Google Fonts stylesheet and preconnect links index.html used
+ * to load, so a visit makes no requests to a third party. Each file is the
+ * same latin subset Google served for the weights the site asked for, which
+ * covers every character the copy shows except the About values' geometric
+ * symbols; none of Google's files for these families has those, so they keep
+ * rendering from a fallback font as before. Syne's file and Lora's upright
+ * file are variable across weights, so each face declares the whole range
+ * Google reports for it: Syne 400 to 800 and Lora 400 to 700. Lora's italic
+ * and every DM Mono face are single-weight files, so each declares only its
+ * own weight, exactly as Google's faces did. The files live in
+ * src/assets/fonts/ and are pulled in through url(), so Vite fingerprints
+ * them.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+@font-face { /* What: DM Mono Light Font Face. Why: The site asks for DM Mono's light weight. How: This loads its latin 300 file, showing fallback text until it arrives. */
+
+
+	font-display : swap;
+	font-family  : 'DM Mono';
+	font-style   : normal;
+	font-weight  : 300;
+	src          : url( '../assets/fonts/dm-mono-latin-300-normal.woff2' ) format( 'woff2' );
+
+
+}
+
+@font-face { /* What: DM Mono Light Italic Font Face. Why: The site asks for DM Mono's light italic. How: This loads its latin 300 italic file, showing fallback text until it arrives. */
+
+
+	font-display : swap;
+	font-family  : 'DM Mono';
+	font-style   : italic;
+	font-weight  : 300;
+	src          : url( '../assets/fonts/dm-mono-latin-300-italic.woff2' ) format( 'woff2' );
+
+
+}
+
+@font-face { /* What: DM Mono Regular Font Face. Why: DM Mono's regular weight is its default for the labels, tags, and code window. How: This loads its latin 400 file, showing fallback text until it arrives. */
+
+
+	font-display : swap;
+	font-family  : 'DM Mono';
+	font-style   : normal;
+	font-weight  : 400;
+	src          : url( '../assets/fonts/dm-mono-latin-400-normal.woff2' ) format( 'woff2' );
+
+
+}
+
+@font-face { /* What: DM Mono Medium Font Face. Why: The site asks for DM Mono's medium weight. How: This loads its latin 500 file, showing fallback text until it arrives. */
+
+
+	font-display : swap;
+	font-family  : 'DM Mono';
+	font-style   : normal;
+	font-weight  : 500;
+	src          : url( '../assets/fonts/dm-mono-latin-500-normal.woff2' ) format( 'woff2' );
+
+
+}
+
+@font-face { /* What: Lora Font Face. Why: Lora is the serif for the site's pull quotes. How: This loads its latin variable file across its full 400 to 700 weight range, showing fallback text until it arrives. */
+
+
+	font-display : swap;
+	font-family  : 'Lora';
+	font-style   : normal;
+	font-weight  : 400 700;
+	src          : url( '../assets/fonts/lora-latin-normal.woff2' ) format( 'woff2' );
+
+
+}
+
+@font-face { /* What: Lora Italic Font Face. Why: The pull quotes set Lora in italic. How: This loads its latin 400 italic file, showing fallback text until it arrives. */
+
+
+	font-display : swap;
+	font-family  : 'Lora';
+	font-style   : italic;
+	font-weight  : 400;
+	src          : url( '../assets/fonts/lora-latin-italic.woff2' ) format( 'woff2' );
+
+
+}
+
+@font-face { /* What: Syne Font Face. Why: Syne is the site's display and body font. How: This loads its latin variable file across its full 400 to 800 weight range, showing fallback text until it arrives. */
+
+
+	font-display : swap;
+	font-family  : 'Syne';
+	font-style   : normal;
+	font-weight  : 400 800;
+	src          : url( '../assets/fonts/syne-latin-normal.woff2' ) format( 'woff2' );
+
+
+}
