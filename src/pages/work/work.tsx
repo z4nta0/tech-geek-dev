@@ -2,17 +2,17 @@ import React, { useState } from 'react'
 import { SecHeaCom } from '../../ui/section-header.tsx'
 import { ProjectCard } from '../../ui/project-card.tsx'
 import { GeoBacCom } from '../../ui/geo-bg.tsx'
-import { projects } from '../../ui/projects.ts'
+import { PRO_REC_ARR } from '../../ui/projects.ts'
 import styles from './work.module.css'
 
-const allTags = ['All', ...Array.from(new Set(projects.flatMap(p => p.tags))).sort()]
+const allTags = ['All', ...Array.from(new Set(PRO_REC_ARR.flatMap(p => p.tagArr))).sort()]
 
 export const Work: React.FC = () => {
   const [activeTag, setActiveTag] = useState('All')
 
   const filtered = activeTag === 'All'
-    ? projects
-    : projects.filter(p => p.tags.includes(activeTag))
+    ? PRO_REC_ARR
+    : PRO_REC_ARR.filter(p => p.tagArr.includes(activeTag))
 
   return (
     <div className="page-enter">
@@ -73,7 +73,7 @@ export const Work: React.FC = () => {
           {filtered.length > 0 ? (
             <div className={styles.grid}>
               {filtered.map(project => (
-                <ProjectCard key={project.id} project={project} featured={project.featured} />
+                <ProjectCard key={project.ideStr} project={project} featured={project.feaBoo} />
               ))}
             </div>
           ) : (

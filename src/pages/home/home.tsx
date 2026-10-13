@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { GeoBacCom } from '../../ui/geo-bg.tsx'
 import { SecHeaCom } from '../../ui/section-header.tsx'
 import { ProjectCard } from '../../ui/project-card.tsx'
-import { projects } from '../../ui/projects.ts'
+import { PRO_REC_ARR } from '../../ui/projects.ts'
 import styles from './home.module.css'
 
 const stats = [
@@ -20,7 +20,7 @@ const skills = [
 ]
 
 export const Home: React.FC = () => {
-  const featured = projects.filter(p => p.featured).slice(0, 3)
+  const featured = PRO_REC_ARR.filter(p => p.feaBoo).slice(0, 3)
 
   return (
     <div className="page-enter">
@@ -165,7 +165,7 @@ export const Home: React.FC = () => {
 
           <div className={styles.projectsGrid}>
             {featured.map(project => (
-              <ProjectCard key={project.id} project={project} featured />
+              <ProjectCard key={project.ideStr} project={project} featured />
             ))}
           </div>
         </div>
