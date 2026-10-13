@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { GeoBg } from '../components/GeoBg'
-import styles from './Contact.module.css'
+import { GeoBg } from '../../ui/geo-bg.tsx'
+import styles from './contact.module.css'
 
 export const Contact: React.FC = () => {
   const [form, setForm] = useState({ name: '', email: '', budget: '', message: '' })

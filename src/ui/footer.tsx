@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import styles from './Footer.module.css'
+import styles from './footer.module.css'
 
 export const Footer: React.FC = () => {
   const year = new Date().getFullYear()

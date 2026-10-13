@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router'
-import { GeoBg } from '../components/GeoBg'
-import { SectionHeader } from '../components/SectionHeader'
-import { ProjectCard } from '../components/ProjectCard'
-import { projects } from '../data'
-import styles from './Home.module.css'
+import { GeoBg } from '../../ui/geo-bg.tsx'
+import { SectionHeader } from '../../ui/section-header.tsx'
+import { ProjectCard } from '../../ui/project-card.tsx'
+import { projects } from '../../ui/projects.ts'
+import styles from './home.module.css'
 
 const stats = [
   { value: '10+', label: 'Years Experience' },

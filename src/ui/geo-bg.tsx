@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './GeoBg.module.css'
+import styles from './geo-bg.module.css'
 
 interface GeoBgProps {
   variant?: 'grid' | 'dots' | 'hex' | 'circuit'

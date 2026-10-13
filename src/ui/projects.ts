@@ -1,4 +1,3 @@
-import type { Project } from '../types';
 import easeMyLifeImg from '../assets/ease-my-life-website.webp';
 import hairDesignsImg from '../assets/hair-designs-website.webp';
 import bernieBearsImg from '../assets/the-bernie-bears-website.webp';
@@ -6,6 +5,20 @@ import tonysToppersImg from '../assets/tonys-toppers-website.webp';
 import sealAndShieldImg from '../assets/seal-and-shield-website.webp';
 import reeseRoofingImg from '../assets/reese-roofing-website.webp';
 import techGeekImg from '../assets/tech-geek-website.webp';
+
+// ── Project types ──────────────────────────────────────────
+interface Project {
+  id: string
+  title: string
+  description: string
+  tags: string[]
+  liveUrl?: string
+  githubUrl?: string
+  imageUrl: string
+  featured?: boolean
+  year: number
+}
+
 
 // ── Projects ───────────────────────────────────────────────
 export const projects: Project[] = [
@@ -87,3 +100,5 @@ export const projects: Project[] = [
     year: 2026,
   },
 ]
+
+export type { Project };

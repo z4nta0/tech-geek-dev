@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import { SectionHeader } from '../components/SectionHeader'
-import { ProjectCard } from '../components/ProjectCard'
-import { GeoBg } from '../components/GeoBg'
-import { projects } from '../data'
-import styles from './Work.module.css'
+import { SectionHeader } from '../../ui/section-header.tsx'
+import { ProjectCard } from '../../ui/project-card.tsx'
+import { GeoBg } from '../../ui/geo-bg.tsx'
+import { projects } from '../../ui/projects.ts'
+import styles from './work.module.css'
 
 const allTags = ['All', ...Array.from(new Set(projects.flatMap(p => p.tags))).sort()]
 

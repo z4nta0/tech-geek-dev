@@ -1,7 +1,7 @@
 import React from 'react'
-import { Tag } from './Tag'
-import type { Project } from '../types'
-import styles from './ProjectCard.module.css'
+import { Tag } from './tag.tsx'
+import type { Project } from './projects.ts'
+import styles from './project-card.module.css'
 
 interface Props {
   project: Project

@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './SectionHeader.module.css'
+import styles from './section-header.module.css'
 
 interface Props {
   label?: string   // mono uppercase label above the heading

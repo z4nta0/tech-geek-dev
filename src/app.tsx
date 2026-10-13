@@ -1,12 +1,12 @@
 import React from 'react'
 import { Routes, Route, useLocation } from 'react-router'
-import { Nav } from './components/Nav.tsx'
-import { Footer } from './components/Footer.tsx'
-import { Home } from './pages/Home.tsx'
-import { Work } from './pages/Work.tsx'
-import { About } from './pages/About.tsx'
-import { Contact } from './pages/Contact.tsx'
-import { NotFound } from './pages/NotFound.tsx'
+import { Nav } from './ui/nav.tsx'
+import { Footer } from './ui/footer.tsx'
+import { Home } from './pages/home/home.tsx'
+import { Work } from './pages/work/work.tsx'
+import { About } from './pages/about/about.tsx'
+import { Contact } from './pages/contact/contact.tsx'
+import { NotFound } from './pages/not-found/not-found.tsx'
 
 const App: React.FC = () => {
   const location = useLocation()

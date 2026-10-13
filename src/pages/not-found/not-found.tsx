@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router'
-import styles from './NotFound.module.css'
+import styles from './not-found.module.css'
 
 export const NotFound: React.FC = () => (
   <div className={`page-enter ${styles.wrap}`}>
