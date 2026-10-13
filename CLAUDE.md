@@ -199,13 +199,28 @@ on `close-out`.
      EmailJS's own status and explanation.
 6. **Formatting, naming, and comment pass**, one file per commit, including
    `vite.config.ts` (adding the shipped-page minifier), `index.html`, and the
-   email function, with the copy fixes (no em dashes).
-7. **Content review with the user**: copy that looks left over from the
-   template is confirmed or rewritten, since the SEO rules forbid claims the
-   site can't back up: Home's stats ("100% Client Satisfaction", "5+ Happy
-   Clients", ...) and skills ticker (PostgreSQL, Docker, GraphQL, AWS, Redis,
-   Prisma, Tailwind), About's values, the Work page's process section,
-   Contact's budget ranges, and British spellings ("specialising").
+   email function, with the copy fixes (no em dashes). Done 2026-10-12:
+   `vite.config.ts`, `index.html` (its mount element renamed `appMouDiv`),
+   and every TypeScript file under `src/`, each checked by the rendering
+   suite, the capture harness, or a text comparison, with baselines
+   refreshed only for changed copy. The components are now `AppRooCom`,
+   `NavBarCom`, `SitFooCom`, `GeoBacCom`, `SecHeaCom`, `TagLabCom`,
+   `ProCarCom`, `HomPagCom`, `WorPagCom`, `AboPagCom`, `ConPagCom`, and
+   `NotFouCom`, and the project list is `PRO_REC_ARR`.
+   - **New shared file**: `ui/page-links.ts` (`PAG_LIN_ARR`), the page list
+     the bar, the phone drawer, and the footer all render.
+   - **Fixes along the way**: Work's project cards gained a visually hidden
+     Projects `h2`, clearing axe's heading-order failure; the Contact form
+     now treats a reply the email function marks as failed as an error
+     instead of showing Message Sent; a stray-space and a children-comment
+     bug were caught before commit by the JSX comment audits.
+   - **Accessibility**: every remaining axe failure is color contrast
+     (step 9).
+7. **Content review with the user**: done 2026-10-12 alongside the Home,
+   About, and Contact formatting (see "## Content"). The project and client
+   counts now come from the project list (7+ and 5+), the unused skills and
+   the CV button are gone, Reese Roofing is described as the mockup it is,
+   and the copy is in American spelling with no em dashes.
 8. **Hooks and CSS modules**: every page already has a module, so this
    mostly copies the shared global classes (`container`, `section`,
    `page-enter`, `mono`, `text-muted`, ...) into the modules that use them,
