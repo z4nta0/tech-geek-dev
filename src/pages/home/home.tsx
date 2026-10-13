@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import { GeoBacCom } from '../../ui/geo-bg.tsx'
 import { SecHeaCom } from '../../ui/section-header.tsx'
-import { ProjectCard } from '../../ui/project-card.tsx'
+import { ProCarCom } from '../../ui/project-card.tsx'
 import { PRO_REC_ARR } from '../../ui/projects.ts'
 import styles from './home.module.css'
 
@@ -165,7 +165,7 @@ export const Home: React.FC = () => {
 
           <div className={styles.projectsGrid}>
             {featured.map(project => (
-              <ProjectCard key={project.ideStr} project={project} featured />
+              <ProCarCom key={project.ideStr} isaFeaBoo proRecObj={project} />
             ))}
           </div>
         </div>

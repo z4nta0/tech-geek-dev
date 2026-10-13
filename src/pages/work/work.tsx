@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { SecHeaCom } from '../../ui/section-header.tsx'
-import { ProjectCard } from '../../ui/project-card.tsx'
+import { ProCarCom } from '../../ui/project-card.tsx'
 import { GeoBacCom } from '../../ui/geo-bg.tsx'
 import { PRO_REC_ARR } from '../../ui/projects.ts'
 import styles from './work.module.css'
@@ -73,7 +73,7 @@ export const Work: React.FC = () => {
           {filtered.length > 0 ? (
             <div className={styles.grid}>
               {filtered.map(project => (
-                <ProjectCard key={project.ideStr} project={project} featured={project.feaBoo} />
+                <ProCarCom key={project.ideStr} isaFeaBoo={project.feaBoo} proRecObj={project} />
               ))}
             </div>
           ) : (
