@@ -123,7 +123,7 @@ function NavBarCom () : JSX.Element {
 		>{ /* What: Navigation Header Element. Why: The bar sits at the top of every page. How: This holds the bar's row and the phone drawer, marked with data-nav-bar-scrolled once the page moves, which its module styles. */ }
 
 
-			<div className={` container   ${ cssModObj.inner } `}>{ /* What: Navigation Inner Div Element. Why: The bar's content sits in the page's centered column. How: This lays out the brand, the links, the button, and the toggle in a row. */ }
+			<div className={ cssModObj.inner }>{ /* What: Navigation Inner Div Element. Why: The bar's content sits in the page's centered column. How: This lays out the brand, the links, the button, and the toggle in a row. */ }
 
 
 				<NavLink
@@ -216,11 +216,11 @@ function NavBarCom () : JSX.Element {
 
 					onClick={ () => setMenOpeBoo( ( preOpeBoo ) => !preOpeBoo ) }
 				>{ /* What: Menu Toggle Button Element. Why: On phones the page links live in the drawer, opened and closed here. How: This flips the open flag, reporting it through aria-expanded, which its module also reads to turn the bars into a cross. */ }
-					<span />{ /* What: Toggle Bar Span Element. Why: Three bars draw the menu icon. How: This is one bar, which turns into half of the cross while the drawer is open. */ }
+					<span className={ cssModObj.bar } />{ /* What: Toggle Bar Span Element. Why: Three bars draw the menu icon. How: This is one bar, which turns into half of the cross while the drawer is open. */ }
 
-					<span />{ /* What: Toggle Bar Span Element. Why: Three bars draw the menu icon. How: This is one bar, which fades out while the drawer is open. */ }
+					<span className={ cssModObj.bar } />{ /* What: Toggle Bar Span Element. Why: Three bars draw the menu icon. How: This is one bar, which fades out while the drawer is open. */ }
 
-					<span />{ /* What: Toggle Bar Span Element. Why: Three bars draw the menu icon. How: This is one bar, which turns into half of the cross while the drawer is open. */ }
+					<span className={ cssModObj.bar } />{ /* What: Toggle Bar Span Element. Why: Three bars draw the menu icon. How: This is one bar, which turns into half of the cross while the drawer is open. */ }
 				</button>
 
 

@@ -1,206 +1,478 @@
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  height: var(--nav-height);
-    background: rgba(245, 240, 232, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--ivory-dark);
-  transition: background var(--duration-base) var(--ease-out),
-              box-shadow var(--duration-base) var(--ease-out),
-              border-color var(--duration-base) var(--ease-out);
-  border-bottom: 1px solid transparent;
+
+
+
+/**
+ * nav.module.css = Navigation Bar Module
+ *
+ * @summary
+ * Styles for NavBarCom: the translucent, blurred bar fixed to the top of
+ * every page, which firms up and casts a shadow once the page has scrolled
+ * (data-nav-bar-scrolled). Its row holds the hexagon mark and two-tone
+ * wordmark, the page links with an orange underline that grows on hover and
+ * stays under the current page (aria-current), the orange Hire Me button,
+ * and on phones the three-bar toggle, which turns into a cross while the
+ * menu is open (aria-expanded). The phone drawer slides down from under the
+ * bar while data-mobile-menu-open is set, and turns invisible once it has
+ * slid away, so its links leave the Tab order. The row's width and side
+ * padding are the page's shared container values, merged into its own rule.
+ * Everything that moves holds still under reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region header */
+
+.header { /* What: Navigation Header. Why: The bar stays at the top of every page above the content. How: This fixes it full width at the bar height, on a translucent blurred ivory, easing its look as the page scrolls. */
+
+
+	-webkit-backdrop-filter : blur( 12px );
+	backdrop-filter         : blur( 12px );
+	background              : rgba( 245, 240, 232, 0.85 );
+	border-bottom           : 1px solid transparent;
+	height                  : var( --nav-height ); /* Navigation Height = 72px */
+	left                    : 0;
+	position                : fixed;
+	right                   : 0;
+	top                     : 0;
+	transition              : background var( --duration-base ) var( --ease-out ), box-shadow var( --duration-base ) var( --ease-out ), border-color var( --duration-base ) var( --ease-out ); /* Duration Base = 280ms, Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+	z-index                 : 100;
+
+
+}
+.header[data-nav-bar-scrolled] { /* What: Scrolled Navigation Header. Why: Once the page moves under the bar, the bar needs to stand apart from it. How: This firms up the background, shows the bottom border, and casts the small shadow. */
+
+
+	-webkit-backdrop-filter : blur( 12px );
+	backdrop-filter         : blur( 12px );
+	background              : rgba( 245, 240, 232, 0.92 );
+	border-bottom-color     : var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	box-shadow              : var( --shadow-sm );  /* Shadow Small = 0 1px 3px rgba( 26, 26, 46, 0.08 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Header. Why: Someone who asked for less motion shouldn't see the bar fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.header { /* What: Motionless Navigation Header. Why: The scrolled look should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-.header[data-nav-bar-scrolled] {
-  background: rgba(245, 240, 232, 0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom-color: var(--ivory-dark);
-  box-shadow: var(--shadow-sm);
+
+/* #region inner */
+
+.inner { /* What: Navigation Inner. Why: The bar's content sits in the page's centered column. How: This caps and centers the row with its side padding, filling the bar's height and lining up the brand, links, button, and toggle. */
+
+
+	align-items : center;
+	display     : flex;
+	gap         : var( --sp-6 );      /* Spacing 6 = 32px */
+	height      : 100%;
+	margin      : 0 auto;
+	max-width   : var( --max-width ); /* Maximum Width = 1200px */
+	padding     : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	width       : 100%;
+
+
 }
 
-.inner {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  gap: var(--sp-6);
+
+/* #region logo */
+
+.logo { /* What: Brand Logo. Why: The mark and wordmark read as one link home. How: This sets them side by side, never shrinking. */
+
+
+	align-items     : center;
+	display         : flex;
+	flex-shrink     : 0;
+	gap             : var( --sp-2 ); /* Spacing 2 = 8px */
+	text-decoration : none;
+
+
 }
 
-/* ─── Logo ─────────────────────────────────────────── */
-.logo {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  text-decoration: none;
-  flex-shrink: 0;
+
+/* #region wordmark */
+
+.wordmark { /* What: Wordmark. Why: The site's name reads beside its mark. How: This sets it bold in the display font, a little tight. */
+
+
+	font-family    : var( --font-display ); /* Font Display = 'Syne', sans-serif */
+	font-size      : 1.1rem;
+	font-weight    : 800;
+	letter-spacing : -0.03em;
+
+
 }
 
-.wordmark {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 1.1rem;
-  letter-spacing: -0.03em;
+.first { /* What: Wordmark First. Why: The brand reads in the main text color. How: This sets TechGeek in the ink. */
+
+
+	color : var( --ink ); /* Ink = #1A1A2E */
+
+
 }
 
-.first { color: var(--ink); }
-.last  { color: var(--orange); }
+.last { /* What: Wordmark Last. Why: The domain ending carries the accent. How: This sets .dev in orange. */
 
-/* ─── Desktop nav ──────────────────────────────────── */
-.nav {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-1);
-  margin-left: auto;
+
+	color : var( --orange ); /* Orange = #F26419 */
+
+
 }
 
-.link {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ink-mid);
-  padding: var(--sp-2) var(--sp-3);
-  border-radius: var(--radius-sm);
-  transition: color var(--duration-fast), background var(--duration-fast);
-  position: relative;
+/* #endregion wordmark */
+
+/* #endregion logo */
+
+
+/* #region nav */
+
+.nav { /* What: Primary Navigation. Why: The page links sit together at the bar's right. How: This lines them up with small gaps, pushed right. */
+
+
+	align-items : center;
+	display     : flex;
+	gap         : var( --sp-1 ); /* Spacing 1 = 4px */
+	margin-left : auto;
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Primary Navigation. Why: On a phone the links move into the drawer. How: This applies at 768px and below. */
+
+
+	.nav { /* What: Hidden Primary Navigation. Why: The drawer holds the links instead. How: This hides the row. */
+
+
+		display : none;
+
+
+	}
+
+
 }
 
-.link::after {
-  content: '';
-  position: absolute;
-  bottom: 4px;
-  left: var(--sp-3);
-  right: var(--sp-3);
-  height: 2px;
-  background: var(--orange);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--duration-base) var(--ease-out);
-}
+.link { /* What: Bar Link. Why: Each page link reads in small mono capitals with room for its underline. How: This sets the link muted and padded, easing its color and background. */
 
+
+	border-radius  : var( --radius-sm );                                              /* Radius Small = 3px */
+	color          : var( --ink-mid );                                                /* Ink Mid = #3D3D5C */
+	font-family    : var( --font-mono );                                              /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.8rem;
+	font-weight    : 400;
+	letter-spacing : 0.04em;
+	padding        : var( --sp-2 ) var( --sp-3 );                                     /* Spacing 2 = 8px, Spacing 3 = 12px */
+	position       : relative;
+	text-transform : uppercase;
+	transition     : color var( --duration-fast ), background var( --duration-fast ); /* Duration Fast = 150ms */
+
+
+}
+.link::after { /* What: Bar Link Underline. Why: An orange underline marks a hovered or current link. How: This draws it inside the link's padding, collapsed to nothing until needed, easing its growth from the left. */
+
+
+	background       : var( --orange );                                    /* Orange = #F26419 */
+	bottom           : 4px;
+	content          : '';
+	height           : 2px;
+	left             : var( --sp-3 );                                      /* Spacing 3 = 12px */
+	position         : absolute;
+	right            : var( --sp-3 );                                      /* Spacing 3 = 12px */
+	transform        : scaleX( 0 );
+	transform-origin : left;
+	transition       : transform var( --duration-base ) var( --ease-out ); /* Duration Base = 280ms, Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+
+
+}
 .link:hover,
-.link[aria-current='page'] {
-  color: var(--ink);
-}
+.link[aria-current='page'] { /* What: Hovered Or Current Bar Link. Why: The link under the pointer and the page that's showing stand out. How: This darkens the text to the ink. */
 
+
+	color : var( --ink ); /* Ink = #1A1A2E */
+
+
+}
 .link:hover::after,
-.link[aria-current='page']::after {
-  transform: scaleX(1);
+.link[aria-current='page']::after { /* What: Hovered Or Current Bar Link Underline. Why: The underline marks the hovered link and the current page. How: This grows it to full width. */
+
+
+	transform : scaleX( 1 );
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Bar Link. Why: Someone who asked for less motion shouldn't see the links fade or their underline grow. How: This applies only when the reduced-motion preference is set. */
+
+
+	.link,
+	.link::after { /* What: Motionless Bar Link. Why: The color and the underline should simply switch. How: This turns both transitions off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-/* ─── CTA button ───────────────────────────────────── */
-.cta {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--white);
-  background: var(--orange);
-  padding: 10px var(--sp-5);
-  border-radius: var(--radius-sm);
-  transition: background var(--duration-fast), transform var(--duration-fast);
-  flex-shrink: 0;
+/* #endregion nav */
+
+
+.cta { /* What: Hire Me Button. Why: The bar's one call to action stands out from the links. How: This sets it as an orange button in mono capitals that never shrinks, easing its color and lift. */
+
+
+	background     : var( --orange );                                                     /* Orange = #F26419 */
+	border-radius  : var( --radius-sm );                                                  /* Radius Small = 3px */
+	color          : var( --white );                                                      /* White = #FFFFFF */
+	flex-shrink    : 0;
+	font-family    : var( --font-mono );                                                  /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.78rem;
+	font-weight    : 500;
+	letter-spacing : 0.06em;
+	padding        : 10px var( --sp-5 );                                                  /* Spacing 5 = 24px */
+	text-transform : uppercase;
+	transition     : background var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
+
+
+}
+.cta:hover { /* What: Hovered Hire Me Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
+
+
+	background : var( --orange-dark ); /* Orange Dark = #D4530E */
+	transform  : translateY( -1px );
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Hire Me Button. Why: On a phone the button moves into the drawer. How: This applies at 768px and below. */
+
+
+	.cta { /* What: Hidden Hire Me Button. Why: The drawer holds the button instead. How: This hides it from the bar. */
+
+
+		display : none;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hire Me Button. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.cta { /* What: Motionless Hire Me Button. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-.cta:hover {
-  background: var(--orange-dark);
-  transform: translateY(-1px);
+
+/* #region burger */
+
+.burger { /* What: Menu Toggle. Why: On a phone the toggle opens the drawer. How: This stacks its three bars, hidden above the phone breakpoint and pushed right. */
+
+
+	display        : none;
+	flex-direction : column;
+	gap            : 5px;
+	margin-left    : auto;
+	padding        : var( --sp-2 ); /* Spacing 2 = 8px */
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Menu Toggle. Why: The toggle only exists on a phone. How: This applies at 768px and below. */
+
+
+	.burger { /* What: Shown Menu Toggle. Why: On a phone the links live behind the toggle. How: This shows its column of bars. */
+
+
+		display : flex;
+
+
+	}
+
+
 }
 
-/* ─── Burger ───────────────────────────────────────── */
-.burger {
-  display: none;
-  flex-direction: column;
-  gap: 5px;
-  padding: var(--sp-2);
-  margin-left: auto;
+.bar { /* What: Toggle Bar. Why: Three bars draw the menu icon. How: This draws one 22px rounded ink bar, easing its turn and fade. */
+
+
+	background    : var( --ink );                                                                       /* Ink = #1A1A2E */
+	border-radius : 2px;
+	display       : block;
+	height        : 2px;
+	transition    : transform var( --duration-base ) var( --ease-out ), opacity var( --duration-base ); /* Duration Base = 280ms, Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+	width         : 22px;
+
+
+}
+.burger[aria-expanded='true'] .bar:nth-child( 1 ) { /* What: Open Toggle First Bar. Why: The open menu's toggle shows a cross. How: This drops the top bar to the middle and tilts it 45 degrees. */
+
+
+	transform : translateY( 7px ) rotate( 45deg );
+
+
+}
+.burger[aria-expanded='true'] .bar:nth-child( 2 ) { /* What: Open Toggle Middle Bar. Why: The cross has only two strokes. How: This fades the middle bar out. */
+
+
+	opacity : 0;
+
+
+}
+.burger[aria-expanded='true'] .bar:nth-child( 3 ) { /* What: Open Toggle Last Bar. Why: The open menu's toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
+
+
+	transform : translateY( -7px ) rotate( -45deg );
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Toggle Bar. Why: Someone who asked for less motion shouldn't see the bars turn. How: This applies only when the reduced-motion preference is set. */
+
+
+	.bar { /* What: Motionless Toggle Bar. Why: The bars should simply switch to the cross. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-.burger span {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: var(--ink);
-  border-radius: 2px;
-  transition: transform var(--duration-base) var(--ease-out),
-              opacity var(--duration-base);
+/* #endregion burger */
+
+/* #endregion inner */
+
+
+/* #region drawer */
+
+.drawer { /* What: Menu Drawer. Why: On a phone the page links drop down under the bar. How: This fixes the drawer under the bar, stacks its links, and starts it slid up, faded, and invisible once its slide ends, so its links leave the Tab order. */
+
+
+	background     : var( --ivory );                /* Ivory = #F5F0E8 */
+	border-bottom  : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-2 );                 /* Spacing 2 = 8px */
+	left           : 0;
+	opacity        : 0;
+	padding        : var( --sp-5 ) var( --sp-6 );   /* Spacing 5 = 24px, Spacing 6 = 32px */
+	pointer-events : none;
+	position       : fixed;
+	right          : 0;
+	top            : var( --nav-height );           /* Navigation Height = 72px */
+	transform      : translateY( -100% );
+	transition     : transform var( --duration-base ) var( --ease-out ), opacity var( --duration-base ), visibility 0s linear var( --duration-base ); /* Duration Base = 280ms, Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */ /* What: Delayed Visibility. Why: The drawer has to stay visible while it slides away. How: Visibility flips to hidden only once the 280ms slide has finished. */
+	visibility     : hidden;
+	z-index        : 99;
+
+
+}
+.drawer[data-mobile-menu-open] { /* What: Open Menu Drawer. Why: The open menu shows its links. How: This slides the drawer down, fades it in, and makes it visible at once, taking pointer events again. */
+
+
+	opacity        : 1;
+	pointer-events : all;
+	transform      : translateY( 0 );
+	transition     : transform var( --duration-base ) var( --ease-out ), opacity var( --duration-base ), visibility 0s; /* Duration Base = 280ms, Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+	visibility     : visible;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Menu Drawer. Why: Someone who asked for less motion shouldn't see the drawer slide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.drawer,
+	.drawer[data-mobile-menu-open] { /* What: Motionless Menu Drawer. Why: The drawer should simply appear and disappear. How: This turns the transition off for both states, the open one's own included. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-.burger[aria-expanded='true'] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.burger[aria-expanded='true'] span:nth-child(2) { opacity: 0; }
-.burger[aria-expanded='true'] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.drawerLink { /* What: Drawer Link. Why: Each page link in the drawer is a full-width row. How: This sets it in muted mono capitals with a divider under it, easing its color. */
 
-/* ─── Mobile drawer ────────────────────────────────── */
-.drawer {
-  position: fixed;
-  top: var(--nav-height);
-  left: 0;
-  right: 0;
-  background: var(--ivory);
-  border-bottom: 1px solid var(--ivory-dark);
-  padding: var(--sp-5) var(--sp-6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-2);
-  transform: translateY(-100%);
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  transition: transform var(--duration-base) var(--ease-out),
-              opacity var(--duration-base),
-              visibility 0s linear var(--duration-base);
-  z-index: 99;
+
+	border-bottom  : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	color          : var( --ink-mid );              /* Ink Mid = #3D3D5C */
+	font-family    : var( --font-mono );            /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.9rem;
+	letter-spacing : 0.04em;
+	padding        : var( --sp-3 ) 0;               /* Spacing 3 = 12px */
+	text-transform : uppercase;
+	transition     : color var( --duration-fast );  /* Duration Fast = 150ms */
+
+
 }
+.drawerLink:last-of-type { /* What: Last Drawer Link. Why: The last link needs no divider above the button. How: This removes its border. */
 
-.drawer[data-mobile-menu-open] {
-  transform: translateY(0);
-  opacity: 1;
-  pointer-events: all;
-  visibility: visible;
-  transition: transform var(--duration-base) var(--ease-out),
-              opacity var(--duration-base),
-              visibility 0s;
+
+	border-bottom : none;
+
+
 }
-
-.drawerLink {
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--ink-mid);
-  padding: var(--sp-3) 0;
-  border-bottom: 1px solid var(--ivory-dark);
-  transition: color var(--duration-fast);
-}
-
-.drawerLink:last-of-type { border-bottom: none; }
-
 .drawerLink[aria-current='page'],
-.drawerLink:hover { color: var(--orange); }
+.drawerLink:hover { /* What: Current Or Hovered Drawer Link. Why: The page that's showing and the link under the pointer stand out. How: This turns the text orange. */
 
-.drawerCta {
-  display: inline-flex;
-  justify-content: center;
-  margin-top: var(--sp-3);
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--white);
-  background: var(--orange);
-  padding: 12px;
-  border-radius: var(--radius-sm);
+
+	color : var( --orange ); /* Orange = #F26419 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Drawer Link. Why: Someone who asked for less motion shouldn't see the links fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.drawerLink { /* What: Motionless Drawer Link. Why: The hover color should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-/* ─── Responsive ───────────────────────────────────── */
-@media (max-width: 768px) {
-  .nav, .cta { display: none; }
-  .burger { display: flex; }
+.drawerCta { /* What: Drawer Hire Me Button. Why: The drawer repeats the bar's call to action. How: This sets it as a full-width orange button in mono capitals under the links. */
+
+
+	background      : var( --orange );    /* Orange = #F26419 */
+	border-radius   : var( --radius-sm ); /* Radius Small = 3px */
+	color           : var( --white );     /* White = #FFFFFF */
+	display         : inline-flex;
+	font-family     : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size       : 0.8rem;
+	font-weight     : 500;
+	justify-content : center;
+	letter-spacing  : 0.06em;
+	margin-top      : var( --sp-3 );      /* Spacing 3 = 12px */
+	padding         : 12px;
+	text-transform  : uppercase;
+
+
 }
+
+/* #endregion drawer */
+
+/* #endregion header */
+
+
