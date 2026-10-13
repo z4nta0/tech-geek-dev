@@ -497,10 +497,10 @@ h6 { /* What: Headings. Why: Every heading shares the bold, tight display style.
 
 }
 
-h1 { /* What: Heading Level 1. Why: The page heading is the largest and boldest. How: This scales it with the screen between 2.5rem and 5rem at weight 800. */
+h1 { /* What: Heading Level 1. Why: The page heading is the largest and boldest. How: This scales it with the screen between about 45px and 79px at weight 800, letting the floor follow the screen below about 450px so a long word still fits a phone. */
 
 
-	font-size   : clamp( var( --fon-siz-p05 ), 6vw, var( --fon-siz-p07 ) ); /* Font Size Base Plus 5 ~= 44.876px, Font Size Base Plus 7 ~= 78.751px */
+	font-size   : clamp( min( 10vw, var( --fon-siz-p05 ) ), 6vw, var( --fon-siz-p07 ) ); /* Font Size Base Plus 5 ~= 44.876px, Font Size Base Plus 7 ~= 78.751px */ /* What: Phone Floor. Why: At the p05 floor, Work's "Projects &" and Contact's "Something" ran past a small phone. How: The floor is the smaller of p05 and 10vw, which only bites below about 450px, 32px at 320px. */
 	font-weight : 800;
 
 

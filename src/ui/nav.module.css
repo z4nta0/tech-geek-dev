@@ -84,6 +84,19 @@
 
 
 }
+@media ( max-width : 768px ) { /* What: Phone Navigation Inner Div. Why: On a phone only the brand and the menu toggle share the row. How: This applies at 768px and below. */
+
+
+	.navInnDiv { /* What: Snug Navigation Inner Div. Why: The narrowest phones need every pixel between the brand and the toggle. How: This narrows the gap, the toggle's own margin keeping it at the far edge. */
+
+
+		gap : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
+
+
+	}
+
+
+}
 
 
 /* #region braLogAnc */
@@ -103,11 +116,11 @@
 
 /* #region braWorSpa */
 
-.braWorSpa { /* What: Brand Wordmark Span. Why: The site's name reads beside its mark. How: This sets it bold in the display font, a little tight. */
+.braWorSpa { /* What: Brand Wordmark Span. Why: The site's name reads beside its mark. How: This sets it bold in the display font, a little tight, easing smaller on the narrowest phones. */
 
 
-	font-family    : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
-	font-size      : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	font-family    : var( --fon-fam-mai );                                       /* Font Family Main = 'Syne', sans-serif */
+	font-size      : clamp( var( --fon-siz-p01 ), 5.3vw, var( --fon-siz-p02 ) ); /* Font Size Base Plus 1 ~= 14.572px, Font Size Base Plus 2 ~= 19.304px */ /* What: Narrow Phone Wordmark. Why: At 320px the mark, the wordmark, and the menu toggle ran 21px past the screen. How: The wordmark follows the screen below about 364px, about 17px at 320px. */
 	font-weight    : 800;
 	letter-spacing : -0.03em;
 

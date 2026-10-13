@@ -188,6 +188,7 @@
 
 
 	animation      : global( contentEnterFadeUp ) var( --dur-ani-p05 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	container-type : inline-size;                                                                 /* What: Column Container. Why: The heading sizes itself by this column. How: This lets the heading's cqi units measure the column's width. */
 	display        : flex;
 	flex-direction : column;
 	gap            : var( --spa-ver-p02 );                                                        /* Spacing Vertical Base Plus 2 ~= 25.572px */
@@ -271,11 +272,12 @@
 
 /* #region herTitHea */
 
-.herTitHea { /* What: Hero Title Heading. Why: The heading reads large and tight. How: This sets its color and a tight line height, the size coming from the global heading styles. */
+.herTitHea { /* What: Hero Title Heading. Why: The heading reads large and tight. How: This sets its color, a size that follows its column, and a tight line height. */
 
 
-	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
-	line-height : var( --ver-rhy-m01 ); /* Vertical Rhythm Base Minus 1 = 1 */
+	color       : var( --tex-mai-col );                                        /* Text Main Color = #1A1A2E */
+	font-size   : clamp( var( --fon-siz-p02 ), 9.6cqi, var( --fon-siz-p07 ) ); /* Font Size Base Plus 2 ~= 25.572px, Font Size Base Plus 7 ~= 78.751px */ /* What: Column-Sized Heading. Why: Experiences is about 10em wide, so at the global h1 size it ran past its column on phones and under the code window on a desktop. How: The size is 9.6% of the column's width, which keeps the word inside it, within the p02 and p07 steps. */
+	line-height : var( --ver-rhy-m01 );                                        /* Vertical Rhythm Base Minus 1 = 1 */
 
 
 }
@@ -833,6 +835,7 @@
 
 	align-items    : center;
 	border-right   : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	container-type : inline-size;                                     /* What: Item Container. Why: The figure sizes itself by its item. How: This lets the figure's cqi units measure the item's width and keeps the item from widening to fit the figure. */
 	display        : flex;
 	flex-direction : column;
 	gap            : var( --spa-ver-m02 );                            /* Spacing Vertical Base Minus 2 ~= 8.304px */
@@ -851,11 +854,12 @@
 @media ( max-width : 640px ) { /* What: Phone Stat Item Div. Why: Side dividers don't suit the paired layout. How: This applies at 640px and below. */
 
 
-	.staIteDiv { /* What: Underlined Stat Item Div. Why: The paired figures divide better from the row below. How: This swaps the right rule for one underneath. */
+	.staIteDiv { /* What: Underlined Stat Item Div. Why: The paired figures divide better from the row below. How: This swaps the right rule for one underneath and narrows the side padding. */
 
 
 		border-bottom : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
 		border-right  : none;
+		padding       : var( --spa-ver-p02 ) var( --spa-hor-m01 );       /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Minus 1 = 11px */
 
 
 	}
@@ -863,15 +867,15 @@
 
 }
 
-.staValSpa { /* What: Stat Value Span. Why: The figure is the stat's point. How: This sets it large and bold in the display font, tight. */
+.staValSpa { /* What: Stat Value Span. Why: The figure is the stat's point. How: This sets it large and bold in the display font, tight, scaling down with its item on a phone. */
 
 
-	color          : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
-	font-family    : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
-	font-size      : var( --fon-siz-p05 ); /* Font Size Base Plus 5 ~= 44.876px */
+	color          : var( --tex-mai-col );                                       /* Text Main Color = #1A1A2E */
+	font-family    : var( --fon-fam-mai );                                       /* Font Family Main = 'Syne', sans-serif */
+	font-size      : clamp( var( --fon-siz-p02 ), 26cqi, var( --fon-siz-p05 ) ); /* Font Size Base Plus 2 ~= 25.572px, Font Size Base Plus 5 ~= 44.876px */ /* What: Item-Sized Figure. Why: 100% is about 3.8em wide, too wide for half a phone's width at the full size. How: The figure is 26% of its item's width, held between the p02 and p05 steps, so desktop keeps the full size. */
 	font-weight    : 800;
 	letter-spacing : -0.04em;
-	line-height    : var( --ver-rhy-m01 ); /* Vertical Rhythm Base Minus 1 = 1 */
+	line-height    : var( --ver-rhy-m01 );                                       /* Vertical Rhythm Base Minus 1 = 1 */
 
 
 }

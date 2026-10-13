@@ -197,10 +197,11 @@
 @media ( max-width : 640px ) { /* What: Phone Filter Inner Div. Why: The label, buttons, and count can't share one row on a phone. How: This applies at 640px and below. */
 
 
-	.filInnDiv { /* What: Wrapping Filter Inner Div. Why: The row needs room on a phone. How: This lets it wrap. */
+	.filInnDiv { /* What: Wrapping Filter Inner Div. Why: The row needs room on a phone. How: This lets it wrap, with a row gap between its lines. */
 
 
 		flex-wrap : wrap;
+		gap       : var( --spa-ver-m01 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 
 
 	}
@@ -235,6 +236,20 @@
 	gap             : var( --spa-hor-m02 ); /* Spacing Horizontal Base Minus 2 ~= 8.304px */
 	overflow-x      : auto;
 	scrollbar-width : none;
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Filter Scroll Div. Why: Squeezed between the label and the count, the row showed about 100px of its buttons on a phone, hiding most of them. How: This applies at 640px and below. */
+
+
+	.filScrDiv { /* What: Full Width Filter Scroll Div. Why: The buttons need the phone's whole width. How: This gives the row its own line under the label and the count, still scrolling sideways. */
+
+
+		flex-basis : 100%;
+		order      : 1;
+
+
+	}
 
 
 }

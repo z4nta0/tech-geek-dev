@@ -66,12 +66,12 @@
 .errCodDiv { /* What: Error Code Div. Why: A huge quiet 404 says what happened at a glance without shouting. How: This sets it in the display font, scaling with the screen, in a deep beige that still reaches the 3:1 large-text contrast, and keeps it from being selected. */
 
 
-	color          : oklch( from var( --bor-mai-col ) calc( l - 0.24 ) c h );   /* Border Main Color = #D8CFBE, darkened to about #8d8475 */
-	font-family    : var( --fon-fam-mai );                                      /* Font Family Main = 'Syne', sans-serif */
-	font-size      : clamp( var( --fon-siz-p08 ), 20vw, var( --fon-siz-p10 ) ); /* Font Size Base Plus 8 ~= 104.323px, Font Size Base Plus 10 ~= 183.074px */
+	color          : oklch( from var( --bor-mai-col ) calc( l - 0.24 ) c h );                /* Border Main Color = #D8CFBE, darkened to about #8d8475 */
+	font-family    : var( --fon-fam-mai );                                                   /* Font Family Main = 'Syne', sans-serif */
+	font-size      : clamp( min( 27vw, var( --fon-siz-p08 ) ), 20vw, var( --fon-siz-p10 ) ); /* Font Size Base Plus 8 ~= 104.323px, Font Size Base Plus 10 ~= 183.074px */ /* What: Small Phone Floor. Why: About 3.1em wide, the number ran past a 320px screen in WebKit at the p08 floor. How: The floor is the smaller of p08 and 27vw, which only bites below about 386px, about 86px at 320px. */
 	font-weight    : 800;
-	letter-spacing : calc( var( --cdn-pow-010-rec ) * -1em );                   /* Core-Design-Number to the Power of 10 Reciprocal ~= -0.060em */
-	line-height    : var( --ver-rhy-m01 );                                      /* Vertical Rhythm Base Minus 1 = 1 */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * -1em );                                /* Core-Design-Number to the Power of 10 Reciprocal ~= -0.060em */
+	line-height    : var( --ver-rhy-m01 );                                                   /* Vertical Rhythm Base Minus 1 = 1 */
 	user-select    : none;
 
 
