@@ -8,8 +8,7 @@ exports.handler = async (event) => {
 
   // Map the incoming type to the correct environment variable
   const templateMap = {
-    'contact': process.env.EMAILJS_CONTACT_TEMPLATE_ID,
-    'support': process.env.EMAILJS_SUPPORT_TEMPLATE_ID
+    'contact': process.env.EMAILJS_CONTACT_TEMPLATE_ID
   };
 
   const selectedTemplate = templateMap[templateType];

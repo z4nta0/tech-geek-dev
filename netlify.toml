@@ -1,12 +1,4 @@
 
-# Card-specific pages get their own static HTML shell (with per-page social
-# preview meta tags) instead of falling through to the generic index.html.
-# Must come before the catch-all below since Netlify uses the first match.
-[[redirects]]
-  from = "/happybirthdaycard"
-  to = "/happybirthdaycard.html"
-  status = 200
-
 # This command was needed in order for React Router to work properly with Netlify's services
 
 [[redirects]]

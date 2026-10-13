@@ -5,8 +5,6 @@ import styles from './Nav.module.css'
 const links = [
   { label: 'Home',     path: '/'          },
   { label: 'Work',     path: '/work'      },
-  { label: 'Cards',    path: '/cards'     },
-  { label: 'Support',  path: '/support'   },
   { label: 'About',    path: '/about'     },
   { label: 'Contact',  path: '/contact'   },
 ]
@@ -39,7 +37,7 @@ export const Nav: React.FC = () => {
           </svg>
           <span className={styles.wordmark}>
             <span className={styles.first}>TechGeek</span>
-            <span className={styles.last}>.support</span>
+            <span className={styles.last}>.dev</span>
           </span>
         </NavLink>
 

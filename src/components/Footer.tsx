@@ -24,8 +24,6 @@ export const Footer: React.FC = () => {
           {[
             ['Home', '/'],
             ['Work', '/work'],
-            ['Cards', '/cards'],
-            ['Support', '/support'],
             ['About', '/about'],
             ['Contact', '/contact'],
           ].map(([label, path]) => (
@@ -35,7 +33,7 @@ export const Footer: React.FC = () => {
 
         <div className={styles.copy}>
           <span className="mono text-muted">
-            © {year} TechGeek.support. All rights reserved.
+            © {year} TechGeek.dev. All rights reserved.
           </span>
           <div className={styles.social}>
             {/* GitHub */}

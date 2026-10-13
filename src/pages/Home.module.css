@@ -514,24 +514,6 @@
   transform: translateY(-2px);
 }
 
-.ctaBannerSecondary {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ivory);
-  border: 1.5px solid rgba(245,240,232,0.3);
-  padding: 14px var(--sp-7);
-  border-radius: var(--radius-sm);
-  transition: border-color var(--duration-fast), transform var(--duration-fast);
-}
-
-.ctaBannerSecondary:hover {
-  border-color: var(--blue);
-  transform: translateY(-2px);
-}
-
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 1024px) {
   .heroInner    { grid-template-columns: 3fr 1fr; gap: var(--sp-8); padding-top: var(--sp-8); }

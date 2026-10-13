@@ -5,7 +5,7 @@ import styles from './Contact.module.css'
 //import { EMAILJS_CONFIG } from '../lib/emailjs'
 
 export const Contact: React.FC = () => {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', budget: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', budget: '', message: '' })
   const [sent, setSent] = useState(false);
     const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -26,10 +26,10 @@ export const Contact: React.FC = () => {
                 templateType: 'contact',
                 from_name:  form.name,
                     from_email: form.email,
-                    subject:    form.subject,
+                    subject:    'Portfolio Contact',
                     budget:     form.budget || 'Not specified',
                     message:    form.message,
-                    to_email:   'contact@techgeek.support',
+                    to_email:   'contact@techgeek.dev',
             })
         });/*
       await emailjs.send(
@@ -38,16 +38,16 @@ export const Contact: React.FC = () => {
         {
           from_name:  form.name,
           from_email: form.email,
-          subject:    form.subject,
+          subject:    'Portfolio Contact',
           budget:     form.budget || 'Not specified',
           message:    form.message,
-          to_email:   'contact@techgeek.support',
+          to_email:   'contact@techgeek.dev',
         },
       )*/
       setSent(true)
     } catch (err) {
       console.error('EmailJS error:', err)
-      setError('Something went wrong. Please try again or email contact@techgeek.support directly.')
+      setError('Something went wrong. Please try again or email contact@techgeek.dev directly.')
     } finally {
       setLoading(false)
     }
@@ -89,7 +89,7 @@ export const Contact: React.FC = () => {
                 </svg>
                 <h2>Message Sent!</h2>
                 <p>Thanks for reaching out. I'll be in touch within 24 hours.</p>
-                <button className={styles.resetBtn} onClick={() => { setSent(false); setForm({ name: '', email: '', subject: '', budget: '', message: '' }) }}>
+                <button className={styles.resetBtn} onClick={() => { setSent(false); setForm({ name: '', email: '', budget: '', message: '' }) }}>
                   Send Another Message
                 </button>
               </div>
@@ -108,29 +108,16 @@ export const Contact: React.FC = () => {
                   </div>
                 </div>
 
-                <div className={styles.formRow}>
-                  <div className={styles.field}>
-                    <label htmlFor="c-subject" className={styles.label}>Subject</label>
-                    <select id="c-subject" name="subject" className={styles.select} value={form.subject} onChange={handleChange} required>
-                      <option value="">Select a subject…</option>
-                      <option>New Project</option>
-                      <option>Freelance Work</option>
-                      <option>Custom Greeting Card</option>
-                      <option>Tech Support</option>
-                      <option>General Inquiry</option>
-                    </select>
-                  </div>
-                  <div className={styles.field}>
-                    <label htmlFor="c-budget" className={styles.label}>Project Budget</label>
-                    <select id="c-budget" name="budget" className={styles.select} value={form.budget} onChange={handleChange}>
-                      <option value="">Select a range…</option>
-                      <option>Under $100</option>
-                      <option>$100 – $250</option>
-                      <option>$250 – $500</option>
-                      <option>$500 – $1,000</option>
-                      <option>$1,000+</option>
-                    </select>
-                  </div>
+                <div className={styles.field}>
+                  <label htmlFor="c-budget" className={styles.label}>Project Budget</label>
+                  <select id="c-budget" name="budget" className={styles.select} value={form.budget} onChange={handleChange}>
+                    <option value="">Select a range…</option>
+                    <option>Under $100</option>
+                    <option>$100 – $250</option>
+                    <option>$250 – $500</option>
+                    <option>$500 – $1,000</option>
+                    <option>$1,000+</option>
+                  </select>
                 </div>
 
                 {error && (
@@ -169,8 +156,8 @@ export const Contact: React.FC = () => {
                       </svg>
                     ),
                     label: 'Email',
-                    value: 'contact@techgeek.support',
-                    href: 'mailto:contact@techgeek.support',
+                    value: 'contact@techgeek.dev',
+                    href: 'mailto:contact@techgeek.dev',
                   },
                   {
                     icon: (
@@ -179,7 +166,7 @@ export const Contact: React.FC = () => {
                       </svg>
                     ),
                     label: 'GitHub',
-                    value: 'github.com/techgeeksupport',
+                    value: 'github.com/z4nta0',
                     href: 'https://github.com/z4nta0',
                   },
                   {
@@ -189,7 +176,7 @@ export const Contact: React.FC = () => {
                       </svg>
                     ),
                     label: 'LinkedIn',
-                    value: 'linkedin.com/in/techgeeksupport',
+                    value: 'linkedin.com/in/gary-s-walton-654739400',
                     href: 'https://www.linkedin.com/in/gary-s-walton-654739400/',
                   },
                 ].map(({ icon, label, value, href }) => (

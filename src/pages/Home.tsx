@@ -85,11 +85,11 @@ export const Home: React.FC = () => {
                 <span className={styles.dot1} />
                 <span className={styles.dot2} />
                 <span className={styles.dot3} />
-                <span className={styles.windowTitle}>techgeek.support.ts</span>
+                <span className={styles.windowTitle}>techgeek.dev.ts</span>
               </div>
               <pre className={styles.code}>
                 <code>{`const developer = {
-  name: "Tech Geek",
+  name: "z4nta0",
   role: "Full Stack Dev",
   stack: [
     "Node.js",
@@ -218,16 +218,6 @@ export const Home: React.FC = () => {
                 title: 'Backend Development',
                 desc: 'Scalable Node.js services, Next.js and React Router APIs, with dependable database design.',
               },
-              {
-                icon: (
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8">
-                    <path d="M12 20h9"/>
-                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
-                  </svg>
-                ),
-                title: 'Digital Greeting Cards',
-                desc: 'Custom interactive greeting cards with animation, shaders, and audio — coded with love.',
-              },
             ].map(({ icon, title, desc }) => (
               <div key={title} className={styles.serviceCard}>
                 <div className={styles.serviceIcon}>{icon}</div>
@@ -249,9 +239,6 @@ export const Home: React.FC = () => {
           <div className={styles.ctaBannerActions}>
             <Link to="/contact" className={styles.ctaBannerBtn}>
               Start a Project
-            </Link>
-            <Link to="/support" className={styles.ctaBannerSecondary}>
-              Need Tech Help?
             </Link>
           </div>
         </div>
