@@ -64,7 +64,7 @@ function NotFouCom () : JSX.Element {
 	return (
 
 
-		<div className={` page-enter   ${ cssModObj.wrap } `}>{ /* What: Not Found Wrap Div Element. Why: The 404 content sits centered in the page. How: This fills the space between the bar and the footer and fades in like every page. */ }
+		<div className={ cssModObj.wrap }>{ /* What: Not Found Wrap Div Element. Why: The 404 content sits centered in the page. How: This fills the space between the bar and the footer and fades in like every page. */ }
 
 
 			<div className={ cssModObj.inner }>{ /* What: Not Found Inner Div Element. Why: The number, the drawing, the text, and the button read as one centered block. How: This stacks them. */ }

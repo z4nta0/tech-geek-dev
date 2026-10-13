@@ -1,66 +1,172 @@
-.wrap {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--ivory);
-  padding: var(--sp-7);
+
+
+
+/**
+ * not-found.module.css = Not Found Module
+ *
+ * @summary
+ * Styles for NotFouCom: a full-screen ivory panel that fades up into view
+ * like every page, centering a huge pale 404 with a hexagon drawing slowly
+ * turning behind it, the heading and line above the drawing, and an orange
+ * Go Home button. The page's entrance and the drawing's turn play the shared
+ * fadeUp and rotateSlow keyframes from the global sheet. Everything that
+ * moves holds still under reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region wrap */
+
+.wrap { /* What: Not Found Wrap. Why: The 404 content fills the screen and fades in like every page. How: This centers its content on a full-height ivory panel and plays the shared page entrance. */
+
+
+	align-items     : center;
+	animation       : global( fadeUp ) 400ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+	background      : var( --ivory );                                /* Ivory = #F5F0E8 */
+	display         : flex;
+	justify-content : center;
+	min-height      : 100vh;
+	padding         : var( --sp-7 );                                 /* Spacing 7 = 48px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Not Found Wrap. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.wrap { /* What: Motionless Not Found Wrap. Why: The page should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
 }
 
-.inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--sp-5);
-  text-align: center;
-  position: relative;
+
+/* #region inner */
+
+.inner { /* What: Not Found Inner. Why: The number, drawing, text, and button read as one centered block. How: This stacks and centers them, positioning the drawing against the block. */
+
+
+	align-items    : center;
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-5 ); /* Spacing 5 = 24px */
+	position       : relative;
+	text-align     : center;
+
+
 }
 
-.code {
-  font-family: var(--font-display);
-  font-size: clamp(6rem, 20vw, 12rem);
-  font-weight: 800;
-  color: var(--ivory-dark);
-  letter-spacing: -0.06em;
-  line-height: 1;
-  user-select: none;
+.code { /* What: Error Code. Why: A huge pale 404 says what happened at a glance without shouting. How: This sets it in the display font, scaling with the screen, in the pale ivory, and keeps it from being selected. */
+
+
+	color          : var( --ivory-dark );   /* Ivory Dark = #D8CFBE */
+	font-family    : var( --font-display ); /* Font Display = 'Syne', sans-serif */
+	font-size      : clamp( 6rem, 20vw, 12rem );
+	font-weight    : 800;
+	letter-spacing : -0.06em;
+	line-height    : 1;
+	user-select    : none;
+
+
 }
 
-.geo {
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: rotateSlow 20s linear infinite;
-  pointer-events: none;
+.geo { /* What: Hexagon Drawing. Why: Nested hexagons turn slowly behind the number, echoing the site's mark. How: This centers the 200px drawing over the block through translate, which combines with the turning transform, and plays the shared slow rotation forever. */
+
+
+	animation      : global( rotateSlow ) 20s linear infinite;
+	height         : 200px;
+	left           : 50%;
+	pointer-events : none;
+	position       : absolute;
+	top            : 50%;
+	translate      : -50% -50%;
+	width          : 200px;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hexagon Drawing. Why: Someone who asked for less motion shouldn't see the drawing turn. How: This applies only when the reduced-motion preference is set. */
+
+
+	.geo { /* What: Motionless Hexagon Drawing. Why: The drawing should hold still. How: This turns the rotation off. */
+
+
+		animation : none;
+
+
+	}
+
+
 }
 
-.title {
-  font-size: 1.8rem;
-  color: var(--ink);
-  position: relative;
-  z-index: 1;
+.title { /* What: Not Found Title. Why: The heading sits above the turning drawing. How: This sets its size and color and lifts it over the drawing. */
+
+
+	color     : var( --ink ); /* Ink = #1A1A2E */
+	font-size : 1.8rem;
+	position  : relative;
+	z-index   : 1;
+
+
 }
 
-.desc {
-  color: var(--ink-mid);
-  max-width: 360px;
+.desc { /* What: Not Found Description. Why: The line explaining the missing page stays short. How: This sets it muted and caps it at 360px. */
+
+
+	color     : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	max-width : 360px;
+
+
 }
 
-.btn {
-  display: inline-flex;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.82rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  background: var(--orange);
-  color: var(--white);
-  padding: 12px var(--sp-6);
-  border-radius: var(--radius-sm);
-  transition: background var(--duration-fast), transform var(--duration-fast);
+.btn { /* What: Go Home Button. Why: The way back into the site stands out. How: This sets an orange button in mono capitals, easing its color and lift. */
+
+
+	align-items    : center;
+	background     : var( --orange );                                                     /* Orange = #F26419 */
+	border-radius  : var( --radius-sm );                                                  /* Radius Small = 3px */
+	color          : var( --white );                                                      /* White = #FFFFFF */
+	display        : inline-flex;
+	font-family    : var( --font-mono );                                                  /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.82rem;
+	font-weight    : 500;
+	letter-spacing : 0.06em;
+	padding        : 12px var( --sp-6 );                                                  /* Spacing 6 = 32px */
+	text-transform : uppercase;
+	transition     : background var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
+
+
 }
-.btn:hover { background: var(--orange-dark); transform: translateY(-1px); }
+.btn:hover { /* What: Hovered Go Home Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
+
+
+	background : var( --orange-dark ); /* Orange Dark = #D4530E */
+	transform  : translateY( -1px );
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Go Home Button. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.btn { /* What: Motionless Go Home Button. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion inner */
+
+/* #endregion wrap */
+
+
