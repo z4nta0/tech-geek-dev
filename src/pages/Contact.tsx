@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import { GeoBg } from '../components/GeoBg'
-//import emailjs from '@emailjs/browser'
 import styles from './Contact.module.css'
-//import { EMAILJS_CONFIG } from '../lib/emailjs'
 
 export const Contact: React.FC = () => {
   const [form, setForm] = useState({ name: '', email: '', budget: '', message: '' })
@@ -31,19 +29,7 @@ export const Contact: React.FC = () => {
                     message:    form.message,
                     to_email:   'contact@techgeek.dev',
             })
-        });/*
-      await emailjs.send(
-        EMAILJS_CONFIG.SERVICE_ID,
-        EMAILJS_CONFIG.CONTACT_TEMPLATE_ID,
-        {
-          from_name:  form.name,
-          from_email: form.email,
-          subject:    'Portfolio Contact',
-          budget:     form.budget || 'Not specified',
-          message:    form.message,
-          to_email:   'contact@techgeek.dev',
-        },
-      )*/
+        });
       setSent(true)
     } catch (err) {
       console.error('EmailJS error:', err)
