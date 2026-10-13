@@ -64,6 +64,11 @@ Decided 2026-10-12 by the user, in the step 7 content review.
   Development, Backend Development, and Hosting & Maintenance, the fourth
   added after the greeting cards service was cut, so the four-column grid
   keeps even rows and the section covers a site from build to upkeep.
+- **Closing banner** (decided 2026-10-13): Home's "Let's Work Together"
+  banner is a rounded orange card on the ivory, with ink text and an ink
+  button, so it reads apart from the dark footer below it. Focus rings
+  inside it draw in ink, since the dark orange ring would vanish against the
+  card.
 
 ## Card Grids exception
 Decided 2026-10-13 by the user, for this project only. Work's project grid

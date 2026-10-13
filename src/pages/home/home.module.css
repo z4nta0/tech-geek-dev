@@ -1197,11 +1197,10 @@
 
 /* #region homCtaSec */
 
-.homCtaSec { /* What: Home Call-To-Action Section. Why: The page ends on a dark band inviting a visitor to start. How: This sets the ink background and pads the band. */
+.homCtaSec { /* What: Home Call-To-Action Section. Why: The page ends on an invitation that has to read apart from the dark footer below it. How: This leaves the page's ivory showing around the banner's card and pads the section. */
 
 
-	background : var( --bac-inv-col );   /* Background Inverse Color = #1A1A2E */
-	padding    : var( --spa-ver-p07 ) 0; /* Spacing Vertical Base Plus 7 ~= 104.323px */
+	padding : var( --spa-ver-p06 ) 0; /* Spacing Vertical Base Plus 6 ~= 78.751px */
 
 
 }
@@ -1209,17 +1208,21 @@
 
 /* #region ctaInnDiv */
 
-.ctaInnDiv { /* What: Call-To-Action Inner Div. Why: The banner sits in the page's centered column. How: This caps and centers the column with its side padding and spreads the text and the button to either end. */
+.ctaInnDiv { /* What: Call-To-Action Inner Div. Why: The banner is a bold orange card, set apart from the footer by color and by the ivory around it. How: This draws a rounded orange card as wide as the page's content, padded inside, and spreads the text and the button to either end. */
 
+
+	--foc-rin-col : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */ /* What: Focus Ring Color. Why: The site's dark orange ring would vanish against the orange card. How: This draws focus rings inside the card in ink, 5.4:1 against the orange. */
 
 	align-items     : center;
+	background      : var( --acc-mai-col );                                                                           /* Accent Main Color = #F26419 */
+	border-radius   : var( --rad-bor-xla );                                                                           /* Radius Border Extra Large ~= 19.304px */
 	display         : flex;
-	gap             : var( --spa-hor-p04 );   /* Spacing Horizontal Base Plus 4 ~= 44.876px */
+	gap             : var( --spa-hor-p04 );                                                                           /* Spacing Horizontal Base Plus 4 ~= 44.876px */
 	justify-content : space-between;
 	margin          : 0 auto;
-	max-width       : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
-	padding         : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
-	width           : 100%;
+	max-width       : calc( var( --con-max-wid ) - var( --gut-sid-pad ) * 2 );                                        /* Container Maximum Width ~= 1,449.365px, Gutter Side Padding, about 19.304px - 44.876px */ /* What: Content Width. Why: The card's edges line up with the content of the page's other columns. How: This takes the cap less the gutter on both sides. */
+	padding         : var( --spa-ver-p06 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-016 ), var( --spa-hor-p06 ) ); /* Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 16 ~= 87.085px @ 1,920px width, Spacing Horizontal Base Plus 6 ~= 78.751px */
+	width           : calc( 100% - var( --gut-sid-pad ) * 2 );                                                        /* Gutter Side Padding, about 19.304px - 44.876px */ /* What: Gutter Inset. Why: The card keeps the page's side margins. How: This takes the full width less the gutter on both sides. */
 
 
 }
@@ -1238,10 +1241,10 @@
 
 }
 
-.ctaLabSpa { /* What: Call-To-Action Label Span. Why: A question leads into the invitation. How: This sets it on its own line in blue mono capitals, above the heading. */
+.ctaLabSpa { /* What: Call-To-Action Label Span. Why: A question leads into the invitation. How: This sets it on its own line in ink mono capitals, above the heading. */
 
 
-	color          : var( --acc-sec-col );                   /* Accent Secondary Color = #7DB9D8 */
+	color          : var( --tex-mai-col );                   /* Text Main Color = #1A1A2E */
 	display        : block;
 	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
@@ -1252,10 +1255,10 @@
 
 }
 
-.ctaTitHea { /* What: Call-To-Action Title Heading. Why: The invitation reads light on the dark band. How: This sets it ivory, scaling with the screen. */
+.ctaTitHea { /* What: Call-To-Action Title Heading. Why: The invitation reads dark on the orange card. How: This sets it in ink, scaling with the screen. */
 
 
-	color     : var( --bac-pag-col );                                       /* Background Page Color = #F5F0E8 */
+	color     : var( --tex-mai-col );                                       /* Text Main Color = #1A1A2E */
 	font-size : clamp( var( --fon-siz-p03 ), 3.5vw, var( --fon-siz-p05 ) ); /* Font Size Base Plus 3 ~= 25.572px, Font Size Base Plus 5 ~= 44.876px */
 
 
@@ -1275,12 +1278,12 @@
 
 }
 
-.ctaStaAnc { /* What: Call-To-Action Start Anchor. Why: The banner's one action stands out. How: This sets an orange button in mono capitals, easing its color and lift. */
+.ctaStaAnc { /* What: Call-To-Action Start Anchor. Why: The banner's one action stands out. How: This sets an ink button in mono capitals on the orange card, easing its color and lift. */
 
 
-	background     : var( --acc-mai-col );                                            /* Accent Main Color = #F26419 */
+	background     : var( --bac-inv-col );                                            /* Background Inverse Color = #1A1A2E */
 	border-radius  : var( --rad-bor-xsm );                                            /* Radius Border Extra Small ~= 3.571px */
-	color          : var( --tex-acc-col );                                            /* Text Accent Color = #1A1A2E */
+	color          : var( --bac-pag-col );                                            /* Background Page Color = #F5F0E8 */
 	font-family    : var( --fon-fam-sec );                                            /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : var( --fon-siz-p01 );                                            /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight    : 500;
@@ -1291,11 +1294,11 @@
 
 
 }
-.ctaStaAnc:hover { /* What: Hovered Call-To-Action Start Anchor. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 2px. */
+.ctaStaAnc:hover { /* What: Hovered Call-To-Action Start Anchor. Why: A button should respond to the pointer. How: This lightens its ink a step and lifts it 2px. */
 
 
-	background : var( --acc-hov-col );                            /* Accent Hover Color ~= #e45700 */
-	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= 2.035px */
+	background : oklch( from var( --bac-inv-col ) calc( l + 0.08 ) c h ); /* Background Inverse Color = #1A1A2E, lightened to about #2d2d43 */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) );         /* Spacing Vertical Base Minus 7 ~= 2.035px */
 
 
 }
