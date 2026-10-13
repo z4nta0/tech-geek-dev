@@ -1,44 +1,102 @@
-.wrap {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-3);
-  max-width: 640px;
+
+
+
+/**
+ * section-header.module.css = Section Header Module
+ *
+ * @summary
+ * Styles for SecHeaCom: a capped column stacking a small orange label led by
+ * a short rule, the section's heading, and a muted subtitle. The centered
+ * variant centers the whole block and drops the label's rule, which would
+ * otherwise sit off to one side.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region wrap */
+
+.wrap { /* What: Section Header Wrap. Why: The label, heading, and subtitle read as one block no wider than a comfortable line. How: This stacks them with gaps, capped at 640px. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-3 ); /* Spacing 3 = 12px */
+	max-width      : 640px;
+
+
+}
+.center { /* What: Centered Section Header. Why: Some sections center their heading. How: This centers the block and its text within the section. */
+
+
+	align-items : center;
+	margin      : 0 auto;
+	text-align  : center;
+
+
 }
 
-.center {
-  align-items: center;
-  text-align: center;
-  margin: 0 auto;
+
+/* #region label */
+
+.label { /* What: Section Label. Why: A small label names the section before its heading. How: This sets it in the orange mono capitals, spaced out, after its rule. */
+
+
+	align-items    : center;
+	color          : var( --orange );    /* Orange = #F26419 */
+	display        : inline-flex;
+	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.72rem;
+	gap            : var( --sp-3 );      /* Spacing 3 = 12px */
+	letter-spacing : 0.12em;
+	text-transform : uppercase;
+
+
 }
 
-.label {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-3);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--orange);
+.line { /* What: Label Line. Why: A short rule leads into the label. How: This draws a 28px orange stroke that never shrinks. */
+
+
+	background  : var( --orange ); /* Orange = #F26419 */
+	display     : inline-block;
+	flex-shrink : 0;
+	height      : 1.5px;
+	width       : 28px;
+
+
+}
+.center .line { /* What: Centered Label Line. Why: In a centered header the rule would sit lopsided to one side. How: This hides it. */
+
+
+	display : none;
+
+
 }
 
-.line {
-  display: inline-block;
-  width: 28px;
-  height: 1.5px;
-  background: var(--orange);
-  flex-shrink: 0;
+/* #endregion label */
+
+
+.title { /* What: Section Title. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
+
+
+	color : var( --ink ); /* Ink = #1A1A2E */
+
+
 }
 
-.center .line { display: none; }
+.subtitle { /* What: Section Subtitle. Why: The subtitle expands on the heading more quietly. How: This sets it muted, a little larger than body text, and capped at 540px. */
 
-.title {
-  color: var(--ink);
+
+	color       : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	font-size   : 1.05rem;
+	line-height : 1.7;
+	max-width   : 540px;
+
+
 }
 
-.subtitle {
-  color: var(--ink-mid);
-  font-size: 1.05rem;
-  line-height: 1.7;
-  max-width: 540px;
-}
+/* #endregion wrap */
+
+
