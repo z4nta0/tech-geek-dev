@@ -78,8 +78,8 @@
 	gap         : var( --spa-hor-p03 );   /* Spacing Horizontal Base Plus 3 ~= 33.876px */
 	height      : 100%;
 	margin      : 0 auto;
-	max-width   : var( --max-width );     /* Maximum Width = 1200px */
-	padding     : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width   : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	padding     : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	width       : 100%;
 
 
@@ -371,7 +371,7 @@
 	gap            : var( --spa-ver-m02 );                            /* Spacing Vertical Base Minus 2 ~= 8.304px */
 	left           : 0;
 	opacity        : 0;
-	padding        : var( --spa-ver-p02 ) var( --spa-hor-p03 );       /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	padding        : var( --spa-ver-p02 ) var( --gut-sid-pad );       /* Spacing Vertical Base Plus 2 ~= 25.572px, Gutter Side Padding, about 19.304px - 44.876px */
 	pointer-events : none;
 	position       : fixed;
 	right          : 0;

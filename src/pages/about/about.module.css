@@ -63,16 +63,16 @@
 
 /* #region herGriDiv */
 
-.herGriDiv { /* What: Hero Grid Div. Why: The introduction and the portrait sit side by side in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and lays out the text beside a 420px portrait column. */
+.herGriDiv { /* What: Hero Grid Div. Why: The introduction and the portrait sit side by side in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and lays out the text beside a portrait column that grows with the screen, about 243px to 426px, with a gap that grows the same way. */
 
 
 	align-items           : center;
 	display               : grid;
-	gap                   : var( --spa-ver-p08 ) var( --spa-hor-p08 ); /* Spacing Vertical Base Plus 8 ~= 138.199px, Spacing Horizontal Base Plus 8 ~= 138.199px */
-	grid-template-columns : 1fr 420px;
+	gap                   : var( --spa-ver-p08 ) clamp( var( --spa-hor-p05 ), var( --hor-rhy-018 ), var( --spa-hor-p08 ) );              /* Spacing Vertical Base Plus 8 ~= 138.199px, Spacing Horizontal Base Plus 5 ~= 59.447px, Horizontal Rhythm 18 ~= 152.824px @ 1,920px width, Spacing Horizontal Base Plus 8 ~= 138.199px */
+	grid-template-columns : 1fr clamp( calc( var( --ver-rhy-p10 ) * 1rem ), var( --hor-rhy-022 ), calc( var( --ver-rhy-p12 ) * 1rem ) ); /* Vertical Rhythm Base Plus 10 ~= 242.522px, Horizontal Rhythm 22 ~= 470.635px @ 1,920px width, Vertical Rhythm Base Plus 12 ~= 425.592px */
 	margin                : 0 auto;
-	max-width             : var( --max-width );                        /* Maximum Width = 1200px */
-	padding               : 0 var( --spa-hor-p03 );                    /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width             : var( --con-max-wid );                                                                                        /* Container Maximum Width ~= 1,094.093px */
+	padding               : 0 var( --gut-sid-pad );                                                                                      /* Gutter Side Padding, about 19.304px - 44.876px */
 	position              : relative;
 	width                 : 100%;
 	z-index               : 1;
@@ -394,8 +394,8 @@
 
 
 	margin    : 0 auto;
-	max-width : var( --max-width );     /* Maximum Width = 1200px */
-	padding   : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	width     : 100%;
 
 
@@ -538,8 +538,8 @@
 	flex-direction : column;
 	gap            : var( --spa-ver-p05 );   /* Spacing Vertical Base Plus 5 ~= 59.447px */
 	margin         : 0 auto;
-	max-width      : var( --max-width );     /* Maximum Width = 1200px */
-	padding        : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position       : relative;
 	width          : 100%;
 	z-index        : 1;
@@ -563,22 +563,22 @@
 
 /* #region timIteDiv */
 
-.timIteDiv { /* What: Timeline Item Div. Why: Each milestone sets its year, its connector, and its text in columns. How: This lays out an 80px year column, a 40px connector, and the text. */
+.timIteDiv { /* What: Timeline Item Div. Why: Each milestone sets its year, its connector, and its text in columns. How: This lays out a 79px year column, a 34px connector, and the text. */
 
 
 	display               : grid;
-	gap                   : 0 var( --spa-hor-p02 ); /* Spacing Horizontal Base Plus 2 ~= 25.572px */
-	grid-template-columns : 80px 40px 1fr;
+	gap                   : 0 var( --spa-hor-p02 );                                                      /* Spacing Horizontal Base Plus 2 ~= 25.572px */
+	grid-template-columns : calc( var( --ver-rhy-p06 ) * 1rem ) calc( var( --ver-rhy-p03 ) * 1rem ) 1fr; /* Vertical Rhythm Base Plus 6 ~= 78.751px, Vertical Rhythm Base Plus 3 ~= 33.876px */
 
 
 }
 @media ( max-width : 640px ) { /* What: Phone Timeline Item Div. Why: The year and connector columns crowd a phone. How: This applies at 640px and below. */
 
 
-	.timIteDiv { /* What: Narrow Timeline Item Div. Why: The text needs more of a phone's width. How: This narrows the year and connector columns. */
+	.timIteDiv { /* What: Narrow Timeline Item Div. Why: The text needs more of a phone's width. How: This narrows the year column. */
 
 
-		grid-template-columns : 60px 32px 1fr;
+		grid-template-columns : calc( var( --ver-rhy-p05 ) * 1rem ) calc( var( --ver-rhy-p03 ) * 1rem ) 1fr; /* Vertical Rhythm Base Plus 5 ~= 59.447px, Vertical Rhythm Base Plus 3 ~= 33.876px */
 
 
 	}
@@ -732,8 +732,8 @@
 
 
 	margin    : 0 auto;
-	max-width : var( --max-width );     /* Maximum Width = 1200px */
-	padding   : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	width     : 100%;
 
 

@@ -29,7 +29,7 @@
 	display         : flex;
 	justify-content : center;
 	min-height      : 100vh;
-	padding         : var( --spa-ver-p04 ) var( --spa-hor-p04 );                                   /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 4 ~= 44.876px */
+	padding         : var( --spa-ver-p04 ) var( --gut-sid-pad );                                   /* Spacing Vertical Base Plus 4 ~= 44.876px, Gutter Side Padding, about 19.304px - 44.876px */
 
 
 }

@@ -90,12 +90,12 @@
 
 
 	animation  : global( shapeLoopSpin ) var( --dur-ani-p19 ) linear infinite; /* Duration Animation Base Plus 19 ~= 33,004.0ms */
-	background : var( --acc-sec-col );                                      /* Accent Secondary Color = #7DB9D8 */
+	background : var( --acc-sec-col );                                         /* Accent Secondary Color = #7DB9D8 */
 	clip-path  : polygon( 50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25% );
-	height     : calc( var( --ver-rhy-p11 ) * 1rem );                       /* Vertical Rhythm Base Plus 11 ~= 321.273px */
-	right      : calc( var( --spa-hor-p06 ) * -1 );                         /* Spacing Horizontal Base Plus 6 ~= 78.751px */
+	height     : calc( var( --ver-rhy-p11 ) * 1rem );                          /* Vertical Rhythm Base Plus 11 ~= 321.273px */
+	right      : calc( var( --spa-hor-p06 ) * -1 );                            /* Spacing Horizontal Base Plus 6 ~= 78.751px */
 	top        : 10%;
-	width      : calc( var( --ver-rhy-p11 ) * 1rem );                       /* Vertical Rhythm Base Plus 11 ~= 321.273px */
+	width      : calc( var( --ver-rhy-p11 ) * 1rem );                          /* Vertical Rhythm Base Plus 11 ~= 321.273px */
 
 
 }
@@ -104,13 +104,13 @@
 
 	animation     : global( shapeLoopSpin ) var( --dur-ani-p18 ) linear infinite reverse; /* Duration Animation Base Plus 18 ~= 24,914.0ms */
 	background    : transparent;
-	border        : var( --bor-wid-xla ) solid var( --acc-mai-col );                   /* Border Width Extra Large ~= 3.571px, Accent Main Color = #F26419 */
+	border        : var( --bor-wid-xla ) solid var( --acc-mai-col );                      /* Border Width Extra Large ~= 3.571px, Accent Main Color = #F26419 */
 	border-radius : 50%;
 	bottom        : 10%;
-	height        : calc( var( --ver-rhy-p09 ) * 1rem );                               /* Vertical Rhythm Base Plus 9 ~= 183.074px */
+	height        : calc( var( --ver-rhy-p09 ) * 1rem );                                  /* Vertical Rhythm Base Plus 9 ~= 183.074px */
 	left          : 5%;
-	opacity       : var( --cdn-pow-007-rec );                                          /* Core-Design-Number to the Power of 7 Reciprocal ~= 0.140 */
-	width         : calc( var( --ver-rhy-p09 ) * 1rem );                               /* Vertical Rhythm Base Plus 9 ~= 183.074px */
+	opacity       : var( --cdn-pow-007-rec );                                             /* Core-Design-Number to the Power of 7 Reciprocal ~= 0.140 */
+	width         : calc( var( --ver-rhy-p09 ) * 1rem );                                  /* Vertical Rhythm Base Plus 9 ~= 183.074px */
 
 
 }
@@ -119,13 +119,13 @@
 
 	animation  : global( shapeLoopSpin ) var( --dur-ani-p17 ) linear infinite; /* Duration Animation Base Plus 17 ~= 18,807.0ms */
 	background : transparent;
-	border     : var( --bor-wid-lar ) solid var( --acs-str-col );           /* Border Width Large ~= 2.035px, Accent-Secondary Strong Color = #4A91B8 */
-	height     : calc( var( --ver-rhy-p07 ) * 1rem );                       /* Vertical Rhythm Base Plus 7 ~= 104.323px */
+	border     : var( --bor-wid-lar ) solid var( --acs-str-col );              /* Border Width Large ~= 2.035px, Accent-Secondary Strong Color = #4A91B8 */
+	height     : calc( var( --ver-rhy-p07 ) * 1rem );                          /* Vertical Rhythm Base Plus 7 ~= 104.323px */
 	left       : 45%;
 	opacity    : 0.12;
 	rotate     : 45deg;
 	top        : 15%;
-	width      : calc( var( --ver-rhy-p07 ) * 1rem );                       /* Vertical Rhythm Base Plus 7 ~= 104.323px */
+	width      : calc( var( --ver-rhy-p07 ) * 1rem );                          /* Vertical Rhythm Base Plus 7 ~= 104.323px */
 
 
 }
@@ -155,28 +155,14 @@
 
 	align-items           : center;
 	display               : grid;
-	gap                   : var( --spa-ver-p08 ) var( --spa-hor-p08 ); /* Spacing Vertical Base Plus 8 ~= 138.199px, Spacing Horizontal Base Plus 8 ~= 138.199px */
+	gap                   : var( --spa-ver-p08 ) clamp( var( --spa-hor-p05 ), var( --hor-rhy-018 ), var( --spa-hor-p08 ) ); /* Spacing Vertical Base Plus 8 ~= 138.199px, Spacing Horizontal Base Plus 5 ~= 59.447px, Horizontal Rhythm 18 ~= 152.824px @ 1,920px width, Spacing Horizontal Base Plus 8 ~= 138.199px */
 	grid-template-columns : 3fr 1fr;
 	margin                : 0 auto;
-	max-width             : var( --max-width );                        /* Maximum Width = 1200px */
-	padding               : 0 var( --spa-hor-p03 );                    /* Spacing Horizontal Base Plus 3 ~= 33.876px */ /* What: Container Padding. Why: The global container rule loaded after this module, so its padding always zeroed the 96px top and 128px bottom padding this rule once asked for. How: This keeps the padding that has always applied. */
+	max-width             : var( --con-max-wid );                                                                           /* Container Maximum Width ~= 1,094.093px */
+	padding               : 0 var( --gut-sid-pad );                                                                         /* Gutter Side Padding, about 19.304px - 44.876px */ /* What: Container Padding. Why: The global container rule loaded after this module, so its padding always zeroed the 96px top and 128px bottom padding this rule once asked for. How: This keeps the padding that has always applied. */
 	position              : relative;
 	width                 : 100%;
 	z-index               : 1;
-
-
-}
-@media ( max-width : 1024px ) { /* What: Tablet Hero Inner Div. Why: The hero's columns need a smaller gap on a tablet. How: This applies at 1024px and below. */
-
-
-	.herInnDiv { /* What: Tighter Hero Inner Div. Why: The gap would crowd the pitch on a tablet. How: This halves the gap, keeping the two columns. */
-
-
-		gap                   : var( --spa-ver-p05 ); /* Spacing Vertical Base Plus 5 ~= 59.447px */
-		grid-template-columns : 3fr 1fr;
-
-
-	}
 
 
 }
@@ -186,7 +172,7 @@
 	.herInnDiv { /* What: One Column Hero Inner Div. Why: The pitch takes the full width on a phone. How: This sets one column. */
 
 
-		gap                   : var( --spa-hor-p05 ); /* Spacing Horizontal Base Plus 5 ~= 59.447px */
+		gap                   : var( --spa-ver-p05 ); /* Spacing Vertical Base Plus 5 ~= 59.447px */
 		grid-template-columns : 1fr;
 
 
@@ -204,7 +190,7 @@
 	animation      : global( contentEnterFadeUp ) var( --dur-ani-p05 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --spa-ver-p02 );                                            /* Spacing Vertical Base Plus 2 ~= 25.572px */
+	gap            : var( --spa-ver-p02 );                                                        /* Spacing Vertical Base Plus 2 ~= 25.572px */
 	min-width      : 0;
 
 
@@ -250,11 +236,11 @@
 
 
 	animation     : global( statusLoopPulse ) var( --dur-ani-p10 ) var( --mot-sta-eas ) infinite; /* Duration Animation Base Plus 10 ~= 2,627.0ms, Motion Standard Easing = ease */
-	background    : var( --suc-mai-col );                                               /* Success Main Color = #22c55e */
+	background    : var( --suc-mai-col );                                                         /* Success Main Color = #22c55e */
 	border-radius : 50%;
 	flex-shrink   : 0;
-	height        : calc( var( --ver-rhy-m02 ) * 1rem );                                /* Vertical Rhythm Base Minus 2 ~= 8.304px */
-	width         : calc( var( --ver-rhy-m02 ) * 1rem );                                /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+	height        : calc( var( --ver-rhy-m02 ) * 1rem );                                          /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+	width         : calc( var( --ver-rhy-m02 ) * 1rem );                                          /* Vertical Rhythm Base Minus 2 ~= 8.304px */
 
 
 }
@@ -459,7 +445,7 @@
 
 	animation : ticInnDivLoopScroll var( --dur-ani-p22 ) linear infinite; /* Duration Animation Base Plus 22 ~= 76,725.0ms */
 	display   : flex;
-	gap       : var( --spa-hor-m01 );                              /* Spacing Horizontal Base Minus 1 = 11px */
+	gap       : var( --spa-hor-m01 );                                     /* Spacing Horizontal Base Minus 1 = 11px */
 
 
 }
@@ -699,15 +685,15 @@
 
 	align-items   : center;
 	animation     : global( contentEnterFadeUp ) var( --dur-ani-p06 ) var( --dur-ani-p02 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 6 ~= 853.0ms, Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
-	background    : var( --bac-sur-col );                                                                 /* Background Surface Color = #FFFFFF */
-	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );                                      /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
-	border-radius : var( --rad-bor-med );                                                                 /* Radius Border Medium = 11px */
-	bottom        : calc( var( --spa-ver-p03 ) * -1 );                                                    /* Spacing Vertical Base Plus 3 ~= 33.876px */
-	box-shadow    : var( --ele-med-sha );                                                                 /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
+	background    : var( --bac-sur-col );                                                                             /* Background Surface Color = #FFFFFF */
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );                                                  /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius : var( --rad-bor-med );                                                                             /* Radius Border Medium = 11px */
+	bottom        : calc( var( --spa-ver-p03 ) * -1 );                                                                /* Spacing Vertical Base Plus 3 ~= 33.876px */
+	box-shadow    : var( --ele-med-sha );                                                                             /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
 	display       : flex;
-	gap           : var( --spa-hor-m01 );                                                                 /* Spacing Horizontal Base Minus 1 = 11px */
-	left          : calc( var( --spa-hor-p02 ) * -1 );                                                    /* Spacing Horizontal Base Plus 2 ~= 25.572px */
-	padding       : var( --spa-ver-bas ) var( --spa-hor-p02 );                                            /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	gap           : var( --spa-hor-m01 );                                                                             /* Spacing Horizontal Base Minus 1 = 11px */
+	left          : calc( var( --spa-hor-p02 ) * -1 );                                                                /* Spacing Horizontal Base Plus 2 ~= 25.572px */
+	padding       : var( --spa-ver-bas ) var( --spa-hor-p02 );                                                        /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	position      : absolute;
 
 
@@ -793,8 +779,8 @@
 
 
 	margin    : 0 auto;
-	max-width : var( --max-width );     /* Maximum Width = 1200px */
-	padding   : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	width     : 100%;
 
 
@@ -943,8 +929,8 @@
 
 
 	margin    : 0 auto;
-	max-width : var( --max-width );     /* Maximum Width = 1200px */
-	padding   : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	width     : 100%;
 
 
@@ -1085,8 +1071,8 @@
 	flex-direction : column;
 	gap            : var( --spa-ver-p07 );   /* Spacing Vertical Base Plus 7 ~= 104.323px */
 	margin         : 0 auto;
-	max-width      : var( --max-width );     /* Maximum Width = 1200px */
-	padding        : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position       : relative;
 	width          : 100%;
 	z-index        : 1;
@@ -1240,8 +1226,8 @@
 	gap             : var( --spa-hor-p04 );   /* Spacing Horizontal Base Plus 4 ~= 44.876px */
 	justify-content : space-between;
 	margin          : 0 auto;
-	max-width       : var( --max-width );     /* Maximum Width = 1200px */
-	padding         : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+	max-width       : var( --con-max-wid );   /* Container Maximum Width ~= 1,094.093px */
+	padding         : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	width           : 100%;
 
 

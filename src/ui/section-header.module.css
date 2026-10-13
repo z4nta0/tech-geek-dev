@@ -18,13 +18,13 @@
 
 /* #region secHeaDiv */
 
-.secHeaDiv { /* What: Section Header Div. Why: The label, heading, and subtitle read as one block no wider than a comfortable line. How: This stacks them with gaps, capped at 640px. */
+.secHeaDiv { /* What: Section Header Div. Why: The label, heading, and subtitle read as one block no wider than a comfortable line. How: This stacks them with gaps, capped at the subtitle's own line length, so the heading never runs wider than the text under it. */
 
 
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --spa-ver-m01 ); /* Spacing Vertical Base Minus 1 = 11px */
-	max-width      : 640px;
+	gap            : var( --spa-ver-m01 );                                /* Spacing Vertical Base Minus 1 = 11px */
+	max-width      : calc( var( --cdn-pow-012 ) * var( --fon-siz-p02 ) ); /* Core-Design-Number to the Power of 12 ~= 29.207, Font Size Base Plus 2 ~= 19.304px */ /* What: Subtitle Measure. Why: A container holding reading text takes its width from that text. How: This is the paragraph measure, 29.207em, at the subtitle's own size, about 564px, written out since an em here would read the header's own font size. */
 
 
 }
