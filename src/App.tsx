@@ -1,5 +1,5 @@
 import React from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router'
 import { Nav } from './components/Nav.tsx'
 import { Footer } from './components/Footer.tsx'
 import { Home } from './pages/Home.tsx'

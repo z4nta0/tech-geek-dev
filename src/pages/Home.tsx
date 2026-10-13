@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
 import { GeoBg } from '../components/GeoBg'
 import { SectionHeader } from '../components/SectionHeader'
 import { ProjectCard } from '../components/ProjectCard'
