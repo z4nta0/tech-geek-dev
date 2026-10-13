@@ -79,6 +79,8 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 
 
 				<img
+					className={ cssModObj.image }
+
 					loading='lazy'
 					src={ proRecObj.imaStr }
 

@@ -1,141 +1,304 @@
-.card {
-  position: relative;
-  background: var(--white);
-  border: 1px solid var(--ivory-dark);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  transition: transform var(--duration-base) var(--ease-out),
-              box-shadow var(--duration-base) var(--ease-out);
+
+
+
+/**
+ * project-card.module.css = Project Card Module
+ *
+ * @summary
+ * Styles for ProCarCom: a white card that lifts on hover, with a 16:9
+ * screenshot that zooms slightly, a dark overlay that fades in over it
+ * holding the Live Site and GitHub buttons, a year badge in its corner, then
+ * the title, a description clamped to three lines, and the tags, finished
+ * with an orange corner accent. A featured card takes a blue border.
+ * Everything that moves holds still under reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region card */
+
+.card { /* What: Project Card. Why: Each project is one self-contained card. How: This sets the white card with its border and rounded corners, clipping what spills, and eases its lift and shadow. */
+
+
+	background    : var( --white );                                                                                          /* White = #FFFFFF */
+	border        : 1px solid var( --ivory-dark );                                                                           /* Ivory Dark = #D8CFBE */
+	border-radius : var( --radius-lg );                                                                                      /* Radius Large = 12px */
+	overflow      : hidden;
+	position      : relative;
+	transition    : transform var( --duration-base ) var( --ease-out ), box-shadow var( --duration-base ) var( --ease-out ); /* Duration Base = 280ms, Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+
+
+}
+.card:hover { /* What: Hovered Project Card. Why: A card should respond to the pointer. How: This lifts it 4px and casts the large shadow. */
+
+
+	box-shadow : var( --shadow-lg ); /* Shadow Large = 0 12px 40px rgba( 26, 26, 46, 0.14 ) */
+	transform  : translateY( -4px );
+
+
+}
+.featured { /* What: Featured Project Card. Why: Featured projects stand apart from the rest. How: This turns the card's border blue. */
+
+
+	border-color : var( --blue ); /* Blue = #7DB9D8 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Project Card. Why: Someone who asked for less motion shouldn't see the card glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.card { /* What: Motionless Project Card. Why: The lift and shadow should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+
+/* #region imageWrap */
+
+.imageWrap { /* What: Image Wrap. Why: The screenshot fills a fixed 16:9 frame. How: This sets the frame's ratio and clips the image as it zooms, positioning the overlay and badge over it. */
+
+
+	aspect-ratio : 16 / 9;
+	overflow     : hidden;
+	position     : relative;
+
+
 }
 
-.card:hover .overlay {
-  opacity: 1;
+.image { /* What: Project Screenshot Image. Why: The screenshot fills its frame without stretching. How: This sizes it to the frame, crops it to cover, and eases its zoom. */
+
+
+	height     : 100%;
+	object-fit : cover;
+	transition : transform var( --duration-slow ) var( --ease-out ); /* Duration Slow = 500ms, Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+	width      : 100%;
+
+
+}
+.card:hover .image { /* What: Hovered Card Screenshot. Why: The screenshot leans in as the card lifts. How: This zooms it 4%. */
+
+
+	transform : scale( 1.04 );
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Screenshot. Why: Someone who asked for less motion shouldn't see the screenshot zoom. How: This applies only when the reduced-motion preference is set. */
+
+
+	.image { /* What: Motionless Screenshot. Why: The zoom should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-/* ── Image ── */
-.imageWrap {
-  position: relative;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
+
+/* #region overlay */
+
+.overlay { /* What: Image Overlay. Why: The project's links appear over the screenshot on hover. How: This covers the frame in a blurred dark wash, centers the links, and starts hidden, easing in. */
+
+
+	align-items     : center;
+	backdrop-filter : blur( 4px );
+	background      : rgba( 26, 26, 46, 0.72 );
+	display         : flex;
+	inset           : 0;
+	justify-content : center;
+	opacity         : 0;
+	position        : absolute;
+	transition      : opacity var( --duration-base ) var( --ease-out ); /* Duration Base = 280ms, Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+
+
+}
+.card:hover .overlay { /* What: Hovered Card Overlay. Why: Hovering the card reveals its links. How: This fades the overlay in. */
+
+
+	opacity : 1;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Overlay. Why: Someone who asked for less motion shouldn't see the overlay fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.overlay { /* What: Motionless Overlay. Why: The overlay should simply appear. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-.imageWrap img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform var(--duration-slow) var(--ease-out);
+
+/* #region overlayLinks */
+
+.overlayLinks { /* What: Overlay Links. Why: The two buttons sit together in the overlay. How: This lines them up in a row with a gap. */
+
+
+	display : flex;
+	gap     : var( --sp-3 ); /* Spacing 3 = 12px */
+
+
 }
 
-.card:hover .imageWrap img {
-  transform: scale(1.04);
+.btn { /* What: Overlay Button. Why: Each link in the overlay reads as a button. How: This sets the orange button with its icon and mono capitals, easing its color. */
+
+
+	align-items    : center;
+	background     : var( --orange );                   /* Orange = #F26419 */
+	border-radius  : var( --radius-sm );                /* Radius Small = 3px */
+	color          : var( --white );                    /* White = #FFFFFF */
+	display        : inline-flex;
+	font-family    : var( --font-mono );                /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.78rem;
+	font-weight    : 500;
+	gap            : var( --sp-2 );                     /* Spacing 2 = 8px */
+	letter-spacing : 0.04em;
+	padding        : 10px var( --sp-4 );                /* Spacing 4 = 16px */
+	text-transform : uppercase;
+	transition     : background var( --duration-fast ); /* Duration Fast = 150ms */
+
+
+}
+.btn:hover { /* What: Hovered Overlay Button. Why: A button should respond to the pointer. How: This darkens its orange. */
+
+
+	background : var( --orange-dark ); /* Orange Dark = #D4530E */
+
+
+}
+.btnGhost { /* What: Ghost Overlay Button. Why: The GitHub button sits back behind the Live Site one. How: This clears its fill and outlines it in translucent white. */
+
+
+	background : transparent;
+	border     : 1.5px solid rgba( 255, 255, 255, 0.5 );
+	color      : var( --white ); /* White = #FFFFFF */
+
+
+}
+.btnGhost:hover { /* What: Hovered Ghost Button. Why: The ghost button should respond to the pointer too. How: This gives it a faint white fill. */
+
+
+	background : rgba( 255, 255, 255, 0.12 );
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Overlay Button. Why: Someone who asked for less motion shouldn't see the buttons fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.btn { /* What: Motionless Overlay Button. Why: The hover color should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-/* ── Overlay ── */
-.overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(26, 26, 46, 0.72);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity var(--duration-base) var(--ease-out);
+/* #endregion overlayLinks */
+
+/* #endregion overlay */
+
+
+.yearBadge { /* What: Year Badge. Why: The year sits over the screenshot's corner. How: This sets a small blurred dark tag with white mono text in the top left. */
+
+
+	backdrop-filter : blur( 4px );
+	background      : rgba( 26, 26, 46, 0.65 );
+	border-radius   : var( --radius-sm ); /* Radius Small = 3px */
+	color           : var( --white );     /* White = #FFFFFF */
+	font-family     : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size       : 0.68rem;
+	left            : var( --sp-3 );      /* Spacing 3 = 12px */
+	letter-spacing  : 0.06em;
+	padding         : 3px 8px;
+	position        : absolute;
+	top             : var( --sp-3 );      /* Spacing 3 = 12px */
+
+
 }
 
-.overlayLinks {
-  display: flex;
-  gap: var(--sp-3);
+/* #endregion imageWrap */
+
+
+/* #region body */
+
+.body { /* What: Card Body. Why: The project's text sits below its screenshot. How: This pads it and stacks the title, description, and tags. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-3 ); /* Spacing 3 = 12px */
+	padding        : var( --sp-5 ); /* Spacing 5 = 24px */
+
+
 }
 
-/* ── Buttons ── */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 10px var(--sp-4);
-  border-radius: var(--radius-sm);
-  background: var(--orange);
-  color: var(--white);
-  transition: background var(--duration-fast);
+.title { /* What: Project Title. Why: The card names its project. How: This sets the title bold in the main text color. */
+
+
+	color       : var( --ink ); /* Ink = #1A1A2E */
+	font-size   : 1.1rem;
+	font-weight : 700;
+
+
 }
 
-.btn:hover { background: var(--orange-dark); }
+.desc { /* What: Project Description. Why: Every card's text should end at the same height. How: This sets the description muted and clamps it to three lines. */
 
-.btnGhost {
-  background: transparent;
-  border: 1.5px solid rgba(255,255,255,0.5);
-  color: var(--white);
+
+	-webkit-box-orient : vertical;
+	-webkit-line-clamp : 3;
+	color              : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	display            : -webkit-box;
+	font-size          : 0.88rem;
+	line-height        : 1.65;
+	overflow           : hidden;
+
+
 }
 
-.btnGhost:hover {
-  background: rgba(255,255,255,0.12);
+.tags { /* What: Project Tags. Why: The technologies read as one row of pills. How: This wraps them with small gaps under the description. */
+
+
+	display     : flex;
+	flex-wrap   : wrap;
+	gap         : var( --sp-1 ); /* Spacing 1 = 4px */
+	padding-top : var( --sp-1 ); /* Spacing 1 = 4px */
+
+
 }
 
-/* ── Year badge ── */
-.yearBadge {
-  position: absolute;
-  top: var(--sp-3);
-  left: var(--sp-3);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
-  color: var(--white);
-  background: rgba(26, 26, 46, 0.65);
-  backdrop-filter: blur(4px);
-  padding: 3px 8px;
-  border-radius: var(--radius-sm);
+/* #endregion body */
+
+
+.corner { /* What: Corner Accent. Why: The orange corner sits in the card's top right. How: This pins it there. */
+
+
+	position : absolute;
+	right    : 0;
+	top      : 0;
+
+
 }
 
-/* ── Body ── */
-.body {
-  padding: var(--sp-5);
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-3);
-}
+/* #endregion card */
 
-.title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--ink);
-}
 
-.desc {
-  font-size: 0.88rem;
-  line-height: 1.65;
-  color: var(--ink-mid);
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--sp-1);
-  padding-top: var(--sp-1);
-}
-
-/* ── Corner accent ── */
-.corner {
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
-/* ── Featured variant ── */
-.featured {
-  border-color: var(--blue);
-}
