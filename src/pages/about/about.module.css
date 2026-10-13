@@ -585,6 +585,26 @@
 
 
 }
+@media ( min-width : 1025px ) { /* What: Desktop Timeline Item Div. Why: A wide screen has room for the milestones to alternate either side of a center line, which uses the row's width instead of leaving its right half empty. How: This applies above 1024px, beside the max-width 1024px queries without overlapping them. */
+
+
+	.timIteDiv { /* What: Alternating Timeline Item Div. Why: Each milestone's text and year sit either side of the shared center line. How: This sets two equal sides around the connector column. */
+
+
+		grid-template-columns : minmax( 0, 1fr ) calc( var( --ver-rhy-p03 ) * 1rem ) minmax( 0, 1fr ); /* Vertical Rhythm Base Plus 3 ~= 33.876px */
+
+
+	}
+	.timIteDiv + .timIteDiv { /* What: Interlocked Timeline Item Div. Why: Alternating sides would leave each side half empty if every milestone took a full row. How: This pulls each milestone up by the p03 step into the one before it, which sits on the other side. */
+
+
+		margin-top : calc( var( --spa-ver-p03 ) * -1 ); /* Spacing Vertical Base Plus 3 ~= 33.876px */
+
+
+	}
+
+
+}
 
 
 /* #region timLefDiv */
@@ -595,6 +615,34 @@
 	display         : flex;
 	justify-content : flex-end;
 	padding-top     : var( --spa-ver-m05 ); /* Spacing Vertical Base Minus 5 ~= 3.572px */
+
+
+}
+@media ( min-width : 1025px ) { /* What: Desktop Timeline Left Div. Why: The year sits beside the dot on the side opposite its milestone. How: This applies above 1024px. */
+
+
+	.timLefDiv { /* What: Placed Timeline Left Div. Why: The year shares the milestone's row. How: This keeps it on the item's one grid row. */
+
+
+		grid-row : 1;
+
+
+	}
+	.timIteDiv:nth-child( odd ) .timLefDiv { /* What: Right Timeline Left Div. Why: A milestone on the left puts its year on the right of the line. How: This moves the year to the right column, aligned to the line. */
+
+
+		grid-column     : 3;
+		justify-content : flex-start;
+
+
+	}
+	.timIteDiv:nth-child( even ) .timLefDiv { /* What: Left Timeline Left Div. Why: A milestone on the right puts its year on the left of the line. How: This places the year in the left column, still aligned to the line. */
+
+
+		grid-column : 1;
+
+
+	}
 
 
 }
@@ -622,6 +670,20 @@
 	align-items    : center;
 	display        : flex;
 	flex-direction : column;
+
+
+}
+@media ( min-width : 1025px ) { /* What: Desktop Timeline Connector Div. Why: The dot and line form the center line between the two sides. How: This applies above 1024px. */
+
+
+	.timConDiv { /* What: Centered Timeline Connector Div. Why: Every milestone's dot sits on the one center line. How: This places it in the middle column of the item's row. */
+
+
+		grid-column : 2;
+		grid-row    : 1;
+
+
+	}
 
 
 }
@@ -664,6 +726,35 @@
 	flex-direction : column;
 	gap            : var( --spa-ver-m02 ); /* Spacing Vertical Base Minus 2 ~= 8.304px */
 	padding-bottom : var( --spa-ver-p05 ); /* Spacing Vertical Base Plus 5 ~= 59.447px */
+
+
+}
+@media ( min-width : 1025px ) { /* What: Desktop Timeline Content Div. Why: Milestones alternate sides, newest on the left. How: This applies above 1024px. */
+
+
+	.timCotDiv { /* What: Placed Timeline Content Div. Why: The milestone shares its year's row. How: This keeps it on the item's one grid row. */
+
+
+		grid-row : 1;
+
+
+	}
+	.timIteDiv:nth-child( odd ) .timCotDiv { /* What: Left Timeline Content Div. Why: Odd milestones sit left of the line and read toward it. How: This places them in the left column, aligned right. */
+
+
+		align-items : flex-end;
+		grid-column : 1;
+		text-align  : right;
+
+
+	}
+	.timIteDiv:nth-child( even ) .timCotDiv { /* What: Right Timeline Content Div. Why: Even milestones sit right of the line. How: This places them in the right column. */
+
+
+		grid-column : 3;
+
+
+	}
 
 
 }

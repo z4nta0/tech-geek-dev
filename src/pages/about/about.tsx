@@ -406,9 +406,10 @@ function AboPagCom () : JSX.Element {
 
 
 					<SecHeaCom
+						aliPosStr='center'
 						labTexStr='Experience'
 						titTexStr='My Journey'
-					/>{ /* What: Timeline Section Header Component. Why: The section opens with its heading. How: This shows its label and title. */ }
+					/>{ /* What: Timeline Section Header Component. Why: The section opens with its heading, centered over the timeline's center line on a desktop. How: This shows its label and title centered. */ }
 
 
 
