@@ -225,7 +225,56 @@ on `close-out`.
    mostly copies the shared global classes (`container`, `section`,
    `page-enter`, `mono`, `text-muted`, ...) into the modules that use them,
    moves the menu and active link to `aria-*` and `data-*` state, and gives
-   every animation and transition its reduced-motion variant.
+   every animation and transition its reduced-motion variant. Done
+   2026-10-13 in fourteen commits.
+   - **State and hooks**: the bar sets `data-nav-bar-scrolled`, the drawer
+     `data-mobile-menu-open`, and Work's active filter pill
+     `data-filter-button-active`; the toggle's cross reads its own
+     `aria-expanded` and the current link NavLink's `aria-current`. No
+     JavaScript finds elements by class, so no hook attributes were needed.
+     The closed drawer now turns invisible once its slide ends, which took
+     its links out of the Tab order and cleared every overlap the responsive
+     suite reported.
+   - **Modules**: every module is formatted in markup order with regions,
+     its media queries split one per element under each element's base rule,
+     and every element reached through a tag selector given a class of its
+     own (the project screenshot, the toggle's bars, Contact's thank-you and
+     bold response time, Home's code). The global `container`, `section`,
+     `page-enter`, `mono`, and `text-muted` classes were merged into each
+     element's own rule with the values that actually applied: the global
+     sheet loads after the modules, so `container`'s cap and padding always
+     beat Work's and Contact's 640px hero caps and Home's hero padding, which
+     the merged rules drop. Plain container wrappers gained `...Inner`
+     classes, each page a `page` class for its entrance, and dead rules (the
+     removed CV button's, a class with no rule) are gone. Vite reads module
+     classes as camelCase keys.
+   - **Animations that never played**: every module that named a global
+     keyframe bare (`rotateSlow`, `pulse`, `fadeUp`) pointed at a scoped name
+     that didn't exist, so Home's turning shapes, staggered hero entrance,
+     and pulsing dot, Contact's pulsing dot, and the 404 page's turning
+     hexagons never animated on the live site. At the user's choice
+     (2026-10-13) they now play through `global()`, with the 404 drawing
+     centered and Home's tipped square tilted through the `translate` and
+     `rotate` properties so the turning transform can't undo them.
+   - **Reduced motion**: every animation and transition has a variant, html
+     stops smooth scrolling, and the reduced-motion check passes everywhere.
+     It also cleared Contact's "no visible focus indicator" failures: the
+     check read the fields mid-transition.
+   - **Global sheet**: `styles.css` holds only the tokens, the base element
+     styles, and the `fadeUp`, `pulse`, and `rotateSlow` keyframes; the
+     unused utilities, keyframes, and two tokens are gone.
+   - **Verified** after each module by comparing the built CSS rule by rule
+     (as an ordered list, then as a set once rules moved), the rendering
+     suite, and, where layout could shift, every layout box to three
+     decimals. Chromium's baselines for Work, About, Contact, and Home were
+     refreshed: once a page's entrance stops under reduced motion, Chromium
+     draws its text off the animation layer with subpixel antialiasing (and
+     on Contact rounds one fractional position 1px differently, every box
+     unchanged). WebKit's Home phone and menu baselines were refreshed once
+     two runs proved them deterministic.
+   - **Checkpoint**: a full run passes 344 tests; what remains is contrast
+     (step 9), the Home hero heading's spill and sideways scrolling (steps 9
+     and 10), and Work's crowded filter row (step 10).
 9. **Design tokens**: the siblings' core design numbers, this site's colors
    mapped to roles, the type, spacing, duration, easing, shadow, and focus
    ring tokens, and three-segment class and keyframe names. Built as the
@@ -274,13 +323,11 @@ ticker, and the status dots) when waiting for the page to settle.
   scrolling, an unclipped element past either edge, text spilling its box,
   or two reachable controls overlapping.
 - `npm test` runs every suite.
-- **Known flakes**: WebKit's Home at 390px (about 5,000 pixels over the top
-  840px, up to 10 color levels) and Chromium's Contact at 1,440px (a few
-  pixels) often differ from their baselines, and now and then another WebKit
-  state does. The cause is the infinite animations (Home's turning shapes and
-  skills ticker, Contact's pulsing status dot), which have no reduced-motion
-  variant yet, so they keep moving while the suite captures. A failure like
-  that gets a rerun, not new baselines, until step 8 stops them.
+- **Flakes**: before step 8 the infinite animations kept moving while the
+  suite captured, so a few states failed now and then. With every animation
+  stopped under reduced motion they no longer run during a capture. A
+  failure that two reruns don't reproduce still gets a rerun, not new
+  baselines.
 
 ## Found for later
 - **Work's filter row crowds a phone** (step 10): at 390px the label, the
