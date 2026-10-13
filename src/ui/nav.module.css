@@ -28,11 +28,11 @@
 .header { /* What: Navigation Header. Why: The bar stays at the top of every page above the content. How: This fixes it full width at the bar height, on a translucent blurred ivory, easing its look as the page scrolls. */
 
 
-	-webkit-backdrop-filter : blur( 12px );
-	backdrop-filter         : blur( 12px );
+	-webkit-backdrop-filter : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
+	backdrop-filter         : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
 	background              : oklch( from var( --bac-pag-col ) l c h / 0.85 ); /* Background Page Color = #F5F0E8 @ 0.85 opacity */
-	border-bottom           : 1px solid transparent;
-	height                  : var( --nav-height );                             /* Navigation Height = 72px */
+	border-bottom           : var( --bor-wid-bas ) solid transparent;          /* Border Width Base ~= 1.160px */
+	height                  : var( --nav-bar-hei );                            /* Navigation Bar Height ~= 78.751px */
 	left                    : 0;
 	position                : fixed;
 	right                   : 0;
@@ -45,8 +45,8 @@
 .header[data-nav-bar-scrolled] { /* What: Scrolled Navigation Header. Why: Once the page moves under the bar, the bar needs to stand apart from it. How: This firms up the background, shows the bottom border, and casts the small shadow. */
 
 
-	-webkit-backdrop-filter : blur( 12px );
-	backdrop-filter         : blur( 12px );
+	-webkit-backdrop-filter : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
+	backdrop-filter         : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
 	background              : oklch( from var( --bac-pag-col ) l c h / 0.92 ); /* Background Page Color = #F5F0E8 @ 0.92 opacity */
 	border-bottom-color     : var( --bor-mai-col );                            /* Border Main Color = #D8CFBE */
 	box-shadow              : var( --shadow-sm );                              /* Shadow Small = 0 1px 3px rgba( 26, 26, 46, 0.08 ) */
@@ -75,11 +75,11 @@
 
 	align-items : center;
 	display     : flex;
-	gap         : var( --sp-6 );      /* Spacing 6 = 32px */
+	gap         : var( --spa-hor-p03 );   /* Spacing Horizontal Base Plus 3 ~= 33.876px */
 	height      : 100%;
 	margin      : 0 auto;
-	max-width   : var( --max-width ); /* Maximum Width = 1200px */
-	padding     : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	max-width   : var( --max-width );     /* Maximum Width = 1200px */
+	padding     : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
 	width       : 100%;
 
 
@@ -94,7 +94,7 @@
 	align-items     : center;
 	display         : flex;
 	flex-shrink     : 0;
-	gap             : var( --sp-2 ); /* Spacing 2 = 8px */
+	gap             : var( --spa-hor-m02 ); /* Spacing Horizontal Base Minus 2 ~= 8.304px */
 	text-decoration : none;
 
 
@@ -107,7 +107,7 @@
 
 
 	font-family    : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
-	font-size      : 1.1rem;
+	font-size      : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
 	font-weight    : 800;
 	letter-spacing : -0.03em;
 
@@ -142,7 +142,7 @@
 
 	align-items : center;
 	display     : flex;
-	gap         : var( --sp-1 ); /* Spacing 1 = 4px */
+	gap         : var( --spa-hor-m05 ); /* Spacing Horizontal Base Minus 5 ~= 3.572px */
 	margin-left : auto;
 
 
@@ -164,13 +164,13 @@
 .link { /* What: Bar Link. Why: Each page link reads in small mono capitals with room for its underline. How: This sets the link muted and padded, easing its color and background. */
 
 
-	border-radius  : var( --radius-sm );                                              /* Radius Small = 3px */
+	border-radius  : var( --rad-bor-xsm );                                            /* Radius Border Extra Small ~= 3.571px */
 	color          : var( --tex-sec-col );                                            /* Text Secondary Color = #3D3D5C */
 	font-family    : var( --fon-fam-sec );                                            /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.8rem;
+	font-size      : var( --fon-siz-p01 );                                            /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight    : 400;
 	letter-spacing : 0.04em;
-	padding        : var( --sp-2 ) var( --sp-3 );                                     /* Spacing 2 = 8px, Spacing 3 = 12px */
+	padding        : var( --spa-ver-m02 ) var( --spa-hor-m01 );                       /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base Minus 1 = 11px */
 	position       : relative;
 	text-transform : uppercase;
 	transition     : color var( --duration-fast ), background var( --duration-fast ); /* Duration Fast = 150ms */
@@ -181,12 +181,12 @@
 
 
 	background       : var( --acc-mai-col );                               /* Accent Main Color = #F26419 */
-	bottom           : 4px;
+	bottom           : var( --spa-ver-m05 );                               /* Spacing Vertical Base Minus 5 ~= 3.572px */
 	content          : '';
-	height           : 2px;
-	left             : var( --sp-3 );                                      /* Spacing 3 = 12px */
+	height           : var( --bor-wid-lar );                               /* Border Width Large ~= 2.035px */
+	left             : var( --spa-hor-m01 );                               /* Spacing Horizontal Base Minus 1 = 11px */
 	position         : absolute;
-	right            : var( --sp-3 );                                      /* Spacing 3 = 12px */
+	right            : var( --spa-hor-m01 );                               /* Spacing Horizontal Base Minus 1 = 11px */
 	transform        : scaleX( 0 );
 	transform-origin : left;
 	transition       : transform var( --duration-base ) var( --ease-out ); /* Duration Base = 280ms, Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
@@ -231,14 +231,14 @@
 
 
 	background     : var( --acc-mai-col );                                                /* Accent Main Color = #F26419 */
-	border-radius  : var( --radius-sm );                                                  /* Radius Small = 3px */
+	border-radius  : var( --rad-bor-xsm );                                                /* Radius Border Extra Small ~= 3.571px */
 	color          : var( --tex-acc-col );                                                /* Text Accent Color = #1A1A2E */
 	flex-shrink    : 0;
 	font-family    : var( --fon-fam-sec );                                                /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.78rem;
+	font-size      : var( --fon-siz-bas );                                                /* Font Size Base = 11px */
 	font-weight    : 500;
-	letter-spacing : 0.06em;
-	padding        : 10px var( --sp-5 );                                                  /* Spacing 5 = 24px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );                              /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	padding        : var( --spa-ver-m01 ) var( --spa-hor-p02 );                           /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	text-transform : uppercase;
 	transition     : background var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
 
@@ -287,9 +287,9 @@
 
 	display        : none;
 	flex-direction : column;
-	gap            : 5px;
+	gap            : var( --spa-ver-m04 );                      /* Spacing Vertical Base Minus 4 ~= 4.732px */
 	margin-left    : auto;
-	padding        : var( --sp-2 ); /* Spacing 2 = 8px */
+	padding        : var( --spa-ver-m02 ) var( --spa-hor-m02 ); /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base Minus 2 ~= 8.304px */
 
 
 }
@@ -311,18 +311,18 @@
 
 
 	background    : var( --bac-inv-col );                                                               /* Background Inverse Color = #1A1A2E */
-	border-radius : 2px;
+	border-radius : var( --rad-bor-xsm );                                                               /* Radius Border Extra Small ~= 3.571px */
 	display       : block;
-	height        : 2px;
+	height        : var( --bor-wid-lar );                                                               /* Border Width Large ~= 2.035px */
 	transition    : transform var( --duration-base ) var( --ease-out ), opacity var( --duration-base ); /* Duration Base = 280ms, Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
-	width         : 22px;
+	width         : calc( var( --ver-rhy-p01 ) * 1rem );                                                /* Vertical Rhythm Base Plus 1 ~= 19.304px */
 
 
 }
 .burger[aria-expanded='true'] .bar:nth-child( 1 ) { /* What: Open Toggle First Bar. Why: The open menu's toggle shows a cross. How: This drops the top bar to the middle and tilts it 45 degrees. */
 
 
-	transform : translateY( 7px ) rotate( 45deg );
+	transform : translateY( calc( var( --spa-ver-m04 ) + var( --bor-wid-lar ) ) ) rotate( 45deg ); /* Spacing Vertical Base Minus 4 ~= 4.732px, Border Width Large ~= 2.035px */ /* What: Cross Shift. Why: The top bar has to land exactly on the middle one. How: This moves it down by the gap between the bars plus one bar's height. */
 
 
 }
@@ -336,7 +336,7 @@
 .burger[aria-expanded='true'] .bar:nth-child( 3 ) { /* What: Open Toggle Last Bar. Why: The open menu's toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
 
 
-	transform : translateY( -7px ) rotate( -45deg );
+	transform : translateY( calc( ( var( --spa-ver-m04 ) + var( --bor-wid-lar ) ) * -1 ) ) rotate( -45deg ); /* Spacing Vertical Base Minus 4 ~= 4.732px, Border Width Large ~= 2.035px */ /* What: Cross Shift. Why: The bottom bar has to land exactly on the middle one. How: This moves it up by the gap between the bars plus one bar's height. */
 
 
 }
@@ -364,18 +364,18 @@
 .drawer { /* What: Menu Drawer. Why: On a phone the page links drop down under the bar. How: This fixes the drawer under the bar, stacks its links, and starts it slid up, faded, and invisible once its slide ends, so its links leave the Tab order. */
 
 
-	background     : var( --bac-pag-col );           /* Background Page Color = #F5F0E8 */
-	border-bottom  : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
+	background     : var( --bac-pag-col );                            /* Background Page Color = #F5F0E8 */
+	border-bottom  : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --sp-2 );                  /* Spacing 2 = 8px */
+	gap            : var( --spa-ver-m02 );                            /* Spacing Vertical Base Minus 2 ~= 8.304px */
 	left           : 0;
 	opacity        : 0;
-	padding        : var( --sp-5 ) var( --sp-6 );    /* Spacing 5 = 24px, Spacing 6 = 32px */
+	padding        : var( --spa-ver-p02 ) var( --spa-hor-p03 );       /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	pointer-events : none;
 	position       : fixed;
 	right          : 0;
-	top            : var( --nav-height );            /* Navigation Height = 72px */
+	top            : var( --nav-bar-hei );                            /* Navigation Bar Height ~= 78.751px */
 	transform      : translateY( -100% );
 	transition     : transform var( --duration-base ) var( --ease-out ), opacity var( --duration-base ), visibility 0s linear var( --duration-base ); /* Duration Base = 280ms, Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */ /* What: Delayed Visibility. Why: The drawer has to stay visible while it slides away. How: Visibility flips to hidden only once the 280ms slide has finished. */
 	visibility     : hidden;
@@ -412,14 +412,14 @@
 .drawerLink { /* What: Drawer Link. Why: Each page link in the drawer is a full-width row. How: This sets it in muted mono capitals with a divider under it, easing its color. */
 
 
-	border-bottom  : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
-	color          : var( --tex-sec-col );           /* Text Secondary Color = #3D3D5C */
-	font-family    : var( --fon-fam-sec );           /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.9rem;
+	border-bottom  : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	color          : var( --tex-sec-col );                            /* Text Secondary Color = #3D3D5C */
+	font-family    : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                            /* Font Size Base Plus 1 ~= 14.572px */
 	letter-spacing : 0.04em;
-	padding        : var( --sp-3 ) 0;                /* Spacing 3 = 12px */
+	padding        : var( --spa-ver-m01 ) 0;                          /* Spacing Vertical Base Minus 1 = 11px */
 	text-transform : uppercase;
-	transition     : color var( --duration-fast );   /* Duration Fast = 150ms */
+	transition     : color var( --duration-fast );                    /* Duration Fast = 150ms */
 
 
 }
@@ -455,17 +455,17 @@
 .drawerCta { /* What: Drawer Hire Me Button. Why: The drawer repeats the bar's call to action. How: This sets it as a full-width orange button in mono capitals under the links. */
 
 
-	background      : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
-	border-radius   : var( --radius-sm );   /* Radius Small = 3px */
-	color           : var( --tex-acc-col ); /* Text Accent Color = #1A1A2E */
+	background      : var( --acc-mai-col );                      /* Accent Main Color = #F26419 */
+	border-radius   : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	color           : var( --tex-acc-col );                      /* Text Accent Color = #1A1A2E */
 	display         : inline-flex;
-	font-family     : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
-	font-size       : 0.8rem;
+	font-family     : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
+	font-size       : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight     : 500;
 	justify-content : center;
-	letter-spacing  : 0.06em;
-	margin-top      : var( --sp-3 );        /* Spacing 3 = 12px */
-	padding         : 12px;
+	letter-spacing  : calc( var( --cdn-pow-010-rec ) * 1em );    /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	margin-top      : var( --spa-ver-m01 );                      /* Spacing Vertical Base Minus 1 = 11px */
+	padding         : var( --spa-ver-m01 ) var( --spa-hor-m01 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Minus 1 = 11px */
 	text-transform  : uppercase;
 
 

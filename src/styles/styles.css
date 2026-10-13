@@ -29,40 +29,147 @@
 :root { /* What: Root Tokens. Why: Every module reads the same palette, type, spacing, and motion values. How: This defines them as custom properties on the root, grouped into sections. */
 
 
+	/* #region Core Design Numbers */
+
+	/**
+	 * styles.css = Core Design Numbers
+	 *
+	 * @summary
+	 * The core design number, also known as the "plastic ratio" (also commonly
+	 * denoted as ρ (rho) and sometimes called the radiant number or the
+	 * fundamental ratio), is used as a base scaling factor throughout the
+	 * design system. The adjective plastic does not refer to the artificial
+	 * material, but to the formative and sculptural qualities of this ratio,
+	 * as in plastic arts meaning something that can be given a
+	 * three-dimensional shape. This is because the characteristic ratios of
+	 * the number, 3/4 and 1/7, relate to the limits of human perception in
+	 * comparing one physical size to another. It is considered the
+	 * three-dimensional equivalent of the ubiquitous golden ratio. I
+	 * previously used said golden ratio as a base scaling factor, but found
+	 * that, because of its larger number, it did not have enough nuance for
+	 * the many values that a design system needs, i.e., numbers scaled up or
+	 * down too quickly.
+	 *
+	 * I know a lot of what I just said seems abstract, or even silly, but a
+	 * core number is required for a design system. So it might as well be
+	 * based on something perceptually meaningful, or even just fun.
+	 *
+	 * Plastic Ratio = <https://en.wikipedia.org/wiki/Plastic_ratio>
+	 *
+	 * @author z4nta0 <https://github.com/z4nta0>
+	 *
+	*/
+
+	--cor-des-num : calc( ( pow( 108 + 12 * sqrt( 69 ), 1 / 3 ) + pow( 108 - 12 * sqrt( 69 ), 1 / 3 ) ) / 6 ); /* What: Core Design Number ~= 1.325. Why: This is the "plastic ratio" and it is the core design number derived from the stated formula. How: As you can see, this formula is quite a bit more complex than the formula for the golden ratio, but it is still not too difficult once you break it down into its constituent parts. */
+
+
+	--cdn-pow-000 : calc( pow( var( --cor-des-num ), 0 ) );  /* What: Core-Design-Number to the Power of 0 ~= 1. Why: Sometimes the zeroth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 0, which for any number is always 1. */
+	--cdn-pow-001 : calc( pow( var( --cor-des-num ), 1 ) );  /* What: Core-Design-Number to the Power of 1 ~= 1.325. Why: Sometimes the first power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 1, which for any number is always the number itself. */
+	--cdn-pow-002 : calc( pow( var( --cor-des-num ), 2 ) );  /* What: Core-Design-Number to the Power of 2 ~= 1.755. Why: Sometimes the square of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 2. */
+	--cdn-pow-003 : calc( pow( var( --cor-des-num ), 3 ) );  /* What: Core-Design-Number to the Power of 3 ~= 2.325. Why: Sometimes the cube of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 3. */
+	--cdn-pow-004 : calc( pow( var( --cor-des-num ), 4 ) );  /* What: Core-Design-Number to the Power of 4 ~= 3.080. Why: Sometimes the fourth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 4. */
+	--cdn-pow-005 : calc( pow( var( --cor-des-num ), 5 ) );  /* What: Core-Design-Number to the Power of 5 ~= 4.080. Why: Sometimes the fifth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 5. */
+	--cdn-pow-006 : calc( pow( var( --cor-des-num ), 6 ) );  /* What: Core-Design-Number to the Power of 6 ~= 5.404. Why: Sometimes the sixth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 6. */
+	--cdn-pow-007 : calc( pow( var( --cor-des-num ), 7 ) );  /* What: Core-Design-Number to the Power of 7 ~= 7.159. Why: Sometimes the seventh power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 7. */
+	--cdn-pow-008 : calc( pow( var( --cor-des-num ), 8 ) );  /* What: Core-Design-Number to the Power of 8 ~= 9.484. Why: Sometimes the eighth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 8. */
+	--cdn-pow-009 : calc( pow( var( --cor-des-num ), 9 ) );  /* What: Core-Design-Number to the Power of 9 ~= 12.564. Why: Sometimes the ninth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 9. */
+	--cdn-pow-010 : calc( pow( var( --cor-des-num ), 10 ) ); /* What: Core-Design-Number to the Power of 10 ~= 16.643. Why: Sometimes the tenth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 10. */
+	--cdn-pow-011 : calc( pow( var( --cor-des-num ), 11 ) ); /* What: Core-Design-Number to the Power of 11 ~= 22.047. Why: Sometimes the eleventh power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 11. */
+	--cdn-pow-012 : calc( pow( var( --cor-des-num ), 12 ) ); /* What: Core-Design-Number to the Power of 12 ~= 29.207. Why: Sometimes the twelfth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 12. */
+	--cdn-pow-013 : calc( pow( var( --cor-des-num ), 13 ) ); /* What: Core-Design-Number to the Power of 13 ~= 38.691. Why: Sometimes the thirteenth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 13. */
+	--cdn-pow-014 : calc( pow( var( --cor-des-num ), 14 ) ); /* What: Core-Design-Number to the Power of 14 ~= 51.254. Why: Sometimes the fourteenth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 14. */
+	--cdn-pow-015 : calc( pow( var( --cor-des-num ), 15 ) ); /* What: Core-Design-Number to the Power of 15 ~= 67.897. Why: Sometimes the fifteenth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 15. */
+	--cdn-pow-016 : calc( pow( var( --cor-des-num ), 16 ) ); /* What: Core-Design-Number to the Power of 16 ~= 89.945. Why: Sometimes the sixteenth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 16. */
+	--cdn-pow-017 : calc( pow( var( --cor-des-num ), 17 ) ); /* What: Core-Design-Number to the Power of 17 ~= 119.151. Why: Sometimes the seventeenth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 17. */
+	--cdn-pow-018 : calc( pow( var( --cor-des-num ), 18 ) ); /* What: Core-Design-Number to the Power of 18 ~= 157.842. Why: Sometimes the eighteenth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 18. */
+	--cdn-pow-019 : calc( pow( var( --cor-des-num ), 19 ) ); /* What: Core-Design-Number to the Power of 19 ~= 209.096. Why: Sometimes the nineteenth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 19. */
+	--cdn-pow-020 : calc( pow( var( --cor-des-num ), 20 ) ); /* What: Core-Design-Number to the Power of 20 ~= 276.993. Why: Sometimes the twentieth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 20. */
+	--cdn-pow-021 : calc( pow( var( --cor-des-num ), 21 ) ); /* What: Core-Design-Number to the Power of 21 ~= 366.937. Why: Sometimes the twenty-first power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 21. */
+	--cdn-pow-022 : calc( pow( var( --cor-des-num ), 22 ) ); /* What: Core-Design-Number to the Power of 22 ~= 486.088. Why: Sometimes the twenty-second power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 22. */
+	--cdn-pow-023 : calc( pow( var( --cor-des-num ), 23 ) ); /* What: Core-Design-Number to the Power of 23 ~= 643.930. Why: Sometimes the twenty-third power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 23. */
+	--cdn-pow-024 : calc( pow( var( --cor-des-num ), 24 ) ); /* What: Core-Design-Number to the Power of 24 ~= 853.026. Why: Sometimes the twenty-fourth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 24. */
+	--cdn-pow-025 : calc( pow( var( --cor-des-num ), 25 ) ); /* What: Core-Design-Number to the Power of 25 ~= 1,130.019. Why: Sometimes the twenty-fifth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 25. */
+	--cdn-pow-026 : calc( pow( var( --cor-des-num ), 26 ) ); /* What: Core-Design-Number to the Power of 26 ~= 1,496.956. Why: Sometimes the twenty-sixth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 26. */
+	--cdn-pow-027 : calc( pow( var( --cor-des-num ), 27 ) ); /* What: Core-Design-Number to the Power of 27 ~= 1,983.044. Why: Sometimes the twenty-seventh power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 27. */
+
+
+	--cdn-pow-001-neg : calc( var( --cdn-pow-001 ) * -1 ); /* What: Core-Design-Number to the Power of 1 Negative ~= -1.325. Why: Sometimes the negative (additive inverse) of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 1, which for any number is always the number itself, and then multiplies said number by negative 1. */
+	--cdn-pow-002-neg : calc( var( --cdn-pow-002 ) * -1 ); /* What: Core-Design-Number to the Power of 2 Negative ~= -1.755. Why: Sometimes the negative (additive inverse) of the square of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 2, and then multiplies said number by negative 1. */
+	--cdn-pow-003-neg : calc( var( --cdn-pow-003 ) * -1 ); /* What: Core-Design-Number to the Power of 3 Negative ~= -2.325. Why: Sometimes the negative (additive inverse) of the cube of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 3, and then multiplies said number by negative 1. */
+	--cdn-pow-004-neg : calc( var( --cdn-pow-004 ) * -1 ); /* What: Core-Design-Number to the Power of 4 Negative ~= -3.080. Why: Sometimes the negative (additive inverse) of the fourth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 4, and then multiplies said number by negative 1. */
+	--cdn-pow-005-neg : calc( var( --cdn-pow-005 ) * -1 ); /* What: Core-Design-Number to the Power of 5 Negative ~= -4.080. Why: Sometimes the negative (additive inverse) of the fifth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 5, and then multiplies said number by negative 1. */
+	--cdn-pow-006-neg : calc( var( --cdn-pow-006 ) * -1 ); /* What: Core-Design-Number to the Power of 6 Negative ~= -5.404. Why: Sometimes the negative (additive inverse) of the sixth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 6, and then multiplies said number by negative 1. */
+	--cdn-pow-007-neg : calc( var( --cdn-pow-007 ) * -1 ); /* What: Core-Design-Number to the Power of 7 Negative ~= -7.159. Why: Sometimes the negative (additive inverse) of the seventh power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 7, and then multiplies said number by negative 1. */
+	--cdn-pow-008-neg : calc( var( --cdn-pow-008 ) * -1 ); /* What: Core-Design-Number to the Power of 8 Negative ~= -9.484. Why: Sometimes the negative (additive inverse) of the eighth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 8, and then multiplies said number by negative 1. */
+	--cdn-pow-009-neg : calc( var( --cdn-pow-009 ) * -1 ); /* What: Core-Design-Number to the Power of 9 Negative ~= -12.564. Why: Sometimes the negative (additive inverse) of the ninth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 9, and then multiplies said number by negative 1. */
+	--cdn-pow-010-neg : calc( var( --cdn-pow-010 ) * -1 ); /* What: Core-Design-Number to the Power of 10 Negative ~= -16.643. Why: Sometimes the negative (additive inverse) of the tenth power of the core design number is needed for scaling, literal number or percentage. How: This takes the core design number to the power of 10, and then multiplies said number by negative 1. */
+
+
+	--cdn-pow-001-rec : calc( 1 / var( --cdn-pow-001 ) ); /* What: Core-Design-Number to the Power of 1 Reciprocal ~= 0.755. Why: Sometimes the reciprocal of the core design number is needed for scaling, literal number or percentage. How: This divides one by the core design number to the power of 1, which for any number is always the number itself. */
+	--cdn-pow-002-rec : calc( 1 / var( --cdn-pow-002 ) ); /* What: Core-Design-Number to the Power of 2 Reciprocal ~= 0.570. Why: Sometimes the reciprocal of the square of the core design number is needed for scaling, literal number or percentage. How: This divides one by the core design number to the power of 2. */
+	--cdn-pow-003-rec : calc( 1 / var( --cdn-pow-003 ) ); /* What: Core-Design-Number to the Power of 3 Reciprocal ~= 0.430. Why: Sometimes the reciprocal of the cube of the core design number is needed for scaling, literal number or percentage. How: This divides one by the core design number to the power of 3. */
+	--cdn-pow-004-rec : calc( 1 / var( --cdn-pow-004 ) ); /* What: Core-Design-Number to the Power of 4 Reciprocal ~= 0.325. Why: Sometimes the reciprocal of the fourth power of the core design number is needed for scaling, literal number or percentage. How: This divides one by the core design number to the power of 4. */
+	--cdn-pow-005-rec : calc( 1 / var( --cdn-pow-005 ) ); /* What: Core-Design-Number to the Power of 5 Reciprocal ~= 0.245. Why: Sometimes the reciprocal of the fifth power of the core design number is needed for scaling, literal number or percentage. How: This divides one by the core design number to the power of 5. */
+	--cdn-pow-006-rec : calc( 1 / var( --cdn-pow-006 ) ); /* What: Core-Design-Number to the Power of 6 Reciprocal ~= 0.185. Why: Sometimes the reciprocal of the sixth power of the core design number is needed for scaling, literal number or percentage. How: This divides one by the core design number to the power of 6. */
+	--cdn-pow-007-rec : calc( 1 / var( --cdn-pow-007 ) ); /* What: Core-Design-Number to the Power of 7 Reciprocal ~= 0.140. Why: Sometimes the reciprocal of the seventh power of the core design number is needed for scaling, literal number or percentage. How: This divides one by the core design number to the power of 7. */
+	--cdn-pow-008-rec : calc( 1 / var( --cdn-pow-008 ) ); /* What: Core-Design-Number to the Power of 8 Reciprocal ~= 0.105. Why: Sometimes the reciprocal of the eighth power of the core design number is needed for scaling, literal number or percentage. How: This divides one by the core design number to the power of 8. */
+	--cdn-pow-009-rec : calc( 1 / var( --cdn-pow-009 ) ); /* What: Core-Design-Number to the Power of 9 Reciprocal ~= 0.080. Why: Sometimes the reciprocal of the ninth power of the core design number is needed for scaling, literal number or percentage. How: This divides one by the core design number to the power of 9. */
+	--cdn-pow-010-rec : calc( 1 / var( --cdn-pow-010 ) ); /* What: Core-Design-Number to the Power of 10 Reciprocal ~= 0.060. Why: Sometimes the reciprocal of the tenth power of the core design number is needed for scaling, literal number or percentage. How: This divides one by the core design number to the power of 10. */
+	--cdn-pow-011-rec : calc( 1 / var( --cdn-pow-011 ) ); /* What: Core-Design-Number to the Power of 11 Reciprocal ~= 0.045. Why: Sometimes the reciprocal of the eleventh power of the core design number is needed for scaling, literal number or percentage. How: This divides one by the core design number to the power of 11. */
+	--cdn-pow-012-rec : calc( 1 / var( --cdn-pow-012 ) ); /* What: Core-Design-Number to the Power of 12 Reciprocal ~= 0.034. Why: Sometimes the reciprocal of the twelfth power of the core design number is needed for scaling, literal number or percentage. How: This divides one by the core design number to the power of 12. */
+	--cdn-pow-013-rec : calc( 1 / var( --cdn-pow-013 ) ); /* What: Core-Design-Number to the Power of 13 Reciprocal ~= 0.026. Why: Sometimes the reciprocal of the thirteenth power of the core design number is needed for scaling, literal number or percentage. How: This divides one by the core design number to the power of 13. */
+	--cdn-pow-014-rec : calc( 1 / var( --cdn-pow-014 ) ); /* What: Core-Design-Number to the Power of 14 Reciprocal ~= 0.020. Why: Sometimes the reciprocal of the fourteenth power of the core design number is needed for scaling, literal number or percentage. How: This divides one by the core design number to the power of 14. */
+	--cdn-pow-015-rec : calc( 1 / var( --cdn-pow-015 ) ); /* What: Core-Design-Number to the Power of 15 Reciprocal ~= 0.015. Why: Sometimes the reciprocal of the fifteenth power of the core design number is needed for scaling, literal number or percentage. How: This divides one by the core design number to the power of 15. */
+
+	/* #endregion Core Design Numbers */
+
+
+
+	/* #region Border Width Tokens */
+
+	--bor-wid-sma : calc( var( --ver-rhy-m12 ) * 1rem ); /* What: Border Width Small ~= 0.499px. Why: This is the scale's hairline step, which nothing on this site draws yet. How: This multiplies the m12 rhythm step by 1rem, which browsers snap to whole pixels. */
+	--bor-wid-bas : calc( var( --ver-rhy-m09 ) * 1rem ); /* What: Border Width Base ~= 1.160px. Why: Card, field, tag, and divider outlines and the short label rules draw at about 1px. How: This multiplies the m09 rhythm step by 1rem, which browsers snap to 1px. */
+	--bor-wid-lar : calc( var( --ver-rhy-m07 ) * 1rem ); /* What: Border Width Large ~= 2.035px. Why: The focus ring, the toggle's bars, the timeline line, and the outlined shapes draw at 2px. How: This multiplies the m07 rhythm step by 1rem, which browsers snap to 2px. */
+	--bor-wid-xla : calc( var( --ver-rhy-m05 ) * 1rem ); /* What: Border Width Extra Large ~= 3.571px. Why: The hero ring, the stat underlines, the fields' focus glow, and the focus ring's offset need 3px. How: This multiplies the m05 rhythm step by 1rem, which browsers snap to 3px. */
+
+	/* #endregion Border Width Tokens */
+
+
+
 	/* #region Color Tokens */
 
 	--acc-dar-col : oklch( from var( --acc-mai-col ) calc( l - 0.15 ) c h ); /* What: Accent Dark Color ~= #bd3000. Why: The bright orange only reaches about 2.8:1 as text on the ivory, so orange text needs a deeper shade that reaches 4.5:1 on every light background it sits on. How: This darkens the main accent by 0.15 OKLCH lightness, the least that passes on the ivory, white, warm ivory, and pale orange, and orange labels, links, and accents read it. */
 	--acc-hov-col : oklch( from var( --acc-mai-col ) calc( l - 0.04 ) c h ); /* What: Accent Hover Color ~= #e45700. Why: Orange buttons darken a touch under the pointer, while their dark text has to keep 4.5:1. How: This darkens the main accent by 0.04 OKLCH lightness, the most that keeps the text at about 4.6:1. */
-	--acc-mai-col : #F26419;                                                  /* What: Accent Main Color = #F26419. Why: The brand's sharp orange marks the main actions and the site's accents. How: Buttons, rules, dots, underlines, and borders read it as a fill, never as text on a light background. */
-	--acc-sec-col : #7DB9D8;                                                  /* What: Accent Secondary Color = #7DB9D8. Why: The brand's powder blue is its second color. How: The hero shape, card and tag borders, hover borders, and the blue text on dark bands read it. */
-	--acc-tin-col : #FDDCC8;                                                  /* What: Accent Tint Color = #FDDCC8. Why: A pale orange softens the focus glow and fills orange tags. How: The fields' focus glow and the orange tag read it. */
+	--acc-mai-col : #F26419;                                                 /* What: Accent Main Color = #F26419. Why: The brand's sharp orange marks the main actions and the site's accents. How: Buttons, rules, dots, underlines, and borders read it as a fill, never as text on a light background. */
+	--acc-sec-col : #7DB9D8;                                                 /* What: Accent Secondary Color = #7DB9D8. Why: The brand's powder blue is its second color. How: The hero shape, card and tag borders, hover borders, and the blue text on dark bands read it. */
+	--acc-tin-col : #FDDCC8;                                                 /* What: Accent Tint Color = #FDDCC8. Why: A pale orange softens the focus glow and fills orange tags. How: The fields' focus glow and the orange tag read it. */
 	--acs-dar-col : oklch( from var( --acs-str-col ) calc( l - 0.16 ) c h ); /* What: Accent-Secondary Dark Color ~= #126186. Why: The strong blue only reaches about 3.1:1 as text on the ivory and 2.4:1 on the pale blue, so blue text and icons need a deeper shade. How: This darkens the strong blue by 0.16 OKLCH lightness, the least that reaches 4.5:1 on the ivory, white, warm ivory, and pale blue, and blue text, tags, and icons read it. */
-	--acs-str-col : #4A91B8;                                                  /* What: Accent-Secondary Strong Color = #4A91B8. Why: A stronger blue draws the site's blue strokes and fills. How: The background patterns, the timeline dots, the tilted hero square, and the active filter pill read it. */
-	--acs-tin-col : #B8D9EC;                                                  /* What: Accent-Secondary Tint Color = #B8D9EC. Why: A pale blue fills tags and icon tiles. How: Blue tags and the contact and service icon tiles read it. */
-	--att-rin-col : ;                                                         /* What: Attention Ring Color. Why: The standard role set includes an attention ring. How: This site has nothing that pulses for attention, so it stays empty. */
-	--bac-hov-col : ;                                                         /* What: Background Hover Color. Why: The standard role set includes a hover overlay. How: This site's hovers change their own colors instead, so it stays empty. */
-	--bac-inv-col : var( --tex-mai-col );                                     /* What: Background Inverse Color. Why: The footer, the closing banner, and the code window sit on dark bands. How: This reads the main text color, the site's near-black ink. */
-	--bac-pag-col : #F5F0E8;                                                  /* What: Background Page Color = #F5F0E8. Why: The page sits on a creamy ivory. How: The body, the heroes, and most sections read it, and text on dark bands reads it as the light color. */
-	--bac-sun-col : #EDE6D8;                                                  /* What: Background Sunken Color = #EDE6D8. Why: Some bands and pills sit a little warmer and deeper than the page. How: The process, values, and services bands and the ivory pills read it. */
-	--bac-sur-col : #FFFFFF;                                                  /* What: Background Surface Color = #FFFFFF. Why: Cards and strips sit on white. How: Cards, panels, the stats strip, and the filter bar read it, and white text over dark overlays reads it too. */
-	--bor-mai-col : #D8CFBE;                                                  /* What: Border Main Color = #D8CFBE. Why: Borders and dividers need a quiet line color. How: Every card, field, and divider outline reads it, and the 404 page's pale number. */
-	--err-dar-col : #c0392b;                                                  /* What: Error Dark Color = #c0392b. Why: An error message has to read as one. How: The contact form's error text reads it. */
-	--err-mai-col : #e8b4ae;                                                  /* What: Error Main Color = #e8b4ae. Why: An error panel needs a red edge. How: The contact form's error border reads it. */
-	--err-tin-col : #fdf0ee;                                                  /* What: Error Tint Color = #fdf0ee. Why: An error panel sits on a pale red. How: The contact form's error background reads it. */
-	--foc-rin-col : var( --acc-dar-col );                                     /* What: Focus Ring Color. Why: Keyboard focus rings need 3:1 against the page, which the bright orange misses on the ivory. How: This reads the dark orange, which the focus ring and the fields' focus border draw in. */
-	--scr-mai-col : ;                                                         /* What: Scrim Main Color. Why: The standard role set includes a scrim behind open menus. How: The phone menu gains one with the new features step, so it stays empty until then. */
-	--sha-mai-col : var( --tex-mai-col );                                     /* What: Shadow Main Color. Why: The site's shadows have always been cast in its ink. How: This reads the main text color, which the elevation shadows read with their own alpha. */
-	--suc-dar-col : ;                                                         /* What: Success Dark Color. Why: The standard role set includes the success family. How: This site has no success text, so it stays empty. */
-	--suc-mai-col : #22c55e;                                                  /* What: Success Main Color = #22c55e. Why: A green dot signals availability. How: The availability dots on Home and Contact read it. */
-	--suc-tin-col : ;                                                         /* What: Success Tint Color. Why: The standard role set includes the success family. How: This site has no success panel, so it stays empty. */
-	--tex-acc-col : var( --tex-mai-col );                                     /* What: Text Accent Color. Why: White text on the bright orange only reaches about 3.2:1, while the ink reaches about 5.4:1. How: This reads the main text color, which every orange button's label reads. */
-	--tex-inm-col : #8181a1;                                                  /* What: Text Inverse-Muted Color = #8181a1. Why: Quiet text on the dark footer needs 4.5:1, which the muted grey misses on the ink. How: The footer's tagline, links, copyright, and icons read this lighter grey. */
-	--tex-mai-col : #1A1A2E;                                                  /* What: Text Main Color = #1A1A2E. Why: Headings and strong text read in a near-black ink. How: Headings, titles, and the dark bands read it. */
-	--tex-mut-col : #646482;                                                  /* What: Text Muted Color = #646482. Why: Quiet labels need 4.5:1 on the ivory, white, and warm ivory, which the original #7A7A99 missed. How: Captions, labels, and counts read it. */
-	--tex-sec-col : #3D3D5C;                                                  /* What: Text Secondary Color = #3D3D5C. Why: Paragraphs sit in a softer ink than headings. How: The base paragraph style and the muted copy read it. */
-	--war-dar-col : ;                                                         /* What: Warning Dark Color. Why: The standard role set includes the warning family. How: This site has no warnings, so it stays empty. */
-	--war-mai-col : ;                                                         /* What: Warning Main Color. Why: The standard role set includes the warning family. How: This site has no warnings, so it stays empty. */
-	--war-tin-col : ;                                                         /* What: Warning Tint Color. Why: The standard role set includes the warning family. How: This site has no warnings, so it stays empty. */
+	--acs-str-col : #4A91B8;                                                 /* What: Accent-Secondary Strong Color = #4A91B8. Why: A stronger blue draws the site's blue strokes and fills. How: The background patterns, the timeline dots, the tilted hero square, and the active filter pill read it. */
+	--acs-tin-col : #B8D9EC;                                                 /* What: Accent-Secondary Tint Color = #B8D9EC. Why: A pale blue fills tags and icon tiles. How: Blue tags and the contact and service icon tiles read it. */
+	--att-rin-col : ;                                                        /* What: Attention Ring Color. Why: The standard role set includes an attention ring. How: This site has nothing that pulses for attention, so it stays empty. */
+	--bac-hov-col : ;                                                        /* What: Background Hover Color. Why: The standard role set includes a hover overlay. How: This site's hovers change their own colors instead, so it stays empty. */
+	--bac-inv-col : var( --tex-mai-col );                                    /* What: Background Inverse Color. Why: The footer, the closing banner, and the code window sit on dark bands. How: This reads the main text color, the site's near-black ink. */
+	--bac-pag-col : #F5F0E8;                                                 /* What: Background Page Color = #F5F0E8. Why: The page sits on a creamy ivory. How: The body, the heroes, and most sections read it, and text on dark bands reads it as the light color. */
+	--bac-sun-col : #EDE6D8;                                                 /* What: Background Sunken Color = #EDE6D8. Why: Some bands and pills sit a little warmer and deeper than the page. How: The process, values, and services bands and the ivory pills read it. */
+	--bac-sur-col : #FFFFFF;                                                 /* What: Background Surface Color = #FFFFFF. Why: Cards and strips sit on white. How: Cards, panels, the stats strip, and the filter bar read it, and white text over dark overlays reads it too. */
+	--bor-mai-col : #D8CFBE;                                                 /* What: Border Main Color = #D8CFBE. Why: Borders and dividers need a quiet line color. How: Every card, field, and divider outline reads it, and the 404 page's pale number. */
+	--err-dar-col : #c0392b;                                                 /* What: Error Dark Color = #c0392b. Why: An error message has to read as one. How: The contact form's error text reads it. */
+	--err-mai-col : #e8b4ae;                                                 /* What: Error Main Color = #e8b4ae. Why: An error panel needs a red edge. How: The contact form's error border reads it. */
+	--err-tin-col : #fdf0ee;                                                 /* What: Error Tint Color = #fdf0ee. Why: An error panel sits on a pale red. How: The contact form's error background reads it. */
+	--foc-rin-col : var( --acc-dar-col );                                    /* What: Focus Ring Color. Why: Keyboard focus rings need 3:1 against the page, which the bright orange misses on the ivory. How: This reads the dark orange, which the focus ring and the fields' focus border draw in. */
+	--scr-mai-col : ;                                                        /* What: Scrim Main Color. Why: The standard role set includes a scrim behind open menus. How: The phone menu gains one with the new features step, so it stays empty until then. */
+	--sha-mai-col : var( --tex-mai-col );                                    /* What: Shadow Main Color. Why: The site's shadows have always been cast in its ink. How: This reads the main text color, which the elevation shadows read with their own alpha. */
+	--suc-dar-col : ;                                                        /* What: Success Dark Color. Why: The standard role set includes the success family. How: This site has no success text, so it stays empty. */
+	--suc-mai-col : #22c55e;                                                 /* What: Success Main Color = #22c55e. Why: A green dot signals availability. How: The availability dots on Home and Contact read it. */
+	--suc-tin-col : ;                                                        /* What: Success Tint Color. Why: The standard role set includes the success family. How: This site has no success panel, so it stays empty. */
+	--tex-acc-col : var( --tex-mai-col );                                    /* What: Text Accent Color. Why: White text on the bright orange only reaches about 3.2:1, while the ink reaches about 5.4:1. How: This reads the main text color, which every orange button's label reads. */
+	--tex-inm-col : #8181a1;                                                 /* What: Text Inverse-Muted Color = #8181a1. Why: Quiet text on the dark footer needs 4.5:1, which the muted grey misses on the ink. How: The footer's tagline, links, copyright, and icons read this lighter grey. */
+	--tex-mai-col : #1A1A2E;                                                 /* What: Text Main Color = #1A1A2E. Why: Headings and strong text read in a near-black ink. How: Headings, titles, and the dark bands read it. */
+	--tex-mut-col : #646482;                                                 /* What: Text Muted Color = #646482. Why: Quiet labels need 4.5:1 on the ivory, white, and warm ivory, which the original #7A7A99 missed. How: Captions, labels, and counts read it. */
+	--tex-sec-col : #3D3D5C;                                                 /* What: Text Secondary Color = #3D3D5C. Why: Paragraphs sit in a softer ink than headings. How: The base paragraph style and the muted copy read it. */
+	--war-dar-col : ;                                                        /* What: Warning Dark Color. Why: The standard role set includes the warning family. How: This site has no warnings, so it stays empty. */
+	--war-mai-col : ;                                                        /* What: Warning Main Color. Why: The standard role set includes the warning family. How: This site has no warnings, so it stays empty. */
+	--war-tin-col : ;                                                        /* What: Warning Tint Color. Why: The standard role set includes the warning family. How: This site has no warnings, so it stays empty. */
 
 	/* #endregion Color Tokens */
 
@@ -70,19 +177,36 @@
 
 	/* #region Font Family Tokens */
 
-	--fon-fam-acc : 'Lora', serif;         /* What: Font Family Accent. Why: Lora sets the occasional italic pull quote. How: The About page's lead reads it. */
-	--fon-fam-mai : 'Syne', sans-serif;    /* What: Font Family Main. Why: Syne is the site's main face for headings and body text. How: The body, headings, buttons, and fields read it. */
-	--fon-fam-sec : 'DM Mono', monospace;  /* What: Font Family Secondary. Why: DM Mono sets the labels, tags, buttons, and code. How: Every mono element reads it. */
+	--fon-fam-acc : 'Lora', serif;        /* What: Font Family Accent. Why: Lora sets the occasional italic pull quote. How: The About page's lead reads it. */
+	--fon-fam-mai : 'Syne', sans-serif;   /* What: Font Family Main. Why: Syne is the site's main face for headings and body text. How: The body, headings, buttons, and fields read it. */
+	--fon-fam-sec : 'DM Mono', monospace; /* What: Font Family Secondary. Why: DM Mono sets the labels, tags, buttons, and code. How: Every mono element reads it. */
 
 	/* #endregion Font Family Tokens */
 
 
 
+	/* #region Font Size Tokens */
+
+	--fon-siz-bas : 1rem; /* What: Font Size Base = 11px. Why: The type scale starts at the smallest size accessibility tools accept. How: This is 1rem, the root's 11px at the browser's default size, and the smallest labels and tags read it. */
+	--fon-siz-p01 : calc( var( --fon-siz-bas ) * var( --cdn-pow-001 ) ); /* What: Font Size Base Plus 1 ~= 14.572px. Why: Each step up the type scale is one more power of the core design number. How: This multiplies the base size by the first power. */
+	--fon-siz-p02 : calc( var( --fon-siz-bas ) * var( --cdn-pow-002 ) ); /* What: Font Size Base Plus 2 ~= 19.304px. Why: Each step up the type scale is one more power of the core design number. How: This multiplies the base size by the second power. */
+	--fon-siz-p03 : calc( var( --fon-siz-bas ) * var( --cdn-pow-003 ) ); /* What: Font Size Base Plus 3 ~= 25.572px. Why: Each step up the type scale is one more power of the core design number. How: This multiplies the base size by the third power. */
+	--fon-siz-p04 : calc( var( --fon-siz-bas ) * var( --cdn-pow-004 ) ); /* What: Font Size Base Plus 4 ~= 33.876px. Why: Each step up the type scale is one more power of the core design number. How: This multiplies the base size by the fourth power. */
+	--fon-siz-p05 : calc( var( --fon-siz-bas ) * var( --cdn-pow-005 ) ); /* What: Font Size Base Plus 5 ~= 44.876px. Why: Each step up the type scale is one more power of the core design number. How: This multiplies the base size by the fifth power. */
+	--fon-siz-p06 : calc( var( --fon-siz-bas ) * var( --cdn-pow-006 ) ); /* What: Font Size Base Plus 6 ~= 59.447px. Why: Each step up the type scale is one more power of the core design number. How: This multiplies the base size by the sixth power. */
+	--fon-siz-p07 : calc( var( --fon-siz-bas ) * var( --cdn-pow-007 ) ); /* What: Font Size Base Plus 7 ~= 78.751px. Why: Each step up the type scale is one more power of the core design number. How: This multiplies the base size by the seventh power. */
+	--fon-siz-p08 : calc( var( --fon-siz-bas ) * var( --cdn-pow-008 ) ); /* What: Font Size Base Plus 8 ~= 104.323px. Why: Each step up the type scale is one more power of the core design number. How: This multiplies the base size by the eighth power. */
+	--fon-siz-p09 : calc( var( --fon-siz-bas ) * var( --cdn-pow-009 ) ); /* What: Font Size Base Plus 9 ~= 138.199px. Why: Each step up the type scale is one more power of the core design number. How: This multiplies the base size by the ninth power. */
+	--fon-siz-p10 : calc( var( --fon-siz-bas ) * var( --cdn-pow-010 ) ); /* What: Font Size Base Plus 10 ~= 183.074px. Why: Each step up the type scale is one more power of the core design number. How: This multiplies the base size by the tenth power. */
+
+	/* #endregion Font Size Tokens */
+
+
+
 	/* #region Layout Tokens */
 
-	--max-width  : 1200px; /* What: Maximum Width. Why: The page's content column stops growing on wide screens. How: Every centered column caps its width at it. */
-	--nav-height : 72px;   /* What: Navigation Height. Why: Content has to clear the fixed bar. How: The bar sets its height from it, and heroes and sticky elements offset by it. */
-
+	--max-width   : 1200px;                              /* What: Maximum Width. Why: The page's content column stops growing on wide screens. How: Every centered column caps its width at it, until the horizontal layout step replaces it. */
+	--nav-bar-hei : calc( var( --ver-rhy-p06 ) * 1rem ); /* What: Navigation Bar Height ~= 78.751px. Why: Content has to clear the fixed bar. How: The bar sets its height from it, and the heroes and sticky elements offset by it, on the p06 rhythm step, the nearest to the 72px it used to be. */
 	/* #endregion Layout Tokens */
 
 
@@ -102,9 +226,11 @@
 
 	/* #region Radius Tokens */
 
-	--radius-sm : 3px;  /* What: Radius Small. Why: Buttons and tags take a slight rounding. How: Modules read it for small corners. */
-	--radius-md : 6px;  /* What: Radius Medium. Why: Fields and icon tiles take a softer rounding. How: Modules read it for medium corners. */
-	--radius-lg : 12px; /* What: Radius Large. Why: Cards and windows take the roundest corners. How: Modules read it for large corners. */
+	--rad-bor-xsm : calc( var( --ver-rhy-m05 ) * 1rem ); /* What: Radius Border Extra Small ~= 3.571px. Why: Buttons, tags, links, and thin bars take a slight rounding. How: This multiplies the m05 rhythm step by 1rem. */
+	--rad-bor-sma : calc( var( --ver-rhy-m02 ) * 1rem ); /* What: Radius Border Small ~= 8.304px. Why: Fields, icon tiles, contact rows, and the error panel round a little more. How: This multiplies the m02 rhythm step by 1rem. */
+	--rad-bor-med : calc( var( --ver-rhy-m01 ) * 1rem ); /* What: Radius Border Medium = 11px. Why: Cards, windows, and panels take the roundest corners. How: This multiplies the m01 rhythm step by 1rem. */
+	--rad-bor-lar : calc( var( --ver-rhy-bas ) * 1rem ); /* What: Radius Border Large ~= 14.572px. Why: The scale has a larger step, which nothing on this site rounds to yet. How: This multiplies the bas rhythm step by 1rem. */
+	--rad-bor-xla : calc( var( --ver-rhy-p01 ) * 1rem ); /* What: Radius Border Extra Large ~= 19.304px. Why: The scale's largest step, which nothing on this site rounds to yet. How: This multiplies the p01 rhythm step by 1rem. */
 
 	/* #endregion Radius Tokens */
 
@@ -122,18 +248,91 @@
 
 	/* #region Spacing Tokens */
 
-	--sp-1  : 4px;   /* What: Spacing 1. Why: The tightest gap between small pieces. How: Modules read it for tiny gaps. */
-	--sp-2  : 8px;   /* What: Spacing 2. Why: A small gap between related pieces. How: Modules read it for small gaps. */
-	--sp-3  : 12px;  /* What: Spacing 3. Why: A comfortable gap inside components. How: Modules read it for gaps and padding. */
-	--sp-4  : 16px;  /* What: Spacing 4. Why: The base gap between parts of a card. How: Modules read it for gaps and padding. */
-	--sp-5  : 24px;  /* What: Spacing 5. Why: The gap between cards and stacked blocks. How: Modules read it for grid gaps and padding. */
-	--sp-6  : 32px;  /* What: Spacing 6. Why: The page's side padding and card padding. How: Every centered column pads its sides with it. */
-	--sp-7  : 48px;  /* What: Spacing 7. Why: Larger gaps between major blocks. How: Modules read it for wide gaps and padding. */
-	--sp-8  : 64px;  /* What: Spacing 8. Why: The gap between a section's heading and its content. How: Modules read it for section-level spacing. */
-	--sp-9  : 96px;  /* What: Spacing 9. Why: Generous padding inside heroes and banners. How: Modules read it for large padding. */
-	--sp-10 : 128px; /* What: Spacing 10. Why: The padding above and below each section. How: Every section pads its top and bottom with it. */
+	--spa-hor-m09 : calc( var( --ver-rhy-m09 ) * 1rem ); /* What: Spacing Horizontal Base Minus 9 ~= 1.160px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the m09 rhythm step by 1rem. */
+	--spa-hor-m08 : calc( var( --ver-rhy-m08 ) * 1rem ); /* What: Spacing Horizontal Base Minus 8 ~= 1.536px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the m08 rhythm step by 1rem. */
+	--spa-hor-m07 : calc( var( --ver-rhy-m07 ) * 1rem ); /* What: Spacing Horizontal Base Minus 7 ~= 2.035px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the m07 rhythm step by 1rem. */
+	--spa-hor-m06 : calc( var( --ver-rhy-m06 ) * 1rem ); /* What: Spacing Horizontal Base Minus 6 ~= 2.696px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the m06 rhythm step by 1rem. */
+	--spa-hor-m05 : calc( var( --ver-rhy-m05 ) * 1rem ); /* What: Spacing Horizontal Base Minus 5 ~= 3.572px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the m05 rhythm step by 1rem. */
+	--spa-hor-m04 : calc( var( --ver-rhy-m04 ) * 1rem ); /* What: Spacing Horizontal Base Minus 4 ~= 4.732px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the m04 rhythm step by 1rem. */
+	--spa-hor-m03 : calc( var( --ver-rhy-m03 ) * 1rem ); /* What: Spacing Horizontal Base Minus 3 ~= 6.268px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the m03 rhythm step by 1rem. */
+	--spa-hor-m02 : calc( var( --ver-rhy-m02 ) * 1rem ); /* What: Spacing Horizontal Base Minus 2 ~= 8.304px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the m02 rhythm step by 1rem. */
+	--spa-hor-m01 : calc( var( --ver-rhy-m01 ) * 1rem ); /* What: Spacing Horizontal Base Minus 1 = 11px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the m01 rhythm step by 1rem. */
+	--spa-hor-bas : calc( var( --ver-rhy-bas ) * 1rem ); /* What: Spacing Horizontal Base ~= 14.572px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the bas rhythm step by 1rem. */
+	--spa-hor-p01 : calc( var( --ver-rhy-p01 ) * 1rem ); /* What: Spacing Horizontal Base Plus 1 ~= 19.304px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the p01 rhythm step by 1rem. */
+	--spa-hor-p02 : calc( var( --ver-rhy-p02 ) * 1rem ); /* What: Spacing Horizontal Base Plus 2 ~= 25.572px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the p02 rhythm step by 1rem. */
+	--spa-hor-p03 : calc( var( --ver-rhy-p03 ) * 1rem ); /* What: Spacing Horizontal Base Plus 3 ~= 33.876px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the p03 rhythm step by 1rem. */
+	--spa-hor-p04 : calc( var( --ver-rhy-p04 ) * 1rem ); /* What: Spacing Horizontal Base Plus 4 ~= 44.876px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the p04 rhythm step by 1rem. */
+	--spa-hor-p05 : calc( var( --ver-rhy-p05 ) * 1rem ); /* What: Spacing Horizontal Base Plus 5 ~= 59.447px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the p05 rhythm step by 1rem. */
+	--spa-hor-p06 : calc( var( --ver-rhy-p06 ) * 1rem ); /* What: Spacing Horizontal Base Plus 6 ~= 78.751px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the p06 rhythm step by 1rem. */
+	--spa-hor-p07 : calc( var( --ver-rhy-p07 ) * 1rem ); /* What: Spacing Horizontal Base Plus 7 ~= 104.323px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the p07 rhythm step by 1rem. */
+	--spa-hor-p08 : calc( var( --ver-rhy-p08 ) * 1rem ); /* What: Spacing Horizontal Base Plus 8 ~= 138.199px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the p08 rhythm step by 1rem. */
+
+
+	--spa-ver-m09 : calc( var( --ver-rhy-m09 ) * 1rem ); /* What: Spacing Vertical Base Minus 9 ~= 1.160px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the m09 rhythm step by 1rem. */
+	--spa-ver-m08 : calc( var( --ver-rhy-m08 ) * 1rem ); /* What: Spacing Vertical Base Minus 8 ~= 1.536px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the m08 rhythm step by 1rem. */
+	--spa-ver-m07 : calc( var( --ver-rhy-m07 ) * 1rem ); /* What: Spacing Vertical Base Minus 7 ~= 2.035px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the m07 rhythm step by 1rem. */
+	--spa-ver-m06 : calc( var( --ver-rhy-m06 ) * 1rem ); /* What: Spacing Vertical Base Minus 6 ~= 2.696px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the m06 rhythm step by 1rem. */
+	--spa-ver-m05 : calc( var( --ver-rhy-m05 ) * 1rem ); /* What: Spacing Vertical Base Minus 5 ~= 3.572px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the m05 rhythm step by 1rem. */
+	--spa-ver-m04 : calc( var( --ver-rhy-m04 ) * 1rem ); /* What: Spacing Vertical Base Minus 4 ~= 4.732px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the m04 rhythm step by 1rem. */
+	--spa-ver-m03 : calc( var( --ver-rhy-m03 ) * 1rem ); /* What: Spacing Vertical Base Minus 3 ~= 6.268px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the m03 rhythm step by 1rem. */
+	--spa-ver-m02 : calc( var( --ver-rhy-m02 ) * 1rem ); /* What: Spacing Vertical Base Minus 2 ~= 8.304px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the m02 rhythm step by 1rem. */
+	--spa-ver-m01 : calc( var( --ver-rhy-m01 ) * 1rem ); /* What: Spacing Vertical Base Minus 1 = 11px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the m01 rhythm step by 1rem. */
+	--spa-ver-bas : calc( var( --ver-rhy-bas ) * 1rem ); /* What: Spacing Vertical Base ~= 14.572px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the bas rhythm step by 1rem. */
+	--spa-ver-p01 : calc( var( --ver-rhy-p01 ) * 1rem ); /* What: Spacing Vertical Base Plus 1 ~= 19.304px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the p01 rhythm step by 1rem. */
+	--spa-ver-p02 : calc( var( --ver-rhy-p02 ) * 1rem ); /* What: Spacing Vertical Base Plus 2 ~= 25.572px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the p02 rhythm step by 1rem. */
+	--spa-ver-p03 : calc( var( --ver-rhy-p03 ) * 1rem ); /* What: Spacing Vertical Base Plus 3 ~= 33.876px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the p03 rhythm step by 1rem. */
+	--spa-ver-p04 : calc( var( --ver-rhy-p04 ) * 1rem ); /* What: Spacing Vertical Base Plus 4 ~= 44.876px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the p04 rhythm step by 1rem. */
+	--spa-ver-p05 : calc( var( --ver-rhy-p05 ) * 1rem ); /* What: Spacing Vertical Base Plus 5 ~= 59.447px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the p05 rhythm step by 1rem. */
+	--spa-ver-p06 : calc( var( --ver-rhy-p06 ) * 1rem ); /* What: Spacing Vertical Base Plus 6 ~= 78.751px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the p06 rhythm step by 1rem. */
+	--spa-ver-p07 : calc( var( --ver-rhy-p07 ) * 1rem ); /* What: Spacing Vertical Base Plus 7 ~= 104.323px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the p07 rhythm step by 1rem. */
+	--spa-ver-p08 : calc( var( --ver-rhy-p08 ) * 1rem ); /* What: Spacing Vertical Base Plus 8 ~= 138.199px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the p08 rhythm step by 1rem. */
 
 	/* #endregion Spacing Tokens */
+
+
+
+	/* #region Text Width Tokens */
+
+	--tex-wid-sma : calc( var( --cdn-pow-011 ) * 1em ); /* What: Text Width Small ~= 22.047em. Why: Short secondary lines read best near 50 characters a line. How: Syne averages about 2.32 characters per em, so this gives about 51, and the 404 page's line and the thank-you's line read it. */
+	--tex-wid-bas : calc( var( --cdn-pow-012 ) * 1em ); /* What: Text Width Base ~= 29.207em. Why: Paragraphs read best near 66 characters a line. How: Syne averages about 2.32 characters per em, so this gives about 68, and the hero lines, the section subtitles, About's lead, body, and timeline descriptions read it. */
+
+	/* #endregion Text Width Tokens */
+
+
+
+	/* #region Vertical Rhythm Tokens */
+
+	--ver-rhy-m12 : var( --cdn-pow-011-rec ); /* What: Vertical Rhythm Base Minus 12 ~= 0.045. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of -11, multiplied by 1rem where it sets a length. */
+	--ver-rhy-m11 : var( --cdn-pow-010-rec ); /* What: Vertical Rhythm Base Minus 11 ~= 0.060. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of -10, multiplied by 1rem where it sets a length. */
+	--ver-rhy-m10 : var( --cdn-pow-009-rec ); /* What: Vertical Rhythm Base Minus 10 ~= 0.080. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of -9, multiplied by 1rem where it sets a length. */
+	--ver-rhy-m09 : var( --cdn-pow-008-rec ); /* What: Vertical Rhythm Base Minus 9 ~= 0.105. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of -8, multiplied by 1rem where it sets a length. */
+	--ver-rhy-m08 : var( --cdn-pow-007-rec ); /* What: Vertical Rhythm Base Minus 8 ~= 0.140. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of -7, multiplied by 1rem where it sets a length. */
+	--ver-rhy-m07 : var( --cdn-pow-006-rec ); /* What: Vertical Rhythm Base Minus 7 ~= 0.185. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of -6, multiplied by 1rem where it sets a length. */
+	--ver-rhy-m06 : var( --cdn-pow-005-rec ); /* What: Vertical Rhythm Base Minus 6 ~= 0.245. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of -5, multiplied by 1rem where it sets a length. */
+	--ver-rhy-m05 : var( --cdn-pow-004-rec ); /* What: Vertical Rhythm Base Minus 5 ~= 0.325. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of -4, multiplied by 1rem where it sets a length. */
+	--ver-rhy-m04 : var( --cdn-pow-003-rec ); /* What: Vertical Rhythm Base Minus 4 ~= 0.430. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of -3, multiplied by 1rem where it sets a length. */
+	--ver-rhy-m03 : var( --cdn-pow-002-rec ); /* What: Vertical Rhythm Base Minus 3 ~= 0.570. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of -2, multiplied by 1rem where it sets a length. */
+	--ver-rhy-m02 : var( --cdn-pow-001-rec ); /* What: Vertical Rhythm Base Minus 2 ~= 0.755. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of -1, multiplied by 1rem where it sets a length. */
+	--ver-rhy-m01 : var( --cdn-pow-000 ); /* What: Vertical Rhythm Base Minus 1 = 1. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 0, multiplied by 1rem where it sets a length. */
+	--ver-rhy-bas : var( --cdn-pow-001 ); /* What: Vertical Rhythm Base ~= 1.325. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 1, multiplied by 1rem where it sets a length. */
+	--ver-rhy-p01 : var( --cdn-pow-002 ); /* What: Vertical Rhythm Base Plus 1 ~= 1.755. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 2, multiplied by 1rem where it sets a length. */
+	--ver-rhy-p02 : var( --cdn-pow-003 ); /* What: Vertical Rhythm Base Plus 2 ~= 2.325. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 3, multiplied by 1rem where it sets a length. */
+	--ver-rhy-p03 : var( --cdn-pow-004 ); /* What: Vertical Rhythm Base Plus 3 ~= 3.080. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 4, multiplied by 1rem where it sets a length. */
+	--ver-rhy-p04 : var( --cdn-pow-005 ); /* What: Vertical Rhythm Base Plus 4 ~= 4.080. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 5, multiplied by 1rem where it sets a length. */
+	--ver-rhy-p05 : var( --cdn-pow-006 ); /* What: Vertical Rhythm Base Plus 5 ~= 5.404. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 6, multiplied by 1rem where it sets a length. */
+	--ver-rhy-p06 : var( --cdn-pow-007 ); /* What: Vertical Rhythm Base Plus 6 ~= 7.159. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 7, multiplied by 1rem where it sets a length. */
+	--ver-rhy-p07 : var( --cdn-pow-008 ); /* What: Vertical Rhythm Base Plus 7 ~= 9.484. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 8, multiplied by 1rem where it sets a length. */
+	--ver-rhy-p08 : var( --cdn-pow-009 ); /* What: Vertical Rhythm Base Plus 8 ~= 12.564. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 9, multiplied by 1rem where it sets a length. */
+	--ver-rhy-p09 : var( --cdn-pow-010 ); /* What: Vertical Rhythm Base Plus 9 ~= 16.643. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 10, multiplied by 1rem where it sets a length. */
+	--ver-rhy-p10 : var( --cdn-pow-011 ); /* What: Vertical Rhythm Base Plus 10 ~= 22.047. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 11, multiplied by 1rem where it sets a length. */
+	--ver-rhy-p11 : var( --cdn-pow-012 ); /* What: Vertical Rhythm Base Plus 11 ~= 29.207. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 12, multiplied by 1rem where it sets a length. */
+	--ver-rhy-p12 : var( --cdn-pow-013 ); /* What: Vertical Rhythm Base Plus 12 ~= 38.691. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 13, multiplied by 1rem where it sets a length. */
+	--ver-rhy-p13 : var( --cdn-pow-014 ); /* What: Vertical Rhythm Base Plus 13 ~= 51.254. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 14, multiplied by 1rem where it sets a length. */
+	--ver-rhy-p14 : var( --cdn-pow-015 ); /* What: Vertical Rhythm Base Plus 14 ~= 67.897. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 15, multiplied by 1rem where it sets a length. */
+	--ver-rhy-p15 : var( --cdn-pow-016 ); /* What: Vertical Rhythm Base Plus 15 ~= 89.945. Why: Every height and line height is a power of the core design number. How: This is the core design number to the power of 16, multiplied by 1rem where it sets a length. */
+
+	/* #endregion Vertical Rhythm Tokens */
+
 
 
 }
@@ -156,12 +355,12 @@
 
 }
 
-html { /* What: Root Element. Why: The page should scroll smoothly to its anchors and draw text crisply. How: This fixes the root size at 16px, smooths scrolling, and turns on grayscale antialiasing. */
+html { /* What: Root Element. Why: The page should scroll smoothly to its anchors and draw text crisply. How: This sets the root size to the 11px base, smooths scrolling, and turns on grayscale antialiasing. */
 
 
 	-moz-osx-font-smoothing : grayscale;
 	-webkit-font-smoothing  : antialiased;
-	font-size               : 16px;
+	font-size               : 68.75%; /* What: Root Font Size. Why: 1rem has to be the 11px base, scaled with the visitor's own setting. How: 11 divided by the default 16 is 68.75%. */
 	scroll-behavior         : smooth;
 
 
@@ -180,14 +379,15 @@ html { /* What: Root Element. Why: The page should scroll smoothly to its anchor
 
 }
 
-body { /* What: Page Body. Why: Every page sits on the ivory in the main face and color. How: This sets the background, text color, font, and line height, fills the screen, and hides sideways overflow. */
+body { /* What: Page Body. Why: Every page sits on the ivory in the main face and color. How: This sets the background, text color, font, size, and line height, fills the screen, and hides sideways overflow. */
 
 
 	background-color : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
 	color            : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 	font-family      : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
+	font-size        : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	height           : 100%;
-	line-height      : 1.6;
+	line-height      : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
 	margin           : 0;
 	min-height       : 100vh;
 	overflow-x       : hidden;
@@ -204,9 +404,9 @@ h5,
 h6 { /* What: Headings. Why: Every heading shares the bold, tight display style. How: This sets the display font at weight 700 with tight lines and letters. */
 
 
-	font-family    : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
+	font-family    : var( --fon-fam-mai );                    /* Font Family Main = 'Syne', sans-serif */
 	font-weight    : 700;
-	letter-spacing : -0.02em;
+	letter-spacing : calc( var( --cdn-pow-014-rec ) * -1em ); /* Core-Design-Number to the Power of 14 Reciprocal ~= -0.020em */
 	line-height    : 1.15;
 
 
@@ -215,7 +415,7 @@ h6 { /* What: Headings. Why: Every heading shares the bold, tight display style.
 h1 { /* What: Heading Level 1. Why: The page heading is the largest and boldest. How: This scales it with the screen between 2.5rem and 5rem at weight 800. */
 
 
-	font-size   : clamp( 2.5rem, 6vw, 5rem );
+	font-size   : clamp( var( --fon-siz-p05 ), 6vw, var( --fon-siz-p07 ) ); /* Font Size Base Plus 5 ~= 44.876px, Font Size Base Plus 7 ~= 78.751px */
 	font-weight : 800;
 
 
@@ -224,7 +424,7 @@ h1 { /* What: Heading Level 1. Why: The page heading is the largest and boldest.
 h2 { /* What: Heading Level 2. Why: Section headings sit a step down. How: This scales them with the screen between 1.8rem and 3rem. */
 
 
-	font-size : clamp( 1.8rem, 4vw, 3rem );
+	font-size : clamp( var( --fon-siz-p03 ), 4vw, var( --fon-siz-p05 ) ); /* Font Size Base Plus 3 ~= 25.572px, Font Size Base Plus 5 ~= 44.876px */
 
 
 }
@@ -232,7 +432,7 @@ h2 { /* What: Heading Level 2. Why: Section headings sit a step down. How: This 
 h3 { /* What: Heading Level 3. Why: Card headings sit another step down. How: This scales them with the screen between 1.3rem and 1.8rem. */
 
 
-	font-size : clamp( 1.3rem, 2.5vw, 1.8rem );
+	font-size : clamp( var( --fon-siz-p02 ), 2.5vw, var( --fon-siz-p03 ) ); /* Font Size Base Plus 2 ~= 19.304px, Font Size Base Plus 3 ~= 25.572px */
 
 
 }
@@ -240,7 +440,7 @@ h3 { /* What: Heading Level 3. Why: Card headings sit another step down. How: Th
 h4 { /* What: Heading Level 4. Why: The smallest heading stays a fixed size. How: This sets it at 1.2rem. */
 
 
-	font-size : 1.2rem;
+	font-size : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
 
 
 }
@@ -250,9 +450,9 @@ p { /* What: Paragraph. Why: Body text reads comfortably in the secondary text c
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	font-family : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
-	font-size   : 1rem;
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight : 400;
-	line-height : 1.75;
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
 
 
 }
@@ -299,7 +499,7 @@ ul { /* What: Lists. Why: Lists are only used for layout, never bullets. How: Th
 ::-webkit-scrollbar { /* What: Scrollbar. Why: A slim scrollbar suits the site in Chromium and WebKit. How: This narrows it to 6px. */
 
 
-	width : 6px;
+	width : calc( var( --ver-rhy-m03 ) * 1rem ); /* Vertical Rhythm Base Minus 3 ~= 6.268px */
 
 
 }
@@ -316,7 +516,7 @@ ul { /* What: Lists. Why: Lists are only used for layout, never bullets. How: Th
 
 
 	background    : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
-	border-radius : 3px;
+	border-radius : var( --rad-bor-xsm ); /* Radius Border Extra Small ~= 3.571px */
 
 
 }
@@ -331,9 +531,9 @@ ul { /* What: Lists. Why: Lists are only used for layout, never bullets. How: Th
 :focus-visible { /* What: Focus Visible. Why: A keyboard user has to see where focus is. How: This draws a 2px orange ring held 3px off the element, with the small rounding. */
 
 
-	border-radius  : var( --radius-sm );             /* Radius Small = 3px */
-	outline        : 2px solid var( --foc-rin-col ); /* Focus Ring Color ~= #bd3000 */
-	outline-offset : 3px;
+	border-radius  : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.571px */
+	outline        : var( --bor-wid-lar ) solid var( --foc-rin-col ); /* Border Width Large ~= 2.035px, Focus Ring Color ~= #bd3000 */
+	outline-offset : var( --bor-wid-xla );                            /* Border Width Extra Large ~= 3.571px */
 
 
 }
@@ -351,7 +551,7 @@ ul { /* What: Lists. Why: Lists are only used for layout, never bullets. How: Th
 
 
 		opacity   : 0;
-		transform : translateY( 24px );
+		transform : translateY( var( --spa-ver-p02 ) ); /* Spacing Vertical Base Plus 2 ~= 25.572px */
 
 
 	}

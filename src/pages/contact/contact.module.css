@@ -53,9 +53,9 @@
 .hero { /* What: Contact Hero. Why: The page opens with its invitation clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips the pattern behind it. */
 
 
-	background : var( --bac-pag-col );                                        /* Background Page Color = #F5F0E8 */
+	background : var( --bac-pag-col );                                                       /* Background Page Color = #F5F0E8 */
 	overflow   : hidden;
-	padding    : calc( var( --nav-height ) + var( --sp-9 ) ) 0 var( --sp-9 ); /* Navigation Height = 72px, Spacing 9 = 96px */
+	padding    : calc( var( --nav-bar-hei ) + var( --spa-ver-p07 ) ) 0 var( --spa-ver-p07 ); /* Navigation Bar Height ~= 78.751px, Spacing Vertical Base Plus 7 ~= 104.323px */
 	position   : relative;
 
 
@@ -69,10 +69,10 @@
 
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --sp-5 );      /* Spacing 5 = 24px */
+	gap            : var( --spa-ver-p02 );   /* Spacing Vertical Base Plus 2 ~= 25.572px */
 	margin         : 0 auto;
-	max-width      : var( --max-width ); /* Maximum Width = 1200px */ /* What: Container Cap. Why: The global container rule loaded after this module, so its cap always beat the 640px this rule once asked for. How: This keeps the cap that has always applied. */
-	padding        : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	max-width      : var( --max-width );     /* Maximum Width = 1200px */ /* What: Container Cap. Why: The global container rule loaded after this module, so its cap always beat the 640px this rule once asked for. How: This keeps the cap that has always applied. */
+	padding        : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
 	position       : relative;
 	width          : 100%;
 	z-index        : 1;
@@ -90,8 +90,8 @@
 	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
 	display        : inline-flex;
 	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.72rem;
-	gap            : var( --sp-3 );        /* Spacing 3 = 12px */
+	font-size      : var( --fon-siz-bas ); /* Font Size Base = 11px */
+	gap            : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
 	letter-spacing : 0.12em;
 	text-transform : uppercase;
 
@@ -101,10 +101,10 @@
 .heroLine { /* What: Hero Line. Why: A short rule leads into the label. How: This draws a 28px orange stroke. */
 
 
-	background : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
+	background : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
 	display    : inline-block;
-	height     : 1.5px;
-	width      : 28px;
+	height     : var( --bor-wid-bas );                /* Border Width Base ~= 1.160px */
+	width      : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */
 
 
 }
@@ -133,11 +133,12 @@
 /* #endregion heroTitle */
 
 
-.heroSub { /* What: Hero Subtitle. Why: The line under the heading reads a little larger and quieter. How: This sets it muted. */
+.heroSub { /* What: Hero Subtitle. Why: The line under the heading reads a little larger and quieter. How: This sets it muted, capped at the paragraph measure. */
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
-	font-size : 1.05rem;
+	font-size : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	max-width : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
 
 
 }
@@ -153,8 +154,8 @@
 .contactSection { /* What: Contact Section. Why: The form and the sidebar sit on the ivory with the section spacing. How: This sets the background and the shared section padding. */
 
 
-	background : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
-	padding    : var( --sp-10 ) 0;     /* Spacing 10 = 128px */
+	background : var( --bac-pag-col );   /* Background Page Color = #F5F0E8 */
+	padding    : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
 
 
 }
@@ -167,11 +168,11 @@
 
 	align-items           : start;
 	display               : grid;
-	gap                   : var( --sp-8 );      /* Spacing 8 = 64px */
+	gap                   : var( --spa-ver-p05 ) var( --spa-hor-p05 ); /* Spacing Vertical Base Plus 5 ~= 59.447px, Spacing Horizontal Base Plus 5 ~= 59.447px */
 	grid-template-columns : 1fr 320px;
 	margin                : 0 auto;
-	max-width             : var( --max-width ); /* Maximum Width = 1200px */
-	padding               : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	max-width             : var( --max-width );                        /* Maximum Width = 1200px */
+	padding               : 0 var( --spa-hor-p03 );                    /* Spacing Horizontal Base Plus 3 ~= 33.876px */
 	width                 : 100%;
 
 
@@ -196,10 +197,10 @@
 .formWrap { /* What: Form Wrap. Why: The form and its thank-you sit on one white card. How: This sets the bordered card with generous padding. */
 
 
-	background    : var( --bac-sur-col );           /* Background Surface Color = #FFFFFF */
-	border        : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
-	border-radius : var( --radius-lg );             /* Radius Large = 12px */
-	padding       : var( --sp-7 );                  /* Spacing 7 = 48px */
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius : var( --rad-bor-med );                            /* Radius Border Medium = 11px */
+	padding       : var( --spa-ver-p04 ) var( --spa-hor-p04 );       /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 
 
 }
@@ -209,7 +210,7 @@
 	.formWrap { /* What: Snug Form Wrap. Why: The fields need the room. How: This reduces the padding. */
 
 
-		padding : var( --sp-5 ); /* Spacing 5 = 24px */
+		padding : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 
 
 	}
@@ -226,8 +227,8 @@
 	align-items    : center;
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --sp-4 );               /* Spacing 4 = 16px */
-	padding        : var( --sp-9 ) var( --sp-6 ); /* Spacing 9 = 96px, Spacing 6 = 32px */
+	gap            : var( --spa-ver-bas );                      /* Spacing Vertical Base ~= 14.572px */
+	padding        : var( --spa-ver-p07 ) var( --spa-hor-p03 ); /* Spacing Vertical Base Plus 7 ~= 104.323px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	text-align     : center;
 
 
@@ -237,7 +238,7 @@
 
 
 	color     : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
-	font-size : 1.5rem;
+	font-size : var( --fon-siz-p03 ); /* Font Size Base Plus 3 ~= 25.572px */
 
 
 }
@@ -246,7 +247,7 @@
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
-	max-width : 360px;
+	max-width : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
 
 
 }
@@ -254,13 +255,13 @@
 .resetBtn { /* What: Reset Button. Why: A visitor may want to send another message. How: This sets an orange outlined button in mono capitals, easing its fill. */
 
 
-	border         : 1.5px solid var( --acc-mai-col );                                /* Accent Main Color = #F26419 */
-	border-radius  : var( --radius-sm );                                              /* Radius Small = 3px */
+	border         : var( --bor-wid-bas ) solid var( --acc-mai-col );                 /* Border Width Base ~= 1.160px, Accent Main Color = #F26419 */
+	border-radius  : var( --rad-bor-xsm );                                            /* Radius Border Extra Small ~= 3.571px */
 	color          : var( --acc-dar-col );                                            /* Accent Dark Color ~= #bd3000 */
 	font-family    : var( --fon-fam-sec );                                            /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.8rem;
+	font-size      : var( --fon-siz-p01 );                                            /* Font Size Base Plus 1 ~= 14.572px */
 	letter-spacing : 0.04em;
-	padding        : 10px var( --sp-5 );                                              /* Spacing 5 = 24px */
+	padding        : var( --spa-ver-m01 ) var( --spa-hor-p02 );                       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	text-transform : uppercase;
 	transition     : background var( --duration-fast ), color var( --duration-fast ); /* Duration Fast = 150ms */
 
@@ -298,7 +299,7 @@
 
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --sp-5 ); /* Spacing 5 = 24px */
+	gap            : var( --spa-ver-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px */
 
 
 }
@@ -307,8 +308,8 @@
 
 
 	color         : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
-	font-size     : 1.3rem;
-	margin-bottom : var( --sp-6 );        /* Spacing 6 = 32px */
+	font-size     : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	margin-bottom : var( --spa-ver-p03 ); /* Spacing Vertical Base Plus 3 ~= 33.876px */
 
 
 }
@@ -320,7 +321,7 @@
 
 
 	display               : grid;
-	gap                   : var( --sp-5 ); /* Spacing 5 = 24px */
+	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	grid-template-columns : 1fr 1fr;
 
 
@@ -347,7 +348,7 @@
 
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --sp-2 ); /* Spacing 2 = 8px */
+	gap            : var( --spa-ver-m02 ); /* Spacing Vertical Base Minus 2 ~= 8.304px */
 
 
 }
@@ -355,11 +356,11 @@
 .label { /* What: Field Label. Why: Each field's name reads as a small label. How: This sets it in muted mono capitals. */
 
 
-	color          : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
-	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.72rem;
+	color          : var( --tex-sec-col );                   /* Text Secondary Color = #3D3D5C */
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
 	font-weight    : 500;
-	letter-spacing : 0.08em;
+	letter-spacing : calc( var( --cdn-pow-009-rec ) * 1em ); /* Core-Design-Number to the Power of 9 Reciprocal ~= 0.080em */
 	text-transform : uppercase;
 
 
@@ -371,12 +372,12 @@
 
 
 	background    : var( --bac-pag-col );                                                   /* Background Page Color = #F5F0E8 */
-	border        : 1.5px solid var( --bor-mai-col );                                       /* Border Main Color = #D8CFBE */
-	border-radius : var( --radius-md );                                                     /* Radius Medium = 6px */
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );                        /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius : var( --rad-bor-sma );                                                   /* Radius Border Small ~= 8.3px */
 	color         : var( --tex-mai-col );                                                   /* Text Main Color = #1A1A2E */
 	font-family   : var( --fon-fam-mai );                                                   /* Font Family Main = 'Syne', sans-serif */
-	font-size     : 0.95rem;
-	padding       : 12px var( --sp-4 );                                                     /* Spacing 4 = 16px */
+	font-size     : var( --fon-siz-p01 );                                                   /* Font Size Base Plus 1 ~= 14.572px */
+	padding       : var( --spa-ver-m01 ) var( --spa-hor-bas );                              /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
 	transition    : border-color var( --duration-fast ), box-shadow var( --duration-fast ); /* Duration Fast = 150ms */
 	width         : 100%;
 
@@ -387,8 +388,8 @@
 .textarea:focus { /* What: Focused Form Controls. Why: A visitor has to see which field they're typing in. How: This swaps the default outline for an orange border and a pale orange glow. */
 
 
-	border-color : var( --foc-rin-col );           /* Focus Ring Color ~= #bd3000 */
-	box-shadow   : 0 0 0 3px var( --acc-tin-col ); /* Accent Tint Color = #FDDCC8 */
+	border-color : var( --foc-rin-col );                            /* Focus Ring Color ~= #bd3000 */
+	box-shadow   : 0 0 0 var( --bor-wid-xla ) var( --acc-tin-col ); /* Border Width Extra Large ~= 3.571px, Accent Tint Color = #FDDCC8 */
 	outline      : none;
 
 
@@ -414,10 +415,10 @@
 
 	appearance          : none;
 	background-image    : url( "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A7A99' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E" );
-	background-position : right 14px center;
+	background-position : right var( --spa-hor-bas ) center; /* Spacing Horizontal Base ~= 14.572px */
 	background-repeat   : no-repeat;
 	cursor              : pointer;
-	padding-right       : 40px;
+	padding-right       : var( --spa-hor-p04 );              /* Spacing Horizontal Base Plus 4 ~= 44.876px */
 
 
 }
@@ -425,8 +426,8 @@
 .textarea { /* What: Message Textarea. Why: A message needs room and only grows downward. How: This sets a 140px minimum, roomy lines, and vertical resizing only. */
 
 
-	line-height : 1.65;
-	min-height  : 140px;
+	line-height : var( --ver-rhy-p01 );                /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	min-height  : calc( var( --ver-rhy-p08 ) * 1rem ); /* Vertical Rhythm Base Plus 8 ~= 138.199px */
 	resize      : vertical;
 
 
@@ -440,12 +441,12 @@
 .errorMsg { /* What: Error Message. Why: A failed send has to stand out. How: This sets the message on a pale red panel with a red border and text. */
 
 
-	background    : var( --err-tin-col );           /* Error Tint Color = #fdf0ee */
-	border        : 1px solid var( --err-mai-col ); /* Error Main Color = #e8b4ae */
-	border-radius : var( --radius-md );             /* Radius Medium = 6px */
-	color         : var( --err-dar-col );           /* Error Dark Color = #c0392b */
-	font-size     : 0.88rem;
-	padding       : var( --sp-3 ) var( --sp-4 );    /* Spacing 3 = 12px, Spacing 4 = 16px */
+	background    : var( --err-tin-col );                            /* Error Tint Color = #fdf0ee */
+	border        : var( --bor-wid-bas ) solid var( --err-mai-col ); /* Border Width Base ~= 1.160px, Error Main Color = #e8b4ae */
+	border-radius : var( --rad-bor-sma );                            /* Radius Border Small ~= 8.3px */
+	color         : var( --err-dar-col );                            /* Error Dark Color = #c0392b */
+	font-size     : var( --fon-siz-p01 );                            /* Font Size Base Plus 1 ~= 14.572px */
+	padding       : var( --spa-ver-m01 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
 
 
 }
@@ -456,15 +457,15 @@
 	align-items    : center;
 	align-self     : flex-start;
 	background     : var( --acc-mai-col );                                                /* Accent Main Color = #F26419 */
-	border-radius  : var( --radius-sm );                                                  /* Radius Small = 3px */
+	border-radius  : var( --rad-bor-xsm );                                                /* Radius Border Extra Small ~= 3.571px */
 	color          : var( --tex-acc-col );                                                /* Text Accent Color = #1A1A2E */
 	display        : inline-flex;
 	font-family    : var( --fon-fam-sec );                                                /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.85rem;
+	font-size      : var( --fon-siz-p01 );                                                /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight    : 500;
-	gap            : var( --sp-3 );                                                       /* Spacing 3 = 12px */
-	letter-spacing : 0.06em;
-	padding        : 14px var( --sp-7 );                                                  /* Spacing 7 = 48px */
+	gap            : var( --spa-hor-m01 );                                                /* Spacing Horizontal Base Minus 1 = 11px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );                              /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 );                           /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	text-transform : uppercase;
 	transition     : background var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
 
@@ -527,9 +528,9 @@
 
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --sp-5 );                               /* Spacing 5 = 24px */
+	gap            : var( --spa-ver-p02 );                                /* Spacing Vertical Base Plus 2 ~= 25.572px */
 	position       : sticky;
-	top            : calc( var( --nav-height ) + var( --sp-6 ) ); /* Navigation Height = 72px, Spacing 6 = 32px */
+	top            : calc( var( --nav-bar-hei ) + var( --spa-ver-p03 ) ); /* Navigation Bar Height ~= 78.751px, Spacing Vertical Base Plus 3 ~= 33.876px */
 
 
 }
@@ -553,10 +554,10 @@
 .sidebarCard { /* What: Sidebar Card. Why: Each group of details sits on its own white card. How: This sets the bordered, rounded, padded card. */
 
 
-	background    : var( --bac-sur-col );           /* Background Surface Color = #FFFFFF */
-	border        : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
-	border-radius : var( --radius-lg );             /* Radius Large = 12px */
-	padding       : var( --sp-5 );                  /* Spacing 5 = 24px */
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius : var( --rad-bor-med );                            /* Radius Border Medium = 11px */
+	padding       : var( --spa-ver-p02 ) var( --spa-hor-p02 );       /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 
 
 }
@@ -565,9 +566,9 @@
 
 
 	color         : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
-	font-size     : 0.9rem;
+	font-size     : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight   : 700;
-	margin-bottom : var( --sp-4 );        /* Spacing 4 = 16px */
+	margin-bottom : var( --spa-ver-bas ); /* Spacing Vertical Base ~= 14.572px */
 
 
 }
@@ -580,7 +581,7 @@
 
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --sp-4 ); /* Spacing 4 = 16px */
+	gap            : var( --spa-ver-bas ); /* Spacing Vertical Base ~= 14.572px */
 
 
 }
@@ -592,11 +593,11 @@
 
 
 	align-items   : center;
-	border-radius : var( --radius-md );                /* Radius Medium = 6px */
+	border-radius : var( --rad-bor-sma );                      /* Radius Border Small ~= 8.3px */
 	display       : flex;
-	gap           : var( --sp-3 );                     /* Spacing 3 = 12px */
-	padding       : var( --sp-3 );                     /* Spacing 3 = 12px */
-	transition    : background var( --duration-fast ); /* Duration Fast = 150ms */
+	gap           : var( --spa-hor-m01 );                      /* Spacing Horizontal Base Minus 1 = 11px */
+	padding       : var( --spa-ver-m01 ) var( --spa-hor-m01 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Minus 1 = 11px */
+	transition    : background var( --duration-fast );         /* Duration Fast = 150ms */
 
 
 }
@@ -625,14 +626,14 @@
 
 
 	align-items     : center;
-	background      : var( --acs-tin-col ); /* Accent-Secondary Tint Color = #B8D9EC */
-	border-radius   : var( --radius-md );   /* Radius Medium = 6px */
-	color           : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
+	background      : var( --acs-tin-col );                /* Accent-Secondary Tint Color = #B8D9EC */
+	border-radius   : var( --rad-bor-sma );                /* Radius Border Small ~= 8.3px */
+	color           : var( --acs-dar-col );                /* Accent-Secondary Dark Color ~= #126186 */
 	display         : flex;
 	flex-shrink     : 0;
-	height          : 36px;
+	height          : calc( var( --ver-rhy-p03 ) * 1rem ); /* Vertical Rhythm Base Plus 3 ~= 33.876px */
 	justify-content : center;
-	width           : 36px;
+	width           : calc( var( --ver-rhy-p03 ) * 1rem ); /* Vertical Rhythm Base Plus 3 ~= 33.876px */
 
 
 }
@@ -640,11 +641,11 @@
 .contactLabel { /* What: Contact Label. Why: The detail's name reads as a small label. How: This sets it on its own line in muted mono capitals. */
 
 
-	color          : var( --tex-mut-col ); /* Text Muted Color = #646482 */
+	color          : var( --tex-mut-col );                   /* Text Muted Color = #646482 */
 	display        : block;
-	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.7rem;
-	letter-spacing : 0.06em;
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em ); /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	text-transform : uppercase;
 
 
@@ -655,7 +656,7 @@
 
 	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 	display     : block;
-	font-size   : 0.85rem;
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight : 500;
 
 
@@ -673,7 +674,7 @@
 
 	align-items : center;
 	display     : flex;
-	gap         : var( --sp-3 ); /* Spacing 3 = 12px */
+	gap         : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
 
 
 }
@@ -682,11 +683,11 @@
 
 
 	animation     : global( pulse ) 2s ease-in-out infinite;
-	background    : var( --suc-mai-col ); /* Success Main Color = #22c55e */
+	background    : var( --suc-mai-col );                /* Success Main Color = #22c55e */
 	border-radius : 50%;
 	flex-shrink   : 0;
-	height        : 10px;
-	width         : 10px;
+	height        : calc( var( --ver-rhy-m01 ) * 1rem ); /* Vertical Rhythm Base Minus 1 = 11px */
+	width         : calc( var( --ver-rhy-m01 ) * 1rem ); /* Vertical Rhythm Base Minus 1 = 11px */
 
 
 }
@@ -709,7 +710,7 @@
 
 	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 	display     : block;
-	font-size   : 0.88rem;
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight : 600;
 
 
@@ -721,9 +722,9 @@
 	color          : var( --tex-mut-col ); /* Text Muted Color = #646482 */
 	display        : block;
 	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.7rem;
+	font-size      : var( --fon-siz-bas ); /* Font Size Base = 11px */
 	letter-spacing : 0.04em;
-	margin-top     : var( --sp-1 );        /* Spacing 1 = 4px */
+	margin-top     : var( --spa-ver-m05 ); /* Spacing Vertical Base Minus 5 ~= 3.572px */
 
 
 }
@@ -737,8 +738,8 @@
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
-	font-size   : 0.88rem;
-	line-height : 1.65;
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
 
 
 }

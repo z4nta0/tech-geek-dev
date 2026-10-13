@@ -23,7 +23,7 @@
 
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --sp-3 ); /* Spacing 3 = 12px */
+	gap            : var( --spa-ver-m01 ); /* Spacing Vertical Base Minus 1 = 11px */
 	max-width      : 640px;
 
 
@@ -48,8 +48,8 @@
 	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
 	display        : inline-flex;
 	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.72rem;
-	gap            : var( --sp-3 );        /* Spacing 3 = 12px */
+	font-size      : var( --fon-siz-bas ); /* Font Size Base = 11px */
+	gap            : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
 	letter-spacing : 0.12em;
 	text-transform : uppercase;
 
@@ -59,11 +59,11 @@
 .line { /* What: Label Line. Why: A short rule leads into the label. How: This draws a 28px orange stroke that never shrinks. */
 
 
-	background  : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
+	background  : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
 	display     : inline-block;
 	flex-shrink : 0;
-	height      : 1.5px;
-	width       : 28px;
+	height      : var( --bor-wid-bas );                /* Border Width Base ~= 1.160px */
+	width       : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */
 
 
 }
@@ -90,9 +90,9 @@
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
-	font-size   : 1.05rem;
-	line-height : 1.7;
-	max-width   : 540px;
+	font-size   : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	max-width   : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
 
 
 }

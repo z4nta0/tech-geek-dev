@@ -29,7 +29,7 @@
 	display         : flex;
 	justify-content : center;
 	min-height      : 100vh;
-	padding         : var( --sp-7 );                                 /* Spacing 7 = 48px */
+	padding         : var( --spa-ver-p04 ) var( --spa-hor-p04 );     /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 
 
 }
@@ -56,7 +56,7 @@
 	align-items    : center;
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --sp-5 ); /* Spacing 5 = 24px */
+	gap            : var( --spa-ver-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px */
 	position       : relative;
 	text-align     : center;
 
@@ -66,12 +66,12 @@
 .code { /* What: Error Code. Why: A huge pale 404 says what happened at a glance without shouting. How: This sets it in the display font, scaling with the screen, in the pale ivory, and keeps it from being selected. */
 
 
-	color          : var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
-	font-family    : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
-	font-size      : clamp( 6rem, 20vw, 12rem );
+	color          : var( --bor-mai-col );                                      /* Border Main Color = #D8CFBE */
+	font-family    : var( --fon-fam-mai );                                      /* Font Family Main = 'Syne', sans-serif */
+	font-size      : clamp( var( --fon-siz-p08 ), 20vw, var( --fon-siz-p10 ) ); /* Font Size Base Plus 8 ~= 104.323px, Font Size Base Plus 10 ~= 183.074px */
 	font-weight    : 800;
-	letter-spacing : -0.06em;
-	line-height    : 1;
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * -1em );                   /* Core-Design-Number to the Power of 10 Reciprocal ~= -0.060em */
+	line-height    : var( --ver-rhy-m01 );                                      /* Vertical Rhythm Base Minus 1 = 1 */
 	user-select    : none;
 
 
@@ -81,13 +81,13 @@
 
 
 	animation      : global( rotateSlow ) 20s linear infinite;
-	height         : 200px;
+	height         : calc( var( --ver-rhy-p09 ) * 1rem ); /* Vertical Rhythm Base Plus 9 ~= 183.074px */
 	left           : 50%;
 	pointer-events : none;
 	position       : absolute;
 	top            : 50%;
 	translate      : -50% -50%;
-	width          : 200px;
+	width          : calc( var( --ver-rhy-p09 ) * 1rem ); /* Vertical Rhythm Base Plus 9 ~= 183.074px */
 
 
 }
@@ -109,7 +109,7 @@
 
 
 	color     : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
-	font-size : 1.8rem;
+	font-size : var( --fon-siz-p03 ); /* Font Size Base Plus 3 ~= 25.572px */
 	position  : relative;
 	z-index   : 1;
 
@@ -120,7 +120,7 @@
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
-	max-width : 360px;
+	max-width : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
 
 
 }
@@ -130,14 +130,14 @@
 
 	align-items    : center;
 	background     : var( --acc-mai-col );                                                /* Accent Main Color = #F26419 */
-	border-radius  : var( --radius-sm );                                                  /* Radius Small = 3px */
+	border-radius  : var( --rad-bor-xsm );                                                /* Radius Border Extra Small ~= 3.571px */
 	color          : var( --tex-acc-col );                                                /* Text Accent Color = #1A1A2E */
 	display        : inline-flex;
 	font-family    : var( --fon-fam-sec );                                                /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.82rem;
+	font-size      : var( --fon-siz-p01 );                                                /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight    : 500;
-	letter-spacing : 0.06em;
-	padding        : 12px var( --sp-6 );                                                  /* Spacing 6 = 32px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );                              /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	padding        : var( --spa-ver-m01 ) var( --spa-hor-p03 );                           /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	text-transform : uppercase;
 	transition     : background var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
 

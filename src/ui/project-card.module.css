@@ -24,8 +24,8 @@
 
 
 	background    : var( --bac-sur-col );                                                                                    /* Background Surface Color = #FFFFFF */
-	border        : 1px solid var( --bor-mai-col );                                                                          /* Border Main Color = #D8CFBE */
-	border-radius : var( --radius-lg );                                                                                      /* Radius Large = 12px */
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );                                                         /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius : var( --rad-bor-med );                                                                                    /* Radius Border Medium = 11px */
 	overflow      : hidden;
 	position      : relative;
 	transition    : transform var( --duration-base ) var( --ease-out ), box-shadow var( --duration-base ) var( --ease-out ); /* Duration Base = 280ms, Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
@@ -112,7 +112,7 @@
 
 
 	align-items     : center;
-	backdrop-filter : blur( 4px );
+	backdrop-filter : blur( calc( var( --ver-rhy-m05 ) * 1rem ) );      /* Vertical Rhythm Base Minus 5 ~= 3.571px */
 	background      : oklch( from var( --bac-inv-col ) l c h / 0.72 );  /* Background Inverse Color = #1A1A2E @ 0.72 opacity */
 	display         : flex;
 	inset           : 0;
@@ -151,7 +151,7 @@
 
 
 	display : flex;
-	gap     : var( --sp-3 ); /* Spacing 3 = 12px */
+	gap     : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
 
 
 }
@@ -160,18 +160,18 @@
 
 
 	align-items    : center;
-	background     : var( --acc-mai-col );              /* Accent Main Color = #F26419 */
-	border-radius  : var( --radius-sm );                /* Radius Small = 3px */
-	color          : var( --tex-acc-col );              /* Text Accent Color = #1A1A2E */
+	background     : var( --acc-mai-col );                      /* Accent Main Color = #F26419 */
+	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --tex-acc-col );                      /* Text Accent Color = #1A1A2E */
 	display        : inline-flex;
-	font-family    : var( --fon-fam-sec );              /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.78rem;
+	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                      /* Font Size Base = 11px */
 	font-weight    : 500;
-	gap            : var( --sp-2 );                     /* Spacing 2 = 8px */
+	gap            : var( --spa-hor-m02 );                      /* Spacing Horizontal Base Minus 2 ~= 8.304px */
 	letter-spacing : 0.04em;
-	padding        : 10px var( --sp-4 );                /* Spacing 4 = 16px */
+	padding        : var( --spa-ver-m01 ) var( --spa-hor-bas ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
 	text-transform : uppercase;
-	transition     : background var( --duration-fast ); /* Duration Fast = 150ms */
+	transition     : background var( --duration-fast );         /* Duration Fast = 150ms */
 
 
 }
@@ -186,8 +186,8 @@
 
 
 	background : transparent;
-	border     : 1.5px solid oklch( from var( --bac-sur-col ) l c h / 0.5 ); /* Background Surface Color = #FFFFFF @ 0.5 opacity */
-	color      : var( --bac-sur-col );                                       /* Background Surface Color = #FFFFFF */
+	border     : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / 0.5 ); /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.5 opacity */
+	color      : var( --bac-sur-col );                                                      /* Background Surface Color = #FFFFFF */
 
 
 }
@@ -220,17 +220,17 @@
 .yearBadge { /* What: Year Badge. Why: The year sits over the screenshot's corner. How: This sets a small blurred dark tag with white mono text in the top left. */
 
 
-	backdrop-filter : blur( 4px );
+	backdrop-filter : blur( calc( var( --ver-rhy-m05 ) * 1rem ) );     /* Vertical Rhythm Base Minus 5 ~= 3.571px */
 	background      : oklch( from var( --bac-inv-col ) l c h / 0.65 ); /* Background Inverse Color = #1A1A2E @ 0.65 opacity */
-	border-radius   : var( --radius-sm );                              /* Radius Small = 3px */
+	border-radius   : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.571px */
 	color           : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
 	font-family     : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
-	font-size       : 0.68rem;
-	left            : var( --sp-3 );                                   /* Spacing 3 = 12px */
-	letter-spacing  : 0.06em;
-	padding         : 3px 8px;
+	font-size       : var( --fon-siz-bas );                            /* Font Size Base = 11px */
+	left            : var( --spa-hor-m01 );                            /* Spacing Horizontal Base Minus 1 = 11px */
+	letter-spacing  : calc( var( --cdn-pow-010-rec ) * 1em );          /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	padding         : var( --spa-ver-m06 ) var( --spa-hor-m02 );       /* Spacing Vertical Base Minus 6 ~= 2.696px, Spacing Horizontal Base Minus 2 ~= 8.304px */
 	position        : absolute;
-	top             : var( --sp-3 );                                   /* Spacing 3 = 12px */
+	top             : var( --spa-ver-m01 );                            /* Spacing Vertical Base Minus 1 = 11px */
 
 
 }
@@ -245,8 +245,8 @@
 
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --sp-3 ); /* Spacing 3 = 12px */
-	padding        : var( --sp-5 ); /* Spacing 5 = 24px */
+	gap            : var( --spa-ver-m01 );                      /* Spacing Vertical Base Minus 1 = 11px */
+	padding        : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 
 
 }
@@ -255,7 +255,7 @@
 
 
 	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
-	font-size   : 1.1rem;
+	font-size   : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
 	font-weight : 700;
 
 
@@ -268,8 +268,8 @@
 	-webkit-line-clamp : 3;
 	color              : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	display            : -webkit-box;
-	font-size          : 0.88rem;
-	line-height        : 1.65;
+	font-size          : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	line-height        : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
 	overflow           : hidden;
 
 
@@ -280,8 +280,8 @@
 
 	display     : flex;
 	flex-wrap   : wrap;
-	gap         : var( --sp-1 ); /* Spacing 1 = 4px */
-	padding-top : var( --sp-1 ); /* Spacing 1 = 4px */
+	gap         : var( --spa-ver-m05 ) var( --spa-hor-m05 ); /* Spacing Vertical Base Minus 5 ~= 3.572px, Spacing Horizontal Base Minus 5 ~= 3.572px */
+	padding-top : var( --spa-ver-m05 );                      /* Spacing Vertical Base Minus 5 ~= 3.572px */
 
 
 }

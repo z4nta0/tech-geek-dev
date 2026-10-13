@@ -19,7 +19,7 @@
 
 
 	align-items    : center;
-	border-radius  : var( --radius-sm );   /* Radius Small = 3px */
+	border-radius  : var( --rad-bor-xsm ); /* Radius Border Extra Small ~= 3.571px */
 	display        : inline-flex;
 	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	letter-spacing : 0.04em;
@@ -30,43 +30,43 @@
 .sm { /* What: Small Tag. Why: Project cards fit several tags in a row. How: This sets the smaller text and padding. */
 
 
-	font-size : 0.68rem;
-	padding   : 3px 8px;
+	font-size : var( --fon-siz-bas );                      /* Font Size Base = 11px */
+	padding   : var( --spa-ver-m06 ) var( --spa-hor-m02 ); /* Spacing Vertical Base Minus 6 ~= 2.696px, Spacing Horizontal Base Minus 2 ~= 8.304px */
 
 
 }
 .md { /* What: Medium Tag. Why: The About page's skills grid shows larger tags. How: This sets the larger text and padding. */
 
 
-	font-size : 0.75rem;
-	padding   : 5px 12px;
+	font-size : var( --fon-siz-bas );                      /* Font Size Base = 11px */
+	padding   : var( --spa-ver-m04 ) var( --spa-hor-m01 ); /* Spacing Vertical Base Minus 4 ~= 4.732px, Spacing Horizontal Base Minus 1 = 11px */
 
 
 }
 .neutral { /* What: Neutral Tag. Why: A tag with no color of its own stays quiet. How: This sets it on the warm ivory with a matching border. */
 
 
-	background : var( --bac-sun-col );           /* Background Sunken Color = #EDE6D8 */
-	border     : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
-	color      : var( --tex-sec-col );           /* Text Secondary Color = #3D3D5C */
+	background : var( --bac-sun-col );                            /* Background Sunken Color = #EDE6D8 */
+	border     : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	color      : var( --tex-sec-col );                            /* Text Secondary Color = #3D3D5C */
 
 
 }
 .blue { /* What: Blue Tag. Why: Technologies show in the site's blue. How: This sets the pale blue fill, blue border, and dark blue text. */
 
 
-	background : var( --acs-tin-col );           /* Accent-Secondary Tint Color = #B8D9EC */
-	border     : 1px solid var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
-	color      : var( --acs-dar-col );           /* Accent-Secondary Dark Color ~= #126186 */
+	background : var( --acs-tin-col );                            /* Accent-Secondary Tint Color = #B8D9EC */
+	border     : var( --bor-wid-bas ) solid var( --acc-sec-col ); /* Border Width Base ~= 1.160px, Accent Secondary Color = #7DB9D8 */
+	color      : var( --acs-dar-col );                            /* Accent-Secondary Dark Color ~= #126186 */
 
 
 }
 .orange { /* What: Orange Tag. Why: A tag can stand out in the site's accent. How: This sets the pale orange fill, orange border, and dark orange text. */
 
 
-	background : var( --acc-tin-col );           /* Accent Tint Color = #FDDCC8 */
-	border     : 1px solid var( --acc-mai-col ); /* Accent Main Color = #F26419 */
-	color      : var( --acc-dar-col );           /* Accent Dark Color ~= #bd3000 */
+	background : var( --acc-tin-col );                            /* Accent Tint Color = #FDDCC8 */
+	border     : var( --bor-wid-bas ) solid var( --acc-mai-col ); /* Border Width Base ~= 1.160px, Accent Main Color = #F26419 */
+	color      : var( --acc-dar-col );                            /* Accent Dark Color ~= #bd3000 */
 
 
 }

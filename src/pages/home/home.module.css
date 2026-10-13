@@ -60,7 +60,7 @@
 	display     : flex;
 	min-height  : 100vh;
 	overflow    : hidden;
-	padding-top : var( --nav-height );  /* Navigation Height = 72px */
+	padding-top : var( --nav-bar-hei ); /* Navigation Bar Height ~= 78.751px */
 	position    : relative;
 
 
@@ -89,12 +89,12 @@
 
 
 	animation  : global( rotateSlow ) 30s linear infinite;
-	background : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
+	background : var( --acc-sec-col );                /* Accent Secondary Color = #7DB9D8 */
 	clip-path  : polygon( 50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25% );
-	height     : 320px;
-	right      : -80px;
+	height     : calc( var( --ver-rhy-p11 ) * 1rem ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
+	right      : calc( var( --spa-hor-p06 ) * -1 );   /* Spacing Horizontal Base Plus 6 ~= 78.751px */
 	top        : 10%;
-	width      : 320px;
+	width      : calc( var( --ver-rhy-p11 ) * 1rem ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
 
 
 }
@@ -103,13 +103,13 @@
 
 	animation     : global( rotateSlow ) 20s linear infinite reverse;
 	background    : transparent;
-	border        : 3px solid var( --acc-mai-col ); /* Accent Main Color = #F26419 */
+	border        : var( --bor-wid-xla ) solid var( --acc-mai-col ); /* Border Width Extra Large ~= 3.571px, Accent Main Color = #F26419 */
 	border-radius : 50%;
 	bottom        : 10%;
-	height        : 200px;
+	height        : calc( var( --ver-rhy-p09 ) * 1rem );             /* Vertical Rhythm Base Plus 9 ~= 183.074px */
 	left          : 5%;
 	opacity       : 0.15;
-	width         : 200px;
+	width         : calc( var( --ver-rhy-p09 ) * 1rem );             /* Vertical Rhythm Base Plus 9 ~= 183.074px */
 
 
 }
@@ -118,13 +118,13 @@
 
 	animation  : global( rotateSlow ) 15s linear infinite;
 	background : transparent;
-	border     : 2px solid var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
-	height     : 120px;
+	border     : var( --bor-wid-lar ) solid var( --acs-str-col ); /* Border Width Large ~= 2.035px, Accent-Secondary Strong Color = #4A91B8 */
+	height     : calc( var( --ver-rhy-p07 ) * 1rem );             /* Vertical Rhythm Base Plus 7 ~= 104.323px */
 	left       : 45%;
 	opacity    : 0.12;
 	rotate     : 45deg;
 	top        : 15%;
-	width      : 120px;
+	width      : calc( var( --ver-rhy-p07 ) * 1rem );             /* Vertical Rhythm Base Plus 7 ~= 104.323px */
 
 
 }
@@ -154,11 +154,11 @@
 
 	align-items           : center;
 	display               : grid;
-	gap                   : var( --sp-10 );     /* Spacing 10 = 128px */
+	gap                   : var( --spa-ver-p08 ) var( --spa-hor-p08 ); /* Spacing Vertical Base Plus 8 ~= 138.199px, Spacing Horizontal Base Plus 8 ~= 138.199px */
 	grid-template-columns : 3fr 1fr;
 	margin                : 0 auto;
-	max-width             : var( --max-width ); /* Maximum Width = 1200px */
-	padding               : 0 var( --sp-6 );    /* Spacing 6 = 32px */ /* What: Container Padding. Why: The global container rule loaded after this module, so its padding always zeroed the 96px top and 128px bottom padding this rule once asked for. How: This keeps the padding that has always applied. */
+	max-width             : var( --max-width );                        /* Maximum Width = 1200px */
+	padding               : 0 var( --spa-hor-p03 );                    /* Spacing Horizontal Base Plus 3 ~= 33.876px */ /* What: Container Padding. Why: The global container rule loaded after this module, so its padding always zeroed the 96px top and 128px bottom padding this rule once asked for. How: This keeps the padding that has always applied. */
 	position              : relative;
 	width                 : 100%;
 	z-index               : 1;
@@ -171,7 +171,7 @@
 	.heroInner { /* What: Tighter Hero Inner. Why: The gap would crowd the pitch on a tablet. How: This halves the gap, keeping the two columns. */
 
 
-		gap                   : var( --sp-8 ); /* Spacing 8 = 64px */
+		gap                   : var( --spa-ver-p05 ); /* Spacing Vertical Base Plus 5 ~= 59.447px */
 		grid-template-columns : 3fr 1fr;
 
 
@@ -185,7 +185,7 @@
 	.heroInner { /* What: One Column Hero Inner. Why: The pitch takes the full width on a phone. How: This sets one column. */
 
 
-		gap                   : var( --sp-8 ); /* Spacing 8 = 64px */
+		gap                   : var( --spa-hor-p05 ); /* Spacing Horizontal Base Plus 5 ~= 59.447px */
 		grid-template-columns : 1fr;
 
 
@@ -203,7 +203,7 @@
 	animation      : global( fadeUp ) 600ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --sp-5 );                                 /* Spacing 5 = 24px */
+	gap            : var( --spa-ver-p02 );                          /* Spacing Vertical Base Plus 2 ~= 25.572px */
 	min-width      : 0;
 
 
@@ -229,16 +229,16 @@
 
 
 	align-items    : center;
-	background     : var( --bac-sun-col );           /* Background Sunken Color = #EDE6D8 */
-	border         : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
-	border-radius  : 100px;
-	color          : var( --tex-sec-col );           /* Text Secondary Color = #3D3D5C */
+	background     : var( --bac-sun-col );                            /* Background Sunken Color = #EDE6D8 */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : 999px;
+	color          : var( --tex-sec-col );                            /* Text Secondary Color = #3D3D5C */
 	display        : inline-flex;
-	font-family    : var( --fon-fam-sec );           /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.78rem;
-	gap            : var( --sp-2 );                  /* Spacing 2 = 8px */
-	letter-spacing : 0.08em;
-	padding        : 6px 14px;
+	font-family    : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                            /* Font Size Base = 11px */
+	gap            : var( --spa-hor-m02 );                            /* Spacing Horizontal Base Minus 2 ~= 8.304px */
+	letter-spacing : calc( var( --cdn-pow-009-rec ) * 1em );          /* Core-Design-Number to the Power of 9 Reciprocal ~= 0.080em */
+	padding        : var( --spa-ver-m03 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 3 ~= 6.268px, Spacing Horizontal Base ~= 14.572px */
 	text-transform : uppercase;
 	width          : fit-content;
 
@@ -249,11 +249,11 @@
 
 
 	animation     : global( pulse ) 2s ease-in-out infinite;
-	background    : var( --suc-mai-col ); /* Success Main Color = #22c55e */
+	background    : var( --suc-mai-col );                /* Success Main Color = #22c55e */
 	border-radius : 50%;
 	flex-shrink   : 0;
-	height        : 8px;
-	width         : 8px;
+	height        : calc( var( --ver-rhy-m02 ) * 1rem ); /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+	width         : calc( var( --ver-rhy-m02 ) * 1rem ); /* Vertical Rhythm Base Minus 2 ~= 8.304px */
 
 
 }
@@ -271,11 +271,10 @@
 
 }
 
-.mono { /* What: Availability Text. Why: The label's words read in the mono font, a little smaller than the pill. How: This sets the mono font at 0.875em. */
+.mono { /* What: Availability Text. Why: The label's words read in the mono font at the label's own size, the smallest the type scale allows. How: This sets the mono font, inheriting the label's size. */
 
 
 	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
-	font-size   : 0.875em;
 
 
 }
@@ -289,7 +288,7 @@
 
 
 	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
-	line-height : 1.05;
+	line-height : var( --ver-rhy-m01 ); /* Vertical Rhythm Base Minus 1 = 1 */
 
 
 }
@@ -306,11 +305,11 @@
 .accent::after { /* What: Hero Title Accent Stroke. Why: A soft orange stroke underlines the accent word. How: This draws a 4px rounded orange bar along its bottom, partly faded. */
 
 
-	background    : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
-	border-radius : 2px;
-	bottom        : 4px;
+	background    : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
+	border-radius : var( --rad-bor-xsm );                /* Radius Border Extra Small ~= 3.571px */
+	bottom        : var( --spa-ver-m05 );                /* Spacing Vertical Base Minus 5 ~= 3.572px */
 	content       : '';
-	height        : 4px;
+	height        : calc( var( --ver-rhy-m05 ) * 1rem ); /* Vertical Rhythm Base Minus 5 ~= 3.572px */
 	left          : 0;
 	opacity       : 0.6;
 	position      : absolute;
@@ -330,12 +329,13 @@
 /* #endregion heroTitle */
 
 
-.heroSub { /* What: Hero Subtitle. Why: The pitch line reads a little larger and quieter. How: This sets it muted with roomy lines. */
+.heroSub { /* What: Hero Subtitle. Why: The pitch line reads a little larger and quieter. How: This sets it muted with roomy lines, capped at the paragraph measure. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
-	font-size   : 1.05rem;
-	line-height : 1.75;
+	font-size   : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	max-width   : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
 
 
 }
@@ -348,7 +348,7 @@
 
 	display   : flex;
 	flex-wrap : wrap;
-	gap       : var( --sp-4 ); /* Spacing 4 = 16px */
+	gap       : var( --spa-ver-bas ) var( --spa-hor-bas ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base ~= 14.572px */
 
 
 }
@@ -358,15 +358,15 @@
 
 	align-items    : center;
 	background     : var( --acc-mai-col );                                                /* Accent Main Color = #F26419 */
-	border-radius  : var( --radius-sm );                                                  /* Radius Small = 3px */
+	border-radius  : var( --rad-bor-xsm );                                                /* Radius Border Extra Small ~= 3.571px */
 	color          : var( --tex-acc-col );                                                /* Text Accent Color = #1A1A2E */
 	display        : inline-flex;
 	font-family    : var( --fon-fam-sec );                                                /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.85rem;
+	font-size      : var( --fon-siz-p01 );                                                /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight    : 500;
-	gap            : var( --sp-2 );                                                       /* Spacing 2 = 8px */
+	gap            : var( --spa-hor-m02 );                                                /* Spacing Horizontal Base Minus 2 ~= 8.304px */
 	letter-spacing : 0.04em;
-	padding        : 14px var( --sp-7 );                                                  /* Spacing 7 = 48px */
+	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 );                           /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	text-transform : uppercase;
 	transition     : background var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
 
@@ -375,8 +375,8 @@
 .ctaPrimary:hover { /* What: Hovered View Work Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 2px. */
 
 
-	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
-	transform  : translateY( -2px );
+	background : var( --acc-hov-col );                            /* Accent Hover Color ~= #e45700 */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= 2.035px */
 
 
 }
@@ -398,15 +398,15 @@
 
 
 	align-items    : center;
-	border         : 1.5px solid var( --bor-mai-col );                                                                    /* Border Main Color = #D8CFBE */
-	border-radius  : var( --radius-sm );                                                                                  /* Radius Small = 3px */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col );                                                     /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : var( --rad-bor-xsm );                                                                                /* Radius Border Extra Small ~= 3.571px */
 	color          : var( --tex-mai-col );                                                                                /* Text Main Color = #1A1A2E */
 	display        : inline-flex;
 	font-family    : var( --fon-fam-sec );                                                                                /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.85rem;
+	font-size      : var( --fon-siz-p01 );                                                                                /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight    : 500;
 	letter-spacing : 0.04em;
-	padding        : 14px var( --sp-7 );                                                                                  /* Spacing 7 = 48px */
+	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 );                                                           /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	text-transform : uppercase;
 	transition     : border-color var( --duration-fast ), color var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
 
@@ -415,9 +415,9 @@
 .ctaSecondary:hover { /* What: Hovered Get In Touch Button. Why: A button should respond to the pointer. How: This turns its border and text dark blue and lifts it 2px. */
 
 
-	border-color : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
-	color        : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
-	transform    : translateY( -2px );
+	border-color : var( --acs-str-col );                            /* Accent-Secondary Strong Color = #4A91B8 */
+	color        : var( --acs-dar-col );                            /* Accent-Secondary Dark Color ~= #126186 */
+	transform    : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= 2.035px */
 
 
 }
@@ -458,7 +458,7 @@
 
 	animation : tickerScroll 60s linear infinite;
 	display   : flex;
-	gap       : var( --sp-3 ); /* Spacing 3 = 12px */
+	gap       : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
 
 
 }
@@ -500,14 +500,14 @@
 .tickerItem { /* What: Ticker Item. Why: Each skill reads as a small pill. How: This sets a warm ivory pill in muted mono capitals that never wraps. */
 
 
-	background     : var( --bac-sun-col );           /* Background Sunken Color = #EDE6D8 */
-	border         : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
-	border-radius  : 100px;
-	color          : var( --tex-mut-col );           /* Text Muted Color = #646482 */
-	font-family    : var( --fon-fam-sec );           /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.72rem;
-	letter-spacing : 0.06em;
-	padding        : 4px 12px;
+	background     : var( --bac-sun-col );                            /* Background Sunken Color = #EDE6D8 */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : 999px;
+	color          : var( --tex-mut-col );                            /* Text Muted Color = #646482 */
+	font-family    : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                            /* Font Size Base = 11px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );          /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	padding        : var( --spa-ver-m05 ) var( --spa-hor-m01 );       /* Spacing Vertical Base Minus 5 ~= 3.572px, Spacing Horizontal Base Minus 1 = 11px */
 	text-transform : uppercase;
 	white-space    : nowrap;
 
@@ -577,10 +577,10 @@
 .codeWindow { /* What: Code Window. Why: z4nta0 is introduced as code in a dark editor window. How: This sets a dark rounded window with a faint light border, a large shadow, and a faint blue outline. */
 
 
-	background    : var( --bac-inv-col );                                                          /* Background Inverse Color = #1A1A2E */
-	border        : 1px solid oklch( from var( --bac-sur-col ) l c h / 0.08 );                     /* Background Surface Color = #FFFFFF @ 0.08 opacity */
-	border-radius : var( --radius-lg );                                                            /* Radius Large = 12px */
-	box-shadow    : var( --shadow-lg ), 0 0 0 1px oklch( from var( --acc-sec-col ) l c h / 0.15 ); /* Shadow Large = 0 12px 40px rgba( 26, 26, 46, 0.14 ), Accent Secondary Color = #7DB9D8 @ 0.15 opacity */
+	background    : var( --bac-inv-col );                                                                           /* Background Inverse Color = #1A1A2E */
+	border        : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / 0.08 );                     /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.08 opacity */
+	border-radius : var( --rad-bor-med );                                                                           /* Radius Border Medium = 11px */
+	box-shadow    : var( --shadow-lg ), 0 0 0 var( --bor-wid-bas ) oklch( from var( --acc-sec-col ) l c h / 0.15 ); /* Shadow Large = 0 12px 40px rgba( 26, 26, 46, 0.14 ), Border Width Base ~= 1.160px, Accent Secondary Color = #7DB9D8 @ 0.15 opacity */
 	overflow      : hidden;
 	position      : relative;
 
@@ -594,11 +594,11 @@
 
 
 	align-items   : center;
-	background    : oklch( from var( --bac-sur-col ) l c h / 0.04 );           /* Background Surface Color = #FFFFFF @ 0.04 opacity */
-	border-bottom : 1px solid oklch( from var( --bac-sur-col ) l c h / 0.06 ); /* Background Surface Color = #FFFFFF @ 0.06 opacity */
+	background    : oklch( from var( --bac-sur-col ) l c h / 0.04 );                            /* Background Surface Color = #FFFFFF @ 0.04 opacity */
+	border-bottom : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / 0.06 ); /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.06 opacity */
 	display       : flex;
-	gap           : var( --sp-2 );                                             /* Spacing 2 = 8px */
-	padding       : 12px var( --sp-5 );                                        /* Spacing 5 = 24px */
+	gap           : var( --spa-hor-m02 );                                                       /* Spacing Horizontal Base Minus 2 ~= 8.304px */
+	padding       : var( --spa-ver-m01 ) var( --spa-hor-p02 );                                  /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 
 
 }
@@ -609,8 +609,8 @@
 
 
 	border-radius : 50%;
-	height        : 10px;
-	width         : 10px;
+	height        : calc( var( --ver-rhy-m01 ) * 1rem ); /* Vertical Rhythm Base Minus 1 = 11px */
+	width         : calc( var( --ver-rhy-m01 ) * 1rem ); /* Vertical Rhythm Base Minus 1 = 11px */
 
 
 }
@@ -641,8 +641,8 @@
 
 	color       : oklch( from var( --bac-sur-col ) l c h / 0.35 ); /* Background Surface Color = #FFFFFF @ 0.35 opacity */
 	font-family : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
-	font-size   : 0.75rem;
-	margin-left : var( --sp-3 );                                   /* Spacing 3 = 12px */
+	font-size   : var( --fon-siz-bas );                            /* Font Size Base = 11px */
+	margin-left : var( --spa-hor-m01 );                            /* Spacing Horizontal Base Minus 1 = 11px */
 
 
 }
@@ -656,11 +656,11 @@
 
 
 	color       : #e2e8f0;
-	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
-	font-size   : 0.88rem;
-	line-height : 1.8;
+	font-family : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
+	font-size   : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
+	line-height : var( --ver-rhy-p01 );                      /* Vertical Rhythm Base Plus 1 ~= 1.755 */
 	overflow    : auto;
-	padding     : var( --sp-6 );        /* Spacing 6 = 32px */
+	padding     : var( --spa-ver-p03 ) var( --spa-hor-p03 ); /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	white-space : pre;
 
 
@@ -701,14 +701,14 @@
 	align-items   : center;
 	animation     : global( fadeUp ) 800ms 300ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
 	background    : var( --bac-sur-col );                                /* Background Surface Color = #FFFFFF */
-	border        : 1px solid var( --bor-mai-col );                      /* Border Main Color = #D8CFBE */
-	border-radius : var( --radius-lg );                                  /* Radius Large = 12px */
-	bottom        : -33px;
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );     /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius : var( --rad-bor-med );                                /* Radius Border Medium = 11px */
+	bottom        : calc( var( --spa-ver-p03 ) * -1 );                   /* Spacing Vertical Base Plus 3 ~= 33.876px */
 	box-shadow    : var( --shadow-md );                                  /* Shadow Medium = 0 4px 16px rgba( 26, 26, 46, 0.10 ) */
 	display       : flex;
-	gap           : var( --sp-3 );                                       /* Spacing 3 = 12px */
-	left          : -24px;
-	padding       : var( --sp-4 ) var( --sp-5 );                         /* Spacing 4 = 16px, Spacing 5 = 24px */
+	gap           : var( --spa-hor-m01 );                                /* Spacing Horizontal Base Minus 1 = 11px */
+	left          : calc( var( --spa-hor-p02 ) * -1 );                   /* Spacing Horizontal Base Plus 2 ~= 25.572px */
+	padding       : var( --spa-ver-bas ) var( --spa-hor-p02 );           /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	position      : absolute;
 
 
@@ -732,7 +732,7 @@
 
 	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 	font-family : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
-	font-size   : 1.3rem;
+	font-size   : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
 	font-weight : 800;
 
 
@@ -741,10 +741,10 @@
 .badgeLabel { /* What: Badge Label. Why: The label says what the figure counts, quietly. How: This sets it small in muted mono capitals. */
 
 
-	color          : var( --tex-mut-col ); /* Text Muted Color = #646482 */
-	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.7rem;
-	letter-spacing : 0.06em;
+	color          : var( --tex-mut-col );                   /* Text Muted Color = #646482 */
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em ); /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	text-transform : uppercase;
 
 
@@ -760,10 +760,10 @@
 .heroDivider { /* What: Hero Divider. Why: A slanted white edge leads from the hero into the stats strip. How: This clips a 64px white band along the hero's bottom to a triangle. */
 
 
-	background : var( --bac-sur-col ); /* Background Surface Color = #FFFFFF */
-	bottom     : -1px;
+	background : var( --bac-sur-col );                /* Background Surface Color = #FFFFFF */
+	bottom     : calc( var( --spa-ver-m09 ) * -1 );   /* Spacing Vertical Base Minus 9 ~= 1.16px */
 	clip-path  : polygon( 0 100%, 100% 0, 100% 100% );
-	height     : 64px;
+	height     : calc( var( --ver-rhy-p05 ) * 1rem ); /* Vertical Rhythm Base Plus 5 ~= 59.447px */
 	left       : 0;
 	position   : absolute;
 	right      : 0;
@@ -780,9 +780,9 @@
 .stats { /* What: Stats Section. Why: The figures sit on a white strip under the hero. How: This sets the background, pads the strip, and rules it off below. */
 
 
-	background    : var( --bac-sur-col );           /* Background Surface Color = #FFFFFF */
-	border-bottom : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
-	padding       : var( --sp-8 ) 0;                /* Spacing 8 = 64px */
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
+	border-bottom : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	padding       : var( --spa-ver-p05 ) 0;                          /* Spacing Vertical Base Plus 5 ~= 59.447px */
 
 
 }
@@ -794,8 +794,8 @@
 
 
 	margin    : 0 auto;
-	max-width : var( --max-width ); /* Maximum Width = 1200px */
-	padding   : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	max-width : var( --max-width );     /* Maximum Width = 1200px */
+	padding   : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
 	width     : 100%;
 
 
@@ -808,7 +808,7 @@
 
 
 	display               : grid;
-	gap                   : var( --sp-5 ); /* Spacing 5 = 24px */
+	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	grid-template-columns : repeat( 4, 1fr );
 
 
@@ -847,11 +847,11 @@
 
 
 	align-items    : center;
-	border-right   : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
+	border-right   : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --sp-2 );                  /* Spacing 2 = 8px */
-	padding        : var( --sp-5 );                  /* Spacing 5 = 24px */
+	gap            : var( --spa-ver-m02 );                            /* Spacing Vertical Base Minus 2 ~= 8.304px */
+	padding        : var( --spa-ver-p02 ) var( --spa-hor-p02 );       /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	text-align     : center;
 
 
@@ -869,7 +869,7 @@
 	.statItem { /* What: Underlined Stat Item. Why: The paired figures divide better from the row below. How: This swaps the right rule for one underneath. */
 
 
-		border-bottom : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
+		border-bottom : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
 		border-right  : none;
 
 
@@ -883,23 +883,23 @@
 
 	color          : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 	font-family    : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
-	font-size      : 2.5rem;
+	font-size      : var( --fon-siz-p05 ); /* Font Size Base Plus 5 ~= 44.876px */
 	font-weight    : 800;
 	letter-spacing : -0.04em;
-	line-height    : 1;
+	line-height    : var( --ver-rhy-m01 ); /* Vertical Rhythm Base Minus 1 = 1 */
 
 
 }
 .statValue::after { /* What: Stat Value Underline. Why: A short orange stroke sits under each figure. How: This draws a 24px rounded orange bar centered below it. */
 
 
-	background    : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
-	border-radius : 2px;
+	background    : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
+	border-radius : var( --rad-bor-xsm );                /* Radius Border Extra Small ~= 3.571px */
 	content       : '';
 	display       : block;
-	height        : 3px;
-	margin        : var( --sp-2 ) auto 0; /* Spacing 2 = 8px */
-	width         : 24px;
+	height        : var( --bor-wid-xla );                /* Border Width Extra Large ~= 3.571px */
+	margin        : var( --spa-ver-m02 ) auto 0;         /* Spacing Vertical Base Minus 2 ~= 8.304px */
+	width         : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */
 
 
 }
@@ -907,10 +907,10 @@
 .statLabel { /* What: Stat Label. Why: The label says what the figure counts, quietly. How: This sets it small in muted mono capitals. */
 
 
-	color          : var( --tex-mut-col ); /* Text Muted Color = #646482 */
-	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.72rem;
-	letter-spacing : 0.06em;
+	color          : var( --tex-mut-col );                   /* Text Muted Color = #646482 */
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em ); /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	text-transform : uppercase;
 
 
@@ -931,8 +931,8 @@
 .featuredWork { /* What: Featured Work Section. Why: The featured projects sit on the ivory with the section spacing. How: This sets the background and the shared section padding. */
 
 
-	background : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
-	padding    : var( --sp-10 ) 0;     /* Spacing 10 = 128px */
+	background : var( --bac-pag-col );   /* Background Page Color = #F5F0E8 */
+	padding    : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
 
 
 }
@@ -944,8 +944,8 @@
 
 
 	margin    : 0 auto;
-	max-width : var( --max-width ); /* Maximum Width = 1200px */
-	padding   : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	max-width : var( --max-width );     /* Maximum Width = 1200px */
+	padding   : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
 	width     : 100%;
 
 
@@ -959,9 +959,9 @@
 
 	align-items     : flex-end;
 	display         : flex;
-	gap             : var( --sp-5 ); /* Spacing 5 = 24px */
+	gap             : var( --spa-hor-p02 ); /* Spacing Horizontal Base Plus 2 ~= 25.572px */
 	justify-content : space-between;
-	margin-bottom   : var( --sp-8 ); /* Spacing 8 = 64px */
+	margin-bottom   : var( --spa-ver-p05 ); /* Spacing Vertical Base Plus 5 ~= 59.447px */
 
 
 }
@@ -984,22 +984,22 @@
 
 
 	align-items    : center;
-	color          : var( --acc-dar-col );       /* Accent Dark Color ~= #bd3000 */
+	color          : var( --acc-dar-col );                   /* Accent Dark Color ~= #bd3000 */
 	display        : inline-flex;
 	flex-shrink    : 0;
-	font-family    : var( --fon-fam-sec );       /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.78rem;
-	gap            : var( --sp-2 );              /* Spacing 2 = 8px */
-	letter-spacing : 0.06em;
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
+	gap            : var( --spa-hor-m02 );                   /* Spacing Horizontal Base Minus 2 ~= 8.304px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em ); /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	text-transform : uppercase;
-	transition     : gap var( --duration-fast ); /* Duration Fast = 150ms */
+	transition     : gap var( --duration-fast );             /* Duration Fast = 150ms */
 
 
 }
 .viewAllLink:hover { /* What: Hovered View All Link. Why: The arrow nudges toward where the link goes. How: This widens the gap to its arrow. */
 
 
-	gap : var( --sp-3 ); /* Spacing 3 = 12px */
+	gap : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
 
 
 }
@@ -1024,7 +1024,7 @@
 
 
 	display               : grid;
-	gap                   : var( --sp-5 ); /* Spacing 5 = 24px */
+	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	grid-template-columns : repeat( 3, 1fr );
 
 
@@ -1067,9 +1067,9 @@
 .services { /* What: Services Section. Why: The services sit on a warmer band with the section spacing. How: This sets the warm ivory, the shared section padding, and clips the pattern behind it. */
 
 
-	background : var( --bac-sun-col ); /* Background Sunken Color = #EDE6D8 */
+	background : var( --bac-sun-col );   /* Background Sunken Color = #EDE6D8 */
 	overflow   : hidden;
-	padding    : var( --sp-10 ) 0;     /* Spacing 10 = 128px */
+	padding    : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
 	position   : relative;
 
 
@@ -1084,10 +1084,10 @@
 	align-items    : center;
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --sp-9 );      /* Spacing 9 = 96px */
+	gap            : var( --spa-ver-p07 );   /* Spacing Vertical Base Plus 7 ~= 104.323px */
 	margin         : 0 auto;
-	max-width      : var( --max-width ); /* Maximum Width = 1200px */
-	padding        : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	max-width      : var( --max-width );     /* Maximum Width = 1200px */
+	padding        : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
 	position       : relative;
 	width          : 100%;
 	z-index        : 1;
@@ -1102,7 +1102,7 @@
 
 
 	display               : grid;
-	gap                   : var( --sp-5 ); /* Spacing 5 = 24px */
+	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	grid-template-columns : repeat( 4, 1fr );
 	width                 : 100%;
 
@@ -1142,12 +1142,12 @@
 
 
 	background     : var( --bac-sur-col );                                                /* Background Surface Color = #FFFFFF */
-	border         : 1px solid var( --bor-mai-col );                                      /* Border Main Color = #D8CFBE */
-	border-radius  : var( --radius-lg );                                                  /* Radius Large = 12px */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col );                     /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : var( --rad-bor-med );                                                /* Radius Border Medium = 11px */
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --sp-4 );                                                       /* Spacing 4 = 16px */
-	padding        : var( --sp-6 );                                                       /* Spacing 6 = 32px */
+	gap            : var( --spa-ver-bas );                                                /* Spacing Vertical Base ~= 14.572px */
+	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );                           /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	transition     : box-shadow var( --duration-base ), transform var( --duration-base ); /* Duration Base = 280ms */
 
 
@@ -1178,13 +1178,13 @@
 
 
 	align-items     : center;
-	background      : var( --acs-tin-col ); /* Accent-Secondary Tint Color = #B8D9EC */
-	border-radius   : var( --radius-md );   /* Radius Medium = 6px */
-	color           : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
+	background      : var( --acs-tin-col );                /* Accent-Secondary Tint Color = #B8D9EC */
+	border-radius   : var( --rad-bor-sma );                /* Radius Border Small ~= 8.3px */
+	color           : var( --acs-dar-col );                /* Accent-Secondary Dark Color ~= #126186 */
 	display         : flex;
-	height          : 52px;
+	height          : calc( var( --ver-rhy-p04 ) * 1rem ); /* Vertical Rhythm Base Plus 4 ~= 44.876px */
 	justify-content : center;
-	width           : 52px;
+	width           : calc( var( --ver-rhy-p04 ) * 1rem ); /* Vertical Rhythm Base Plus 4 ~= 44.876px */
 
 
 }
@@ -1193,7 +1193,7 @@
 
 
 	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
-	font-size   : 1rem;
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight : 700;
 
 
@@ -1203,8 +1203,8 @@
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
-	font-size   : 0.87rem;
-	line-height : 1.65;
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
 
 
 }
@@ -1224,8 +1224,8 @@
 .ctaBanner { /* What: Call To Action Banner. Why: The page ends on a dark band inviting a visitor to start. How: This sets the ink background and pads the band. */
 
 
-	background : var( --bac-inv-col ); /* Background Inverse Color = #1A1A2E */
-	padding    : var( --sp-9 ) 0;      /* Spacing 9 = 96px */
+	background : var( --bac-inv-col );   /* Background Inverse Color = #1A1A2E */
+	padding    : var( --spa-ver-p07 ) 0; /* Spacing Vertical Base Plus 7 ~= 104.323px */
 
 
 }
@@ -1238,11 +1238,11 @@
 
 	align-items     : center;
 	display         : flex;
-	gap             : var( --sp-7 );      /* Spacing 7 = 48px */
+	gap             : var( --spa-hor-p04 );   /* Spacing Horizontal Base Plus 4 ~= 44.876px */
 	justify-content : space-between;
 	margin          : 0 auto;
-	max-width       : var( --max-width ); /* Maximum Width = 1200px */
-	padding         : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	max-width       : var( --max-width );     /* Maximum Width = 1200px */
+	padding         : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
 	width           : 100%;
 
 
@@ -1265,12 +1265,12 @@
 .ctaBannerLabel { /* What: Banner Label. Why: A question leads into the invitation. How: This sets it on its own line in blue mono capitals, above the heading. */
 
 
-	color          : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
+	color          : var( --acc-sec-col );                   /* Accent Secondary Color = #7DB9D8 */
 	display        : block;
-	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.78rem;
-	letter-spacing : 0.08em;
-	margin-bottom  : var( --sp-3 );        /* Spacing 3 = 12px */
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
+	letter-spacing : calc( var( --cdn-pow-009-rec ) * 1em ); /* Core-Design-Number to the Power of 9 Reciprocal ~= 0.080em */
+	margin-bottom  : var( --spa-ver-m01 );                   /* Spacing Vertical Base Minus 1 = 11px */
 	text-transform : uppercase;
 
 
@@ -1279,8 +1279,8 @@
 .ctaBannerTitle { /* What: Banner Title. Why: The invitation reads light on the dark band. How: This sets it ivory, scaling with the screen. */
 
 
-	color     : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
-	font-size : clamp( 1.8rem, 3.5vw, 2.8rem );
+	color     : var( --bac-pag-col );                                       /* Background Page Color = #F5F0E8 */
+	font-size : clamp( var( --fon-siz-p03 ), 3.5vw, var( --fon-siz-p05 ) ); /* Font Size Base Plus 3 ~= 25.572px, Font Size Base Plus 5 ~= 44.876px */
 
 
 }
@@ -1294,7 +1294,7 @@
 	display     : flex;
 	flex-shrink : 0;
 	flex-wrap   : wrap;
-	gap         : var( --sp-4 ); /* Spacing 4 = 16px */
+	gap         : var( --spa-ver-bas ) var( --spa-hor-bas ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base ~= 14.572px */
 
 
 }
@@ -1303,13 +1303,13 @@
 
 
 	background     : var( --acc-mai-col );                                                /* Accent Main Color = #F26419 */
-	border-radius  : var( --radius-sm );                                                  /* Radius Small = 3px */
+	border-radius  : var( --rad-bor-xsm );                                                /* Radius Border Extra Small ~= 3.571px */
 	color          : var( --tex-acc-col );                                                /* Text Accent Color = #1A1A2E */
 	font-family    : var( --fon-fam-sec );                                                /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.85rem;
+	font-size      : var( --fon-siz-p01 );                                                /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight    : 500;
 	letter-spacing : 0.04em;
-	padding        : 14px var( --sp-7 );                                                  /* Spacing 7 = 48px */
+	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 );                           /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	text-transform : uppercase;
 	transition     : background var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
 
@@ -1318,8 +1318,8 @@
 .ctaBannerBtn:hover { /* What: Hovered Start A Project Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 2px. */
 
 
-	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
-	transform  : translateY( -2px );
+	background : var( --acc-hov-col );                            /* Accent Hover Color ~= #e45700 */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= 2.035px */
 
 
 }

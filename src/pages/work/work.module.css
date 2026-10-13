@@ -54,9 +54,9 @@
 .pageHero { /* What: Page Hero. Why: The page opens with its heading block clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips its corner drawing. */
 
 
-	background : var( --bac-pag-col );                                        /* Background Page Color = #F5F0E8 */
+	background : var( --bac-pag-col );                                                       /* Background Page Color = #F5F0E8 */
 	overflow   : hidden;
-	padding    : calc( var( --nav-height ) + var( --sp-9 ) ) 0 var( --sp-9 ); /* Navigation Height = 72px, Spacing 9 = 96px */
+	padding    : calc( var( --nav-bar-hei ) + var( --spa-ver-p07 ) ) 0 var( --spa-ver-p07 ); /* Navigation Bar Height ~= 78.751px, Spacing Vertical Base Plus 7 ~= 104.323px */
 	position   : relative;
 
 
@@ -70,10 +70,10 @@
 
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --sp-5 );      /* Spacing 5 = 24px */
+	gap            : var( --spa-ver-p02 );   /* Spacing Vertical Base Plus 2 ~= 25.572px */
 	margin         : 0 auto;
-	max-width      : var( --max-width ); /* Maximum Width = 1200px */ /* What: Container Cap. Why: The global container rule loaded after this module, so its cap always beat the 640px this rule once asked for. How: This keeps the cap that has always applied. */
-	padding        : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	max-width      : var( --max-width );     /* Maximum Width = 1200px */ /* What: Container Cap. Why: The global container rule loaded after this module, so its cap always beat the 640px this rule once asked for. How: This keeps the cap that has always applied. */
+	padding        : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
 	position       : relative;
 	width          : 100%;
 	z-index        : 1;
@@ -91,8 +91,8 @@
 	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
 	display        : inline-flex;
 	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.72rem;
-	gap            : var( --sp-3 );        /* Spacing 3 = 12px */
+	font-size      : var( --fon-siz-bas ); /* Font Size Base = 11px */
+	gap            : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
 	letter-spacing : 0.12em;
 	text-transform : uppercase;
 
@@ -102,10 +102,10 @@
 .heroLine { /* What: Hero Line. Why: A short rule leads into the label. How: This draws a 28px orange stroke. */
 
 
-	background : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
+	background : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
 	display    : inline-block;
-	height     : 1.5px;
-	width      : 28px;
+	height     : var( --bor-wid-bas );                /* Border Width Base ~= 1.160px */
+	width      : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */
 
 
 }
@@ -138,8 +138,8 @@
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
-	font-size : 1.05rem;
-	max-width : 480px;
+	font-size : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	max-width : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
 
 
 }
@@ -167,12 +167,12 @@
 .filterBar { /* What: Filter Bar. Why: The filter stays reachable while the visitor scrolls the projects. How: This sets a white band between two rules that sticks just under the fixed bar. */
 
 
-	background    : var( --bac-sur-col );           /* Background Surface Color = #FFFFFF */
-	border-bottom : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
-	border-top    : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
-	padding       : var( --sp-4 ) 0;                /* Spacing 4 = 16px */
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
+	border-bottom : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-top    : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	padding       : var( --spa-ver-bas ) 0;                          /* Spacing Vertical Base ~= 14.572px */
 	position      : sticky;
-	top           : var( --nav-height );            /* Navigation Height = 72px */
+	top           : var( --nav-bar-hei );                            /* Navigation Bar Height ~= 78.751px */
 	z-index       : 10;
 
 
@@ -186,10 +186,10 @@
 
 	align-items : center;
 	display     : flex;
-	gap         : var( --sp-5 );      /* Spacing 5 = 24px */
+	gap         : var( --spa-hor-p02 );   /* Spacing Horizontal Base Plus 2 ~= 25.572px */
 	margin      : 0 auto;
-	max-width   : var( --max-width ); /* Maximum Width = 1200px */
-	padding     : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	max-width   : var( --max-width );     /* Maximum Width = 1200px */
+	padding     : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
 	width       : 100%;
 
 
@@ -212,13 +212,13 @@
 
 
 	align-items    : center;
-	color          : var( --tex-mut-col ); /* Text Muted Color = #646482 */
+	color          : var( --tex-mut-col );                   /* Text Muted Color = #646482 */
 	display        : flex;
 	flex-shrink    : 0;
-	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.72rem;
-	gap            : var( --sp-2 );        /* Spacing 2 = 8px */
-	letter-spacing : 0.06em;
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
+	gap            : var( --spa-hor-m02 );                   /* Spacing Horizontal Base Minus 2 ~= 8.304px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em ); /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	text-transform : uppercase;
 
 
@@ -232,7 +232,7 @@
 
 	display         : flex;
 	flex            : 1;
-	gap             : var( --sp-2 ); /* Spacing 2 = 8px */
+	gap             : var( --spa-hor-m02 ); /* Spacing Horizontal Base Minus 2 ~= 8.304px */
 	overflow-x      : auto;
 	scrollbar-width : none;
 
@@ -250,15 +250,15 @@
 
 
 	background     : transparent;
-	border         : 1.5px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
-	border-radius  : 100px;
-	color          : var( --tex-sec-col );             /* Text Secondary Color = #3D3D5C */
-	font-family    : var( --fon-fam-sec );             /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 0.72rem;
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : 999px;
+	color          : var( --tex-sec-col );                            /* Text Secondary Color = #3D3D5C */
+	font-family    : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                            /* Font Size Base = 11px */
 	letter-spacing : 0.04em;
-	padding        : 6px 14px;
+	padding        : var( --spa-ver-m03 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 3 ~= 6.268px, Spacing Horizontal Base ~= 14.572px */
 	text-transform : uppercase;
-	transition     : all var( --duration-fast );       /* Duration Fast = 150ms */
+	transition     : all var( --duration-fast );                      /* Duration Fast = 150ms */
 	white-space    : nowrap;
 
 
@@ -303,7 +303,7 @@
 	color       : var( --tex-mut-col ); /* Text Muted Color = #646482 */
 	flex-shrink : 0;
 	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
-	font-size   : 0.72rem;
+	font-size   : var( --fon-siz-bas ); /* Font Size Base = 11px */
 
 
 }
@@ -319,8 +319,8 @@
 .projectsSection { /* What: Projects Section. Why: The grid sits on the ivory with the page's section spacing. How: This sets the background and the shared section padding. */
 
 
-	background : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
-	padding    : var( --sp-10 ) 0;     /* Spacing 10 = 128px */
+	background : var( --bac-pag-col );   /* Background Page Color = #F5F0E8 */
+	padding    : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
 
 
 }
@@ -332,8 +332,8 @@
 
 
 	margin    : 0 auto;
-	max-width : var( --max-width ); /* Maximum Width = 1200px */
-	padding   : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	max-width : var( --max-width );     /* Maximum Width = 1200px */
+	padding   : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
 	width     : 100%;
 
 
@@ -345,7 +345,7 @@
 	border      : 0;
 	clip-path   : inset( 50% );
 	height      : 1px;
-	margin      : -1px;
+	margin      : calc( var( --spa-ver-m09 ) * -1 ) calc( var( --spa-hor-m09 ) * -1 ); /* Spacing Vertical Base Minus 9 ~= 1.16px, Spacing Horizontal Base Minus 9 ~= 1.16px */
 	overflow    : hidden;
 	padding     : 0;
 	position    : absolute;
@@ -359,7 +359,7 @@
 
 
 	display               : grid;
-	gap                   : var( --sp-5 ); /* Spacing 5 = 24px */
+	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	grid-template-columns : repeat( 3, 1fr );
 
 
@@ -394,9 +394,9 @@
 .empty { /* What: Empty Message. Why: A filter that finds nothing should say so clearly. How: This centers the message in muted mono with generous room around it. */
 
 
-	color       : var( --tex-mut-col ); /* Text Muted Color = #646482 */
-	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
-	padding     : var( --sp-10 ) 0;     /* Spacing 10 = 128px */
+	color       : var( --tex-mut-col );   /* Text Muted Color = #646482 */
+	font-family : var( --fon-fam-sec );   /* Font Family Secondary = 'DM Mono', monospace */
+	padding     : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
 	text-align  : center;
 
 
@@ -413,9 +413,9 @@
 .process { /* What: Process Section. Why: The page closes on a warmer band with the section spacing. How: This sets the warm ivory, the shared section padding, and clips the pattern behind it. */
 
 
-	background : var( --bac-sun-col ); /* Background Sunken Color = #EDE6D8 */
+	background : var( --bac-sun-col );   /* Background Sunken Color = #EDE6D8 */
 	overflow   : hidden;
-	padding    : var( --sp-10 ) 0;     /* Spacing 10 = 128px */
+	padding    : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
 	position   : relative;
 
 
@@ -430,10 +430,10 @@
 	align-items    : center;
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --sp-9 );      /* Spacing 9 = 96px */
+	gap            : var( --spa-ver-p07 );   /* Spacing Vertical Base Plus 7 ~= 104.323px */
 	margin         : 0 auto;
-	max-width      : var( --max-width ); /* Maximum Width = 1200px */
-	padding        : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	max-width      : var( --max-width );     /* Maximum Width = 1200px */
+	padding        : 0 var( --spa-hor-p03 ); /* Spacing Horizontal Base Plus 3 ~= 33.876px */
 	position       : relative;
 	width          : 100%;
 	z-index        : 1;
@@ -449,7 +449,7 @@
 
 	align-items : flex-start;
 	display     : flex;
-	gap         : var( --sp-3 ); /* Spacing 3 = 12px */
+	gap         : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
 	width       : 100%;
 
 
@@ -474,14 +474,14 @@
 .step { /* What: Process Step. Why: Each step is one white card. How: This sets the card, sharing the row evenly, and stacks its number, title, and description. */
 
 
-	background     : var( --bac-sur-col );           /* Background Surface Color = #FFFFFF */
-	border         : 1px solid var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
-	border-radius  : var( --radius-lg );             /* Radius Large = 12px */
+	background     : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : var( --rad-bor-med );                            /* Radius Border Medium = 11px */
 	display        : flex;
 	flex           : 1;
 	flex-direction : column;
-	gap            : var( --sp-3 );                  /* Spacing 3 = 12px */
-	padding        : var( --sp-6 );                  /* Spacing 6 = 32px */
+	gap            : var( --spa-ver-m01 );                            /* Spacing Vertical Base Minus 1 = 11px */
+	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );       /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 
 
 }
@@ -491,10 +491,10 @@
 
 	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
 	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : 2rem;
+	font-size      : var( --fon-siz-p04 ); /* Font Size Base Plus 4 ~= 33.876px */
 	font-weight    : 500;
 	letter-spacing : -0.04em;
-	line-height    : 1;
+	line-height    : var( --ver-rhy-m01 ); /* Vertical Rhythm Base Minus 1 = 1 */
 
 
 }
@@ -503,7 +503,7 @@
 
 
 	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
-	font-size   : 1rem;
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight : 700;
 
 
@@ -513,8 +513,8 @@
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
-	font-size   : 0.85rem;
-	line-height : 1.6;
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
 
 
 }
@@ -528,7 +528,7 @@
 	align-items : center;
 	display     : flex;
 	flex-shrink : 0;
-	padding-top : var( --sp-7 ); /* Spacing 7 = 48px */
+	padding-top : var( --spa-ver-p04 ); /* Spacing Vertical Base Plus 4 ~= 44.876px */
 
 
 }
