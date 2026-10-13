@@ -1,6 +1,6 @@
 import React from 'react'
 import { Routes, Route, useLocation } from 'react-router'
-import { Nav } from './ui/nav.tsx'
+import { NavBarCom } from './ui/nav.tsx'
 import { SitFooCom } from './ui/footer.tsx'
 import { Home } from './pages/home/home.tsx'
 import { Work } from './pages/work/work.tsx'
@@ -13,7 +13,7 @@ const App: React.FC = () => {
 
   return (
     <>
-      <Nav />
+      <NavBarCom />
       <main>
         <Routes location={location} key={location.pathname}>
           <Route path="/"        element={<Home />}    />

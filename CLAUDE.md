@@ -243,6 +243,9 @@ ticker, and the status dots) when waiting for the page to settle.
   that gets a rerun, not new baselines, until step 8 stops them.
 
 ## Found for later
+- **The Hire Me buttons reload the whole site** (step 11): the bar's and the
+  drawer's Hire Me are plain `<a href='/contact'>` links rather than router
+  links, so they load the page from scratch instead of switching routes.
 - **The contact form reports success on a failed send** (step 6 or 7): it
   never checks the email function's response, so an error from EmailJS
   still shows "Message Sent!".
