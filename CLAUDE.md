@@ -339,7 +339,35 @@ on `close-out`.
      the user's choice (2026-10-13) it reads a deeper beige, the border color
      darkened to about #8d8475, which reaches the 3:1 large-text minimum.
 10. **Horizontal layout**: discussed with the user before converting, per the
-    user-level rules (the siblings chose the fluid horizontal rhythm).
+    user-level rules (the siblings chose the fluid horizontal rhythm). Done
+    2026-10-13 in three commits.
+   - **The horizontal rhythm** (the user's choice, matching every sibling
+     but ease-my-life): applied in one commit (`7d027eb`), so `git revert`
+     restores the fixed layout if it doesn't suit this site. The-bernie-bears'
+     `--hor-rhy-*` steps join the tokens; `--con-max-wid` (1,920px over the
+     second power, about 1,094px, the nearest step to the old 1,200px)
+     replaces `--max-width`; and `--gut-sid-pad` (step 016 between spacing
+     p01 and p04, about 19.3px to 44.9px) pads every centered column, the
+     bar, the phone menu, the footer, and the 404 page. The hero, Contact, and
+     footer column gaps and Contact's form card padding clamp a horizontal
+     step between spacing steps; About's picture column and Contact's sidebar
+     clamp step 022 between rhythm steps; the section header caps at its
+     subtitle's measure (about 564px); and the timeline's year and connector
+     columns take rhythm steps. Everything inside a component stays on fixed
+     rem steps, and the breakpoints stay `@media` queries, as in
+     the-bernie-bears.
+   - **Overflow fixes**: Home's hero heading ("Experiences" is about 10em)
+     and its stat figures size themselves by their own column or item
+     through container units (`cqi`), the `h1` and the 404 number let their
+     floors follow the screen below about 450px and 386px, the wordmark eases
+     smaller below about 364px with a snug phone gap beside the menu toggle,
+     and Work's phone filter row takes its own full-width line.
+   - **Card grids**: Home shows four random featured projects two by two (see
+     "## Content"), Work's grid is the user's exception (see "## Card Grids
+     exception"), and every other grid already kept even rows except Home's
+     services, which wait on the deferred decision below.
+   - **Verified**: the responsive and accessibility suites pass in all three
+     engines, and the rendering baselines are refreshed for each change.
 11. **New features**: the 404 page brought in line, pages opening at the top,
     security headers (allowing the form's call to the email function), image
     optimization and the favicon set, the SEO pass and social preview card
@@ -388,10 +416,6 @@ ticker, and the status dots) when waiting for the page to settle.
   baselines.
 
 ## Found for later
-- **Work's filter row crowds a phone** (step 10): at 390px the label, the
-  sideways-scrolling pills, and the count share one line, so a focused pill
-  near the row's edge is clipped by the row and partly covered by the count,
-  which the keyboard walk reports as "Node.js" covered.
 - **The Hire Me buttons reload the whole site** (step 11): the bar's and the
   drawer's Hire Me are plain `<a href='/contact'>` links rather than router
   links, so they load the page from scratch instead of switching routes.
