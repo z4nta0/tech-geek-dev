@@ -12,9 +12,9 @@
  * portrait beside the paragraphs, and on a phone the portrait stacks
  * centered under the introduction. The skills grid steps from four groups
  * across to two to one, the timeline alternates its milestones either side
- * of a center line on a desktop and runs each one's year, dot, and line, and
- * text in three columns below that, and the values grid steps like the
- * skills and lifts a card on hover. The page's centered columns take the
+ * of a center line on a tablet or wider and runs each one's year, dot, and
+ * line, and text in three columns on a phone, and the values grid steps like
+ * the skills and lifts a card on hover. The page's centered columns take the
  * shared container values, and its sections the shared section padding,
  * merged into their own rules. Everything that moves holds still under
  * reduced motion.
@@ -674,7 +674,7 @@
 
 
 }
-@media ( min-width : 1025px ) { /* What: Desktop Timeline Item Div. Why: A wide screen has room for the milestones to alternate either side of a center line, which uses the row's width instead of leaving its right half empty. How: This applies above 1024px, beside the max-width 1024px queries without overlapping them. */
+@media ( min-width : 769px ) { /* What: Wide Timeline Item Div. Why: A tablet or wider screen has room for the milestones to alternate either side of a center line, which uses the row's width instead of leaving its right half empty. How: This applies above 768px, beside the max-width 768px queries without overlapping them. */
 
 
 	.timIteDiv { /* What: Alternating Timeline Item Div. Why: Each milestone's text and year sit either side of the shared center line. How: This sets two equal sides around the connector column. */
@@ -707,7 +707,7 @@
 
 
 }
-@media ( min-width : 1025px ) { /* What: Desktop Timeline Left Div. Why: The year sits beside the dot on the side opposite its milestone. How: This applies above 1024px. */
+@media ( min-width : 769px ) { /* What: Wide Timeline Left Div. Why: The year sits beside the dot on the side opposite its milestone. How: This applies above 768px. */
 
 
 	.timLefDiv { /* What: Placed Timeline Left Div. Why: The year shares the milestone's row. How: This keeps it on the item's one grid row. */
@@ -762,7 +762,7 @@
 
 
 }
-@media ( min-width : 1025px ) { /* What: Desktop Timeline Connector Div. Why: The dot and line form the center line between the two sides. How: This applies above 1024px. */
+@media ( min-width : 769px ) { /* What: Wide Timeline Connector Div. Why: The dot and line form the center line between the two sides. How: This applies above 768px. */
 
 
 	.timConDiv { /* What: Centered Timeline Connector Div. Why: Every milestone's dot sits on the one center line. How: This places it in the middle column of the item's row. */
@@ -818,7 +818,7 @@
 
 
 }
-@media ( min-width : 1025px ) { /* What: Desktop Timeline Content Div. Why: Milestones alternate sides, newest on the left. How: This applies above 1024px. */
+@media ( min-width : 769px ) { /* What: Wide Timeline Content Div. Why: Milestones alternate sides, newest on the left. How: This applies above 768px. */
 
 
 	.timCotDiv { /* What: Placed Timeline Content Div. Why: The milestone shares its year's row. How: This keeps it on the item's one grid row. */
