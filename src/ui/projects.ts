@@ -145,7 +145,7 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 	{ // What: Tony's Toppers Project Record. Why: Tony's Toppers is one of the projects the site showcases. How: This holds its card's text, links, screenshot, and tags.
 
 
-		cliBoo : false,
+		cliBoo : true,
 		desStr : 'A website for a young man with down syndrome who sells hand made crafts.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/tonys-toppers',
