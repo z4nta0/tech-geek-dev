@@ -56,6 +56,18 @@ Decided 2026-10-12 by the user, in the step 7 content review.
 - **Removed**: About's Download CV button, which linked to a file that
   never existed.
 - **Copy**: American spelling throughout, and no em dashes.
+- **Home's featured projects** (decided 2026-10-13): four featured projects
+  picked at random on each visit (`ranPicFun`, once per page load), set two by
+  two on desktops and tablets and one column on phones. Four keeps every row
+  even; the pick changes from visit to visit.
+
+## Card Grids exception
+Decided 2026-10-13 by the user, for this project only. Work's project grid
+is exempt from the user-level Card Grids rule: its cards change with the
+filter and grow as projects are added, so even rows can't be kept. Its rule
+here is to keep the rows as even as possible, with an unequal last row
+allowed; it steps through three, two, and one columns at 1,024px and 640px.
+Every other card grid on the site keeps even rows.
 
 ## Directory structure
 Decided 2026-10-12, matching the-bernie-bears' adaptation of the user-level
@@ -358,8 +370,9 @@ ticker, and the status dots) when waiting for the page to settle.
   the run.
 - `npm run test:rendering`: compares a full-page screenshot of every state
   with its baseline in `tests/rendering/baselines/`, with zero tolerance,
-  under reduced motion and with the page's clock fixed to one date, since the
-  footer's year comes from it. Baselines are captured on Linux. After an
+  under reduced motion, with the page's clock fixed to one date, since the
+  footer's year comes from it, and with `Math.random` fixed, since Home picks
+  its featured projects at random. Baselines are captured on Linux. After an
   intended visual change, refresh with `npm run test:rendering --
   --update-snapshots` and commit the baselines with it.
 - `npm run test:responsive`: measures every route, the 404 page, and the

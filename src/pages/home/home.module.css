@@ -1009,25 +1009,12 @@
 /* #endregion feaHeaDiv */
 
 
-.proGriDiv { /* What: Projects Grid Div. Why: The featured cards line up in even columns. How: This sets three columns with gaps. */
+.proGriDiv { /* What: Projects Grid Div. Why: The featured cards line up in even columns. How: This sets the four cards two by two, so every row stays even, with gaps. */
 
 
 	display               : grid;
 	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
-	grid-template-columns : repeat( 3, 1fr );
-
-
-}
-@media ( max-width : 1024px ) { /* What: Tablet Projects Grid Div. Why: Three cards crowd a tablet. How: This applies at 1024px and below. */
-
-
-	.proGriDiv { /* What: Two Column Projects Grid Div. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
-
-
-		grid-template-columns : repeat( 2, 1fr );
-
-
-	}
+	grid-template-columns : repeat( 2, 1fr );
 
 
 }

@@ -9,10 +9,11 @@ import cssModObj from './home.module.css'; // What: CSS Module Object. Why: The 
 import { CLI_COU_NUM } from '../../ui/projects.ts';        // What: Client Count Number. Why: The stats count the clients served. How: This is the count taken from the project list.
 import { GeoBacCom   } from '../../ui/geo-bg.tsx';         // What: Geometric Background Component. Why: The hero and the services sit over faint patterns. How: This draws the circuit and the dots.
 import { Link        } from 'react-router';                // What: Link. Why: The page's buttons move between routes without a full page load. How: This renders each one as a router link.
-import { PRO_REC_ARR } from '../../ui/projects.ts';        // What: Project Record Array. Why: The featured section shows the first featured projects. How: This is the list it filters.
+import { PRO_REC_ARR } from '../../ui/projects.ts';        // What: Project Record Array. Why: The featured section picks its projects from the featured ones. How: This is the list it filters.
 import { ProCarCom   } from '../../ui/project-card.tsx';   // What: Project Card Component. Why: Each featured project shows as a card. How: This renders one card per project.
 import { SecHeaCom   } from '../../ui/section-header.tsx'; // What: Section Header Component. Why: The featured and services sections open with a heading block. How: This renders each label, title, and subtitle.
 import { SHI_COU_NUM } from '../../ui/projects.ts';        // What: Shipped Count Number. Why: The stats count the projects shipped. How: This is the count taken from the project list.
+import { useState    } from 'react';                       // What: Use State. Why: The featured projects picked on arrival have to stay put while the page is open. How: This holds the pick made when the page mounts.
 
 
 import type { JSX } from 'react'; // What: JSX. Why: The component declares the element it returns. How: This types its return as a JSX element.
@@ -26,13 +27,15 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  *
  * @summary
  * The home page: a hero introducing z4nta0 beside a code window, with a
- * ticker of the main technologies; a strip of stats; the first three
- * featured projects; the services offered; and a closing banner inviting a
- * visitor to start a project. The projects shipped and clients served stats
- * are counted from the project list, so they grow as projects are added.
+ * ticker of the main technologies; a strip of stats; four featured projects
+ * picked at random on each visit; the services offered; and a closing
+ * banner inviting a visitor to start a project. The projects shipped and
+ * clients served stats are counted from the project list, so they grow as
+ * projects are added.
  *
  * Sections:
  *  - Constants
+ *  - Helpers
  *  - Components
  *  - Exports
  *
@@ -256,6 +259,67 @@ const STA_REC_ARR = [ // What: Stat Record Array. Why: The stats strip shows the
 
 
 
+// #region Helpers
+
+
+
+// #region ranPicFun
+
+/**
+ * ranPicFun = Random Pick Function
+ *
+ * @summary
+ * Picks a given number of items from a list at random, in a random order,
+ * never repeating one. It shuffles a copy of the list with the Fisher-Yates
+ * method, so every item is equally likely to land in every position, and
+ * keeps the first ones. The list itself is left untouched.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+ * @param souRecArr - Source Record Array: The list to pick from, which stays
+ *                    unchanged.
+ * @param picCouNum - Pick Count Number: How many items to pick, or every item
+ *                    when the list holds fewer.
+ *
+ * @returns The picked items in their shuffled order.
+ *
+ * @example
+ * ```ts
+ * ranPicFun(PRO_REC_ARR, 4) // => four project records in a random order
+ * ```
+ *
+*/
+
+function ranPicFun< T > ( souRecArr : readonly T[], picCouNum : number ) : T[] {
+
+
+	const shuRecArr = [ ...souRecArr ]; // What: Shuffled Record Array. Why: The source list has to keep its own order. How: This copies it, so the shuffle works on the copy.
+
+
+	for ( let curIndNum = shuRecArr.length - 1; curIndNum > 0; curIndNum-- ) { // What: Fisher-Yates Loop. Why: Every order should be equally likely. How: This walks down the copy, swapping each item with a random one at or before it.
+
+
+		const swaIndNum = Math.floor( Math.random() * ( curIndNum + 1 ) ); // What: Swap Index Number. Why: The item trades places with a random earlier one, or stays put. How: This picks a whole number from 0 to the current index.
+
+
+		[ shuRecArr[ curIndNum ], shuRecArr[ swaIndNum ] ] = [ shuRecArr[ swaIndNum ], shuRecArr[ curIndNum ] ]; // What: Item Swap. Why: The shuffle moves each item into its random place. How: This swaps the two items through array destructuring.
+
+
+	}
+
+
+
+	return shuRecArr.slice( 0, picCouNum );
+
+
+}
+
+// #endregion ranPicFun
+
+// #endregion Helpers
+
+
+
 // #region Components
 
 // #region HomPagCom
@@ -267,8 +331,8 @@ const STA_REC_ARR = [ // What: Stat Record Array. Why: The stats strip shows the
  * Renders the home page. The hero pairs the pitch, its two buttons, and a
  * ticker that scrolls SKI_TIC_ARR twice over, so the loop has no seam, with
  * a code window and a floating badge, all decoration hidden from screen
- * readers. Below it come the stats from STA_REC_ARR, the first three
- * featured projects with a link to the rest, a card per service in
+ * readers. Below it come the stats from STA_REC_ARR, four featured
+ * projects picked at random with a link to the rest, a card per service in
  * SER_CAR_ARR, and a banner leading to the Contact page.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -287,7 +351,7 @@ const STA_REC_ARR = [ // What: Stat Record Array. Why: The stats strip shows the
 function HomPagCom () : JSX.Element {
 
 
-	const feaProArr = PRO_REC_ARR.filter( ( proRecObj ) => proRecObj.feaBoo ).slice( 0, 3 ); // What: Featured Project Array. Why: Home shows only a taste of the work. How: This keeps the first three featured projects.
+	const [ feaProArr ] = useState( () => ranPicFun( PRO_REC_ARR.filter( ( proRecObj ) => proRecObj.feaBoo ), 4 ) ); // What: Featured Project Array. Why: Home shows a taste of the work that changes from visit to visit, four cards so the grid's rows always stay even. How: This picks four featured projects at random once, when the page mounts, and keeps them while it stays open.
 
 
 

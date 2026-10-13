@@ -20,9 +20,10 @@ import { test        } from '@playwright/test';     // What: Test. Why: Each sta
  * baseline, in whichever engine the project runs, so a change that shifts the
  * layout or the styling anywhere on a page fails until it's looked at. Each
  * state opens under reduced motion and is captured with animations stopped, so
- * it's always caught at rest, and with the page's clock fixed to one date,
+ * it's always caught at rest, with the page's clock fixed to one date,
  * since the footer's copyright year comes from the current year and would
- * otherwise fail the baselines every January. Baselines live in
+ * otherwise fail the baselines every January, and with Math.random fixed,
+ * since Home picks its featured projects at random. Baselines live in
  * tests/rendering/baselines, one per state and engine, captured on Linux;
  * another system's font rendering would differ, so baselines are refreshed on
  * the machine that runs the suite. When a change is meant to alter how a page
@@ -59,6 +60,8 @@ for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every pa
 
 
 		await curPagObj.clock.setFixedTime( new Date( FIX_TIM_STR ) ); // What: Fixed Clock Call. Why: The page's year-based text has to read the same in every run. How: This makes the page's Date always return the fixed time, while its timers keep running normally.
+
+		await curPagObj.addInitScript( () => { Math.random = () => 0.5; } ); // What: Fixed Random Call. Why: Home picks its featured projects at random on each visit, so the baselines would change from run to run. How: This makes the page's Math.random always return 0.5 before any of its scripts run, so the shuffle lands on the same four every time.
 
 		await curPagObj.emulateMedia( { reducedMotion : 'reduce' } ); // What: Reduced Motion Emulation. Why: Entrance animations would otherwise be caught partway. How: This makes the page match prefers-reduced-motion, which turns them off.
 
