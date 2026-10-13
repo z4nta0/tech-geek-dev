@@ -415,6 +415,15 @@ on `close-out`.
       modeled on the-bernie-bears' and hair-designs', done together with the
       scrim and the inert page since they change the same component. The
       extras under the links are proposed to the user first.
+    - **Project screenshots by script** (decided by the user 2026-10-13):
+      a script in `design/` takes a fresh screenshot of each project's live
+      site and writes the optimized WebP into `src/assets/images/`, rerun
+      whenever a site changes, as part of the image optimization. Screenshots
+      were chosen over the sites' social preview images, which repeat each
+      project's name, and the images stay local rather than loaded from the
+      live sites, which would break when a site renames its image, weigh up
+      to about 270 KB each, depend on six other sites staying up, and need
+      every domain allowed in the security headers.
 12. **Deferred items** below, as the user decides them.
 13. **Close-out**: the README, the design scripts type checked, rule audit
     rounds until clean, and the version bump.
