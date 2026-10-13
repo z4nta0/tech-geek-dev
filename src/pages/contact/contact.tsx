@@ -324,7 +324,7 @@ function ConPagCom () : JSX.Element {
 	return (
 
 
-		<div className='page-enter'>{ /* What: Contact Page Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
+		<div className={ cssModObj.page }>{ /* What: Contact Page Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
 
 
 			<section className={ cssModObj.hero }>{ /* What: Hero Section Element. Why: The page opens by inviting a visitor to get in touch. How: This holds the pattern and the heading block. */ }
@@ -337,7 +337,7 @@ function ConPagCom () : JSX.Element {
 
 
 
-				<div className={` container   ${ cssModObj.heroInner } `}>{ /* What: Hero Inner Div Element. Why: The hero's text sits in the page's centered column. How: This stacks the label, heading, and line. */ }
+				<div className={ cssModObj.heroInner }>{ /* What: Hero Inner Div Element. Why: The hero's text sits in the page's centered column. How: This stacks the label, heading, and line. */ }
 
 
 					<span className={ cssModObj.heroLabel }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows Get In Touch after a short rule. */ }
@@ -364,10 +364,10 @@ function ConPagCom () : JSX.Element {
 
 
 
-			<section className={` section   ${ cssModObj.contactSection } `}>{ /* What: Contact Section Element. Why: The form and the details sit together. How: This holds the two columns. */ }
+			<section className={ cssModObj.contactSection }>{ /* What: Contact Section Element. Why: The form and the details sit together. How: This holds the two columns. */ }
 
 
-				<div className={` container   ${ cssModObj.contactGrid } `}>{ /* What: Contact Grid Div Element. Why: The form and the sidebar sit side by side in the page's centered column. How: This lays out the two columns. */ }
+				<div className={ cssModObj.contactGrid }>{ /* What: Contact Grid Div Element. Why: The form and the sidebar sit side by side in the page's centered column. How: This lays out the two columns. */ }
 
 
 					<div className={ cssModObj.formWrap }>{ /* What: Form Wrap Div Element. Why: The form and its thank-you share one place. How: This holds whichever one shows. */ }
@@ -396,9 +396,9 @@ function ConPagCom () : JSX.Element {
 
 								</svg>
 
-								<h2>Message Sent!</h2>{ /* What: Success Heading Element. Why: The thank-you's heading says what happened. How: This shows Message Sent. */ }
+								<h2 className={ cssModObj.successTitle }>Message Sent!</h2>{ /* What: Success Title Heading Element. Why: The thank-you's heading says what happened. How: This shows Message Sent. */ }
 
-								<p>Thanks for reaching out. I'll be in touch within 24 hours.</p>{ /* What: Success Paragraph Element. Why: A visitor learns when to expect a reply. How: This thanks them and promises a reply within a day. */ }
+								<p className={ cssModObj.successText }>Thanks for reaching out. I'll be in touch within 24 hours.</p>{ /* What: Success Text Paragraph Element. Why: A visitor learns when to expect a reply. How: This thanks them and promises a reply within a day. */ }
 
 								<button
 									className={ cssModObj.resetBtn }
@@ -692,7 +692,7 @@ function ConPagCom () : JSX.Element {
 							<h3 className={ cssModObj.sidebarTitle }>Response Time</h3>{ /* What: Response Time Heading Element. Why: The card is named. How: This shows its title. */ }
 
 							<p className={ cssModObj.responseText }>{ /* What: Response Text Paragraph Element. Why: The promise is the card's point. How: This says inquiries get a reply within a business day, with LinkedIn for anything urgent. */ }
-								I respond to all inquiries within <strong>24 hours</strong> on business days.
+								I respond to all inquiries within <strong className={ cssModObj.responseStrong }>24 hours</strong> on business days.
 								For urgent matters, reach out on LinkedIn.
 							</p>
 

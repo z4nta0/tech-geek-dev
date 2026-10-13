@@ -1,290 +1,766 @@
-.hero {
-  position: relative;
-  background: var(--ivory);
-  padding: calc(var(--nav-height) + var(--sp-9)) 0 var(--sp-9);
-  overflow: hidden;
+
+
+
+/**
+ * contact.module.css = Contact Page Module
+ *
+ * @summary
+ * Styles for ConPagCom. The page fades up into view like every page. Its
+ * ivory hero clears the fixed bar and stacks an orange label, the heading
+ * with its orange accent, and a muted line. Below it the form, in a white
+ * card, sits beside a sidebar of three cards that sticks under the bar as
+ * the page scrolls; below 1024px they stack. The fields share one look, with
+ * an orange border and glow while focused, the select draws its own arrow,
+ * and the thank-you replaces the form once a message is sent. The sidebar's
+ * availability dot pulses with the shared pulse keyframe. The page's
+ * centered column takes the shared container values, and its section the
+ * shared section padding, merged into their own rules. Everything that moves
+ * holds still under reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region page */
+
+.page { /* What: Contact Page. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global fadeUp keyframe. */
+
+
+	animation : global( fadeUp ) 400ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Contact Page. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.page { /* What: Motionless Contact Page. Why: The page should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
 }
 
-.heroInner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-5);
-  max-width: 640px;
+
+
+/* #region hero */
+
+.hero { /* What: Contact Hero. Why: The page opens with its invitation clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips the pattern behind it. */
+
+
+	background : var( --ivory );                                              /* Ivory = #F5F0E8 */
+	overflow   : hidden;
+	padding    : calc( var( --nav-height ) + var( --sp-9 ) ) 0 var( --sp-9 ); /* Navigation Height = 72px, Spacing 9 = 96px */
+	position   : relative;
+
+
 }
 
-.heroLabel {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-3);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--orange);
-}
-.heroLine { display: inline-block; width: 28px; height: 1.5px; background: var(--orange); }
 
-.heroTitle { color: var(--ink); }
-.accent    { color: var(--orange); }
-.heroSub   { font-size: 1.05rem; color: var(--ink-mid); }
+/* #region heroInner */
 
-/* ── Contact section ── */
-.contactSection { background: var(--ivory); }
+.heroInner { /* What: Hero Inner. Why: The hero's text sits in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the label, heading, and line. */
 
-.contactGrid {
-  display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: var(--sp-8);
-  align-items: start;
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-5 );      /* Spacing 5 = 24px */
+	margin         : 0 auto;
+	max-width      : var( --max-width ); /* Maximum Width = 1200px */ /* What: Container Cap. Why: The global container rule loaded after this module, so its cap always beat the 640px this rule once asked for. How: This keeps the cap that has always applied. */
+	padding        : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	position       : relative;
+	width          : 100%;
+	z-index        : 1;
+
+
 }
 
-/* ── Form ── */
-.formWrap {
-  background: var(--white);
-  border: 1px solid var(--ivory-dark);
-  border-radius: var(--radius-lg);
-  padding: var(--sp-7);
+
+/* #region heroLabel */
+
+.heroLabel { /* What: Hero Label. Why: A small label names the page above its heading. How: This sets it in orange mono capitals after its rule. */
+
+
+	align-items    : center;
+	color          : var( --orange );    /* Orange = #F26419 */
+	display        : inline-flex;
+	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.72rem;
+	gap            : var( --sp-3 );      /* Spacing 3 = 12px */
+	letter-spacing : 0.12em;
+	text-transform : uppercase;
+
+
 }
 
-.formTitle {
-  font-size: 1.3rem;
-  color: var(--ink);
-  margin-bottom: var(--sp-6);
+.heroLine { /* What: Hero Line. Why: A short rule leads into the label. How: This draws a 28px orange stroke. */
+
+
+	background : var( --orange ); /* Orange = #F26419 */
+	display    : inline-block;
+	height     : 1.5px;
+	width      : 28px;
+
+
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-5);
+/* #endregion heroLabel */
+
+
+/* #region heroTitle */
+
+.heroTitle { /* What: Hero Title. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
+
+
+	color : var( --ink ); /* Ink = #1A1A2E */
+
+
 }
 
-.formRow {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-5);
+.accent { /* What: Hero Title Accent. Why: One word of the heading carries the accent. How: This sets it in orange. */
+
+
+	color : var( --orange ); /* Orange = #F26419 */
+
+
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-2);
+/* #endregion heroTitle */
+
+
+.heroSub { /* What: Hero Subtitle. Why: The line under the heading reads a little larger and quieter. How: This sets it muted. */
+
+
+	color     : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	font-size : 1.05rem;
+
+
 }
 
-.label {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-mid);
+/* #endregion heroInner */
+
+/* #endregion hero */
+
+
+
+/* #region contactSection */
+
+.contactSection { /* What: Contact Section. Why: The form and the sidebar sit on the ivory with the section spacing. How: This sets the background and the shared section padding. */
+
+
+	background : var( --ivory );   /* Ivory = #F5F0E8 */
+	padding    : var( --sp-10 ) 0; /* Spacing 10 = 128px */
+
+
+}
+
+
+/* #region contactGrid */
+
+.contactGrid { /* What: Contact Grid. Why: The form and the sidebar sit side by side in the page's centered column. How: This caps and centers the column with its side padding and lays out the form beside a 320px sidebar, aligned to their tops. */
+
+
+	align-items           : start;
+	display               : grid;
+	gap                   : var( --sp-8 );      /* Spacing 8 = 64px */
+	grid-template-columns : 1fr 320px;
+	margin                : 0 auto;
+	max-width             : var( --max-width ); /* Maximum Width = 1200px */
+	padding               : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	width                 : 100%;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Contact Grid. Why: The sidebar crowds the form on a tablet. How: This applies at 1024px and below. */
+
+
+	.contactGrid { /* What: Stacked Contact Grid. Why: The form and the sidebar read better one above the other. How: This sets one column. */
+
+
+		grid-template-columns : 1fr;
+
+
+	}
+
+
+}
+
+
+/* #region formWrap */
+
+.formWrap { /* What: Form Wrap. Why: The form and its thank-you sit on one white card. How: This sets the bordered card with generous padding. */
+
+
+	background    : var( --white );                /* White = #FFFFFF */
+	border        : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	border-radius : var( --radius-lg );            /* Radius Large = 12px */
+	padding       : var( --sp-7 );                 /* Spacing 7 = 48px */
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Form Wrap. Why: The card's padding eats a phone's width. How: This applies at 640px and below. */
+
+
+	.formWrap { /* What: Snug Form Wrap. Why: The fields need the room. How: This reduces the padding. */
+
+
+		padding : var( --sp-5 ); /* Spacing 5 = 24px */
+
+
+	}
+
+
+}
+
+
+/* #region successState */
+
+.successState { /* What: Success State. Why: The thank-you takes the form's place once the message is sent. How: This centers its check, heading, line, and button in a padded column. */
+
+
+	align-items    : center;
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-4 );               /* Spacing 4 = 16px */
+	padding        : var( --sp-9 ) var( --sp-6 ); /* Spacing 9 = 96px, Spacing 6 = 32px */
+	text-align     : center;
+
+
+}
+
+.successTitle { /* What: Success Title. Why: The thank-you's heading says the message went out. How: This sets it in the main text color, a little smaller than the global h2. */
+
+
+	color     : var( --ink ); /* Ink = #1A1A2E */
+	font-size : 1.5rem;
+
+
+}
+
+.successText { /* What: Success Text. Why: The line under the heading says when to expect a reply. How: This sets it muted and capped at 360px. */
+
+
+	color     : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	max-width : 360px;
+
+
+}
+
+.resetBtn { /* What: Reset Button. Why: A visitor may want to send another message. How: This sets an orange outlined button in mono capitals, easing its fill. */
+
+
+	border         : 1.5px solid var( --orange );                                     /* Orange = #F26419 */
+	border-radius  : var( --radius-sm );                                              /* Radius Small = 3px */
+	color          : var( --orange );                                                 /* Orange = #F26419 */
+	font-family    : var( --font-mono );                                              /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.8rem;
+	letter-spacing : 0.04em;
+	padding        : 10px var( --sp-5 );                                              /* Spacing 5 = 24px */
+	text-transform : uppercase;
+	transition     : background var( --duration-fast ), color var( --duration-fast ); /* Duration Fast = 150ms */
+
+
+}
+.resetBtn:hover { /* What: Hovered Reset Button. Why: A button should respond to the pointer. How: This fills it orange with white text. */
+
+
+	background : var( --orange ); /* Orange = #F26419 */
+	color      : var( --white );  /* White = #FFFFFF */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Reset Button. Why: Someone who asked for less motion shouldn't see the button fill fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.resetBtn { /* What: Motionless Reset Button. Why: The fill should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion successState */
+
+
+/* #region form */
+
+.form { /* What: Contact Form. Why: The fields stack in order. How: This stacks them with gaps. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-5 ); /* Spacing 5 = 24px */
+
+
+}
+
+.formTitle { /* What: Form Title. Why: The form's heading is a little smaller than the page's sections. How: This sets it in the main text color with room below. */
+
+
+	color         : var( --ink );  /* Ink = #1A1A2E */
+	font-size     : 1.3rem;
+	margin-bottom : var( --sp-6 ); /* Spacing 6 = 32px */
+
+
+}
+
+
+/* #region formRow */
+
+.formRow { /* What: Form Row. Why: The name and email fields share a row on wider screens. How: This sets two even columns with a gap. */
+
+
+	display               : grid;
+	gap                   : var( --sp-5 ); /* Spacing 5 = 24px */
+	grid-template-columns : 1fr 1fr;
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Form Row. Why: Two fields side by side crowd a phone. How: This applies at 640px and below. */
+
+
+	.formRow { /* What: Stacked Form Row. Why: Each field needs the full width on a phone. How: This sets one column. */
+
+
+		grid-template-columns : 1fr;
+
+
+	}
+
+
+}
+
+
+/* #region field */
+
+.field { /* What: Form Field. Why: Each label sits over its field. How: This stacks them with a small gap. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-2 ); /* Spacing 2 = 8px */
+
+
+}
+
+.label { /* What: Field Label. Why: Each field's name reads as a small label. How: This sets it in muted mono capitals. */
+
+
+	color          : var( --ink-mid );   /* Ink Mid = #3D3D5C */
+	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.72rem;
+	font-weight    : 500;
+	letter-spacing : 0.08em;
+	text-transform : uppercase;
+
+
 }
 
 .input,
 .select,
-.textarea {
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  color: var(--ink);
-  background: var(--ivory);
-  border: 1.5px solid var(--ivory-dark);
-  border-radius: var(--radius-md);
-  padding: 12px var(--sp-4);
-  transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
-  width: 100%;
-}
+.textarea { /* What: Form Controls. Why: The inputs, the select, and the textarea share one look. How: This sets them full width on the ivory with a pale border and rounded corners, easing their focus border and glow. */
 
+
+	background    : var( --ivory );                                                         /* Ivory = #F5F0E8 */
+	border        : 1.5px solid var( --ivory-dark );                                        /* Ivory Dark = #D8CFBE */
+	border-radius : var( --radius-md );                                                     /* Radius Medium = 6px */
+	color         : var( --ink );                                                           /* Ink = #1A1A2E */
+	font-family   : var( --font-display );                                                  /* Font Display = 'Syne', sans-serif */
+	font-size     : 0.95rem;
+	padding       : 12px var( --sp-4 );                                                     /* Spacing 4 = 16px */
+	transition    : border-color var( --duration-fast ), box-shadow var( --duration-fast ); /* Duration Fast = 150ms */
+	width         : 100%;
+
+
+}
 .input:focus,
 .select:focus,
-.textarea:focus {
-  outline: none;
-  border-color: var(--orange);
-  box-shadow: 0 0 0 3px var(--orange-light);
+.textarea:focus { /* What: Focused Form Controls. Why: A visitor has to see which field they're typing in. How: This swaps the default outline for an orange border and a pale orange glow. */
+
+
+	border-color : var( --orange );                 /* Orange = #F26419 */
+	box-shadow   : 0 0 0 3px var( --orange-light ); /* Orange Light = #FDDCC8 */
+	outline      : none;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Form Controls. Why: Someone who asked for less motion shouldn't see the focus glow fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.input,
+	.select,
+	.textarea { /* What: Motionless Form Controls. Why: The focus border and glow should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-.textarea { resize: vertical; min-height: 140px; line-height: 1.65; }
+.select { /* What: Budget Select. Why: The select draws its own arrow in the site's style. How: This removes the native arrow and draws a muted chevron at the right, making room for it. */
 
-.select {
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A7A99' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 14px center;
-  padding-right: 40px;
+
+	appearance          : none;
+	background-image    : url( "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A7A99' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E" );
+	background-position : right 14px center;
+	background-repeat   : no-repeat;
+	cursor              : pointer;
+	padding-right       : 40px;
+
+
 }
 
-.submitBtn {
-  align-self: flex-start;
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-3);
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  background: var(--orange);
-  color: var(--white);
-  padding: 14px var(--sp-7);
-  border-radius: var(--radius-sm);
-  transition: background var(--duration-fast), transform var(--duration-fast);
-}
-.submitBtn:hover { background: var(--orange-dark); transform: translateY(-1px); }
+.textarea { /* What: Message Textarea. Why: A message needs room and only grows downward. How: This sets a 140px minimum, roomy lines, and vertical resizing only. */
 
-/* ── Success state ── */
-.successState {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: var(--sp-4);
-  padding: var(--sp-9) var(--sp-6);
-}
-.successState h2 { font-size: 1.5rem; color: var(--ink); }
-.successState p  { color: var(--ink-mid); max-width: 360px; }
 
-.resetBtn {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--orange);
-  border: 1.5px solid var(--orange);
-  padding: 10px var(--sp-5);
-  border-radius: var(--radius-sm);
-  transition: background var(--duration-fast), color var(--duration-fast);
-}
-.resetBtn:hover { background: var(--orange); color: var(--white); }
+	line-height : 1.65;
+	min-height  : 140px;
+	resize      : vertical;
 
-.errorMsg {
-  font-size: 0.88rem;
-  color: #c0392b;
-  background: #fdf0ee;
-  border: 1px solid #e8b4ae;
-  border-radius: var(--radius-md);
-  padding: var(--sp-3) var(--sp-4);
+
 }
 
-.submitBtn:disabled {
-  opacity: 0.65;
-  cursor: not-allowed;
-  transform: none;
+/* #endregion field */
+
+/* #endregion formRow */
+
+
+.errorMsg { /* What: Error Message. Why: A failed send has to stand out. How: This sets the message on a pale red panel with a red border and text. */
+
+
+	background    : #fdf0ee;
+	border        : 1px solid #e8b4ae;
+	border-radius : var( --radius-md );          /* Radius Medium = 6px */
+	color         : #c0392b;
+	font-size     : 0.88rem;
+	padding       : var( --sp-3 ) var( --sp-4 ); /* Spacing 3 = 12px, Spacing 4 = 16px */
+
+
 }
 
-/* ── Sidebar ── */
-.sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-5);
-  position: sticky;
-  top: calc(var(--nav-height) + var(--sp-6));
+.submitBtn { /* What: Submit Button. Why: Sending is the form's main action. How: This sets an orange button in mono capitals at the form's left, easing its color and lift. */
+
+
+	align-items    : center;
+	align-self     : flex-start;
+	background     : var( --orange );                                                     /* Orange = #F26419 */
+	border-radius  : var( --radius-sm );                                                  /* Radius Small = 3px */
+	color          : var( --white );                                                      /* White = #FFFFFF */
+	display        : inline-flex;
+	font-family    : var( --font-mono );                                                  /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.85rem;
+	font-weight    : 500;
+	gap            : var( --sp-3 );                                                       /* Spacing 3 = 12px */
+	letter-spacing : 0.06em;
+	padding        : 14px var( --sp-7 );                                                  /* Spacing 7 = 48px */
+	text-transform : uppercase;
+	transition     : background var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
+
+
+}
+.submitBtn:hover { /* What: Hovered Submit Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
+
+
+	background : var( --orange-dark ); /* Orange Dark = #D4530E */
+	transform  : translateY( -1px );
+
+
+}
+.submitBtn:disabled { /* What: Disabled Submit Button. Why: While a message is sending the button can't be pressed again. How: This fades it, shows the not-allowed cursor, and cancels the hover lift, winning over the hover rule above it. */
+
+
+	cursor    : not-allowed;
+	opacity   : 0.65;
+	transform : none;
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Submit Button. Why: A small button is hard to tap on a phone. How: This applies at 640px and below. */
+
+
+	.submitBtn { /* What: Full Width Submit Button. Why: The button spans the form on a phone. How: This stretches it and centers its label. */
+
+
+		justify-content : center;
+		width           : 100%;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Submit Button. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.submitBtn { /* What: Motionless Submit Button. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-.sidebarCard {
-  background: var(--white);
-  border: 1px solid var(--ivory-dark);
-  border-radius: var(--radius-lg);
-  padding: var(--sp-5);
+/* #endregion form */
+
+/* #endregion formWrap */
+
+
+/* #region sidebar */
+
+.sidebar { /* What: Contact Sidebar. Why: The other ways to get in touch stay in view beside the form. How: This stacks the cards and sticks them just under the fixed bar. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-5 );                               /* Spacing 5 = 24px */
+	position       : sticky;
+	top            : calc( var( --nav-height ) + var( --sp-6 ) ); /* Navigation Height = 72px, Spacing 6 = 32px */
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Contact Sidebar. Why: The stacked sidebar sits under the form. How: This applies at 1024px and below. */
+
+
+	.sidebar { /* What: Unstuck Contact Sidebar. Why: A stacked sidebar shouldn't stick over the form. How: This returns it to the normal flow. */
+
+
+		position : static;
+
+
+	}
+
+
 }
 
-.sidebarTitle {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: var(--sp-4);
+
+/* #region sidebarCard */
+
+.sidebarCard { /* What: Sidebar Card. Why: Each group of details sits on its own white card. How: This sets the bordered, rounded, padded card. */
+
+
+	background    : var( --white );                /* White = #FFFFFF */
+	border        : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	border-radius : var( --radius-lg );            /* Radius Large = 12px */
+	padding       : var( --sp-5 );                 /* Spacing 5 = 24px */
+
+
 }
 
-.contactItems {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-4);
+.sidebarTitle { /* What: Sidebar Title. Why: Each card is named. How: This sets the title small and bold with room below. */
+
+
+	color         : var( --ink );  /* Ink = #1A1A2E */
+	font-size     : 0.9rem;
+	font-weight   : 700;
+	margin-bottom : var( --sp-4 ); /* Spacing 4 = 16px */
+
+
 }
 
-.contactItem {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-3);
-  padding: var(--sp-3);
-  border-radius: var(--radius-md);
-  transition: background var(--duration-fast);
-}
-.contactItem:hover { background: var(--ivory); }
 
-.contactIcon {
-  width: 36px;
-  height: 36px;
-  background: var(--blue-light);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--blue-dark);
-  flex-shrink: 0;
+/* #region contactItems */
+
+.contactItems { /* What: Contact Items. Why: The contact details stack in a list. How: This stacks them with gaps. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-4 ); /* Spacing 4 = 16px */
+
+
 }
 
-.contactLabel {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--ink-light);
+
+/* #region contactItem */
+
+.contactItem { /* What: Contact Item. Why: Each detail is one tappable row. How: This sets the icon beside the text, padded and rounded, easing its background. */
+
+
+	align-items   : center;
+	border-radius : var( --radius-md );                /* Radius Medium = 6px */
+	display       : flex;
+	gap           : var( --sp-3 );                     /* Spacing 3 = 12px */
+	padding       : var( --sp-3 );                     /* Spacing 3 = 12px */
+	transition    : background var( --duration-fast ); /* Duration Fast = 150ms */
+
+
+}
+.contactItem:hover { /* What: Hovered Contact Item. Why: A row should respond to the pointer. How: This tints it ivory. */
+
+
+	background : var( --ivory ); /* Ivory = #F5F0E8 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Contact Item. Why: Someone who asked for less motion shouldn't see the rows fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.contactItem { /* What: Motionless Contact Item. Why: The hover tint should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-.contactValue {
-  display: block;
-  font-size: 0.85rem;
-  color: var(--ink);
-  font-weight: 500;
+.contactIcon { /* What: Contact Icon. Why: Each detail's icon sits on a pale blue tile. How: This draws a 36px rounded tile centering the icon in dark blue, never shrinking. */
+
+
+	align-items     : center;
+	background      : var( --blue-light ); /* Blue Light = #B8D9EC */
+	border-radius   : var( --radius-md );  /* Radius Medium = 6px */
+	color           : var( --blue-dark );  /* Blue Dark = #4A91B8 */
+	display         : flex;
+	flex-shrink     : 0;
+	height          : 36px;
+	justify-content : center;
+	width           : 36px;
+
+
 }
 
-.availabilityRow {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-3);
+.contactLabel { /* What: Contact Label. Why: The detail's name reads as a small label. How: This sets it on its own line in muted mono capitals. */
+
+
+	color          : var( --ink-light ); /* Ink Light = #7A7A99 */
+	display        : block;
+	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.7rem;
+	letter-spacing : 0.06em;
+	text-transform : uppercase;
+
+
 }
 
-.statusDot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #22c55e;
-  animation: pulse 2s ease-in-out infinite;
-  flex-shrink: 0;
+.contactValue { /* What: Contact Value. Why: The address reads clearly under its name. How: This sets it on its own line in the main text color. */
+
+
+	color       : var( --ink ); /* Ink = #1A1A2E */
+	display     : block;
+	font-size   : 0.85rem;
+	font-weight : 500;
+
+
 }
 
-.statusText {
-  display: block;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--ink);
+/* #endregion contactItem */
+
+/* #endregion contactItems */
+
+
+/* #region availabilityRow */
+
+.availabilityRow { /* What: Availability Row. Why: The status dot sits beside its text. How: This lines them up with a gap. */
+
+
+	align-items : center;
+	display     : flex;
+	gap         : var( --sp-3 ); /* Spacing 3 = 12px */
+
+
 }
 
-.statusSub {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--ink-light);
-  letter-spacing: 0.04em;
-  margin-top: var(--sp-1);
+.statusDot { /* What: Status Dot. Why: A pulsing green dot signals availability. How: This draws a 10px green circle, never shrinking, playing the shared pulse forever. */
+
+
+	animation     : global( pulse ) 2s ease-in-out infinite;
+	background    : #22c55e;
+	border-radius : 50%;
+	flex-shrink   : 0;
+	height        : 10px;
+	width         : 10px;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Status Dot. Why: Someone who asked for less motion shouldn't see the dot pulse. How: This applies only when the reduced-motion preference is set. */
+
+
+	.statusDot { /* What: Motionless Status Dot. Why: The dot should hold still. How: This turns the pulse off. */
+
+
+		animation : none;
+
+
+	}
+
+
 }
 
-.responseText {
-  font-size: 0.88rem;
-  color: var(--ink-mid);
-  line-height: 1.65;
+.statusText { /* What: Status Text. Why: The status reads clearly. How: This sets it on its own line, semibold in the main text color. */
+
+
+	color       : var( --ink ); /* Ink = #1A1A2E */
+	display     : block;
+	font-size   : 0.88rem;
+	font-weight : 600;
+
+
 }
 
-.responseText strong { color: var(--ink); }
+.statusSub { /* What: Status Sub. Why: The earliest start reads quietly under the status. How: This sets it on its own line in small muted mono. */
 
-@media (max-width: 1024px) {
-  .contactGrid { grid-template-columns: 1fr; }
-  .sidebar     { position: static; }
+
+	color          : var( --ink-light ); /* Ink Light = #7A7A99 */
+	display        : block;
+	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.7rem;
+	letter-spacing : 0.04em;
+	margin-top     : var( --sp-1 );      /* Spacing 1 = 4px */
+
+
 }
 
-@media (max-width: 640px) {
-  .formRow  { grid-template-columns: 1fr; }
-  .formWrap { padding: var(--sp-5); }
-  .submitBtn { width: 100%; justify-content: center; }
+/* #endregion availabilityRow */
+
+
+/* #region responseText */
+
+.responseText { /* What: Response Text. Why: The response promise reads as small body text. How: This sets it muted with roomy lines. */
+
+
+	color       : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	font-size   : 0.88rem;
+	line-height : 1.65;
+
+
 }
+
+.responseStrong { /* What: Response Strong. Why: The 24 hours is the promise's point. How: This sets it in the main text color. */
+
+
+	color : var( --ink ); /* Ink = #1A1A2E */
+
+
+}
+
+/* #endregion responseText */
+
+/* #endregion sidebarCard */
+
+/* #endregion sidebar */
+
+/* #endregion contactGrid */
+
+/* #endregion contactSection */
+
+/* #endregion page */
+
+
