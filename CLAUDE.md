@@ -82,7 +82,31 @@ on `close-out`.
    against the previous build with screenshots, computed styles, and axe in
    all three engines. `tsconfig.node.json` is currently a copy of
    `tsconfig.json` and gets the siblings' split (`tsconfig.app.json`,
-   `tsconfig.node.json`).
+   `tsconfig.node.json`). Done 2026-10-12, in four commits.
+   - **How it was checked**: a scratchpad capture script (using this
+     project's Playwright and the-bernie-bears' axe, since this project's
+     suites come in step 4) served each build and captured every route plus
+     a missing path at 390px and 1,440px, and the open phone menu, with every
+     animation and transition jumped to its end: full-page screenshots,
+     every element's computed style at rest, each link and button hovered,
+     each Tab stop focused, axe, and a behavior log (the menu, a menu link,
+     the contact form against a stubbed email function, the Work filters).
+     Two captures of one build matched exactly, except that WebKit now and
+     then redraws one page a few color levels differently (a different page
+     each time, never more than 10 levels), which counts as noise.
+   - **Vite 8.3** with `@vitejs/plugin-react` 6.1 and `@types/node`:
+     byte-identical CSS, and every capture matched.
+   - **React 19.3**: every capture matched. The bundle grows by about 8.5 KB
+     gzipped, React's own size.
+   - **React Router 8.4**: every import moved to `react-router`, every
+     capture and behavior check matched, and `npm audit` is clean.
+   - **TypeScript 6.0.3**: the configs split into `tsconfig.app.json` and
+     `tsconfig.node.json` (which now type checks `vite.config.ts`) under a
+     references-only `tsconfig.json`, and the build and a new `typecheck`
+     script run `tsc -b`. Byte-identical build, and the dev server runs.
+   - **Baseline accessibility**: axe already reports color contrast
+     failures on every page (10 to 45 elements each) and a heading-order
+     failure on Work, for steps 4 and 9.
 3. **ESLint**, set up from the siblings' `eslint.config.ts`.
 4. **Playwright and axe** in all three engines, with baseline screenshots of
    every route at phone and desktop widths and the open phone menu, taken
