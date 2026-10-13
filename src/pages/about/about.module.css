@@ -648,6 +648,20 @@
 
 
 }
+@media ( max-width : 768px ) { /* What: Phone Timeline List Div. Why: The single column would hug the left under the centered heading while the screen is still wider than the column. How: This applies at 768px and below. */
+
+
+	.timLisDiv { /* What: Centered Timeline List Div. Why: The column sits under the heading's center until the screen is too narrow to leave room beside it. How: This sizes the list to its own content, never wider than the row, and centers it. */
+
+
+		align-self : center;
+		width      : fit-content;
+
+
+	}
+
+
+}
 
 
 /* #region timIteDiv */
