@@ -1,36 +1,74 @@
-.tag {
-  display: inline-flex;
-  align-items: center;
-  font-family: var(--font-mono);
-  border-radius: var(--radius-sm);
-  letter-spacing: 0.04em;
-  white-space: nowrap;
+
+
+
+/**
+ * tag.module.css = Tag Label Module
+ *
+ * @summary
+ * Styles for TagLabCom: a small pill in the mono font, with one modifier for
+ * each of its two sizes and three colors. The modifiers are named after the
+ * values TagLabCom's props take, so the component reads them by those names.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+.tag { /* What: Tag. Why: A technology's name reads as a compact pill. How: This sets it inline in the mono font, rounded, with its letters a little apart and never wrapping. */
+
+
+	align-items    : center;
+	border-radius  : var( --radius-sm ); /* Radius Small = 3px */
+	display        : inline-flex;
+	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	letter-spacing : 0.04em;
+	white-space    : nowrap;
+
+
+}
+.sm { /* What: Small Tag. Why: Project cards fit several tags in a row. How: This sets the smaller text and padding. */
+
+
+	font-size : 0.68rem;
+	padding   : 3px 8px;
+
+
+}
+.md { /* What: Medium Tag. Why: The About page's skills grid shows larger tags. How: This sets the larger text and padding. */
+
+
+	font-size : 0.75rem;
+	padding   : 5px 12px;
+
+
+}
+.neutral { /* What: Neutral Tag. Why: A tag with no color of its own stays quiet. How: This sets it on the warm ivory with a matching border. */
+
+
+	background : var( --ivory-warm );           /* Ivory Warm = #EDE6D8 */
+	border     : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	color      : var( --ink-mid );              /* Ink Mid = #3D3D5C */
+
+
+}
+.blue { /* What: Blue Tag. Why: Technologies show in the site's blue. How: This sets the pale blue fill, blue border, and dark blue text. */
+
+
+	background : var( --blue-light );     /* Blue Light = #B8D9EC */
+	border     : 1px solid var( --blue ); /* Blue = #7DB9D8 */
+	color      : var( --blue-dark );      /* Blue Dark = #4A91B8 */
+
+
+}
+.orange { /* What: Orange Tag. Why: A tag can stand out in the site's accent. How: This sets the pale orange fill, orange border, and dark orange text. */
+
+
+	background : var( --orange-light );     /* Orange Light = #FDDCC8 */
+	border     : 1px solid var( --orange ); /* Orange = #F26419 */
+	color      : var( --orange-dark );      /* Orange Dark = #D4530E */
+
+
 }
 
-.sm {
-  font-size: 0.68rem;
-  padding: 3px 8px;
-}
 
-.md {
-  font-size: 0.75rem;
-  padding: 5px 12px;
-}
-
-.neutral {
-  background: var(--ivory-warm);
-  color: var(--ink-mid);
-  border: 1px solid var(--ivory-dark);
-}
-
-.blue {
-  background: var(--blue-light);
-  color: var(--blue-dark);
-  border: 1px solid var(--blue);
-}
-
-.orange {
-  background: var(--orange-light);
-  color: var(--orange-dark);
-  border: 1px solid var(--orange);
-}
