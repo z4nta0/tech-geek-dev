@@ -482,10 +482,10 @@
 
 /* #region prcSteDiv */
 
-.prcSteDiv { /* What: Process Steps Div. Why: The four steps read left to right. How: This lays the cards and arrows in a full-width row, aligned to their tops. */
+.prcSteDiv { /* What: Process Steps Div. Why: The four steps read left to right as cards of one height. How: This lays the cards and arrows in a full-width row, stretching every card to the tallest one. */
 
 
-	align-items : flex-start;
+	align-items : stretch;
 	display     : flex;
 	gap         : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
 	width       : 100%;
@@ -578,10 +578,11 @@
 /* #endregion steCarDiv */
 
 
-.steArrDiv { /* What: Step Arrow Div. Why: An arrow leads from one card to the next. How: This holds the arrow, dropped to sit beside the cards' titles, never shrinking. */
+.steArrDiv { /* What: Step Arrow Div. Why: An arrow leads from one card to the next. How: This holds the arrow at the row's top, dropped to sit beside the cards' titles, never shrinking or stretching. */
 
 
 	align-items : center;
+	align-self  : flex-start;
 	display     : flex;
 	flex-shrink : 0;
 	padding-top : var( --spa-ver-p04 ); /* Spacing Vertical Base Plus 4 ~= 44.876px */
