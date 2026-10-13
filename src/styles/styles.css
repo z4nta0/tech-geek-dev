@@ -1,248 +1,399 @@
-/* ============================================
-   DESIGN SYSTEM — GEOMETRIC TECH PORTFOLIO
-   ============================================ */
-
-:root {
-  /* Core Palette */
-  --blue:        #7DB9D8;   /* Powder blue — primary brand */
-  --blue-dark:   #4A91B8;   /* Deeper blue for hover / active */
-  --blue-light:  #B8D9EC;   /* Pale blue for subtle fills */
-  --orange:      #F26419;   /* Sharp orange — accent */
-  --orange-dark: #D4530E;   /* Darker orange for hover */
-  --orange-light:#FDDCC8;   /* Light orange tint */
-  --ivory:       #F5F0E8;   /* Creamy ivory — base background */
-  --ivory-warm:  #EDE6D8;   /* Slightly warmer ivory for panels */
-  --ivory-dark:  #D8CFBE;   /* Border / rule color */
-  --ink:         #1A1A2E;   /* Near-black — primary text */
-  --ink-mid:     #3D3D5C;   /* Secondary text */
-  --ink-light:   #7A7A99;   /* Muted / caption text */
-  --white:       #FFFFFF;
-
-  /* Typography */
-  --font-display: 'Syne', sans-serif;
-  --font-mono:    'DM Mono', monospace;
-  --font-serif:   'Lora', serif;
-
-  /* Spacing scale */
-  --sp-1:  4px;
-  --sp-2:  8px;
-  --sp-3:  12px;
-  --sp-4:  16px;
-  --sp-5:  24px;
-  --sp-6:  32px;
-  --sp-7:  48px;
-  --sp-8:  64px;
-  --sp-9:  96px;
-  --sp-10: 128px;
-
-  /* Layout */
-  --max-width: 1200px;
-  --nav-height: 72px;
-
-  /* Radius */
-  --radius-sm: 3px;
-  --radius-md: 6px;
-  --radius-lg: 12px;
-
-  /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(26,26,46,0.08);
-  --shadow-md: 0 4px 16px rgba(26,26,46,0.10);
-  --shadow-lg: 0 12px 40px rgba(26,26,46,0.14);
-
-  /* Transitions */
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-  --duration-fast: 150ms;
-  --duration-base: 280ms;
-  --duration-slow: 500ms;
 
 
-  --scale-x: 0;
+
+/**
+ * styles.css = Global Styles
+ *
+ * @summary
+ * The site's one global stylesheet, holding only what can't belong to a
+ * single component: the design tokens every module reads, the reset and
+ * base element styles, and the keyframes several modules play through
+ * global(). Everything else lives in each component's own CSS module. The
+ * tokens are still the original geometric palette, type, spacing, radius,
+ * shadow, and motion values, which the design token step replaces with the
+ * shared role-based set.
+ *
+ * Sections:
+ *  - Tokens
+ *  - Base Elements
+ *  - Shared Keyframes
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region Tokens */
+
+:root { /* What: Root Tokens. Why: Every module reads the same palette, type, spacing, and motion values. How: This defines them as custom properties on the root, grouped into sections. */
+
+
+	/* #region Color Tokens */
+
+	--blue         : #7DB9D8; /* What: Blue. Why: Powder blue is the site's primary brand color. How: Modules read it for structure, borders, and links. */
+	--blue-dark    : #4A91B8; /* What: Blue Dark. Why: A deeper blue holds up as text and active states. How: Modules read it for accents, tags, and the active filter. */
+	--blue-light   : #B8D9EC; /* What: Blue Light. Why: A pale blue fills tags and icon tiles. How: Modules read it for subtle fills. */
+	--ink          : #1A1A2E; /* What: Ink. Why: A near-black reads as the main text and the dark bands. How: Modules read it for headings, body text, and dark backgrounds. */
+	--ink-light    : #7A7A99; /* What: Ink Light. Why: Muted text sits back from the main text. How: Modules read it for captions and labels. */
+	--ink-mid      : #3D3D5C; /* What: Ink Mid. Why: Secondary text reads softer than the headings. How: Modules and the base paragraph style read it. */
+	--ivory        : #F5F0E8; /* What: Ivory. Why: A creamy ivory is the page's background. How: The body and most sections read it. */
+	--ivory-dark   : #D8CFBE; /* What: Ivory Dark. Why: Borders and rules need a quiet line color. How: Modules read it for dividers and outlines. */
+	--ivory-warm   : #EDE6D8; /* What: Ivory Warm. Why: Some bands and pills sit a little warmer than the page. How: Modules read it for panels and pills. */
+	--orange       : #F26419; /* What: Orange. Why: A sharp orange is the site's accent. How: Modules read it for buttons, labels, and highlights. */
+	--orange-dark  : #D4530E; /* What: Orange Dark. Why: Orange buttons darken on hover. How: Modules read it for hover states. */
+	--orange-light : #FDDCC8; /* What: Orange Light. Why: A pale orange tints the focus glow and orange tags. How: Modules read it for soft orange fills. */
+	--white        : #FFFFFF; /* What: White. Why: Cards and strips sit on pure white. How: Modules read it for card backgrounds and text on dark. */
+
+	/* #endregion Color Tokens */
+
+
+
+	/* #region Font Tokens */
+
+	--font-display : 'Syne', sans-serif;   /* What: Font Display. Why: Syne is the site's main face for headings and body text. How: The body and headings read it. */
+	--font-mono    : 'DM Mono', monospace; /* What: Font Mono. Why: DM Mono sets labels, tags, buttons, and code. How: Modules read it for every mono element. */
+	--font-serif   : 'Lora', serif;        /* What: Font Serif. Why: Lora sets the occasional italic pull quote. How: The About page's lead reads it. */
+
+	/* #endregion Font Tokens */
+
+
+
+	/* #region Layout Tokens */
+
+	--max-width  : 1200px; /* What: Maximum Width. Why: The page's content column stops growing on wide screens. How: Every centered column caps its width at it. */
+	--nav-height : 72px;   /* What: Navigation Height. Why: Content has to clear the fixed bar. How: The bar sets its height from it, and heroes and sticky elements offset by it. */
+
+	/* #endregion Layout Tokens */
+
+
+
+	/* #region Motion Tokens */
+
+	--duration-fast : 150ms; /* What: Duration Fast. Why: Hover and color changes should feel immediate. How: Small transitions read it. */
+	--duration-base : 280ms; /* What: Duration Base. Why: Lifts and fades need a little longer. How: Card, bar, and menu transitions read it. */
+	--duration-slow : 500ms; /* What: Duration Slow. Why: The screenshot zoom eases slowly. How: The project card's image transition reads it. */
+
+
+	--ease-out : cubic-bezier( 0.16, 1, 0.3, 1 ); /* What: Ease Out. Why: Things arriving should settle gently. How: Transitions and entrances read it as their curve. */
+
+	/* #endregion Motion Tokens */
+
+
+
+	/* #region Radius Tokens */
+
+	--radius-sm : 3px;  /* What: Radius Small. Why: Buttons and tags take a slight rounding. How: Modules read it for small corners. */
+	--radius-md : 6px;  /* What: Radius Medium. Why: Fields and icon tiles take a softer rounding. How: Modules read it for medium corners. */
+	--radius-lg : 12px; /* What: Radius Large. Why: Cards and windows take the roundest corners. How: Modules read it for large corners. */
+
+	/* #endregion Radius Tokens */
+
+
+
+	/* #region Shadow Tokens */
+
+	--shadow-sm : 0 1px 3px rgba( 26, 26, 46, 0.08 );   /* What: Shadow Small. Why: The scrolled bar lifts just off the page. How: The bar reads it once the page scrolls. */
+	--shadow-md : 0 4px 16px rgba( 26, 26, 46, 0.10 );  /* What: Shadow Medium. Why: Hovered cards and floating badges lift a little more. How: Modules read it for medium elevation. */
+	--shadow-lg : 0 12px 40px rgba( 26, 26, 46, 0.14 ); /* What: Shadow Large. Why: Hovered project cards and the code window float highest. How: Modules read it for large elevation. */
+
+	/* #endregion Shadow Tokens */
+
+
+
+	/* #region Spacing Tokens */
+
+	--sp-1  : 4px;   /* What: Spacing 1. Why: The tightest gap between small pieces. How: Modules read it for tiny gaps. */
+	--sp-2  : 8px;   /* What: Spacing 2. Why: A small gap between related pieces. How: Modules read it for small gaps. */
+	--sp-3  : 12px;  /* What: Spacing 3. Why: A comfortable gap inside components. How: Modules read it for gaps and padding. */
+	--sp-4  : 16px;  /* What: Spacing 4. Why: The base gap between parts of a card. How: Modules read it for gaps and padding. */
+	--sp-5  : 24px;  /* What: Spacing 5. Why: The gap between cards and stacked blocks. How: Modules read it for grid gaps and padding. */
+	--sp-6  : 32px;  /* What: Spacing 6. Why: The page's side padding and card padding. How: Every centered column pads its sides with it. */
+	--sp-7  : 48px;  /* What: Spacing 7. Why: Larger gaps between major blocks. How: Modules read it for wide gaps and padding. */
+	--sp-8  : 64px;  /* What: Spacing 8. Why: The gap between a section's heading and its content. How: Modules read it for section-level spacing. */
+	--sp-9  : 96px;  /* What: Spacing 9. Why: Generous padding inside heroes and banners. How: Modules read it for large padding. */
+	--sp-10 : 128px; /* What: Spacing 10. Why: The padding above and below each section. How: Every section pads its top and bottom with it. */
+
+	/* #endregion Spacing Tokens */
+
+
 }
 
-/* ---- Reset ---- */
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* #endregion Tokens */
+
+
+
+/* #region Base Elements */
+
+*,
+*::before,
+*::after { /* What: Universal Reset. Why: Every element should size predictably and start without the browser's default spacing. How: This sets border-box sizing and clears margin and padding. */
+
+
+	box-sizing : border-box;
+	margin     : 0;
+	padding    : 0;
+
+
 }
 
+html { /* What: Root Element. Why: The page should scroll smoothly to its anchors and draw text crisply. How: This fixes the root size at 16px, smooths scrolling, and turns on grayscale antialiasing. */
 
-html {
-  font-size: 16px;
-  scroll-behavior: smooth;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+	-moz-osx-font-smoothing : grayscale;
+	-webkit-font-smoothing  : antialiased;
+	font-size               : 16px;
+	scroll-behavior         : smooth;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Root Element. Why: Someone who asked for less motion shouldn't see the page glide to an anchor. How: This applies only when the reduced-motion preference is set. */
+
+
+	html { /* What: Instant Scroll Root Element. Why: Jumps to an anchor should be instant. How: This turns smooth scrolling off. */
+
+
+		scroll-behavior : auto;
+
+
+	}
+
+
 }
 
-body {
-  background-color: var(--ivory);
-  color: var(--ink);
-  font-family: var(--font-display);
-  line-height: 1.6;
-  overflow-x: hidden;
-  width:100%;
-  height:100%;
-  min-height: 100vh;
-  margin: 0;
+body { /* What: Page Body. Why: Every page sits on the ivory in the main face and color. How: This sets the background, text color, font, and line height, fills the screen, and hides sideways overflow. */
+
+
+	background-color : var( --ivory );        /* Ivory = #F5F0E8 */
+	color            : var( --ink );          /* Ink = #1A1A2E */
+	font-family      : var( --font-display ); /* Font Display = 'Syne', sans-serif */
+	height           : 100%;
+	line-height      : 1.6;
+	margin           : 0;
+	min-height       : 100vh;
+	overflow-x       : hidden;
+	width            : 100%;
+
+
 }
 
-/* ---- Typography ---- */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
-  font-weight: 700;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 { /* What: Headings. Why: Every heading shares the bold, tight display style. How: This sets the display font at weight 700 with tight lines and letters. */
+
+
+	font-family    : var( --font-display ); /* Font Display = 'Syne', sans-serif */
+	font-weight    : 700;
+	letter-spacing : -0.02em;
+	line-height    : 1.15;
+
+
 }
 
-h1 { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 800; }
-h2 { font-size: clamp(1.8rem, 4vw, 3rem); }
-h3 { font-size: clamp(1.3rem, 2.5vw, 1.8rem); }
-h4 { font-size: 1.2rem; }
+h1 { /* What: Heading Level 1. Why: The page heading is the largest and boldest. How: This scales it with the screen between 2.5rem and 5rem at weight 800. */
 
-p {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1rem;
-  line-height: 1.75;
-  color: var(--ink-mid);
+
+	font-size   : clamp( 2.5rem, 6vw, 5rem );
+	font-weight : 800;
+
+
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+h2 { /* What: Heading Level 2. Why: Section headings sit a step down. How: This scales them with the screen between 1.8rem and 3rem. */
+
+
+	font-size : clamp( 1.8rem, 4vw, 3rem );
+
+
 }
 
-img, video {
-  max-width: 100%;
-  display: block;
+h3 { /* What: Heading Level 3. Why: Card headings sit another step down. How: This scales them with the screen between 1.3rem and 1.8rem. */
+
+
+	font-size : clamp( 1.3rem, 2.5vw, 1.8rem );
+
+
 }
 
-button {
-  cursor: pointer;
-  font-family: var(--font-display);
-  border: none;
-  background: none;
+h4 { /* What: Heading Level 4. Why: The smallest heading stays a fixed size. How: This sets it at 1.2rem. */
+
+
+	font-size : 1.2rem;
+
+
 }
 
-ul, ol { list-style: none; }
+p { /* What: Paragraph. Why: Body text reads comfortably in the secondary text color. How: This sets the display font at 1rem with roomy lines. */
 
-/* ---- Utility classes ---- */
-.container {
-  width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 var(--sp-6);
+
+	color       : var( --ink-mid );      /* Ink Mid = #3D3D5C */
+	font-family : var( --font-display ); /* Font Display = 'Syne', sans-serif */
+	font-size   : 1rem;
+	font-weight : 400;
+	line-height : 1.75;
+
+
 }
 
-.section {
-  padding: var(--sp-10) 0;
+a { /* What: Anchor. Why: Links take their surroundings' look unless a module styles them. How: This inherits the color and drops the underline. */
+
+
+	color           : inherit;
+	text-decoration : none;
+
+
 }
 
-.section--sm {
-  padding: var(--sp-8) 0;
+img,
+video { /* What: Media. Why: Images and video never overflow their box or leave a gap below. How: This caps their width and makes them blocks. */
+
+
+	display   : block;
+	max-width : 100%;
+
+
 }
 
-.mono {
-  font-family: var(--font-mono);
-  font-size: 0.875em;
+button { /* What: Button. Why: Buttons start from a blank slate that modules style. How: This clears the border and background and sets the pointer and the display font. */
+
+
+	background  : none;
+	border      : none;
+	cursor      : pointer;
+	font-family : var( --font-display ); /* Font Display = 'Syne', sans-serif */
+
+
 }
 
-.serif {
-  font-family: var(--font-serif);
+ol,
+ul { /* What: Lists. Why: Lists are only used for layout, never bullets. How: This removes the markers. */
+
+
+	list-style : none;
+
+
 }
 
-.text-orange { color: var(--orange); }
-.text-blue   { color: var(--blue-dark); }
-.text-muted  { color: var(--ink-light); }
+::-webkit-scrollbar { /* What: Scrollbar. Why: A slim scrollbar suits the site in Chromium and WebKit. How: This narrows it to 6px. */
 
-/* ---- Geometric grid background utility ---- */
-.geo-grid-bg {
-  background-image:
-    linear-gradient(var(--ivory-dark) 1px, transparent 1px),
-    linear-gradient(90deg, var(--ivory-dark) 1px, transparent 1px);
-  background-size: 40px 40px;
-  background-position: -1px -1px;
+
+	width : 6px;
+
+
 }
 
-/* ---- Dot pattern ---- */
-.dot-bg {
-  background-image: radial-gradient(circle, var(--ivory-dark) 1px, transparent 1px);
-  background-size: 24px 24px;
+::-webkit-scrollbar-track { /* What: Scrollbar Track. Why: The track blends into the page. How: This paints it ivory. */
+
+
+	background : var( --ivory ); /* Ivory = #F5F0E8 */
+
+
 }
 
-/* ---- Scrollbar ---- */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--ivory); }
-::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--blue-dark); }
+::-webkit-scrollbar-thumb { /* What: Scrollbar Thumb. Why: The thumb carries the brand blue. How: This paints it blue with rounded ends. */
 
-/* ---- Focus visible ---- */
-:focus-visible {
-  outline: 2px solid var(--orange);
-  outline-offset: 3px;
-  border-radius: var(--radius-sm);
+
+	background    : var( --blue ); /* Blue = #7DB9D8 */
+	border-radius : 3px;
+
+
+}
+::-webkit-scrollbar-thumb:hover { /* What: Hovered Scrollbar Thumb. Why: The thumb responds to the pointer. How: This darkens it. */
+
+
+	background : var( --blue-dark ); /* Blue Dark = #4A91B8 */
+
+
 }
 
-/* ---- Animations ---- */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+:focus-visible { /* What: Focus Visible. Why: A keyboard user has to see where focus is. How: This draws a 2px orange ring held 3px off the element, with the small rounding. */
+
+
+	border-radius  : var( --radius-sm );        /* Radius Small = 3px */
+	outline        : 2px solid var( --orange ); /* Orange = #F26419 */
+	outline-offset : 3px;
+
+
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+/* #endregion Base Elements */
+
+
+
+/* #region Shared Keyframes */
+
+@keyframes fadeUp { /* What: Fade Up Keyframes. Why: Every page and the Home hero fade up into view. How: This moves from transparent and 24px low to fully shown in place. */
+
+
+	from {
+
+
+		opacity   : 0;
+		transform : translateY( 24px );
+
+
+	}
+
+	to {
+
+
+		opacity   : 1;
+		transform : translateY( 0 );
+
+
+	}
+
+
 }
 
-@keyframes slideInLeft {
-  from { opacity: 0; transform: translateX(-32px); }
-  to   { opacity: 1; transform: translateX(0); }
+@keyframes pulse { /* What: Pulse Keyframes. Why: The availability dots on Home and Contact breathe. How: This fades the dot to 40% halfway through and back. */
+
+
+	0%,
+	100% {
+
+
+		opacity : 1;
+
+
+	}
+
+	50% {
+
+
+		opacity : 0.4;
+
+
+	}
+
+
 }
 
-@keyframes drawLine {
-  from { stroke-dashoffset: 1000; }
-  to   { stroke-dashoffset: 0; }
+@keyframes rotateSlow { /* What: Rotate Slow Keyframes. Why: Home's shapes and the 404 drawing turn slowly. How: This turns the element once around. */
+
+
+	from {
+
+
+		transform : rotate( 0deg );
+
+
+	}
+
+	to {
+
+
+		transform : rotate( 360deg );
+
+
+	}
+
+
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.4; }
-}
-
-@keyframes rotateSlow {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-
-.anim-fade-up {
-  animation: fadeUp var(--duration-slow) var(--ease-out) both;
-}
-
-.anim-fade-in {
-  animation: fadeIn var(--duration-base) var(--ease-out) both;
-}
-
-/* ---- Page transition wrapper ---- */
-.page-enter {
-  animation: fadeUp 400ms var(--ease-out) both;
-}
+/* #endregion Shared Keyframes */
 
 
-
-
-
-.cursor-blink {
-    animation: cursor-blinkkk 0.6s infinite linear;
-}
-
-@keyframes cursor-blinkkk {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-
-
-:root {
-    --scale-x: scaleX(0);
-}
