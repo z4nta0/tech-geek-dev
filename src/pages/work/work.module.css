@@ -472,10 +472,28 @@
 @media ( max-width : 1024px ) { /* What: Tablet Process Steps Div. Why: Four cards in a row crowd a tablet. How: This applies at 1024px and below. */
 
 
-	.prcSteDiv { /* What: Stacked Process Steps Div. Why: The steps read top to bottom on a narrower screen. How: This stacks the cards and arrows. */
+	.prcSteDiv { /* What: Paired Process Steps Div. Why: Four cards divide evenly into two rows of two on a tablet, and their numbers already show the order. How: This sets a two-column grid with gaps. */
 
 
+		display               : grid;
+		gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+		grid-template-columns : repeat( 2, 1fr );
+
+
+	}
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Process Steps Div. Why: Two cards side by side crowd a phone. How: This applies at 768px and below. */
+
+
+	.prcSteDiv { /* What: Stacked Process Steps Div. Why: The steps read top to bottom on a phone, each card as wide as the column. How: This stacks the cards and arrows in a flex column, stretching every card to the full width. */
+
+
+		align-items    : stretch;
+		display        : flex;
 		flex-direction : column;
+		gap            : var( --spa-ver-m01 ); /* Spacing Vertical Base Minus 1 = 11px */
 
 
 	}
@@ -547,14 +565,29 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Step Arrow Div. Why: The stacked steps read top to bottom. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Step Arrow Div. Why: A sideways arrow would break up the two-by-two grid. How: This applies at 1024px and below. */
 
 
-	.steArrDiv { /* What: Turned Step Arrow Div. Why: The arrow has to point down to the next card. How: This turns it a quarter turn and centers it. */
+	.steArrDiv { /* What: Hidden Step Arrow Div. Why: The grid's cards read in order by their numbers. How: This hides the arrows. */
 
 
-		align-self : center;
-		transform  : rotate( 90deg );
+		display : none;
+
+
+	}
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Step Arrow Div. Why: The stacked steps read top to bottom. How: This applies at 768px and below. */
+
+
+	.steArrDiv { /* What: Turned Step Arrow Div. Why: The arrow has to point down to the next card. How: This shows it again, centered between the cards, and turns it a quarter turn. */
+
+
+		align-self  : center;
+		display     : flex;
+		padding-top : 0;
+		transform   : rotate( 90deg );
 
 
 	}
