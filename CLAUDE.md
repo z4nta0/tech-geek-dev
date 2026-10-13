@@ -149,6 +149,29 @@ on `close-out`.
    (Syne, DM Mono, Lora) self-hosted instead of loaded from Google Fonts,
    the single-page fallback moved from `netlify.toml` to
    `public/_redirects`, and the email function rewritten in TypeScript.
+   Done 2026-10-12 in five commits:
+   - **Fallback**: the same rule moved to `public/_redirects`, and
+     `netlify.toml`, which held nothing else, was removed; Netlify finds the
+     email function in its default `netlify/functions` folder.
+   - **Source files**: moved into the layout above with only their import
+     paths changed (each now naming its extension), plus the project type
+     joining `ui/projects.ts` and `global.css` becoming `styles.css`. Module
+     class hashes follow file paths, so the build can't be byte-identical;
+     every capture matched instead.
+   - **Images**: the portrait moved beside the About page, the project
+     screenshots into `src/assets/images/`, and the unused business card
+     SVGs into `design/business-cards/`, with a byte-identical build.
+   - **Fonts**: the same latin files Google served, declared in
+     `styles/fonts.css`; Syne (400 to 800) and Lora's upright face (400 to
+     700) are variable, while Lora's italic and the four DM Mono faces are
+     single weights. The rendering suite matched apart from the WebKit flake
+     (see "## Test suites").
+   - **Email function**: `netlify/functions/send-email.mts`, written to the
+     formatting rules and type checked through `tsconfig.node.json`, with
+     `@netlify/functions` now a dev dependency for its types. Checked with a
+     stubbed fetch on every path. It also fixes a bug: a send EmailJS refused
+     read the reply twice, so the page always got a generic 500 rather than
+     EmailJS's own status and explanation.
 6. **Formatting, naming, and comment pass**, one file per commit, including
    `vite.config.ts` (adding the shipped-page minifier), `index.html`, and the
    email function, with the copy fixes (no em dashes).
