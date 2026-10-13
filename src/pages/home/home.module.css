@@ -53,15 +53,14 @@
 
 /* #region homHerSec */
 
-.homHerSec { /* What: Home Hero Section. Why: The page opens on a full screen introduction clear of the fixed bar. How: This sets the ivory band at least a screen tall, centers its content, pads it below the bar, and clips the shapes behind it. */
+.homHerSec { /* What: Home Hero Section. Why: The page opens on an introduction clear of the fixed bar, with the same breathing room on every screen shape. How: This sets the ivory background, centers the hero's row, clips the turning shapes, and pads it by the bar's height plus a gap that grows with the screen's width, so a tall window no longer opens a huge gap the way filling the window's height did. */
 
 
 	align-items : center;
 	background  : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
 	display     : flex;
-	min-height  : 100vh;
 	overflow    : hidden;
-	padding-top : var( --nav-bar-hei ); /* Navigation Bar Height ~= 78.751px */
+	padding     : calc( var( --nav-bar-hei ) + clamp( var( --spa-ver-p05 ), 10vw, var( --spa-ver-p08 ) ) ) 0 clamp( var( --spa-ver-p06 ), 12vw, var( --spa-ver-p08 ) ); /* Navigation Bar Height ~= 78.751px, Spacing Vertical Base Plus 5 ~= 59.447px, Spacing Vertical Base Plus 8 ~= 138.199px, Spacing Vertical Base Plus 6 ~= 78.751px */ /* What: Hero Padding. Why: The gap under the bar and above the slanted edge should suit the screen. How: The top clears the bar plus 10vw, about 59px to 138px, and the bottom is 12vw, about 79px to 138px, which keeps the content clear of the 59px slanted edge. */
 	position    : relative;
 
 
