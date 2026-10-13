@@ -29,7 +29,7 @@
 .page { /* What: Work Page. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global fadeUp keyframe. */
 
 
-	animation : global( fadeUp ) 400ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+	animation : global( fadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -258,7 +258,7 @@
 	letter-spacing : 0.04em;
 	padding        : var( --spa-ver-m03 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 3 ~= 6.268px, Spacing Horizontal Base ~= 14.572px */
 	text-transform : uppercase;
-	transition     : all var( --duration-fast );                      /* Duration Fast = 150ms */
+	transition     : all var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
 	white-space    : nowrap;
 
 

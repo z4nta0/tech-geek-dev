@@ -30,7 +30,7 @@
 .page { /* What: Home Page. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global fadeUp keyframe. */
 
 
-	animation : global( fadeUp ) 400ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+	animation : global( fadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -88,7 +88,7 @@
 .shapeHex { /* What: Hexagon Shape. Why: A large blue hexagon echoes the site's mark at the hero's right. How: This clips a 320px blue square to a hexagon past the right edge and turns it once every 30 seconds. */
 
 
-	animation  : global( rotateSlow ) 30s linear infinite;
+	animation  : global( rotateSlow ) var( --dur-ani-p19 ) linear infinite; /* Duration Animation Base Plus 19 ~= 33,004.0ms */
 	background : var( --acc-sec-col );                /* Accent Secondary Color = #7DB9D8 */
 	clip-path  : polygon( 50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25% );
 	height     : calc( var( --ver-rhy-p11 ) * 1rem ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
@@ -101,14 +101,14 @@
 .shapeCircle { /* What: Circle Shape. Why: An orange ring varies the shapes at the hero's lower left. How: This draws a 200px ring a little stronger than the others and turns it backward every 20 seconds. */
 
 
-	animation     : global( rotateSlow ) 20s linear infinite reverse;
+	animation     : global( rotateSlow ) var( --dur-ani-p18 ) linear infinite reverse; /* Duration Animation Base Plus 18 ~= 24,914.0ms */
 	background    : transparent;
 	border        : var( --bor-wid-xla ) solid var( --acc-mai-col ); /* Border Width Extra Large ~= 3.571px, Accent Main Color = #F26419 */
 	border-radius : 50%;
 	bottom        : 10%;
 	height        : calc( var( --ver-rhy-p09 ) * 1rem );             /* Vertical Rhythm Base Plus 9 ~= 183.074px */
 	left          : 5%;
-	opacity       : 0.15;
+	opacity       : var( --cdn-pow-007-rec ); /* Core-Design-Number to the Power of 7 Reciprocal ~= 0.140 */
 	width         : calc( var( --ver-rhy-p09 ) * 1rem );             /* Vertical Rhythm Base Plus 9 ~= 183.074px */
 
 
@@ -116,7 +116,7 @@
 .shapeSquare { /* What: Square Shape. Why: A tilted outlined square varies the shapes near the hero's top. How: This draws a 120px dark blue square tipped 45 degrees through rotate, which the turning transform adds to, and turns it every 15 seconds. */
 
 
-	animation  : global( rotateSlow ) 15s linear infinite;
+	animation  : global( rotateSlow ) var( --dur-ani-p17 ) linear infinite; /* Duration Animation Base Plus 17 ~= 18,807.0ms */
 	background : transparent;
 	border     : var( --bor-wid-lar ) solid var( --acs-str-col ); /* Border Width Large ~= 2.035px, Accent-Secondary Strong Color = #4A91B8 */
 	height     : calc( var( --ver-rhy-p07 ) * 1rem );             /* Vertical Rhythm Base Plus 7 ~= 104.323px */
@@ -200,7 +200,7 @@
 .heroContent { /* What: Hero Content. Why: The pitch reads as one column that fades up first. How: This stacks the label, heading, line, buttons, and ticker, lets the column shrink below its content, and plays the shared fadeUp. */
 
 
-	animation      : global( fadeUp ) 600ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+	animation      : global( fadeUp ) var( --dur-ani-p05 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 	display        : flex;
 	flex-direction : column;
 	gap            : var( --spa-ver-p02 );                          /* Spacing Vertical Base Plus 2 ~= 25.572px */
@@ -248,7 +248,7 @@
 .pulse { /* What: Pulse Dot. Why: A pulsing green dot signals availability. How: This draws an 8px green circle, never shrinking, playing the shared pulse forever. */
 
 
-	animation     : global( pulse ) 2s ease-in-out infinite;
+	animation     : global( pulse ) var( --dur-ani-p10 ) var( --mot-sta-eas ) infinite; /* Duration Animation Base Plus 10 ~= 2,627.0ms, Motion Standard Easing = ease */
 	background    : var( --suc-mai-col );                /* Success Main Color = #22c55e */
 	border-radius : 50%;
 	flex-shrink   : 0;
@@ -311,7 +311,7 @@
 	content       : '';
 	height        : calc( var( --ver-rhy-m05 ) * 1rem ); /* Vertical Rhythm Base Minus 5 ~= 3.572px */
 	left          : 0;
-	opacity       : 0.6;
+	opacity       : var( --cdn-pow-002-rec ); /* Core-Design-Number to the Power of 2 Reciprocal ~= 0.570 */
 	position      : absolute;
 	right         : 0;
 
@@ -368,7 +368,7 @@
 	letter-spacing : 0.04em;
 	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 );                           /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	text-transform : uppercase;
-	transition     : background var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
+	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
 
 
 }
@@ -408,7 +408,7 @@
 	letter-spacing : 0.04em;
 	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 );                                                           /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	text-transform : uppercase;
-	transition     : border-color var( --duration-fast ), color var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
+	transition     : border-color var( --dur-tra-bas ), color var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
 
 
 }
@@ -456,7 +456,7 @@
 .tickerInner { /* What: Ticker Inner. Why: The strip slides along endlessly. How: This lines up the items and plays the ticker's own scroll once every 60 seconds, forever. */
 
 
-	animation : tickerScroll 60s linear infinite;
+	animation : tickerScroll var( --dur-ani-p22 ) linear infinite; /* Duration Animation Base Plus 22 ~= 76,725.0ms */
 	display   : flex;
 	gap       : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
 
@@ -526,7 +526,7 @@
 .heroVisual { /* What: Hero Visual. Why: The code window and badge follow the pitch in. How: This positions the badge against the column and plays the shared fadeUp a little after the pitch. */
 
 
-	animation : global( fadeUp ) 700ms 150ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+	animation : global( fadeUp ) var( --dur-ani-p05 ) var( --dur-ani-bas ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Duration Animation Base ~= 157.8ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 	position  : relative;
 
 
@@ -578,9 +578,9 @@
 
 
 	background    : var( --bac-inv-col );                                                                           /* Background Inverse Color = #1A1A2E */
-	border        : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / 0.08 );                     /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.08 opacity */
+	border        : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-009-rec ) ); /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.080 opacity */
 	border-radius : var( --rad-bor-med );                                                                           /* Radius Border Medium = 11px */
-	box-shadow    : var( --shadow-lg ), 0 0 0 var( --bor-wid-bas ) oklch( from var( --acc-sec-col ) l c h / 0.15 ); /* Shadow Large = 0 12px 40px rgba( 26, 26, 46, 0.14 ), Border Width Base ~= 1.160px, Accent Secondary Color = #7DB9D8 @ 0.15 opacity */
+	box-shadow    : var( --shadow-lg ), 0 0 0 var( --bor-wid-bas ) oklch( from var( --acc-sec-col ) l c h / var( --cdn-pow-007-rec ) ); /* Shadow Large = 0 12px 40px rgba( 26, 26, 46, 0.14 ), Border Width Base ~= 1.160px, Accent Secondary Color = #7DB9D8 @ 0.140 opacity */
 	overflow      : hidden;
 	position      : relative;
 
@@ -595,7 +595,7 @@
 
 	align-items   : center;
 	background    : oklch( from var( --bac-sur-col ) l c h / 0.04 );                            /* Background Surface Color = #FFFFFF @ 0.04 opacity */
-	border-bottom : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / 0.06 ); /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.06 opacity */
+	border-bottom : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-010-rec ) ); /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.060 opacity */
 	display       : flex;
 	gap           : var( --spa-hor-m02 );                                                       /* Spacing Horizontal Base Minus 2 ~= 8.304px */
 	padding       : var( --spa-ver-m01 ) var( --spa-hor-p02 );                                  /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */
@@ -639,7 +639,7 @@
 .windowTitle { /* What: Window Title. Why: The file name sits quietly after the dots. How: This sets it small in faint mono, spaced from the dots. */
 
 
-	color       : oklch( from var( --bac-sur-col ) l c h / 0.35 ); /* Background Surface Color = #FFFFFF @ 0.35 opacity */
+	color       : oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-004-rec ) ); /* Background Surface Color = #FFFFFF @ 0.325 opacity */
 	font-family : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
 	font-size   : var( --fon-siz-bas );                            /* Font Size Base = 11px */
 	margin-left : var( --spa-hor-m01 );                            /* Spacing Horizontal Base Minus 1 = 11px */
@@ -699,7 +699,7 @@
 
 
 	align-items   : center;
-	animation     : global( fadeUp ) 800ms 300ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+	animation     : global( fadeUp ) var( --dur-ani-p06 ) var( --dur-ani-p02 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 6 ~= 853.0ms, Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 	background    : var( --bac-sur-col );                                /* Background Surface Color = #FFFFFF */
 	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );     /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
 	border-radius : var( --rad-bor-med );                                /* Radius Border Medium = 11px */
@@ -992,7 +992,7 @@
 	gap            : var( --spa-hor-m02 );                   /* Spacing Horizontal Base Minus 2 ~= 8.304px */
 	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em ); /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	text-transform : uppercase;
-	transition     : gap var( --duration-fast );             /* Duration Fast = 150ms */
+	transition     : gap var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
 
 
 }
@@ -1148,7 +1148,7 @@
 	flex-direction : column;
 	gap            : var( --spa-ver-bas );                                                /* Spacing Vertical Base ~= 14.572px */
 	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );                           /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
-	transition     : box-shadow var( --duration-base ), transform var( --duration-base ); /* Duration Base = 280ms */
+	transition     : box-shadow var( --dur-tra-p02 ), transform var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms */
 
 
 }
@@ -1311,7 +1311,7 @@
 	letter-spacing : 0.04em;
 	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 );                           /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	text-transform : uppercase;
-	transition     : background var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
+	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
 
 
 }

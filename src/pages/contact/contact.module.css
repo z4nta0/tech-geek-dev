@@ -28,7 +28,7 @@
 .page { /* What: Contact Page. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global fadeUp keyframe. */
 
 
-	animation : global( fadeUp ) 400ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+	animation : global( fadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -263,7 +263,7 @@
 	letter-spacing : 0.04em;
 	padding        : var( --spa-ver-m01 ) var( --spa-hor-p02 );                       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	text-transform : uppercase;
-	transition     : background var( --duration-fast ), color var( --duration-fast ); /* Duration Fast = 150ms */
+	transition     : background var( --dur-tra-bas ), color var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
 
 
 }
@@ -378,7 +378,7 @@
 	font-family   : var( --fon-fam-mai );                                                   /* Font Family Main = 'Syne', sans-serif */
 	font-size     : var( --fon-siz-p01 );                                                   /* Font Size Base Plus 1 ~= 14.572px */
 	padding       : var( --spa-ver-m01 ) var( --spa-hor-bas );                              /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
-	transition    : border-color var( --duration-fast ), box-shadow var( --duration-fast ); /* Duration Fast = 150ms */
+	transition    : border-color var( --dur-tra-bas ), box-shadow var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
 	width         : 100%;
 
 
@@ -467,7 +467,7 @@
 	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );                              /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 );                           /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	text-transform : uppercase;
-	transition     : background var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
+	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
 
 
 }
@@ -597,7 +597,7 @@
 	display       : flex;
 	gap           : var( --spa-hor-m01 );                      /* Spacing Horizontal Base Minus 1 = 11px */
 	padding       : var( --spa-ver-m01 ) var( --spa-hor-m01 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Minus 1 = 11px */
-	transition    : background var( --duration-fast );         /* Duration Fast = 150ms */
+	transition    : background var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
 
 
 }
@@ -682,7 +682,7 @@
 .statusDot { /* What: Status Dot. Why: A pulsing green dot signals availability. How: This draws a 10px green circle, never shrinking, playing the shared pulse forever. */
 
 
-	animation     : global( pulse ) 2s ease-in-out infinite;
+	animation     : global( pulse ) var( --dur-ani-p10 ) var( --mot-sta-eas ) infinite; /* Duration Animation Base Plus 10 ~= 2,627.0ms, Motion Standard Easing = ease */
 	background    : var( --suc-mai-col );                /* Success Main Color = #22c55e */
 	border-radius : 50%;
 	flex-shrink   : 0;

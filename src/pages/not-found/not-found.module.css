@@ -24,7 +24,7 @@
 
 
 	align-items     : center;
-	animation       : global( fadeUp ) 400ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+	animation       : global( fadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 	background      : var( --bac-pag-col );                          /* Background Page Color = #F5F0E8 */
 	display         : flex;
 	justify-content : center;
@@ -80,7 +80,7 @@
 .geo { /* What: Hexagon Drawing. Why: Nested hexagons turn slowly behind the number, echoing the site's mark. How: This centers the 200px drawing over the block through translate, which combines with the turning transform, and plays the shared slow rotation forever. */
 
 
-	animation      : global( rotateSlow ) 20s linear infinite;
+	animation      : global( rotateSlow ) var( --dur-ani-p18 ) linear infinite; /* Duration Animation Base Plus 18 ~= 24,914.0ms */
 	height         : calc( var( --ver-rhy-p09 ) * 1rem ); /* Vertical Rhythm Base Plus 9 ~= 183.074px */
 	left           : 50%;
 	pointer-events : none;
@@ -139,7 +139,7 @@
 	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );                              /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	padding        : var( --spa-ver-m01 ) var( --spa-hor-p03 );                           /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	text-transform : uppercase;
-	transition     : background var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
+	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
 
 
 }
