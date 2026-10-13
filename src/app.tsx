@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import { About       } from './pages/about/about.tsx';         // What: About. Why: The About route shows who built the projects. How: The about route renders it.
+import { AboPagCom   } from './pages/about/about.tsx';         // What: About Page Component. Why: The About route shows who built the projects. How: The about route renders it.
 import { Contact     } from './pages/contact/contact.tsx';     // What: Contact. Why: The Contact route shows the form and the contact details. How: The contact route renders it.
 import { HomPagCom   } from './pages/home/home.tsx';           // What: Home Page Component. Why: The site's root address is its home page. How: The home route renders it.
 import { NavBarCom   } from './ui/nav.tsx';                    // What: Navigation Bar Component. Why: Every page starts with the shared bar. How: This renders above the routes.
@@ -110,9 +110,9 @@ function AppRooCom () : JSX.Element {
 
 
 					<Route
-						element={ <About /> }
+						element={ <AboPagCom /> }
 						path='/about'
-					/>{ /* What: About Route. Why: The builder's story has its own page. How: This renders About at /about. */ }
+					/>{ /* What: About Route. Why: The builder's story has its own page. How: This renders AboPagCom at /about. */ }
 
 
 
