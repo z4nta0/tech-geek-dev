@@ -294,7 +294,7 @@ function HomPagCom () : JSX.Element {
 	return (
 
 
-		<div className='page-enter'>{ /* What: Home Page Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
+		<div className={ cssModObj.page }>{ /* What: Home Page Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
 
 
 			<section className={ cssModObj.hero }>{ /* What: Hero Section Element. Why: The page opens by introducing z4nta0. How: This holds the pattern, the shapes, the hero's two columns, and the divider. */ }
@@ -325,7 +325,7 @@ function HomPagCom () : JSX.Element {
 
 
 
-				<div className={` container   ${ cssModObj.heroInner } `}>{ /* What: Hero Inner Div Element. Why: The pitch and the code window sit side by side in the page's centered column. How: This lays out the two columns. */ }
+				<div className={ cssModObj.heroInner }>{ /* What: Hero Inner Div Element. Why: The pitch and the code window sit side by side in the page's centered column. How: This lays out the two columns. */ }
 
 
 					<div className={ cssModObj.heroContent }>{ /* What: Hero Content Div Element. Why: The pitch reads as one column. How: This stacks the label, heading, line, buttons, and ticker. */ }
@@ -338,7 +338,7 @@ function HomPagCom () : JSX.Element {
 								aria-hidden='true'
 							/>{ /* What: Pulse Span Element. Why: A pulsing dot signals availability. How: This draws it, hidden from screen readers as decoration. */ }
 
-							<span className='mono'>Available for freelance work</span>{ /* What: Availability Span Element. Why: The label's words say what the dot means. How: This shows them in the mono font. */ }
+							<span className={ cssModObj.mono }>Available for freelance work</span>{ /* What: Availability Span Element. Why: The label's words say what the dot means. How: This shows them in the mono font. */ }
 						</div>
 
 						<h1 className={ cssModObj.heroTitle }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up what z4nta0 does. How: This sets I Build Digital Experiences over two lines, with Digital in the accent and a closing dot. */ }
@@ -450,7 +450,7 @@ function HomPagCom () : JSX.Element {
 							</div>
 
 							<pre className={ cssModObj.code }>{ /* What: Code Pre Element. Why: The code keeps its line breaks and indentation. How: This shows the code as written. */ }
-								<code>{ COD_WIN_STR }</code>{ /* What: Code Element. Why: The text is code. How: This marks it as code and prints COD_WIN_STR. */ }
+								<code className={ cssModObj.codeText }>{ COD_WIN_STR }</code>{ /* What: Code Text Element. Why: The text is code. How: This marks it as code and prints COD_WIN_STR. */ }
 							</pre>
 
 							<svg
@@ -570,7 +570,7 @@ function HomPagCom () : JSX.Element {
 			<section className={ cssModObj.stats }>{ /* What: Stats Section Element. Why: A few figures sum up z4nta0's track record. How: This holds the stats strip. */ }
 
 
-				<div className='container'>{ /* What: Stats Container Div Element. Why: The strip sits in the page's centered column. How: This holds the grid. */ }
+				<div className={ cssModObj.statsInner }>{ /* What: Stats Inner Div Element. Why: The strip sits in the page's centered column. How: This holds the grid. */ }
 
 
 					<div className={ cssModObj.statsGrid }>{ /* What: Stats Grid Div Element. Why: The figures line up in a row. How: This lays out one item per stat. */ }
@@ -603,10 +603,10 @@ function HomPagCom () : JSX.Element {
 
 
 
-			<section className={` section   ${ cssModObj.featuredWork } `}>{ /* What: Featured Work Section Element. Why: The best projects show right on the home page. How: This holds the heading row and the cards. */ }
+			<section className={ cssModObj.featuredWork }>{ /* What: Featured Work Section Element. Why: The best projects show right on the home page. How: This holds the heading row and the cards. */ }
 
 
-				<div className='container'>{ /* What: Featured Container Div Element. Why: The section sits in the page's centered column. How: This stacks the heading row and the grid. */ }
+				<div className={ cssModObj.featuredInner }>{ /* What: Featured Inner Div Element. Why: The section sits in the page's centered column. How: This stacks the heading row and the grid. */ }
 
 
 					<div className={ cssModObj.featuredHeader }>{ /* What: Featured Header Div Element. Why: The heading and the link to every project share a row. How: This sets them side by side. */ }
@@ -677,7 +677,7 @@ function HomPagCom () : JSX.Element {
 
 
 
-			<section className={` section   ${ cssModObj.services } `}>{ /* What: Services Section Element. Why: A visitor learns what z4nta0 offers. How: This holds the pattern, the heading block, and the service cards. */ }
+			<section className={ cssModObj.services }>{ /* What: Services Section Element. Why: A visitor learns what z4nta0 offers. How: This holds the pattern, the heading block, and the service cards. */ }
 
 
 				<GeoBacCom
@@ -687,7 +687,7 @@ function HomPagCom () : JSX.Element {
 
 
 
-				<div className={` container   ${ cssModObj.servicesInner } `}>{ /* What: Services Inner Div Element. Why: The services sit in the page's centered column. How: This stacks the heading block and the cards. */ }
+				<div className={ cssModObj.servicesInner }>{ /* What: Services Inner Div Element. Why: The services sit in the page's centered column. How: This stacks the heading block and the cards. */ }
 
 
 					<SecHeaCom
@@ -738,7 +738,7 @@ function HomPagCom () : JSX.Element {
 			<section className={ cssModObj.ctaBanner }>{ /* What: Call To Action Banner Section Element. Why: The page ends by inviting a visitor to start a project. How: This holds the banner's line and button. */ }
 
 
-				<div className={` container   ${ cssModObj.ctaInner } `}>{ /* What: Banner Inner Div Element. Why: The banner sits in the page's centered column. How: This sets the text and the button side by side. */ }
+				<div className={ cssModObj.ctaInner }>{ /* What: Banner Inner Div Element. Why: The banner sits in the page's centered column. How: This sets the text and the button side by side. */ }
 
 
 					<div>{ /* What: Banner Text Div Element. Why: The label and heading read as one. How: This stacks them. */ }

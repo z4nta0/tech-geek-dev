@@ -1,538 +1,1348 @@
-/* ── Hero ─────────────────────────────────────────────────── */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  background: var(--ivory);
-  overflow: hidden;
-  padding-top: var(--nav-height);
+
+
+
+/**
+ * home.module.css = Home Page Module
+ *
+ * @summary
+ * Styles for HomPagCom. The page fades up into view like every page. Its
+ * full-height ivory hero clears the fixed bar, with three faint shapes
+ * turning slowly behind it, the pitch fading up beside a dark code window
+ * and a white badge that follow it in, a pulsing availability dot, and a
+ * ticker of skills scrolling under the buttons; a slanted white edge leads
+ * into the stats strip. Below come the featured projects, the services in
+ * white cards that lift on hover, and a dark closing banner. Below 1024px
+ * the code window drops away and the grids step down, reaching one column on
+ * a phone. The shapes, the entrances, and the dot play the shared rotateSlow,
+ * fadeUp, and pulse keyframes from the global sheet; the ticker plays its
+ * own. The page's centered columns take the shared container values, and its
+ * sections the shared section padding, merged into their own rules.
+ * Everything that moves holds still under reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region page */
+
+.page { /* What: Home Page. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global fadeUp keyframe. */
+
+
+	animation : global( fadeUp ) 400ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Home Page. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.page { /* What: Motionless Home Page. Why: The page should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
 }
 
-.heroInner {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: var(--sp-10);
-  align-items: center;
-  padding-top: var(--sp-9);
-  padding-bottom: var(--sp-10);
+
+
+/* #region hero */
+
+.hero { /* What: Home Hero. Why: The page opens on a full screen introduction clear of the fixed bar. How: This sets the ivory band at least a screen tall, centers its content, pads it below the bar, and clips the shapes behind it. */
+
+
+	align-items : center;
+	background  : var( --ivory );      /* Ivory = #F5F0E8 */
+	display     : flex;
+	min-height  : 100vh;
+	overflow    : hidden;
+	padding-top : var( --nav-height ); /* Navigation Height = 72px */
+	position    : relative;
+
+
 }
 
-/* ── Floating shapes ── */
-.shapes { pointer-events: none; }
 
-.shape {
-  position: absolute;
-  opacity: 0.07;
+/* #region shapes */
+
+.shapes { /* What: Hero Shapes. Why: The turning shapes sit behind the hero without catching clicks. How: This lets the pointer pass through. */
+
+
+	pointer-events : none;
+
+
 }
 
-.shapeHex {
-  width: 320px;
-  height: 320px;
-  right: -80px;
-  top: 10%;
-  background: var(--blue);
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  animation: rotateSlow 30s linear infinite;
+.shape { /* What: Hero Shape. Why: Each shape floats faintly behind the hero. How: This positions it against the hero and nearly fades it out. */
+
+
+	opacity  : 0.07;
+	position : absolute;
+
+
+}
+.shapeHex { /* What: Hexagon Shape. Why: A large blue hexagon echoes the site's mark at the hero's right. How: This clips a 320px blue square to a hexagon past the right edge and turns it once every 30 seconds. */
+
+
+	animation  : global( rotateSlow ) 30s linear infinite;
+	background : var( --blue ); /* Blue = #7DB9D8 */
+	clip-path  : polygon( 50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25% );
+	height     : 320px;
+	right      : -80px;
+	top        : 10%;
+	width      : 320px;
+
+
+}
+.shapeCircle { /* What: Circle Shape. Why: An orange ring varies the shapes at the hero's lower left. How: This draws a 200px ring a little stronger than the others and turns it backward every 20 seconds. */
+
+
+	animation     : global( rotateSlow ) 20s linear infinite reverse;
+	background    : transparent;
+	border        : 3px solid var( --orange ); /* Orange = #F26419 */
+	border-radius : 50%;
+	bottom        : 10%;
+	height        : 200px;
+	left          : 5%;
+	opacity       : 0.15;
+	width         : 200px;
+
+
+}
+.shapeSquare { /* What: Square Shape. Why: A tilted outlined square varies the shapes near the hero's top. How: This draws a 120px dark blue square tipped 45 degrees through rotate, which the turning transform adds to, and turns it every 15 seconds. */
+
+
+	animation  : global( rotateSlow ) 15s linear infinite;
+	background : transparent;
+	border     : 2px solid var( --blue-dark ); /* Blue Dark = #4A91B8 */
+	height     : 120px;
+	left       : 45%;
+	opacity    : 0.12;
+	rotate     : 45deg;
+	top        : 15%;
+	width      : 120px;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hero Shapes. Why: Someone who asked for less motion shouldn't see the shapes turn. How: This applies only when the reduced-motion preference is set. */
+
+
+	.shapeHex,
+	.shapeCircle,
+	.shapeSquare { /* What: Motionless Hero Shapes. Why: The shapes should hold still. How: This turns every rotation off. */
+
+
+		animation : none;
+
+
+	}
+
+
 }
 
-.shapeCircle {
-  width: 200px;
-  height: 200px;
-  left: 5%;
-  bottom: 10%;
-  border-radius: 50%;
-  border: 3px solid var(--orange);
-  background: transparent;
-  opacity: 0.15;
-  animation: rotateSlow 20s linear infinite reverse;
+/* #endregion shapes */
+
+
+/* #region heroInner */
+
+.heroInner { /* What: Hero Inner. Why: The pitch and the code window sit side by side in the page's centered column, above the shapes. How: This caps and centers the column with its side padding and lays out a wide pitch column beside a narrow visual one. */
+
+
+	align-items           : center;
+	display               : grid;
+	gap                   : var( --sp-10 );     /* Spacing 10 = 128px */
+	grid-template-columns : 3fr 1fr;
+	margin                : 0 auto;
+	max-width             : var( --max-width ); /* Maximum Width = 1200px */
+	padding               : 0 var( --sp-6 );    /* Spacing 6 = 32px */ /* What: Container Padding. Why: The global container rule loaded after this module, so its padding always zeroed the 96px top and 128px bottom padding this rule once asked for. How: This keeps the padding that has always applied. */
+	position              : relative;
+	width                 : 100%;
+	z-index               : 1;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Hero Inner. Why: The hero's columns need a smaller gap on a tablet. How: This applies at 1024px and below. */
+
+
+	.heroInner { /* What: Tighter Hero Inner. Why: The gap would crowd the pitch on a tablet. How: This halves the gap, keeping the two columns. */
+
+
+		gap                   : var( --sp-8 ); /* Spacing 8 = 64px */
+		grid-template-columns : 3fr 1fr;
+
+
+	}
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Hero Inner. Why: Two columns crowd a phone. How: This applies at 768px and below. */
+
+
+	.heroInner { /* What: One Column Hero Inner. Why: The pitch takes the full width on a phone. How: This sets one column. */
+
+
+		gap                   : var( --sp-8 ); /* Spacing 8 = 64px */
+		grid-template-columns : 1fr;
+
+
+	}
+
+
 }
 
-.shapeSquare {
-  width: 120px;
-  height: 120px;
-  left: 45%;
-  top: 15%;
-  border: 2px solid var(--blue-dark);
-  background: transparent;
-  opacity: 0.12;
-  transform: rotate(45deg);
-  animation: rotateSlow 15s linear infinite;
+
+/* #region heroContent */
+
+.heroContent { /* What: Hero Content. Why: The pitch reads as one column that fades up first. How: This stacks the label, heading, line, buttons, and ticker, lets the column shrink below its content, and plays the shared fadeUp. */
+
+
+	animation      : global( fadeUp ) 600ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-5 );                                 /* Spacing 5 = 24px */
+	min-width      : 0;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hero Content. Why: Someone who asked for less motion shouldn't see the pitch slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.heroContent { /* What: Motionless Hero Content. Why: The pitch should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
 }
 
-/* ── Hero content ── */
-.heroContent {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-5);
-  animation: fadeUp 600ms var(--ease-out) both;
-  min-width: 0;
+
+/* #region heroLabel */
+
+.heroLabel { /* What: Hero Label. Why: The availability label reads as a small pill. How: This sets a warm ivory pill in muted mono capitals, only as wide as its content. */
+
+
+	align-items    : center;
+	background     : var( --ivory-warm );           /* Ivory Warm = #EDE6D8 */
+	border         : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	border-radius  : 100px;
+	color          : var( --ink-mid );              /* Ink Mid = #3D3D5C */
+	display        : inline-flex;
+	font-family    : var( --font-mono );            /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.78rem;
+	gap            : var( --sp-2 );                 /* Spacing 2 = 8px */
+	letter-spacing : 0.08em;
+	padding        : 6px 14px;
+	text-transform : uppercase;
+	width          : fit-content;
+
+
 }
 
-.heroLabel {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-mid);
-  background: var(--ivory-warm);
-  border: 1px solid var(--ivory-dark);
-  padding: 6px 14px;
-  border-radius: 100px;
-  width: fit-content;
+.pulse { /* What: Pulse Dot. Why: A pulsing green dot signals availability. How: This draws an 8px green circle, never shrinking, playing the shared pulse forever. */
+
+
+	animation     : global( pulse ) 2s ease-in-out infinite;
+	background    : #22c55e;
+	border-radius : 50%;
+	flex-shrink   : 0;
+	height        : 8px;
+	width         : 8px;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Pulse Dot. Why: Someone who asked for less motion shouldn't see the dot pulse. How: This applies only when the reduced-motion preference is set. */
+
+
+	.pulse { /* What: Motionless Pulse Dot. Why: The dot should hold still. How: This turns the pulse off. */
+
+
+		animation : none;
+
+
+	}
+
+
 }
 
-.pulse {
-  width: 8px;
-  height: 8px;
-  background: #22c55e;
-  border-radius: 50%;
-  flex-shrink: 0;
-  animation: pulse 2s ease-in-out infinite;
+.mono { /* What: Availability Text. Why: The label's words read in the mono font, a little smaller than the pill. How: This sets the mono font at 0.875em. */
+
+
+	font-family : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size   : 0.875em;
+
+
 }
 
-.heroTitle {
-  color: var(--ink);
-  line-height: 1.05;
+/* #endregion heroLabel */
+
+
+/* #region heroTitle */
+
+.heroTitle { /* What: Hero Title. Why: The heading reads large and tight. How: This sets its color and a tight line height, the size coming from the global heading styles. */
+
+
+	color       : var( --ink ); /* Ink = #1A1A2E */
+	line-height : 1.05;
+
+
 }
 
-.accent {
-  color: var(--blue-dark);
-  position: relative;
-  display: inline-block;
+.accent { /* What: Hero Title Accent. Why: Digital carries the accent with an underline stroke. How: This sets it dark blue and positions its stroke. */
+
+
+	color    : var( --blue-dark ); /* Blue Dark = #4A91B8 */
+	display  : inline-block;
+	position : relative;
+
+
+}
+.accent::after { /* What: Hero Title Accent Stroke. Why: A soft orange stroke underlines the accent word. How: This draws a 4px rounded orange bar along its bottom, partly faded. */
+
+
+	background    : var( --orange ); /* Orange = #F26419 */
+	border-radius : 2px;
+	bottom        : 4px;
+	content       : '';
+	height        : 4px;
+	left          : 0;
+	opacity       : 0.6;
+	position      : absolute;
+	right         : 0;
+
+
 }
 
-.accent::after {
-  content: '';
-  position: absolute;
-  bottom: 4px;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: var(--orange);
-  opacity: 0.6;
-  border-radius: 2px;
+.dot { /* What: Hero Title Dot. Why: The heading ends on an orange full stop. How: This sets the dot orange. */
+
+
+	color : var( --orange ); /* Orange = #F26419 */
+
+
 }
 
-.dot { color: var(--orange); }
+/* #endregion heroTitle */
 
-.heroSub {
-  font-size: 1.05rem;
-  line-height: 1.75;
-  color: var(--ink-mid);
+
+.heroSub { /* What: Hero Subtitle. Why: The pitch line reads a little larger and quieter. How: This sets it muted with roomy lines. */
+
+
+	color       : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	font-size   : 1.05rem;
+	line-height : 1.75;
+
+
 }
 
-.heroCtas {
-  display: flex;
-  gap: var(--sp-4);
-  flex-wrap: wrap;
+
+/* #region heroCtas */
+
+.heroCtas { /* What: Hero Buttons. Why: The two next steps sit side by side. How: This lines them up with a gap, wrapping when they don't fit. */
+
+
+	display   : flex;
+	flex-wrap : wrap;
+	gap       : var( --sp-4 ); /* Spacing 4 = 16px */
+
+
 }
 
-.ctaPrimary {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  background: var(--orange);
-  color: var(--white);
-  padding: 14px var(--sp-7);
-  border-radius: var(--radius-sm);
-  transition: background var(--duration-fast), transform var(--duration-fast);
+.ctaPrimary { /* What: View Work Button. Why: The main next step stands out. How: This sets an orange button in mono capitals with its arrow, easing its color and lift. */
+
+
+	align-items    : center;
+	background     : var( --orange );                                                     /* Orange = #F26419 */
+	border-radius  : var( --radius-sm );                                                  /* Radius Small = 3px */
+	color          : var( --white );                                                      /* White = #FFFFFF */
+	display        : inline-flex;
+	font-family    : var( --font-mono );                                                  /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.85rem;
+	font-weight    : 500;
+	gap            : var( --sp-2 );                                                       /* Spacing 2 = 8px */
+	letter-spacing : 0.04em;
+	padding        : 14px var( --sp-7 );                                                  /* Spacing 7 = 48px */
+	text-transform : uppercase;
+	transition     : background var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
+
+
+}
+.ctaPrimary:hover { /* What: Hovered View Work Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 2px. */
+
+
+	background : var( --orange-dark ); /* Orange Dark = #D4530E */
+	transform  : translateY( -2px );
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion View Work Button. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.ctaPrimary { /* What: Motionless View Work Button. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-.ctaPrimary:hover {
-  background: var(--orange-dark);
-  transform: translateY(-2px);
+.ctaSecondary { /* What: Get In Touch Button. Why: The second next step sits back from the first. How: This sets an outlined button in mono capitals, easing its border, color, and lift. */
+
+
+	align-items    : center;
+	border         : 1.5px solid var( --ivory-dark );                                                                     /* Ivory Dark = #D8CFBE */
+	border-radius  : var( --radius-sm );                                                                                  /* Radius Small = 3px */
+	color          : var( --ink );                                                                                        /* Ink = #1A1A2E */
+	display        : inline-flex;
+	font-family    : var( --font-mono );                                                                                  /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.85rem;
+	font-weight    : 500;
+	letter-spacing : 0.04em;
+	padding        : 14px var( --sp-7 );                                                                                  /* Spacing 7 = 48px */
+	text-transform : uppercase;
+	transition     : border-color var( --duration-fast ), color var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
+
+
+}
+.ctaSecondary:hover { /* What: Hovered Get In Touch Button. Why: A button should respond to the pointer. How: This turns its border and text dark blue and lifts it 2px. */
+
+
+	border-color : var( --blue-dark ); /* Blue Dark = #4A91B8 */
+	color        : var( --blue-dark ); /* Blue Dark = #4A91B8 */
+	transform    : translateY( -2px );
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Get In Touch Button. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.ctaSecondary { /* What: Motionless Get In Touch Button. Why: The hover look and lift should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-.ctaSecondary {
-  display: inline-flex;
-  align-items: center;
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--ink);
-  border: 1.5px solid var(--ivory-dark);
-  padding: 14px var(--sp-7);
-  border-radius: var(--radius-sm);
-  transition: border-color var(--duration-fast), color var(--duration-fast), transform var(--duration-fast);
+/* #endregion heroCtas */
+
+
+/* #region ticker */
+
+.ticker { /* What: Skills Ticker. Why: The skills scroll past under the buttons, fading at both ends. How: This clips the strip, masks its edges to fade out, and lets it shrink below its content. */
+
+
+	mask-image : linear-gradient( 90deg, transparent, black 10%, black 90%, transparent );
+	min-width  : 0;
+	overflow   : hidden;
+
+
 }
 
-.ctaSecondary:hover {
-  border-color: var(--blue-dark);
-  color: var(--blue-dark);
-  transform: translateY(-2px);
+
+/* #region tickerInner */
+
+.tickerInner { /* What: Ticker Inner. Why: The strip slides along endlessly. How: This lines up the items and plays the ticker's own scroll once every 60 seconds, forever. */
+
+
+	animation : tickerScroll 60s linear infinite;
+	display   : flex;
+	gap       : var( --sp-3 ); /* Spacing 3 = 12px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Ticker Inner. Why: Someone who asked for less motion shouldn't see the strip scroll. How: This applies only when the reduced-motion preference is set. */
+
+
+	.tickerInner { /* What: Motionless Ticker Inner. Why: The strip should hold still. How: This turns the scroll off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+@keyframes tickerScroll { /* What: Ticker Scroll Keyframes. Why: The strip holds every skill twice, so sliding it by its full width brings the second set to where the first began, with no seam. How: This moves the strip from its start to one strip's width left. */
+
+
+	from {
+
+
+		transform : translateX( 0 );
+
+
+	}
+
+	to {
+
+
+		transform : translateX( -100% );
+
+
+	}
+
+
 }
 
-/* ── Ticker ── */
-.ticker {
-  overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
-  min-width: 0;
+.tickerItem { /* What: Ticker Item. Why: Each skill reads as a small pill. How: This sets a warm ivory pill in muted mono capitals that never wraps. */
+
+
+	background     : var( --ivory-warm );           /* Ivory Warm = #EDE6D8 */
+	border         : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	border-radius  : 100px;
+	color          : var( --ink-light );            /* Ink Light = #7A7A99 */
+	font-family    : var( --font-mono );            /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.72rem;
+	letter-spacing : 0.06em;
+	padding        : 4px 12px;
+	text-transform : uppercase;
+	white-space    : nowrap;
+
+
 }
 
-.tickerInner {
-    display: flex;
-    gap: var(--sp-3);
-    animation: tickerScroll 60s linear infinite;
+/* #endregion tickerInner */
+
+/* #endregion ticker */
+
+/* #endregion heroContent */
+
+
+/* #region heroVisual */
+
+.heroVisual { /* What: Hero Visual. Why: The code window and badge follow the pitch in. How: This positions the badge against the column and plays the shared fadeUp a little after the pitch. */
+
+
+	animation : global( fadeUp ) 700ms 150ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+	position  : relative;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Hero Visual. Why: The code window crowds the pitch below a desktop. How: This applies at 1024px and below. */
+
+
+	.heroVisual { /* What: Hidden Hero Visual. Why: The pitch reads on its own on a smaller screen. How: This hides the code window and badge. */
+
+
+		display : none;
+
+
+	}
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Hero Visual. Why: The code window stays hidden on a phone. How: This applies at 768px and below. */
+
+
+	.heroVisual { /* What: Hidden Phone Hero Visual. Why: The pitch reads on its own on a phone. How: This hides the code window and badge. */
+
+
+		display : none;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hero Visual. Why: Someone who asked for less motion shouldn't see the window slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.heroVisual { /* What: Motionless Hero Visual. Why: The window should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
 }
 
-@keyframes tickerScroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-100%); }
+
+/* #region codeWindow */
+
+.codeWindow { /* What: Code Window. Why: z4nta0 is introduced as code in a dark editor window. How: This sets a dark rounded window with a faint light border, a large shadow, and a faint blue outline. */
+
+
+	background    : var( --ink );                                              /* Ink = #1A1A2E */
+	border        : 1px solid rgba( 255, 255, 255, 0.08 );
+	border-radius : var( --radius-lg );                                        /* Radius Large = 12px */
+	box-shadow    : var( --shadow-lg ), 0 0 0 1px rgba( 125, 185, 216, 0.15 ); /* Shadow Large = 0 12px 40px rgba( 26, 26, 46, 0.14 ) */
+	overflow      : hidden;
+	position      : relative;
+
+
 }
 
-.tickerItem {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-light);
-  background: var(--ivory-warm);
-  border: 1px solid var(--ivory-dark);
-  padding: 4px 12px;
-  border-radius: 100px;
-  white-space: nowrap; 
+
+/* #region windowBar */
+
+.windowBar { /* What: Window Bar. Why: A title bar makes the window read as an editor. How: This lines up the dots and the file name on a faint light strip with a divider below. */
+
+
+	align-items   : center;
+	background    : rgba( 255, 255, 255, 0.04 );
+	border-bottom : 1px solid rgba( 255, 255, 255, 0.06 );
+	display       : flex;
+	gap           : var( --sp-2 );      /* Spacing 2 = 8px */
+	padding       : 12px var( --sp-5 ); /* Spacing 5 = 24px */
+
+
 }
 
-/* ── Hero visual ── */
-.heroVisual {
-  position: relative;
-  animation: fadeUp 700ms 150ms var(--ease-out) both;
+.dot1,
+.dot2,
+.dot3 { /* What: Window Dots. Why: Editor windows have three colored dots. How: This draws each as a 10px circle. */
+
+
+	border-radius : 50%;
+	height        : 10px;
+	width         : 10px;
+
+
+}
+.dot1 { /* What: First Window Dot. Why: The first dot is red. How: This sets its color. */
+
+
+	background : #ff5f56;
+
+
+}
+.dot2 { /* What: Second Window Dot. Why: The second dot is yellow. How: This sets its color. */
+
+
+	background : #ffbd2e;
+
+
+}
+.dot3 { /* What: Third Window Dot. Why: The third dot is green. How: This sets its color. */
+
+
+	background : #27c93f;
+
+
 }
 
-.codeWindow {
-  background: var(--ink);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(125,185,216,0.15);
-  position: relative;
+.windowTitle { /* What: Window Title. Why: The file name sits quietly after the dots. How: This sets it small in faint mono, spaced from the dots. */
+
+
+	color       : rgba( 255, 255, 255, 0.35 );
+	font-family : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size   : 0.75rem;
+	margin-left : var( --sp-3 );      /* Spacing 3 = 12px */
+
+
 }
 
-.windowBar {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  padding: 12px var(--sp-5);
-  background: rgba(255,255,255,0.04);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+/* #endregion windowBar */
+
+
+/* #region code */
+
+.code { /* What: Code Block. Why: The code keeps its layout and reads light on the dark window. How: This pads it and sets it in light mono, keeping its whitespace and scrolling if it overflows. */
+
+
+	color       : #e2e8f0;
+	font-family : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size   : 0.88rem;
+	line-height : 1.8;
+	overflow    : auto;
+	padding     : var( --sp-6 );      /* Spacing 6 = 32px */
+	white-space : pre;
+
+
 }
 
-.dot1, .dot2, .dot3 {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-}
-.dot1 { background: #ff5f56; }
-.dot2 { background: #ffbd2e; }
-.dot3 { background: #27c93f; }
+.codeText { /* What: Code Text. Why: The code element takes the block's light color. How: This inherits the color. */
 
-.windowTitle {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.35);
-  margin-left: var(--sp-3);
+
+	color : inherit;
+
+
 }
 
-.code {
-  padding: var(--sp-6);
-  font-family: var(--font-mono);
-  font-size: 0.88rem;
-  line-height: 1.8;
-  color: #e2e8f0;
-  white-space: pre;
-  overflow: auto;
+/* #endregion code */
+
+
+.nodeOverlay { /* What: Node Overlay. Why: The linked nodes sit over the whole window without catching clicks. How: This stretches the drawing across the window and lets the pointer pass through. */
+
+
+	height         : 100%;
+	pointer-events : none;
+	position       : absolute;
+	right          : 0;
+	top            : 0;
+	width          : 100%;
+
+
 }
 
-.code code {
-  color: inherit;
+/* #endregion codeWindow */
+
+
+/* #region floatingBadge */
+
+.floatingBadge { /* What: Floating Badge. Why: The open source badge sits off the window's bottom left corner, arriving last. How: This sets a white rounded card with a soft shadow just past that corner and plays the shared fadeUp after the window. */
+
+
+	align-items   : center;
+	animation     : global( fadeUp ) 800ms 300ms var( --ease-out ) both; /* Ease Out = cubic-bezier( 0.16, 1, 0.3, 1 ) */
+	background    : var( --white );                                      /* White = #FFFFFF */
+	border        : 1px solid var( --ivory-dark );                       /* Ivory Dark = #D8CFBE */
+	border-radius : var( --radius-lg );                                  /* Radius Large = 12px */
+	bottom        : -33px;
+	box-shadow    : var( --shadow-md );                                  /* Shadow Medium = 0 4px 16px rgba( 26, 26, 46, 0.10 ) */
+	display       : flex;
+	gap           : var( --sp-3 );                                       /* Spacing 3 = 12px */
+	left          : -24px;
+	padding       : var( --sp-4 ) var( --sp-5 );                         /* Spacing 4 = 16px, Spacing 5 = 24px */
+	position      : absolute;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Floating Badge. Why: Someone who asked for less motion shouldn't see the badge slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.floatingBadge { /* What: Motionless Floating Badge. Why: The badge should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
 }
 
-/* token colours */
-.code code {
-  --kw:    #7DB9D8;
-  --str:   #fbbf24;
-  --prop:  #f9a8d4;
-  --bool:  #F26419;
+.badgeValue { /* What: Badge Value. Why: The figure is the badge's point. How: This sets it bold in the display font. */
+
+
+	color       : var( --ink );          /* Ink = #1A1A2E */
+	font-family : var( --font-display ); /* Font Display = 'Syne', sans-serif */
+	font-size   : 1.3rem;
+	font-weight : 800;
+
+
 }
 
-.nodeOverlay {
-  position: absolute;
-  top: 0; right: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
+.badgeLabel { /* What: Badge Label. Why: The label says what the figure counts, quietly. How: This sets it small in muted mono capitals. */
+
+
+	color          : var( --ink-light ); /* Ink Light = #7A7A99 */
+	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.7rem;
+	letter-spacing : 0.06em;
+	text-transform : uppercase;
+
+
 }
 
-.floatingBadge {
-  position: absolute;
-  bottom: -33px;
-  left: -24px;
-  background: var(--white);
-  border: 1px solid var(--ivory-dark);
-  border-radius: var(--radius-lg);
-  padding: var(--sp-4) var(--sp-5);
-  display: flex;
-  align-items: center;
-  gap: var(--sp-3);
-  box-shadow: var(--shadow-md);
-  animation: fadeUp 800ms 300ms var(--ease-out) both;
+/* #endregion floatingBadge */
+
+/* #endregion heroVisual */
+
+/* #endregion heroInner */
+
+
+.heroDivider { /* What: Hero Divider. Why: A slanted white edge leads from the hero into the stats strip. How: This clips a 64px white band along the hero's bottom to a triangle. */
+
+
+	background : var( --white ); /* White = #FFFFFF */
+	bottom     : -1px;
+	clip-path  : polygon( 0 100%, 100% 0, 100% 100% );
+	height     : 64px;
+	left       : 0;
+	position   : absolute;
+	right      : 0;
+
+
 }
 
-.badgeValue {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-weight: 800;
-  color: var(--ink);
+/* #endregion hero */
+
+
+
+/* #region stats */
+
+.stats { /* What: Stats Section. Why: The figures sit on a white strip under the hero. How: This sets the background, pads the strip, and rules it off below. */
+
+
+	background    : var( --white );                /* White = #FFFFFF */
+	border-bottom : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	padding       : var( --sp-8 ) 0;               /* Spacing 8 = 64px */
+
+
 }
 
-.badgeLabel {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--ink-light);
+
+/* #region statsInner */
+
+.statsInner { /* What: Stats Inner. Why: The strip sits in the page's centered column. How: This caps and centers the column with its side padding. */
+
+
+	margin    : 0 auto;
+	max-width : var( --max-width ); /* Maximum Width = 1200px */
+	padding   : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	width     : 100%;
+
+
 }
 
-.heroDivider {
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  right: 0;
-  height: 64px;
-  background: var(--white);
-  clip-path: polygon(0 100%, 100% 0, 100% 100%);
+
+/* #region statsGrid */
+
+.statsGrid { /* What: Stats Grid. Why: The four figures line up in a row. How: This sets four columns with gaps. */
+
+
+	display               : grid;
+	gap                   : var( --sp-5 ); /* Spacing 5 = 24px */
+	grid-template-columns : repeat( 4, 1fr );
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Stats Grid. Why: Four figures crowd a tablet. How: This applies at 1024px and below. */
+
+
+	.statsGrid { /* What: Two Column Stats Grid. Why: Two figures fit side by side on a tablet. How: This sets two columns. */
+
+
+		grid-template-columns : repeat( 2, 1fr );
+
+
+	}
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Stats Grid. Why: The figures stay in pairs on a phone. How: This applies at 640px and below. */
+
+
+	.statsGrid { /* What: Paired Stats Grid. Why: Two short figures still fit side by side on a phone. How: This sets two even columns. */
+
+
+		grid-template-columns : 1fr 1fr;
+
+
+	}
+
+
 }
 
-/* ── Stats ─────────────────────────────────────────────────── */
-.stats {
-  background: var(--white);
-  padding: var(--sp-8) 0;
-  border-bottom: 1px solid var(--ivory-dark);
+
+/* #region statItem */
+
+.statItem { /* What: Stat Item. Why: Each figure sits centered over its label, divided from the next. How: This stacks and centers them, padded, with a rule on the right. */
+
+
+	align-items    : center;
+	border-right   : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-2 );                 /* Spacing 2 = 8px */
+	padding        : var( --sp-5 );                 /* Spacing 5 = 24px */
+	text-align     : center;
+
+
+}
+.statItem:last-child { /* What: Last Stat Item. Why: The last figure needs no divider after it. How: This removes its right rule. */
+
+
+	border-right : none;
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Stat Item. Why: Side dividers don't suit the paired layout. How: This applies at 640px and below. */
+
+
+	.statItem { /* What: Underlined Stat Item. Why: The paired figures divide better from the row below. How: This swaps the right rule for one underneath. */
+
+
+		border-bottom : 1px solid var( --ivory-dark ); /* Ivory Dark = #D8CFBE */
+		border-right  : none;
+
+
+	}
+
+
 }
 
-.statsGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--sp-5);
+.statValue { /* What: Stat Value. Why: The figure is the stat's point. How: This sets it large and bold in the display font, tight. */
+
+
+	color          : var( --ink );          /* Ink = #1A1A2E */
+	font-family    : var( --font-display ); /* Font Display = 'Syne', sans-serif */
+	font-size      : 2.5rem;
+	font-weight    : 800;
+	letter-spacing : -0.04em;
+	line-height    : 1;
+
+
+}
+.statValue::after { /* What: Stat Value Underline. Why: A short orange stroke sits under each figure. How: This draws a 24px rounded orange bar centered below it. */
+
+
+	background    : var( --orange );      /* Orange = #F26419 */
+	border-radius : 2px;
+	content       : '';
+	display       : block;
+	height        : 3px;
+	margin        : var( --sp-2 ) auto 0; /* Spacing 2 = 8px */
+	width         : 24px;
+
+
 }
 
-.statItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--sp-2);
-  text-align: center;
-  padding: var(--sp-5);
-  border-right: 1px solid var(--ivory-dark);
+.statLabel { /* What: Stat Label. Why: The label says what the figure counts, quietly. How: This sets it small in muted mono capitals. */
+
+
+	color          : var( --ink-light ); /* Ink Light = #7A7A99 */
+	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.72rem;
+	letter-spacing : 0.06em;
+	text-transform : uppercase;
+
+
 }
 
-.statItem:last-child { border-right: none; }
+/* #endregion statItem */
 
-.statValue {
-  font-family: var(--font-display);
-  font-size: 2.5rem;
-  font-weight: 800;
-  color: var(--ink);
-  letter-spacing: -0.04em;
-  line-height: 1;
+/* #endregion statsGrid */
+
+/* #endregion statsInner */
+
+/* #endregion stats */
+
+
+
+/* #region featuredWork */
+
+.featuredWork { /* What: Featured Work Section. Why: The featured projects sit on the ivory with the section spacing. How: This sets the background and the shared section padding. */
+
+
+	background : var( --ivory );   /* Ivory = #F5F0E8 */
+	padding    : var( --sp-10 ) 0; /* Spacing 10 = 128px */
+
+
 }
 
-.statValue::after {
-  content: '';
-  display: block;
-  width: 24px;
-  height: 3px;
-  background: var(--orange);
-  margin: var(--sp-2) auto 0;
-  border-radius: 2px;
+
+/* #region featuredInner */
+
+.featuredInner { /* What: Featured Inner. Why: The section sits in the page's centered column. How: This caps and centers the column with its side padding. */
+
+
+	margin    : 0 auto;
+	max-width : var( --max-width ); /* Maximum Width = 1200px */
+	padding   : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	width     : 100%;
+
+
 }
 
-.statLabel {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-light);
+
+/* #region featuredHeader */
+
+.featuredHeader { /* What: Featured Header. Why: The heading and the link to every project share a row. How: This spreads them to either end, aligned to their bottoms, with room below. */
+
+
+	align-items     : flex-end;
+	display         : flex;
+	gap             : var( --sp-5 ); /* Spacing 5 = 24px */
+	justify-content : space-between;
+	margin-bottom   : var( --sp-8 ); /* Spacing 8 = 64px */
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Featured Header. Why: The heading and link crowd one row on a phone. How: This applies at 640px and below. */
+
+
+	.featuredHeader { /* What: Stacked Featured Header. Why: The link reads better under the heading on a phone. How: This stacks them against the left. */
+
+
+		align-items    : flex-start;
+		flex-direction : column;
+
+
+	}
+
+
 }
 
-/* ── Featured Work ─────────────────────────────────────────── */
-.featuredWork { background: var(--ivory); }
+.viewAllLink { /* What: View All Link. Why: The rest of the projects are one click away. How: This sets an orange mono link with its arrow that never shrinks, easing the gap to its arrow. */
 
-.featuredHeader {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  margin-bottom: var(--sp-8);
-  gap: var(--sp-5);
+
+	align-items    : center;
+	color          : var( --orange );            /* Orange = #F26419 */
+	display        : inline-flex;
+	flex-shrink    : 0;
+	font-family    : var( --font-mono );         /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.78rem;
+	gap            : var( --sp-2 );              /* Spacing 2 = 8px */
+	letter-spacing : 0.06em;
+	text-transform : uppercase;
+	transition     : gap var( --duration-fast ); /* Duration Fast = 150ms */
+
+
+}
+.viewAllLink:hover { /* What: Hovered View All Link. Why: The arrow nudges toward where the link goes. How: This widens the gap to its arrow. */
+
+
+	gap : var( --sp-3 ); /* Spacing 3 = 12px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion View All Link. Why: Someone who asked for less motion shouldn't see the arrow slide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.viewAllLink { /* What: Motionless View All Link. Why: The arrow should simply step over. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-.viewAllLink {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--sp-2);
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--orange);
-  flex-shrink: 0;
-  transition: gap var(--duration-fast);
+/* #endregion featuredHeader */
+
+
+.projectsGrid { /* What: Projects Grid. Why: The featured cards line up in even columns. How: This sets three columns with gaps. */
+
+
+	display               : grid;
+	gap                   : var( --sp-5 ); /* Spacing 5 = 24px */
+	grid-template-columns : repeat( 3, 1fr );
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Projects Grid. Why: Three cards crowd a tablet. How: This applies at 1024px and below. */
+
+
+	.projectsGrid { /* What: Two Column Projects Grid. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
+
+
+		grid-template-columns : repeat( 2, 1fr );
+
+
+	}
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Projects Grid. Why: Two cards crowd a phone. How: This applies at 640px and below. */
+
+
+	.projectsGrid { /* What: One Column Projects Grid. Why: One card fits across a phone. How: This sets one column. */
+
+
+		grid-template-columns : 1fr;
+
+
+	}
+
+
 }
 
-.viewAllLink:hover { gap: var(--sp-3); }
+/* #endregion featuredInner */
 
-.projectsGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-5);
+/* #endregion featuredWork */
+
+
+
+/* #region services */
+
+.services { /* What: Services Section. Why: The services sit on a warmer band with the section spacing. How: This sets the warm ivory, the shared section padding, and clips the pattern behind it. */
+
+
+	background : var( --ivory-warm ); /* Ivory Warm = #EDE6D8 */
+	overflow   : hidden;
+	padding    : var( --sp-10 ) 0;    /* Spacing 10 = 128px */
+	position   : relative;
+
+
 }
 
-/* ── Services ──────────────────────────────────────────────── */
-.services {
-  position: relative;
-  background: var(--ivory-warm);
-  overflow: hidden;
+
+/* #region servicesInner */
+
+.servicesInner { /* What: Services Inner. Why: The services sit in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the heading block over the cards. */
+
+
+	align-items    : center;
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-9 );      /* Spacing 9 = 96px */
+	margin         : 0 auto;
+	max-width      : var( --max-width ); /* Maximum Width = 1200px */
+	padding        : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	position       : relative;
+	width          : 100%;
+	z-index        : 1;
+
+
 }
 
-.servicesInner {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-9);
-  align-items: center;
+
+/* #region serviceGrid */
+
+.serviceGrid { /* What: Service Grid. Why: The service cards line up in even columns. How: This sets four full-width columns with gaps. */
+
+
+	display               : grid;
+	gap                   : var( --sp-5 ); /* Spacing 5 = 24px */
+	grid-template-columns : repeat( 4, 1fr );
+	width                 : 100%;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Service Grid. Why: Four cards crowd a tablet. How: This applies at 1024px and below. */
+
+
+	.serviceGrid { /* What: Two Column Service Grid. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
+
+
+		grid-template-columns : repeat( 2, 1fr );
+
+
+	}
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Service Grid. Why: Two cards crowd a phone. How: This applies at 640px and below. */
+
+
+	.serviceGrid { /* What: One Column Service Grid. Why: One card fits across a phone. How: This sets one column. */
+
+
+		grid-template-columns : 1fr;
+
+
+	}
+
+
 }
 
-.serviceGrid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: var(--sp-5);
-  width: 100%;
+
+/* #region serviceCard */
+
+.serviceCard { /* What: Service Card. Why: Each service is one white card. How: This sets the bordered card, stacks its icon, title, and description, and eases its lift and shadow. */
+
+
+	background     : var( --white );                                                      /* White = #FFFFFF */
+	border         : 1px solid var( --ivory-dark );                                       /* Ivory Dark = #D8CFBE */
+	border-radius  : var( --radius-lg );                                                  /* Radius Large = 12px */
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --sp-4 );                                                       /* Spacing 4 = 16px */
+	padding        : var( --sp-6 );                                                       /* Spacing 6 = 32px */
+	transition     : box-shadow var( --duration-base ), transform var( --duration-base ); /* Duration Base = 280ms */
+
+
+}
+.serviceCard:hover { /* What: Hovered Service Card. Why: A card should respond to the pointer. How: This lifts it 3px and casts the medium shadow. */
+
+
+	box-shadow : var( --shadow-md ); /* Shadow Medium = 0 4px 16px rgba( 26, 26, 46, 0.10 ) */
+	transform  : translateY( -3px );
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Service Card. Why: Someone who asked for less motion shouldn't see the cards glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.serviceCard { /* What: Motionless Service Card. Why: The lift and shadow should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-.serviceCard {
-  background: var(--white);
-  border: 1px solid var(--ivory-dark);
-  border-radius: var(--radius-lg);
-  padding: var(--sp-6);
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-4);
-  transition: box-shadow var(--duration-base), transform var(--duration-base);
+.serviceIcon { /* What: Service Icon. Why: Each service's icon sits on a pale blue tile. How: This draws a 52px rounded tile centering the icon in dark blue. */
+
+
+	align-items     : center;
+	background      : var( --blue-light ); /* Blue Light = #B8D9EC */
+	border-radius   : var( --radius-md );  /* Radius Medium = 6px */
+	color           : var( --blue-dark );  /* Blue Dark = #4A91B8 */
+	display         : flex;
+	height          : 52px;
+	justify-content : center;
+	width           : 52px;
+
+
 }
 
-.serviceCard:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-3px);
+.serviceTitle { /* What: Service Title. Why: Each service is named. How: This sets the title bold in the main text color. */
+
+
+	color       : var( --ink ); /* Ink = #1A1A2E */
+	font-size   : 1rem;
+	font-weight : 700;
+
+
 }
 
-.serviceIcon {
-  width: 52px;
-  height: 52px;
-  background: var(--blue-light);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--blue-dark);
+.serviceDesc { /* What: Service Description. Why: A sentence says what the service covers, quietly. How: This sets it small and muted. */
+
+
+	color       : var( --ink-mid ); /* Ink Mid = #3D3D5C */
+	font-size   : 0.87rem;
+	line-height : 1.65;
+
+
 }
 
-.serviceTitle {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--ink);
+/* #endregion serviceCard */
+
+/* #endregion serviceGrid */
+
+/* #endregion servicesInner */
+
+/* #endregion services */
+
+
+
+/* #region ctaBanner */
+
+.ctaBanner { /* What: Call To Action Banner. Why: The page ends on a dark band inviting a visitor to start. How: This sets the ink background and pads the band. */
+
+
+	background : var( --ink );    /* Ink = #1A1A2E */
+	padding    : var( --sp-9 ) 0; /* Spacing 9 = 96px */
+
+
 }
 
-.serviceDesc {
-  font-size: 0.87rem;
-  line-height: 1.65;
-  color: var(--ink-mid);
+
+/* #region ctaInner */
+
+.ctaInner { /* What: Banner Inner. Why: The banner sits in the page's centered column. How: This caps and centers the column with its side padding and spreads the text and the button to either end. */
+
+
+	align-items     : center;
+	display         : flex;
+	gap             : var( --sp-7 );      /* Spacing 7 = 48px */
+	justify-content : space-between;
+	margin          : 0 auto;
+	max-width       : var( --max-width ); /* Maximum Width = 1200px */
+	padding         : 0 var( --sp-6 );    /* Spacing 6 = 32px */
+	width           : 100%;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Banner Inner. Why: The text and button crowd one row below a desktop. How: This applies at 1024px and below. */
+
+
+	.ctaInner { /* What: Stacked Banner Inner. Why: The button reads better under the text. How: This stacks them against the left. */
+
+
+		align-items    : flex-start;
+		flex-direction : column;
+
+
+	}
+
+
 }
 
-/* ── CTA Banner ────────────────────────────────────────────── */
-.ctaBanner {
-  background: var(--ink);
-  padding: var(--sp-9) 0;
+.ctaBannerLabel { /* What: Banner Label. Why: A question leads into the invitation. How: This sets it on its own line in blue mono capitals, above the heading. */
+
+
+	color          : var( --blue );      /* Blue = #7DB9D8 */
+	display        : block;
+	font-family    : var( --font-mono ); /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.78rem;
+	letter-spacing : 0.08em;
+	margin-bottom  : var( --sp-3 );      /* Spacing 3 = 12px */
+	text-transform : uppercase;
+
+
 }
 
-.ctaInner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--sp-7);
+.ctaBannerTitle { /* What: Banner Title. Why: The invitation reads light on the dark band. How: This sets it ivory, scaling with the screen. */
+
+
+	color     : var( --ivory ); /* Ivory = #F5F0E8 */
+	font-size : clamp( 1.8rem, 3.5vw, 2.8rem );
+
+
 }
 
-.ctaBannerLabel {
-  font-family: var(--font-mono);
-  font-size: 0.78rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--blue);
-  display: block;
-  margin-bottom: var(--sp-3);
+
+/* #region ctaBannerActions */
+
+.ctaBannerActions { /* What: Banner Actions. Why: The banner's button holds its size. How: This lines up the button, never shrinking, wrapping if more join it. */
+
+
+	display     : flex;
+	flex-shrink : 0;
+	flex-wrap   : wrap;
+	gap         : var( --sp-4 ); /* Spacing 4 = 16px */
+
+
 }
 
-.ctaBannerTitle {
-  color: var(--ivory);
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+.ctaBannerBtn { /* What: Start A Project Button. Why: The banner's one action stands out. How: This sets an orange button in mono capitals, easing its color and lift. */
+
+
+	background     : var( --orange );                                                     /* Orange = #F26419 */
+	border-radius  : var( --radius-sm );                                                  /* Radius Small = 3px */
+	color          : var( --white );                                                      /* White = #FFFFFF */
+	font-family    : var( --font-mono );                                                  /* Font Mono = 'DM Mono', monospace */
+	font-size      : 0.85rem;
+	font-weight    : 500;
+	letter-spacing : 0.04em;
+	padding        : 14px var( --sp-7 );                                                  /* Spacing 7 = 48px */
+	text-transform : uppercase;
+	transition     : background var( --duration-fast ), transform var( --duration-fast ); /* Duration Fast = 150ms */
+
+
+}
+.ctaBannerBtn:hover { /* What: Hovered Start A Project Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 2px. */
+
+
+	background : var( --orange-dark ); /* Orange Dark = #D4530E */
+	transform  : translateY( -2px );
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Start A Project Button. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.ctaBannerBtn { /* What: Motionless Start A Project Button. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
 }
 
-.ctaBannerActions {
-  display: flex;
-  gap: var(--sp-4);
-  flex-shrink: 0;
-  flex-wrap: wrap;
-}
+/* #endregion ctaBannerActions */
 
-.ctaBannerBtn {
-  font-family: var(--font-mono);
-  font-size: 0.85rem;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  background: var(--orange);
-  color: var(--white);
-  padding: 14px var(--sp-7);
-  border-radius: var(--radius-sm);
-  transition: background var(--duration-fast), transform var(--duration-fast);
-}
+/* #endregion ctaInner */
 
-.ctaBannerBtn:hover {
-  background: var(--orange-dark);
-  transform: translateY(-2px);
-}
+/* #endregion ctaBanner */
 
-/* ── Responsive ─────────────────────────────────────────────── */
-@media (max-width: 1024px) {
-  .heroInner    { grid-template-columns: 3fr 1fr; gap: var(--sp-8); padding-top: var(--sp-8); }
-  .heroVisual   { display: none; }
-  .statsGrid    { grid-template-columns: repeat(2, 1fr); }
-  .serviceGrid  { grid-template-columns: repeat(2, 1fr); }
-  .projectsGrid { grid-template-columns: repeat(2, 1fr); }
-  .ctaInner     { flex-direction: column; align-items: flex-start; }
-}
+/* #endregion page */
 
-@media (max-width: 768px) {
-  .heroInner    { grid-template-columns: 1fr; gap: var(--sp-8); }
-  .heroVisual   { display: none; }
-}
 
-@media (max-width: 640px) {
-  .statsGrid    { grid-template-columns: 1fr 1fr; }
-  .statItem     { border-right: none; border-bottom: 1px solid var(--ivory-dark); }
-  .serviceGrid  { grid-template-columns: 1fr; }
-  .projectsGrid { grid-template-columns: 1fr; }
-  .featuredHeader { flex-direction: column; align-items: flex-start; }
-}
