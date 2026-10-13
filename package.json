@@ -7,6 +7,7 @@
 		"build": "tsc -b && vite build",
 		"dev": "vite",
 		"images": "node design/images/render.mts",
+		"lint": "eslint .",
 		"preview": "vite preview",
 		"typecheck": "tsc -b"
 	},
@@ -22,7 +23,12 @@
 		"@types/react": "^19.3.0",
 		"@types/react-dom": "^19.3.0",
 		"@vitejs/plugin-react": "^6.1.2",
+		"eslint": "^9.39.5",
+		"eslint-plugin-react": "^7.37.5",
+		"eslint-plugin-react-hooks": "^7.1.1",
+		"jiti": "^2.7.0",
 		"typescript": "~6.0.3",
+		"typescript-eslint": "^8.71.2",
 		"vite": "^8.3.4"
 	}
 }

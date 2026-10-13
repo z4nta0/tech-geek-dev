@@ -107,7 +107,10 @@ on `close-out`.
    - **Baseline accessibility**: axe already reports color contrast
      failures on every page (10 to 45 elements each) and a heading-order
      failure on Work, for steps 4 and 9.
-3. **ESLint**, set up from the siblings' `eslint.config.ts`.
+3. **ESLint**, set up from the siblings' `eslint.config.ts`. Done 2026-10-12
+   with the-bernie-bears' copy unchanged and the siblings' versions; the
+   repository lints with no findings, and `tsconfig.node.json` type checks
+   the config too.
 4. **Playwright and axe** in all three engines, with baseline screenshots of
    every route at phone and desktop widths and the open phone menu, taken
    before anything moves. Its dev server runs on port 5194 (the siblings use
