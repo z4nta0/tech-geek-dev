@@ -6,7 +6,7 @@ import { Home } from './pages/home/home.tsx'
 import { Work } from './pages/work/work.tsx'
 import { About } from './pages/about/about.tsx'
 import { Contact } from './pages/contact/contact.tsx'
-import { NotFound } from './pages/not-found/not-found.tsx'
+import { NotFouCom } from './pages/not-found/not-found.tsx'
 
 const App: React.FC = () => {
   const location = useLocation()
@@ -20,7 +20,7 @@ const App: React.FC = () => {
           <Route path="/work"    element={<Work />}    />
           <Route path="/about"   element={<About />}   />
           <Route path="/contact" element={<Contact />} />
-          <Route path="*"        element={<NotFound />} />
+          <Route path="*"        element={<NotFouCom />} />
         </Routes>
       </main>
       <SitFooCom />
