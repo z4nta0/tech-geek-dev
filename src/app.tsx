@@ -105,7 +105,7 @@ function AppRooCom () : JSX.Element {
 					<Route
 						element={ <WorPagCom /> }
 						path='/work'
-					/>{ /* What: Work Route. Why: The project catalogue has its own page. How: This renders WorPagCom at /work. */ }
+					/>{ /* What: Work Route. Why: The project catalog has its own page. How: This renders WorPagCom at /work. */ }
 
 
 

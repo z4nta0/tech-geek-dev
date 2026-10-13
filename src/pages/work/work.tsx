@@ -24,7 +24,7 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * work.tsx = Work
  *
  * @summary
- * The Work page: a hero introducing the catalogue, a filter bar with a
+ * The Work page: a hero introducing the catalog, a filter bar with a
  * button for each technology the projects use, the grid of project cards the
  * filter narrows, and a closing section walking through the four steps every
  * project follows.
@@ -126,7 +126,7 @@ function WorPagCom () : JSX.Element {
 		<div className='page-enter'>{ /* What: Work Page Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
 
 
-			<section className={ cssModObj.pageHero }>{ /* What: Page Hero Section Element. Why: The page opens by introducing the catalogue. How: This holds the pattern, the heading block, and the corner accent. */ }
+			<section className={ cssModObj.pageHero }>{ /* What: Page Hero Section Element. Why: The page opens by introducing the catalog. How: This holds the pattern, the heading block, and the corner accent. */ }
 
 
 				<GeoBacCom
@@ -150,8 +150,8 @@ function WorPagCom () : JSX.Element {
 						<span className={ cssModObj.accent }>Case Studies</span>
 					</h1>
 
-					<p className={ cssModObj.heroSub }>{ /* What: Hero Subtitle Paragraph Element. Why: A line under the heading says what the catalogue holds. How: This describes the range of work. */ }
-						A full catalogue of web applications, APIs, and tools I've designed,
+					<p className={ cssModObj.heroSub }>{ /* What: Hero Subtitle Paragraph Element. Why: A line under the heading says what the catalog holds. How: This describes the range of work. */ }
+						A full catalog of web applications, APIs, and tools I've designed,
 						architected, and shipped, from solo side projects to client builds.
 					</p>
 
