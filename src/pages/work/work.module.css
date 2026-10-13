@@ -197,6 +197,22 @@
   flex-shrink: 0;
 }
 
+.visuallyHidden { /* What: Visually Hidden Rule. Why: The projects grid's h2 keeps the headings in order for screen readers, while the hero already introduces the grid on screen. How: This shrinks the heading to a clipped 1px box out of the layout, the standard technique that keeps it in the accessibility tree. */
+
+
+	border      : 0;
+	clip-path   : inset( 50% );
+	height      : 1px;
+	margin      : -1px;
+	overflow    : hidden;
+	padding     : 0;
+	position    : absolute;
+	white-space : nowrap;
+	width       : 1px;
+
+
+}
+
 @media (max-width: 1024px) {
   .grid { grid-template-columns: repeat(2, 1fr); }
   .steps { flex-direction: column; }
