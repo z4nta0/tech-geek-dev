@@ -280,7 +280,52 @@ on `close-out`.
    ring tokens, and three-segment class and keyframe names. Built as the
    shared base the support and cards sites will copy. Contrast fixes (the
    orange on ivory is about 3:1) are raised with the user first, since the
-   colors visibly change.
+   colors visibly change. Done 2026-10-13 in seven commits.
+   - **Colors**: every color reads a role token. At the user's choice
+     (2026-10-13), the bright orange (`--acc-mai-col`, #F26419) and blue
+     (`--acc-sec-col`, #7DB9D8) stay as fills, while text in those hues
+     reads darker OKLCH shades, `--acc-dar-col` (about #bd3000) and
+     `--acs-dar-col` (about #126186); muted text is #646482, and
+     `--tex-inm-col` (about #8181a1) is the muted text on the dark footer.
+     Orange buttons carry dark ink text, with `--acc-hov-col` as their hover,
+     and focus rings draw in the dark orange through `--foc-rin-col`. Roles
+     this site adds beyond the shared set: `--acc-hov-col`, `--acc-dar-col`,
+     `--acs-str-col` (the stronger blue the patterns and outlines draw in),
+     `--acs-dar-col`, `--acs-tin-col`, and `--tex-inm-col`. The code window's
+     three dots and its pale code text stay literal colors, since they draw a
+     fixed editor look whatever the theme.
+   - **Fonts**: `--fon-fam-mai` (Syne), `--fon-fam-sec` (DM Mono), and
+     `--fon-fam-acc` (Lora, the italic accent words), a role this site adds.
+   - **Type and spacing**: the root is 68.75% (1rem is 11px) and the body
+     reads the base plus 1 size. Font sizes, the vertical rhythm, vertical and
+     horizontal spacing, border widths, radii, and text widths copy
+     the-bernie-bears' scales, and paragraphs cap at Syne's measured 68 and 51
+     characters (`--tex-wid-bas`, `--tex-wid-sma`). The bar's height is its
+     own token, `--nav-bar-hei` (the p06 rhythm step, about 78.8px), which
+     the heroes and sticky sidebar offset by. Layout widths (`--max-width`,
+     the grid columns, the section header's 640px) wait for step 10.
+   - **Motion**: durations read the `--dur-tra-*` and `--dur-ani-*` scales on
+     the 18th power, the endless loops rounded up as expressive motion; the
+     ease-out curve folds into `--mot-dec-eas`, beside the other four easing
+     tokens; and opacities within 10% of a reciprocal power read it.
+   - **Shadows**: the five elevation tokens replace the three rgba ones. Their
+     values are fitted to this site's lighter shadows rather than copied from
+     the-bernie-bears', so the support and cards sites should copy these.
+   - **Names**: every module class has a three-segment name ending in its
+     tag (`herTitHea`, `butPriAnc`, `pagEntDiv`), variants are double-dash
+     modifiers, and elements copied across pages share one name. The shared
+     keyframes are `contentEnterFadeUp`, `shapeLoopSpin`, and
+     `statusLoopPulse`, and Home's ticker plays `ticInnDivLoopScroll`.
+   - **Verified** with the built CSS compared rule by rule wherever the
+     output shouldn't change, and the rendering suite in all three engines,
+     its baselines refreshed for each visible change. axe passes everywhere
+     except one failure that surfaced with the type scale (below).
+   - **Checkpoint**, for step 10: the Home hero heading still spills and
+     scrolls the page sideways on phones, Work's filter row crowds its last
+     pill, and WebKit's reflow check also scrolls sideways on Contact and the
+     404 page at 320px. The 404 page's huge pale number now fails axe's
+     contrast check on phones in every engine (it is aria-hidden decoration,
+     but axe still checks it), which needs the user's call.
 10. **Horizontal layout**: discussed with the user before converting, per the
     user-level rules (the siblings chose the fluid horizontal rhythm).
 11. **New features**: the 404 page brought in line, pages opening at the top,
