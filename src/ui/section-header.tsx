@@ -69,15 +69,15 @@ function SecHeaCom ( { aliPosStr = 'left', labTexStr, subTexStr, titTexStr } : S
 	return (
 
 
-		<div className={` ${ cssModObj.wrap }   ${ aliPosStr === 'center' ? cssModObj.center : '' } `}>{ /* What: Section Header Div Element. Why: The label, heading, and subtitle read as one block. How: This stacks them, centered when the section asks. */ }
+		<div className={` ${ cssModObj.secHeaDiv }   ${ aliPosStr === 'center' ? cssModObj.secHeaDivCenter : '' } `}>{ /* What: Section Header Div Element. Why: The label, heading, and subtitle read as one block. How: This stacks them, centered when the section asks. */ }
 
 
 			{ labTexStr && ( // What: Label Presence Check. Why: Not every section has a label. How: This renders the label only when one is given.
 
 
-				<span className={ cssModObj.label }>{ /* What: Section Label Span Element. Why: A small label names the section before its heading. How: This shows the label after its decorative rule. */ }
+				<span className={ cssModObj.secLabSpa }>{ /* What: Section Label Span Element. Why: A small label names the section before its heading. How: This shows the label after its decorative rule. */ }
 					<span
-						className={ cssModObj.line }
+						className={ cssModObj.labLinSpa }
 
 						aria-hidden='true'
 					/>{ /* What: Label Line Span Element. Why: A short rule leads into the label. How: This draws the rule, hidden from screen readers as decoration. */ }
@@ -88,12 +88,12 @@ function SecHeaCom ( { aliPosStr = 'left', labTexStr, subTexStr, titTexStr } : S
 
 			) }
 
-			<h2 className={ cssModObj.title }>{ titTexStr }</h2>{ /* What: Section Title Heading Element. Why: Every section is introduced by its heading. How: This shows the title as an h2. */ }
+			<h2 className={ cssModObj.secTitHea }>{ titTexStr }</h2>{ /* What: Section Title Heading Element. Why: Every section is introduced by its heading. How: This shows the title as an h2. */ }
 
 			{ subTexStr && ( // What: Subtitle Presence Check. Why: Not every section has a subtitle. How: This renders the subtitle only when one is given.
 
 
-				<p className={ cssModObj.subtitle }>{ subTexStr }</p> // What: Section Subtitle Paragraph Element. Why: A short line expands on the heading. How: This shows the subtitle under it.
+				<p className={ cssModObj.secSubPar }>{ subTexStr }</p> // What: Section Subtitle Paragraph Element. Why: A short line expands on the heading. How: This shows the subtitle under it.
 
 
 			) }

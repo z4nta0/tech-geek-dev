@@ -15,7 +15,7 @@
 
 
 
-.tag { /* What: Tag. Why: A technology's name reads as a compact pill. How: This sets it inline in the mono font, rounded, with its letters a little apart and never wrapping. */
+.tagLabSpa { /* What: Tag Label Span. Why: A technology's name reads as a compact pill. How: This sets it inline in the mono font, rounded, with its letters a little apart and never wrapping. */
 
 
 	align-items    : center;
@@ -27,7 +27,7 @@
 
 
 }
-.sm { /* What: Small Tag. Why: Project cards fit several tags in a row. How: This sets the smaller text and padding. */
+.tagLabSpa--small { /* What: Small Tag Label Span. Why: Project cards fit several tags in a row. How: This sets the smaller text and padding. */
 
 
 	font-size : var( --fon-siz-bas );                      /* Font Size Base = 11px */
@@ -35,7 +35,7 @@
 
 
 }
-.md { /* What: Medium Tag. Why: The About page's skills grid shows larger tags. How: This sets the larger text and padding. */
+.tagLabSpa--medium { /* What: Medium Tag Label Span. Why: The About page's skills grid shows larger tags. How: This sets the larger text and padding. */
 
 
 	font-size : var( --fon-siz-bas );                      /* Font Size Base = 11px */
@@ -43,7 +43,7 @@
 
 
 }
-.neutral { /* What: Neutral Tag. Why: A tag with no color of its own stays quiet. How: This sets it on the warm ivory with a matching border. */
+.tagLabSpa--neutral { /* What: Neutral Tag Label Span. Why: A tag with no color of its own stays quiet. How: This sets it on the warm ivory with a matching border. */
 
 
 	background : var( --bac-sun-col );                            /* Background Sunken Color = #EDE6D8 */
@@ -52,7 +52,7 @@
 
 
 }
-.blue { /* What: Blue Tag. Why: Technologies show in the site's blue. How: This sets the pale blue fill, blue border, and dark blue text. */
+.tagLabSpa--blue { /* What: Blue Tag Label Span. Why: Technologies show in the site's blue. How: This sets the pale blue fill, blue border, and dark blue text. */
 
 
 	background : var( --acs-tin-col );                            /* Accent-Secondary Tint Color = #B8D9EC */
@@ -61,7 +61,7 @@
 
 
 }
-.orange { /* What: Orange Tag. Why: A tag can stand out in the site's accent. How: This sets the pale orange fill, orange border, and dark orange text. */
+.tagLabSpa--orange { /* What: Orange Tag Label Span. Why: A tag can stand out in the site's accent. How: This sets the pale orange fill, orange border, and dark orange text. */
 
 
 	background : var( --acc-tin-col );                            /* Accent Tint Color = #FDDCC8 */

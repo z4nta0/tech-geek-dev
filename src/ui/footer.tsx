@@ -72,13 +72,13 @@ function SitFooCom () : JSX.Element {
 	return (
 
 
-		<footer className={ cssModObj.footer }>{ /* What: Site Footer Element. Why: Every page ends with the brand, its page links, and the copyright. How: This holds the footer's centered column. */ }
+		<footer className={ cssModObj.sitFooFoo }>{ /* What: Site Footer Footer Element. Why: Every page ends with the brand, its page links, and the copyright. How: This holds the footer's centered column. */ }
 
 
-			<div className={ cssModObj.inner }>{ /* What: Footer Inner Div Element. Why: The footer's content sits in the page's centered column. How: This lays out the brand, the links, and the copyright. */ }
+			<div className={ cssModObj.fooInnDiv }>{ /* What: Footer Inner Div Element. Why: The footer's content sits in the page's centered column. How: This lays out the brand, the links, and the copyright. */ }
 
 
-				<div className={ cssModObj.brand }>{ /* What: Footer Brand Div Element. Why: The mark and the tagline read as one block. How: This sets them side by side. */ }
+				<div className={ cssModObj.fooBraDiv }>{ /* What: Footer Brand Div Element. Why: The mark and the tagline read as one block. How: This sets them side by side. */ }
 
 
 					<svg
@@ -114,17 +114,17 @@ function SitFooCom () : JSX.Element {
 
 					</svg>
 
-					<span className={ cssModObj.tagline }>Building the web, one commit at a time.</span>{ /* What: Footer Tagline Span Element. Why: The tagline sums up the site in a line. How: This shows it beside the mark. */ }
+					<span className={ cssModObj.fooTagSpa }>Building the web, one commit at a time.</span>{ /* What: Footer Tagline Span Element. Why: The tagline sums up the site in a line. How: This shows it beside the mark. */ }
 
 
 				</div>
 
 
 				<nav
-					className={ cssModObj.links }
+					className={ cssModObj.fooLinNav }
 
 					aria-label='Footer navigation'
-				>{ /* What: Footer Navigation Nav Element. Why: Every page can be reached from the bottom of any page, and a second navigation landmark needs a label to tell it from the bar's. How: This holds a link to each page. */ }
+				>{ /* What: Footer Links Nav Element. Why: Every page can be reached from the bottom of any page, and a second navigation landmark needs a label to tell it from the bar's. How: This holds a link to each page. */ }
 
 
 					{ PAG_LIN_ARR.map( ( pagLinObj ) => ( // What: Page Link Map Call. Why: The footer links to every page in the shared order. How: This renders one router link per row.
@@ -133,10 +133,10 @@ function SitFooCom () : JSX.Element {
 						<Link
 							key={ pagLinObj.patStr }
 
-							className={ cssModObj.link }
+							className={ cssModObj.fooLinAnc }
 
 							to={ pagLinObj.patStr }
-						>{ pagLinObj.labStr }</Link> // What: Footer Page Link. Why: Each page has its own link. How: This routes to the row's path, labelled with its name.
+						>{ pagLinObj.labStr }</Link> // What: Footer Link Anchor Element. Why: Each page has its own link. How: This routes to the row's path, labelled with its name.
 
 
 					))}
@@ -145,23 +145,23 @@ function SitFooCom () : JSX.Element {
 				</nav>
 
 
-				<div className={ cssModObj.copy }>{ /* What: Footer Copy Div Element. Why: The copyright and the profile links share the footer's last row. How: This sets them side by side. */ }
+				<div className={ cssModObj.fooCopDiv }>{ /* What: Footer Copy Div Element. Why: The copyright and the profile links share the footer's last row. How: This sets them side by side. */ }
 
 
-					<span className={ cssModObj.copyright }>© { curYeaNum } TechGeek.dev. All rights reserved.</span>{ /* What: Copyright Span Element. Why: The footer ends with the copyright. How: This prints the current year read on each render. */ }
+					<span className={ cssModObj.fooCopSpa }>© { curYeaNum } TechGeek.dev. All rights reserved.</span>{ /* What: Footer Copyright Span Element. Why: The footer ends with the copyright. How: This prints the current year read on each render. */ }
 
-					<div className={ cssModObj.social }>{ /* What: Social Links Div Element. Why: The footer links to z4nta0's profiles. How: This holds the GitHub and LinkedIn links. */ }
+					<div className={ cssModObj.fooSocDiv }>{ /* What: Footer Social Div Element. Why: The footer links to z4nta0's profiles. How: This holds the GitHub and LinkedIn links. */ }
 
 
 						<a
-							className={ cssModObj.icon }
+							className={ cssModObj.fooIcoAnc }
 
 							href='https://github.com/z4nta0'
 							rel='noreferrer'
 							target='_blank'
 
 							aria-label='GitHub'
-						>{ /* What: GitHub Anchor Element. Why: A visitor can browse z4nta0's code. How: This links to the GitHub profile in a new tab, named by its aria-label since it shows only an icon. */ }
+						>{ /* What: Footer Icon Anchor Element. Why: A visitor can browse z4nta0's code. How: This links to the GitHub profile in a new tab, named by its aria-label since it shows only an icon. */ }
 
 
 							<svg
@@ -181,14 +181,14 @@ function SitFooCom () : JSX.Element {
 						</a>
 
 						<a
-							className={ cssModObj.icon }
+							className={ cssModObj.fooIcoAnc }
 
 							href='https://www.linkedin.com/in/gary-s-walton-654739400/'
 							rel='noreferrer'
 							target='_blank'
 
 							aria-label='LinkedIn'
-						>{ /* What: LinkedIn Anchor Element. Why: A visitor can find z4nta0's work history. How: This links to the LinkedIn profile in a new tab, named by its aria-label since it shows only an icon. */ }
+						>{ /* What: Footer Icon Anchor Element. Why: A visitor can find z4nta0's work history. How: This links to the LinkedIn profile in a new tab, named by its aria-label since it shows only an icon. */ }
 
 
 							<svg

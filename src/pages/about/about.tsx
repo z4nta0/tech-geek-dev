@@ -185,10 +185,10 @@ function AboPagCom () : JSX.Element {
 	return (
 
 
-		<div className={ cssModObj.page }>{ /* What: About Page Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
+		<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
 
 
-			<section className={ cssModObj.hero }>{ /* What: Hero Section Element. Why: The page opens by introducing z4nta0. How: This holds the pattern and the hero's two columns. */ }
+			<section className={ cssModObj.aboHerSec }>{ /* What: About Hero Section Element. Why: The page opens by introducing z4nta0. How: This holds the pattern and the hero's two columns. */ }
 
 
 				<GeoBacCom
@@ -198,44 +198,44 @@ function AboPagCom () : JSX.Element {
 
 
 
-				<div className={ cssModObj.heroGrid }>{ /* What: Hero Grid Div Element. Why: The introduction and the portrait sit side by side in the page's centered column. How: This lays out the two columns. */ }
+				<div className={ cssModObj.herGriDiv }>{ /* What: Hero Grid Div Element. Why: The introduction and the portrait sit side by side in the page's centered column. How: This lays out the two columns. */ }
 
 
-					<div className={ cssModObj.heroText }>{ /* What: Hero Text Div Element. Why: The introduction reads as one column. How: This stacks the label, heading, paragraphs, and button. */ }
+					<div className={ cssModObj.herTexDiv }>{ /* What: Hero Text Div Element. Why: The introduction reads as one column. How: This stacks the label, heading, paragraphs, and button. */ }
 
 
-						<span className={ cssModObj.heroLabel }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows About Me after a short rule. */ }
-							<span className={ cssModObj.heroLine } />{ /* What: Hero Line Span Element. Why: A short rule leads into the label. How: This draws the rule. */ }
+						<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows About Me after a short rule. */ }
+							<span className={ cssModObj.herLinSpa } />{ /* What: Hero Line Span Element. Why: A short rule leads into the label. How: This draws the rule. */ }
 
 							About Me
 						</span>
 
-						<h1 className={ cssModObj.heroTitle }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up z4nta0 in three words. How: This sets Dev and Creator over Problem Solver, the second line in the accent. */ }
+						<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up z4nta0 in three words. How: This sets Dev and Creator over Problem Solver, the second line in the accent. */ }
 							Dev. Creator.<br />
-							<span className={ cssModObj.accent }>Problem Solver.</span>
+							<span className={ cssModObj.titAccSpa }>Problem Solver.</span>
 						</h1>
 
-						<p className={ cssModObj.lead }>{ /* What: Lead Paragraph Element. Why: The opening line says who z4nta0 is. How: This shows it in the larger lead style. */ }
+						<p className={ cssModObj.herLeaPar }>{ /* What: Hero Lead Paragraph Element. Why: The opening line says who z4nta0 is. How: This shows it in the larger lead style. */ }
 							I'm a full-stack web developer with a passion for building things that
 							are fast, accessible, and beautiful. I live at the intersection of
 							engineering discipline and creative curiosity.
 						</p>
 
-						<p className={ cssModObj.body }>{ /* What: Body Paragraph Element. Why: A second paragraph tells the longer story. How: This describes the years of work and who it's for. */ }
+						<p className={ cssModObj.herBodPar }>{ /* What: Hero Body Paragraph Element. Why: A second paragraph tells the longer story. How: This describes the years of work and who it's for. */ }
 							Based in the American Midwest, I've spent the last ten plus years turning
 							my coding curiosity into a deep understanding of web development. Whether
 							that's a side project for myself, fun websites for friends and family, or
 							websites for local businesses, I bring the same level of care to all of it.
 						</p>
 
-						<div className={ cssModObj.ctaRow }>{ /* What: Button Row Div Element. Why: The introduction ends with its next step. How: This holds the button. */ }
+						<div className={ cssModObj.herActDiv }>{ /* What: Hero Actions Div Element. Why: The introduction ends with its next step. How: This holds the button. */ }
 
 
 							<Link
-								className={ cssModObj.ctaPrimary }
+								className={ cssModObj.butPriAnc }
 
 								to='/contact'
-							>Work With Me</Link>{ /* What: Work With Me Link. Why: A visitor who likes what they read can get in touch. How: This routes to the Contact page as a button. */ }
+							>Work With Me</Link>{ /* What: Button Primary Anchor Element. Why: A visitor who likes what they read can get in touch. How: This routes to the Contact page as a button. */ }
 
 
 						</div>
@@ -245,21 +245,21 @@ function AboPagCom () : JSX.Element {
 
 
 
-					<div className={ cssModObj.heroVisual }>{ /* What: Hero Visual Div Element. Why: The portrait and the facts illustrate the introduction. How: This holds the framed portrait and the two floating facts. */ }
+					<div className={ cssModObj.herVisDiv }>{ /* What: Hero Visual Div Element. Why: The portrait and the facts illustrate the introduction. How: This holds the framed portrait and the two floating facts. */ }
 
 
-						<div className={ cssModObj.portraitWrap }>{ /* What: Portrait Wrap Div Element. Why: The portrait sits inside its hexagon frame. How: This layers the frame and the photo. */ }
+						<div className={ cssModObj.porWraDiv }>{ /* What: Portrait Wrap Div Element. Why: The portrait sits inside its hexagon frame. How: This layers the frame and the photo. */ }
 
 
 							<div aria-hidden='true'>{ /* What: Portrait Frame Div Element. Why: Hexagons frame the portrait in the site's geometric style. How: This holds the frame drawing, hidden from screen readers as decoration. */ }
 
 
 								<svg
-									className={ cssModObj.frameSvg }
+									className={ cssModObj.porFraSvg }
 
 									fill='none'
 									viewBox='0 0 320 360'
-								>{ /* What: Frame SVG Element. Why: The frame is two nested hexagons. How: This draws them behind the photo. */ }
+								>{ /* What: Portrait Frame SVG Element. Why: The frame is two nested hexagons. How: This draws them behind the photo. */ }
 
 
 									<polygon
@@ -284,27 +284,27 @@ function AboPagCom () : JSX.Element {
 
 
 							<img
-								className={ cssModObj.portrait }
+								className={ cssModObj.porPhoIma }
 
 								src={ selPorUrl }
 
 								alt='Portrait of z4nta0'
-							/>{ /* What: Portrait Image Element. Why: A visitor sees who they'd be working with. How: This shows the portrait inside the frame. */ }
+							/>{ /* What: Portrait Photo Image Element. Why: A visitor sees who they'd be working with. How: This shows the portrait inside the frame. */ }
 
 
 						</div>
 
 
-						<div className={` ${ cssModObj.floatCard }   ${ cssModObj.floatTop } `}>{ /* What: Top Fact Div Element. Why: A floating fact highlights the years of experience. How: This shows the figure over its label at the portrait's top corner. */ }
-							<span className={ cssModObj.floatNum }>10+</span>{ /* What: Years Figure Span Element. Why: z4nta0 has been a developer since 2013. How: This shows ten plus. */ }
+						<div className={` ${ cssModObj.floFacDiv }   ${ cssModObj.floFacDivTop } `}>{ /* What: Floating Fact Div Element. Why: A floating fact highlights the years of experience. How: This shows the figure over its label at the portrait's top corner. */ }
+							<span className={ cssModObj.facFigSpa }>10+</span>{ /* What: Fact Figure Span Element. Why: z4nta0 has been a developer since 2013. How: This shows ten plus. */ }
 
-							<span className={ cssModObj.floatLabel }>Years coding</span>{ /* What: Years Label Span Element. Why: The label says what the figure counts. How: This shows Years coding. */ }
+							<span className={ cssModObj.facLabSpa }>Years coding</span>{ /* What: Fact Label Span Element. Why: The label says what the figure counts. How: This shows Years coding. */ }
 						</div>
 
-						<div className={` ${ cssModObj.floatCard }   ${ cssModObj.floatBottom } `}>{ /* What: Bottom Fact Div Element. Why: A floating fact highlights the projects shipped. How: This shows the figure over its label at the portrait's bottom corner. */ }
-							<span className={ cssModObj.floatNum }>{ SHI_COU_NUM }+</span>{ /* What: Projects Figure Span Element. Why: The count should grow as projects are added, and older projects that are no longer online still count. How: This shows the project list's count with a plus. */ }
+						<div className={` ${ cssModObj.floFacDiv }   ${ cssModObj.floFacDivBottom } `}>{ /* What: Floating Fact Div Element. Why: A floating fact highlights the projects shipped. How: This shows the figure over its label at the portrait's bottom corner. */ }
+							<span className={ cssModObj.facFigSpa }>{ SHI_COU_NUM }+</span>{ /* What: Fact Figure Span Element. Why: The count should grow as projects are added, and older projects that are no longer online still count. How: This shows the project list's count with a plus. */ }
 
-							<span className={ cssModObj.floatLabel }>Projects shipped</span>{ /* What: Projects Label Span Element. Why: The label says what the figure counts. How: This shows Projects shipped. */ }
+							<span className={ cssModObj.facLabSpa }>Projects shipped</span>{ /* What: Fact Label Span Element. Why: The label says what the figure counts. How: This shows Projects shipped. */ }
 						</div>
 
 
@@ -318,10 +318,10 @@ function AboPagCom () : JSX.Element {
 
 
 
-			<section className={ cssModObj.skillsSection }>{ /* What: Skills Section Element. Why: A visitor sees what z4nta0 works with. How: This holds the heading block and the skill groups. */ }
+			<section className={ cssModObj.aboSkiSec }>{ /* What: About Skills Section Element. Why: A visitor sees what z4nta0 works with. How: This holds the heading block and the skill groups. */ }
 
 
-				<div className={ cssModObj.skillsInner }>{ /* What: Skills Inner Div Element. Why: The section sits in the page's centered column. How: This stacks the heading block and the grid. */ }
+				<div className={ cssModObj.skiInnDiv }>{ /* What: Skills Inner Div Element. Why: The section sits in the page's centered column. How: This stacks the heading block and the grid. */ }
 
 
 					<SecHeaCom
@@ -332,7 +332,7 @@ function AboPagCom () : JSX.Element {
 
 
 
-					<div className={ cssModObj.skillsGrid }>{ /* What: Skills Grid Div Element. Why: The groups line up in columns. How: This lays out one card per group. */ }
+					<div className={ cssModObj.skiGriDiv }>{ /* What: Skills Grid Div Element. Why: The groups line up in columns. How: This lays out one card per group. */ }
 
 
 						{ SKI_GRO_ARR.map( ( skiGroObj ) => ( // What: Skill Group Map Call. Why: Every group gets a card. How: This renders one per row.
@@ -341,21 +341,21 @@ function AboPagCom () : JSX.Element {
 							<div
 								key={ skiGroObj.labStr }
 
-								className={ cssModObj.skillGroup }
+								className={ cssModObj.skiGroDiv }
 							>{ /* What: Skill Group Div Element. Why: Each group is one card. How: This stacks its heading and its tags. */ }
 
 
-								<div className={ cssModObj.skillGroupHeader }>{ /* What: Skill Group Header Div Element. Why: A dot leads into the group's name. How: This sets them side by side. */ }
+								<div className={ cssModObj.groHeaDiv }>{ /* What: Group Header Div Element. Why: A dot leads into the group's name. How: This sets them side by side. */ }
 
 
-									<span className={ cssModObj.skillGroupDot } />{ /* What: Skill Group Dot Span Element. Why: A small dot marks the group's heading. How: This draws it. */ }
+									<span className={ cssModObj.groDotSpa } />{ /* What: Group Dot Span Element. Why: A small dot marks the group's heading. How: This draws it. */ }
 
-									<h3 className={ cssModObj.skillGroupTitle }>{ skiGroObj.labStr }</h3>{ /* What: Skill Group Title Heading Element. Why: Each group is named. How: This shows the name as an h3 under the section's h2. */ }
+									<h3 className={ cssModObj.groTitHea }>{ skiGroObj.labStr }</h3>{ /* What: Group Title Heading Element. Why: Each group is named. How: This shows the name as an h3 under the section's h2. */ }
 
 
 								</div>
 
-								<div className={ cssModObj.skillTags }>{ /* What: Skill Tags Div Element. Why: The group's technologies read as one cluster of pills. How: This wraps the tags. */ }
+								<div className={ cssModObj.skiTagDiv }>{ /* What: Skill Tags Div Element. Why: The group's technologies read as one cluster of pills. How: This wraps the tags. */ }
 
 
 									{ skiGroObj.skiArr.map( ( skiNamStr ) => ( // What: Skill Tag Map Call. Why: Every technology gets a pill. How: This renders one medium blue tag per name.
@@ -392,7 +392,7 @@ function AboPagCom () : JSX.Element {
 
 
 
-			<section className={ cssModObj.timelineSection }>{ /* What: Timeline Section Element. Why: A visitor sees how z4nta0 got here. How: This holds the pattern, the heading block, and the timeline. */ }
+			<section className={ cssModObj.aboTimSec }>{ /* What: About Timeline Section Element. Why: A visitor sees how z4nta0 got here. How: This holds the pattern, the heading block, and the timeline. */ }
 
 
 				<GeoBacCom
@@ -402,7 +402,7 @@ function AboPagCom () : JSX.Element {
 
 
 
-				<div className={ cssModObj.timelineInner }>{ /* What: Timeline Inner Div Element. Why: The timeline sits in the page's centered column. How: This stacks the heading block and the milestones. */ }
+				<div className={ cssModObj.timInnDiv }>{ /* What: Timeline Inner Div Element. Why: The timeline sits in the page's centered column. How: This stacks the heading block and the milestones. */ }
 
 
 					<SecHeaCom
@@ -412,7 +412,7 @@ function AboPagCom () : JSX.Element {
 
 
 
-					<div className={ cssModObj.timeline }>{ /* What: Timeline Div Element. Why: The milestones stack newest first. How: This holds one item per milestone. */ }
+					<div className={ cssModObj.timLisDiv }>{ /* What: Timeline List Div Element. Why: The milestones stack newest first. How: This holds one item per milestone. */ }
 
 
 						{ TIM_LIN_ARR.map( ( timLinObj, timIndNum ) => ( // What: Timeline Item Map Call. Why: Every milestone shows in order. How: This renders each one, with a connecting line under every one but the last.
@@ -421,31 +421,31 @@ function AboPagCom () : JSX.Element {
 							<div
 								key={ timLinObj.yeaStr }
 
-								className={ cssModObj.timelineItem }
+								className={ cssModObj.timIteDiv }
 							>{ /* What: Timeline Item Div Element. Why: Each milestone is one row. How: This sets its year, its connector, and its text side by side. */ }
 
 
-								<div className={ cssModObj.timelineLeft }>{ /* What: Timeline Left Div Element. Why: The year sits in its own column. How: This holds the year. */ }
+								<div className={ cssModObj.timLefDiv }>{ /* What: Timeline Left Div Element. Why: The year sits in its own column. How: This holds the year. */ }
 
 
-									<span className={ cssModObj.timelineYear }>{ timLinObj.yeaStr }</span>{ /* What: Timeline Year Span Element. Why: Each milestone is dated. How: This shows the year. */ }
+									<span className={ cssModObj.timYeaSpa }>{ timLinObj.yeaStr }</span>{ /* What: Timeline Year Span Element. Why: Each milestone is dated. How: This shows the year. */ }
 
 
 								</div>
 
 								<div
-									className={ cssModObj.timelineConnector }
+									className={ cssModObj.timConDiv }
 
 									aria-hidden='true'
 								>{ /* What: Timeline Connector Div Element. Why: A dot and a line join the milestones. How: This draws them, hidden from screen readers as decoration. */ }
 
 
-									<div className={ cssModObj.timelineDot } />{ /* What: Timeline Dot Div Element. Why: Each milestone has its own dot. How: This draws it. */ }
+									<div className={ cssModObj.timDotDiv } />{ /* What: Timeline Dot Div Element. Why: Each milestone has its own dot. How: This draws it. */ }
 
 									{ timIndNum < TIM_LIN_ARR.length - 1 && ( // What: Timeline Line Check. Why: The line joins a milestone to the next, so the last has none. How: This draws it under every milestone but the last.
 
 
-										<div className={ cssModObj.timelineLine } /> // What: Timeline Line Div Element. Why: A line leads down to the next milestone. How: This draws it.
+										<div className={ cssModObj.timLinDiv } /> // What: Timeline Line Div Element. Why: A line leads down to the next milestone. How: This draws it.
 
 
 									) }
@@ -453,14 +453,14 @@ function AboPagCom () : JSX.Element {
 
 								</div>
 
-								<div className={ cssModObj.timelineContent }>{ /* What: Timeline Content Div Element. Why: The milestone's text sits in its own column. How: This stacks its title, organization, and description. */ }
+								<div className={ cssModObj.timCotDiv }>{ /* What: Timeline Content Div Element. Why: The milestone's text sits in its own column. How: This stacks its title, organization, and description. */ }
 
 
-									<h3 className={ cssModObj.timelineTitle }>{ timLinObj.titStr }</h3>{ /* What: Timeline Title Heading Element. Why: Each milestone is named. How: This shows the title as an h3 under the section's h2. */ }
+									<h3 className={ cssModObj.timTitHea }>{ timLinObj.titStr }</h3>{ /* What: Timeline Title Heading Element. Why: Each milestone is named. How: This shows the title as an h3 under the section's h2. */ }
 
-									<span className={ cssModObj.timelineOrg }>{ timLinObj.orgStr }</span>{ /* What: Timeline Organization Span Element. Why: The milestone says who the work was for. How: This shows the organization. */ }
+									<span className={ cssModObj.timOrgSpa }>{ timLinObj.orgStr }</span>{ /* What: Timeline Organization Span Element. Why: The milestone says who the work was for. How: This shows the organization. */ }
 
-									<p className={ cssModObj.timelineDesc }>{ timLinObj.desStr }</p>{ /* What: Timeline Description Paragraph Element. Why: A sentence says what happened. How: This shows it. */ }
+									<p className={ cssModObj.timDesPar }>{ timLinObj.desStr }</p>{ /* What: Timeline Description Paragraph Element. Why: A sentence says what happened. How: This shows it. */ }
 
 
 								</div>
@@ -482,10 +482,10 @@ function AboPagCom () : JSX.Element {
 
 
 
-			<section className={ cssModObj.valuesSection }>{ /* What: Values Section Element. Why: The page closes with what drives the work. How: This holds the heading block and the value cards. */ }
+			<section className={ cssModObj.aboValSec }>{ /* What: About Values Section Element. Why: The page closes with what drives the work. How: This holds the heading block and the value cards. */ }
 
 
-				<div className={ cssModObj.valuesInner }>{ /* What: Values Inner Div Element. Why: The section sits in the page's centered column. How: This stacks the heading block and the grid. */ }
+				<div className={ cssModObj.valInnDiv }>{ /* What: Values Inner Div Element. Why: The section sits in the page's centered column. How: This stacks the heading block and the grid. */ }
 
 
 					<SecHeaCom
@@ -496,7 +496,7 @@ function AboPagCom () : JSX.Element {
 
 
 
-					<div className={ cssModObj.valuesGrid }>{ /* What: Values Grid Div Element. Why: The value cards line up in columns. How: This lays out one card per value. */ }
+					<div className={ cssModObj.valGriDiv }>{ /* What: Values Grid Div Element. Why: The value cards line up in columns. How: This lays out one card per value. */ }
 
 
 						{ VAL_CAR_ARR.map( ( valCarObj ) => ( // What: Value Card Map Call. Why: Every value gets a card. How: This renders one per row.
@@ -505,19 +505,19 @@ function AboPagCom () : JSX.Element {
 							<div
 								key={ valCarObj.titStr }
 
-								className={ cssModObj.valueCard }
+								className={ cssModObj.valCarDiv }
 							>{ /* What: Value Card Div Element. Why: Each value is one card. How: This stacks its symbol, title, and description. */ }
 
 
 								<span
-									className={ cssModObj.valueIcon }
+									className={ cssModObj.valIcoSpa }
 
 									aria-hidden='true'
 								>{ valCarObj.icoStr }</span>{ /* What: Value Icon Span Element. Why: A geometric symbol marks each value. How: This shows the row's symbol, hidden from screen readers as decoration. */ }
 
-								<h3 className={ cssModObj.valueTitle }>{ valCarObj.titStr }</h3>{ /* What: Value Title Heading Element. Why: Each value is named. How: This shows the title as an h3 under the section's h2. */ }
+								<h3 className={ cssModObj.valTitHea }>{ valCarObj.titStr }</h3>{ /* What: Value Title Heading Element. Why: Each value is named. How: This shows the title as an h3 under the section's h2. */ }
 
-								<p className={ cssModObj.valueDesc }>{ valCarObj.desStr }</p>{ /* What: Value Description Paragraph Element. Why: A sentence says what the value means in practice. How: This shows it. */ }
+								<p className={ cssModObj.valDesPar }>{ valCarObj.desStr }</p>{ /* What: Value Description Paragraph Element. Why: A sentence says what the value means in practice. How: This shows it. */ }
 
 
 							</div>

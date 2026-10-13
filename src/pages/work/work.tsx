@@ -123,10 +123,10 @@ function WorPagCom () : JSX.Element {
 	return (
 
 
-		<div className={ cssModObj.page }>{ /* What: Work Page Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
+		<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
 
 
-			<section className={ cssModObj.pageHero }>{ /* What: Page Hero Section Element. Why: The page opens by introducing the catalog. How: This holds the pattern, the heading block, and the corner accent. */ }
+			<section className={ cssModObj.pagHerSec }>{ /* What: Page Hero Section Element. Why: The page opens by introducing the catalog. How: This holds the pattern, the heading block, and the corner accent. */ }
 
 
 				<GeoBacCom
@@ -136,21 +136,21 @@ function WorPagCom () : JSX.Element {
 
 
 
-				<div className={ cssModObj.heroInner }>{ /* What: Hero Inner Div Element. Why: The hero's text sits in the page's centered column. How: This stacks the label, heading, and line. */ }
+				<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The hero's text sits in the page's centered column. How: This stacks the label, heading, and line. */ }
 
 
-					<span className={ cssModObj.heroLabel }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows My Work after a short rule. */ }
-						<span className={ cssModObj.heroLine } />{ /* What: Hero Line Span Element. Why: A short rule leads into the label. How: This draws the rule. */ }
+					<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows My Work after a short rule. */ }
+						<span className={ cssModObj.herLinSpa } />{ /* What: Hero Line Span Element. Why: A short rule leads into the label. How: This draws the rule. */ }
 
 						My Work
 					</span>
 
-					<h1 className={ cssModObj.heroTitle }>{ /* What: Hero Title Heading Element. Why: The page's heading names what it shows. How: This sets Projects and Case Studies over two lines, the second in the accent. */ }
+					<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading names what it shows. How: This sets Projects and Case Studies over two lines, the second in the accent. */ }
 						Projects &<br />
-						<span className={ cssModObj.accent }>Case Studies</span>
+						<span className={ cssModObj.titAccSpa }>Case Studies</span>
 					</h1>
 
-					<p className={ cssModObj.heroSub }>{ /* What: Hero Subtitle Paragraph Element. Why: A line under the heading says what the catalog holds. How: This describes the range of work. */ }
+					<p className={ cssModObj.herSubPar }>{ /* What: Hero Subtitle Paragraph Element. Why: A line under the heading says what the catalog holds. How: This describes the range of work. */ }
 						A full catalog of web applications, APIs, and tools I've designed,
 						architected, and shipped, from solo side projects to client builds.
 					</p>
@@ -160,7 +160,7 @@ function WorPagCom () : JSX.Element {
 
 
 				<svg
-					className={ cssModObj.cornerAccent }
+					className={ cssModObj.corAccSvg }
 
 					height='200'
 					viewBox='0 0 200 200'
@@ -194,13 +194,13 @@ function WorPagCom () : JSX.Element {
 
 
 
-			<section className={ cssModObj.filterBar }>{ /* What: Filter Bar Section Element. Why: A visitor can narrow the projects to one technology. How: This holds the label, the buttons, and the count. */ }
+			<section className={ cssModObj.filBarSec }>{ /* What: Filter Bar Section Element. Why: A visitor can narrow the projects to one technology. How: This holds the label, the buttons, and the count. */ }
 
 
-				<div className={ cssModObj.filterInner }>{ /* What: Filter Inner Div Element. Why: The filter sits in the page's centered column. How: This lines up the label, the buttons, and the count. */ }
+				<div className={ cssModObj.filInnDiv }>{ /* What: Filter Inner Div Element. Why: The filter sits in the page's centered column. How: This lines up the label, the buttons, and the count. */ }
 
 
-					<span className={ cssModObj.filterLabel }>{ /* What: Filter Label Span Element. Why: The row says what its buttons do. How: This shows Filter by tech after a funnel icon. */ }
+					<span className={ cssModObj.filLabSpa }>{ /* What: Filter Label Span Element. Why: The row says what its buttons do. How: This shows Filter by tech after a funnel icon. */ }
 						<svg
 							fill='none'
 							height='14'
@@ -219,7 +219,7 @@ function WorPagCom () : JSX.Element {
 						Filter by tech
 					</span>
 
-					<div className={ cssModObj.filterScroll }>{ /* What: Filter Scroll Div Element. Why: The buttons can outgrow a narrow screen. How: This lets the row scroll sideways. */ }
+					<div className={ cssModObj.filScrDiv }>{ /* What: Filter Scroll Div Element. Why: The buttons can outgrow a narrow screen. How: This lets the row scroll sideways. */ }
 
 
 						{ TAG_FIL_ARR.map( ( tagNamStr ) => ( // What: Filter Button Map Call. Why: Every technology gets a button. How: This renders one per tag.
@@ -228,12 +228,12 @@ function WorPagCom () : JSX.Element {
 							<button
 								key={ tagNamStr }
 
-								className={ cssModObj.filterBtn }
+								className={ cssModObj.filOptBut }
 
 								data-filter-button-active={ actTagStr === tagNamStr || undefined }
 
 								onClick={ () => setActTagStr( tagNamStr ) }
-							>{ tagNamStr }</button> // What: Filter Button Element. Why: Each button narrows the grid to its technology. How: This sets the active tag, marked with data-filter-button-active while chosen, which its module styles.
+							>{ tagNamStr }</button> // What: Filter Option Button Element. Why: Each button narrows the grid to its technology. How: This sets the active tag, marked with data-filter-button-active while chosen, which its module styles.
 
 
 						))}
@@ -241,7 +241,7 @@ function WorPagCom () : JSX.Element {
 
 					</div>
 
-					<span className={ cssModObj.filterCount }>{ /* What: Filter Count Span Element. Why: The row says how many projects the filter leaves. How: This shows the count with project or projects to match. */ }
+					<span className={ cssModObj.filCouSpa }>{ /* What: Filter Count Span Element. Why: The row says how many projects the filter leaves. How: This shows the count with project or projects to match. */ }
 						{ filProArr.length } project{ filProArr.length !== 1 ? 's' : '' }{ /* What: Project Count Text. Why: The count reads as a phrase. How: This adds an s for any count but one. */ }
 					</span>
 
@@ -253,18 +253,18 @@ function WorPagCom () : JSX.Element {
 
 
 
-			<section className={ cssModObj.projectsSection }>{ /* What: Projects Section Element. Why: The grid of cards is the page's main content. How: This holds the grid or the empty message. */ }
+			<section className={ cssModObj.proLisSec }>{ /* What: Projects List Section Element. Why: The grid of cards is the page's main content. How: This holds the grid or the empty message. */ }
 
 
-				<div className={ cssModObj.projectsInner }>{ /* What: Projects Inner Div Element. Why: The grid sits in the page's centered column. How: This holds the hidden heading and the grid. */ }
+				<div className={ cssModObj.proInnDiv }>{ /* What: Projects Inner Div Element. Why: The grid sits in the page's centered column. How: This holds the hidden heading and the grid. */ }
 
 
-					<h2 className={ cssModObj.visuallyHidden }>Projects</h2>{ /* What: Projects Heading Element. Why: The cards' h3 titles need an h2 between them and the page's h1, and the hero already introduces the grid visually. How: This names the section for screen readers while staying out of sight. */ }
+					<h2 className={ cssModObj.visHidHea }>Projects</h2>{ /* What: Visually Hidden Heading Element. Why: The cards' h3 titles need an h2 between them and the page's h1, and the hero already introduces the grid visually. How: This names the section for screen readers while staying out of sight. */ }
 
 					{ filProArr.length > 0 ? ( // What: Grid Or Empty Check. Why: A filter can leave nothing to show. How: This renders the grid when projects remain, or the empty message otherwise.
 
 
-						<div className={ cssModObj.grid }>{ /* What: Projects Grid Div Element. Why: The cards line up in columns. How: This lays out one card per filtered project. */ }
+						<div className={ cssModObj.proGriDiv }>{ /* What: Projects Grid Div Element. Why: The cards line up in columns. How: This lays out one card per filtered project. */ }
 
 
 							{ filProArr.map( ( proRecObj ) => ( // What: Project Card Map Call. Why: Every filtered project gets a card. How: This renders one per record.
@@ -287,7 +287,7 @@ function WorPagCom () : JSX.Element {
 					) : ( // What: Empty Message Branch. Why: The grid shouldn't just vanish when nothing matches. How: This renders the empty message instead.
 
 
-						<div className={ cssModObj.empty }>{ /* What: Empty Div Element. Why: The empty message sits where the grid would. How: This holds the message. */ }
+						<div className={ cssModObj.empMesDiv }>{ /* What: Empty Message Div Element. Why: The empty message sits where the grid would. How: This holds the message. */ }
 
 
 							<p>No projects match that filter.</p>{ /* What: Empty Message Paragraph Element. Why: A visitor learns the filter found nothing. How: This says so. */ }
@@ -306,7 +306,7 @@ function WorPagCom () : JSX.Element {
 
 
 
-			<section className={ cssModObj.process }>{ /* What: Process Section Element. Why: The page closes with how every project is run. How: This holds the pattern, the heading block, and the steps. */ }
+			<section className={ cssModObj.worPrcSec }>{ /* What: Work Process Section Element. Why: The page closes with how every project is run. How: This holds the pattern, the heading block, and the steps. */ }
 
 
 				<GeoBacCom
@@ -316,7 +316,7 @@ function WorPagCom () : JSX.Element {
 
 
 
-				<div className={ cssModObj.processInner }>{ /* What: Process Inner Div Element. Why: The process sits in the page's centered column. How: This stacks the heading block and the steps. */ }
+				<div className={ cssModObj.prcInnDiv }>{ /* What: Process Inner Div Element. Why: The process sits in the page's centered column. How: This stacks the heading block and the steps. */ }
 
 
 					<SecHeaCom
@@ -328,7 +328,7 @@ function WorPagCom () : JSX.Element {
 
 
 
-					<div className={ cssModObj.steps }>{ /* What: Steps Div Element. Why: The four steps read left to right with arrows between them. How: This lays out each step and arrow in a row. */ }
+					<div className={ cssModObj.prcSteDiv }>{ /* What: Process Steps Div Element. Why: The four steps read left to right with arrows between them. How: This lays out each step and arrow in a row. */ }
 
 
 						{ PRO_STE_ARR.map( ( proSteObj, steIndNum ) => ( // What: Process Step Map Call. Why: Every step shows in order. How: This renders each step, followed by an arrow unless it's the last.
@@ -337,14 +337,14 @@ function WorPagCom () : JSX.Element {
 							<Fragment key={ proSteObj.numStr }>{ /* What: Step Fragment. Why: A step and its arrow are one keyed pair with no wrapper. How: This groups them. */ }
 
 
-								<div className={ cssModObj.step }>{ /* What: Step Div Element. Why: Each step is one card. How: This stacks its number, title, and description. */ }
+								<div className={ cssModObj.steCarDiv }>{ /* What: Step Card Div Element. Why: Each step is one card. How: This stacks its number, title, and description. */ }
 
 
-									<div className={ cssModObj.stepNum }>{ proSteObj.numStr }</div>{ /* What: Step Number Div Element. Why: The number shows the step's place. How: This prints it. */ }
+									<div className={ cssModObj.steNumDiv }>{ proSteObj.numStr }</div>{ /* What: Step Number Div Element. Why: The number shows the step's place. How: This prints it. */ }
 
-									<h3 className={ cssModObj.stepTitle }>{ proSteObj.titStr }</h3>{ /* What: Step Title Heading Element. Why: Each step is named. How: This shows the title as an h3 under the section's h2. */ }
+									<h3 className={ cssModObj.steTitHea }>{ proSteObj.titStr }</h3>{ /* What: Step Title Heading Element. Why: Each step is named. How: This shows the title as an h3 under the section's h2. */ }
 
-									<p className={ cssModObj.stepDesc }>{ proSteObj.desStr }</p>{ /* What: Step Description Paragraph Element. Why: A sentence says what the step covers. How: This shows it. */ }
+									<p className={ cssModObj.steDesPar }>{ proSteObj.desStr }</p>{ /* What: Step Description Paragraph Element. Why: A sentence says what the step covers. How: This shows it. */ }
 
 
 								</div>
@@ -354,7 +354,7 @@ function WorPagCom () : JSX.Element {
 
 
 									<div
-										className={ cssModObj.stepArrow }
+										className={ cssModObj.steArrDiv }
 
 										aria-hidden='true'
 									>{ /* What: Step Arrow Div Element. Why: An arrow leads from one step to the next. How: This holds the arrow, hidden from screen readers as decoration. */ }

@@ -9,8 +9,8 @@
  * like every page, centering a huge pale 404 with a hexagon drawing slowly
  * turning behind it, the heading and line above the drawing, and an orange
  * Go Home button. The page's entrance and the drawing's turn play the shared
- * fadeUp and rotateSlow keyframes from the global sheet. Everything that
- * moves holds still under reduced motion.
+ * contentEnterFadeUp and shapeLoopSpin keyframes from the global sheet.
+ * Everything that moves holds still under reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -18,13 +18,13 @@
 
 
 
-/* #region wrap */
+/* #region pagEntDiv */
 
-.wrap { /* What: Not Found Wrap. Why: The 404 content fills the screen and fades in like every page. How: This centers its content on a full-height ivory panel and plays the shared page entrance. */
+.pagEntDiv { /* What: Page Enter Div. Why: The 404 content fills the screen and fades in like every page. How: This centers its content on a full-height ivory panel and plays the shared page entrance. */
 
 
 	align-items     : center;
-	animation       : global( fadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	animation       : global( contentEnterFadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 	background      : var( --bac-pag-col );                                            /* Background Page Color = #F5F0E8 */
 	display         : flex;
 	justify-content : center;
@@ -33,10 +33,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Not Found Wrap. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Div. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
 
 
-	.wrap { /* What: Motionless Not Found Wrap. Why: The page should simply be there. How: This turns the entrance off. */
+	.pagEntDiv { /* What: Motionless Page Enter Div. Why: The page should simply be there. How: This turns the entrance off. */
 
 
 		animation : none;
@@ -48,9 +48,9 @@
 }
 
 
-/* #region inner */
+/* #region nofInnDiv */
 
-.inner { /* What: Not Found Inner. Why: The number, drawing, text, and button read as one centered block. How: This stacks and centers them, positioning the drawing against the block. */
+.nofInnDiv { /* What: Not-Found Inner Div. Why: The number, drawing, text, and button read as one centered block. How: This stacks and centers them, positioning the drawing against the block. */
 
 
 	align-items    : center;
@@ -63,7 +63,7 @@
 
 }
 
-.code { /* What: Error Code. Why: A huge pale 404 says what happened at a glance without shouting. How: This sets it in the display font, scaling with the screen, in the pale ivory, and keeps it from being selected. */
+.errCodDiv { /* What: Error Code Div. Why: A huge pale 404 says what happened at a glance without shouting. How: This sets it in the display font, scaling with the screen, in the pale ivory, and keeps it from being selected. */
 
 
 	color          : var( --bor-mai-col );                                      /* Border Main Color = #D8CFBE */
@@ -77,10 +77,10 @@
 
 }
 
-.geo { /* What: Hexagon Drawing. Why: Nested hexagons turn slowly behind the number, echoing the site's mark. How: This centers the 200px drawing over the block through translate, which combines with the turning transform, and plays the shared slow rotation forever. */
+.hexDraSvg { /* What: Hexagon Drawing SVG. Why: Nested hexagons turn slowly behind the number, echoing the site's mark. How: This centers the 200px drawing over the block through translate, which combines with the turning transform, and plays the shared slow rotation forever. */
 
 
-	animation      : global( rotateSlow ) var( --dur-ani-p18 ) linear infinite; /* Duration Animation Base Plus 18 ~= 24,914.0ms */
+	animation      : global( shapeLoopSpin ) var( --dur-ani-p18 ) linear infinite; /* Duration Animation Base Plus 18 ~= 24,914.0ms */
 	height         : calc( var( --ver-rhy-p09 ) * 1rem );                       /* Vertical Rhythm Base Plus 9 ~= 183.074px */
 	left           : 50%;
 	pointer-events : none;
@@ -91,10 +91,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hexagon Drawing. Why: Someone who asked for less motion shouldn't see the drawing turn. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hexagon Drawing SVG. Why: Someone who asked for less motion shouldn't see the drawing turn. How: This applies only when the reduced-motion preference is set. */
 
 
-	.geo { /* What: Motionless Hexagon Drawing. Why: The drawing should hold still. How: This turns the rotation off. */
+	.hexDraSvg { /* What: Motionless Hexagon Drawing SVG. Why: The drawing should hold still. How: This turns the rotation off. */
 
 
 		animation : none;
@@ -105,7 +105,7 @@
 
 }
 
-.title { /* What: Not Found Title. Why: The heading sits above the turning drawing. How: This sets its size and color and lifts it over the drawing. */
+.nofTitHea { /* What: Not-Found Title Heading. Why: The heading sits above the turning drawing. How: This sets its size and color and lifts it over the drawing. */
 
 
 	color     : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -116,7 +116,7 @@
 
 }
 
-.desc { /* What: Not Found Description. Why: The line explaining the missing page stays short. How: This sets it muted and caps it at 360px. */
+.nofDesPar { /* What: Not-Found Description Paragraph. Why: The line explaining the missing page stays short. How: This sets it muted and caps it at 360px. */
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -125,7 +125,7 @@
 
 }
 
-.btn { /* What: Go Home Button. Why: The way back into the site stands out. How: This sets an orange button in mono capitals, easing its color and lift. */
+.nofHomAnc { /* What: Not-Found Home Anchor. Why: The way back into the site stands out. How: This sets an orange button in mono capitals, easing its color and lift. */
 
 
 	align-items    : center;
@@ -143,7 +143,7 @@
 
 
 }
-.btn:hover { /* What: Hovered Go Home Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
+.nofHomAnc:hover { /* What: Hovered Not-Found Home Anchor. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
 
 
 	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
@@ -151,10 +151,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Go Home Button. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Not-Found Home Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.btn { /* What: Motionless Go Home Button. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+	.nofHomAnc { /* What: Motionless Not-Found Home Anchor. Why: The hover color and lift should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -165,8 +165,8 @@
 
 }
 
-/* #endregion inner */
+/* #endregion nofInnDiv */
 
-/* #endregion wrap */
+/* #endregion pagEntDiv */
 
 

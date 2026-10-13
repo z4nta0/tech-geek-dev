@@ -22,19 +22,19 @@
 
 
 
-/* #region page */
+/* #region pagEntDiv */
 
-.page { /* What: About Page. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global fadeUp keyframe. */
+.pagEntDiv { /* What: Page Enter Div. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global contentEnterFadeUp keyframe. */
 
 
-	animation : global( fadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	animation : global( contentEnterFadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion About Page. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Div. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
 
 
-	.page { /* What: Motionless About Page. Why: The page should simply be there. How: This turns the entrance off. */
+	.pagEntDiv { /* What: Motionless Page Enter Div. Why: The page should simply be there. How: This turns the entrance off. */
 
 
 		animation : none;
@@ -47,9 +47,9 @@
 
 
 
-/* #region hero */
+/* #region aboHerSec */
 
-.hero { /* What: About Hero. Why: The page opens with its introduction clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips the pattern behind it. */
+.aboHerSec { /* What: About Hero Section. Why: The page opens with its introduction clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips the pattern behind it. */
 
 
 	background : var( --bac-pag-col );                                                       /* Background Page Color = #F5F0E8 */
@@ -61,9 +61,9 @@
 }
 
 
-/* #region heroGrid */
+/* #region herGriDiv */
 
-.heroGrid { /* What: Hero Grid. Why: The introduction and the portrait sit side by side in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and lays out the text beside a 420px portrait column. */
+.herGriDiv { /* What: Hero Grid Div. Why: The introduction and the portrait sit side by side in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and lays out the text beside a 420px portrait column. */
 
 
 	align-items           : center;
@@ -79,10 +79,10 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Grid. Why: The portrait column crowds a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Grid Div. Why: The portrait column crowds a tablet. How: This applies at 1024px and below. */
 
 
-	.heroGrid { /* What: One Column Hero Grid. Why: The introduction takes the full width once the portrait drops away. How: This sets one column. */
+	.herGriDiv { /* What: One Column Hero Grid Div. Why: The introduction takes the full width once the portrait drops away. How: This sets one column. */
 
 
 		grid-template-columns : 1fr;
@@ -94,9 +94,9 @@
 }
 
 
-/* #region heroText */
+/* #region herTexDiv */
 
-.heroText { /* What: Hero Text. Why: The introduction reads as one column. How: This stacks the label, heading, paragraphs, and button with gaps. */
+.herTexDiv { /* What: Hero Text Div. Why: The introduction reads as one column. How: This stacks the label, heading, paragraphs, and button with gaps. */
 
 
 	display        : flex;
@@ -107,9 +107,9 @@
 }
 
 
-/* #region heroLabel */
+/* #region herLabSpa */
 
-.heroLabel { /* What: Hero Label. Why: A small label names the page above its heading. How: This sets it in orange mono capitals after its rule. */
+.herLabSpa { /* What: Hero Label Span. Why: A small label names the page above its heading. How: This sets it in orange mono capitals after its rule. */
 
 
 	align-items    : center;
@@ -124,7 +124,7 @@
 
 }
 
-.heroLine { /* What: Hero Line. Why: A short rule leads into the label. How: This draws a 28px orange stroke. */
+.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws a 28px orange stroke. */
 
 
 	background : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
@@ -135,12 +135,12 @@
 
 }
 
-/* #endregion heroLabel */
+/* #endregion herLabSpa */
 
 
-/* #region heroTitle */
+/* #region herTitHea */
 
-.heroTitle { /* What: Hero Title. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
+.herTitHea { /* What: Hero Title Heading. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
 
 
 	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -148,7 +148,7 @@
 
 }
 
-.accent { /* What: Hero Title Accent. Why: The heading's second line carries the accent. How: This sets it in the dark blue. */
+.titAccSpa { /* What: Title Accent Span. Why: The heading's second line carries the accent. How: This sets it in the dark blue. */
 
 
 	color : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
@@ -156,10 +156,10 @@
 
 }
 
-/* #endregion heroTitle */
+/* #endregion herTitHea */
 
 
-.lead { /* What: Lead Paragraph. Why: The opening line reads as a quiet pull quote. How: This sets it a little larger in italic Lora, muted, capped at the paragraph measure. */
+.herLeaPar { /* What: Hero Lead Paragraph. Why: The opening line reads as a quiet pull quote. How: This sets it a little larger in italic Lora, muted, capped at the paragraph measure. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -172,7 +172,7 @@
 
 }
 
-.body { /* What: Body Paragraph. Why: The longer story reads comfortably. How: This sets it muted with roomy lines, capped at the paragraph measure. */
+.herBodPar { /* What: Hero Body Paragraph. Why: The longer story reads comfortably. How: This sets it muted with roomy lines, capped at the paragraph measure. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -184,9 +184,9 @@
 }
 
 
-/* #region ctaRow */
+/* #region herActDiv */
 
-.ctaRow { /* What: Button Row. Why: The introduction ends with its button. How: This lines the button up, wrapping if more join it. */
+.herActDiv { /* What: Hero Actions Div. Why: The introduction ends with its button. How: This lines the button up, wrapping if more join it. */
 
 
 	display   : flex;
@@ -196,7 +196,7 @@
 
 }
 
-.ctaPrimary { /* What: Work With Me Button. Why: The way to get in touch stands out. How: This sets an orange button in mono capitals, easing its color and lift. */
+.butPriAnc { /* What: Button Primary Anchor. Why: The way to get in touch stands out. How: This sets an orange button in mono capitals, easing its color and lift. */
 
 
 	align-items    : center;
@@ -214,7 +214,7 @@
 
 
 }
-.ctaPrimary:hover { /* What: Hovered Work With Me Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
+.butPriAnc:hover { /* What: Hovered Button Primary Anchor. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
 
 
 	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
@@ -222,10 +222,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Work With Me Button. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Primary Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.ctaPrimary { /* What: Motionless Work With Me Button. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+	.butPriAnc { /* What: Motionless Button Primary Anchor. Why: The hover color and lift should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -236,14 +236,14 @@
 
 }
 
-/* #endregion ctaRow */
+/* #endregion herActDiv */
 
-/* #endregion heroText */
+/* #endregion herTexDiv */
 
 
-/* #region heroVisual */
+/* #region herVisDiv */
 
-.heroVisual { /* What: Hero Visual. Why: The portrait and its facts sit centered in their column. How: This centers them, positioning the floating cards against the column. */
+.herVisDiv { /* What: Hero Visual Div. Why: The portrait and its facts sit centered in their column. How: This centers them, positioning the floating cards against the column. */
 
 
 	align-items     : center;
@@ -253,10 +253,10 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Visual. Why: The portrait column crowds a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Visual Div. Why: The portrait column crowds a tablet. How: This applies at 1024px and below. */
 
 
-	.heroVisual { /* What: Hidden Hero Visual. Why: The introduction reads on its own on a smaller screen. How: This hides the portrait and its facts. */
+	.herVisDiv { /* What: Hidden Hero Visual Div. Why: The introduction reads on its own on a smaller screen. How: This hides the portrait and its facts. */
 
 
 		display : none;
@@ -268,9 +268,9 @@
 }
 
 
-/* #region portraitWrap */
+/* #region porWraDiv */
 
-.portraitWrap { /* What: Portrait Wrap. Why: The portrait and its frame share one 280 by 320px box. How: This sizes the box and positions the frame against it. */
+.porWraDiv { /* What: Portrait Wrap Div. Why: The portrait and its frame share one 280 by 320px box. How: This sizes the box and positions the frame against it. */
 
 
 	height   : calc( var( --ver-rhy-p11 ) * 1rem ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
@@ -280,7 +280,7 @@
 
 }
 
-.frameSvg { /* What: Frame SVG. Why: The hexagon frame reaches 20px past the portrait on every side. How: This stretches the drawing 20px beyond the box. */
+.porFraSvg { /* What: Portrait Frame SVG. Why: The hexagon frame reaches 20px past the portrait on every side. How: This stretches the drawing 20px beyond the box. */
 
 
 	height   : calc( 100% + var( --spa-ver-p01 ) * 2 );                             /* Spacing Vertical Base Plus 1 ~= 19.304px */
@@ -291,7 +291,7 @@
 
 }
 
-.portrait { /* What: Portrait. Why: The photo fills its box above the frame. How: This sizes and crops it, rounds its corners, and lifts it over the frame. */
+.porPhoIma { /* What: Portrait Photo Image. Why: The photo fills its box above the frame. How: This sizes and crops it, rounds its corners, and lifts it over the frame. */
 
 
 	border-radius : var( --rad-bor-med ); /* Radius Border Medium = 11px */
@@ -304,12 +304,12 @@
 
 }
 
-/* #endregion portraitWrap */
+/* #endregion porWraDiv */
 
 
-/* #region floatCard */
+/* #region floFacDiv */
 
-.floatCard { /* What: Floating Fact Card. Why: Each fact sits on a small white card over the portrait's corner. How: This sets the bordered card with a soft shadow, stacking its figure over its label above the portrait. */
+.floFacDiv { /* What: Floating Fact Div. Why: Each fact sits on a small white card over the portrait's corner. How: This sets the bordered card with a soft shadow, stacking its figure over its label above the portrait. */
 
 
 	background     : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
@@ -324,7 +324,7 @@
 
 
 }
-.floatTop { /* What: Top Fact Card. Why: The first fact sits off the portrait's top right corner. How: This places it just past that corner. */
+.floFacDiv--top { /* What: Top Floating Fact Div. Why: The first fact sits off the portrait's top right corner. How: This places it just past that corner. */
 
 
 	right : calc( var( --spa-hor-p02 ) * -1 ); /* Spacing Horizontal Base Plus 2 ~= 25.572px */
@@ -332,7 +332,7 @@
 
 
 }
-.floatBottom { /* What: Bottom Fact Card. Why: The second fact sits off the portrait's bottom left corner. How: This places it just past that corner. */
+.floFacDiv--bottom { /* What: Bottom Floating Fact Div. Why: The second fact sits off the portrait's bottom left corner. How: This places it just past that corner. */
 
 
 	bottom : calc( var( --spa-ver-bas ) * -1 ); /* Spacing Vertical Base ~= 14.572px */
@@ -341,7 +341,7 @@
 
 }
 
-.floatNum { /* What: Fact Figure. Why: The figure is the card's point. How: This sets it large and bold in the display font, tight. */
+.facFigSpa { /* What: Fact Figure Span. Why: The figure is the card's point. How: This sets it large and bold in the display font, tight. */
 
 
 	color          : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -354,7 +354,7 @@
 
 }
 
-.floatLabel { /* What: Fact Label. Why: The label says what the figure counts, quietly. How: This sets it small in muted mono capitals. */
+.facLabSpa { /* What: Fact Label Span. Why: The label says what the figure counts, quietly. How: This sets it small in muted mono capitals. */
 
 
 	color          : var( --tex-mut-col );                   /* Text Muted Color = #646482 */
@@ -366,19 +366,19 @@
 
 }
 
-/* #endregion floatCard */
+/* #endregion floFacDiv */
 
-/* #endregion heroVisual */
+/* #endregion herVisDiv */
 
-/* #endregion heroGrid */
+/* #endregion herGriDiv */
 
-/* #endregion hero */
+/* #endregion aboHerSec */
 
 
 
-/* #region skillsSection */
+/* #region aboSkiSec */
 
-.skillsSection { /* What: Skills Section. Why: The skills sit on white with the section spacing. How: This sets the background and the shared section padding. */
+.aboSkiSec { /* What: About Skills Section. Why: The skills sit on white with the section spacing. How: This sets the background and the shared section padding. */
 
 
 	background : var( --bac-sur-col );   /* Background Surface Color = #FFFFFF */
@@ -388,9 +388,9 @@
 }
 
 
-/* #region skillsInner */
+/* #region skiInnDiv */
 
-.skillsInner { /* What: Skills Inner. Why: The section sits in the page's centered column. How: This caps and centers the column with its side padding. */
+.skiInnDiv { /* What: Skills Inner Div. Why: The section sits in the page's centered column. How: This caps and centers the column with its side padding. */
 
 
 	margin    : 0 auto;
@@ -402,9 +402,9 @@
 }
 
 
-/* #region skillsGrid */
+/* #region skiGriDiv */
 
-.skillsGrid { /* What: Skills Grid. Why: The groups line up in even columns under the heading. How: This sets four columns with gaps, dropped below the heading. */
+.skiGriDiv { /* What: Skills Grid Div. Why: The groups line up in even columns under the heading. How: This sets four columns with gaps, dropped below the heading. */
 
 
 	display               : grid;
@@ -414,10 +414,10 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Skills Grid. Why: Four groups crowd a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Skills Grid Div. Why: Four groups crowd a tablet. How: This applies at 1024px and below. */
 
 
-	.skillsGrid { /* What: Two Column Skills Grid. Why: Two groups fit side by side on a tablet. How: This sets two columns. */
+	.skiGriDiv { /* What: Two Column Skills Grid Div. Why: Two groups fit side by side on a tablet. How: This sets two columns. */
 
 
 		grid-template-columns : repeat( 2, 1fr );
@@ -427,10 +427,10 @@
 
 
 }
-@media ( max-width : 640px ) { /* What: Phone Skills Grid. Why: Two groups crowd a phone. How: This applies at 640px and below. */
+@media ( max-width : 640px ) { /* What: Phone Skills Grid Div. Why: Two groups crowd a phone. How: This applies at 640px and below. */
 
 
-	.skillsGrid { /* What: One Column Skills Grid. Why: One group fits across a phone. How: This sets one column. */
+	.skiGriDiv { /* What: One Column Skills Grid Div. Why: One group fits across a phone. How: This sets one column. */
 
 
 		grid-template-columns : 1fr;
@@ -442,9 +442,9 @@
 }
 
 
-/* #region skillGroup */
+/* #region skiGroDiv */
 
-.skillGroup { /* What: Skill Group. Why: Each group stacks its heading over its tags. How: This stacks them with a gap. */
+.skiGroDiv { /* What: Skill Group Div. Why: Each group stacks its heading over its tags. How: This stacks them with a gap. */
 
 
 	display        : flex;
@@ -455,9 +455,9 @@
 }
 
 
-/* #region skillGroupHeader */
+/* #region groHeaDiv */
 
-.skillGroupHeader { /* What: Skill Group Header. Why: A dot leads into the group's name. How: This sets them side by side. */
+.groHeaDiv { /* What: Group Header Div. Why: A dot leads into the group's name. How: This sets them side by side. */
 
 
 	align-items : center;
@@ -467,7 +467,7 @@
 
 }
 
-.skillGroupDot { /* What: Skill Group Dot. Why: A small orange dot marks each group. How: This draws an 8px circle that never shrinks. */
+.groDotSpa { /* What: Group Dot Span. Why: A small orange dot marks each group. How: This draws an 8px circle that never shrinks. */
 
 
 	background    : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
@@ -479,7 +479,7 @@
 
 }
 
-.skillGroupTitle { /* What: Skill Group Title. Why: The group's name reads as a small label. How: This sets it in muted mono capitals. */
+.groTitHea { /* What: Group Title Heading. Why: The group's name reads as a small label. How: This sets it in muted mono capitals. */
 
 
 	color          : var( --tex-sec-col );                   /* Text Secondary Color = #3D3D5C */
@@ -492,10 +492,10 @@
 
 }
 
-/* #endregion skillGroupHeader */
+/* #endregion groHeaDiv */
 
 
-.skillTags { /* What: Skill Tags. Why: The group's technologies read as one cluster. How: This wraps the tags with small gaps. */
+.skiTagDiv { /* What: Skill Tags Div. Why: The group's technologies read as one cluster. How: This wraps the tags with small gaps. */
 
 
 	display   : flex;
@@ -505,19 +505,19 @@
 
 }
 
-/* #endregion skillGroup */
+/* #endregion skiGroDiv */
 
-/* #endregion skillsGrid */
+/* #endregion skiGriDiv */
 
-/* #endregion skillsInner */
+/* #endregion skiInnDiv */
 
-/* #endregion skillsSection */
+/* #endregion aboSkiSec */
 
 
 
-/* #region timelineSection */
+/* #region aboTimSec */
 
-.timelineSection { /* What: Timeline Section. Why: The timeline sits on the ivory with the section spacing. How: This sets the background and the shared section padding, and clips the pattern behind it. */
+.aboTimSec { /* What: About Timeline Section. Why: The timeline sits on the ivory with the section spacing. How: This sets the background and the shared section padding, and clips the pattern behind it. */
 
 
 	background : var( --bac-pag-col );   /* Background Page Color = #F5F0E8 */
@@ -529,9 +529,9 @@
 }
 
 
-/* #region timelineInner */
+/* #region timInnDiv */
 
-.timelineInner { /* What: Timeline Inner. Why: The timeline sits in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the heading block over the milestones. */
+.timInnDiv { /* What: Timeline Inner Div. Why: The timeline sits in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the heading block over the milestones. */
 
 
 	display        : flex;
@@ -548,9 +548,9 @@
 }
 
 
-/* #region timeline */
+/* #region timLisDiv */
 
-.timeline { /* What: Timeline. Why: The milestones stack with no gaps, so their lines join. How: This stacks them flush. */
+.timLisDiv { /* What: Timeline List Div. Why: The milestones stack with no gaps, so their lines join. How: This stacks them flush. */
 
 
 	display        : flex;
@@ -561,9 +561,9 @@
 }
 
 
-/* #region timelineItem */
+/* #region timIteDiv */
 
-.timelineItem { /* What: Timeline Item. Why: Each milestone sets its year, its connector, and its text in columns. How: This lays out an 80px year column, a 40px connector, and the text. */
+.timIteDiv { /* What: Timeline Item Div. Why: Each milestone sets its year, its connector, and its text in columns. How: This lays out an 80px year column, a 40px connector, and the text. */
 
 
 	display               : grid;
@@ -572,10 +572,10 @@
 
 
 }
-@media ( max-width : 640px ) { /* What: Phone Timeline Item. Why: The year and connector columns crowd a phone. How: This applies at 640px and below. */
+@media ( max-width : 640px ) { /* What: Phone Timeline Item Div. Why: The year and connector columns crowd a phone. How: This applies at 640px and below. */
 
 
-	.timelineItem { /* What: Narrow Timeline Item. Why: The text needs more of a phone's width. How: This narrows the year and connector columns. */
+	.timIteDiv { /* What: Narrow Timeline Item Div. Why: The text needs more of a phone's width. How: This narrows the year and connector columns. */
 
 
 		grid-template-columns : 60px 32px 1fr;
@@ -587,9 +587,9 @@
 }
 
 
-/* #region timelineLeft */
+/* #region timLefDiv */
 
-.timelineLeft { /* What: Timeline Left. Why: The year sits against the connector. How: This pushes it to the column's right edge, nudged down to the dot. */
+.timLefDiv { /* What: Timeline Left Div. Why: The year sits against the connector. How: This pushes it to the column's right edge, nudged down to the dot. */
 
 
 	display         : flex;
@@ -599,7 +599,7 @@
 
 }
 
-.timelineYear { /* What: Timeline Year. Why: Each milestone is dated in the accent. How: This sets the year in orange mono. */
+.timYeaSpa { /* What: Timeline Year Span. Why: Each milestone is dated in the accent. How: This sets the year in orange mono. */
 
 
 	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
@@ -611,12 +611,12 @@
 
 }
 
-/* #endregion timelineLeft */
+/* #endregion timLefDiv */
 
 
-/* #region timelineConnector */
+/* #region timConDiv */
 
-.timelineConnector { /* What: Timeline Connector. Why: The dot and its line stack in the middle column. How: This centers them in a column. */
+.timConDiv { /* What: Timeline Connector Div. Why: The dot and its line stack in the middle column. How: This centers them in a column. */
 
 
 	align-items    : center;
@@ -626,7 +626,7 @@
 
 }
 
-.timelineDot { /* What: Timeline Dot. Why: Each milestone has its own ring. How: This draws a 12px white circle with a dark blue ring, never shrinking. */
+.timDotDiv { /* What: Timeline Dot Div. Why: Each milestone has its own ring. How: This draws a 12px white circle with a dark blue ring, never shrinking. */
 
 
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
@@ -640,7 +640,7 @@
 
 }
 
-.timelineLine { /* What: Timeline Line. Why: A line leads down to the next milestone. How: This draws a 2px pale stroke that fills the rest of the item. */
+.timLinDiv { /* What: Timeline Line Div. Why: A line leads down to the next milestone. How: This draws a 2px pale stroke that fills the rest of the item. */
 
 
 	background : var( --bor-mai-col );                /* Border Main Color = #D8CFBE */
@@ -652,12 +652,12 @@
 
 }
 
-/* #endregion timelineConnector */
+/* #endregion timConDiv */
 
 
-/* #region timelineContent */
+/* #region timCotDiv */
 
-.timelineContent { /* What: Timeline Content. Why: The milestone's text stacks in the last column, with room before the next. How: This stacks the title, organization, and description, padded below. */
+.timCotDiv { /* What: Timeline Content Div. Why: The milestone's text stacks in the last column, with room before the next. How: This stacks the title, organization, and description, padded below. */
 
 
 	display        : flex;
@@ -668,7 +668,7 @@
 
 }
 
-.timelineTitle { /* What: Timeline Title. Why: Each milestone is named. How: This sets the title bold in the main text color. */
+.timTitHea { /* What: Timeline Title Heading. Why: Each milestone is named. How: This sets the title bold in the main text color. */
 
 
 	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -679,7 +679,7 @@
 
 }
 
-.timelineOrg { /* What: Timeline Organization. Why: Who the work was for reads as a small label. How: This sets it in dark blue mono capitals. */
+.timOrgSpa { /* What: Timeline Organization Span. Why: Who the work was for reads as a small label. How: This sets it in dark blue mono capitals. */
 
 
 	color          : var( --acs-dar-col );                   /* Accent-Secondary Dark Color ~= #126186 */
@@ -691,7 +691,7 @@
 
 }
 
-.timelineDesc { /* What: Timeline Description. Why: A sentence says what happened, quietly. How: This sets it small and muted, capped at the paragraph measure. */
+.timDesPar { /* What: Timeline Description Paragraph. Why: A sentence says what happened, quietly. How: This sets it small and muted, capped at the paragraph measure. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -702,21 +702,21 @@
 
 }
 
-/* #endregion timelineContent */
+/* #endregion timCotDiv */
 
-/* #endregion timelineItem */
+/* #endregion timIteDiv */
 
-/* #endregion timeline */
+/* #endregion timLisDiv */
 
-/* #endregion timelineInner */
+/* #endregion timInnDiv */
 
-/* #endregion timelineSection */
+/* #endregion aboTimSec */
 
 
 
-/* #region valuesSection */
+/* #region aboValSec */
 
-.valuesSection { /* What: Values Section. Why: The page closes on a warmer band with the section spacing. How: This sets the warm ivory and the shared section padding. */
+.aboValSec { /* What: About Values Section. Why: The page closes on a warmer band with the section spacing. How: This sets the warm ivory and the shared section padding. */
 
 
 	background : var( --bac-sun-col );   /* Background Sunken Color = #EDE6D8 */
@@ -726,9 +726,9 @@
 }
 
 
-/* #region valuesInner */
+/* #region valInnDiv */
 
-.valuesInner { /* What: Values Inner. Why: The section sits in the page's centered column. How: This caps and centers the column with its side padding. */
+.valInnDiv { /* What: Values Inner Div. Why: The section sits in the page's centered column. How: This caps and centers the column with its side padding. */
 
 
 	margin    : 0 auto;
@@ -740,9 +740,9 @@
 }
 
 
-/* #region valuesGrid */
+/* #region valGriDiv */
 
-.valuesGrid { /* What: Values Grid. Why: The value cards line up in even columns under the heading. How: This sets four columns with gaps, dropped below the heading. */
+.valGriDiv { /* What: Values Grid Div. Why: The value cards line up in even columns under the heading. How: This sets four columns with gaps, dropped below the heading. */
 
 
 	display               : grid;
@@ -752,10 +752,10 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Values Grid. Why: Four cards crowd a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Values Grid Div. Why: Four cards crowd a tablet. How: This applies at 1024px and below. */
 
 
-	.valuesGrid { /* What: Two Column Values Grid. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
+	.valGriDiv { /* What: Two Column Values Grid Div. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
 
 
 		grid-template-columns : repeat( 2, 1fr );
@@ -765,10 +765,10 @@
 
 
 }
-@media ( max-width : 640px ) { /* What: Phone Values Grid. Why: Two cards crowd a phone. How: This applies at 640px and below. */
+@media ( max-width : 640px ) { /* What: Phone Values Grid Div. Why: Two cards crowd a phone. How: This applies at 640px and below. */
 
 
-	.valuesGrid { /* What: One Column Values Grid. Why: One card fits across a phone. How: This sets one column. */
+	.valGriDiv { /* What: One Column Values Grid Div. Why: One card fits across a phone. How: This sets one column. */
 
 
 		grid-template-columns : 1fr;
@@ -780,9 +780,9 @@
 }
 
 
-/* #region valueCard */
+/* #region valCarDiv */
 
-.valueCard { /* What: Value Card. Why: Each value is one white card. How: This sets the bordered card, stacks its symbol, title, and description, and eases its lift and shadow. */
+.valCarDiv { /* What: Value Card Div. Why: Each value is one white card. How: This sets the bordered card, stacks its symbol, title, and description, and eases its lift and shadow. */
 
 
 	background     : var( --bac-sur-col );                                            /* Background Surface Color = #FFFFFF */
@@ -796,7 +796,7 @@
 
 
 }
-.valueCard:hover { /* What: Hovered Value Card. Why: A card should respond to the pointer. How: This lifts it 3px and casts the medium shadow. */
+.valCarDiv:hover { /* What: Hovered Value Card Div. Why: A card should respond to the pointer. How: This lifts it 3px and casts the medium shadow. */
 
 
 	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
@@ -804,10 +804,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Value Card. Why: Someone who asked for less motion shouldn't see the cards glide. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Value Card Div. Why: Someone who asked for less motion shouldn't see the cards glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.valueCard { /* What: Motionless Value Card. Why: The lift and shadow should simply switch. How: This turns the transition off. */
+	.valCarDiv { /* What: Motionless Value Card Div. Why: The lift and shadow should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -818,7 +818,7 @@
 
 }
 
-.valueIcon { /* What: Value Icon. Why: A geometric symbol marks each value. How: This sets it large in orange. */
+.valIcoSpa { /* What: Value Icon Span. Why: A geometric symbol marks each value. How: This sets it large in orange. */
 
 
 	color       : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
@@ -828,7 +828,7 @@
 
 }
 
-.valueTitle { /* What: Value Title. Why: Each value is named. How: This sets the title bold in the main text color. */
+.valTitHea { /* What: Value Title Heading. Why: Each value is named. How: This sets the title bold in the main text color. */
 
 
 	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -838,7 +838,7 @@
 
 }
 
-.valueDesc { /* What: Value Description. Why: A sentence says what the value means, quietly. How: This sets it small and muted. */
+.valDesPar { /* What: Value Description Paragraph. Why: A sentence says what the value means, quietly. How: This sets it small and muted. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -848,14 +848,14 @@
 
 }
 
-/* #endregion valueCard */
+/* #endregion valCarDiv */
 
-/* #endregion valuesGrid */
+/* #endregion valGriDiv */
 
-/* #endregion valuesInner */
+/* #endregion valInnDiv */
 
-/* #endregion valuesSection */
+/* #endregion aboValSec */
 
-/* #endregion page */
+/* #endregion pagEntDiv */
 
 

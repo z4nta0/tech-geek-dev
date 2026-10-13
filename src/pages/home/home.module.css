@@ -13,11 +13,12 @@
  * into the stats strip. Below come the featured projects, the services in
  * white cards that lift on hover, and a dark closing banner. Below 1024px
  * the code window drops away and the grids step down, reaching one column on
- * a phone. The shapes, the entrances, and the dot play the shared rotateSlow,
- * fadeUp, and pulse keyframes from the global sheet; the ticker plays its
- * own. The page's centered columns take the shared container values, and its
- * sections the shared section padding, merged into their own rules.
- * Everything that moves holds still under reduced motion.
+ * a phone. The shapes, the entrances, and the dot play the shared
+ * shapeLoopSpin, contentEnterFadeUp, and statusLoopPulse keyframes from the
+ * global sheet; the ticker plays its own. The page's centered columns take
+ * the shared container values, and its sections the shared section padding,
+ * merged into their own rules. Everything that moves holds still under
+ * reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -25,19 +26,19 @@
 
 
 
-/* #region page */
+/* #region pagEntDiv */
 
-.page { /* What: Home Page. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global fadeUp keyframe. */
+.pagEntDiv { /* What: Page Enter Div. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global contentEnterFadeUp keyframe. */
 
 
-	animation : global( fadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	animation : global( contentEnterFadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Home Page. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Div. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
 
 
-	.page { /* What: Motionless Home Page. Why: The page should simply be there. How: This turns the entrance off. */
+	.pagEntDiv { /* What: Motionless Page Enter Div. Why: The page should simply be there. How: This turns the entrance off. */
 
 
 		animation : none;
@@ -50,9 +51,9 @@
 
 
 
-/* #region hero */
+/* #region homHerSec */
 
-.hero { /* What: Home Hero. Why: The page opens on a full screen introduction clear of the fixed bar. How: This sets the ivory band at least a screen tall, centers its content, pads it below the bar, and clips the shapes behind it. */
+.homHerSec { /* What: Home Hero Section. Why: The page opens on a full screen introduction clear of the fixed bar. How: This sets the ivory band at least a screen tall, centers its content, pads it below the bar, and clips the shapes behind it. */
 
 
 	align-items : center;
@@ -67,9 +68,9 @@
 }
 
 
-/* #region shapes */
+/* #region shaLayDiv */
 
-.shapes { /* What: Hero Shapes. Why: The turning shapes sit behind the hero without catching clicks. How: This lets the pointer pass through. */
+.shaLayDiv { /* What: Shape Layer Div. Why: The turning shapes sit behind the hero without catching clicks. How: This lets the pointer pass through. */
 
 
 	pointer-events : none;
@@ -77,7 +78,7 @@
 
 }
 
-.shape { /* What: Hero Shape. Why: Each shape floats faintly behind the hero. How: This positions it against the hero and nearly fades it out. */
+.herShaDiv { /* What: Hero Shape Div. Why: Each shape floats faintly behind the hero. How: This positions it against the hero and nearly fades it out. */
 
 
 	opacity  : 0.07;
@@ -85,10 +86,10 @@
 
 
 }
-.shapeHex { /* What: Hexagon Shape. Why: A large blue hexagon echoes the site's mark at the hero's right. How: This clips a 320px blue square to a hexagon past the right edge and turns it once every 30 seconds. */
+.herShaDiv--hexagon { /* What: Hexagon Hero Shape Div. Why: A large blue hexagon echoes the site's mark at the hero's right. How: This clips a 320px blue square to a hexagon past the right edge and turns it once every 30 seconds. */
 
 
-	animation  : global( rotateSlow ) var( --dur-ani-p19 ) linear infinite; /* Duration Animation Base Plus 19 ~= 33,004.0ms */
+	animation  : global( shapeLoopSpin ) var( --dur-ani-p19 ) linear infinite; /* Duration Animation Base Plus 19 ~= 33,004.0ms */
 	background : var( --acc-sec-col );                                      /* Accent Secondary Color = #7DB9D8 */
 	clip-path  : polygon( 50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25% );
 	height     : calc( var( --ver-rhy-p11 ) * 1rem );                       /* Vertical Rhythm Base Plus 11 ~= 321.273px */
@@ -98,10 +99,10 @@
 
 
 }
-.shapeCircle { /* What: Circle Shape. Why: An orange ring varies the shapes at the hero's lower left. How: This draws a 200px ring a little stronger than the others and turns it backward every 20 seconds. */
+.herShaDiv--circle { /* What: Circle Hero Shape Div. Why: An orange ring varies the shapes at the hero's lower left. How: This draws a 200px ring a little stronger than the others and turns it backward every 20 seconds. */
 
 
-	animation     : global( rotateSlow ) var( --dur-ani-p18 ) linear infinite reverse; /* Duration Animation Base Plus 18 ~= 24,914.0ms */
+	animation     : global( shapeLoopSpin ) var( --dur-ani-p18 ) linear infinite reverse; /* Duration Animation Base Plus 18 ~= 24,914.0ms */
 	background    : transparent;
 	border        : var( --bor-wid-xla ) solid var( --acc-mai-col );                   /* Border Width Extra Large ~= 3.571px, Accent Main Color = #F26419 */
 	border-radius : 50%;
@@ -113,10 +114,10 @@
 
 
 }
-.shapeSquare { /* What: Square Shape. Why: A tilted outlined square varies the shapes near the hero's top. How: This draws a 120px dark blue square tipped 45 degrees through rotate, which the turning transform adds to, and turns it every 15 seconds. */
+.herShaDiv--square { /* What: Square Hero Shape Div. Why: A tilted outlined square varies the shapes near the hero's top. How: This draws a 120px dark blue square tipped 45 degrees through rotate, which the turning transform adds to, and turns it every 15 seconds. */
 
 
-	animation  : global( rotateSlow ) var( --dur-ani-p17 ) linear infinite; /* Duration Animation Base Plus 17 ~= 18,807.0ms */
+	animation  : global( shapeLoopSpin ) var( --dur-ani-p17 ) linear infinite; /* Duration Animation Base Plus 17 ~= 18,807.0ms */
 	background : transparent;
 	border     : var( --bor-wid-lar ) solid var( --acs-str-col );           /* Border Width Large ~= 2.035px, Accent-Secondary Strong Color = #4A91B8 */
 	height     : calc( var( --ver-rhy-p07 ) * 1rem );                       /* Vertical Rhythm Base Plus 7 ~= 104.323px */
@@ -128,12 +129,12 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hero Shapes. Why: Someone who asked for less motion shouldn't see the shapes turn. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Shape Layer Div. Why: Someone who asked for less motion shouldn't see the shapes turn. How: This applies only when the reduced-motion preference is set. */
 
 
-	.shapeHex,
-	.shapeCircle,
-	.shapeSquare { /* What: Motionless Hero Shapes. Why: The shapes should hold still. How: This turns every rotation off. */
+	.herShaDiv--hexagon,
+	.herShaDiv--circle,
+	.herShaDiv--square { /* What: Motionless Hero Shape Div. Why: The shapes should hold still. How: This turns every rotation off. */
 
 
 		animation : none;
@@ -144,12 +145,12 @@
 
 }
 
-/* #endregion shapes */
+/* #endregion shaLayDiv */
 
 
-/* #region heroInner */
+/* #region herInnDiv */
 
-.heroInner { /* What: Hero Inner. Why: The pitch and the code window sit side by side in the page's centered column, above the shapes. How: This caps and centers the column with its side padding and lays out a wide pitch column beside a narrow visual one. */
+.herInnDiv { /* What: Hero Inner Div. Why: The pitch and the code window sit side by side in the page's centered column, above the shapes. How: This caps and centers the column with its side padding and lays out a wide pitch column beside a narrow visual one. */
 
 
 	align-items           : center;
@@ -165,10 +166,10 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Inner. Why: The hero's columns need a smaller gap on a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Inner Div. Why: The hero's columns need a smaller gap on a tablet. How: This applies at 1024px and below. */
 
 
-	.heroInner { /* What: Tighter Hero Inner. Why: The gap would crowd the pitch on a tablet. How: This halves the gap, keeping the two columns. */
+	.herInnDiv { /* What: Tighter Hero Inner Div. Why: The gap would crowd the pitch on a tablet. How: This halves the gap, keeping the two columns. */
 
 
 		gap                   : var( --spa-ver-p05 ); /* Spacing Vertical Base Plus 5 ~= 59.447px */
@@ -179,10 +180,10 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Phone Hero Inner. Why: Two columns crowd a phone. How: This applies at 768px and below. */
+@media ( max-width : 768px ) { /* What: Phone Hero Inner Div. Why: Two columns crowd a phone. How: This applies at 768px and below. */
 
 
-	.heroInner { /* What: One Column Hero Inner. Why: The pitch takes the full width on a phone. How: This sets one column. */
+	.herInnDiv { /* What: One Column Hero Inner Div. Why: The pitch takes the full width on a phone. How: This sets one column. */
 
 
 		gap                   : var( --spa-hor-p05 ); /* Spacing Horizontal Base Plus 5 ~= 59.447px */
@@ -195,12 +196,12 @@
 }
 
 
-/* #region heroContent */
+/* #region herConDiv */
 
-.heroContent { /* What: Hero Content. Why: The pitch reads as one column that fades up first. How: This stacks the label, heading, line, buttons, and ticker, lets the column shrink below its content, and plays the shared fadeUp. */
+.herConDiv { /* What: Hero Content Div. Why: The pitch reads as one column that fades up first. How: This stacks the label, heading, line, buttons, and ticker, lets the column shrink below its content, and plays the shared contentEnterFadeUp. */
 
 
-	animation      : global( fadeUp ) var( --dur-ani-p05 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	animation      : global( contentEnterFadeUp ) var( --dur-ani-p05 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 	display        : flex;
 	flex-direction : column;
 	gap            : var( --spa-ver-p02 );                                            /* Spacing Vertical Base Plus 2 ~= 25.572px */
@@ -208,10 +209,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hero Content. Why: Someone who asked for less motion shouldn't see the pitch slide in. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hero Content Div. Why: Someone who asked for less motion shouldn't see the pitch slide in. How: This applies only when the reduced-motion preference is set. */
 
 
-	.heroContent { /* What: Motionless Hero Content. Why: The pitch should simply be there. How: This turns the entrance off. */
+	.herConDiv { /* What: Motionless Hero Content Div. Why: The pitch should simply be there. How: This turns the entrance off. */
 
 
 		animation : none;
@@ -223,9 +224,9 @@
 }
 
 
-/* #region heroLabel */
+/* #region herLabDiv */
 
-.heroLabel { /* What: Hero Label. Why: The availability label reads as a small pill. How: This sets a warm ivory pill in muted mono capitals, only as wide as its content. */
+.herLabDiv { /* What: Hero Label Div. Why: The availability label reads as a small pill. How: This sets a warm ivory pill in muted mono capitals, only as wide as its content. */
 
 
 	align-items    : center;
@@ -245,10 +246,10 @@
 
 }
 
-.pulse { /* What: Pulse Dot. Why: A pulsing green dot signals availability. How: This draws an 8px green circle, never shrinking, playing the shared pulse forever. */
+.pulDotSpa { /* What: Pulse Dot Span. Why: A pulsing green dot signals availability. How: This draws an 8px green circle, never shrinking, playing the shared pulse forever. */
 
 
-	animation     : global( pulse ) var( --dur-ani-p10 ) var( --mot-sta-eas ) infinite; /* Duration Animation Base Plus 10 ~= 2,627.0ms, Motion Standard Easing = ease */
+	animation     : global( statusLoopPulse ) var( --dur-ani-p10 ) var( --mot-sta-eas ) infinite; /* Duration Animation Base Plus 10 ~= 2,627.0ms, Motion Standard Easing = ease */
 	background    : var( --suc-mai-col );                                               /* Success Main Color = #22c55e */
 	border-radius : 50%;
 	flex-shrink   : 0;
@@ -257,10 +258,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Pulse Dot. Why: Someone who asked for less motion shouldn't see the dot pulse. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Pulse Dot Span. Why: Someone who asked for less motion shouldn't see the dot pulse. How: This applies only when the reduced-motion preference is set. */
 
 
-	.pulse { /* What: Motionless Pulse Dot. Why: The dot should hold still. How: This turns the pulse off. */
+	.pulDotSpa { /* What: Motionless Pulse Dot Span. Why: The dot should hold still. How: This turns the pulse off. */
 
 
 		animation : none;
@@ -271,7 +272,7 @@
 
 }
 
-.mono { /* What: Availability Text. Why: The label's words read in the mono font at the label's own size, the smallest the type scale allows. How: This sets the mono font, inheriting the label's size. */
+.avaTexSpa { /* What: Availability Text Span. Why: The label's words read in the mono font at the label's own size, the smallest the type scale allows. How: This sets the mono font, inheriting the label's size. */
 
 
 	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
@@ -279,12 +280,12 @@
 
 }
 
-/* #endregion heroLabel */
+/* #endregion herLabDiv */
 
 
-/* #region heroTitle */
+/* #region herTitHea */
 
-.heroTitle { /* What: Hero Title. Why: The heading reads large and tight. How: This sets its color and a tight line height, the size coming from the global heading styles. */
+.herTitHea { /* What: Hero Title Heading. Why: The heading reads large and tight. How: This sets its color and a tight line height, the size coming from the global heading styles. */
 
 
 	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -293,7 +294,7 @@
 
 }
 
-.accent { /* What: Hero Title Accent. Why: Digital carries the accent with an underline stroke. How: This sets it dark blue and positions its stroke. */
+.titAccSpa { /* What: Title Accent Span. Why: Digital carries the accent with an underline stroke. How: This sets it dark blue and positions its stroke. */
 
 
 	color    : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
@@ -302,7 +303,7 @@
 
 
 }
-.accent::after { /* What: Hero Title Accent Stroke. Why: A soft orange stroke underlines the accent word. How: This draws a 4px rounded orange bar along its bottom, partly faded. */
+.titAccSpa::after { /* What: Title Accent Span Stroke. Why: A soft orange stroke underlines the accent word. How: This draws a 4px rounded orange bar along its bottom, partly faded. */
 
 
 	background    : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
@@ -318,7 +319,7 @@
 
 }
 
-.dot { /* What: Hero Title Dot. Why: The heading ends on an orange full stop. How: This sets the dot orange. */
+.titDotSpa { /* What: Title Dot Span. Why: The heading ends on an orange full stop. How: This sets the dot orange. */
 
 
 	color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
@@ -326,10 +327,10 @@
 
 }
 
-/* #endregion heroTitle */
+/* #endregion herTitHea */
 
 
-.heroSub { /* What: Hero Subtitle. Why: The pitch line reads a little larger and quieter. How: This sets it muted with roomy lines, capped at the paragraph measure. */
+.herSubPar { /* What: Hero Subtitle Paragraph. Why: The pitch line reads a little larger and quieter. How: This sets it muted with roomy lines, capped at the paragraph measure. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -341,9 +342,9 @@
 }
 
 
-/* #region heroCtas */
+/* #region herActDiv */
 
-.heroCtas { /* What: Hero Buttons. Why: The two next steps sit side by side. How: This lines them up with a gap, wrapping when they don't fit. */
+.herActDiv { /* What: Hero Actions Div. Why: The two next steps sit side by side. How: This lines them up with a gap, wrapping when they don't fit. */
 
 
 	display   : flex;
@@ -353,7 +354,7 @@
 
 }
 
-.ctaPrimary { /* What: View Work Button. Why: The main next step stands out. How: This sets an orange button in mono capitals with its arrow, easing its color and lift. */
+.butPriAnc { /* What: Button Primary Anchor. Why: The main next step stands out. How: This sets an orange button in mono capitals with its arrow, easing its color and lift. */
 
 
 	align-items    : center;
@@ -372,7 +373,7 @@
 
 
 }
-.ctaPrimary:hover { /* What: Hovered View Work Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 2px. */
+.butPriAnc:hover { /* What: Hovered Button Primary Anchor. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 2px. */
 
 
 	background : var( --acc-hov-col );                            /* Accent Hover Color ~= #e45700 */
@@ -380,10 +381,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion View Work Button. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Primary Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.ctaPrimary { /* What: Motionless View Work Button. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+	.butPriAnc { /* What: Motionless Button Primary Anchor. Why: The hover color and lift should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -394,7 +395,7 @@
 
 }
 
-.ctaSecondary { /* What: Get In Touch Button. Why: The second next step sits back from the first. How: This sets an outlined button in mono capitals, easing its border, color, and lift. */
+.butSecAnc { /* What: Button Secondary Anchor. Why: The second next step sits back from the first. How: This sets an outlined button in mono capitals, easing its border, color, and lift. */
 
 
 	align-items    : center;
@@ -412,7 +413,7 @@
 
 
 }
-.ctaSecondary:hover { /* What: Hovered Get In Touch Button. Why: A button should respond to the pointer. How: This turns its border and text dark blue and lifts it 2px. */
+.butSecAnc:hover { /* What: Hovered Button Secondary Anchor. Why: A button should respond to the pointer. How: This turns its border and text dark blue and lifts it 2px. */
 
 
 	border-color : var( --acs-str-col );                            /* Accent-Secondary Strong Color = #4A91B8 */
@@ -421,10 +422,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Get In Touch Button. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Secondary Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.ctaSecondary { /* What: Motionless Get In Touch Button. Why: The hover look and lift should simply switch. How: This turns the transition off. */
+	.butSecAnc { /* What: Motionless Button Secondary Anchor. Why: The hover look and lift should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -435,12 +436,12 @@
 
 }
 
-/* #endregion heroCtas */
+/* #endregion herActDiv */
 
 
-/* #region ticker */
+/* #region skiTicDiv */
 
-.ticker { /* What: Skills Ticker. Why: The skills scroll past under the buttons, fading at both ends. How: This clips the strip, masks its edges to fade out, and lets it shrink below its content. */
+.skiTicDiv { /* What: Skills Ticker Div. Why: The skills scroll past under the buttons, fading at both ends. How: This clips the strip, masks its edges to fade out, and lets it shrink below its content. */
 
 
 	mask-image : linear-gradient( 90deg, transparent, black 10%, black 90%, transparent );
@@ -451,21 +452,21 @@
 }
 
 
-/* #region tickerInner */
+/* #region ticInnDiv */
 
-.tickerInner { /* What: Ticker Inner. Why: The strip slides along endlessly. How: This lines up the items and plays the ticker's own scroll once every 60 seconds, forever. */
+.ticInnDiv { /* What: Ticker Inner Div. Why: The strip slides along endlessly. How: This lines up the items and plays the ticker's own scroll once every 60 seconds, forever. */
 
 
-	animation : tickerScroll var( --dur-ani-p22 ) linear infinite; /* Duration Animation Base Plus 22 ~= 76,725.0ms */
+	animation : ticInnDivLoopScroll var( --dur-ani-p22 ) linear infinite; /* Duration Animation Base Plus 22 ~= 76,725.0ms */
 	display   : flex;
 	gap       : var( --spa-hor-m01 );                              /* Spacing Horizontal Base Minus 1 = 11px */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Ticker Inner. Why: Someone who asked for less motion shouldn't see the strip scroll. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Ticker Inner Div. Why: Someone who asked for less motion shouldn't see the strip scroll. How: This applies only when the reduced-motion preference is set. */
 
 
-	.tickerInner { /* What: Motionless Ticker Inner. Why: The strip should hold still. How: This turns the scroll off. */
+	.ticInnDiv { /* What: Motionless Ticker Inner Div. Why: The strip should hold still. How: This turns the scroll off. */
 
 
 		animation : none;
@@ -475,7 +476,7 @@
 
 
 }
-@keyframes tickerScroll { /* What: Ticker Scroll Keyframes. Why: The strip holds every skill twice, so sliding it by its full width brings the second set to where the first began, with no seam. How: This moves the strip from its start to one strip's width left. */
+@keyframes ticInnDivLoopScroll { /* What: Ticker Inner Div Loop Scroll. Why: The strip holds every skill twice, so sliding it by its full width brings the second set to where the first began, with no seam. How: This moves the strip from its start to one strip's width left. */
 
 
 	from {
@@ -497,7 +498,7 @@
 
 }
 
-.tickerItem { /* What: Ticker Item. Why: Each skill reads as a small pill. How: This sets a warm ivory pill in muted mono capitals that never wraps. */
+.ticIteSpa { /* What: Ticker Item Span. Why: Each skill reads as a small pill. How: This sets a warm ivory pill in muted mono capitals that never wraps. */
 
 
 	background     : var( --bac-sun-col );                            /* Background Sunken Color = #EDE6D8 */
@@ -514,40 +515,27 @@
 
 }
 
-/* #endregion tickerInner */
+/* #endregion ticInnDiv */
 
-/* #endregion ticker */
+/* #endregion skiTicDiv */
 
-/* #endregion heroContent */
-
-
-/* #region heroVisual */
-
-.heroVisual { /* What: Hero Visual. Why: The code window and badge follow the pitch in. How: This positions the badge against the column and plays the shared fadeUp a little after the pitch. */
+/* #endregion herConDiv */
 
 
-	animation : global( fadeUp ) var( --dur-ani-p05 ) var( --dur-ani-bas ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Duration Animation Base ~= 157.8ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+/* #region herVisDiv */
+
+.herVisDiv { /* What: Hero Visual Div. Why: The code window and badge follow the pitch in. How: This positions the badge against the column and plays the shared contentEnterFadeUp a little after the pitch. */
+
+
+	animation : global( contentEnterFadeUp ) var( --dur-ani-p05 ) var( --dur-ani-bas ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Duration Animation Base ~= 157.8ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 	position  : relative;
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Visual. Why: The code window crowds the pitch below a desktop. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Visual Div. Why: The code window crowds the pitch below a desktop. How: This applies at 1024px and below. */
 
 
-	.heroVisual { /* What: Hidden Hero Visual. Why: The pitch reads on its own on a smaller screen. How: This hides the code window and badge. */
-
-
-		display : none;
-
-
-	}
-
-
-}
-@media ( max-width : 768px ) { /* What: Phone Hero Visual. Why: The code window stays hidden on a phone. How: This applies at 768px and below. */
-
-
-	.heroVisual { /* What: Hidden Phone Hero Visual. Why: The pitch reads on its own on a phone. How: This hides the code window and badge. */
+	.herVisDiv { /* What: Hidden Hero Visual Div. Why: The pitch reads on its own on a smaller screen. How: This hides the code window and badge. */
 
 
 		display : none;
@@ -557,10 +545,23 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hero Visual. Why: Someone who asked for less motion shouldn't see the window slide in. How: This applies only when the reduced-motion preference is set. */
+@media ( max-width : 768px ) { /* What: Phone Hero Visual Div. Why: The code window stays hidden on a phone. How: This applies at 768px and below. */
 
 
-	.heroVisual { /* What: Motionless Hero Visual. Why: The window should simply be there. How: This turns the entrance off. */
+	.herVisDiv { /* What: Hidden Phone Hero Visual Div. Why: The pitch reads on its own on a phone. How: This hides the code window and badge. */
+
+
+		display : none;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hero Visual Div. Why: Someone who asked for less motion shouldn't see the window slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.herVisDiv { /* What: Motionless Hero Visual Div. Why: The window should simply be there. How: This turns the entrance off. */
 
 
 		animation : none;
@@ -572,9 +573,9 @@
 }
 
 
-/* #region codeWindow */
+/* #region codWinDiv */
 
-.codeWindow { /* What: Code Window. Why: z4nta0 is introduced as code in a dark editor window. How: This sets a dark rounded window with a faint light border, a large shadow, and a faint blue outline. */
+.codWinDiv { /* What: Code Window Div. Why: z4nta0 is introduced as code in a dark editor window. How: This sets a dark rounded window with a faint light border, a large shadow, and a faint blue outline. */
 
 
 	background    : var( --bac-inv-col );                                                                                                 /* Background Inverse Color = #1A1A2E */
@@ -588,9 +589,9 @@
 }
 
 
-/* #region windowBar */
+/* #region winBarDiv */
 
-.windowBar { /* What: Window Bar. Why: A title bar makes the window read as an editor. How: This lines up the dots and the file name on a faint light strip with a divider below. */
+.winBarDiv { /* What: Window Bar Div. Why: A title bar makes the window read as an editor. How: This lines up the dots and the file name on a faint light strip with a divider below. */
 
 
 	align-items   : center;
@@ -603,9 +604,7 @@
 
 }
 
-.dot1,
-.dot2,
-.dot3 { /* What: Window Dots. Why: Editor windows have three colored dots. How: This draws each as a 10px circle. */
+.winDotSpa { /* What: Window Dot Span. Why: Editor windows have three colored dots. How: This draws each as an 11px circle. */
 
 
 	border-radius : 50%;
@@ -614,21 +613,21 @@
 
 
 }
-.dot1 { /* What: First Window Dot. Why: The first dot is red. How: This sets its color. */
+.winDotSpa--first { /* What: First Window Dot Span. Why: The first dot is red. How: This sets its color. */
 
 
 	background : #ff5f56;
 
 
 }
-.dot2 { /* What: Second Window Dot. Why: The second dot is yellow. How: This sets its color. */
+.winDotSpa--second { /* What: Second Window Dot Span. Why: The second dot is yellow. How: This sets its color. */
 
 
 	background : #ffbd2e;
 
 
 }
-.dot3 { /* What: Third Window Dot. Why: The third dot is green. How: This sets its color. */
+.winDotSpa--third { /* What: Third Window Dot Span. Why: The third dot is green. How: This sets its color. */
 
 
 	background : #27c93f;
@@ -636,7 +635,7 @@
 
 }
 
-.windowTitle { /* What: Window Title. Why: The file name sits quietly after the dots. How: This sets it small in faint mono, spaced from the dots. */
+.winTitSpa { /* What: Window Title Span. Why: The file name sits quietly after the dots. How: This sets it small in faint mono, spaced from the dots. */
 
 
 	color       : oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-004-rec ) ); /* Background Surface Color = #FFFFFF @ 0.325 opacity */
@@ -647,12 +646,12 @@
 
 }
 
-/* #endregion windowBar */
+/* #endregion winBarDiv */
 
 
-/* #region code */
+/* #region codBloPre */
 
-.code { /* What: Code Block. Why: The code keeps its layout and reads light on the dark window. How: This pads it and sets it in light mono, keeping its whitespace and scrolling if it overflows. */
+.codBloPre { /* What: Code Block Pre. Why: The code keeps its layout and reads light on the dark window. How: This pads it and sets it in light mono, keeping its whitespace and scrolling if it overflows. */
 
 
 	color       : #e2e8f0;
@@ -666,7 +665,7 @@
 
 }
 
-.codeText { /* What: Code Text. Why: The code element takes the block's light color. How: This inherits the color. */
+.codTexCod { /* What: Code Text Code. Why: The code element takes the block's light color. How: This inherits the color. */
 
 
 	color : inherit;
@@ -674,10 +673,10 @@
 
 }
 
-/* #endregion code */
+/* #endregion codBloPre */
 
 
-.nodeOverlay { /* What: Node Overlay. Why: The linked nodes sit over the whole window without catching clicks. How: This stretches the drawing across the window and lets the pointer pass through. */
+.nodOveSvg { /* What: Node Overlay SVG. Why: The linked nodes sit over the whole window without catching clicks. How: This stretches the drawing across the window and lets the pointer pass through. */
 
 
 	height         : 100%;
@@ -690,16 +689,16 @@
 
 }
 
-/* #endregion codeWindow */
+/* #endregion codWinDiv */
 
 
-/* #region floatingBadge */
+/* #region floBadDiv */
 
-.floatingBadge { /* What: Floating Badge. Why: The open source badge sits off the window's bottom left corner, arriving last. How: This sets a white rounded card with a soft shadow just past that corner and plays the shared fadeUp after the window. */
+.floBadDiv { /* What: Floating Badge Div. Why: The open source badge sits off the window's bottom left corner, arriving last. How: This sets a white rounded card with a soft shadow just past that corner and plays the shared contentEnterFadeUp after the window. */
 
 
 	align-items   : center;
-	animation     : global( fadeUp ) var( --dur-ani-p06 ) var( --dur-ani-p02 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 6 ~= 853.0ms, Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	animation     : global( contentEnterFadeUp ) var( --dur-ani-p06 ) var( --dur-ani-p02 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 6 ~= 853.0ms, Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 	background    : var( --bac-sur-col );                                                                 /* Background Surface Color = #FFFFFF */
 	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );                                      /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
 	border-radius : var( --rad-bor-med );                                                                 /* Radius Border Medium = 11px */
@@ -713,10 +712,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Floating Badge. Why: Someone who asked for less motion shouldn't see the badge slide in. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Floating Badge Div. Why: Someone who asked for less motion shouldn't see the badge slide in. How: This applies only when the reduced-motion preference is set. */
 
 
-	.floatingBadge { /* What: Motionless Floating Badge. Why: The badge should simply be there. How: This turns the entrance off. */
+	.floBadDiv { /* What: Motionless Floating Badge Div. Why: The badge should simply be there. How: This turns the entrance off. */
 
 
 		animation : none;
@@ -727,7 +726,7 @@
 
 }
 
-.badgeValue { /* What: Badge Value. Why: The figure is the badge's point. How: This sets it bold in the display font. */
+.badValDiv { /* What: Badge Value Div. Why: The figure is the badge's point. How: This sets it bold in the display font. */
 
 
 	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -738,7 +737,7 @@
 
 }
 
-.badgeLabel { /* What: Badge Label. Why: The label says what the figure counts, quietly. How: This sets it small in muted mono capitals. */
+.badLabDiv { /* What: Badge Label Div. Why: The label says what the figure counts, quietly. How: This sets it small in muted mono capitals. */
 
 
 	color          : var( --tex-mut-col );                   /* Text Muted Color = #646482 */
@@ -750,14 +749,14 @@
 
 }
 
-/* #endregion floatingBadge */
+/* #endregion floBadDiv */
 
-/* #endregion heroVisual */
+/* #endregion herVisDiv */
 
-/* #endregion heroInner */
+/* #endregion herInnDiv */
 
 
-.heroDivider { /* What: Hero Divider. Why: A slanted white edge leads from the hero into the stats strip. How: This clips a 64px white band along the hero's bottom to a triangle. */
+.herDivDiv { /* What: Hero Divider Div. Why: A slanted white edge leads from the hero into the stats strip. How: This clips a 64px white band along the hero's bottom to a triangle. */
 
 
 	background : var( --bac-sur-col );                /* Background Surface Color = #FFFFFF */
@@ -771,13 +770,13 @@
 
 }
 
-/* #endregion hero */
+/* #endregion homHerSec */
 
 
 
-/* #region stats */
+/* #region homStaSec */
 
-.stats { /* What: Stats Section. Why: The figures sit on a white strip under the hero. How: This sets the background, pads the strip, and rules it off below. */
+.homStaSec { /* What: Home Stats Section. Why: The figures sit on a white strip under the hero. How: This sets the background, pads the strip, and rules it off below. */
 
 
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
@@ -788,9 +787,9 @@
 }
 
 
-/* #region statsInner */
+/* #region staInnDiv */
 
-.statsInner { /* What: Stats Inner. Why: The strip sits in the page's centered column. How: This caps and centers the column with its side padding. */
+.staInnDiv { /* What: Stats Inner Div. Why: The strip sits in the page's centered column. How: This caps and centers the column with its side padding. */
 
 
 	margin    : 0 auto;
@@ -802,9 +801,9 @@
 }
 
 
-/* #region statsGrid */
+/* #region staGriDiv */
 
-.statsGrid { /* What: Stats Grid. Why: The four figures line up in a row. How: This sets four columns with gaps. */
+.staGriDiv { /* What: Stats Grid Div. Why: The four figures line up in a row. How: This sets four columns with gaps. */
 
 
 	display               : grid;
@@ -813,10 +812,10 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Stats Grid. Why: Four figures crowd a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Stats Grid Div. Why: Four figures crowd a tablet. How: This applies at 1024px and below. */
 
 
-	.statsGrid { /* What: Two Column Stats Grid. Why: Two figures fit side by side on a tablet. How: This sets two columns. */
+	.staGriDiv { /* What: Two Column Stats Grid Div. Why: Two figures fit side by side on a tablet. How: This sets two columns. */
 
 
 		grid-template-columns : repeat( 2, 1fr );
@@ -826,10 +825,10 @@
 
 
 }
-@media ( max-width : 640px ) { /* What: Phone Stats Grid. Why: The figures stay in pairs on a phone. How: This applies at 640px and below. */
+@media ( max-width : 640px ) { /* What: Phone Stats Grid Div. Why: The figures stay in pairs on a phone. How: This applies at 640px and below. */
 
 
-	.statsGrid { /* What: Paired Stats Grid. Why: Two short figures still fit side by side on a phone. How: This sets two even columns. */
+	.staGriDiv { /* What: Paired Stats Grid Div. Why: Two short figures still fit side by side on a phone. How: This sets two even columns. */
 
 
 		grid-template-columns : 1fr 1fr;
@@ -841,9 +840,9 @@
 }
 
 
-/* #region statItem */
+/* #region staIteDiv */
 
-.statItem { /* What: Stat Item. Why: Each figure sits centered over its label, divided from the next. How: This stacks and centers them, padded, with a rule on the right. */
+.staIteDiv { /* What: Stat Item Div. Why: Each figure sits centered over its label, divided from the next. How: This stacks and centers them, padded, with a rule on the right. */
 
 
 	align-items    : center;
@@ -856,17 +855,17 @@
 
 
 }
-.statItem:last-child { /* What: Last Stat Item. Why: The last figure needs no divider after it. How: This removes its right rule. */
+.staIteDiv:last-child { /* What: Last Stat Item Div. Why: The last figure needs no divider after it. How: This removes its right rule. */
 
 
 	border-right : none;
 
 
 }
-@media ( max-width : 640px ) { /* What: Phone Stat Item. Why: Side dividers don't suit the paired layout. How: This applies at 640px and below. */
+@media ( max-width : 640px ) { /* What: Phone Stat Item Div. Why: Side dividers don't suit the paired layout. How: This applies at 640px and below. */
 
 
-	.statItem { /* What: Underlined Stat Item. Why: The paired figures divide better from the row below. How: This swaps the right rule for one underneath. */
+	.staIteDiv { /* What: Underlined Stat Item Div. Why: The paired figures divide better from the row below. How: This swaps the right rule for one underneath. */
 
 
 		border-bottom : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
@@ -878,7 +877,7 @@
 
 }
 
-.statValue { /* What: Stat Value. Why: The figure is the stat's point. How: This sets it large and bold in the display font, tight. */
+.staValSpa { /* What: Stat Value Span. Why: The figure is the stat's point. How: This sets it large and bold in the display font, tight. */
 
 
 	color          : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -890,7 +889,7 @@
 
 
 }
-.statValue::after { /* What: Stat Value Underline. Why: A short orange stroke sits under each figure. How: This draws a 24px rounded orange bar centered below it. */
+.staValSpa::after { /* What: Stat Value Span Underline. Why: A short orange stroke sits under each figure. How: This draws a 24px rounded orange bar centered below it. */
 
 
 	background    : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
@@ -904,7 +903,7 @@
 
 }
 
-.statLabel { /* What: Stat Label. Why: The label says what the figure counts, quietly. How: This sets it small in muted mono capitals. */
+.staLabSpa { /* What: Stat Label Span. Why: The label says what the figure counts, quietly. How: This sets it small in muted mono capitals. */
 
 
 	color          : var( --tex-mut-col );                   /* Text Muted Color = #646482 */
@@ -916,19 +915,19 @@
 
 }
 
-/* #endregion statItem */
+/* #endregion staIteDiv */
 
-/* #endregion statsGrid */
+/* #endregion staGriDiv */
 
-/* #endregion statsInner */
+/* #endregion staInnDiv */
 
-/* #endregion stats */
+/* #endregion homStaSec */
 
 
 
-/* #region featuredWork */
+/* #region homFeaSec */
 
-.featuredWork { /* What: Featured Work Section. Why: The featured projects sit on the ivory with the section spacing. How: This sets the background and the shared section padding. */
+.homFeaSec { /* What: Home Featured Section. Why: The featured projects sit on the ivory with the section spacing. How: This sets the background and the shared section padding. */
 
 
 	background : var( --bac-pag-col );   /* Background Page Color = #F5F0E8 */
@@ -938,9 +937,9 @@
 }
 
 
-/* #region featuredInner */
+/* #region feaInnDiv */
 
-.featuredInner { /* What: Featured Inner. Why: The section sits in the page's centered column. How: This caps and centers the column with its side padding. */
+.feaInnDiv { /* What: Featured Inner Div. Why: The section sits in the page's centered column. How: This caps and centers the column with its side padding. */
 
 
 	margin    : 0 auto;
@@ -952,9 +951,9 @@
 }
 
 
-/* #region featuredHeader */
+/* #region feaHeaDiv */
 
-.featuredHeader { /* What: Featured Header. Why: The heading and the link to every project share a row. How: This spreads them to either end, aligned to their bottoms, with room below. */
+.feaHeaDiv { /* What: Featured Header Div. Why: The heading and the link to every project share a row. How: This spreads them to either end, aligned to their bottoms, with room below. */
 
 
 	align-items     : flex-end;
@@ -965,10 +964,10 @@
 
 
 }
-@media ( max-width : 640px ) { /* What: Phone Featured Header. Why: The heading and link crowd one row on a phone. How: This applies at 640px and below. */
+@media ( max-width : 640px ) { /* What: Phone Featured Header Div. Why: The heading and link crowd one row on a phone. How: This applies at 640px and below. */
 
 
-	.featuredHeader { /* What: Stacked Featured Header. Why: The link reads better under the heading on a phone. How: This stacks them against the left. */
+	.feaHeaDiv { /* What: Stacked Featured Header Div. Why: The link reads better under the heading on a phone. How: This stacks them against the left. */
 
 
 		align-items    : flex-start;
@@ -980,7 +979,7 @@
 
 }
 
-.viewAllLink { /* What: View All Link. Why: The rest of the projects are one click away. How: This sets an orange mono link with its arrow that never shrinks, easing the gap to its arrow. */
+.vieAllAnc { /* What: View All Anchor. Why: The rest of the projects are one click away. How: This sets an orange mono link with its arrow that never shrinks, easing the gap to its arrow. */
 
 
 	align-items    : center;
@@ -996,17 +995,17 @@
 
 
 }
-.viewAllLink:hover { /* What: Hovered View All Link. Why: The arrow nudges toward where the link goes. How: This widens the gap to its arrow. */
+.vieAllAnc:hover { /* What: Hovered View All Anchor. Why: The arrow nudges toward where the link goes. How: This widens the gap to its arrow. */
 
 
 	gap : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion View All Link. Why: Someone who asked for less motion shouldn't see the arrow slide. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion View All Anchor. Why: Someone who asked for less motion shouldn't see the arrow slide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.viewAllLink { /* What: Motionless View All Link. Why: The arrow should simply step over. How: This turns the transition off. */
+	.vieAllAnc { /* What: Motionless View All Anchor. Why: The arrow should simply step over. How: This turns the transition off. */
 
 
 		transition : none;
@@ -1017,10 +1016,10 @@
 
 }
 
-/* #endregion featuredHeader */
+/* #endregion feaHeaDiv */
 
 
-.projectsGrid { /* What: Projects Grid. Why: The featured cards line up in even columns. How: This sets three columns with gaps. */
+.proGriDiv { /* What: Projects Grid Div. Why: The featured cards line up in even columns. How: This sets three columns with gaps. */
 
 
 	display               : grid;
@@ -1029,10 +1028,10 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Projects Grid. Why: Three cards crowd a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Projects Grid Div. Why: Three cards crowd a tablet. How: This applies at 1024px and below. */
 
 
-	.projectsGrid { /* What: Two Column Projects Grid. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
+	.proGriDiv { /* What: Two Column Projects Grid Div. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
 
 
 		grid-template-columns : repeat( 2, 1fr );
@@ -1042,10 +1041,10 @@
 
 
 }
-@media ( max-width : 640px ) { /* What: Phone Projects Grid. Why: Two cards crowd a phone. How: This applies at 640px and below. */
+@media ( max-width : 640px ) { /* What: Phone Projects Grid Div. Why: Two cards crowd a phone. How: This applies at 640px and below. */
 
 
-	.projectsGrid { /* What: One Column Projects Grid. Why: One card fits across a phone. How: This sets one column. */
+	.proGriDiv { /* What: One Column Projects Grid Div. Why: One card fits across a phone. How: This sets one column. */
 
 
 		grid-template-columns : 1fr;
@@ -1056,15 +1055,15 @@
 
 }
 
-/* #endregion featuredInner */
+/* #endregion feaInnDiv */
 
-/* #endregion featuredWork */
+/* #endregion homFeaSec */
 
 
 
-/* #region services */
+/* #region homSerSec */
 
-.services { /* What: Services Section. Why: The services sit on a warmer band with the section spacing. How: This sets the warm ivory, the shared section padding, and clips the pattern behind it. */
+.homSerSec { /* What: Home Services Section. Why: The services sit on a warmer band with the section spacing. How: This sets the warm ivory, the shared section padding, and clips the pattern behind it. */
 
 
 	background : var( --bac-sun-col );   /* Background Sunken Color = #EDE6D8 */
@@ -1076,9 +1075,9 @@
 }
 
 
-/* #region servicesInner */
+/* #region serInnDiv */
 
-.servicesInner { /* What: Services Inner. Why: The services sit in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the heading block over the cards. */
+.serInnDiv { /* What: Services Inner Div. Why: The services sit in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the heading block over the cards. */
 
 
 	align-items    : center;
@@ -1096,9 +1095,9 @@
 }
 
 
-/* #region serviceGrid */
+/* #region serGriDiv */
 
-.serviceGrid { /* What: Service Grid. Why: The service cards line up in even columns. How: This sets four full-width columns with gaps. */
+.serGriDiv { /* What: Service Grid Div. Why: The service cards line up in even columns. How: This sets four full-width columns with gaps. */
 
 
 	display               : grid;
@@ -1108,10 +1107,10 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Service Grid. Why: Four cards crowd a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Service Grid Div. Why: Four cards crowd a tablet. How: This applies at 1024px and below. */
 
 
-	.serviceGrid { /* What: Two Column Service Grid. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
+	.serGriDiv { /* What: Two Column Service Grid Div. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
 
 
 		grid-template-columns : repeat( 2, 1fr );
@@ -1121,10 +1120,10 @@
 
 
 }
-@media ( max-width : 640px ) { /* What: Phone Service Grid. Why: Two cards crowd a phone. How: This applies at 640px and below. */
+@media ( max-width : 640px ) { /* What: Phone Service Grid Div. Why: Two cards crowd a phone. How: This applies at 640px and below. */
 
 
-	.serviceGrid { /* What: One Column Service Grid. Why: One card fits across a phone. How: This sets one column. */
+	.serGriDiv { /* What: One Column Service Grid Div. Why: One card fits across a phone. How: This sets one column. */
 
 
 		grid-template-columns : 1fr;
@@ -1136,9 +1135,9 @@
 }
 
 
-/* #region serviceCard */
+/* #region serCarDiv */
 
-.serviceCard { /* What: Service Card. Why: Each service is one white card. How: This sets the bordered card, stacks its icon, title, and description, and eases its lift and shadow. */
+.serCarDiv { /* What: Service Card Div. Why: Each service is one white card. How: This sets the bordered card, stacks its icon, title, and description, and eases its lift and shadow. */
 
 
 	background     : var( --bac-sur-col );                                            /* Background Surface Color = #FFFFFF */
@@ -1152,7 +1151,7 @@
 
 
 }
-.serviceCard:hover { /* What: Hovered Service Card. Why: A card should respond to the pointer. How: This lifts it 3px and casts the medium shadow. */
+.serCarDiv:hover { /* What: Hovered Service Card Div. Why: A card should respond to the pointer. How: This lifts it 3px and casts the medium shadow. */
 
 
 	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
@@ -1160,10 +1159,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Service Card. Why: Someone who asked for less motion shouldn't see the cards glide. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Service Card Div. Why: Someone who asked for less motion shouldn't see the cards glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.serviceCard { /* What: Motionless Service Card. Why: The lift and shadow should simply switch. How: This turns the transition off. */
+	.serCarDiv { /* What: Motionless Service Card Div. Why: The lift and shadow should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -1174,7 +1173,7 @@
 
 }
 
-.serviceIcon { /* What: Service Icon. Why: Each service's icon sits on a pale blue tile. How: This draws a 52px rounded tile centering the icon in dark blue. */
+.serIcoDiv { /* What: Service Icon Div. Why: Each service's icon sits on a pale blue tile. How: This draws a 52px rounded tile centering the icon in dark blue. */
 
 
 	align-items     : center;
@@ -1189,7 +1188,7 @@
 
 }
 
-.serviceTitle { /* What: Service Title. Why: Each service is named. How: This sets the title bold in the main text color. */
+.serTitHea { /* What: Service Title Heading. Why: Each service is named. How: This sets the title bold in the main text color. */
 
 
 	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -1199,7 +1198,7 @@
 
 }
 
-.serviceDesc { /* What: Service Description. Why: A sentence says what the service covers, quietly. How: This sets it small and muted. */
+.serDesPar { /* What: Service Description Paragraph. Why: A sentence says what the service covers, quietly. How: This sets it small and muted. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -1209,19 +1208,19 @@
 
 }
 
-/* #endregion serviceCard */
+/* #endregion serCarDiv */
 
-/* #endregion serviceGrid */
+/* #endregion serGriDiv */
 
-/* #endregion servicesInner */
+/* #endregion serInnDiv */
 
-/* #endregion services */
+/* #endregion homSerSec */
 
 
 
-/* #region ctaBanner */
+/* #region homCtaSec */
 
-.ctaBanner { /* What: Call To Action Banner. Why: The page ends on a dark band inviting a visitor to start. How: This sets the ink background and pads the band. */
+.homCtaSec { /* What: Home Call-To-Action Section. Why: The page ends on a dark band inviting a visitor to start. How: This sets the ink background and pads the band. */
 
 
 	background : var( --bac-inv-col );   /* Background Inverse Color = #1A1A2E */
@@ -1231,9 +1230,9 @@
 }
 
 
-/* #region ctaInner */
+/* #region ctaInnDiv */
 
-.ctaInner { /* What: Banner Inner. Why: The banner sits in the page's centered column. How: This caps and centers the column with its side padding and spreads the text and the button to either end. */
+.ctaInnDiv { /* What: Call-To-Action Inner Div. Why: The banner sits in the page's centered column. How: This caps and centers the column with its side padding and spreads the text and the button to either end. */
 
 
 	align-items     : center;
@@ -1247,10 +1246,10 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Banner Inner. Why: The text and button crowd one row below a desktop. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Call-To-Action Inner Div. Why: The text and button crowd one row below a desktop. How: This applies at 1024px and below. */
 
 
-	.ctaInner { /* What: Stacked Banner Inner. Why: The button reads better under the text. How: This stacks them against the left. */
+	.ctaInnDiv { /* What: Stacked Call-To-Action Inner Div. Why: The button reads better under the text. How: This stacks them against the left. */
 
 
 		align-items    : flex-start;
@@ -1262,7 +1261,7 @@
 
 }
 
-.ctaBannerLabel { /* What: Banner Label. Why: A question leads into the invitation. How: This sets it on its own line in blue mono capitals, above the heading. */
+.ctaLabSpa { /* What: Call-To-Action Label Span. Why: A question leads into the invitation. How: This sets it on its own line in blue mono capitals, above the heading. */
 
 
 	color          : var( --acc-sec-col );                   /* Accent Secondary Color = #7DB9D8 */
@@ -1276,7 +1275,7 @@
 
 }
 
-.ctaBannerTitle { /* What: Banner Title. Why: The invitation reads light on the dark band. How: This sets it ivory, scaling with the screen. */
+.ctaTitHea { /* What: Call-To-Action Title Heading. Why: The invitation reads light on the dark band. How: This sets it ivory, scaling with the screen. */
 
 
 	color     : var( --bac-pag-col );                                       /* Background Page Color = #F5F0E8 */
@@ -1286,9 +1285,9 @@
 }
 
 
-/* #region ctaBannerActions */
+/* #region ctaActDiv */
 
-.ctaBannerActions { /* What: Banner Actions. Why: The banner's button holds its size. How: This lines up the button, never shrinking, wrapping if more join it. */
+.ctaActDiv { /* What: Call-To-Action Actions Div. Why: The banner's button holds its size. How: This lines up the button, never shrinking, wrapping if more join it. */
 
 
 	display     : flex;
@@ -1299,7 +1298,7 @@
 
 }
 
-.ctaBannerBtn { /* What: Start A Project Button. Why: The banner's one action stands out. How: This sets an orange button in mono capitals, easing its color and lift. */
+.ctaStaAnc { /* What: Call-To-Action Start Anchor. Why: The banner's one action stands out. How: This sets an orange button in mono capitals, easing its color and lift. */
 
 
 	background     : var( --acc-mai-col );                                            /* Accent Main Color = #F26419 */
@@ -1315,7 +1314,7 @@
 
 
 }
-.ctaBannerBtn:hover { /* What: Hovered Start A Project Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 2px. */
+.ctaStaAnc:hover { /* What: Hovered Call-To-Action Start Anchor. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 2px. */
 
 
 	background : var( --acc-hov-col );                            /* Accent Hover Color ~= #e45700 */
@@ -1323,10 +1322,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Start A Project Button. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Call-To-Action Start Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.ctaBannerBtn { /* What: Motionless Start A Project Button. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+	.ctaStaAnc { /* What: Motionless Call-To-Action Start Anchor. Why: The hover color and lift should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -1337,12 +1336,12 @@
 
 }
 
-/* #endregion ctaBannerActions */
+/* #endregion ctaActDiv */
 
-/* #endregion ctaInner */
+/* #endregion ctaInnDiv */
 
-/* #endregion ctaBanner */
+/* #endregion homCtaSec */
 
-/* #endregion page */
+/* #endregion pagEntDiv */
 
 

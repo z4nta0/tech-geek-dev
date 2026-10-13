@@ -324,10 +324,10 @@ function ConPagCom () : JSX.Element {
 	return (
 
 
-		<div className={ cssModObj.page }>{ /* What: Contact Page Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
+		<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
 
 
-			<section className={ cssModObj.hero }>{ /* What: Hero Section Element. Why: The page opens by inviting a visitor to get in touch. How: This holds the pattern and the heading block. */ }
+			<section className={ cssModObj.conHerSec }>{ /* What: Contact Hero Section Element. Why: The page opens by inviting a visitor to get in touch. How: This holds the pattern and the heading block. */ }
 
 
 				<GeoBacCom
@@ -337,21 +337,21 @@ function ConPagCom () : JSX.Element {
 
 
 
-				<div className={ cssModObj.heroInner }>{ /* What: Hero Inner Div Element. Why: The hero's text sits in the page's centered column. How: This stacks the label, heading, and line. */ }
+				<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The hero's text sits in the page's centered column. How: This stacks the label, heading, and line. */ }
 
 
-					<span className={ cssModObj.heroLabel }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows Get In Touch after a short rule. */ }
-						<span className={ cssModObj.heroLine } />{ /* What: Hero Line Span Element. Why: A short rule leads into the label. How: This draws the rule. */ }
+					<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows Get In Touch after a short rule. */ }
+						<span className={ cssModObj.herLinSpa } />{ /* What: Hero Line Span Element. Why: A short rule leads into the label. How: This draws the rule. */ }
 
 						Get In Touch
 					</span>
 
-					<h1 className={ cssModObj.heroTitle }>{ /* What: Hero Title Heading Element. Why: The page's heading makes the invitation. How: This sets Let's Build over Something Together, with Something in the accent. */ }
+					<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading makes the invitation. How: This sets Let's Build over Something Together, with Something in the accent. */ }
 						Let's Build<br />
-						<span className={ cssModObj.accent }>Something</span> Together
+						<span className={ cssModObj.titAccSpa }>Something</span> Together
 					</h1>
 
-					<p className={ cssModObj.heroSub }>{ /* What: Hero Subtitle Paragraph Element. Why: A line under the heading says what to expect. How: This promises a reply within a day. */ }
+					<p className={ cssModObj.herSubPar }>{ /* What: Hero Subtitle Paragraph Element. Why: A line under the heading says what to expect. How: This promises a reply within a day. */ }
 						Have a project in mind? I'd love to hear about it. Send me a message
 						and I'll get back to you within 24 hours.
 					</p>
@@ -364,19 +364,19 @@ function ConPagCom () : JSX.Element {
 
 
 
-			<section className={ cssModObj.contactSection }>{ /* What: Contact Section Element. Why: The form and the details sit together. How: This holds the two columns. */ }
+			<section className={ cssModObj.conBodSec }>{ /* What: Contact Body Section Element. Why: The form and the details sit together. How: This holds the two columns. */ }
 
 
-				<div className={ cssModObj.contactGrid }>{ /* What: Contact Grid Div Element. Why: The form and the sidebar sit side by side in the page's centered column. How: This lays out the two columns. */ }
+				<div className={ cssModObj.conGriDiv }>{ /* What: Contact Grid Div Element. Why: The form and the sidebar sit side by side in the page's centered column. How: This lays out the two columns. */ }
 
 
-					<div className={ cssModObj.formWrap }>{ /* What: Form Wrap Div Element. Why: The form and its thank-you share one place. How: This holds whichever one shows. */ }
+					<div className={ cssModObj.forWraDiv }>{ /* What: Form Wrap Div Element. Why: The form and its thank-you share one place. How: This holds whichever one shows. */ }
 
 
 						{ isaSenBoo ? ( // What: Sent Or Form Check. Why: A sent message replaces the form with a thank-you. How: This renders the thank-you once sent, or the form otherwise.
 
 
-							<div className={ cssModObj.successState }>{ /* What: Success State Div Element. Why: A visitor learns the message went out. How: This shows a check, a thank-you, and a button for another message. */ }
+							<div className={ cssModObj.sucStaDiv }>{ /* What: Success State Div Element. Why: A visitor learns the message went out. How: This shows a check, a thank-you, and a button for another message. */ }
 
 
 								<svg
@@ -396,15 +396,15 @@ function ConPagCom () : JSX.Element {
 
 								</svg>
 
-								<h2 className={ cssModObj.successTitle }>Message Sent!</h2>{ /* What: Success Title Heading Element. Why: The thank-you's heading says what happened. How: This shows Message Sent. */ }
+								<h2 className={ cssModObj.sucTitHea }>Message Sent!</h2>{ /* What: Success Title Heading Element. Why: The thank-you's heading says what happened. How: This shows Message Sent. */ }
 
-								<p className={ cssModObj.successText }>Thanks for reaching out. I'll be in touch within 24 hours.</p>{ /* What: Success Text Paragraph Element. Why: A visitor learns when to expect a reply. How: This thanks them and promises a reply within a day. */ }
+								<p className={ cssModObj.sucTexPar }>Thanks for reaching out. I'll be in touch within 24 hours.</p>{ /* What: Success Text Paragraph Element. Why: A visitor learns when to expect a reply. How: This thanks them and promises a reply within a day. */ }
 
 								<button
-									className={ cssModObj.resetBtn }
+									className={ cssModObj.resForBut }
 
 									onClick={ resForFun }
-								>Send Another Message</button>{ /* What: Reset Button Element. Why: A visitor may want to send another message. How: This empties the form and shows it again. */ }
+								>Send Another Message</button>{ /* What: Reset Form Button Element. Why: A visitor may want to send another message. How: This empties the form and shows it again. */ }
 
 
 							</div>
@@ -414,33 +414,33 @@ function ConPagCom () : JSX.Element {
 
 
 							<form
-								className={ cssModObj.form }
+								className={ cssModObj.conForFor }
 
 								noValidate
 
 								onSubmit={ subForFun }
-							>{ /* What: Contact Form Element. Why: A visitor writes their message here. How: This sends the fields through subForFun, leaving the browser's own validation off. */ }
+							>{ /* What: Contact Form Form Element. Why: A visitor writes their message here. How: This sends the fields through subForFun, leaving the browser's own validation off. */ }
 
 
-								<h2 className={ cssModObj.formTitle }>Send a Message</h2>{ /* What: Form Title Heading Element. Why: The form's heading names it. How: This shows Send a Message as an h2. */ }
+								<h2 className={ cssModObj.forTitHea }>Send a Message</h2>{ /* What: Form Title Heading Element. Why: The form's heading names it. How: This shows Send a Message as an h2. */ }
 
 
-								<div className={ cssModObj.formRow }>{ /* What: Form Row Div Element. Why: The name and email fields share a row on wide screens. How: This sets them side by side. */ }
+								<div className={ cssModObj.forRowDiv }>{ /* What: Form Row Div Element. Why: The name and email fields share a row on wide screens. How: This sets them side by side. */ }
 
 
-									<div className={ cssModObj.field }>{ /* What: Name Field Div Element. Why: The name's label and input read as one field. How: This stacks them. */ }
+									<div className={ cssModObj.forFieDiv }>{ /* What: Form Field Div Element. Why: The name's label and input read as one field. How: This stacks them. */ }
 
 
 										<label
-											className={ cssModObj.label }
+											className={ cssModObj.fieLabLab }
 
 											htmlFor='c-name'
-										>Full Name</label>{ /* What: Name Label Element. Why: The input needs a visible name. How: This labels it Full Name. */ }
+										>Full Name</label>{ /* What: Field Label Label Element. Why: The input needs a visible name. How: This labels it Full Name. */ }
 
 										<input
 											id='c-name'
 
-											className={ cssModObj.input }
+											className={ cssModObj.forConInp }
 
 											name='name'
 
@@ -450,24 +450,24 @@ function ConPagCom () : JSX.Element {
 											value={ forDatObj.name }
 
 											onChange={ chaFieFun }
-										/>{ /* What: Name Input Element. Why: The visitor says who they are. How: This holds the name in the form's state. */ }
+										/>{ /* What: Form Control Input Element. Why: The visitor says who they are. How: This holds the name in the form's state. */ }
 
 
 									</div>
 
-									<div className={ cssModObj.field }>{ /* What: Email Field Div Element. Why: The email's label and input read as one field. How: This stacks them. */ }
+									<div className={ cssModObj.forFieDiv }>{ /* What: Form Field Div Element. Why: The email's label and input read as one field. How: This stacks them. */ }
 
 
 										<label
-											className={ cssModObj.label }
+											className={ cssModObj.fieLabLab }
 
 											htmlFor='c-email'
-										>Email</label>{ /* What: Email Label Element. Why: The input needs a visible name. How: This labels it Email. */ }
+										>Email</label>{ /* What: Field Label Label Element. Why: The input needs a visible name. How: This labels it Email. */ }
 
 										<input
 											id='c-email'
 
-											className={ cssModObj.input }
+											className={ cssModObj.forConInp }
 
 											name='email'
 
@@ -477,7 +477,7 @@ function ConPagCom () : JSX.Element {
 											value={ forDatObj.email }
 
 											onChange={ chaFieFun }
-										/>{ /* What: Email Input Element. Why: A reply needs somewhere to go. How: This holds the address in the form's state. */ }
+										/>{ /* What: Form Control Input Element. Why: A reply needs somewhere to go. How: This holds the address in the form's state. */ }
 
 
 									</div>
@@ -486,26 +486,26 @@ function ConPagCom () : JSX.Element {
 								</div>
 
 
-								<div className={ cssModObj.field }>{ /* What: Budget Field Div Element. Why: The budget's label and menu read as one field. How: This stacks them. */ }
+								<div className={ cssModObj.forFieDiv }>{ /* What: Form Field Div Element. Why: The budget's label and menu read as one field. How: This stacks them. */ }
 
 
 									<label
-										className={ cssModObj.label }
+										className={ cssModObj.fieLabLab }
 
 										htmlFor='c-budget'
-									>Project Budget</label>{ /* What: Budget Label Element. Why: The menu needs a visible name. How: This labels it Project Budget. */ }
+									>Project Budget</label>{ /* What: Field Label Label Element. Why: The menu needs a visible name. How: This labels it Project Budget. */ }
 
 									<select
 										id='c-budget'
 
-										className={ cssModObj.select }
+										className={ cssModObj.forConSel }
 
 										name='budget'
 
 										value={ forDatObj.budget }
 
 										onChange={ chaFieFun }
-									>{ /* What: Budget Select Element. Why: A visitor can say roughly what they mean to spend. How: This offers the ranges, holding the choice in the form's state. */ }
+									>{ /* What: Form Control Select Element. Why: A visitor can say roughly what they mean to spend. How: This offers the ranges, holding the choice in the form's state. */ }
 
 
 										<option value=''>Select a range…</option>{ /* What: Placeholder Option Element. Why: The menu starts with no range chosen. How: This prompts a choice with an empty value. */ }
@@ -529,24 +529,24 @@ function ConPagCom () : JSX.Element {
 								{ errMesStr && ( // What: Error Presence Check. Why: An error shows only after a failed send. How: This renders the message when there is one.
 
 
-									<p className={ cssModObj.errorMsg }>{ errMesStr }</p> // What: Error Message Paragraph Element. Why: A visitor learns the message didn't go out. How: This shows the error under the fields.
+									<p className={ cssModObj.errMesPar }>{ errMesStr }</p> // What: Error Message Paragraph Element. Why: A visitor learns the message didn't go out. How: This shows the error under the fields.
 
 
 								) }
 
-								<div className={ cssModObj.field }>{ /* What: Message Field Div Element. Why: The message's label and box read as one field. How: This stacks them. */ }
+								<div className={ cssModObj.forFieDiv }>{ /* What: Form Field Div Element. Why: The message's label and box read as one field. How: This stacks them. */ }
 
 
 									<label
-										className={ cssModObj.label }
+										className={ cssModObj.fieLabLab }
 
 										htmlFor='c-message'
-									>Message</label>{ /* What: Message Label Element. Why: The box needs a visible name. How: This labels it Message. */ }
+									>Message</label>{ /* What: Field Label Label Element. Why: The box needs a visible name. How: This labels it Message. */ }
 
 									<textarea
 										id='c-message'
 
-										className={ cssModObj.textarea }
+										className={ cssModObj.forConTex }
 
 										name='message'
 
@@ -556,17 +556,17 @@ function ConPagCom () : JSX.Element {
 										value={ forDatObj.message }
 
 										onChange={ chaFieFun }
-									/>{ /* What: Message Textarea Element. Why: The visitor writes their message here. How: This holds it in the form's state, six rows tall. */ }
+									/>{ /* What: Form Control Textarea Element. Why: The visitor writes their message here. How: This holds it in the form's state, six rows tall. */ }
 
 
 								</div>
 
 								<button
-									className={ cssModObj.submitBtn }
+									className={ cssModObj.senMesBut }
 
 									disabled={ isaLoaBoo }
 									type='submit'
-								>{ /* What: Submit Button Element. Why: The visitor sends the message. How: This submits the form, disabled and reading Sending while it's on its way. */ }
+								>{ /* What: Send Message Button Element. Why: The visitor sends the message. How: This submits the form, disabled and reading Sending while it's on its way. */ }
 									{ isaLoaBoo ? 'Sending…' : 'Send Message' }{ /* What: Submit Label Text. Why: The button says what's happening. How: This reads Sending while sending, or Send Message otherwise. */ }
 
 									{ !isaLoaBoo && ( // What: Send Icon Check. Why: The paper plane only shows while the button is ready. How: This renders it unless sending.
@@ -609,15 +609,15 @@ function ConPagCom () : JSX.Element {
 
 
 
-					<aside className={ cssModObj.sidebar }>{ /* What: Sidebar Aside Element. Why: The other ways to get in touch sit beside the form. How: This stacks the details, availability, and response time cards. */ }
+					<aside className={ cssModObj.conSidAsi }>{ /* What: Contact Sidebar Aside Element. Why: The other ways to get in touch sit beside the form. How: This stacks the details, availability, and response time cards. */ }
 
 
-						<div className={ cssModObj.sidebarCard }>{ /* What: Contact Details Card Div Element. Why: A visitor may prefer email or a profile to the form. How: This lists each contact item. */ }
+						<div className={ cssModObj.sidCarDiv }>{ /* What: Sidebar Card Div Element. Why: A visitor may prefer email or a profile to the form. How: This lists each contact item. */ }
 
 
-							<h3 className={ cssModObj.sidebarTitle }>Contact Details</h3>{ /* What: Contact Details Heading Element. Why: The card is named. How: This shows its title. */ }
+							<h3 className={ cssModObj.sidTitHea }>Contact Details</h3>{ /* What: Sidebar Title Heading Element. Why: The card is named. How: This shows its title. */ }
 
-							<div className={ cssModObj.contactItems }>{ /* What: Contact Items Div Element. Why: The items stack in a list. How: This holds one link per item. */ }
+							<div className={ cssModObj.conIteDiv }>{ /* What: Contact Items Div Element. Why: The items stack in a list. How: This holds one link per item. */ }
 
 
 								{ CON_ITE_ARR.map( ( conIteObj ) => ( // What: Contact Item Map Call. Why: Every contact item shows. How: This renders one link per row.
@@ -626,7 +626,7 @@ function ConPagCom () : JSX.Element {
 									<a
 										key={ conIteObj.labStr }
 
-										className={ cssModObj.contactItem }
+										className={ cssModObj.conIteAnc }
 
 										href={ conIteObj.hreStr }
 										rel='noreferrer'
@@ -634,14 +634,14 @@ function ConPagCom () : JSX.Element {
 									>{ /* What: Contact Item Anchor Element. Why: Each item links to its address. How: This opens the address in a new tab, showing the icon beside the name and address. */ }
 
 
-										<span className={ cssModObj.contactIcon }>{ conIteObj.icoEle }</span>{ /* What: Contact Icon Span Element. Why: An icon marks each item at a glance. How: This frames the row's icon. */ }
+										<span className={ cssModObj.conIcoSpa }>{ conIteObj.icoEle }</span>{ /* What: Contact Icon Span Element. Why: An icon marks each item at a glance. How: This frames the row's icon. */ }
 
 										<div>{ /* What: Contact Text Div Element. Why: The name and the address read as one. How: This stacks them. */ }
 
 
-											<span className={ cssModObj.contactLabel }>{ conIteObj.labStr }</span>{ /* What: Contact Label Span Element. Why: The item is named. How: This shows its name. */ }
+											<span className={ cssModObj.conLabSpa }>{ conIteObj.labStr }</span>{ /* What: Contact Label Span Element. Why: The item is named. How: This shows its name. */ }
 
-											<span className={ cssModObj.contactValue }>{ conIteObj.valStr }</span>{ /* What: Contact Value Span Element. Why: The address is shown, not just linked. How: This shows it. */ }
+											<span className={ cssModObj.conValSpa }>{ conIteObj.valStr }</span>{ /* What: Contact Value Span Element. Why: The address is shown, not just linked. How: This shows it. */ }
 
 
 										</div>
@@ -659,22 +659,22 @@ function ConPagCom () : JSX.Element {
 						</div>
 
 
-						<div className={ cssModObj.sidebarCard }>{ /* What: Availability Card Div Element. Why: A visitor learns whether z4nta0 can take on their project. How: This shows the status and the earliest start. */ }
+						<div className={ cssModObj.sidCarDiv }>{ /* What: Sidebar Card Div Element. Why: A visitor learns whether z4nta0 can take on their project. How: This shows the status and the earliest start. */ }
 
 
-							<h3 className={ cssModObj.sidebarTitle }>Availability</h3>{ /* What: Availability Heading Element. Why: The card is named. How: This shows its title. */ }
+							<h3 className={ cssModObj.sidTitHea }>Availability</h3>{ /* What: Sidebar Title Heading Element. Why: The card is named. How: This shows its title. */ }
 
-							<div className={ cssModObj.availabilityRow }>{ /* What: Availability Row Div Element. Why: The status dot sits beside its text. How: This sets them side by side. */ }
+							<div className={ cssModObj.avaRowDiv }>{ /* What: Availability Row Div Element. Why: The status dot sits beside its text. How: This sets them side by side. */ }
 
 
-								<span className={ cssModObj.statusDot } />{ /* What: Status Dot Span Element. Why: A pulsing dot signals availability. How: This draws it. */ }
+								<span className={ cssModObj.staDotSpa } />{ /* What: Status Dot Span Element. Why: A pulsing dot signals availability. How: This draws it. */ }
 
 								<div>{ /* What: Status Text Div Element. Why: The status and the start date read as one. How: This stacks them. */ }
 
 
-									<span className={ cssModObj.statusText }>Available for new projects</span>{ /* What: Status Text Span Element. Why: The card says z4nta0 is taking on work. How: This shows the status. */ }
+									<span className={ cssModObj.staTexSpa }>Available for new projects</span>{ /* What: Status Text Span Element. Why: The card says z4nta0 is taking on work. How: This shows the status. */ }
 
-									<span className={ cssModObj.statusSub }>Earliest start: Anytime</span>{ /* What: Status Sub Span Element. Why: A visitor learns how soon work can start. How: This shows the earliest start. */ }
+									<span className={ cssModObj.staSubSpa }>Earliest start: Anytime</span>{ /* What: Status Subtitle Span Element. Why: A visitor learns how soon work can start. How: This shows the earliest start. */ }
 
 
 								</div>
@@ -686,13 +686,13 @@ function ConPagCom () : JSX.Element {
 						</div>
 
 
-						<div className={ cssModObj.sidebarCard }>{ /* What: Response Time Card Div Element. Why: A visitor learns how soon to expect a reply. How: This shows the response promise. */ }
+						<div className={ cssModObj.sidCarDiv }>{ /* What: Sidebar Card Div Element. Why: A visitor learns how soon to expect a reply. How: This shows the response promise. */ }
 
 
-							<h3 className={ cssModObj.sidebarTitle }>Response Time</h3>{ /* What: Response Time Heading Element. Why: The card is named. How: This shows its title. */ }
+							<h3 className={ cssModObj.sidTitHea }>Response Time</h3>{ /* What: Sidebar Title Heading Element. Why: The card is named. How: This shows its title. */ }
 
-							<p className={ cssModObj.responseText }>{ /* What: Response Text Paragraph Element. Why: The promise is the card's point. How: This says inquiries get a reply within a business day, with LinkedIn for anything urgent. */ }
-								I respond to all inquiries within <strong className={ cssModObj.responseStrong }>24 hours</strong> on business days.
+							<p className={ cssModObj.resTexPar }>{ /* What: Response Text Paragraph Element. Why: The promise is the card's point. How: This says inquiries get a reply within a business day, with LinkedIn for anything urgent. */ }
+								I respond to all inquiries within <strong className={ cssModObj.resTimStr }>24 hours</strong> on business days.
 								For urgent matters, reach out on LinkedIn.
 							</p>
 

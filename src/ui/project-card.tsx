@@ -72,14 +72,14 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 	return (
 
 
-		<article className={` ${ cssModObj.card }   ${ isaFeaBoo ? cssModObj.featured : '' } `}>{ /* What: Project Card Article Element. Why: Each project is a self-contained piece of content. How: This holds the screenshot, the text, and the corner accent, with the featured class when asked. */ }
+		<article className={` ${ cssModObj.proCarArt }   ${ isaFeaBoo ? cssModObj.proCarArtFeatured : '' } `}>{ /* What: Project Card Article Element. Why: Each project is a self-contained piece of content. How: This holds the screenshot, the text, and the corner accent, with the featured class when asked. */ }
 
 
-			<div className={ cssModObj.imageWrap }>{ /* What: Image Wrap Div Element. Why: The screenshot, its overlay, and its badge share one frame. How: This crops the screenshot and positions the overlay and badge over it. */ }
+			<div className={ cssModObj.imaWraDiv }>{ /* What: Image Wrap Div Element. Why: The screenshot, its overlay, and its badge share one frame. How: This crops the screenshot and positions the overlay and badge over it. */ }
 
 
 				<img
-					className={ cssModObj.image }
+					className={ cssModObj.proScrIma }
 
 					loading='lazy'
 					src={ proRecObj.imaStr }
@@ -88,22 +88,22 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 				/>{ /* What: Project Screenshot Image Element. Why: A screenshot shows what the project looks like. How: This loads the record's screenshot lazily, named by the project's title. */ }
 
 
-				<div className={ cssModObj.overlay }>{ /* What: Overlay Div Element. Why: The project's links appear over the screenshot on hover. How: This covers the frame and holds the links. */ }
+				<div className={ cssModObj.imaOveDiv }>{ /* What: Image Overlay Div Element. Why: The project's links appear over the screenshot on hover. How: This covers the frame and holds the links. */ }
 
 
-					<div className={ cssModObj.overlayLinks }>{ /* What: Overlay Links Div Element. Why: The links sit together in the overlay's center. How: This lines them up in a row. */ }
+					<div className={ cssModObj.oveLinDiv }>{ /* What: Overlay Links Div Element. Why: The links sit together in the overlay's center. How: This lines them up in a row. */ }
 
 
 						{ proRecObj.livStr && ( // What: Live Link Presence Check. Why: Not every project has a live site. How: This renders the link only when the record has one.
 
 
 							<a
-								className={ cssModObj.btn }
+								className={ cssModObj.oveButAnc }
 
 								href={ proRecObj.livStr }
 								rel='noreferrer'
 								target='_blank'
-							>{ /* What: Live Site Anchor Element. Why: A visitor can open the finished site. How: This links to the live site in a new tab. */ }
+							>{ /* What: Overlay Button Anchor Element. Why: A visitor can open the finished site. How: This links to the live site in a new tab. */ }
 
 
 								<svg
@@ -142,12 +142,12 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 
 
 							<a
-								className={` ${ cssModObj.btn }   ${ cssModObj.btnGhost } `}
+								className={` ${ cssModObj.oveButAnc }   ${ cssModObj.oveButAncGhost } `}
 
 								href={ proRecObj.gitStr }
 								rel='noreferrer'
 								target='_blank'
-							>{ /* What: GitHub Anchor Element. Why: A visitor can read the project's source. How: This links to its repository in a new tab, styled as the lighter ghost button. */ }
+							>{ /* What: Overlay Button Anchor Element. Why: A visitor can read the project's source. How: This links to its repository in a new tab, styled as the lighter ghost button. */ }
 
 
 								<svg
@@ -178,21 +178,21 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 				</div>
 
 
-				<div className={ cssModObj.yearBadge }>{ proRecObj.yeaNum }</div>{ /* What: Year Badge Div Element. Why: The badge shows when the project was built. How: This prints the record's year over the screenshot's corner. */ }
+				<div className={ cssModObj.yeaBadDiv }>{ proRecObj.yeaNum }</div>{ /* What: Year Badge Div Element. Why: The badge shows when the project was built. How: This prints the record's year over the screenshot's corner. */ }
 
 
 			</div>
 
 
 
-			<div className={ cssModObj.body }>{ /* What: Card Body Div Element. Why: The project's text sits below its screenshot. How: This stacks the title, description, and tags. */ }
+			<div className={ cssModObj.carBodDiv }>{ /* What: Card Body Div Element. Why: The project's text sits below its screenshot. How: This stacks the title, description, and tags. */ }
 
 
-				<h3 className={ cssModObj.title }>{ proRecObj.titStr }</h3>{ /* What: Project Title Heading Element. Why: The card names its project. How: This shows the record's title as an h3. */ }
+				<h3 className={ cssModObj.proTitHea }>{ proRecObj.titStr }</h3>{ /* What: Project Title Heading Element. Why: The card names its project. How: This shows the record's title as an h3. */ }
 
-				<p className={ cssModObj.desc }>{ proRecObj.desStr }</p>{ /* What: Project Description Paragraph Element. Why: The card says what the project is. How: This shows the record's description. */ }
+				<p className={ cssModObj.proDesPar }>{ proRecObj.desStr }</p>{ /* What: Project Description Paragraph Element. Why: The card says what the project is. How: This shows the record's description. */ }
 
-				<div className={ cssModObj.tags }>{ /* What: Tags Div Element. Why: The project's technologies read as one row of pills. How: This wraps the tags. */ }
+				<div className={ cssModObj.proTagDiv }>{ /* What: Project Tags Div Element. Why: The project's technologies read as one row of pills. How: This wraps the tags. */ }
 
 
 					{ proRecObj.tagArr.map( ( tagNamStr ) => ( // What: Tag Map Call. Why: Every technology gets its own pill. How: This renders a blue tag per name.
@@ -216,7 +216,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 
 
 			<svg
-				className={ cssModObj.corner }
+				className={ cssModObj.corAccSvg }
 
 				height='24'
 				viewBox='0 0 24 24'

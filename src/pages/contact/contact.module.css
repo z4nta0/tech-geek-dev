@@ -12,7 +12,7 @@
  * the page scrolls; below 1024px they stack. The fields share one look, with
  * an orange border and glow while focused, the select draws its own arrow,
  * and the thank-you replaces the form once a message is sent. The sidebar's
- * availability dot pulses with the shared pulse keyframe. The page's
+ * availability dot pulses with the shared statusLoopPulse keyframe. The page's
  * centered column takes the shared container values, and its section the
  * shared section padding, merged into their own rules. Everything that moves
  * holds still under reduced motion.
@@ -23,19 +23,19 @@
 
 
 
-/* #region page */
+/* #region pagEntDiv */
 
-.page { /* What: Contact Page. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global fadeUp keyframe. */
+.pagEntDiv { /* What: Page Enter Div. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global contentEnterFadeUp keyframe. */
 
 
-	animation : global( fadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	animation : global( contentEnterFadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Contact Page. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Div. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
 
 
-	.page { /* What: Motionless Contact Page. Why: The page should simply be there. How: This turns the entrance off. */
+	.pagEntDiv { /* What: Motionless Page Enter Div. Why: The page should simply be there. How: This turns the entrance off. */
 
 
 		animation : none;
@@ -48,9 +48,9 @@
 
 
 
-/* #region hero */
+/* #region conHerSec */
 
-.hero { /* What: Contact Hero. Why: The page opens with its invitation clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips the pattern behind it. */
+.conHerSec { /* What: Contact Hero Section. Why: The page opens with its invitation clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips the pattern behind it. */
 
 
 	background : var( --bac-pag-col );                                                       /* Background Page Color = #F5F0E8 */
@@ -62,9 +62,9 @@
 }
 
 
-/* #region heroInner */
+/* #region herInnDiv */
 
-.heroInner { /* What: Hero Inner. Why: The hero's text sits in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the label, heading, and line. */
+.herInnDiv { /* What: Hero Inner Div. Why: The hero's text sits in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the label, heading, and line. */
 
 
 	display        : flex;
@@ -81,9 +81,9 @@
 }
 
 
-/* #region heroLabel */
+/* #region herLabSpa */
 
-.heroLabel { /* What: Hero Label. Why: A small label names the page above its heading. How: This sets it in orange mono capitals after its rule. */
+.herLabSpa { /* What: Hero Label Span. Why: A small label names the page above its heading. How: This sets it in orange mono capitals after its rule. */
 
 
 	align-items    : center;
@@ -98,7 +98,7 @@
 
 }
 
-.heroLine { /* What: Hero Line. Why: A short rule leads into the label. How: This draws a 28px orange stroke. */
+.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws a 28px orange stroke. */
 
 
 	background : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
@@ -109,12 +109,12 @@
 
 }
 
-/* #endregion heroLabel */
+/* #endregion herLabSpa */
 
 
-/* #region heroTitle */
+/* #region herTitHea */
 
-.heroTitle { /* What: Hero Title. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
+.herTitHea { /* What: Hero Title Heading. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
 
 
 	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -122,7 +122,7 @@
 
 }
 
-.accent { /* What: Hero Title Accent. Why: One word of the heading carries the accent. How: This sets it in orange. */
+.titAccSpa { /* What: Title Accent Span. Why: One word of the heading carries the accent. How: This sets it in orange. */
 
 
 	color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
@@ -130,10 +130,10 @@
 
 }
 
-/* #endregion heroTitle */
+/* #endregion herTitHea */
 
 
-.heroSub { /* What: Hero Subtitle. Why: The line under the heading reads a little larger and quieter. How: This sets it muted, capped at the paragraph measure. */
+.herSubPar { /* What: Hero Subtitle Paragraph. Why: The line under the heading reads a little larger and quieter. How: This sets it muted, capped at the paragraph measure. */
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -143,15 +143,15 @@
 
 }
 
-/* #endregion heroInner */
+/* #endregion herInnDiv */
 
-/* #endregion hero */
+/* #endregion conHerSec */
 
 
 
-/* #region contactSection */
+/* #region conBodSec */
 
-.contactSection { /* What: Contact Section. Why: The form and the sidebar sit on the ivory with the section spacing. How: This sets the background and the shared section padding. */
+.conBodSec { /* What: Contact Body Section. Why: The form and the sidebar sit on the ivory with the section spacing. How: This sets the background and the shared section padding. */
 
 
 	background : var( --bac-pag-col );   /* Background Page Color = #F5F0E8 */
@@ -161,9 +161,9 @@
 }
 
 
-/* #region contactGrid */
+/* #region conGriDiv */
 
-.contactGrid { /* What: Contact Grid. Why: The form and the sidebar sit side by side in the page's centered column. How: This caps and centers the column with its side padding and lays out the form beside a 320px sidebar, aligned to their tops. */
+.conGriDiv { /* What: Contact Grid Div. Why: The form and the sidebar sit side by side in the page's centered column. How: This caps and centers the column with its side padding and lays out the form beside a 320px sidebar, aligned to their tops. */
 
 
 	align-items           : start;
@@ -177,10 +177,10 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Contact Grid. Why: The sidebar crowds the form on a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Contact Grid Div. Why: The sidebar crowds the form on a tablet. How: This applies at 1024px and below. */
 
 
-	.contactGrid { /* What: Stacked Contact Grid. Why: The form and the sidebar read better one above the other. How: This sets one column. */
+	.conGriDiv { /* What: Stacked Contact Grid Div. Why: The form and the sidebar read better one above the other. How: This sets one column. */
 
 
 		grid-template-columns : 1fr;
@@ -192,9 +192,9 @@
 }
 
 
-/* #region formWrap */
+/* #region forWraDiv */
 
-.formWrap { /* What: Form Wrap. Why: The form and its thank-you sit on one white card. How: This sets the bordered card with generous padding. */
+.forWraDiv { /* What: Form Wrap Div. Why: The form and its thank-you sit on one white card. How: This sets the bordered card with generous padding. */
 
 
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
@@ -204,10 +204,10 @@
 
 
 }
-@media ( max-width : 640px ) { /* What: Phone Form Wrap. Why: The card's padding eats a phone's width. How: This applies at 640px and below. */
+@media ( max-width : 640px ) { /* What: Phone Form Wrap Div. Why: The card's padding eats a phone's width. How: This applies at 640px and below. */
 
 
-	.formWrap { /* What: Snug Form Wrap. Why: The fields need the room. How: This reduces the padding. */
+	.forWraDiv { /* What: Snug Form Wrap Div. Why: The fields need the room. How: This reduces the padding. */
 
 
 		padding : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
@@ -219,9 +219,9 @@
 }
 
 
-/* #region successState */
+/* #region sucStaDiv */
 
-.successState { /* What: Success State. Why: The thank-you takes the form's place once the message is sent. How: This centers its check, heading, line, and button in a padded column. */
+.sucStaDiv { /* What: Success State Div. Why: The thank-you takes the form's place once the message is sent. How: This centers its check, heading, line, and button in a padded column. */
 
 
 	align-items    : center;
@@ -234,7 +234,7 @@
 
 }
 
-.successTitle { /* What: Success Title. Why: The thank-you's heading says the message went out. How: This sets it in the main text color, a little smaller than the global h2. */
+.sucTitHea { /* What: Success Title Heading. Why: The thank-you's heading says the message went out. How: This sets it in the main text color, a little smaller than the global h2. */
 
 
 	color     : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -243,7 +243,7 @@
 
 }
 
-.successText { /* What: Success Text. Why: The line under the heading says when to expect a reply. How: This sets it muted and capped at 360px. */
+.sucTexPar { /* What: Success Text Paragraph. Why: The line under the heading says when to expect a reply. How: This sets it muted and capped at 360px. */
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -252,7 +252,7 @@
 
 }
 
-.resetBtn { /* What: Reset Button. Why: A visitor may want to send another message. How: This sets an orange outlined button in mono capitals, easing its fill. */
+.resForBut { /* What: Reset Form Button. Why: A visitor may want to send another message. How: This sets an orange outlined button in mono capitals, easing its fill. */
 
 
 	border         : var( --bor-wid-bas ) solid var( --acc-mai-col );             /* Border Width Base ~= 1.160px, Accent Main Color = #F26419 */
@@ -267,7 +267,7 @@
 
 
 }
-.resetBtn:hover { /* What: Hovered Reset Button. Why: A button should respond to the pointer. How: This fills it orange with white text. */
+.resForBut:hover { /* What: Hovered Reset Form Button. Why: A button should respond to the pointer. How: This fills it orange with white text. */
 
 
 	background : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
@@ -275,10 +275,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Reset Button. Why: Someone who asked for less motion shouldn't see the button fill fade. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Reset Form Button. Why: Someone who asked for less motion shouldn't see the button fill fade. How: This applies only when the reduced-motion preference is set. */
 
 
-	.resetBtn { /* What: Motionless Reset Button. Why: The fill should simply switch. How: This turns the transition off. */
+	.resForBut { /* What: Motionless Reset Form Button. Why: The fill should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -289,12 +289,12 @@
 
 }
 
-/* #endregion successState */
+/* #endregion sucStaDiv */
 
 
-/* #region form */
+/* #region conForFor */
 
-.form { /* What: Contact Form. Why: The fields stack in order. How: This stacks them with gaps. */
+.conForFor { /* What: Contact Form Form. Why: The fields stack in order. How: This stacks them with gaps. */
 
 
 	display        : flex;
@@ -304,7 +304,7 @@
 
 }
 
-.formTitle { /* What: Form Title. Why: The form's heading is a little smaller than the page's sections. How: This sets it in the main text color with room below. */
+.forTitHea { /* What: Form Title Heading. Why: The form's heading is a little smaller than the page's sections. How: This sets it in the main text color with room below. */
 
 
 	color         : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -315,9 +315,9 @@
 }
 
 
-/* #region formRow */
+/* #region forRowDiv */
 
-.formRow { /* What: Form Row. Why: The name and email fields share a row on wider screens. How: This sets two even columns with a gap. */
+.forRowDiv { /* What: Form Row Div. Why: The name and email fields share a row on wider screens. How: This sets two even columns with a gap. */
 
 
 	display               : grid;
@@ -326,10 +326,10 @@
 
 
 }
-@media ( max-width : 640px ) { /* What: Phone Form Row. Why: Two fields side by side crowd a phone. How: This applies at 640px and below. */
+@media ( max-width : 640px ) { /* What: Phone Form Row Div. Why: Two fields side by side crowd a phone. How: This applies at 640px and below. */
 
 
-	.formRow { /* What: Stacked Form Row. Why: Each field needs the full width on a phone. How: This sets one column. */
+	.forRowDiv { /* What: Stacked Form Row Div. Why: Each field needs the full width on a phone. How: This sets one column. */
 
 
 		grid-template-columns : 1fr;
@@ -341,9 +341,9 @@
 }
 
 
-/* #region field */
+/* #region forFieDiv */
 
-.field { /* What: Form Field. Why: Each label sits over its field. How: This stacks them with a small gap. */
+.forFieDiv { /* What: Form Field Div. Why: Each label sits over its field. How: This stacks them with a small gap. */
 
 
 	display        : flex;
@@ -353,7 +353,7 @@
 
 }
 
-.label { /* What: Field Label. Why: Each field's name reads as a small label. How: This sets it in muted mono capitals. */
+.fieLabLab { /* What: Field Label Label. Why: Each field's name reads as a small label. How: This sets it in muted mono capitals. */
 
 
 	color          : var( --tex-sec-col );                   /* Text Secondary Color = #3D3D5C */
@@ -366,9 +366,9 @@
 
 }
 
-.input,
-.select,
-.textarea { /* What: Form Controls. Why: The inputs, the select, and the textarea share one look. How: This sets them full width on the ivory with a pale border and rounded corners, easing their focus border and glow. */
+.forConInp,
+.forConSel,
+.forConTex { /* What: Form Control Fields. Why: The inputs, the select, and the textarea share one look. How: This sets them full width on the ivory with a pale border and rounded corners, easing their focus border and glow. */
 
 
 	background    : var( --bac-pag-col );                                               /* Background Page Color = #F5F0E8 */
@@ -383,9 +383,9 @@
 
 
 }
-.input:focus,
-.select:focus,
-.textarea:focus { /* What: Focused Form Controls. Why: A visitor has to see which field they're typing in. How: This swaps the default outline for an orange border and a pale orange glow. */
+.forConInp:focus,
+.forConSel:focus,
+.forConTex:focus { /* What: Focused Form Control Fields. Why: A visitor has to see which field they're typing in. How: This swaps the default outline for an orange border and a pale orange glow. */
 
 
 	border-color : var( --foc-rin-col );                            /* Focus Ring Color ~= #bd3000 */
@@ -394,12 +394,12 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Form Controls. Why: Someone who asked for less motion shouldn't see the focus glow fade. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Form Control Fields. Why: Someone who asked for less motion shouldn't see the focus glow fade. How: This applies only when the reduced-motion preference is set. */
 
 
-	.input,
-	.select,
-	.textarea { /* What: Motionless Form Controls. Why: The focus border and glow should simply switch. How: This turns the transition off. */
+	.forConInp,
+	.forConSel,
+	.forConTex { /* What: Motionless Form Control Fields. Why: The focus border and glow should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -410,7 +410,7 @@
 
 }
 
-.select { /* What: Budget Select. Why: The select draws its own arrow in the site's style. How: This removes the native arrow and draws a muted chevron at the right, making room for it. */
+.forConSel { /* What: Form Control Select. Why: The select draws its own arrow in the site's style. How: This removes the native arrow and draws a muted chevron at the right, making room for it. */
 
 
 	appearance          : none;
@@ -423,7 +423,7 @@
 
 }
 
-.textarea { /* What: Message Textarea. Why: A message needs room and only grows downward. How: This sets a 140px minimum, roomy lines, and vertical resizing only. */
+.forConTex { /* What: Form Control Textarea. Why: A message needs room and only grows downward. How: This sets a 140px minimum, roomy lines, and vertical resizing only. */
 
 
 	line-height : var( --ver-rhy-p01 );                /* Vertical Rhythm Base Plus 1 ~= 1.755 */
@@ -433,12 +433,12 @@
 
 }
 
-/* #endregion field */
+/* #endregion forFieDiv */
 
-/* #endregion formRow */
+/* #endregion forRowDiv */
 
 
-.errorMsg { /* What: Error Message. Why: A failed send has to stand out. How: This sets the message on a pale red panel with a red border and text. */
+.errMesPar { /* What: Error Message Paragraph. Why: A failed send has to stand out. How: This sets the message on a pale red panel with a red border and text. */
 
 
 	background    : var( --err-tin-col );                            /* Error Tint Color = #fdf0ee */
@@ -451,7 +451,7 @@
 
 }
 
-.submitBtn { /* What: Submit Button. Why: Sending is the form's main action. How: This sets an orange button in mono capitals at the form's left, easing its color and lift. */
+.senMesBut { /* What: Send Message Button. Why: Sending is the form's main action. How: This sets an orange button in mono capitals at the form's left, easing its color and lift. */
 
 
 	align-items    : center;
@@ -471,7 +471,7 @@
 
 
 }
-.submitBtn:hover { /* What: Hovered Submit Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
+.senMesBut:hover { /* What: Hovered Send Message Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
 
 
 	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
@@ -479,7 +479,7 @@
 
 
 }
-.submitBtn:disabled { /* What: Disabled Submit Button. Why: While a message is sending the button can't be pressed again. How: This fades it, shows the not-allowed cursor, and cancels the hover lift, winning over the hover rule above it. */
+.senMesBut:disabled { /* What: Disabled Send Message Button. Why: While a message is sending the button can't be pressed again. How: This fades it, shows the not-allowed cursor, and cancels the hover lift, winning over the hover rule above it. */
 
 
 	cursor    : not-allowed;
@@ -488,10 +488,10 @@
 
 
 }
-@media ( max-width : 640px ) { /* What: Phone Submit Button. Why: A small button is hard to tap on a phone. How: This applies at 640px and below. */
+@media ( max-width : 640px ) { /* What: Phone Send Message Button. Why: A small button is hard to tap on a phone. How: This applies at 640px and below. */
 
 
-	.submitBtn { /* What: Full Width Submit Button. Why: The button spans the form on a phone. How: This stretches it and centers its label. */
+	.senMesBut { /* What: Full Width Send Message Button. Why: The button spans the form on a phone. How: This stretches it and centers its label. */
 
 
 		justify-content : center;
@@ -502,10 +502,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Submit Button. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Send Message Button. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.submitBtn { /* What: Motionless Submit Button. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+	.senMesBut { /* What: Motionless Send Message Button. Why: The hover color and lift should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -516,14 +516,14 @@
 
 }
 
-/* #endregion form */
+/* #endregion conForFor */
 
-/* #endregion formWrap */
+/* #endregion forWraDiv */
 
 
-/* #region sidebar */
+/* #region conSidAsi */
 
-.sidebar { /* What: Contact Sidebar. Why: The other ways to get in touch stay in view beside the form. How: This stacks the cards and sticks them just under the fixed bar. */
+.conSidAsi { /* What: Contact Sidebar Aside. Why: The other ways to get in touch stay in view beside the form. How: This stacks the cards and sticks them just under the fixed bar. */
 
 
 	display        : flex;
@@ -534,10 +534,10 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Contact Sidebar. Why: The stacked sidebar sits under the form. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Contact Sidebar Aside. Why: The stacked sidebar sits under the form. How: This applies at 1024px and below. */
 
 
-	.sidebar { /* What: Unstuck Contact Sidebar. Why: A stacked sidebar shouldn't stick over the form. How: This returns it to the normal flow. */
+	.conSidAsi { /* What: Unstuck Contact Sidebar Aside. Why: A stacked sidebar shouldn't stick over the form. How: This returns it to the normal flow. */
 
 
 		position : static;
@@ -549,9 +549,9 @@
 }
 
 
-/* #region sidebarCard */
+/* #region sidCarDiv */
 
-.sidebarCard { /* What: Sidebar Card. Why: Each group of details sits on its own white card. How: This sets the bordered, rounded, padded card. */
+.sidCarDiv { /* What: Sidebar Card Div. Why: Each group of details sits on its own white card. How: This sets the bordered, rounded, padded card. */
 
 
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
@@ -562,7 +562,7 @@
 
 }
 
-.sidebarTitle { /* What: Sidebar Title. Why: Each card is named. How: This sets the title small and bold with room below. */
+.sidTitHea { /* What: Sidebar Title Heading. Why: Each card is named. How: This sets the title small and bold with room below. */
 
 
 	color         : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -574,9 +574,9 @@
 }
 
 
-/* #region contactItems */
+/* #region conIteDiv */
 
-.contactItems { /* What: Contact Items. Why: The contact details stack in a list. How: This stacks them with gaps. */
+.conIteDiv { /* What: Contact Items Div. Why: The contact details stack in a list. How: This stacks them with gaps. */
 
 
 	display        : flex;
@@ -587,9 +587,9 @@
 }
 
 
-/* #region contactItem */
+/* #region conIteAnc */
 
-.contactItem { /* What: Contact Item. Why: Each detail is one tappable row. How: This sets the icon beside the text, padded and rounded, easing its background. */
+.conIteAnc { /* What: Contact Item Anchor. Why: Each detail is one tappable row. How: This sets the icon beside the text, padded and rounded, easing its background. */
 
 
 	align-items   : center;
@@ -601,17 +601,17 @@
 
 
 }
-.contactItem:hover { /* What: Hovered Contact Item. Why: A row should respond to the pointer. How: This tints it ivory. */
+.conIteAnc:hover { /* What: Hovered Contact Item Anchor. Why: A row should respond to the pointer. How: This tints it ivory. */
 
 
 	background : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Contact Item. Why: Someone who asked for less motion shouldn't see the rows fade. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Contact Item Anchor. Why: Someone who asked for less motion shouldn't see the rows fade. How: This applies only when the reduced-motion preference is set. */
 
 
-	.contactItem { /* What: Motionless Contact Item. Why: The hover tint should simply switch. How: This turns the transition off. */
+	.conIteAnc { /* What: Motionless Contact Item Anchor. Why: The hover tint should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -622,7 +622,7 @@
 
 }
 
-.contactIcon { /* What: Contact Icon. Why: Each detail's icon sits on a pale blue tile. How: This draws a 36px rounded tile centering the icon in dark blue, never shrinking. */
+.conIcoSpa { /* What: Contact Icon Span. Why: Each detail's icon sits on a pale blue tile. How: This draws a 36px rounded tile centering the icon in dark blue, never shrinking. */
 
 
 	align-items     : center;
@@ -638,7 +638,7 @@
 
 }
 
-.contactLabel { /* What: Contact Label. Why: The detail's name reads as a small label. How: This sets it on its own line in muted mono capitals. */
+.conLabSpa { /* What: Contact Label Span. Why: The detail's name reads as a small label. How: This sets it on its own line in muted mono capitals. */
 
 
 	color          : var( --tex-mut-col );                   /* Text Muted Color = #646482 */
@@ -651,7 +651,7 @@
 
 }
 
-.contactValue { /* What: Contact Value. Why: The address reads clearly under its name. How: This sets it on its own line in the main text color. */
+.conValSpa { /* What: Contact Value Span. Why: The address reads clearly under its name. How: This sets it on its own line in the main text color. */
 
 
 	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -662,14 +662,14 @@
 
 }
 
-/* #endregion contactItem */
+/* #endregion conIteAnc */
 
-/* #endregion contactItems */
+/* #endregion conIteDiv */
 
 
-/* #region availabilityRow */
+/* #region avaRowDiv */
 
-.availabilityRow { /* What: Availability Row. Why: The status dot sits beside its text. How: This lines them up with a gap. */
+.avaRowDiv { /* What: Availability Row Div. Why: The status dot sits beside its text. How: This lines them up with a gap. */
 
 
 	align-items : center;
@@ -679,10 +679,10 @@
 
 }
 
-.statusDot { /* What: Status Dot. Why: A pulsing green dot signals availability. How: This draws a 10px green circle, never shrinking, playing the shared pulse forever. */
+.staDotSpa { /* What: Status Dot Span. Why: A pulsing green dot signals availability. How: This draws a 10px green circle, never shrinking, playing the shared pulse forever. */
 
 
-	animation     : global( pulse ) var( --dur-ani-p10 ) var( --mot-sta-eas ) infinite; /* Duration Animation Base Plus 10 ~= 2,627.0ms, Motion Standard Easing = ease */
+	animation     : global( statusLoopPulse ) var( --dur-ani-p10 ) var( --mot-sta-eas ) infinite; /* Duration Animation Base Plus 10 ~= 2,627.0ms, Motion Standard Easing = ease */
 	background    : var( --suc-mai-col );                                               /* Success Main Color = #22c55e */
 	border-radius : 50%;
 	flex-shrink   : 0;
@@ -691,10 +691,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Status Dot. Why: Someone who asked for less motion shouldn't see the dot pulse. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Status Dot Span. Why: Someone who asked for less motion shouldn't see the dot pulse. How: This applies only when the reduced-motion preference is set. */
 
 
-	.statusDot { /* What: Motionless Status Dot. Why: The dot should hold still. How: This turns the pulse off. */
+	.staDotSpa { /* What: Motionless Status Dot Span. Why: The dot should hold still. How: This turns the pulse off. */
 
 
 		animation : none;
@@ -705,7 +705,7 @@
 
 }
 
-.statusText { /* What: Status Text. Why: The status reads clearly. How: This sets it on its own line, semibold in the main text color. */
+.staTexSpa { /* What: Status Text Span. Why: The status reads clearly. How: This sets it on its own line, semibold in the main text color. */
 
 
 	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -716,7 +716,7 @@
 
 }
 
-.statusSub { /* What: Status Sub. Why: The earliest start reads quietly under the status. How: This sets it on its own line in small muted mono. */
+.staSubSpa { /* What: Status Subtitle Span. Why: The earliest start reads quietly under the status. How: This sets it on its own line in small muted mono. */
 
 
 	color          : var( --tex-mut-col ); /* Text Muted Color = #646482 */
@@ -729,12 +729,12 @@
 
 }
 
-/* #endregion availabilityRow */
+/* #endregion avaRowDiv */
 
 
-/* #region responseText */
+/* #region resTexPar */
 
-.responseText { /* What: Response Text. Why: The response promise reads as small body text. How: This sets it muted with roomy lines. */
+.resTexPar { /* What: Response Text Paragraph. Why: The response promise reads as small body text. How: This sets it muted with roomy lines. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -744,7 +744,7 @@
 
 }
 
-.responseStrong { /* What: Response Strong. Why: The 24 hours is the promise's point. How: This sets it in the main text color. */
+.resTimStr { /* What: Response Time Strong. Why: The 24 hours is the promise's point. How: This sets it in the main text color. */
 
 
 	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -752,16 +752,16 @@
 
 }
 
-/* #endregion responseText */
+/* #endregion resTexPar */
 
-/* #endregion sidebarCard */
+/* #endregion sidCarDiv */
 
-/* #endregion sidebar */
+/* #endregion conSidAsi */
 
-/* #endregion contactGrid */
+/* #endregion conGriDiv */
 
-/* #endregion contactSection */
+/* #endregion conBodSec */
 
-/* #endregion page */
+/* #endregion pagEntDiv */
 
 

@@ -64,20 +64,20 @@ function NotFouCom () : JSX.Element {
 	return (
 
 
-		<div className={ cssModObj.wrap }>{ /* What: Not Found Wrap Div Element. Why: The 404 content sits centered in the page. How: This fills the space between the bar and the footer and fades in like every page. */ }
+		<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The 404 content sits centered in the page. How: This fills the space between the bar and the footer and fades in like every page. */ }
 
 
-			<div className={ cssModObj.inner }>{ /* What: Not Found Inner Div Element. Why: The number, the drawing, the text, and the button read as one centered block. How: This stacks them. */ }
+			<div className={ cssModObj.nofInnDiv }>{ /* What: Not-Found Inner Div Element. Why: The number, the drawing, the text, and the button read as one centered block. How: This stacks them. */ }
 
 
 				<div
-					className={ cssModObj.code }
+					className={ cssModObj.errCodDiv }
 
 					aria-hidden='true'
 				>404</div>{ /* What: Error Code Div Element. Why: A large 404 tells a visitor at a glance what happened. How: This shows the number, hidden from screen readers since the heading says the same. */ }
 
 				<svg
-					className={ cssModObj.geo }
+					className={ cssModObj.hexDraSvg }
 
 					fill='none'
 					viewBox='0 0 200 200'
@@ -113,19 +113,19 @@ function NotFouCom () : JSX.Element {
 
 				</svg>
 
-				<h1 className={ cssModObj.title }>Page Not Found</h1>{ /* What: Not Found Title Heading Element. Why: The page's heading says what went wrong. How: This shows it as the page's h1. */ }
+				<h1 className={ cssModObj.nofTitHea }>Page Not Found</h1>{ /* What: Not-Found Title Heading Element. Why: The page's heading says what went wrong. How: This shows it as the page's h1. */ }
 
-				<p className={ cssModObj.desc }>{ /* What: Not Found Description Paragraph Element. Why: A short line explains why the page is missing. How: This says the address doesn't exist or has moved. */ }
+				<p className={ cssModObj.nofDesPar }>{ /* What: Not-Found Description Paragraph Element. Why: A short line explains why the page is missing. How: This says the address doesn't exist or has moved. */ }
 					The page you're looking for doesn't exist or has been moved.
 				</p>
 
 
 
 				<Link
-					className={ cssModObj.btn }
+					className={ cssModObj.nofHomAnc }
 
 					to='/'
-				>Go Home</Link>{ /* What: Go Home Link. Why: A visitor who lands here needs a way back into the site. How: This routes to the home page as a button. */ }
+				>Go Home</Link>{ /* What: Not-Found Home Anchor Element. Why: A visitor who lands here needs a way back into the site. How: This routes to the home page as a button. */ }
 
 
 			</div>

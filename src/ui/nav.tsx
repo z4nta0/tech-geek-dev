@@ -117,20 +117,20 @@ function NavBarCom () : JSX.Element {
 
 
 		<header
-			className={ cssModObj.header }
+			className={ cssModObj.navBarHed }
 
 			data-nav-bar-scrolled={ isaScrBoo || undefined }
-		>{ /* What: Navigation Header Element. Why: The bar sits at the top of every page. How: This holds the bar's row and the phone drawer, marked with data-nav-bar-scrolled once the page moves, which its module styles. */ }
+		>{ /* What: Navigation Bar Header Element. Why: The bar sits at the top of every page. How: This holds the bar's row and the phone drawer, marked with data-nav-bar-scrolled once the page moves, which its module styles. */ }
 
 
-			<div className={ cssModObj.inner }>{ /* What: Navigation Inner Div Element. Why: The bar's content sits in the page's centered column. How: This lays out the brand, the links, the button, and the toggle in a row. */ }
+			<div className={ cssModObj.navInnDiv }>{ /* What: Navigation Inner Div Element. Why: The bar's content sits in the page's centered column. How: This lays out the brand, the links, the button, and the toggle in a row. */ }
 
 
 				<NavLink
-					className={ cssModObj.logo }
+					className={ cssModObj.braLogAnc }
 
 					to='/'
-				>{ /* What: Brand Logo Link. Why: The mark and wordmark take a visitor home from any page. How: This routes to the root path. */ }
+				>{ /* What: Brand Logo Anchor Element. Why: The mark and wordmark take a visitor home from any page. How: This routes to the root path. */ }
 
 
 					<svg
@@ -166,10 +166,10 @@ function NavBarCom () : JSX.Element {
 
 					</svg>
 
-					<span className={ cssModObj.wordmark }>{ /* What: Wordmark Span Element. Why: The site's name reads beside its mark. How: This sets the name's two parts in their own colors. */ }
-						<span className={ cssModObj.first }>TechGeek</span>{ /* What: Wordmark First Span Element. Why: The name's first part is the brand. How: This shows TechGeek in the main text color. */ }
+					<span className={ cssModObj.braWorSpa }>{ /* What: Brand Wordmark Span Element. Why: The site's name reads beside its mark. How: This sets the name's two parts in their own colors. */ }
+						<span className={ cssModObj.worFirSpa }>TechGeek</span>{ /* What: Wordmark First Span Element. Why: The name's first part is the brand. How: This shows TechGeek in the main text color. */ }
 
-						<span className={ cssModObj.last }>.dev</span>{ /* What: Wordmark Last Span Element. Why: The name's ending is the domain. How: This shows .dev in its accent color. */ }
+						<span className={ cssModObj.worLasSpa }>.dev</span>{ /* What: Wordmark Last Span Element. Why: The name's ending is the domain. How: This shows .dev in its accent color. */ }
 					</span>
 
 
@@ -178,7 +178,7 @@ function NavBarCom () : JSX.Element {
 
 
 				<nav
-					className={ cssModObj.nav }
+					className={ cssModObj.priNavNav }
 
 					aria-label='Primary navigation'
 				>{ /* What: Primary Navigation Nav Element. Why: The bar links to every page, and it shares the page with the footer's navigation, so it needs its own label. How: This holds a link to each page, shown above the phone breakpoint. */ }
@@ -190,10 +190,10 @@ function NavBarCom () : JSX.Element {
 						<NavLink
 							key={ pagLinObj.patStr }
 
-							className={ cssModObj.link }
+							className={ cssModObj.barLinAnc }
 
 							to={ pagLinObj.patStr }
-						>{ pagLinObj.labStr }</NavLink> // What: Bar Page Link. Why: Each page has its own link in the bar. How: This routes to the row's path, labelled with its name, and NavLink sets aria-current on the one whose route is showing, which its module styles.
+						>{ pagLinObj.labStr }</NavLink> // What: Bar Link Anchor Element. Why: Each page has its own link in the bar. How: This routes to the row's path, labelled with its name, and NavLink sets aria-current on the one whose route is showing, which its module styles.
 
 
 					))}
@@ -203,24 +203,24 @@ function NavBarCom () : JSX.Element {
 
 
 				<a
-					className={ cssModObj.cta }
+					className={ cssModObj.barHirAnc }
 
 					href='/contact'
-				>Hire Me</a>{ /* What: Hire Me Anchor Element. Why: The bar's one call to action leads to the Contact page. How: This links there as a button. */ }
+				>Hire Me</a>{ /* What: Bar Hire Anchor Element. Why: The bar's one call to action leads to the Contact page. How: This links there as a button. */ }
 
 				<button
-					className={ cssModObj.burger }
+					className={ cssModObj.menTogBut }
 
 					aria-expanded={ menOpeBoo }
 					aria-label='Toggle menu'
 
 					onClick={ () => setMenOpeBoo( ( preOpeBoo ) => !preOpeBoo ) }
 				>{ /* What: Menu Toggle Button Element. Why: On phones the page links live in the drawer, opened and closed here. How: This flips the open flag, reporting it through aria-expanded, which its module also reads to turn the bars into a cross. */ }
-					<span className={ cssModObj.bar } />{ /* What: Toggle Bar Span Element. Why: Three bars draw the menu icon. How: This is one bar, which turns into half of the cross while the drawer is open. */ }
+					<span className={ cssModObj.togBarSpa } />{ /* What: Toggle Bar Span Element. Why: Three bars draw the menu icon. How: This is one bar, which turns into half of the cross while the drawer is open. */ }
 
-					<span className={ cssModObj.bar } />{ /* What: Toggle Bar Span Element. Why: Three bars draw the menu icon. How: This is one bar, which fades out while the drawer is open. */ }
+					<span className={ cssModObj.togBarSpa } />{ /* What: Toggle Bar Span Element. Why: Three bars draw the menu icon. How: This is one bar, which fades out while the drawer is open. */ }
 
-					<span className={ cssModObj.bar } />{ /* What: Toggle Bar Span Element. Why: Three bars draw the menu icon. How: This is one bar, which turns into half of the cross while the drawer is open. */ }
+					<span className={ cssModObj.togBarSpa } />{ /* What: Toggle Bar Span Element. Why: Three bars draw the menu icon. How: This is one bar, which turns into half of the cross while the drawer is open. */ }
 				</button>
 
 
@@ -228,7 +228,7 @@ function NavBarCom () : JSX.Element {
 
 
 			<div
-				className={ cssModObj.drawer }
+				className={ cssModObj.menDraDiv }
 
 				data-mobile-menu-open={ menOpeBoo || undefined }
 			>{ /* What: Menu Drawer Div Element. Why: On phones the page links and the button move into a drawer under the bar. How: This holds them, marked with data-mobile-menu-open while the menu is open, which its module styles to slide the drawer into view. */ }
@@ -240,10 +240,10 @@ function NavBarCom () : JSX.Element {
 					<NavLink
 						key={ pagLinObj.patStr }
 
-						className={ cssModObj.drawerLink }
+						className={ cssModObj.draLinAnc }
 
 						to={ pagLinObj.patStr }
-					>{ pagLinObj.labStr }</NavLink> // What: Drawer Page Link. Why: Each page has its own link in the drawer. How: This routes to the row's path, labelled with its name, and NavLink sets aria-current on the one whose route is showing, which its module styles.
+					>{ pagLinObj.labStr }</NavLink> // What: Drawer Link Anchor Element. Why: Each page has its own link in the drawer. How: This routes to the row's path, labelled with its name, and NavLink sets aria-current on the one whose route is showing, which its module styles.
 
 
 				))}
@@ -251,10 +251,10 @@ function NavBarCom () : JSX.Element {
 
 
 				<a
-					className={ cssModObj.drawerCta }
+					className={ cssModObj.draHirAnc }
 
 					href='/contact'
-				>Hire Me</a>{ /* What: Drawer Hire Me Anchor Element. Why: The drawer repeats the bar's call to action. How: This links to the Contact page as a button. */ }
+				>Hire Me</a>{ /* What: Drawer Hire Anchor Element. Why: The drawer repeats the bar's call to action. How: This links to the Contact page as a button. */ }
 
 
 			</div>

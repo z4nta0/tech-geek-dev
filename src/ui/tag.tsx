@@ -69,7 +69,7 @@ function TagLabCom ( { labTexStr, tagSizStr = 'sm', tagVarStr = 'neutral' } : Tl
 	return (
 
 
-		<span className={` ${ cssModObj.tag }   ${ cssModObj[ tagVarStr ] }   ${ cssModObj[ tagSizStr ] } `}>{ labTexStr }</span> // What: Tag Span Element. Why: The pill is a single inline element. How: This shows the label with the base, color, and size classes.
+		<span className={` ${ cssModObj.tagLabSpa }   ${ tagVarStr === 'blue' ? cssModObj.tagLabSpaBlue : '' }   ${ tagVarStr === 'neutral' ? cssModObj.tagLabSpaNeutral : '' }   ${ tagVarStr === 'orange' ? cssModObj.tagLabSpaOrange : '' }   ${ tagSizStr === 'md' ? cssModObj.tagLabSpaMedium : '' }   ${ tagSizStr === 'sm' ? cssModObj.tagLabSpaSmall : '' } `}>{ labTexStr }</span> // What: Tag Label Span Element. Why: The pill is a single inline element. How: This shows the label with the base class plus the one color and one size modifier its props name, each written out since a hashed module class can't be looked up by a built string.
 
 
 	);

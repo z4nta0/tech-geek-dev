@@ -593,7 +593,7 @@ ul { /* What: Lists. Why: Lists are only used for layout, never bullets. How: Th
 
 /* #region Shared Keyframes */
 
-@keyframes fadeUp { /* What: Fade Up Keyframes. Why: Every page and the Home hero fade up into view. How: This moves from transparent and 24px low to fully shown in place. */
+@keyframes contentEnterFadeUp { /* What: Content Enter Fade Up. Why: Every page and the Home hero fade up into view. How: This moves from transparent and about 26px low to fully shown in place. */
 
 
 	from {
@@ -617,7 +617,29 @@ ul { /* What: Lists. Why: Lists are only used for layout, never bullets. How: Th
 
 }
 
-@keyframes pulse { /* What: Pulse Keyframes. Why: The availability dots on Home and Contact breathe. How: This fades the dot to 40% halfway through and back. */
+@keyframes shapeLoopSpin { /* What: Shape Loop Spin. Why: Home's shapes and the 404 drawing turn slowly. How: This turns the element once around. */
+
+
+	from {
+
+
+		transform : rotate( 0deg );
+
+
+	}
+
+	to {
+
+
+		transform : rotate( 360deg );
+
+
+	}
+
+
+}
+
+@keyframes statusLoopPulse { /* What: Status Loop Pulse. Why: The availability dots on Home and Contact breathe. How: This fades the dot to about 43% halfway through and back. */
 
 
 	0%,
@@ -633,28 +655,6 @@ ul { /* What: Lists. Why: Lists are only used for layout, never bullets. How: Th
 
 
 		opacity : var( --cdn-pow-003-rec ); /* Core-Design-Number to the Power of 3 Reciprocal ~= 0.430 */
-
-
-	}
-
-
-}
-
-@keyframes rotateSlow { /* What: Rotate Slow Keyframes. Why: Home's shapes and the 404 drawing turn slowly. How: This turns the element once around. */
-
-
-	from {
-
-
-		transform : rotate( 0deg );
-
-
-	}
-
-	to {
-
-
-		transform : rotate( 360deg );
 
 
 	}

@@ -23,9 +23,9 @@
 
 
 
-/* #region header */
+/* #region navBarHed */
 
-.header { /* What: Navigation Header. Why: The bar stays at the top of every page above the content. How: This fixes it full width at the bar height, on a translucent blurred ivory, easing its look as the page scrolls. */
+.navBarHed { /* What: Navigation Bar Header. Why: The bar stays at the top of every page above the content. How: This fixes it full width at the bar height, on a translucent blurred ivory, easing its look as the page scrolls. */
 
 
 	-webkit-backdrop-filter : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
@@ -42,7 +42,7 @@
 
 
 }
-.header[data-nav-bar-scrolled] { /* What: Scrolled Navigation Header. Why: Once the page moves under the bar, the bar needs to stand apart from it. How: This firms up the background, shows the bottom border, and casts the small shadow. */
+.navBarHed[data-nav-bar-scrolled] { /* What: Scrolled Navigation Bar Header. Why: Once the page moves under the bar, the bar needs to stand apart from it. How: This firms up the background, shows the bottom border, and casts the small shadow. */
 
 
 	-webkit-backdrop-filter : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
@@ -53,10 +53,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Header. Why: Someone who asked for less motion shouldn't see the bar fade. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Bar Header. Why: Someone who asked for less motion shouldn't see the bar fade. How: This applies only when the reduced-motion preference is set. */
 
 
-	.header { /* What: Motionless Navigation Header. Why: The scrolled look should simply switch. How: This turns the transition off. */
+	.navBarHed { /* What: Motionless Navigation Bar Header. Why: The scrolled look should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -68,9 +68,9 @@
 }
 
 
-/* #region inner */
+/* #region navInnDiv */
 
-.inner { /* What: Navigation Inner. Why: The bar's content sits in the page's centered column. How: This caps and centers the row with its side padding, filling the bar's height and lining up the brand, links, button, and toggle. */
+.navInnDiv { /* What: Navigation Inner Div. Why: The bar's content sits in the page's centered column. How: This caps and centers the row with its side padding, filling the bar's height and lining up the brand, links, button, and toggle. */
 
 
 	align-items : center;
@@ -86,9 +86,9 @@
 }
 
 
-/* #region logo */
+/* #region braLogAnc */
 
-.logo { /* What: Brand Logo. Why: The mark and wordmark read as one link home. How: This sets them side by side, never shrinking. */
+.braLogAnc { /* What: Brand Logo Anchor. Why: The mark and wordmark read as one link home. How: This sets them side by side, never shrinking. */
 
 
 	align-items     : center;
@@ -101,9 +101,9 @@
 }
 
 
-/* #region wordmark */
+/* #region braWorSpa */
 
-.wordmark { /* What: Wordmark. Why: The site's name reads beside its mark. How: This sets it bold in the display font, a little tight. */
+.braWorSpa { /* What: Brand Wordmark Span. Why: The site's name reads beside its mark. How: This sets it bold in the display font, a little tight. */
 
 
 	font-family    : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
@@ -114,7 +114,7 @@
 
 }
 
-.first { /* What: Wordmark First. Why: The brand reads in the main text color. How: This sets TechGeek in the ink. */
+.worFirSpa { /* What: Wordmark First Span. Why: The brand reads in the main text color. How: This sets TechGeek in the ink. */
 
 
 	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -122,7 +122,7 @@
 
 }
 
-.last { /* What: Wordmark Last. Why: The domain ending carries the accent. How: This sets .dev in orange. */
+.worLasSpa { /* What: Wordmark Last Span. Why: The domain ending carries the accent. How: This sets .dev in orange. */
 
 
 	color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
@@ -130,14 +130,14 @@
 
 }
 
-/* #endregion wordmark */
+/* #endregion braWorSpa */
 
-/* #endregion logo */
+/* #endregion braLogAnc */
 
 
-/* #region nav */
+/* #region priNavNav */
 
-.nav { /* What: Primary Navigation. Why: The page links sit together at the bar's right. How: This lines them up with small gaps, pushed right. */
+.priNavNav { /* What: Primary Navigation Nav. Why: The page links sit together at the bar's right. How: This lines them up with small gaps, pushed right. */
 
 
 	align-items : center;
@@ -147,10 +147,10 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Phone Primary Navigation. Why: On a phone the links move into the drawer. How: This applies at 768px and below. */
+@media ( max-width : 768px ) { /* What: Phone Primary Navigation Nav. Why: On a phone the links move into the drawer. How: This applies at 768px and below. */
 
 
-	.nav { /* What: Hidden Primary Navigation. Why: The drawer holds the links instead. How: This hides the row. */
+	.priNavNav { /* What: Hidden Primary Navigation Nav. Why: The drawer holds the links instead. How: This hides the row. */
 
 
 		display : none;
@@ -161,7 +161,7 @@
 
 }
 
-.link { /* What: Bar Link. Why: Each page link reads in small mono capitals with room for its underline. How: This sets the link muted and padded, easing its color and background. */
+.barLinAnc { /* What: Bar Link Anchor. Why: Each page link reads in small mono capitals with room for its underline. How: This sets the link muted and padded, easing its color and background. */
 
 
 	border-radius  : var( --rad-bor-xsm );                                        /* Radius Border Extra Small ~= 3.571px */
@@ -177,7 +177,7 @@
 
 
 }
-.link::after { /* What: Bar Link Underline. Why: An orange underline marks a hovered or current link. How: This draws it inside the link's padding, collapsed to nothing until needed, easing its growth from the left. */
+.barLinAnc::after { /* What: Bar Link Anchor Underline. Why: An orange underline marks a hovered or current link. How: This draws it inside the link's padding, collapsed to nothing until needed, easing its growth from the left. */
 
 
 	background       : var( --acc-mai-col );                                /* Accent Main Color = #F26419 */
@@ -193,27 +193,27 @@
 
 
 }
-.link:hover,
-.link[aria-current='page'] { /* What: Hovered Or Current Bar Link. Why: The link under the pointer and the page that's showing stand out. How: This darkens the text to the ink. */
+.barLinAnc:hover,
+.barLinAnc[aria-current='page'] { /* What: Hovered Or Current Bar Link Anchor. Why: The link under the pointer and the page that's showing stand out. How: This darkens the text to the ink. */
 
 
 	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 
 
 }
-.link:hover::after,
-.link[aria-current='page']::after { /* What: Hovered Or Current Bar Link Underline. Why: The underline marks the hovered link and the current page. How: This grows it to full width. */
+.barLinAnc:hover::after,
+.barLinAnc[aria-current='page']::after { /* What: Hovered Or Current Bar Link Anchor Underline. Why: The underline marks the hovered link and the current page. How: This grows it to full width. */
 
 
 	transform : scaleX( 1 );
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Bar Link. Why: Someone who asked for less motion shouldn't see the links fade or their underline grow. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Bar Link Anchor. Why: Someone who asked for less motion shouldn't see the links fade or their underline grow. How: This applies only when the reduced-motion preference is set. */
 
 
-	.link,
-	.link::after { /* What: Motionless Bar Link. Why: The color and the underline should simply switch. How: This turns both transitions off. */
+	.barLinAnc,
+	.barLinAnc::after { /* What: Motionless Bar Link Anchor. Why: The color and the underline should simply switch. How: This turns both transitions off. */
 
 
 		transition : none;
@@ -224,10 +224,10 @@
 
 }
 
-/* #endregion nav */
+/* #endregion priNavNav */
 
 
-.cta { /* What: Hire Me Button. Why: The bar's one call to action stands out from the links. How: This sets it as an orange button in mono capitals that never shrinks, easing its color and lift. */
+.barHirAnc { /* What: Bar Hire Anchor. Why: The bar's one call to action stands out from the links. How: This sets it as an orange button in mono capitals that never shrinks, easing its color and lift. */
 
 
 	background     : var( --acc-mai-col );                                            /* Accent Main Color = #F26419 */
@@ -244,7 +244,7 @@
 
 
 }
-.cta:hover { /* What: Hovered Hire Me Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
+.barHirAnc:hover { /* What: Hovered Bar Hire Anchor. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
 
 
 	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
@@ -252,10 +252,10 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Phone Hire Me Button. Why: On a phone the button moves into the drawer. How: This applies at 768px and below. */
+@media ( max-width : 768px ) { /* What: Phone Bar Hire Anchor. Why: On a phone the button moves into the drawer. How: This applies at 768px and below. */
 
 
-	.cta { /* What: Hidden Hire Me Button. Why: The drawer holds the button instead. How: This hides it from the bar. */
+	.barHirAnc { /* What: Hidden Bar Hire Anchor. Why: The drawer holds the button instead. How: This hides it from the bar. */
 
 
 		display : none;
@@ -265,10 +265,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hire Me Button. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Bar Hire Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.cta { /* What: Motionless Hire Me Button. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+	.barHirAnc { /* What: Motionless Bar Hire Anchor. Why: The hover color and lift should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -280,9 +280,9 @@
 }
 
 
-/* #region burger */
+/* #region menTogBut */
 
-.burger { /* What: Menu Toggle. Why: On a phone the toggle opens the drawer. How: This stacks its three bars, hidden above the phone breakpoint and pushed right. */
+.menTogBut { /* What: Menu Toggle Button. Why: On a phone the toggle opens the drawer. How: This stacks its three bars, hidden above the phone breakpoint and pushed right. */
 
 
 	display        : none;
@@ -293,10 +293,10 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Phone Menu Toggle. Why: The toggle only exists on a phone. How: This applies at 768px and below. */
+@media ( max-width : 768px ) { /* What: Phone Menu Toggle Button. Why: The toggle only exists on a phone. How: This applies at 768px and below. */
 
 
-	.burger { /* What: Shown Menu Toggle. Why: On a phone the links live behind the toggle. How: This shows its column of bars. */
+	.menTogBut { /* What: Shown Menu Toggle Button. Why: On a phone the links live behind the toggle. How: This shows its column of bars. */
 
 
 		display : flex;
@@ -307,7 +307,7 @@
 
 }
 
-.bar { /* What: Toggle Bar. Why: Three bars draw the menu icon. How: This draws one 22px rounded ink bar, easing its turn and fade. */
+.togBarSpa { /* What: Toggle Bar Span. Why: Three bars draw the menu icon. How: This draws one 22px rounded ink bar, easing its turn and fade. */
 
 
 	background    : var( --bac-inv-col );                                                              /* Background Inverse Color = #1A1A2E */
@@ -319,31 +319,31 @@
 
 
 }
-.burger[aria-expanded='true'] .bar:nth-child( 1 ) { /* What: Open Toggle First Bar. Why: The open menu's toggle shows a cross. How: This drops the top bar to the middle and tilts it 45 degrees. */
+.menTogBut[aria-expanded='true'] .togBarSpa:nth-child( 1 ) { /* What: Open First Toggle Bar Span. Why: The open menu's toggle shows a cross. How: This drops the top bar to the middle and tilts it 45 degrees. */
 
 
 	transform : translateY( calc( var( --spa-ver-m04 ) + var( --bor-wid-lar ) ) ) rotate( 45deg ); /* Spacing Vertical Base Minus 4 ~= 4.732px, Border Width Large ~= 2.035px */ /* What: Cross Shift. Why: The top bar has to land exactly on the middle one. How: This moves it down by the gap between the bars plus one bar's height. */
 
 
 }
-.burger[aria-expanded='true'] .bar:nth-child( 2 ) { /* What: Open Toggle Middle Bar. Why: The cross has only two strokes. How: This fades the middle bar out. */
+.menTogBut[aria-expanded='true'] .togBarSpa:nth-child( 2 ) { /* What: Open Middle Toggle Bar Span. Why: The cross has only two strokes. How: This fades the middle bar out. */
 
 
 	opacity : 0;
 
 
 }
-.burger[aria-expanded='true'] .bar:nth-child( 3 ) { /* What: Open Toggle Last Bar. Why: The open menu's toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
+.menTogBut[aria-expanded='true'] .togBarSpa:nth-child( 3 ) { /* What: Open Last Toggle Bar Span. Why: The open menu's toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
 
 
 	transform : translateY( calc( ( var( --spa-ver-m04 ) + var( --bor-wid-lar ) ) * -1 ) ) rotate( -45deg ); /* Spacing Vertical Base Minus 4 ~= 4.732px, Border Width Large ~= 2.035px */ /* What: Cross Shift. Why: The bottom bar has to land exactly on the middle one. How: This moves it up by the gap between the bars plus one bar's height. */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Toggle Bar. Why: Someone who asked for less motion shouldn't see the bars turn. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Toggle Bar Span. Why: Someone who asked for less motion shouldn't see the bars turn. How: This applies only when the reduced-motion preference is set. */
 
 
-	.bar { /* What: Motionless Toggle Bar. Why: The bars should simply switch to the cross. How: This turns the transition off. */
+	.togBarSpa { /* What: Motionless Toggle Bar Span. Why: The bars should simply switch to the cross. How: This turns the transition off. */
 
 
 		transition : none;
@@ -354,14 +354,14 @@
 
 }
 
-/* #endregion burger */
+/* #endregion menTogBut */
 
-/* #endregion inner */
+/* #endregion navInnDiv */
 
 
-/* #region drawer */
+/* #region menDraDiv */
 
-.drawer { /* What: Menu Drawer. Why: On a phone the page links drop down under the bar. How: This fixes the drawer under the bar, stacks its links, and starts it slid up, faded, and invisible once its slide ends, so its links leave the Tab order. */
+.menDraDiv { /* What: Menu Drawer Div. Why: On a phone the page links drop down under the bar. How: This fixes the drawer under the bar, stacks its links, and starts it slid up, faded, and invisible once its slide ends, so its links leave the Tab order. */
 
 
 	background     : var( --bac-pag-col );                            /* Background Page Color = #F5F0E8 */
@@ -383,7 +383,7 @@
 
 
 }
-.drawer[data-mobile-menu-open] { /* What: Open Menu Drawer. Why: The open menu shows its links. How: This slides the drawer down, fades it in, and makes it visible at once, taking pointer events again. */
+.menDraDiv[data-mobile-menu-open] { /* What: Open Menu Drawer Div. Why: The open menu shows its links. How: This slides the drawer down, fades it in, and makes it visible at once, taking pointer events again. */
 
 
 	opacity        : 1;
@@ -394,11 +394,11 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Menu Drawer. Why: Someone who asked for less motion shouldn't see the drawer slide. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Menu Drawer Div. Why: Someone who asked for less motion shouldn't see the drawer slide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.drawer,
-	.drawer[data-mobile-menu-open] { /* What: Motionless Menu Drawer. Why: The drawer should simply appear and disappear. How: This turns the transition off for both states, the open one's own included. */
+	.menDraDiv,
+	.menDraDiv[data-mobile-menu-open] { /* What: Motionless Menu Drawer Div. Why: The drawer should simply appear and disappear. How: This turns the transition off for both states, the open one's own included. */
 
 
 		transition : none;
@@ -409,7 +409,7 @@
 
 }
 
-.drawerLink { /* What: Drawer Link. Why: Each page link in the drawer is a full-width row. How: This sets it in muted mono capitals with a divider under it, easing its color. */
+.draLinAnc { /* What: Drawer Link Anchor. Why: Each page link in the drawer is a full-width row. How: This sets it in muted mono capitals with a divider under it, easing its color. */
 
 
 	border-bottom  : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
@@ -423,25 +423,25 @@
 
 
 }
-.drawerLink:last-of-type { /* What: Last Drawer Link. Why: The last link needs no divider above the button. How: This removes its border. */
+.draLinAnc:last-of-type { /* What: Last Drawer Link Anchor. Why: The last link needs no divider above the button. How: This removes its border. */
 
 
 	border-bottom : none;
 
 
 }
-.drawerLink[aria-current='page'],
-.drawerLink:hover { /* What: Current Or Hovered Drawer Link. Why: The page that's showing and the link under the pointer stand out. How: This turns the text orange. */
+.draLinAnc[aria-current='page'],
+.draLinAnc:hover { /* What: Current Or Hovered Drawer Link Anchor. Why: The page that's showing and the link under the pointer stand out. How: This turns the text orange. */
 
 
 	color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Drawer Link. Why: Someone who asked for less motion shouldn't see the links fade. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Drawer Link Anchor. Why: Someone who asked for less motion shouldn't see the links fade. How: This applies only when the reduced-motion preference is set. */
 
 
-	.drawerLink { /* What: Motionless Drawer Link. Why: The hover color should simply switch. How: This turns the transition off. */
+	.draLinAnc { /* What: Motionless Drawer Link Anchor. Why: The hover color should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -452,7 +452,7 @@
 
 }
 
-.drawerCta { /* What: Drawer Hire Me Button. Why: The drawer repeats the bar's call to action. How: This sets it as a full-width orange button in mono capitals under the links. */
+.draHirAnc { /* What: Drawer Hire Anchor. Why: The drawer repeats the bar's call to action. How: This sets it as a full-width orange button in mono capitals under the links. */
 
 
 	background      : var( --acc-mai-col );                      /* Accent Main Color = #F26419 */
@@ -471,8 +471,8 @@
 
 }
 
-/* #endregion drawer */
+/* #endregion menDraDiv */
 
-/* #endregion header */
+/* #endregion navBarHed */
 
 

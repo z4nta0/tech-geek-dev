@@ -24,19 +24,19 @@
 
 
 
-/* #region page */
+/* #region pagEntDiv */
 
-.page { /* What: Work Page. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global fadeUp keyframe. */
+.pagEntDiv { /* What: Page Enter Div. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global contentEnterFadeUp keyframe. */
 
 
-	animation : global( fadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	animation : global( contentEnterFadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Work Page. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Div. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
 
 
-	.page { /* What: Motionless Work Page. Why: The page should simply be there. How: This turns the entrance off. */
+	.pagEntDiv { /* What: Motionless Page Enter Div. Why: The page should simply be there. How: This turns the entrance off. */
 
 
 		animation : none;
@@ -49,9 +49,9 @@
 
 
 
-/* #region pageHero */
+/* #region pagHerSec */
 
-.pageHero { /* What: Page Hero. Why: The page opens with its heading block clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips its corner drawing. */
+.pagHerSec { /* What: Page Hero Section. Why: The page opens with its heading block clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips its corner drawing. */
 
 
 	background : var( --bac-pag-col );                                                       /* Background Page Color = #F5F0E8 */
@@ -63,9 +63,9 @@
 }
 
 
-/* #region heroInner */
+/* #region herInnDiv */
 
-.heroInner { /* What: Hero Inner. Why: The hero's text sits in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the label, heading, and line. */
+.herInnDiv { /* What: Hero Inner Div. Why: The hero's text sits in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the label, heading, and line. */
 
 
 	display        : flex;
@@ -82,9 +82,9 @@
 }
 
 
-/* #region heroLabel */
+/* #region herLabSpa */
 
-.heroLabel { /* What: Hero Label. Why: A small label names the page above its heading. How: This sets it in orange mono capitals after its rule. */
+.herLabSpa { /* What: Hero Label Span. Why: A small label names the page above its heading. How: This sets it in orange mono capitals after its rule. */
 
 
 	align-items    : center;
@@ -99,7 +99,7 @@
 
 }
 
-.heroLine { /* What: Hero Line. Why: A short rule leads into the label. How: This draws a 28px orange stroke. */
+.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws a 28px orange stroke. */
 
 
 	background : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
@@ -110,12 +110,12 @@
 
 }
 
-/* #endregion heroLabel */
+/* #endregion herLabSpa */
 
 
-/* #region heroTitle */
+/* #region herTitHea */
 
-.heroTitle { /* What: Hero Title. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
+.herTitHea { /* What: Hero Title Heading. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
 
 
 	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -123,7 +123,7 @@
 
 }
 
-.accent { /* What: Hero Title Accent. Why: The heading's second line carries the accent. How: This sets it in the dark blue. */
+.titAccSpa { /* What: Title Accent Span. Why: The heading's second line carries the accent. How: This sets it in the dark blue. */
 
 
 	color : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
@@ -131,10 +131,10 @@
 
 }
 
-/* #endregion heroTitle */
+/* #endregion herTitHea */
 
 
-.heroSub { /* What: Hero Subtitle. Why: The line under the heading reads a little larger and quieter. How: This sets it muted and caps it at 480px. */
+.herSubPar { /* What: Hero Subtitle Paragraph. Why: The line under the heading reads a little larger and quieter. How: This sets it muted and caps it at 480px. */
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -144,10 +144,10 @@
 
 }
 
-/* #endregion heroInner */
+/* #endregion herInnDiv */
 
 
-.cornerAccent { /* What: Corner Accent. Why: The triangles sit in the hero's bottom right corner. How: This pins the drawing there, letting the pointer pass through. */
+.corAccSvg { /* What: Corner Accent SVG. Why: The triangles sit in the hero's bottom right corner. How: This pins the drawing there, letting the pointer pass through. */
 
 
 	bottom         : 0;
@@ -158,13 +158,13 @@
 
 }
 
-/* #endregion pageHero */
+/* #endregion pagHerSec */
 
 
 
-/* #region filterBar */
+/* #region filBarSec */
 
-.filterBar { /* What: Filter Bar. Why: The filter stays reachable while the visitor scrolls the projects. How: This sets a white band between two rules that sticks just under the fixed bar. */
+.filBarSec { /* What: Filter Bar Section. Why: The filter stays reachable while the visitor scrolls the projects. How: This sets a white band between two rules that sticks just under the fixed bar. */
 
 
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
@@ -179,9 +179,9 @@
 }
 
 
-/* #region filterInner */
+/* #region filInnDiv */
 
-.filterInner { /* What: Filter Inner. Why: The filter sits in the page's centered column. How: This caps and centers the row with its side padding and lines up the label, the buttons, and the count. */
+.filInnDiv { /* What: Filter Inner Div. Why: The filter sits in the page's centered column. How: This caps and centers the row with its side padding and lines up the label, the buttons, and the count. */
 
 
 	align-items : center;
@@ -194,10 +194,10 @@
 
 
 }
-@media ( max-width : 640px ) { /* What: Phone Filter Inner. Why: The label, buttons, and count can't share one row on a phone. How: This applies at 640px and below. */
+@media ( max-width : 640px ) { /* What: Phone Filter Inner Div. Why: The label, buttons, and count can't share one row on a phone. How: This applies at 640px and below. */
 
 
-	.filterInner { /* What: Wrapping Filter Inner. Why: The row needs room on a phone. How: This lets it wrap. */
+	.filInnDiv { /* What: Wrapping Filter Inner Div. Why: The row needs room on a phone. How: This lets it wrap. */
 
 
 		flex-wrap : wrap;
@@ -208,7 +208,7 @@
 
 }
 
-.filterLabel { /* What: Filter Label. Why: The row says what its buttons do. How: This sets the label in muted mono capitals beside its funnel icon, never shrinking. */
+.filLabSpa { /* What: Filter Label Span. Why: The row says what its buttons do. How: This sets the label in muted mono capitals beside its funnel icon, never shrinking. */
 
 
 	align-items    : center;
@@ -225,9 +225,9 @@
 }
 
 
-/* #region filterScroll */
+/* #region filScrDiv */
 
-.filterScroll { /* What: Filter Scroll. Why: The buttons can outgrow the row. How: This lays them in a row that fills the space and scrolls sideways with its scrollbar hidden. */
+.filScrDiv { /* What: Filter Scroll Div. Why: The buttons can outgrow the row. How: This lays them in a row that fills the space and scrolls sideways with its scrollbar hidden. */
 
 
 	display         : flex;
@@ -238,7 +238,7 @@
 
 
 }
-.filterScroll::-webkit-scrollbar { /* What: Filter Scroll Scrollbar. Why: WebKit and Chromium ignore scrollbar-width on older versions. How: This hides their scrollbar too. */
+.filScrDiv::-webkit-scrollbar { /* What: Filter Scroll Div Scrollbar. Why: WebKit and Chromium ignore scrollbar-width on older versions. How: This hides their scrollbar too. */
 
 
 	display : none;
@@ -246,7 +246,7 @@
 
 }
 
-.filterBtn { /* What: Filter Button. Why: Each technology is a pill the visitor can choose. How: This sets an outlined pill in mono capitals that never wraps, easing every change. */
+.filOptBut { /* What: Filter Option Button. Why: Each technology is a pill the visitor can choose. How: This sets an outlined pill in mono capitals that never wraps, easing every change. */
 
 
 	background     : transparent;
@@ -263,7 +263,7 @@
 
 
 }
-.filterBtn:hover { /* What: Hovered Filter Button. Why: A button should respond to the pointer. How: This turns its border and text blue. */
+.filOptBut:hover { /* What: Hovered Filter Option Button. Why: A button should respond to the pointer. How: This turns its border and text blue. */
 
 
 	border-color : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
@@ -271,7 +271,7 @@
 
 
 }
-.filterBtn[data-filter-button-active] { /* What: Active Filter Button. Why: The chosen technology stands out. How: This fills the pill dark blue with white text. */
+.filOptBut[data-filter-button-active] { /* What: Active Filter Option Button. Why: The chosen technology stands out. How: This fills the pill dark blue with white text. */
 
 
 	background   : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
@@ -280,10 +280,10 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Filter Button. Why: Someone who asked for less motion shouldn't see the pills fade. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Filter Option Button. Why: Someone who asked for less motion shouldn't see the pills fade. How: This applies only when the reduced-motion preference is set. */
 
 
-	.filterBtn { /* What: Motionless Filter Button. Why: The hover and active looks should simply switch. How: This turns the transition off. */
+	.filOptBut { /* What: Motionless Filter Option Button. Why: The hover and active looks should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -294,10 +294,10 @@
 
 }
 
-/* #endregion filterScroll */
+/* #endregion filScrDiv */
 
 
-.filterCount { /* What: Filter Count. Why: The row says how many projects remain. How: This sets the count in muted mono, never shrinking. */
+.filCouSpa { /* What: Filter Count Span. Why: The row says how many projects remain. How: This sets the count in muted mono, never shrinking. */
 
 
 	color       : var( --tex-mut-col ); /* Text Muted Color = #646482 */
@@ -308,15 +308,15 @@
 
 }
 
-/* #endregion filterInner */
+/* #endregion filInnDiv */
 
-/* #endregion filterBar */
+/* #endregion filBarSec */
 
 
 
-/* #region projectsSection */
+/* #region proLisSec */
 
-.projectsSection { /* What: Projects Section. Why: The grid sits on the ivory with the page's section spacing. How: This sets the background and the shared section padding. */
+.proLisSec { /* What: Projects List Section. Why: The grid sits on the ivory with the page's section spacing. How: This sets the background and the shared section padding. */
 
 
 	background : var( --bac-pag-col );   /* Background Page Color = #F5F0E8 */
@@ -326,9 +326,9 @@
 }
 
 
-/* #region projectsInner */
+/* #region proInnDiv */
 
-.projectsInner { /* What: Projects Inner. Why: The grid sits in the page's centered column. How: This caps and centers the column with its side padding. */
+.proInnDiv { /* What: Projects Inner Div. Why: The grid sits in the page's centered column. How: This caps and centers the column with its side padding. */
 
 
 	margin    : 0 auto;
@@ -339,7 +339,7 @@
 
 }
 
-.visuallyHidden { /* What: Visually Hidden. Why: The projects grid's h2 keeps the headings in order for screen readers, while the hero already introduces the grid on screen. How: This shrinks the heading to a clipped 1px box out of the layout, the standard technique that keeps it in the accessibility tree. */
+.visHidHea { /* What: Visually Hidden Heading. Why: The projects grid's h2 keeps the headings in order for screen readers, while the hero already introduces the grid on screen. How: This shrinks the heading to a clipped 1px box out of the layout, the standard technique that keeps it in the accessibility tree. */
 
 
 	border      : 0;
@@ -355,7 +355,7 @@
 
 }
 
-.grid { /* What: Projects Grid. Why: The cards line up in even columns. How: This sets three columns with gaps. */
+.proGriDiv { /* What: Projects Grid Div. Why: The cards line up in even columns. How: This sets three columns with gaps. */
 
 
 	display               : grid;
@@ -364,10 +364,10 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Projects Grid. Why: Three columns crowd a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Projects Grid Div. Why: Three columns crowd a tablet. How: This applies at 1024px and below. */
 
 
-	.grid { /* What: Two Column Projects Grid. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
+	.proGriDiv { /* What: Two Column Projects Grid Div. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
 
 
 		grid-template-columns : repeat( 2, 1fr );
@@ -377,10 +377,10 @@
 
 
 }
-@media ( max-width : 640px ) { /* What: Phone Projects Grid. Why: Two columns crowd a phone. How: This applies at 640px and below. */
+@media ( max-width : 640px ) { /* What: Phone Projects Grid Div. Why: Two columns crowd a phone. How: This applies at 640px and below. */
 
 
-	.grid { /* What: One Column Projects Grid. Why: One card fits across a phone. How: This sets one column. */
+	.proGriDiv { /* What: One Column Projects Grid Div. Why: One card fits across a phone. How: This sets one column. */
 
 
 		grid-template-columns : 1fr;
@@ -391,7 +391,7 @@
 
 }
 
-.empty { /* What: Empty Message. Why: A filter that finds nothing should say so clearly. How: This centers the message in muted mono with generous room around it. */
+.empMesDiv { /* What: Empty Message Div. Why: A filter that finds nothing should say so clearly. How: This centers the message in muted mono with generous room around it. */
 
 
 	color       : var( --tex-mut-col );   /* Text Muted Color = #646482 */
@@ -402,15 +402,15 @@
 
 }
 
-/* #endregion projectsInner */
+/* #endregion proInnDiv */
 
-/* #endregion projectsSection */
+/* #endregion proLisSec */
 
 
 
-/* #region process */
+/* #region worPrcSec */
 
-.process { /* What: Process Section. Why: The page closes on a warmer band with the section spacing. How: This sets the warm ivory, the shared section padding, and clips the pattern behind it. */
+.worPrcSec { /* What: Work Process Section. Why: The page closes on a warmer band with the section spacing. How: This sets the warm ivory, the shared section padding, and clips the pattern behind it. */
 
 
 	background : var( --bac-sun-col );   /* Background Sunken Color = #EDE6D8 */
@@ -422,9 +422,9 @@
 }
 
 
-/* #region processInner */
+/* #region prcInnDiv */
 
-.processInner { /* What: Process Inner. Why: The process sits in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the heading block over the steps. */
+.prcInnDiv { /* What: Process Inner Div. Why: The process sits in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the heading block over the steps. */
 
 
 	align-items    : center;
@@ -442,9 +442,9 @@
 }
 
 
-/* #region steps */
+/* #region prcSteDiv */
 
-.steps { /* What: Process Steps. Why: The four steps read left to right. How: This lays the cards and arrows in a full-width row, aligned to their tops. */
+.prcSteDiv { /* What: Process Steps Div. Why: The four steps read left to right. How: This lays the cards and arrows in a full-width row, aligned to their tops. */
 
 
 	align-items : flex-start;
@@ -454,10 +454,10 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Process Steps. Why: Four cards in a row crowd a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Process Steps Div. Why: Four cards in a row crowd a tablet. How: This applies at 1024px and below. */
 
 
-	.steps { /* What: Stacked Process Steps. Why: The steps read top to bottom on a narrower screen. How: This stacks the cards and arrows. */
+	.prcSteDiv { /* What: Stacked Process Steps Div. Why: The steps read top to bottom on a narrower screen. How: This stacks the cards and arrows. */
 
 
 		flex-direction : column;
@@ -469,9 +469,9 @@
 }
 
 
-/* #region step */
+/* #region steCarDiv */
 
-.step { /* What: Process Step. Why: Each step is one white card. How: This sets the card, sharing the row evenly, and stacks its number, title, and description. */
+.steCarDiv { /* What: Step Card Div. Why: Each step is one white card. How: This sets the card, sharing the row evenly, and stacks its number, title, and description. */
 
 
 	background     : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
@@ -486,7 +486,7 @@
 
 }
 
-.stepNum { /* What: Step Number. Why: The number shows the step's place at a glance. How: This sets it large in orange mono, tight. */
+.steNumDiv { /* What: Step Number Div. Why: The number shows the step's place at a glance. How: This sets it large in orange mono, tight. */
 
 
 	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
@@ -499,7 +499,7 @@
 
 }
 
-.stepTitle { /* What: Step Title. Why: Each step is named. How: This sets the title bold in the main text color. */
+.steTitHea { /* What: Step Title Heading. Why: Each step is named. How: This sets the title bold in the main text color. */
 
 
 	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -509,7 +509,7 @@
 
 }
 
-.stepDesc { /* What: Step Description. Why: A sentence explains the step more quietly. How: This sets it small and muted. */
+.steDesPar { /* What: Step Description Paragraph. Why: A sentence explains the step more quietly. How: This sets it small and muted. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -519,10 +519,10 @@
 
 }
 
-/* #endregion step */
+/* #endregion steCarDiv */
 
 
-.stepArrow { /* What: Step Arrow. Why: An arrow leads from one card to the next. How: This holds the arrow, dropped to sit beside the cards' titles, never shrinking. */
+.steArrDiv { /* What: Step Arrow Div. Why: An arrow leads from one card to the next. How: This holds the arrow, dropped to sit beside the cards' titles, never shrinking. */
 
 
 	align-items : center;
@@ -532,10 +532,10 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Step Arrow. Why: The stacked steps read top to bottom. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Step Arrow Div. Why: The stacked steps read top to bottom. How: This applies at 1024px and below. */
 
 
-	.stepArrow { /* What: Turned Step Arrow. Why: The arrow has to point down to the next card. How: This turns it a quarter turn and centers it. */
+	.steArrDiv { /* What: Turned Step Arrow Div. Why: The arrow has to point down to the next card. How: This turns it a quarter turn and centers it. */
 
 
 		align-self : center;
@@ -547,12 +547,12 @@
 
 }
 
-/* #endregion steps */
+/* #endregion prcSteDiv */
 
-/* #endregion processInner */
+/* #endregion prcInnDiv */
 
-/* #endregion process */
+/* #endregion worPrcSec */
 
-/* #endregion page */
+/* #endregion pagEntDiv */
 
 

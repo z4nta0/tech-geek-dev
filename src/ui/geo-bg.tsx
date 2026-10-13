@@ -71,7 +71,7 @@ function GeoBacCom ( { patOpaNum = 0.4, patVarStr = 'grid' } : GbcProTyp ) : JSX
 
 
 		<div
-			className={ cssModObj.geo }
+			className={ cssModObj.geoBacDiv }
 
 			style={{ opacity : patOpaNum }}
 
@@ -179,7 +179,7 @@ function GeoBacCom ( { patOpaNum = 0.4, patVarStr = 'grid' } : GbcProTyp ) : JSX
 
 
 				<svg
-					className={ cssModObj.circuit }
+					className={ cssModObj.cirPatSvg }
 
 					height='100%'
 					width='100%'
