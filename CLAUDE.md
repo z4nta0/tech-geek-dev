@@ -32,6 +32,31 @@ the demo treatment.
   contact form sends through `netlify/functions/send-email`, which calls
   EmailJS with keys held in Netlify's environment variables.
 
+## Content
+Decided 2026-10-12 by the user, in the step 7 content review.
+- **Stats** (Home's strip and About's floating facts): "10+ Years
+  Experience" (z4nta0 has been a developer since 2013) and "100% Client
+  Satisfaction" are written as is. "Projects Shipped" and "Happy Clients"
+  are counted from `ui/projects.ts` (`SHI_COU_NUM`, every record, and
+  `CLI_COU_NUM`, the records whose `cliBoo` is true), so they grow as
+  projects are added, and always end in a plus, since older projects that
+  are no longer online still count. The client sites are Hair Designs, The
+  Bernie Bears, Tony's Toppers, Seal and Shield, and Reese Roofing; Ease My
+  Life and Tech Geek are z4nta0's own.
+- **Reese Roofing is a mockup**, not a real business (see its own
+  CLAUDE.md), so its project description says so.
+- **Skills**: Home's ticker lists TypeScript, React, Node.js, Next.js, and
+  Vite. About's grid keeps everything z4nta0 has worked with, even outside
+  the listed projects, minus Tailwind, GraphQL, PostgreSQL, Redis, Prisma,
+  Elasticsearch, AWS, and Nginx, which were removed.
+- **Confirmed as accurate**: Home's hero (the availability label, the code
+  window, and the 100% Open Source badge), About's values and timeline,
+  Work's process steps, and Contact's budget ranges, availability, and
+  response time.
+- **Removed**: About's Download CV button, which linked to a file that
+  never existed.
+- **Copy**: American spelling throughout, and no em dashes.
+
 ## Directory structure
 Decided 2026-10-12, matching the-bernie-bears' adaptation of the user-level
 "### Directory structure" layout to a website with routes. This is the

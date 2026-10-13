@@ -5,7 +5,7 @@
 
 import { About       } from './pages/about/about.tsx';         // What: About. Why: The About route shows who built the projects. How: The about route renders it.
 import { Contact     } from './pages/contact/contact.tsx';     // What: Contact. Why: The Contact route shows the form and the contact details. How: The contact route renders it.
-import { Home        } from './pages/home/home.tsx';           // What: Home. Why: The site's root address is its home page. How: The home route renders it.
+import { HomPagCom   } from './pages/home/home.tsx';           // What: Home Page Component. Why: The site's root address is its home page. How: The home route renders it.
 import { NavBarCom   } from './ui/nav.tsx';                    // What: Navigation Bar Component. Why: Every page starts with the shared bar. How: This renders above the routes.
 import { NotFouCom   } from './pages/not-found/not-found.tsx'; // What: Not Found Component. Why: Every unknown address shows the 404 page. How: The catch-all route renders it.
 import { Route       } from 'react-router';                    // What: Route. Why: Each page is matched to its path. How: This declares one route per page.
@@ -96,9 +96,9 @@ function AppRooCom () : JSX.Element {
 
 
 					<Route
-						element={ <Home /> }
+						element={ <HomPagCom /> }
 						path='/'
-					/>{ /* What: Home Route. Why: The site's root address is its home page. How: This renders Home at the root path. */ }
+					/>{ /* What: Home Route. Why: The site's root address is its home page. How: This renders HomPagCom at the root path. */ }
 
 
 
