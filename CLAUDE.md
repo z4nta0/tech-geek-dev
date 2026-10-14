@@ -452,6 +452,11 @@ ticker, and the status dots) when waiting for the page to settle.
   visible), reflow at 320px, and motion under reduced motion. axe's "needs
   review" results are printed and attached to the report rather than failing
   the run.
+- `npm run test:interaction`: how moving between pages and using controls
+  behaves. `navigation.spec.ts` (from the-bernie-bears, added in step 11)
+  checks that a footer link clicked at the bottom of each page opens the next
+  page at its top, the current page's own bar link and a phone menu link do
+  the same, and back returns near the earlier position.
 - `npm run test:rendering`: compares a full-page screenshot of every state
   with its baseline in `tests/rendering/baselines/`, with zero tolerance,
   under reduced motion, with the page's clock fixed to one date, since the
