@@ -173,7 +173,7 @@
 	padding       : var( --spa-ver-bas ) 0;                          /* Spacing Vertical Base ~= 14.572px */
 	position      : sticky;
 	top           : var( --nav-bar-hei );                            /* Navigation Bar Height ~= 78.751px */
-	z-index       : 10;
+	z-index       : 2;                                               /* What: Filter Bar Layer. Why: The projects scrolling under the bar sit at 1 and lift on hover, while the phone menu's scrim at 3 has to cover the bar. How: This puts it just above the projects. */
 
 
 }

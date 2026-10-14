@@ -12,14 +12,70 @@
  * stays under the current page (aria-current), the orange Hire Me button,
  * and on phones the three-bar toggle, which turns into a cross while the
  * menu is open (aria-expanded). The phone drawer slides down from under the
- * bar while data-mobile-menu-open is set, and turns invisible once it has
- * slid away, so its links leave the Tab order. The row's width and side
+ * bar while data-mobile-menu-open is set, over a scrim that dims the page,
+ * its rows arriving one after another: the availability pill copied from
+ * Home's hero, the links, the button, and the profile tiles, email, and
+ * tagline. It turns invisible once it has slid away, so its links leave the
+ * Tab order. The row's width and side
  * padding are the page's shared container values, merged into its own rule.
  * Everything that moves holds still under reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
 */
+
+
+
+.navScrDiv { /* What: Navigation Scrim Div. Why: The open phone menu should stand apart from the page, and a tap anywhere on the page should close it. How: This covers the screen below the bar in the scrim color, leaving the translucent bar undimmed, hidden until the menu opens, fading out as it closes and only then leaving the page clickable. */
+
+
+	background : oklch( from var( --scr-mai-col ) l c h / var( --cdn-pow-003-rec ) );                          /* Scrim Main Color = #1A1A2E, Core-Design-Number to the Power of 3 Reciprocal ~= 0.430 */
+	display    : none;
+	inset      : var( --nav-bar-hei ) 0 0;                                                                     /* Navigation Bar Height ~= 78.751px */
+	opacity    : 0;
+	position   : fixed;
+	transition : opacity var( --dur-tra-p03 ) var( --mot-acc-eas ), visibility 0s linear var( --dur-tra-p03 ); /* Duration Transition Base Plus 3 ~= 366.9ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */
+	visibility : hidden;
+	z-index    : 3;                                                                                            /* What: Scrim Layer. Why: The scrim has to cover the page's highest layers, the About page's floating facts and Work's filter bar at 2, and stay under the bar at 4. How: This puts it between them. */
+
+
+}
+.navScrDiv[data-mobile-menu-open] { /* What: Open Navigation Scrim Div. Why: The page dims as the menu opens. How: This fades the scrim in, showing it at once so a tap can close the menu straight away. */
+
+
+	opacity    : 1;
+	transition : opacity var( --dur-tra-p03 ) var( --mot-dec-eas ), visibility 0s; /* Duration Transition Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	visibility : visible;
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Navigation Scrim Div. Why: Only the phone menu dims the page. How: This applies at 768px and below. */
+
+
+	.navScrDiv { /* What: Shown Navigation Scrim Div. Why: The scrim exists only where the menu does. How: This lets it render, still hidden until the menu opens. */
+
+
+		display : block;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Scrim Div. Why: Someone who asked for less motion should see the page dim and clear at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.navScrDiv,
+	.navScrDiv[data-mobile-menu-open] { /* What: Motionless Navigation Scrim Div. Why: The scrim should simply show and hide. How: This turns both transitions off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
 
 
 
@@ -38,7 +94,7 @@
 	right                   : 0;
 	top                     : 0;
 	transition              : background var( --dur-tra-p02 ) var( --mot-dec-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-dec-eas ), border-color var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
-	z-index                 : 100;
+	z-index                 : 4;                                               /* What: Bar Layer. Why: The bar has to stay above the phone menu's scrim at 3, which covers the page's highest layers, the About page's floating facts and Work's filter bar at 2. How: This sits one above the scrim. */
 
 
 }
@@ -465,7 +521,7 @@
 
 /* #region menDraDiv */
 
-.menDraDiv { /* What: Menu Drawer Div. Why: On a phone the page links drop down under the bar. How: This fixes the drawer under the bar, stacks its links, and starts it slid up, faded, and invisible once its slide ends, so its links leave the Tab order. */
+.menDraDiv { /* What: Menu Drawer Div. Why: On a phone the page links and the menu's extras drop down under the bar. How: This fixes the drawer under the bar, stacks its rows, and starts it slid up, faded, and invisible once its slide ends, so its links leave the Tab order. */
 
 
 	background     : var( --bac-pag-col );                            /* Background Page Color = #F5F0E8 */
@@ -483,7 +539,7 @@
 	transform      : translateY( -100% );
 	transition     : transform var( --dur-tra-p02 ) var( --mot-dec-eas ), opacity var( --dur-tra-p02 ), visibility 0s linear var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Delayed Visibility. Why: The drawer has to stay visible while it slides away. How: Visibility flips to hidden only once the 280ms slide has finished. */
 	visibility     : hidden;
-	z-index        : 99;
+	z-index        : -1;                                              /* What: Drawer Layer. Why: The drawer slides down from behind the bar's row rather than across it. How: Inside the bar's own stacking context, this draws it above the bar's background but under the logo, links, and toggle. */
 
 
 }
@@ -509,6 +565,134 @@
 
 
 	}
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Menu Item Stagger. Why: Only the phone menu's rows arrive in turn. How: This applies at 768px and below. */
+
+
+	.menDraDiv[data-mobile-menu-open] .herLabDiv,
+	.menDraDiv[data-mobile-menu-open] .draLinAnc,
+	.menDraDiv[data-mobile-menu-open] .draHirAnc,
+	.menDraDiv[data-mobile-menu-open] .menConDiv { /* What: Arriving Menu Items. Why: Each row should follow the one above it in. How: This plays the fade on every opening, delayed by one stagger step per place in the drawer, holding the row's start until its turn but nothing after, so a link's hover nudge and press still apply. */
+
+
+		animation : menuItemOpenFadeIn var( --dur-ani-p02 ) var( --mot-dec-eas ) calc( var( --dur-ani-m03 ) * ( var( --men-ite-ind ) + 1 ) ) backwards; /* Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Animation Base Minus 3 ~= 67.9ms, Menu Item Index, set by each row's style */
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Menu Item Stagger. Why: Someone who asked for less motion should see the rows appear together. How: This applies only when the reduced-motion preference is set. */
+
+
+	.menDraDiv[data-mobile-menu-open] .herLabDiv,
+	.menDraDiv[data-mobile-menu-open] .draLinAnc,
+	.menDraDiv[data-mobile-menu-open] .draHirAnc,
+	.menDraDiv[data-mobile-menu-open] .menConDiv { /* What: Still Menu Items. Why: The rows should simply be there. How: This turns the stagger off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+@keyframes menuItemOpenFadeIn { /* What: Menu Item Open Fade In. Why: The phone menu's rows arrive one after another rather than all at once. How: This lowers each row a step into place as it fades in. */
+
+
+	from {
+
+
+		opacity   : 0;
+		transform : translateY( calc( var( --spa-ver-m02 ) * -1 ) ); /* Spacing Vertical Base Minus 2 ~= -8.304px */
+
+
+	}
+
+	to {
+
+
+		opacity   : 1;
+		transform : none;
+
+
+	}
+
+
+}
+
+
+/* #region herLabDiv */
+
+.herLabDiv { /* What: Hero Label Div. Why: The drawer opens on the same availability pill Home's hero shows, so it keeps that element's name. How: This sets a warm ivory pill in muted mono capitals, only as wide as its content. */
+
+
+	align-items    : center;
+	background     : var( --bac-sun-col );                            /* Background Sunken Color = #EDE6D8 */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : 999px;
+	color          : var( --tex-sec-col );                            /* Text Secondary Color = #3D3D5C */
+	display        : inline-flex;
+	font-family    : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                            /* Font Size Base = 11px */
+	gap            : var( --spa-hor-m02 );                            /* Spacing Horizontal Base Minus 2 ~= 8.304px */
+	letter-spacing : calc( var( --cdn-pow-009-rec ) * 1em );          /* Core-Design-Number to the Power of 9 Reciprocal ~= 0.080em */
+	margin-bottom  : var( --spa-ver-m02 );                            /* Spacing Vertical Base Minus 2 ~= 8.304px */
+	padding        : var( --spa-ver-m03 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 3 ~= 6.268px, Spacing Horizontal Base ~= 14.572px */
+	text-transform : uppercase;
+	width          : fit-content;
+
+
+}
+
+.pulDotSpa { /* What: Pulse Dot Span. Why: A pulsing green dot signals availability. How: This draws an 8px green circle, never shrinking, playing the shared pulse forever. */
+
+
+	animation     : global( statusLoopPulse ) var( --dur-ani-p10 ) var( --mot-sta-eas ) infinite; /* Duration Animation Base Plus 10 ~= 2,627.0ms, Motion Standard Easing = ease */
+	background    : var( --suc-mai-col );                                                         /* Success Main Color = #22c55e */
+	border-radius : 50%;
+	flex-shrink   : 0;
+	height        : calc( var( --ver-rhy-m02 ) * 1rem );                                          /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+	width         : calc( var( --ver-rhy-m02 ) * 1rem );                                          /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Pulse Dot Span. Why: Someone who asked for less motion shouldn't see the dot pulse. How: This applies only when the reduced-motion preference is set. */
+
+
+	.pulDotSpa { /* What: Motionless Pulse Dot Span. Why: The dot should hold still. How: This turns the pulse off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+.avaTexSpa { /* What: Availability Text Span. Why: The label's words read in the mono font at the label's own size, the smallest the type scale allows. How: This sets the mono font, inheriting the label's size. */
+
+
+	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
+
+
+}
+
+/* #endregion herLabDiv */
+
+
+/* #region menLinNav */
+
+.menLinNav { /* What: Menu Links Nav. Why: The page links stack as rows in the drawer. How: This stacks them with the drawer's own small gap. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-m02 ); /* Spacing Vertical Base Minus 2 ~= 8.304px */
 
 
 }
@@ -570,6 +754,9 @@
 
 }
 
+/* #endregion menLinNav */
+
+
 .draHirAnc { /* What: Drawer Hire Anchor. Why: The drawer repeats the bar's call to action. How: This sets it as a full-width orange button in mono capitals under the links, easing its color, lift, press, and focus. */
 
 
@@ -617,6 +804,164 @@
 
 
 }
+
+
+
+/* #region menConDiv */
+
+.menConDiv { /* What: Menu Contents Div. Why: The extras read as one block under the button. How: This stacks them centered, set off from the button above. */
+
+
+	display       : grid;
+	justify-items : center;
+	padding-top   : var( --spa-ver-p01 ); /* Spacing Vertical Base Plus 1 ~= 19.304px */
+	row-gap       : var( --spa-ver-m02 ); /* Spacing Vertical Base Minus 2 ~= 8.304px */
+
+
+}
+
+.menEyePar { /* What: Menu Eyebrow Paragraph. Why: The icons need a label that reads as a quiet heading. How: This sets it small and spaced in muted mono capitals. */
+
+
+	color          : var( --tex-mut-col );                   /* Text Muted Color = #646482 */
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
+	letter-spacing : calc( var( --cdn-pow-009-rec ) * 1em ); /* Core-Design-Number to the Power of 9 Reciprocal ~= 0.080em */
+	text-transform : uppercase;
+
+
+}
+
+
+
+/* #region menSocDiv */
+
+.menSocDiv { /* What: Menu Social Div. Why: The profile icons sit together as one row. How: This sets them side by side with a gap. */
+
+
+	display : flex;
+	gap     : var( --spa-hor-m02 ); /* Spacing Horizontal Base Minus 2 ~= 8.304px */
+
+
+}
+
+
+/* #region menSocAnc */
+
+.menSocAnc { /* What: Menu Social Anchor. Why: Each icon is a comfortable tap target. How: This centers the mark in a rounded sunken ivory tile about 45px across, easing its colors, lift, press, and focus. */
+
+
+	align-items     : center;
+	background      : var( --bac-sun-col );                            /* Background Sunken Color = #EDE6D8 */
+	border          : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius   : var( --rad-bor-med );                            /* Radius Border Medium = 11px */
+	color           : var( --tex-mai-col );                            /* Text Main Color = #1A1A2E */
+	display         : flex;
+	font-size       : var( --fon-siz-p02 );                            /* Font Size Base Plus 2 ~= 19.304px */
+	height          : calc( var( --ver-rhy-p04 ) * 1rem );             /* Vertical Rhythm Base Plus 4 ~= 44.876px */
+	justify-content : center;
+	transition      : background var( --dur-tra-bas ), border-color var( --dur-tra-bas ), color var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	width           : calc( var( --ver-rhy-p04 ) * 1rem );             /* Vertical Rhythm Base Plus 4 ~= 44.876px */
+
+
+}
+.menSocAnc:hover { /* What: Hovered Menu Social Anchor. Why: A tile should respond to the pointer. How: This tints it pale orange with a dark orange mark and edge and lifts it 2px. */
+
+
+	background   : var( --acc-tin-col );                            /* Accent Tint Color = #FDDCC8 */
+	border-color : var( --acc-mai-col );                            /* Accent Main Color = #F26419 */
+	color        : var( --acc-dar-col );                            /* Accent Dark Color ~= #bd3000 */
+	transform    : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
+
+
+}
+.menSocAnc:active { /* What: Pressed Menu Social Anchor. Why: A press should register before the profile opens. How: This presses the tile in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Menu Social Anchor. Why: Someone who asked for less motion shouldn't see the tiles move. How: This applies only when the reduced-motion preference is set. */
+
+
+	.menSocAnc { /* What: Motionless Menu Social Anchor. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.menSocSvg { /* What: Menu Social SVG. Why: A press anywhere on the tile should register as a press on the link. How: This keeps the icon from catching the pointer. */
+
+
+	pointer-events : none; /* What: Pass-Through Pointer. Why: WebKit doesn't mark a link pressed when the press lands on an SVG shape inside it, as the-bernie-bears found. How: This lets every tap fall through the icon to the link itself. */
+
+
+}
+
+/* #endregion menSocAnc */
+
+/* #endregion menSocDiv */
+
+
+
+.menEmaAnc { /* What: Menu Email Anchor. Why: The email reads as a clear link under the icons. How: This sets it in the dark orange mono, easing its color, press, and focus. */
+
+
+	color       : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
+	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	transition  : color var( --dur-tra-bas ), opacity var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.menEmaAnc:hover { /* What: Hovered Menu Email Anchor. Why: A link should respond to the pointer. How: This darkens it to the ink. */
+
+
+	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+
+
+}
+.menEmaAnc:active { /* What: Pressed Menu Email Anchor. Why: A press should register before the email opens. How: This dims the link slightly while it's held, as every text link does on press. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Menu Email Anchor. Why: Someone who asked for less motion should see the link's looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.menEmaAnc { /* What: Motionless Menu Email Anchor. Why: The hover, press, and focus looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.menTagPar { /* What: Menu Tagline Paragraph. Why: The menu ends on the site's tagline, as the footer does. How: This sets it small, italic, and centered in the muted ink, no wider than the small text width cap. */
+
+
+	color       : var( --tex-mut-col ); /* Text Muted Color = #646482 */
+	font-family : var( --fon-fam-acc ); /* Font Family Accent = 'Lora', serif */
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	font-style  : italic;
+	max-width   : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
+	text-align  : center;
+
+
+}
+
+/* #endregion menConDiv */
 
 /* #endregion menDraDiv */
 

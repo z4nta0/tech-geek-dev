@@ -157,7 +157,7 @@
 	--err-mai-col : #e8b4ae;                                                 /* What: Error Main Color = #e8b4ae. Why: An error panel needs a red edge. How: The contact form's error border reads it. */
 	--err-tin-col : #fdf0ee;                                                 /* What: Error Tint Color = #fdf0ee. Why: An error panel sits on a pale red. How: The contact form's error background reads it. */
 	--foc-rin-col : var( --acc-dar-col );                                    /* What: Focus Ring Color. Why: Keyboard focus rings need 3:1 against the page, which the bright orange misses on the ivory. How: This reads the dark orange, which the focus ring and the fields' focus border draw in. */
-	--scr-mai-col : ;                                                        /* What: Scrim Main Color. Why: The standard role set includes a scrim behind open menus. How: The phone menu gains one with the new features step, so it stays empty until then. */
+	--scr-mai-col : var( --tex-mai-col );                                    /* What: Scrim Main Color = #1A1A2E. Why: The open phone menu dims the page behind it. How: This reads the ink, which the scrim draws at about 43% through relative color syntax. */
 	--sha-mai-col : var( --tex-mai-col );                                    /* What: Shadow Main Color. Why: The site's shadows have always been cast in its ink. How: This reads the main text color, which the elevation shadows read with their own alpha. */
 	--suc-dar-col : ;                                                        /* What: Success Dark Color. Why: The standard role set includes the success family. How: This site has no success text, so it stays empty. */
 	--suc-mai-col : #22c55e;                                                 /* What: Success Main Color = #22c55e. Why: A green dot signals availability. How: The availability dots on Home and Contact read it. */
@@ -225,7 +225,7 @@
 
 	/* #region Easing Tokens */
 
-	--mot-acc-eas : cubic-bezier( .4, 0, 1, 1 );      /* What: Motion Accelerate Easing. Why: Things leaving should speed up as they go. How: Nothing on this site leaves yet; the phone menu's scrim will. */
+	--mot-acc-eas : cubic-bezier( .4, 0, 1, 1 );      /* What: Motion Accelerate Easing. Why: Things leaving should speed up as they go. How: The phone menu's scrim reads it as it fades out. */
 	--mot-bou-eas : cubic-bezier( .34, 1.56, .5, 1 ); /* What: Motion Bounce Easing. Why: A rare celebration can spring past its mark. How: Nothing on this site uses it yet. */
 	--mot-dec-eas : cubic-bezier( .2, .7, .3, 1 );    /* What: Motion Decelerate Easing. Why: Things arriving should slow as they land. How: The page entrances, the bar's look, the card lifts, the overlay, the drawer, and the underline read it, replacing the hand-tuned ease-out the site used before. */
 	--mot-ove-eas : cubic-bezier( .34, 1.2, .5, 1 );  /* What: Motion Overshoot Easing. Why: A touch of flair can overshoot gently. How: Nothing on this site uses it yet. */

@@ -464,11 +464,20 @@ ticker, and the status dots) when waiting for the page to settle.
   outline in its transition, the first Tab stop grows its ring to full width,
   and under reduced motion every control still changes but transitions
   nothing. Real clicks are blocked while it probes.
+  `menu.spec.ts` (from the-bernie-bears) opens the phone menu on About and
+  checks it lists the page links, both profiles, and the email over a scrim
+  with the page inert, and that tapping the scrim, Escape (which returns focus
+  to the toggle), tapping the brand, and widening the screen each close it.
 - `npm run test:rendering`: compares a full-page screenshot of every state
   with its baseline in `tests/rendering/baselines/`, with zero tolerance,
   under reduced motion, with the page's clock fixed to one date, since the
   footer's year comes from it, and with `Math.random` fixed, since Home picks
-  its featured projects at random. Baselines are captured on Linux. After an
+  its featured projects at random. Chromium and WebKit capture with
+  `tests/rendering/hide-patterns.css`, which hides the faint background
+  patterns (found by their `geoBacDiv` hook): those engines tile the SVG
+  pattern fills a few color levels differently from run to run, which had
+  spread from Contact to most pages. Firefox draws them the same every time
+  and still checks them. Baselines are captured on Linux. After an
   intended visual change, refresh with `npm run test:rendering --
   --update-snapshots` and commit the baselines with it.
 - `npm run test:responsive`: measures every route, the 404 page, and the
@@ -488,7 +497,9 @@ ticker, and the status dots) when waiting for the page to settle.
   suite captured, so a few states failed now and then. With every animation
   stopped under reduced motion they no longer run during a capture. A
   failure that two reruns don't reproduce still gets a rerun, not new
-  baselines.
+  baselines. One remains (2026-10-13): Chromium's contact-desktop fails
+  about one run in five on two corner pixels of the sidebar's Response Time
+  card, with nothing on the page changed.
 
 ## Found for later
 
