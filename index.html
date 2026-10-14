@@ -5,7 +5,7 @@
 <html lang='en'><!-- What: Root HTML Element. Why: Screen readers and translation tools need the page's language. How: This marks the document as English. -->
 
 
-	<head><!-- What: Document Head Element. Why: The page's metadata and icon load before the body paints. How: This holds them in the sections below. -->
+	<head><!-- What: Document Head Element. Why: The page's metadata and icons load before the body paints. How: This holds them in the sections below. -->
 
 
 		<!-- #region Document -->
@@ -19,9 +19,38 @@
 
 		<!-- #region Icons -->
 
-		<link rel='icon' type='image/svg+xml' href='/favicon.svg' /> <!-- What: SVG Favicon Link. Why: Browsers show the site's icon in the tab. How: This points modern browsers at the SVG in public/, served at a fixed address. -->
+		<!--
+			index.html = Icons Section
+
+			@summary
+			The SVG comes first, since modern browsers prefer it and it stays
+			sharp at any tab density, then the root favicon.ico for older
+			browsers, then the PNG sizes from smallest to largest. Every raster
+			icon is rendered from favicon.svg by npm run icons. The order is
+			the browser's order of preference, so it stays as written rather
+			than alphabetical.
+
+			@author z4nta0 <https://github.com/z4nta0>
+
+		-->
+
+
+
+		<link href='/favicon.svg'         rel='icon' type='image/svg+xml' />             <!-- What: SVG Icon Link. Why: Modern browsers prefer a vector favicon that stays sharp at any tab density. How: This points at the hexagon mark in public/. -->
+		<link href='/favicon.ico'         rel='icon' sizes='any' />                      <!-- What: ICO Icon Link. Why: Older browsers read only a .ico favicon. How: This points at the root favicon.ico, which also answers the request browsers make for it on their own. -->
+		<link href='/favicon-16x16.png'   rel='icon' sizes='16x16'   type='image/png' /> <!-- What: Small PNG Icon Link. Why: Small tab icons look crisper drawn at their own size. How: This offers the 16px PNG. -->
+		<link href='/favicon-32x32.png'   rel='icon' sizes='32x32'   type='image/png' /> <!-- What: Medium PNG Icon Link. Why: A browser without SVG favicons needs a raster fallback, and most pick a 32px tab icon. How: This offers the 32px PNG. -->
+		<link href='/favicon-192x192.png' rel='icon' sizes='192x192' type='image/png' /> <!-- What: Large PNG Icon Link. Why: Some browsers and Android pick a large icon for shortcuts and tab previews. How: This offers the 192px PNG. -->
+		<link href='/favicon-512x512.png' rel='icon' sizes='512x512' type='image/png' /> <!-- What: Extra Large PNG Icon Link. Why: High-density screens and app launchers can ask for a bigger icon still. How: This offers the 512px PNG. -->
 
 		<!-- #endregion Icons -->
+
+
+		<!-- #region Home Screen -->
+
+		<link href='/apple-touch-icon.png' rel='apple-touch-icon' sizes='180x180' /> <!-- What: Apple Touch Icon Link. Why: iOS draws the home screen icon, and some apps the icon beside a shared link, from this link. How: This points at the 180px touch icon, the hexagon mark on ivory. -->
+
+		<!-- #endregion Home Screen -->
 
 
 	</head>
