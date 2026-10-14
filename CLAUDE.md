@@ -692,8 +692,9 @@ decided by the user on 2026-10-13 (step 12, on the `deferred-items` branch).
   head tags, the crawler files and icons, the mail and verification records,
   and that TLS 1.0 and 1.1 are refused. Netlify's DNS zone for techgeek.dev is
   kept for a day or two while cached answers expire, then deleted.
-  Ease-my-life could take the same improvements: CNAMEs in place of its fixed
-  addresses, Full (strict), and TLS 1.2.
+  Ease-my-life took the same improvements the same day: proxied CNAMEs to
+  `ease-my-life.netlify.app` in place of its fixed addresses, Full (strict),
+  and TLS 1.2, checked the same way.
 - **Shared design package** (suggested 2026-10-12, shape decided by the user
   2026-10-13, built 2026-10-14 as step 14): a repository the three sites share
   as a GitHub dependency (`github:z4nta0/<repo>#<tag>`), holding the tokens,
