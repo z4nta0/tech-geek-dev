@@ -125,8 +125,6 @@ function NavBarCom () : JSX.Element {
 
 	}, [ curLocObj ] ); // What: Effect Dependency Array. Why: The drawer closes on every change of page. How: curLocObj is a new object for each navigation, even to the page already showing, so the effect runs after each one.
 
-
-
 	useEffect( () => { // What: Open Menu Effect. Why: The open menu sits over a dimmed page, so keyboard and screen reader users should stay in the bar until it closes, and it needs the usual ways out. How: While the menu is open, this makes the bar's siblings inert and listens for Escape and resizing, and its cleanup undoes both.
 
 
@@ -156,6 +154,7 @@ function NavBarCom () : JSX.Element {
 
 
 		const onResWinFun = () => { if ( !togButEle.getClientRects().length ) setMenOpeBoo( false ); }; // What: On Resize Window Function. Why: A screen widened past the phone layout hides the toggle, which would leave the page inert with no way to close the menu. How: This closes the menu once the toggle has no box.
+
 
 
 		for ( const sibCurEle of sibEleArr ) sibCurEle.setAttribute( 'inert', '' ); // What: Sibling Inert Loop. Why: Content under the scrim shouldn't take focus or be read while the menu is open. How: This marks each sibling inert, removing it from the tab order and the accessibility tree.
@@ -227,13 +226,15 @@ function NavBarCom () : JSX.Element {
 
 
 						<svg
+							className={ cssModObj.braMarSvg }
+
 							fill='none'
 							height='28'
 							viewBox='0 0 28 28'
 							width='28'
 
 							aria-hidden='true'
-						>{ /* What: Hexagon Mark SVG Element. Why: The site's hexagon mark leads the wordmark. How: This draws the outlined hexagon, its filled core, and its center dot, hidden from screen readers since the wordmark names the link. */ }
+						>{ /* What: Brand Mark SVG Element. Why: The site's hexagon mark leads the wordmark. How: This draws the outlined hexagon, its filled core, and its center dot, hidden from screen readers since the wordmark names the link, and lets presses fall through to the link. */ }
 
 
 							<polygon

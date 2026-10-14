@@ -744,7 +744,7 @@ function HomPagCom () : JSX.Element {
 								labTexStr='Selected Work'
 								subTexStr='A curated selection of full-stack projects, from idea to deployed product.'
 								titTexStr="Projects I'm Proud Of"
-							/>{ /* What: Featured Section Header Component. Why: The section opens with its heading. How: This shows its label, title, and subtitle. */ }
+							/>{ /* What: Section Header Component. Why: The section opens with its heading. How: This shows its label, title, and subtitle. */ }
 
 
 
@@ -825,7 +825,7 @@ function HomPagCom () : JSX.Element {
 							labTexStr='What I Do'
 							subTexStr='From backend architecture to frontend UI, I handle the full picture.'
 							titTexStr='End-to-End Development'
-						/>{ /* What: Services Section Header Component. Why: The section opens with its heading. How: This centers the label, title, and subtitle. */ }
+						/>{ /* What: Section Header Component. Why: The section opens with its heading. How: This centers the label, title, and subtitle. */ }
 
 
 

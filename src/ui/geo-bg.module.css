@@ -6,7 +6,7 @@
  *
  * @summary
  * Styles for GeoBacCom: the wrapper stretches over its whole section behind
- * the content, lets the pointer pass through, and sets the dark blue every
+ * the content, lets the pointer pass through, and sets the strong blue every
  * pattern inside it draws in through currentColor.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -15,7 +15,7 @@
 
 
 
-.geoBacDiv { /* What: Geometric Background Div. Why: The pattern fills its section behind the content without catching clicks. How: This pins it over the whole section at the bottom of the stack, in the dark blue the patterns draw with. */
+.geoBacDiv { /* What: Geometric Background Div. Why: The pattern fills its section behind the content without catching clicks. How: This pins it over the whole section at the bottom of the stack, in the strong blue the patterns draw with. */
 
 
 	color          : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */

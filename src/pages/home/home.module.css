@@ -58,7 +58,7 @@
 
 
 	align-items : center;
-	background  : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
+	background  : var( --bac-pag-col );                                                                                            /* Background Page Color = #F5F0E8 */
 	display     : flex;
 	overflow    : hidden;
 	padding     : calc( var( --nav-bar-hei ) + var( --her-gap-pad ) ) 0 clamp( var( --spa-ver-p06 ), 12vw, var( --spa-ver-p08 ) ); /* Navigation Bar Height ~= 78.751px, Hero Gap Padding, about 59.447px - 138.199px, Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Vertical Base Plus 8 ~= 138.199px */ /* What: Hero Padding. Why: The gap under the bar and above the slanted edge should suit the screen. How: The top clears the bar plus the shared hero gap, and the bottom is 12vw, about 79px to 138px, which keeps the content clear of the 59px slanted edge. */
@@ -114,7 +114,7 @@
 
 
 }
-.herShaDiv--square { /* What: Square Hero Shape Div. Why: A tilted outlined square varies the shapes near the hero's top. How: This draws a 104px dark blue square tipped 45 degrees through rotate, which the turning transform adds to, and turns it every 19 seconds. */
+.herShaDiv--square { /* What: Square Hero Shape Div. Why: A tilted outlined square varies the shapes near the hero's top. How: This draws a 104px strong blue square tipped 45 degrees through rotate, which the turning transform adds to, and turns it every 19 seconds. */
 
 
 	animation  : global( shapeLoopSpin ) var( --dur-ani-p17 ) linear infinite; /* Duration Animation Base Plus 17 ~= 18,807.0ms */
@@ -167,7 +167,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Inner Div. Why: On a tablet the code window would squeeze the pitch in a quarter of the row. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Inner Div. Why: On a tablet the code window would squeeze the pitch in a quarter of the row. How: This applies at 1,024px and below. */
 
 
 	.herInnDiv { /* What: Tablet Hero Inner Div Columns. Why: The window keeps its natural width beside the pitch, which takes the rest. How: This sets a flexible pitch column and a column sized to the window. */
@@ -588,9 +588,9 @@
 .codWinDiv { /* What: Code Window Div. Why: z4nta0 is introduced as code in a dark editor window. How: This sets a dark rounded window with a faint light border, a large shadow, and a faint blue outline. */
 
 
-	background    : var( --bac-inv-col );                                                                           /* Background Inverse Color = #1A1A2E */
-	border        : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-009-rec ) ); /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.080 opacity */
-	border-radius : var( --rad-bor-med );                                                                           /* Radius Border Medium = 11px */
+	background    : var( --bac-inv-col );                                                                                                 /* Background Inverse Color = #1A1A2E */
+	border        : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-009-rec ) );                       /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.080 opacity */
+	border-radius : var( --rad-bor-med );                                                                                                 /* Radius Border Medium = 11px */
 	box-shadow    : var( --ele-lar-sha ), 0 0 0 var( --bor-wid-bas ) oklch( from var( --acc-sec-col ) l c h / var( --cdn-pow-007-rec ) ); /* Elevation Large Shadow, about 0 11px 44.9px plus 0 3.6px 11px -2.7px, Border Width Base ~= 1.160px, Accent Secondary Color = #7DB9D8 @ 0.140 opacity */
 	overflow      : hidden;
 	position      : relative;
@@ -674,7 +674,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Code Block Pre. Why: Below a desktop the window has to fit beside the pitch on a tablet and inside a 320px phone. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Code Block Pre. Why: Below a desktop the window has to fit beside the pitch on a tablet and inside a 320px phone. How: This applies at 1,024px and below. */
 
 
 	.codBloPre { /* What: Compact Code Block Pre. Why: The code's longest line has to fit a narrow window. How: This sets the code at the base size with tighter padding. */
@@ -743,7 +743,7 @@
 	.floBadDiv { /* What: Fitted Floating Badge Div. Why: The badge should stick out past the window as far as the screen allows, like on a desktop, and tuck in on a narrow phone. How: The overhang is the room left beside the centered window, less the gutter, held between the m02 and p02 steps, so it reaches the full p02 from about 525px wide and eases down to m02 below about 490px. */
 
 
-		left : calc( clamp( var( --spa-hor-m02 ), calc( ( 100vw - var( --ver-rhy-p12 ) * 1rem ) / 2 - var( --gut-sid-pad ) ), var( --spa-hor-p02 ) ) * -1 ); /* Spacing Horizontal Base Minus 2 ~= 8.304px, Vertical Rhythm Base Plus 12 ~= 425.592px, Gutter Side Padding, about 19.304px - 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+		left : calc( clamp( var( --spa-hor-m02 ), calc( ( 100vw - var( --ver-rhy-p12 ) * 1rem ) / 2 - var( --gut-sid-pad ) ), var( --spa-hor-p02 ) ) * -1 ); /* Spacing Horizontal Base Minus 2 ~= -8.304px, Vertical Rhythm Base Plus 12 ~= 425.592px, Gutter Side Padding, about 19.304px - 44.876px, Spacing Horizontal Base Plus 2 ~= -25.572px */
 
 
 	}
@@ -851,7 +851,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Stats Grid Div. Why: Four figures crowd a tablet or a phone. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Stats Grid Div. Why: Four figures crowd a tablet or a phone. How: This applies at 1,024px and below. */
 
 
 	.staGriDiv { /* What: Two Column Stats Grid Div. Why: Two figures fit side by side on a tablet, and two short figures still do on a phone. How: This sets two columns. */
@@ -889,7 +889,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Stat Item Div. Why: In two columns the second figure ends its row too, and its divider would sit against the grid's right edge. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Stat Item Div. Why: In two columns the second figure ends its row too, and its divider would sit against the grid's right edge. How: This applies at 1,024px and below. */
 
 
 	.staIteDiv:nth-child( 2n ) { /* What: Row End Stat Item Div. Why: Every figure in the right column ends its row. How: This removes the right rule from every second item. */
@@ -1013,6 +1013,7 @@
 
 		align-items    : flex-start;
 		flex-direction : column;
+		gap            : var( --spa-ver-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px */
 
 
 	}
@@ -1175,7 +1176,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Service Grid Div. Why: Four cards crowd a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Service Grid Div. Why: Four cards crowd a tablet. How: This applies at 1,024px and below. */
 
 
 	.serGriDiv { /* What: Two Column Service Grid Div. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
@@ -1318,7 +1319,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Call-To-Action Inner Div. Why: The text and button crowd one row below a desktop. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Call-To-Action Inner Div. Why: The text and button crowd one row below a desktop. How: This applies at 1,024px and below. */
 
 
 	.ctaInnDiv { /* What: Stacked Call-To-Action Inner Div. Why: The button reads better under the text. How: This stacks them against the left. */
@@ -1326,6 +1327,7 @@
 
 		align-items    : flex-start;
 		flex-direction : column;
+		gap            : var( --spa-ver-p04 ); /* Spacing Vertical Base Plus 4 ~= 44.876px */
 
 
 	}

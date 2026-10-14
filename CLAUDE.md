@@ -106,7 +106,10 @@ src/
     not-found/           the 404 page every unknown path shows
   ui/                    what more than one page uses (the bar, the footer,
                          the background pattern, the section header, the
-                         tag, the project card and the project list)
+                         tag, the project card and the project list), plus
+                         the page and profile link lists, a page's own
+                         search description hook, and the scroll-to-top
+                         hook
   styles/                global CSS only (fonts.css, styles.css)
 ```
 Outside `src/`: `public/` (the favicon set, the social preview card,
@@ -557,9 +560,9 @@ settle.
 - **h1 line height**: `styles.css` sets the h1's `line-height` to a literal
   1.15 rather than a rhythm step; the nearest is the m01 step, exactly 1,
   which tightens multi-line headings.
-- **Project card hover color**: the cards lift and deepen their shadow on
-  hover but shift no color, which the hover baseline asks for. A border
-  shifting to the blue would add one.
+- **Card hover color**: the project cards, Home's service cards, and About's
+  value cards lift and deepen their shadow on hover but shift no color, which
+  the hover baseline asks for. A border shifting to the blue would add one.
 - **SVG opacity literals**: a few `opacity` attributes on SVG shapes (0.6,
   0.7, 0.8) and the background patterns' strengths (0.18, 0.25) sit within 10%
   of a reciprocal power of the core design number. The transparency rule is
@@ -570,6 +573,11 @@ settle.
   but it's 3.5719px, which rounds to 3.572px. The close-out kept 3.571 so the
   family's comments agree; correcting it would mean the user-level rules and
   every sibling site too.
+- **LinkedIn address on Contact**: the Contact page shows the LinkedIn row's
+  value as its full address, `linkedin.com/in/gary-s-walton-654739400`, which
+  puts a personal name in the page's copy, while the site otherwise names its
+  owner z4nta0. Keep it, or show a label such as "LinkedIn profile" (the link
+  itself can't change).
 - **Unused tag variants**: `ui/tag.module.css` keeps neutral and orange
   variants nothing renders (every tag is blue), along with the orange tag the
   `--acc-tin-col` comment mentions. Keep them for future tags, or remove them.

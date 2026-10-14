@@ -12,7 +12,9 @@
  * as the page scrolls; at 1,024px and below they stack. The fields share one
  * look, with an orange border and glow while focused, the select draws its own
  * arrow, and the thank-you replaces the form once a message is sent. The
- * sidebar's availability dot pulses with the shared statusLoopPulse keyframe.
+ * thank-you and the error each fade up into view with the shared
+ * contentEnterFadeUp keyframe, and the sidebar's availability dot pulses with
+ * the shared statusLoopPulse keyframe.
  * The page's centered column takes the shared container values, and its
  * section the shared section padding, merged into their own rules. Everything
  * that moves holds still under reduced motion.
@@ -220,15 +222,29 @@
 
 /* #region sucStaDiv */
 
-.sucStaDiv { /* What: Success State Div. Why: The thank-you takes the form's place once the message is sent. How: This centers its check, heading, line, and button in a padded column. */
+.sucStaDiv { /* What: Success State Div. Why: The thank-you takes the form's place once the message is sent, and the swap should be seen. How: This fades it up into view with the shared entrance and centers its check, heading, line, and button in a padded column. */
 
 
 	align-items    : center;
+	animation      : global( contentEnterFadeUp ) var( --dur-ani-p02 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --spa-ver-bas );                      /* Spacing Vertical Base ~= 14.572px */
-	padding        : var( --spa-ver-p07 ) var( --spa-hor-p03 ); /* Spacing Vertical Base Plus 7 ~= 104.323px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	gap            : var( --spa-ver-bas );                                                        /* Spacing Vertical Base ~= 14.572px */
+	padding        : var( --spa-ver-p07 ) var( --spa-hor-p03 );                                   /* Spacing Vertical Base Plus 7 ~= 104.323px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	text-align     : center;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Success State Div. Why: Someone who asked for less motion shouldn't see the thank-you slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.sucStaDiv { /* What: Motionless Success State Div. Why: The thank-you should simply appear. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
 
 
 }
@@ -460,15 +476,29 @@
 
 
 
-.errMesPar { /* What: Error Message Paragraph. Why: A failed send has to stand out. How: This sets the message on a pale red panel with a red border and text. */
+.errMesPar { /* What: Error Message Paragraph. Why: A failed send has to stand out, and its arrival should be seen. How: This fades the message up into view with the shared entrance on a pale red panel with a red border and text. */
 
 
-	background    : var( --err-tin-col );                            /* Error Tint Color = #fdf0ee */
-	border        : var( --bor-wid-bas ) solid var( --err-mai-col ); /* Border Width Base ~= 1.160px, Error Main Color = #e8b4ae */
-	border-radius : var( --rad-bor-sma );                            /* Radius Border Small ~= 8.304px */
-	color         : var( --err-dar-col );                            /* Error Dark Color = #c0392b */
-	font-size     : var( --fon-siz-p01 );                            /* Font Size Base Plus 1 ~= 14.572px */
-	padding       : var( --spa-ver-m01 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
+	animation     : global( contentEnterFadeUp ) var( --dur-ani-p02 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	background    : var( --err-tin-col );                                                         /* Error Tint Color = #fdf0ee */
+	border        : var( --bor-wid-bas ) solid var( --err-mai-col );                              /* Border Width Base ~= 1.160px, Error Main Color = #e8b4ae */
+	border-radius : var( --rad-bor-sma );                                                         /* Radius Border Small ~= 8.304px */
+	color         : var( --err-dar-col );                                                         /* Error Dark Color = #c0392b */
+	font-size     : var( --fon-siz-p01 );                                                         /* Font Size Base Plus 1 ~= 14.572px */
+	padding       : var( --spa-ver-m01 ) var( --spa-hor-bas );                                    /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Error Message Paragraph. Why: Someone who asked for less motion shouldn't see the error slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.errMesPar { /* What: Motionless Error Message Paragraph. Why: The error should simply appear. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
 
 
 }
@@ -607,7 +637,7 @@
 
 /* #region conIteDiv */
 
-.conIteDiv { /* What: Contact Items Div. Why: The contact details stack in a list. How: This stacks them with gaps. */
+.conIteDiv { /* What: Contact Item Div. Why: The contact details stack in a list. How: This stacks them with gaps. */
 
 
 	display        : flex;
@@ -770,6 +800,7 @@
 }
 
 /* #endregion avaRowDiv */
+
 
 
 /* #region resTexPar */

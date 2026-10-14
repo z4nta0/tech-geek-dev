@@ -405,7 +405,7 @@ function ConPagCom () : JSX.Element {
 							{ isaSenBoo ? ( // What: Sent Or Form Check. Why: A sent message replaces the form with a thank-you. How: This renders the thank-you once sent, or the form otherwise.
 
 
-								<div className={ cssModObj.sucStaDiv }>{ /* What: Success State Div Element. Why: A visitor learns the message went out. How: This shows a check, a thank-you, and a button for another message. */ }
+								<div className={ cssModObj.sucStaDiv }>{ /* What: Success State Div Element. Why: A visitor learns the message went out. How: This fades up into view with a check, a thank-you, and a button for another message. */ }
 
 
 									<svg
@@ -587,7 +587,7 @@ function ConPagCom () : JSX.Element {
 									{ errMesStr && ( // What: Error Presence Check. Why: An error shows only after a failed send. How: This renders the message when there is one.
 
 
-										<p className={ cssModObj.errMesPar }>{ errMesStr }</p> // What: Error Message Paragraph Element. Why: A visitor learns the message didn't go out. How: This shows the error above the message field.
+										<p className={ cssModObj.errMesPar }>{ errMesStr }</p> // What: Error Message Paragraph Element. Why: A visitor learns the message didn't go out. How: This fades the error up into view above the message field.
 
 
 									) }
@@ -680,7 +680,7 @@ function ConPagCom () : JSX.Element {
 
 								<h3 className={ cssModObj.sidTitHea }>Contact Details</h3>{ /* What: Sidebar Title Heading Element. Why: The card is named. How: This shows its title. */ }
 
-								<div className={ cssModObj.conIteDiv }>{ /* What: Contact Items Div Element. Why: The items stack in a list. How: This holds one link per item. */ }
+								<div className={ cssModObj.conIteDiv }>{ /* What: Contact Item Div Element. Why: The items stack in a list. How: This holds one link per item. */ }
 
 
 									{ CON_ITE_ARR.map( ( conIteObj ) => ( // What: Contact Item Map Call. Why: Every contact item shows. How: This renders one link per row.
@@ -794,7 +794,7 @@ function ConPagCom () : JSX.Element {
 
 // #region Exports
 
-export { ConPagCom }; // What: Named Exports. Why: The router's Contact route renders this page. How: This exports ConPagCom.
+export { ConPagCom }; // What: Named Export. Why: The router's Contact route renders this page. How: This exports ConPagCom.
 
 // #endregion Exports
 

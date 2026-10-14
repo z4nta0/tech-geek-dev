@@ -18,7 +18,7 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * @summary
  * The small pill that names a technology, used on every project card and in
  * the About page's skills grid. It comes in three colors (blue, orange, and
- * a neutral grey) and two sizes (small and medium), each a class in its own
+ * a neutral ivory) and two sizes (small and medium), each a class in its own
  * module.
  *
  * Sections:

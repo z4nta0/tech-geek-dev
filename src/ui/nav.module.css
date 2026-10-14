@@ -190,6 +190,14 @@
 
 }
 
+.braMarSvg { /* What: Brand Mark SVG. Why: A press anywhere on the mark should register as a press on the link. How: This keeps the mark from catching the pointer. */
+
+
+	pointer-events : none; /* What: Pass-Through Pointer. Why: WebKit doesn't mark a link pressed when the press lands on an SVG shape inside it, as the-bernie-bears found. How: This lets every press fall through the mark to the link itself. */
+
+
+}
+
 
 /* #region braWorSpa */
 
@@ -233,7 +241,7 @@
 
 }
 
-.worLasSpa { /* What: Wordmark Last Span. Why: The domain ending carries the accent. How: This sets .dev in orange. */
+.worLasSpa { /* What: Wordmark Last Span. Why: The domain ending carries the accent. How: This sets .dev in the dark orange. */
 
 
 	color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
@@ -721,7 +729,7 @@
 
 }
 .draLinAnc[aria-current='page'],
-.draLinAnc:hover { /* What: Current Or Hovered Drawer Link Anchor. Why: The page that's showing and the link under the pointer stand out. How: This turns the text orange. */
+.draLinAnc:hover { /* What: Current Or Hovered Drawer Link Anchor. Why: The page that's showing and the link under the pointer stand out. How: This turns the text the dark orange. */
 
 
 	color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */

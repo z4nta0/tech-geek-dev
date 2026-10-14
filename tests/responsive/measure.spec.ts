@@ -89,6 +89,7 @@ const WID_LIS_ARR = [ 320, 360, 390, 414, 480, 640, 641, 768, 769, 1024, 1025, 1
  *
  * @returns Every paragraph past its limit, described by its opening words,
  *          its longest line's length, and its limit.
+ * @see {@link proLisArr}
  *
  * @example
  * ```ts

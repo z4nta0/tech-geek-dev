@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './about.module.css';    // What: CSS Module Object. Why: The About page's own hero, skills, timeline, and values styles live in its own module. How: This maps each class name in about.module.css to its hashed module class.
+import cssModObj from './about.module.css';   // What: CSS Module Object. Why: The About page's own hero, skills, timeline, and values styles live in its own module. How: This maps each class name in about.module.css to its hashed module class.
 import selPorUrl from './self-portrait.webp'; // What: Self Portrait URL. Why: The hero shows z4nta0's portrait. How: Vite resolves this to the image's fingerprinted URL.
 
 
@@ -363,7 +363,7 @@ function AboPagCom () : JSX.Element {
 							labTexStr='Technical Skills'
 							subTexStr='The tools and technologies I reach for, and know deeply enough to teach.'
 							titTexStr='What I Work With'
-						/>{ /* What: Skills Section Header Component. Why: The section opens with its heading. How: This shows its label, title, and subtitle. */ }
+						/>{ /* What: Section Header Component. Why: The section opens with its heading. How: This shows its label, title, and subtitle. */ }
 
 
 
@@ -444,7 +444,7 @@ function AboPagCom () : JSX.Element {
 							aliPosStr='center'
 							labTexStr='Experience'
 							titTexStr='My Journey'
-						/>{ /* What: Timeline Section Header Component. Why: The section opens with its heading, centered over the timeline's center line on a desktop. How: This shows its label and title centered. */ }
+						/>{ /* What: Section Header Component. Why: The section opens with its heading, centered over the timeline's center line on a tablet or wider. How: This shows its label and title centered. */ }
 
 
 
@@ -528,7 +528,7 @@ function AboPagCom () : JSX.Element {
 							aliPosStr='center'
 							labTexStr='How I Think'
 							titTexStr='My Values'
-						/>{ /* What: Values Section Header Component. Why: The section opens with its heading. How: This centers its label and title. */ }
+						/>{ /* What: Section Header Component. Why: The section opens with its heading. How: This centers its label and title. */ }
 
 
 

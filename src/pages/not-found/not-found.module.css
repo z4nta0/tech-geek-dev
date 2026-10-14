@@ -114,7 +114,7 @@
 	color     : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 	font-size : var( --fon-siz-p03 ); /* Font Size Base Plus 3 ~= 25.572px */
 	position  : relative;
-	z-index   : 1;
+	z-index   : 1;                    /* What: Drawing Clearing Layer. Why: The turning hexagon drawing is positioned, so it would paint over the heading. How: This lifts the heading one layer above the drawing, which sits at auto. */
 
 
 }

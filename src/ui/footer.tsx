@@ -175,13 +175,15 @@ function SitFooCom () : JSX.Element {
 
 
 								<svg
+									className={ cssModObj.fooIcoSvg }
+
 									fill='currentColor'
 									height='18'
 									viewBox='0 0 24 24'
 									width='18'
 
 									aria-hidden='true'
-								>{ /* What: Profile Mark SVG Element. Why: The platform's mark tells a visitor where the link goes. How: This draws the mark in the link's color, hidden from screen readers since the link is named. */ }
+								>{ /* What: Footer Icon SVG Element. Why: The platform's mark tells a visitor where the link goes. How: This draws the mark in the link's color, hidden from screen readers since the link is named, and lets presses fall through to the link. */ }
 
 
 									<path d={ proLinObj.icoStr } />{ /* What: Profile Mark Path Element. Why: The mark is one path. How: This traces the row's path data. */ }

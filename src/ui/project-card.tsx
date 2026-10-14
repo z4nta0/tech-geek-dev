@@ -152,6 +152,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 
 						) }
 
+
 						{ proRecObj.gitStr && ( // What: GitHub Link Presence Check. Why: Not every project's source is public. How: This renders the link only when the record has one.
 
 

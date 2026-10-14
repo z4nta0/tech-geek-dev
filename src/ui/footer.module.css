@@ -283,6 +283,7 @@
 }
 
 
+
 /* #region fooSocDiv */
 
 .fooSocDiv { /* What: Footer Social Div. Why: The profile icons sit side by side. How: This lines them up with a gap. */
@@ -293,6 +294,9 @@
 
 
 }
+
+
+/* #region fooIcoAnc */
 
 .fooIcoAnc { /* What: Footer Icon Anchor. Why: Each profile link is a bare icon on the dark band. How: This sets it in the muted ink and eases its color, lift, press, and focus. */
 
@@ -331,6 +335,16 @@
 
 
 }
+
+.fooIcoSvg { /* What: Footer Icon SVG. Why: A press anywhere on the icon should register as a press on the link. How: This keeps the icon from catching the pointer. */
+
+
+	pointer-events : none; /* What: Pass-Through Pointer. Why: WebKit doesn't mark a link pressed when the press lands on an SVG shape inside it, as the-bernie-bears found. How: This lets every press fall through the icon to the link itself. */
+
+
+}
+
+/* #endregion fooIcoAnc */
 
 /* #endregion fooSocDiv */
 

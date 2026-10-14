@@ -67,10 +67,13 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
 const PRC_STE_ARR = [ // What: Process Step Array. Why: The process section shows the same four steps every visit. How: Each row holds one step's number, title, and description.
 
 
-	{ desStr : 'Deep-dive into your goals, users, and constraints. No assumptions.',          numStr : '01', titStr : 'Discover' }, // What: Discover Step Row. Why: Every project starts by learning what it needs. How: This is the first step.
-	{ desStr : 'Architecture diagrams, wireframes, and API contracts before a line of code.', numStr : '02', titStr : 'Design'   }, // What: Design Step Row. Why: The plan comes before the code. How: This is the second step.
-	{ desStr : 'Iterative development with regular demos. Fully tested and documented.',      numStr : '03', titStr : 'Build'    }, // What: Build Step Row. Why: The site is built in steps the client can see. How: This is the third step.
-	{ desStr : 'CI/CD deployment, monitoring, and handover documentation included.',          numStr : '04', titStr : 'Ship'     }  // What: Ship Step Row. Why: Every project ends deployed and handed over. How: This is the last step.
+	{ numStr : '01', titStr : 'Discover', desStr : 'Deep-dive into your goals, users, and constraints. No assumptions.' }, // What: Discover Step Row. Why: Every project starts by learning what it needs. How: This is the first step.
+
+	{ numStr : '02', titStr : 'Design',   desStr : 'Architecture diagrams, wireframes, and API contracts before a line of code.' }, // What: Design Step Row. Why: The plan comes before the code. How: This is the second step.
+
+	{ numStr : '03', titStr : 'Build',    desStr : 'Iterative development with regular demos. Fully tested and documented.' }, // What: Build Step Row. Why: The site is built in steps the client can see. How: This is the third step.
+
+	{ numStr : '04', titStr : 'Ship',     desStr : 'CI/CD deployment, monitoring, and handover documentation included.' } // What: Ship Step Row. Why: Every project ends deployed and handed over. How: This is the last step.
 
 
 ];
@@ -403,7 +406,7 @@ function WorPagCom () : JSX.Element {
 							labTexStr='How I Work'
 							subTexStr='Every project follows the same disciplined approach, from first conversation to final deployment.'
 							titTexStr='My Process'
-						/>{ /* What: Process Section Header Component. Why: The section opens with its heading. How: This centers the label, title, and subtitle. */ }
+						/>{ /* What: Section Header Component. Why: The section opens with its heading. How: This centers the label, title, and subtitle. */ }
 
 
 

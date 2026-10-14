@@ -7,16 +7,17 @@
  * @summary
  * Styles for WorPagCom. The page fades up into view like every page. Its ivory
  * hero clears the fixed bar and stacks an orange label, the heading with its
- * blue accent, and a muted line, with two faint triangles in the corner. Below
- * it a white filter bar sticks under the bar as the page scrolls, holding the
- * label, a sideways-scrolling row of pill buttons (the active one marked with
- * data-filter-button-active), and the count. The projects grid steps from
- * three columns to two to one, and the closing process section lays its four
- * step cards in a row with arrows between them, forming a two-by-two grid
- * without arrows at 1,024px and below and stacking with turned arrows at 768px
- * and below. The page's centered columns take the shared container values, and
- * its sections the shared section padding, merged into their own rules.
- * Everything that moves holds still under reduced motion.
+ * blue accent, and a line in the secondary text color, with two faint
+ * triangles in the corner. Below it a white filter bar sticks under the bar as
+ * the page scrolls, holding the label, a sideways-scrolling row of pill
+ * buttons (the active one marked with data-filter-button-active), and the
+ * count. The projects grid steps from three columns to two to one, and the
+ * closing process section lays its four step cards in a row with arrows
+ * between them, forming a two-by-two grid without arrows at 1,024px and below
+ * and stacking with turned arrows at 768px and below. The page's centered
+ * columns take the shared container values, and its sections the shared
+ * section padding, merged into their own rules. Everything that moves holds
+ * still under reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -133,7 +134,7 @@
 /* #endregion herTitHea */
 
 
-.herSubPar { /* What: Hero Subtitle Paragraph. Why: The line under the heading reads a little larger and quieter. How: This sets it muted and caps it at the paragraph measure, about 68 characters. */
+.herSubPar { /* What: Hero Subtitle Paragraph. Why: The line under the heading reads a little larger and quieter. How: This sets it in the secondary text color and caps it at the paragraph measure, about 68 characters. */
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -592,7 +593,7 @@
 
 }
 
-.steDesPar { /* What: Step Description Paragraph. Why: A sentence explains the step more quietly. How: This sets it small and muted. */
+.steDesPar { /* What: Step Description Paragraph. Why: A sentence explains the step more quietly. How: This sets it at the body size in the secondary text color with roomy lines. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */

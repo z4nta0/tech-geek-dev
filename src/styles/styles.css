@@ -148,11 +148,11 @@
 	--acs-tin-col : #B8D9EC;                                                 /* What: Accent-Secondary Tint Color = #B8D9EC. Why: A pale blue fills tags and icon tiles. How: Blue tags and the contact and service icon tiles read it. */
 	--att-rin-col : ;                                                        /* What: Attention Ring Color. Why: The standard role set includes an attention ring. How: This site has nothing that pulses for attention, so it stays empty. */
 	--bac-hov-col : ;                                                        /* What: Background Hover Color. Why: The standard role set includes a hover overlay. How: This site's hovers change their own colors instead, so it stays empty. */
-	--bac-inv-col : var( --tex-mai-col );                                    /* What: Background Inverse Color. Why: The footer, the closing banner, and the code window sit on dark bands. How: This reads the main text color, the site's near-black ink. */
+	--bac-inv-col : var( --tex-mai-col );                                    /* What: Background Inverse Color. Why: The footer and the code window sit on dark bands, and dark buttons and overlays (the closing banner's button, the project card's overlay and year badge) fill with it too. How: This reads the main text color, the site's near-black ink. */
 	--bac-pag-col : #F5F0E8;                                                 /* What: Background Page Color = #F5F0E8. Why: The page sits on a creamy ivory. How: The body, the heroes, and most sections read it, and text on dark bands reads it as the light color. */
 	--bac-sun-col : #EDE6D8;                                                 /* What: Background Sunken Color = #EDE6D8. Why: Some bands and pills sit a little warmer and deeper than the page. How: The process, values, and services bands and the ivory pills read it. */
 	--bac-sur-col : #FFFFFF;                                                 /* What: Background Surface Color = #FFFFFF. Why: Cards and strips sit on white. How: Cards, panels, the stats strip, and the filter bar read it, and white text over dark overlays reads it too. */
-	--bor-mai-col : #D8CFBE;                                                 /* What: Border Main Color = #D8CFBE. Why: Borders and dividers need a quiet line color. How: Every card, field, and divider outline reads it, and the 404 page's pale number. */
+	--bor-mai-col : #D8CFBE;                                                 /* What: Border Main Color = #D8CFBE. Why: Borders and dividers need a quiet line color. How: Every card, field, and divider outline reads it, and the 404 page's number reads a darkened shade of it. */
 	--err-dar-col : #c0392b;                                                 /* What: Error Dark Color = #c0392b. Why: An error message has to read as one. How: The contact form's error text reads it. */
 	--err-mai-col : #e8b4ae;                                                 /* What: Error Main Color = #e8b4ae. Why: An error panel needs a red edge. How: The contact form's error border reads it. */
 	--err-tin-col : #fdf0ee;                                                 /* What: Error Tint Color = #fdf0ee. Why: An error panel sits on a pale red. How: The contact form's error background reads it. */
@@ -166,7 +166,7 @@
 	--tex-inm-col : #8181a1;                                                 /* What: Text Inverse-Muted Color = #8181a1. Why: Quiet text on the dark footer needs 4.5:1, which the muted grey misses on the ink. How: The footer's tagline, links, copyright, and icons read this lighter grey. */
 	--tex-mai-col : #1A1A2E;                                                 /* What: Text Main Color = #1A1A2E. Why: Headings and strong text read in a near-black ink. How: Headings, titles, and the dark bands read it. */
 	--tex-mut-col : #646482;                                                 /* What: Text Muted Color = #646482. Why: Quiet labels need 4.5:1 on the ivory, white, and warm ivory, which the original #7A7A99 missed. How: Captions, labels, and counts read it. */
-	--tex-sec-col : #3D3D5C;                                                 /* What: Text Secondary Color = #3D3D5C. Why: Paragraphs sit in a softer ink than headings. How: The base paragraph style and the muted copy read it. */
+	--tex-sec-col : #3D3D5C;                                                 /* What: Text Secondary Color = #3D3D5C. Why: Paragraphs sit in a softer ink than headings. How: The base paragraph style and the body copy read it. */
 	--war-dar-col : ;                                                        /* What: Warning Dark Color. Why: The standard role set includes the warning family. How: This site has no warnings, so it stays empty. */
 	--war-mai-col : ;                                                        /* What: Warning Main Color. Why: The standard role set includes the warning family. How: This site has no warnings, so it stays empty. */
 	--war-tin-col : ;                                                        /* What: Warning Tint Color. Why: The standard role set includes the warning family. How: This site has no warnings, so it stays empty. */
@@ -380,7 +380,7 @@
 	/* #region Text Width Tokens */
 
 	--tex-wid-sma : calc( var( --cdn-pow-011 ) * 1em ); /* What: Text Width Small ~= 22.047em. Why: Short secondary lines read best near 50 characters a line. How: Syne averages about 2.32 characters per em, so this gives about 51, and the 404 page's line, the thank-you's line, and the phone menu's tagline read it. */
-	--tex-wid-bas : calc( var( --cdn-pow-012 ) * 1em ); /* What: Text Width Base ~= 29.207em. Why: Paragraphs read best near 66 characters a line. How: Syne averages about 2.32 characters per em, so this gives about 68, and the hero lines, the section subtitles, About's lead, body, and timeline descriptions read it. */
+	--tex-wid-bas : calc( var( --cdn-pow-012 ) * 1em ); /* What: Text Width Base ~= 29.207em. Why: Paragraphs read best near 66 characters a line. How: Syne averages about 2.32 characters per em, so this gives about 68, and the hero lines, the section subtitles, About's lead, body, and timeline descriptions, the project, service, and value descriptions, and Contact's response time read it. */
 
 	/* #endregion Text Width Tokens */
 
@@ -699,7 +699,7 @@ ul { /* What: Lists. Why: Lists are only used for layout, never bullets. How: Th
 
 }
 
-@keyframes statusLoopPulse { /* What: Status Loop Pulse. Why: The availability dots on Home and Contact breathe. How: This fades the dot to about 43% halfway through and back. */
+@keyframes statusLoopPulse { /* What: Status Loop Pulse. Why: The availability dots on Home, Contact, and the phone menu breathe. How: This fades the dot to about 43% halfway through and back. */
 
 
 	0%,
