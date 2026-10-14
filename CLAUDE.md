@@ -638,6 +638,57 @@ ticker, and the status dots) when waiting for the page to settle.
   about one run in five on two corner pixels of the sidebar's Response Time
   card, with nothing on the page changed.
 
+## Hosting and DNS
+Set up with the user 2026-10-14. techgeek.dev is registered at name.com, like
+all of the user's domains, and uses Cloudflare's nameservers (corey and
+khloe), on the Free plan, in front of Netlify, the same as easemylife.app.
+The user's own sites use Cloudflare; the client sites don't.
+- **Records**: `@` and `www` are proxied CNAMEs to `tech-geek-dev.netlify.app`
+  (Cloudflare flattens the one on the bare domain), never fixed A addresses,
+  which go stale when Netlify changes them (ease-my-life's had). Titan's two
+  MX records (both priority 10), SPF, the `titan1._domainkey` DKIM key, the
+  Google Search Console verification, and DMARC (`p=none`, reports to
+  contact@techgeek.dev) are DNS only.
+- **Settings**: SSL/TLS Full (strict), Automatic HTTPS Rewrites on, Always Use
+  HTTPS and HSTS off, and a minimum of TLS 1.2.
+- **Redirects and HSTS come from Netlify, not Cloudflare**: Netlify sends
+  `http` to `https` and `www` to the bare domain, and `public/_headers` sends
+  HSTS. Cloudflare passes all of it through, so it has no rules of its own.
+- **Checked through Cloudflare** on the day: the pages, the redirects, every
+  security header, the head tags, the crawler files and icons, the mail and
+  verification records, and that TLS 1.0 and 1.1 are refused.
+- **Left to do**: delete Netlify's DNS zone for techgeek.dev (the team's
+  Domains page, Delete DNS zone) once cached answers have expired, a day or
+  two after the switch, then confirm the site's HTTPS certificate still shows
+  as active.
+
+### Putting a new TechGeek domain behind Cloudflare
+The steps techgeek.dev followed, for TechGeek.cards and TechGeek.support:
+1. **List the current records** from the domain's existing DNS (Netlify's
+   Domains page lists the whole zone), including email (MX, SPF, DKIM) and
+   any verification records such as Search Console's, which lapse if they
+   don't move. A long value Netlify cuts short (a DKIM key) can be read in
+   full from the live DNS.
+2. **Add the domain to Cloudflare** (Add a domain, Free plan), then make its
+   records match that list exactly: delete the A records the scan makes for
+   `@` and `www`, add both as CNAMEs to the site's `.netlify.app` name set to
+   **DNS only** for now, keep email and verification records DNS only, and
+   add a `_dmarc` record if the domain has none.
+3. **Set SSL/TLS** as above: Full (strict), Automatic HTTPS Rewrites on,
+   Always Use HTTPS and HSTS off, minimum TLS 1.2.
+4. **Switch the nameservers** at name.com to the two Cloudflare shows, then
+   wait for its email saying the domain is active. The site and email keep
+   working throughout, since both sets of nameservers give the same answers.
+5. **Turn the proxy on** for `@` and `www` once SSL/TLS, Edge Certificates
+   shows the Universal certificate as Active. Proxying earlier lets visitors
+   reach Cloudflare before it has a certificate, a security error. The
+   "not covered by a certificate" warnings on those records until then are
+   expected.
+6. **Check through Cloudflare**, as listed above. Resolvers that cached the
+   old nameservers keep answering the old way for a while, so query Google's
+   resolver (dns.google) and send requests to the address it gives.
+7. **Delete the old DNS zone** a day or two later.
+
 ## Found for later
 Raised by the close-out's audit (2026-10-14) and left for the user to decide,
 since each changes how the site looks or is a judgment call the rules don't
@@ -673,28 +724,8 @@ decided by the user on 2026-10-13 (step 12, on the `deferred-items` branch).
   checked by decoding it. The text is set in Syne and DM Mono, so printing
   needs those fonts installed, and a test print should be scanned before an
   order.
-- **Cloudflare** (asked for by the user 2026-10-13, set up with the user
-  2026-10-14): techgeek.dev's nameservers at name.com moved from Netlify DNS
-  to Cloudflare's (corey and khloe, as ease-my-life's), on Cloudflare's Free
-  plan. Its records: `@` and `www` as proxied CNAMEs to
-  `tech-geek-dev.netlify.app` (Cloudflare flattens the one on the bare
-  domain), rather than ease-my-life's fixed A addresses, which are no longer
-  Netlify's current ones; Titan's two MX records (both priority 10), the SPF
-  record, the `titan1._domainkey` DKIM key, and the Google Search Console
-  verification, all DNS only; and a new `_dmarc` record (`p=none`, reports to
-  contact@techgeek.dev). Its settings: SSL/TLS Full (strict), Automatic HTTPS
-  Rewrites on, Always Use HTTPS and HSTS off, since Netlify already redirects
-  `http` and `www` and the site's `_headers` sends HSTS, and a minimum of TLS
-  1.2. The site records were set to DNS only while the nameservers switched
-  and proxied once Cloudflare's certificate (covering `techgeek.dev` and
-  `*.techgeek.dev`) was active, so no visitor met a certificate error. Checked
-  through Cloudflare: the pages, the redirects, every security header, the
-  head tags, the crawler files and icons, the mail and verification records,
-  and that TLS 1.0 and 1.1 are refused. Netlify's DNS zone for techgeek.dev is
-  kept for a day or two while cached answers expire, then deleted.
-  Ease-my-life took the same improvements the same day: proxied CNAMEs to
-  `ease-my-life.netlify.app` in place of its fixed addresses, Full (strict),
-  and TLS 1.2, checked the same way.
+- **Cloudflare** (asked for by the user 2026-10-13): done 2026-10-14, with
+  ease-my-life's settings improved the same day. See "## Hosting and DNS".
 - **Shared design package** (suggested 2026-10-12, shape decided by the user
   2026-10-13, built 2026-10-14 as step 14): a repository the three sites share
   as a GitHub dependency (`github:z4nta0/<repo>#<tag>`), holding the tokens,
