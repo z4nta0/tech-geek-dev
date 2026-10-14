@@ -95,22 +95,23 @@ target layout step 5 moves to.
 ```
 src/
   main.tsx               entry point
-  app.tsx                the route table, the bar, and the footer
-  assets/                fonts/ (the self-hosted fonts) and images/ (the
-                         project screenshots Home and Work both show)
+  app.tsx                the route table, and the design package's bar and
+                         footer with this site's details
+  assets/                images/ (the project screenshots Home and Work
+                         both show)
   pages/
     home/                the home page
     work/                the Work page
     about/               the About page and its portrait
     contact/             the Contact page
     not-found/           the 404 page every unknown path shows
-  ui/                    what more than one page uses (the bar, the footer,
-                         the background pattern, the section header, the
-                         tag, the project card and the project list), plus
-                         the page and profile link lists, a page's own
-                         search description hook, and the scroll-to-top
-                         hook
-  styles/                global CSS only (fonts.css, styles.css)
+  ui/                    what more than one page uses (the background
+                         pattern, the section header, the tag, the project
+                         card and the project list), plus the page list the
+                         bar and footer link to
+  styles/                styles.css only: this site's layout values and its
+                         own keyframe, loaded after the design package's
+                         fonts.css, tokens.css, and base.css
 ```
 Outside `src/`: `public/` (the favicon set, the social preview card,
 `robots.txt`, the sitemap, and Netlify's `_redirects` and `_headers`),
