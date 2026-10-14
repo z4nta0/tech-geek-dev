@@ -84,17 +84,17 @@ const ESL_CON_ARR = [ // What: ESLint Config Array. Why: ESLint reads its flat c
 
 	},
 
-	{ // What: JSX Config Object. Why: Hook calls in components follow rules of their own. How: This adds the React Hooks recommended rules for every .tsx file.
+	{ // What: JSX Config Object. Why: Hook calls in components and custom hooks follow rules of their own. How: This adds the React Hooks recommended rules for every .tsx file and the site's own .ts files.
 
 
-		files   : [ '**/*.tsx' ],                        // What: Files. Why: The hooks rules are scoped to .tsx files, as in ease-my-life, so the two hooks in .ts files (scroll-top.ts and page-description.ts) aren't checked by them. How: This matches every .tsx file.
+		files   : [ 'src/**/*.ts', '**/*.tsx' ],         // What: Files. Why: Components live in .tsx files, but a custom hook with no JSX lives in a .ts file (scroll-top.ts and page-description.ts), and its calls need the same checks; the tests and configs stay out, since Playwright's test.use would read as React's use hook. How: This matches every .tsx file and the .ts files under src/.
 		plugins : { react, 'react-hooks' : reactHooks }, // What: Plugins. Why: The hooks rules come from the React Hooks plugin. How: This registers it beside the React plugin.
 
-		languageOptions : { // What: Language Options. Why: These files are TypeScript with JSX. How: This sets the TypeScript parser and turns on JSX parsing.
+		languageOptions : { // What: Language Options. Why: These files are TypeScript, the .tsx ones with JSX. How: This sets the TypeScript parser and turns on JSX parsing, which the parser applies only to .tsx files.
 
 
 			parser        : tseslint.parser,                  // What: Parser. Why: ESLint's default parser can't read TypeScript. How: This sets typescript-eslint's parser.
-			parserOptions : { ecmaFeatures : { jsx : true } } // What: Parser Options. Why: These files contain JSX. How: This turns on JSX parsing.
+			parserOptions : { ecmaFeatures : { jsx : true } } // What: Parser Options. Why: The .tsx files contain JSX. How: This turns on JSX parsing.
 
 
 		},
