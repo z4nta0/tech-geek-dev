@@ -502,6 +502,24 @@ on `close-out`.
         defaults, and a decorative-only Person image were removed.
       The open questions the audit raised are listed under "## Found for
       later" for the user.
+    - **Decided with the user** (2026-10-14): the version is 2.0.0, marking
+      the finished portfolio; the footer's copyright reads the base size like
+      the footer's other text; headings take the m01 line height, exactly 1,
+      with any font that needs more room given it case by case; the project,
+      service, and value cards turn their border the strong blue on hover;
+      Work's cards no longer take the featured border, which only means
+      something on Home; every opacity within 10% of a reciprocal power reads
+      it, the SVG shapes through their `style` and the background patterns
+      through `GeoBacCom`'s `patOpaStr`; the m05 step is quoted as 3.572px,
+      its correct rounding; Contact's LinkedIn row shows "LinkedIn profile"
+      rather than the address; ESLint's hooks rules also cover the `.ts` files
+      under `src/`; and the About timeline's 2015 and 2026 rows were reworded.
+      The heading, opacity, hooks, and m05 decisions went into the user-level
+      rules too. The bar's mark, the footer's mark, and the footer's profile
+      icons size by rhythm steps in CSS (p02, p02, and p01, about 25.6px,
+      25.6px, and 19.3px, from 28px, 24px, and 18px) after a side-by-side
+      look, and the tag keeps only its blue, since its orange and neutral
+      variants were never used.
 14. **Shared design package** (decided by the user 2026-10-13): the last step
     of this project, after the close-out. The package is built from this
     site's code (see the shared design package under "## Deferred items" for
@@ -592,56 +610,12 @@ ticker, and the status dots) when waiting for the page to settle.
 Raised by the close-out's audit (2026-10-14) and left for the user to decide,
 since each changes how the site looks or is a judgment call the rules don't
 settle.
-- **Version number**: the bump at the end of the close-out (1.13.0 now), and
-  whether to mark the finished portfolio with 2.0.0.
-- **Footer copyright size**: `.fooCopSpa` sets `0.875em` (about 12.8px), a
-  free-standing number rather than a type step. The nearest steps are the base
-  (11px, as the tagline and links use) and the base plus 1 (about 14.6px).
-- **h1 line height**: `styles.css` sets the h1's `line-height` to a literal
-  1.15 rather than a rhythm step; the nearest is the m01 step, exactly 1,
-  which tightens multi-line headings.
-- **Card hover color**: the project cards, Home's service cards, and About's
-  value cards lift and deepen their shadow on hover but shift no color, which
-  the hover baseline asks for. A border shifting to the blue would add one.
-- **SVG opacity literals**: a few `opacity` attributes on SVG shapes (0.6,
-  0.7, 0.8) and the background patterns' strengths (0.18, 0.25) sit within 10%
-  of a reciprocal power of the core design number. The transparency rule is
-  written for alphas read through relative color syntax, so whether it reaches
-  these is undecided.
-- **The m05 step's quoted value**: every comment quotes the m05 rhythm step
-  (11px over the fourth power) as about 3.571px, as the user-level rules do,
-  but it's 3.5719px, which rounds to 3.572px. The close-out kept 3.571 so the
-  family's comments agree; correcting it would mean the user-level rules and
-  every sibling site too.
-- **LinkedIn address on Contact**: the Contact page shows the LinkedIn row's
-  value as its full address, `linkedin.com/in/gary-s-walton-654739400`, which
-  puts a personal name in the page's copy, while the site otherwise names its
-  owner z4nta0. Keep it, or show a label such as "LinkedIn profile" (the link
-  itself can't change).
-- **Hooks rules on .ts files**: ESLint's React Hooks rules cover only `.tsx`
-  files, as in ease-my-life and the user-level rules, so the two hooks in `.ts`
-  files (`ui/scroll-top.ts`, `ui/page-description.ts`) go unchecked by them.
-  Both pass the rules when linted as `.tsx` copies today. Widening the config
-  to `src/**/*.ts` would keep them checked; the siblings would want the same.
-- **Icon sizes in pixels**: the bar's mark (28px), the footer's mark (24px),
-  and the footer's profile icons (18px) set their size as `width` and
-  `height` attributes in pixels, which ignore a visitor's font size, where the
-  rules size icons by rhythm steps. The nearest steps would change their size
-  visibly (28px is between about 25.6px and 33.9px), so it's left for a look
-  together.
-- **Featured project cards**: every project in `ui/projects.ts` is marked
-  featured, and Work passes the flag to its cards, so every Work card wears the
-  blue border meant to make featured ones stand apart. Mark only some as
-  featured, stop Work passing it, or drop the variant.
 - **The sibling sites' scroll hook**: `useScrTopFun` (copied from
   the-bernie-bears) decodes the address's hash unguarded, so a router link to
   a malformed escape (`/#%E0`) would throw and blank the site. No such link
   exists, and typed or bookmarked addresses load as a POP the hook skips, so
   it's unreachable today; this site's copy now guards the decode anyway, and
   the siblings could take the same guard.
-- **Unused tag variants**: `ui/tag.module.css` keeps neutral and orange
-  variants nothing renders (every tag is blue), along with the orange tag the
-  `--acc-tin-col` comment mentions. Keep them for future tags, or remove them.
 
 ## Deferred items
 Decided 2026-10-12 to leave these until the cleanup plan is finished, and
