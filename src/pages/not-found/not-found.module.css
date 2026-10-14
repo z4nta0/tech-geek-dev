@@ -7,10 +7,11 @@
  * @summary
  * Styles for NotFouCom: a full-screen ivory panel that fades up into view
  * like every page, centering a huge quiet 404 with a hexagon drawing slowly
- * turning behind it, the heading and line above the drawing, and an orange
- * Go Home button. The page's entrance and the drawing's turn play the shared
- * contentEnterFadeUp and shapeLoopSpin keyframes from the global sheet.
- * Everything that moves holds still under reduced motion.
+ * turning behind it, the heading and line above the drawing, and two ways
+ * onward, an orange Go Home button and an outlined Get In Touch button. The
+ * page's entrance and the drawing's turn play the shared contentEnterFadeUp
+ * and shapeLoopSpin keyframes from the global sheet. Everything that moves
+ * holds still under reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -50,7 +51,7 @@
 
 /* #region nofInnDiv */
 
-.nofInnDiv { /* What: Not-Found Inner Div. Why: The number, drawing, text, and button read as one centered block. How: This stacks and centers them, positioning the drawing against the block. */
+.nofInnDiv { /* What: Not-Found Inner Div. Why: The number, drawing, text, and buttons read as one centered block. How: This stacks and centers them, positioning the drawing against the block. */
 
 
 	align-items    : center;
@@ -139,7 +140,7 @@
 
 }
 
-.nofHomAnc { /* What: Not-Found Home Anchor. Why: The way back into the site stands out. How: This sets an orange button in mono capitals, easing its color, lift, press, and focus. */
+.butPriAnc { /* What: Button Primary Anchor. Why: The way back into the site stands out. How: This sets an orange button in mono capitals, easing its color, lift, press, and focus. */
 
 
 	align-items    : center;
@@ -157,25 +158,25 @@
 
 
 }
-.nofHomAnc:hover { /* What: Hovered Not-Found Home Anchor. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
+.butPriAnc:hover { /* What: Hovered Button Primary Anchor. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 2px. */
 
 
-	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
-	transform  : translateY( -1px );
+	background : var( --acc-hov-col );                            /* Accent Hover Color ~= #e45700 */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
-.nofHomAnc:active { /* What: Pressed Not-Found Home Anchor. Why: A press should register before anything else happens. How: This presses it in slightly, which also undoes its hover lift. */
+.butPriAnc:active { /* What: Pressed Button Primary Anchor. Why: A press should register before anything else happens. How: This presses it in slightly, which also undoes its hover lift. */
 
 
 	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Not-Found Home Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Primary Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.nofHomAnc { /* What: Motionless Not-Found Home Anchor. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
+	.butPriAnc { /* What: Motionless Button Primary Anchor. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
 
 
 		transition : none;
@@ -186,7 +187,7 @@
 
 }
 
-.nofConAnc { /* What: Not-Found Contact Anchor. Why: The second way onward sits back from the first. How: This sets an outlined button in mono capitals, easing its border, color,, lift, press, and focus, the same as Home's secondary button. */
+.butSecAnc { /* What: Button Secondary Anchor. Why: The second way onward sits back from the first. How: This sets an outlined button in mono capitals, easing its border, color, lift, press, and focus, the same as Home's secondary button. */
 
 
 	align-items    : center;
@@ -204,26 +205,26 @@
 
 
 }
-.nofConAnc:hover { /* What: Hovered Not-Found Contact Anchor. Why: A button should respond to the pointer. How: This turns its border and text dark blue and lifts it 1px. */
+.butSecAnc:hover { /* What: Hovered Button Secondary Anchor. Why: A button should respond to the pointer. How: This turns its border blue and its text dark blue and lifts it 2px. */
 
 
-	border-color : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
-	color        : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
-	transform    : translateY( -1px );
+	border-color : var( --acs-str-col );                            /* Accent-Secondary Strong Color = #4A91B8 */
+	color        : var( --acs-dar-col );                            /* Accent-Secondary Dark Color ~= #126186 */
+	transform    : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
-.nofConAnc:active { /* What: Pressed Not-Found Contact Anchor. Why: A press should register before anything else happens. How: This presses it in slightly, which also undoes its hover lift. */
+.butSecAnc:active { /* What: Pressed Button Secondary Anchor. Why: A press should register before anything else happens. How: This presses it in slightly, which also undoes its hover lift. */
 
 
 	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Not-Found Contact Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Secondary Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.nofConAnc { /* What: Motionless Not-Found Contact Anchor. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
+	.butSecAnc { /* What: Motionless Button Secondary Anchor. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
 
 
 		transition : none;

@@ -51,14 +51,13 @@
 }
 
 
-
 /* #region homHerSec */
 
 .homHerSec { /* What: Home Hero Section. Why: The page opens on an introduction clear of the fixed bar, with the same breathing room on every screen shape. How: This sets the ivory background, centers the hero's row, clips the turning shapes, and pads it by the bar's height plus a gap that grows with the screen's width, so a tall window no longer opens a huge gap the way filling the window's height did. */
 
 
 	align-items : center;
-	background  : var( --bac-pag-col );                                                                                            /* Background Page Color = #F5F0E8 */
+	background  : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
 	display     : flex;
 	overflow    : hidden;
 	padding     : calc( var( --nav-bar-hei ) + var( --her-gap-pad ) ) 0 clamp( var( --spa-ver-p06 ), 12vw, var( --spa-ver-p08 ) ); /* Navigation Bar Height ~= 78.751px, Hero Gap Padding, about 59.447px - 138.199px, Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Vertical Base Plus 8 ~= 138.199px */ /* What: Hero Padding. Why: The gap under the bar and above the slanted edge should suit the screen. How: The top clears the bar plus the shared hero gap, and the bottom is 12vw, about 79px to 138px, which keeps the content clear of the 59px slanted edge. */
@@ -93,7 +92,7 @@
 	background : var( --acc-sec-col );                                         /* Accent Secondary Color = #7DB9D8 */
 	clip-path  : polygon( 50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25% );
 	height     : calc( var( --ver-rhy-p11 ) * 1rem );                          /* Vertical Rhythm Base Plus 11 ~= 321.273px */
-	right      : calc( var( --spa-hor-p06 ) * -1 );                            /* Spacing Horizontal Base Plus 6 ~= 78.751px */
+	right      : calc( var( --spa-hor-p06 ) * -1 );                            /* Spacing Horizontal Base Plus 6 ~= -78.751px */
 	top        : 10%;
 	width      : calc( var( --ver-rhy-p11 ) * 1rem );                          /* Vertical Rhythm Base Plus 11 ~= 321.273px */
 
@@ -129,7 +128,7 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Shape Layer Div. Why: Someone who asked for less motion shouldn't see the shapes turn. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hero Shape Div. Why: Someone who asked for less motion shouldn't see the shapes turn. How: This applies only when the reduced-motion preference is set. */
 
 
 	.herShaDiv--hexagon,
@@ -148,6 +147,7 @@
 /* #endregion shaLayDiv */
 
 
+
 /* #region herInnDiv */
 
 .herInnDiv { /* What: Hero Inner Div. Why: The pitch and the code window sit side by side in the page's centered column, above the shapes. How: This caps and centers the column with its side padding and lays out a wide pitch column beside a narrow visual one. */
@@ -159,7 +159,7 @@
 	grid-template-columns : 3fr 1fr;
 	margin                : 0 auto;
 	max-width             : var( --con-max-wid );                                                                           /* Container Maximum Width ~= 1,449.365px */
-	padding               : 0 var( --gut-sid-pad );                                                                         /* Gutter Side Padding, about 19.304px - 44.876px */ /* What: Container Padding. Why: The global container rule loaded after this module, so its padding always zeroed the 96px top and 128px bottom padding this rule once asked for. How: This keeps the padding that has always applied. */
+	padding               : 0 var( --gut-sid-pad );                                                                         /* Gutter Side Padding, about 19.304px - 44.876px */ /* What: Container Padding. Why: The hero section already pads above and below this column, so the column only needs the page's side gutters. How: This pads its sides by the gutter and leaves its top and bottom at zero. */
 	position              : relative;
 	width                 : 100%;
 	z-index               : 1;
@@ -226,7 +226,7 @@
 
 /* #region herLabDiv */
 
-.herLabDiv { /* What: Hero Label Div. Why: The availability label reads as a small pill. How: This sets a warm ivory pill in muted mono capitals, only as wide as its content. */
+.herLabDiv { /* What: Hero Label Div. Why: The availability label reads as a small pill. How: This sets a warm ivory pill in mono capitals in the secondary text color, only as wide as its content. */
 
 
 	align-items    : center;
@@ -289,7 +289,7 @@
 
 
 	color       : var( --tex-mai-col );                                        /* Text Main Color = #1A1A2E */
-	font-size   : clamp( var( --fon-siz-p02 ), 9.6cqi, var( --fon-siz-p07 ) ); /* Font Size Base Plus 2 ~= 25.572px, Font Size Base Plus 7 ~= 78.751px */ /* What: Column-Sized Heading. Why: Experiences is about 10em wide, so at the global h1 size it ran past its column on phones and under the code window on a desktop. How: The size is 9.6% of the column's width, which keeps the word inside it, within the p02 and p07 steps. */
+	font-size   : clamp( var( --fon-siz-p02 ), 9.6cqi, var( --fon-siz-p07 ) ); /* Font Size Base Plus 2 ~= 19.304px, Font Size Base Plus 7 ~= 78.751px */ /* What: Column-Sized Heading. Why: Experiences is about 10em wide, so at the global h1 size it ran past its column on phones and under the code window on a desktop. How: The size is 9.6% of the column's width, which keeps the word inside it, within the p02 and p07 steps. */
 	line-height : var( --ver-rhy-m01 );                                        /* Vertical Rhythm Base Minus 1 = 1 */
 
 
@@ -331,7 +331,7 @@
 /* #endregion herTitHea */
 
 
-.herSubPar { /* What: Hero Subtitle Paragraph. Why: The pitch line reads a little larger and quieter. How: This sets it muted with roomy lines, capped at the paragraph measure. */
+.herSubPar { /* What: Hero Subtitle Paragraph. Why: The pitch line reads a little larger and quieter. How: This sets it in the secondary text color with roomy lines, capped at the paragraph measure. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -378,7 +378,7 @@
 
 
 	background : var( --acc-hov-col );                            /* Accent Hover Color ~= #e45700 */
-	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= 2.035px */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
@@ -403,7 +403,7 @@
 
 }
 
-.butSecAnc { /* What: Button Secondary Anchor. Why: The second next step sits back from the first. How: This sets an outlined button in mono capitals, easing its border, color,, lift, press, and focus. */
+.butSecAnc { /* What: Button Secondary Anchor. Why: The second next step sits back from the first. How: This sets an outlined button in mono capitals, easing its border, color, lift, press, and focus. */
 
 
 	align-items    : center;
@@ -421,12 +421,12 @@
 
 
 }
-.butSecAnc:hover { /* What: Hovered Button Secondary Anchor. Why: A button should respond to the pointer. How: This turns its border and text dark blue and lifts it 2px. */
+.butSecAnc:hover { /* What: Hovered Button Secondary Anchor. Why: A button should respond to the pointer. How: This turns its border blue and its text dark blue and lifts it 2px. */
 
 
 	border-color : var( --acs-str-col );                            /* Accent-Secondary Strong Color = #4A91B8 */
 	color        : var( --acs-dar-col );                            /* Accent-Secondary Dark Color ~= #126186 */
-	transform    : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= 2.035px */
+	transform    : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
@@ -469,12 +469,14 @@
 
 /* #region ticInnDiv */
 
-.ticInnDiv { /* What: Ticker Inner Div. Why: The strip slides along endlessly. How: This lines up the items and plays the ticker's own scroll once every 77 seconds, forever. */
+.ticInnDiv { /* What: Ticker Inner Div. Why: The strip slides along endlessly. How: This lines up the items at their own width, past the clipping column, and plays the ticker's own scroll once every 77 seconds, forever. */
 
 
-	animation : ticInnDivLoopScroll var( --dur-ani-p22 ) linear infinite; /* Duration Animation Base Plus 22 ~= 76,725.0ms */
-	display   : flex;
-	gap       : var( --spa-hor-m01 );                                     /* Spacing Horizontal Base Minus 1 = 11px */
+	animation     : ticInnDivLoopScroll var( --dur-ani-p22 ) linear infinite; /* Duration Animation Base Plus 22 ~= 76,725.0ms */
+	display       : flex;
+	gap           : var( --spa-hor-m01 );                                     /* Spacing Horizontal Base Minus 1 = 11px */
+	padding-right : var( --spa-hor-m01 );                                     /* Spacing Horizontal Base Minus 1 = 11px */ /* What: Trailing Gap. Why: Each copy of the skills has to be exactly as wide as the slide, gap included, or the loop jumps. How: This adds one gap after the last item, so the strip is four equal copies, each a set plus its gap. */
+	width         : max-content;                                              /* What: Content Width. Why: The slide is measured against the strip's own width, which would otherwise be the column's. How: This sizes the strip to its items, so a percentage of it is a whole number of copies. */
 
 
 }
@@ -491,7 +493,7 @@
 
 
 }
-@keyframes ticInnDivLoopScroll { /* What: Ticker Inner Div Loop Scroll. Why: The strip holds every skill twice, so sliding it by its full width brings the second set to where the first began, with no seam. How: This moves the strip from its start to one strip's width left. */
+@keyframes ticInnDivLoopScroll { /* What: Ticker Inner Div Loop Scroll. Why: The strip holds four equal copies of the skills, so sliding it by a quarter of its width brings the second copy to where the first began, with no seam, while the copies after it keep the column full. How: This moves the strip from its start to one copy's width left, a quarter that has to match TIC_COP_NUM in home.tsx. */
 
 
 	from {
@@ -505,7 +507,7 @@
 	to {
 
 
-		transform : translateX( -100% );
+		transform : translateX( -25% );
 
 
 	}
@@ -535,6 +537,7 @@
 /* #endregion skiTicDiv */
 
 /* #endregion herConDiv */
+
 
 
 /* #region herVisDiv */
@@ -583,9 +586,9 @@
 .codWinDiv { /* What: Code Window Div. Why: z4nta0 is introduced as code in a dark editor window. How: This sets a dark rounded window with a faint light border, a large shadow, and a faint blue outline. */
 
 
-	background    : var( --bac-inv-col );                                                                                                 /* Background Inverse Color = #1A1A2E */
-	border        : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-009-rec ) );                       /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.080 opacity */
-	border-radius : var( --rad-bor-med );                                                                                                 /* Radius Border Medium = 11px */
+	background    : var( --bac-inv-col );                                                                           /* Background Inverse Color = #1A1A2E */
+	border        : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-009-rec ) ); /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.080 opacity */
+	border-radius : var( --rad-bor-med );                                                                           /* Radius Border Medium = 11px */
 	box-shadow    : var( --ele-lar-sha ), 0 0 0 var( --bor-wid-bas ) oklch( from var( --acc-sec-col ) l c h / var( --cdn-pow-007-rec ) ); /* Elevation Large Shadow, about 0 11px 44.9px plus 0 3.6px 11px -2.7px, Border Width Base ~= 1.160px, Accent Secondary Color = #7DB9D8 @ 0.140 opacity */
 	overflow      : hidden;
 	position      : relative;
@@ -721,11 +724,11 @@
 	background    : var( --bac-sur-col );                                                                             /* Background Surface Color = #FFFFFF */
 	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );                                                  /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
 	border-radius : var( --rad-bor-med );                                                                             /* Radius Border Medium = 11px */
-	bottom        : calc( var( --spa-ver-p03 ) * -1 );                                                                /* Spacing Vertical Base Plus 3 ~= 33.876px */
+	bottom        : calc( var( --spa-ver-p03 ) * -1 );                                                                /* Spacing Vertical Base Plus 3 ~= -33.876px */
 	box-shadow    : var( --ele-med-sha );                                                                             /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
 	display       : flex;
 	gap           : var( --spa-hor-m01 );                                                                             /* Spacing Horizontal Base Minus 1 = 11px */
-	left          : calc( var( --spa-hor-p02 ) * -1 );                                                                /* Spacing Horizontal Base Plus 2 ~= 25.572px */
+	left          : calc( var( --spa-hor-p02 ) * -1 );                                                                /* Spacing Horizontal Base Plus 2 ~= -25.572px */
 	padding       : var( --spa-ver-bas ) var( --spa-hor-p02 );                                                        /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	position      : absolute;
 
@@ -788,11 +791,12 @@
 /* #endregion herInnDiv */
 
 
+
 .herDivDiv { /* What: Hero Divider Div. Why: A slanted white edge leads from the hero into the stats strip. How: This clips a 59px white band along the hero's bottom to a triangle. */
 
 
 	background : var( --bac-sur-col );                /* Background Surface Color = #FFFFFF */
-	bottom     : calc( var( --spa-ver-m09 ) * -1 );   /* Spacing Vertical Base Minus 9 ~= 1.16px */
+	bottom     : calc( var( --spa-ver-m09 ) * -1 );   /* Spacing Vertical Base Minus 9 ~= -1.160px */
 	clip-path  : polygon( 0 100%, 100% 0, 100% 100% );
 	height     : calc( var( --ver-rhy-p05 ) * 1rem ); /* Vertical Rhythm Base Plus 5 ~= 59.447px */
 	left       : 0;
@@ -916,7 +920,7 @@
 
 	color          : var( --tex-mai-col );                                       /* Text Main Color = #1A1A2E */
 	font-family    : var( --fon-fam-mai );                                       /* Font Family Main = 'Syne', sans-serif */
-	font-size      : clamp( var( --fon-siz-p02 ), 26cqi, var( --fon-siz-p05 ) ); /* Font Size Base Plus 2 ~= 25.572px, Font Size Base Plus 5 ~= 44.876px */ /* What: Item-Sized Figure. Why: 100% is about 3.8em wide, too wide for half a phone's width at the full size. How: The figure is 26% of its item's width, held between the p02 and p05 steps, so desktop keeps the full size. */
+	font-size      : clamp( var( --fon-siz-p02 ), 26cqi, var( --fon-siz-p05 ) ); /* Font Size Base Plus 2 ~= 19.304px, Font Size Base Plus 5 ~= 44.876px */ /* What: Item-Sized Figure. Why: 100% is about 3.8em wide, too wide for half a phone's width at the full size. How: The figure is 26% of its item's width, held between the p02 and p05 steps, so desktop keeps the full size. */
 	font-weight    : 800;
 	letter-spacing : -0.04em;
 	line-height    : var( --ver-rhy-m01 );                                       /* Vertical Rhythm Base Minus 1 = 1 */
@@ -1239,7 +1243,7 @@
 
 	align-items     : center;
 	background      : var( --acs-tin-col );                /* Accent-Secondary Tint Color = #B8D9EC */
-	border-radius   : var( --rad-bor-sma );                /* Radius Border Small ~= 8.3px */
+	border-radius   : var( --rad-bor-sma );                /* Radius Border Small ~= 8.304px */
 	color           : var( --acs-dar-col );                /* Accent-Secondary Dark Color ~= #126186 */
 	display         : flex;
 	height          : calc( var( --ver-rhy-p04 ) * 1rem ); /* Vertical Rhythm Base Plus 4 ~= 44.876px */
@@ -1259,7 +1263,7 @@
 
 }
 
-.serDesPar { /* What: Service Description Paragraph. Why: A sentence says what the service covers, quietly. How: This sets it muted, no wider than the paragraph measure, which a wide card would otherwise pass. */
+.serDesPar { /* What: Service Description Paragraph. Why: A sentence says what the service covers, quietly. How: This sets it in the secondary text color, no wider than the paragraph measure, which a wide card would otherwise pass. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -1383,7 +1387,7 @@
 
 
 	background : oklch( from var( --bac-inv-col ) calc( l + 0.08 ) c h ); /* Background Inverse Color = #1A1A2E, lightened to about #2d2d43 */
-	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) );         /* Spacing Vertical Base Minus 7 ~= 2.035px */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) );         /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }

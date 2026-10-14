@@ -29,15 +29,15 @@
 	flex          : 0 0 var( --pro-car-wid, auto );                                                                            /* Project Card Width, set by its parent */ /* What: Card Flex. Why: Work's wrapping rows size each card to a column's share without stretching a short last row. How: This holds the card at the width its parent hands it, never growing or shrinking, and is ignored where the parent is a grid. */
 	overflow      : hidden;
 	position      : relative;
-	transition    : transform var( --dur-tra-p02 ) var( --mot-dec-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition    : transform var( --dur-tra-p02 ) var( --mot-dec-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Shadow Transition. Why: A box-shadow animates on paint rather than the compositor, but a compositor version would need a second shadow layer faded through opacity, and only the one hovered card repaints. How: This eases the shadow alongside the lift. */
 
 
 }
-.proCarArt:hover { /* What: Hovered Project Card Article. Why: A card should respond to the pointer. How: This lifts it 4px and casts the large shadow. */
+.proCarArt:hover { /* What: Hovered Project Card Article. Why: A card should respond to the pointer. How: This lifts it 3px and casts the large shadow. */
 
 
 	box-shadow : var( --ele-lar-sha ); /* Elevation Large Shadow, about 0 11px 44.9px plus 0 3.6px 11px -2.7px */
-	transform  : translateY( -4px );
+	transform  : translateY( -3px );
 
 
 }
@@ -105,6 +105,7 @@
 
 
 }
+
 
 
 /* #region imaOveDiv */
@@ -209,7 +210,7 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Overlay Button Anchor. Why: Someone who asked for less motion shouldn't see the buttons fade. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Overlay Button Anchor. Why: Someone who asked for less motion shouldn't see the buttons' color, press, and focus ease. How: This applies only when the reduced-motion preference is set. */
 
 
 	.oveButAnc { /* What: Motionless Overlay Button Anchor. Why: The hover, press, and focus looks should simply switch, the press still applying at once. How: This turns the transition off. */
@@ -226,6 +227,7 @@
 /* #endregion oveLinDiv */
 
 /* #endregion imaOveDiv */
+
 
 
 .yeaBadDiv { /* What: Year Badge Div. Why: The year sits over the screenshot's corner. How: This sets a small blurred dark tag with white mono text in the top left. */
@@ -247,6 +249,7 @@
 }
 
 /* #endregion imaWraDiv */
+
 
 
 /* #region carBodDiv */

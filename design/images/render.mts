@@ -47,7 +47,7 @@ const BOX_REC_OBJ : Record< string, BoxRecTyp > = { // What: Box Record Object. 
 
 
 	'portrait' : { cutBoo : true,  heiNum : 850, widNum : 642  }, // What: Portrait Box. Why: The About portrait fills a frame up to about 321 by 425 on a phone, which crops it the same way. How: This cuts it to twice that, centered, so no hidden pixels ship.
-	'project'  : { cutBoo : false, heiNum : 752, widNum : 1336 }  // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 667px wide, in Home's two-by-two grid. How: This covers twice that.
+	'project'  : { cutBoo : true,  heiNum : 752, widNum : 1336 }  // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 667px wide, in Home's two-by-two grid. How: This cuts it to exactly twice that, centered, since covering the box alone came out a pixel wider than the size the cards declare.
 
 
 };
@@ -59,7 +59,15 @@ type ImaRecTyp = { boxStr : string, outStr : string, souStr : string }; // What:
 const IMA_REC_ARR : ImaRecTyp[] = [ // What: Image Record Array. Why: Every image the site shows is rebuilt from this one list. How: Each row names the original, where it's written, and which box it fits.
 
 
-	...[ 'ease-my-life', 'hair-designs', 'reese-roofing', 'seal-and-shield', 'tech-geek', 'the-bernie-bears', 'tonys-toppers' ].map( ( proNamStr ) => ( { boxStr : 'project', outStr : `src/assets/images/${ proNamStr }-website.webp`, souStr : `${ proNamStr }-website.png` } ) ), // What: Project Screenshot Rows. Why: Every project card shows a screenshot of its site. How: This builds one row per project.
+	...[ 'ease-my-life', 'hair-designs', 'reese-roofing', 'seal-and-shield', 'tech-geek', 'the-bernie-bears', 'tonys-toppers' ].map( ( proNamStr ) => ({ // What: Project Screenshot Rows. Why: Every project card shows a screenshot of its site. How: This builds one row per project name.
+
+
+		boxStr : 'project',                                       // What: Box String. Why: Every screenshot shares the project box. How: This names it.
+		outStr : `src/assets/images/${ proNamStr }-website.webp`, // What: Output String. Why: The cards import each screenshot from the shared images folder. How: This names the project's WebP there.
+		souStr : `${ proNamStr }-website.png`                     // What: Source String. Why: The capture script saves each original under the project's name. How: This names the project's PNG.
+
+
+	}) ),
 
 	{ boxStr : 'portrait', outStr : 'src/pages/about/self-portrait.webp', souStr : 'self-portrait.jpg' } // What: Portrait Row. Why: The About page shows the portrait. How: This fits it to the portrait box.
 
@@ -93,9 +101,9 @@ for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each o
 
 
 
-	try { statSync( souPatStr ); }
+	try { statSync( souPatStr ); } // What: Original Existence Check. Why: A fresh checkout may lack an original, since the originals stay out of git. How: This reads the file's details, throwing when it's missing.
 
-	catch { continue; }
+	catch { continue; } // What: Missing Original Skip. Why: A missing original shouldn't stop the rest from rebuilding. How: This moves on to the next image.
 
 
 
@@ -115,14 +123,14 @@ for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each o
 		await souImaEle.decode(); // What: Source Decode Wait. Why: Drawing an undecoded image draws nothing. How: This waits until it's ready.
 
 
-		const souHeiNum = souImaEle.naturalHeight;                                                                                // What: Source Height Number. Why: The fit is measured against the original. How: This reads its height.
-		const souWidNum = souImaEle.naturalWidth;                                                                                 // What: Source Width Number. Why: The fit is measured against the original. How: This reads its width.
-		const scaValNum = Math.min( 1, Math.max( boxRecObj.widNum / souWidNum, boxRecObj.heiNum / souHeiNum ) );                  // What: Scale Value Number. Why: The image covers its box, as object-fit cover shows it, but is never enlarged. How: This takes the larger of the two fits, capped at 1.
-		const drwHeiNum = Math.round( souHeiNum * scaValNum );                                                                    // What: Drawn Height Number. Why: The original is drawn at the fitted size. How: This scales its height.
-		const drwWidNum = Math.round( souWidNum * scaValNum );                                                                    // What: Drawn Width Number. Why: The original is drawn at the fitted size. How: This scales its width.
-		const outHeiNum = boxRecObj.cutBoo ? boxRecObj.heiNum : drwHeiNum;                                                        // What: Output Height Number. Why: A cut image is exactly its box, and any other is its fitted size. How: This picks between them.
-		const outWidNum = boxRecObj.cutBoo ? boxRecObj.widNum : drwWidNum;                                                        // What: Output Width Number. Why: A cut image is exactly its box, and any other is its fitted size. How: This picks between them.
-		const outCanEle = document.createElement( 'canvas' );                                                                     // What: Output Canvas Element. Why: The image is redrawn at its new size. How: This creates the canvas.
+		const souHeiNum = souImaEle.naturalHeight;                                                               // What: Source Height Number. Why: The fit is measured against the original. How: This reads its height.
+		const souWidNum = souImaEle.naturalWidth;                                                                // What: Source Width Number. Why: The fit is measured against the original. How: This reads its width.
+		const scaValNum = Math.min( 1, Math.max( boxRecObj.widNum / souWidNum, boxRecObj.heiNum / souHeiNum ) ); // What: Scale Value Number. Why: The image covers its box, as object-fit cover shows it, but is never enlarged. How: This takes the larger of the two fits, capped at 1.
+		const draHeiNum = Math.round( souHeiNum * scaValNum );                                                   // What: Drawn Height Number. Why: The original is drawn at the fitted size. How: This scales its height.
+		const draWidNum = Math.round( souWidNum * scaValNum );                                                   // What: Drawn Width Number. Why: The original is drawn at the fitted size. How: This scales its width.
+		const outHeiNum = boxRecObj.cutBoo ? boxRecObj.heiNum : draHeiNum;                                       // What: Output Height Number. Why: A cut image is exactly its box, and any other is its fitted size. How: This picks between them.
+		const outWidNum = boxRecObj.cutBoo ? boxRecObj.widNum : draWidNum;                                       // What: Output Width Number. Why: A cut image is exactly its box, and any other is its fitted size. How: This picks between them.
+		const outCanEle = document.createElement( 'canvas' );                                                    // What: Output Canvas Element. Why: The image is redrawn at its new size. How: This creates the canvas.
 
 
 		outCanEle.height = outHeiNum; // What: Canvas Height Assignment. Why: The canvas has to match the output size. How: This sets its height.
@@ -134,7 +142,7 @@ for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each o
 
 		outConObj.imageSmoothingQuality = 'high'; // What: Smoothing Quality Assignment. Why: A large downscale should stay sharp without jagged edges. How: This asks for the browser's best resampling.
 
-		outConObj.drawImage( souImaEle, ( outWidNum - drwWidNum ) / 2, ( outHeiNum - drwHeiNum ) / 2, drwWidNum, drwHeiNum ); // What: Image Draw Call. Why: A cut image keeps its center, the way object-fit cover crops it. How: This draws the scaled original centered on the canvas, which crops nothing unless the box is cut.
+		outConObj.drawImage( souImaEle, ( outWidNum - draWidNum ) / 2, ( outHeiNum - draHeiNum ) / 2, draWidNum, draHeiNum ); // What: Image Draw Call. Why: A cut image keeps its center, the way object-fit cover crops it. How: This draws the scaled original centered on the canvas, which crops nothing unless the box is cut.
 
 
 

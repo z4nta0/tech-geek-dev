@@ -49,7 +49,7 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
 // #region Constants
 
 const HOM_DES_STR = 'Portfolio of z4nta0, a full stack web developer building fast, accessible websites and web apps for small businesses.'; // What: Home Description String. Why: The raw page and the social tags carry the home page's description. How: This is the exact text they should hold.
-const LIV_URL_STR = 'https://techgeek.dev/';                                                                                                  // What: Live URL String. Why: The canonical links, structured data, social tags, and sitemap all name the live site. How: This is its address.
+const LIV_URL_STR = 'https://techgeek.dev/';                                                                                                 // What: Live URL String. Why: The canonical links, structured data, social tags, and sitemap all name the live site. How: This is its address.
 
 
 
@@ -139,7 +139,7 @@ const SOC_KEY_ARR = [ // What: Social Key Array. Why: The social preview rule li
  *
  * @summary
  * Checks that the page showing now has the head its row describes: its exact
- * title, exactly one description, the brand as author, and one h1. A page
+ * title, exactly one description, z4nta0 as author, and one h1. A page
  * with a canonical address has that one canonical link, a description of 100
  * to 125 characters, and no robots tag; a page without one has a noindex
  * robots tag and no canonical link. Counting the tags also catches a
@@ -167,7 +167,7 @@ async function heaCheFun ( curPagObj : Page, heaRowObj : typeof PAG_HEA_ARR[ num
 
 	expect( heaRowObj.titStr.length ).toBeLessThanOrEqual( 60 ); // What: Title Length Assertion. Why: Search listings and link cards cut long titles off. How: This keeps it to 60 characters.
 
-	await expect( curPagObj.locator( 'meta[name="author"]' ) ).toHaveAttribute( 'content', 'z4nta0' ); // What: Author Assertion. Why: A real brand's site names the brand as its author. How: This checks the author tag.
+	await expect( curPagObj.locator( 'meta[name="author"]' ) ).toHaveAttribute( 'content', 'z4nta0' ); // What: Author Assertion. Why: The site names z4nta0, who built and owns it, as its author. How: This checks the author tag.
 
 	await expect( curPagObj.locator( 'meta[name="description"]' ) ).toHaveCount( 1 ); // What: Single Description Assertion. Why: Two descriptions leave search engines to guess. How: This checks there's exactly one, index.html's, on every page.
 

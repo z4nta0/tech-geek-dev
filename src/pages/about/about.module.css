@@ -270,11 +270,11 @@
 
 
 }
-.butPriAnc:hover { /* What: Hovered Button Primary Anchor. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
+.butPriAnc:hover { /* What: Hovered Button Primary Anchor. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 2px. */
 
 
-	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
-	transform  : translateY( -1px );
+	background : var( --acc-hov-col );                            /* Accent Hover Color ~= #e45700 */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
@@ -302,6 +302,7 @@
 /* #endregion herActDiv */
 
 /* #endregion herTexDiv */
+
 
 
 /* #region herVisDiv */
@@ -405,7 +406,7 @@
 
 /* #region floFacDiv */
 
-.floFacDiv { /* What: Floating Fact Div. Why: Each fact sits on a small white card over the portrait's corner. How: This sets the bordered card with a soft shadow, stacking its figure over its label above the portrait. */
+.floFacDiv { /* What: Floating Fact Div. Why: Each fact sits on a small white card over the portrait's corner. How: This sets the bordered card with a soft shadow, stacking its figure over its label above the portrait photo, which sits at 1. */
 
 
 	background     : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
@@ -798,7 +799,7 @@
 
 }
 
-.timDotDiv { /* What: Timeline Dot Div. Why: Each milestone has its own ring. How: This draws an 11px white circle with a dark blue ring, never shrinking. */
+.timDotDiv { /* What: Timeline Dot Div. Why: Each milestone has its own ring. How: This draws an 11px white circle with a strong blue ring, never shrinking. */
 
 
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
@@ -892,7 +893,7 @@
 
 }
 
-.timDesPar { /* What: Timeline Description Paragraph. Why: A sentence says what happened, quietly. How: This sets it small and muted, capped at the paragraph measure. */
+.timDesPar { /* What: Timeline Description Paragraph. Why: A sentence says what happened, quietly. How: This sets it muted, capped at the paragraph measure. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */

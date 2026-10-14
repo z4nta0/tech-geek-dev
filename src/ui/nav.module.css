@@ -16,9 +16,9 @@
  * its rows arriving one after another: the availability pill copied from
  * Home's hero, the links, the button, and the profile tiles, email, and
  * tagline. It turns invisible once it has slid away, so its links leave the
- * Tab order. The row's width and side
- * padding are the page's shared container values, merged into its own rule.
- * Everything that moves holds still under reduced motion.
+ * Tab order. The row's width and side padding are the page's shared
+ * container values, merged into its own rule. Everything that moves holds
+ * still under reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -93,7 +93,7 @@
 	position                : fixed;
 	right                   : 0;
 	top                     : 0;
-	transition              : background var( --dur-tra-p02 ) var( --mot-dec-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-dec-eas ), border-color var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition              : background var( --dur-tra-p02 ) var( --mot-dec-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-dec-eas ), border-color var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Shadow Fade. Why: The scrolled bar's shadow eases in, and box-shadow repaints on every frame rather than running on the compositor. How: The compositor version would draw the shadow on an extra pseudo-element and fade its opacity, which this small, one-time change doesn't warrant, so the shadow transitions directly. */
 	z-index                 : 4;                                               /* What: Bar Layer. Why: The bar has to stay above the phone menu's scrim at 3, which covers the page's highest layers, the About page's floating facts and Work's filter bar at 2. How: This sits one above the scrim. */
 
 
@@ -244,6 +244,7 @@
 /* #endregion braWorSpa */
 
 /* #endregion braLogAnc */
+
 
 
 /* #region priNavNav */
@@ -496,7 +497,7 @@
 .menTogBut[aria-expanded='true'] .togBarSpa:nth-child( 3 ) { /* What: Open Last Toggle Bar Span. Why: The open menu's toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
 
 
-	transform : translateY( calc( ( var( --spa-ver-m04 ) + var( --bor-wid-lar ) ) * -1 ) ) rotate( -45deg ); /* Spacing Vertical Base Minus 4 ~= 4.732px, Border Width Large ~= 2.035px */ /* What: Cross Shift. Why: The bottom bar has to land exactly on the middle one. How: This moves it up by the gap between the bars plus one bar's height. */
+	transform : translateY( calc( ( var( --spa-ver-m04 ) + var( --bor-wid-lar ) ) * -1 ) ) rotate( -45deg ); /* Spacing Vertical Base Minus 4 ~= -4.732px, Border Width Large ~= -2.035px */ /* What: Cross Shift. Why: The bottom bar has to land exactly on the middle one. How: This moves it up by the gap between the bars plus one bar's height. */
 
 
 }
@@ -519,6 +520,7 @@
 /* #endregion navInnDiv */
 
 
+
 /* #region menDraDiv */
 
 .menDraDiv { /* What: Menu Drawer Div. Why: On a phone the page links and the menu's extras drop down under the bar. How: This fixes the drawer under the bar, stacks its rows, and starts it slid up, faded, and invisible once its slide ends, so its links leave the Tab order. */
@@ -537,7 +539,7 @@
 	right          : 0;
 	top            : var( --nav-bar-hei );                            /* Navigation Bar Height ~= 78.751px */
 	transform      : translateY( -100% );
-	transition     : transform var( --dur-tra-p02 ) var( --mot-dec-eas ), opacity var( --dur-tra-p02 ), visibility 0s linear var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Delayed Visibility. Why: The drawer has to stay visible while it slides away. How: Visibility flips to hidden only once the 280ms slide has finished. */
+	transition     : transform var( --dur-tra-p02 ) var( --mot-dec-eas ), opacity var( --dur-tra-p02 ), visibility 0s linear var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Delayed Visibility. Why: The drawer has to stay visible while it slides away. How: Visibility flips to hidden only once the slide, about 277ms, has finished. */
 	visibility     : hidden;
 	z-index        : -1;                                              /* What: Drawer Layer. Why: The drawer slides down from behind the bar's row rather than across it. How: Inside the bar's own stacking context, this draws it above the bar's background but under the logo, links, and toggle. */
 

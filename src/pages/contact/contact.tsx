@@ -27,7 +27,7 @@ import type { JSX         } from 'react'; // What: JSX. Why: The component decla
  * form, and a sidebar with the contact details, availability, and response
  * time. The form posts to Netlify Forms, which emails each message to the
  * address set in Netlify's dashboard, then shows a thank-you in its place, or
- * an error under the fields when the send fails.
+ * an error above the message field when the send fails.
  *
  * Sections:
  *  - Constants
@@ -175,12 +175,12 @@ const EMP_FOR_OBJ = { 'bot-field' : '', budget : '', email : '', message : '', n
  *
  * @summary
  * Renders the Contact page. The form keeps its fields in state, keyed by
- * each field's name attribute. Sending it posts the fields to the site's
- * email function, disabling the button and showing Sending while it waits;
- * a reply the function marks as failed counts as an error, just like a
- * network failure, so either one leaves the form in place with an error
- * under the fields, while a sent message swaps the form for a thank-you with
- * a button that empties the form for another. The sidebar lists CON_ITE_ARR's
+ * each field's name attribute. Sending it posts the fields to Netlify Forms,
+ * disabling the button and showing Sending while it waits; a reply Netlify
+ * doesn't answer with ok counts as an error, just like a network failure, so
+ * either one leaves the form in place with an error above the message field,
+ * while a sent message swaps the form for a thank-you with a button that
+ * empties the form for another. The sidebar lists CON_ITE_ARR's
  * contact details, each opening in a new tab, beside the availability and
  * response time.
  *
@@ -210,7 +210,7 @@ function ConPagCom () : JSX.Element {
 
 	// #region Form State
 
-	const [ errMesStr, setErrMesStr ] = useState< string | null >( null ); // What: Error Message String And Setter. Why: A failed send has to say so under the fields. How: This starts with no error.
+	const [ errMesStr, setErrMesStr ] = useState< string | null >( null ); // What: Error Message String And Setter. Why: A failed send has to say so above the message field. How: This starts with no error.
 	const [ forDatObj, setForDatObj ] = useState( EMP_FOR_OBJ );           // What: Form Data Object And Setter. Why: The fields are controlled, so their values live here. How: This starts with every field blank.
 	const [ isaLoaBoo, setIsaLoaBoo ] = useState( false );                 // What: Is-A Loading Boolean And Setter. Why: The button shows Sending while the message is on its way. How: This starts false.
 	const [ isaSenBoo, setIsaSenBoo ] = useState( false );                 // What: Is-A Sent Boolean And Setter. Why: A sent message swaps the form for a thank-you. How: This starts false.
@@ -245,8 +245,8 @@ function ConPagCom () : JSX.Element {
 	 * index.html, with the budget or Not specified when none was chosen and
 	 * the honeypot as it stands. Netlify then emails the submission to the
 	 * address set in its dashboard. Only an ok reply counts as success; a
-	 * failed reply or a network failure is logged and shown as an error under
-	 * the fields. Sending ends either way.
+	 * failed reply or a network failure is logged and shown as an error above
+	 * the message field. Sending ends either way.
 	 *
 	 * @author z4nta0 <https://github.com/z4nta0>
 	 *
@@ -279,7 +279,10 @@ function ConPagCom () : JSX.Element {
 			const senResObj = await fetch( '/', { // What: Send Response Object. Why: Netlify Forms takes a form-encoded POST on any path of the site, matches it to a detected form by its form-name field, and emails it on. How: This posts the fields to the site's root.
 
 
-				body    : new URLSearchParams({ // What: Body. Why: Netlify reads a standard form-encoded body whose field names match the hidden form in index.html. How: This encodes the form's name, the honeypot, and the four real fields.
+				headers : { 'Content-Type' : 'application/x-www-form-urlencoded' }, // What: Headers. Why: Netlify only parses a form-encoded body. How: This sets the matching content type.
+				method  : 'POST',                                                   // What: Method. Why: A form submission is a POST. How: This sets it.
+
+				body : new URLSearchParams({ // What: Body. Why: Netlify reads a standard form-encoded body whose field names match the hidden form in index.html. How: This encodes the form's name, the honeypot, and the four real fields.
 
 
 					'bot-field' : forDatObj[ 'bot-field' ],              // What: Bot Field. Why: Netlify drops a submission whose honeypot is filled, which a person never does. How: This posts the hidden field as it stands.
@@ -290,10 +293,7 @@ function ConPagCom () : JSX.Element {
 					name        : forDatObj.name                       // What: Name. Why: The email says who wrote. How: This sends the name they entered.
 
 
-				}).toString(),
-
-				headers : { 'Content-Type' : 'application/x-www-form-urlencoded' }, // What: Headers. Why: Netlify only parses a form-encoded body. How: This sets the matching content type.
-				method  : 'POST'                                                    // What: Method. Why: A form submission is a POST. How: This sets it.
+				}).toString()
 
 
 			} );
@@ -313,7 +313,7 @@ function ConPagCom () : JSX.Element {
 
 			console.warn( errCatObj ); // What: Error Warning Call. Why: A failed send should stay visible to anyone debugging. How: This logs the error.
 
-			setErrMesStr( 'Something went wrong. Please try again or email contact@techgeek.dev directly.' ); // What: Error Message Set Call. Why: The visitor needs to know the message didn't go out and how else to reach z4nta0. How: This shows the error under the fields.
+			setErrMesStr( 'Something went wrong. Please try again or email contact@techgeek.dev directly.' ); // What: Error Message Set Call. Why: The visitor needs to know the message didn't go out and how else to reach z4nta0. How: This shows the error above the message field.
 
 
 		}
@@ -487,11 +487,11 @@ function ConPagCom () : JSX.Element {
 											<label
 												className={ cssModObj.fieLabLab }
 
-												htmlFor='c-name'
+												htmlFor='forNamInp'
 											>Full Name</label>{ /* What: Field Label Label Element. Why: The input needs a visible name. How: This labels it Full Name. */ }
 
 											<input
-												id='c-name'
+												id='forNamInp'
 
 												className={ cssModObj.forConInp }
 
@@ -514,11 +514,11 @@ function ConPagCom () : JSX.Element {
 											<label
 												className={ cssModObj.fieLabLab }
 
-												htmlFor='c-email'
+												htmlFor='forEmaInp'
 											>Email</label>{ /* What: Field Label Label Element. Why: The input needs a visible name. How: This labels it Email. */ }
 
 											<input
-												id='c-email'
+												id='forEmaInp'
 
 												className={ cssModObj.forConInp }
 
@@ -545,11 +545,11 @@ function ConPagCom () : JSX.Element {
 										<label
 											className={ cssModObj.fieLabLab }
 
-											htmlFor='c-budget'
+											htmlFor='forBudSel'
 										>Project Budget</label>{ /* What: Field Label Label Element. Why: The menu needs a visible name. How: This labels it Project Budget. */ }
 
 										<select
-											id='c-budget'
+											id='forBudSel'
 
 											className={ cssModObj.forConSel }
 
@@ -582,7 +582,7 @@ function ConPagCom () : JSX.Element {
 									{ errMesStr && ( // What: Error Presence Check. Why: An error shows only after a failed send. How: This renders the message when there is one.
 
 
-										<p className={ cssModObj.errMesPar }>{ errMesStr }</p> // What: Error Message Paragraph Element. Why: A visitor learns the message didn't go out. How: This shows the error under the fields.
+										<p className={ cssModObj.errMesPar }>{ errMesStr }</p> // What: Error Message Paragraph Element. Why: A visitor learns the message didn't go out. How: This shows the error above the message field.
 
 
 									) }
@@ -593,11 +593,11 @@ function ConPagCom () : JSX.Element {
 										<label
 											className={ cssModObj.fieLabLab }
 
-											htmlFor='c-message'
+											htmlFor='forMesTex'
 										>Message</label>{ /* What: Field Label Label Element. Why: The box needs a visible name. How: This labels it Message. */ }
 
 										<textarea
-											id='c-message'
+											id='forMesTex'
 
 											className={ cssModObj.forConTex }
 
@@ -620,6 +620,8 @@ function ConPagCom () : JSX.Element {
 										disabled={ isaLoaBoo }
 										type='submit'
 									>{ /* What: Send Message Button Element. Why: The visitor sends the message. How: This submits the form, disabled and reading Sending while it's on its way. */ }
+
+
 										{ isaLoaBoo ? 'Sending…' : 'Send Message' }{ /* What: Submit Label Text. Why: The button says what's happening. How: This reads Sending while sending, or Send Message otherwise. */ }
 
 										{ !isaLoaBoo && ( // What: Send Icon Check. Why: The paper plane only shows while the button is ready. How: This renders it unless sending.
@@ -649,6 +651,8 @@ function ConPagCom () : JSX.Element {
 
 
 										) }
+
+
 									</button>
 
 
@@ -712,6 +716,7 @@ function ConPagCom () : JSX.Element {
 							</div>
 
 
+
 							<div className={ cssModObj.sidCarDiv }>{ /* What: Sidebar Card Div Element. Why: A visitor learns whether z4nta0 can take on their project. How: This shows the status and the earliest start. */ }
 
 
@@ -737,6 +742,7 @@ function ConPagCom () : JSX.Element {
 
 
 							</div>
+
 
 
 							<div className={ cssModObj.sidCarDiv }>{ /* What: Sidebar Card Div Element. Why: A visitor learns how soon to expect a reply. How: This shows the response promise. */ }

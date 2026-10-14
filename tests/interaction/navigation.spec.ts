@@ -215,6 +215,8 @@ test( 'back returns to where the visitor was, not the top', async ( { page : cur
 
 } );
 
+
+
 test( 'the Hire Me button opens Contact without reloading the site', async ( { page : curPagObj } ) => { // What: Hire Me Link Test. Why: A plain link would reload the whole site instead of switching pages. How: This marks the document, clicks the bar's Hire Me, and checks the mark survived, which only happens without a reload.
 
 

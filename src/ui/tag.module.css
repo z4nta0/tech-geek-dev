@@ -27,7 +27,7 @@
 
 
 }
-.tagLabSpa--small { /* What: Small Tag Label Span. Why: Project cards fit several tags in a row. How: This sets the smaller text and padding. */
+.tagLabSpa--small { /* What: Small Tag Label Span. Why: Project cards fit several tags in a row. How: This sets the tighter padding, the text staying at the base size. */
 
 
 	font-size : var( --fon-siz-bas );                      /* Font Size Base = 11px */
@@ -35,7 +35,7 @@
 
 
 }
-.tagLabSpa--medium { /* What: Medium Tag Label Span. Why: The About page's skills grid shows larger tags. How: This sets the larger text and padding. */
+.tagLabSpa--medium { /* What: Medium Tag Label Span. Why: The About page's skills grid shows larger tags. How: This sets the roomier padding, the text staying at the base size. */
 
 
 	font-size : var( --fon-siz-bas );                      /* Font Size Base = 11px */

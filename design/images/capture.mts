@@ -59,13 +59,13 @@ type SitRecTyp = { disStr? : string, namStr : string, urlStr : string }; // What
 const SIT_REC_ARR : SitRecTyp[] = [ // What: Site Record Array. Why: The script photographs every project from one list. How: Each row names one project and its live site.
 
 
-	{ namStr : 'ease-my-life',     urlStr : 'https://easemylife.app/',            disStr : 'I’ll explore myself' },
-	{ namStr : 'hair-designs',     urlStr : 'https://hairdesigns.hair/'          },
-	{ namStr : 'reese-roofing',    urlStr : 'https://reese-roofing.netlify.app/' },
-	{ namStr : 'seal-and-shield',  urlStr : 'https://sealandshieldroof.com/'     },
-	{ namStr : 'tech-geek',        urlStr : 'https://techgeek.support/'          },
-	{ namStr : 'the-bernie-bears', urlStr : 'https://theberniebears.dog/'        },
-	{ namStr : 'tonys-toppers',    urlStr : 'https://tonystoppers.com/'          }
+	{ namStr : 'ease-my-life',     urlStr : 'https://easemylife.app/',            disStr : 'I’ll explore myself' }, // What: Ease My Life Site Row. Why: Ease My Life's card shows its app. How: This captures easemylife.app after dismissing its welcome dialog.
+	{ namStr : 'hair-designs',     urlStr : 'https://hairdesigns.hair/'                                          }, // What: Hair Designs Site Row. Why: Hair Designs' card shows its site. How: This captures hairdesigns.hair.
+	{ namStr : 'reese-roofing',    urlStr : 'https://reese-roofing.netlify.app/'                                 }, // What: Reese Roofing Site Row. Why: Reese Roofing's card shows its mockup. How: This captures its Netlify address.
+	{ namStr : 'seal-and-shield',  urlStr : 'https://sealandshieldroof.com/'                                     }, // What: Seal And Shield Site Row. Why: Seal and Shield's card shows its site. How: This captures sealandshieldroof.com.
+	{ namStr : 'tech-geek',        urlStr : 'https://techgeek.support/'                                          }, // What: Tech Geek Site Row. Why: Tech Geek's card shows its support site. How: This captures techgeek.support.
+	{ namStr : 'the-bernie-bears', urlStr : 'https://theberniebears.dog/'                                        }, // What: The Bernie Bears Site Row. Why: The Bernie Bears' card shows its site. How: This captures theberniebears.dog.
+	{ namStr : 'tonys-toppers',    urlStr : 'https://tonystoppers.com/'                                          }  // What: Tony's Toppers Site Row. Why: Tony's Toppers' card shows its site. How: This captures tonystoppers.com.
 
 
 ];

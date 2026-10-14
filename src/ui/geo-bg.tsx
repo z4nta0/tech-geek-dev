@@ -17,11 +17,11 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  *
  * @summary
  * The faint geometric pattern behind several sections: a grid of lines, a
- * field of dots, or a circuit board trace, drawn as a repeating SVG pattern
- * in the text color and faded to the opacity each section asks for. It fills
- * its section behind the content and is hidden from screen readers, since
- * it's decoration only. Each variant's pattern has its own id, so two
- * different variants on one page never clash.
+ * field of dots, or a circuit board trace, drawn as a repeating SVG pattern in
+ * the wrapper's blue and faded to the opacity each section asks for. It fills
+ * its section behind the content and is hidden from screen readers, since it's
+ * decoration only. Each variant's pattern has its own id, so two different
+ * variants on one page never clash.
  *
  * Sections:
  *  - Components
@@ -35,7 +35,7 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
 
 // #region Components
 
-type GbcProTyp = { patOpaNum? : number, patVarStr? : 'circuit' | 'dots' | 'grid' }; // What: Geometric-Background-Component Props Type. Why: A section picks which pattern it shows and how strongly. How: This types GeoBacCom's props.
+type GbcProTyp = { patOpaNum : number, patVarStr : 'circuit' | 'dots' | 'grid' }; // What: Geometric-Background-Component Props Type. Why: A section picks which pattern it shows and how strongly. How: This types GeoBacCom's props.
 
 // #region GeoBacCom
 
@@ -44,16 +44,16 @@ type GbcProTyp = { patOpaNum? : number, patVarStr? : 'circuit' | 'dots' | 'grid'
  *
  * @summary
  * Renders one of three repeating SVG patterns across its section: the grid,
- * the dots, or the circuit, each drawn in the current text color and faded
- * by the opacity the section passes. The wrapper is hidden from screen
- * readers, since the pattern only decorates. Only the chosen variant renders.
+ * the dots, or the circuit, each drawn in the wrapper's blue through
+ * currentColor and faded by the opacity the section passes. The wrapper is
+ * hidden from screen readers, since the pattern only decorates. Only the
+ * chosen variant renders.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
  * @param props.patOpaNum - Pattern Opacity Number: How strongly the pattern
- *                          shows, from 0 to 1, defaulting to 0.4.
- * @param props.patVarStr - Pattern Variant String: Which pattern to draw,
- *                          defaulting to 'grid'.
+ *                          shows, from 0 to 1.
+ * @param props.patVarStr - Pattern Variant String: Which pattern to draw.
  *
  * @returns The pattern's wrapper div.
  *
@@ -64,7 +64,7 @@ type GbcProTyp = { patOpaNum? : number, patVarStr? : 'circuit' | 'dots' | 'grid'
  *
 */
 
-function GeoBacCom ( { patOpaNum = 0.4, patVarStr = 'grid' } : GbcProTyp ) : JSX.Element {
+function GeoBacCom ( { patOpaNum, patVarStr } : GbcProTyp ) : JSX.Element {
 
 
 	return (
@@ -96,6 +96,7 @@ function GeoBacCom ( { patOpaNum = 0.4, patVarStr = 'grid' } : GbcProTyp ) : JSX
 
 						<pattern
 							id='geoGriPat'
+
 							height='40'
 							patternUnits='userSpaceOnUse'
 							width='40'
@@ -109,7 +110,7 @@ function GeoBacCom ( { patOpaNum = 0.4, patVarStr = 'grid' } : GbcProTyp ) : JSX
 								fill='none'
 								stroke='currentColor'
 								strokeWidth='0.5'
-							/>{ /* What: Grid Cell Path Element. Why: Each cell draws its top and left edges, so tiled cells form the grid. How: This traces both edges in a thin line of the text color. */ }
+							/>{ /* What: Grid Cell Path Element. Why: Each cell draws its top and left edges, so tiled cells form the grid. How: This traces both edges in a thin line of the wrapper's blue. */ }
 
 
 						</pattern>
@@ -144,6 +145,7 @@ function GeoBacCom ( { patOpaNum = 0.4, patVarStr = 'grid' } : GbcProTyp ) : JSX
 
 						<pattern
 							id='geoDotPat'
+
 							height='24'
 							patternUnits='userSpaceOnUse'
 							width='24'
@@ -157,7 +159,7 @@ function GeoBacCom ( { patOpaNum = 0.4, patVarStr = 'grid' } : GbcProTyp ) : JSX
 								cy='2'
 								fill='currentColor'
 								r='1.2'
-							/>{ /* What: Dot Circle Element. Why: Each cell holds one dot, so tiled cells form an even field. How: This draws a small dot in the text color near the cell's corner. */ }
+							/>{ /* What: Dot Circle Element. Why: Each cell holds one dot, so tiled cells form an even field. How: This draws a small dot in the wrapper's blue near the cell's corner. */ }
 
 
 						</pattern>
@@ -181,8 +183,6 @@ function GeoBacCom ( { patOpaNum = 0.4, patVarStr = 'grid' } : GbcProTyp ) : JSX
 
 
 				<svg
-					className={ cssModObj.cirPatSvg }
-
 					height='100%'
 					width='100%'
 					xmlns='http://www.w3.org/2000/svg'
@@ -194,6 +194,7 @@ function GeoBacCom ( { patOpaNum = 0.4, patVarStr = 'grid' } : GbcProTyp ) : JSX
 
 						<pattern
 							id='geoCirPat'
+
 							height='80'
 							patternUnits='userSpaceOnUse'
 							width='80'
@@ -207,7 +208,7 @@ function GeoBacCom ( { patOpaNum = 0.4, patVarStr = 'grid' } : GbcProTyp ) : JSX
 								fill='none'
 								stroke='currentColor'
 								strokeWidth='0.8'
-							/>{ /* What: Circuit Trace Path Element. Why: The tile's traces run between its pads like a circuit board's. How: This draws one bent trace in the text color. */ }
+							/>{ /* What: Circuit Trace Path Element. Why: The tile's traces run between its pads like a circuit board's. How: This draws one bent trace in the wrapper's blue. */ }
 
 							<circle
 								cx='20'
@@ -223,7 +224,7 @@ function GeoBacCom ( { patOpaNum = 0.4, patVarStr = 'grid' } : GbcProTyp ) : JSX
 								fill='none'
 								stroke='currentColor'
 								strokeWidth='0.8'
-							/>{ /* What: Circuit Trace Path Element. Why: The tile's traces run between its pads like a circuit board's. How: This draws one bent trace in the text color. */ }
+							/>{ /* What: Circuit Trace Path Element. Why: The tile's traces run between its pads like a circuit board's. How: This draws one bent trace in the wrapper's blue. */ }
 
 							<circle
 								cx='40'
@@ -239,7 +240,7 @@ function GeoBacCom ( { patOpaNum = 0.4, patVarStr = 'grid' } : GbcProTyp ) : JSX
 								fill='none'
 								stroke='currentColor'
 								strokeWidth='0.8'
-							/>{ /* What: Circuit Trace Path Element. Why: The tile's traces run between its pads like a circuit board's. How: This draws one bent trace in the text color. */ }
+							/>{ /* What: Circuit Trace Path Element. Why: The tile's traces run between its pads like a circuit board's. How: This draws one bent trace in the wrapper's blue. */ }
 
 							<circle
 								cx='60'
@@ -258,7 +259,7 @@ function GeoBacCom ( { patOpaNum = 0.4, patVarStr = 'grid' } : GbcProTyp ) : JSX
 								width='8'
 								x='10'
 								y='48'
-							/>{ /* What: Circuit Chip Rect Element. Why: Small chips break up the traces like a circuit board's components. How: This draws one outlined chip in the text color. */ }
+							/>{ /* What: Circuit Chip Rect Element. Why: Small chips break up the traces like a circuit board's components. How: This draws one outlined chip in the wrapper's blue. */ }
 
 							<rect
 								fill='none'
@@ -268,7 +269,7 @@ function GeoBacCom ( { patOpaNum = 0.4, patVarStr = 'grid' } : GbcProTyp ) : JSX
 								width='8'
 								x='50'
 								y='8'
-							/>{ /* What: Circuit Chip Rect Element. Why: Small chips break up the traces like a circuit board's components. How: This draws one outlined chip in the text color. */ }
+							/>{ /* What: Circuit Chip Rect Element. Why: Small chips break up the traces like a circuit board's components. How: This draws one outlined chip in the wrapper's blue. */ }
 
 
 						</pattern>

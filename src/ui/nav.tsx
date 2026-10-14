@@ -212,7 +212,7 @@ function NavBarCom () : JSX.Element {
 
 				className={ cssModObj.navBarHed }
 
-				data-nav-bar-scrolled={ isaScrBoo || undefined }
+				data-nav-bar-scrolled={ isaScrBoo || undefined } // What: Nav Bar Scrolled Flag. Why: The bar firms up and casts its shadow once the page moves under it. How: This marks the bar while isaScrBoo is true, and drops the attribute otherwise.
 			>{ /* What: Navigation Bar Header Element. Why: The bar sits at the top of every page. How: This holds the bar's row and the phone drawer, marked with data-nav-bar-scrolled once the page moves, which its module styles. */ }
 
 
@@ -295,11 +295,14 @@ function NavBarCom () : JSX.Element {
 					</nav>
 
 
+
 					<Link
 						className={ cssModObj.barHirAnc }
 
 						to='/contact'
 					>Hire Me</Link>{ /* What: Bar Hire Anchor Element. Why: The bar's one call to action leads to the Contact page. How: This routes there as a button without reloading the site. */ }
+
+
 
 					<button
 						ref={ togButRef }
@@ -325,7 +328,7 @@ function NavBarCom () : JSX.Element {
 				<div
 					className={ cssModObj.menDraDiv }
 
-					data-mobile-menu-open={ menOpeBoo || undefined }
+					data-mobile-menu-open={ menOpeBoo || undefined } // What: Mobile Menu Open Flag. Why: The drawer slides into view only while the menu is open. How: This marks the drawer while menOpeBoo is true, and drops the attribute otherwise.
 				>{ /* What: Menu Drawer Div Element. Why: On phones the page links and the button move into a drawer under the bar, with a few extras so it doesn't feel bare. How: This holds them, marked with data-mobile-menu-open while the menu is open, which its module styles to slide the drawer into view and bring its rows in one after another. */ }
 
 
@@ -334,6 +337,8 @@ function NavBarCom () : JSX.Element {
 
 						style={ { '--men-ite-ind' : 0 } as CSSProperties } // What: Menu Item Index. Why: The drawer's rows arrive one after another, the label first. How: This hands the label its place, which the stylesheet multiplies into its delay. // What: Type Assertion Note. Why: React's style type doesn't list custom properties. How: The stylesheet reads this one by name.
 					>{ /* What: Hero Label Div Element. Why: The drawer opens on Home's availability label, so a visitor on any page sees z4nta0 is taking on work. How: This shows the pulsing dot beside the line, the same pill Home's hero shows. */ }
+
+
 						<span
 							className={ cssModObj.pulDotSpa }
 
@@ -341,8 +346,9 @@ function NavBarCom () : JSX.Element {
 						/>{ /* What: Pulse Dot Span Element. Why: A pulsing dot signals availability. How: This draws it, hidden from screen readers as decoration. */ }
 
 						<span className={ cssModObj.avaTexSpa }>Available for freelance work</span>{ /* What: Availability Text Span Element. Why: The label's words say what the dot means. How: This shows them in the mono font. */ }
-					</div>
 
+
+					</div>
 
 					<nav
 						className={ cssModObj.menLinNav }
@@ -369,6 +375,7 @@ function NavBarCom () : JSX.Element {
 
 
 					</nav>
+
 
 
 					<Link

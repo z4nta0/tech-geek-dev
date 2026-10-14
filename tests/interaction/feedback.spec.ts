@@ -42,7 +42,7 @@ import type { Page          } from '@playwright/test'; // What: Page. Why: Every
 
 // #region Constants
 
-const SET_WAI_NUM = 400; // What: Settle Wait Number. Why: Each look is read once its transition has finished, and the longest interface transition runs about 367ms. How: This is the pause, in milliseconds, after each hover, press, or focus.
+const SET_WAI_NUM = 400; // What: Settle Wait Number. Why: Each look is read once its transition has finished, and the longest transition on a link or button runs about 367ms. How: This is the pause, in milliseconds, after each hover, press, or focus.
 
 // #endregion Constants
 
@@ -169,7 +169,7 @@ async function conLisFun ( curPagObj : Page ) : Promise< ElementHandle< Element 
  *
  * @example
  * ```ts
- * handle.evaluate(sigEleFun) // => 'rgb(...),rgba(...),none,1,...|...'
+ * handle.evaluate(sigEleFun) // => 'rgb(...),rgba(...),rgb(...),none,1|...'
  * ```
  *
 */

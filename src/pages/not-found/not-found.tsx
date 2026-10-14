@@ -143,16 +143,16 @@ function NotFouCom () : JSX.Element {
 
 
 						<Link
-							className={ cssModObj.nofHomAnc }
+							className={ cssModObj.butPriAnc }
 
 							to='/'
-						>Go Home</Link>{ /* What: Not-Found Home Anchor Element. Why: Home is the natural place to start over. How: This routes to the home page as a button. */ }
+						>Go Home</Link>{ /* What: Button Primary Anchor Element. Why: Home is the natural place to start over. How: This routes to the home page as a button. */ }
 
 						<Link
-							className={ cssModObj.nofConAnc }
+							className={ cssModObj.butSecAnc }
 
 							to='/contact'
-						>Get In Touch</Link>{ /* What: Not-Found Contact Anchor Element. Why: Getting in touch is the site's main action. How: This routes to the Contact page as an outlined button. */ }
+						>Get In Touch</Link>{ /* What: Button Secondary Anchor Element. Why: Getting in touch is the site's main action. How: This routes to the Contact page as an outlined button. */ }
 
 
 					</div>

@@ -5,18 +5,18 @@
  * work.module.css = Work Page Module
  *
  * @summary
- * Styles for WorPagCom. The page fades up into view like every page. Its
- * ivory hero clears the fixed bar and stacks an orange label, the heading
- * with its blue accent, and a muted line, with two faint triangles in the
- * corner. Below it a white filter bar sticks under the bar as the page
- * scrolls, holding the label, a sideways-scrolling row of pill buttons (the
- * active one marked with data-filter-button-active), and the count. The
- * projects grid steps from three columns to two to one, and the closing
- * process section lays its four step cards in a row with arrows between
- * them, stacking with turned arrows below 1024px. The page's centered
- * columns take the shared container values, and its sections the shared
- * section padding, merged into their own rules. Everything that moves holds
- * still under reduced motion.
+ * Styles for WorPagCom. The page fades up into view like every page. Its ivory
+ * hero clears the fixed bar and stacks an orange label, the heading with its
+ * blue accent, and a muted line, with two faint triangles in the corner. Below
+ * it a white filter bar sticks under the bar as the page scrolls, holding the
+ * label, a sideways-scrolling row of pill buttons (the active one marked with
+ * data-filter-button-active), and the count. The projects grid steps from
+ * three columns to two to one, and the closing process section lays its four
+ * step cards in a row with arrows between them, forming a two-by-two grid
+ * without arrows at 1,024px and below and stacking with turned arrows at 768px
+ * and below. The page's centered columns take the shared container values, and
+ * its sections the shared section padding, merged into their own rules.
+ * Everything that moves holds still under reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -46,7 +46,6 @@
 
 
 }
-
 
 
 /* #region pagHerSec */
@@ -147,6 +146,7 @@
 /* #endregion herInnDiv */
 
 
+
 .corAccSvg { /* What: Corner Accent SVG. Why: The triangles sit in the hero's bottom right corner. How: This pins the drawing there, letting the pointer pass through. */
 
 
@@ -173,7 +173,7 @@
 	padding       : var( --spa-ver-bas ) 0;                          /* Spacing Vertical Base ~= 14.572px */
 	position      : sticky;
 	top           : var( --nav-bar-hei );                            /* Navigation Bar Height ~= 78.751px */
-	z-index       : 2;                                               /* What: Filter Bar Layer. Why: The projects scrolling under the bar sit at 1 and lift on hover, while the phone menu's scrim at 3 has to cover the bar. How: This puts it just above the projects. */
+	z-index       : 2;                                               /* What: Filter Bar Layer. Why: The hero's and the process section's columns scrolling under the bar sit at 1, and the projects lift on hover, while the phone menu's scrim at 3 has to cover the bar. How: This puts it just above the projects. */
 
 
 }
@@ -417,7 +417,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Projects Grid Div. Why: Three columns crowd a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Projects Grid Div. Why: Three columns crowd a tablet. How: This applies at 1,024px and below. */
 
 
 	.proGriDiv { /* What: Two Column Projects Grid Div. Why: Two cards fit side by side on a tablet. How: This hands each card half the row less the gap. */
@@ -507,7 +507,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Process Steps Div. Why: Four cards in a row crowd a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Process Steps Div. Why: Four cards in a row crowd a tablet. How: This applies at 1,024px and below. */
 
 
 	.prcSteDiv { /* What: Paired Process Steps Div. Why: Four cards divide evenly into two rows of two on a tablet, and their numbers already show the order. How: This sets a two-column grid with gaps. */
@@ -604,7 +604,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Step Arrow Div. Why: A sideways arrow would break up the two-by-two grid. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Step Arrow Div. Why: A sideways arrow would break up the two-by-two grid. How: This applies at 1,024px and below. */
 
 
 	.steArrDiv { /* What: Hidden Step Arrow Div. Why: The grid's cards read in order by their numbers. How: This hides the arrows. */

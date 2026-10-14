@@ -23,9 +23,9 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * @summary
  * The site's footer: the hexagon mark with the tagline and links to the
  * sister sites, a link to each page, and the copyright line beside links to
- * z4nta0's GitHub and LinkedIn. It
- * reads the current year each time it renders, so the copyright never goes
- * stale. Every page renders it below its content.
+ * z4nta0's GitHub and LinkedIn. It reads the current year each time it
+ * renders, so the copyright never goes stale. Every page renders it below
+ * its content.
  *
  * Sections:
  *  - Components
@@ -117,7 +117,7 @@ function SitFooCom () : JSX.Element {
 
 					</svg>
 
-					<span className={ cssModObj.fooTagSpa }>Building the web, one commit at a time.</span>{ /* What: Footer Tagline Span Element. Why: The tagline sums up the site in a line. How: This shows it beside the mark. */ }
+					<span className={ cssModObj.fooTagSpa }>Building the web, one commit at a time.</span>{ /* What: Footer Tagline Span Element. Why: The tagline sums up the site in a line. How: This shows it under the mark. */ }
 
 					<p className={ cssModObj.fooSisPar }>More from TechGeek: <span className={ cssModObj.fooSisSpa }><a className={ cssModObj.fooSisAnc } href='https://techgeek.support/'>TechGeek.support</a> <span aria-hidden='true'>·</span> <a className={ cssModObj.fooSisAnc } href='https://techgeek.cards/'>TechGeek.cards</a></span></p>{ /* What: Footer Sister Paragraph Element. Why: TechGeek.dev is one of three sister sites, and a visitor here may want tech support or a greeting card. How: This links to TechGeek.support and TechGeek.cards in the same tab, kept together on one line so a narrow screen breaks after the colon, their dot hidden from screen readers as decoration. */ }
 

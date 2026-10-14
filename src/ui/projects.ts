@@ -20,13 +20,13 @@ import totScrUrl from '../assets/images/tonys-toppers-website.webp';    // What:
  *
  * @summary
  * The list of projects the site showcases, in the order the Work page shows
- * them, with the type every record follows. Home shows the first three
- * featured ones, and the Work page shows them all behind its tag filter. Home
- * and About also show two counts taken from the list, the projects shipped
- * and the clients served, so both grow as projects are added; the pages add
- * a plus to each, since z4nta0's older projects that are no longer online
- * still count. Each record's screenshot comes from src/assets/images,
- * rendered there by npm run images.
+ * them, with the type every record follows. Home shows four featured ones,
+ * picked at random on each visit, and the Work page shows them all behind its
+ * tag filter. Home and About also show two counts taken from the list, the
+ * projects shipped and the clients served, so both grow as projects are added;
+ * the pages add a plus to each, since z4nta0's older projects that are no
+ * longer online still count. Each record's screenshot comes from
+ * src/assets/images, rendered there by npm run images.
  *
  * Sections:
  *  - Types

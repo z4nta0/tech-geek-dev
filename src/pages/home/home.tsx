@@ -277,24 +277,32 @@ const SKI_TIC_ARR = [ // What: Skill Ticker Array. Why: The hero's ticker scroll
 
 ];
 
+
+
 const STA_REC_ARR = [ // What: Stat Record Array. Why: The stats strip shows the same four figures every visit. How: Each row holds a figure and its label.
 
 
-	{ labStr : 'Years Experience',    valStr : '10+'                }, // What: Years Stat Row. Why: z4nta0 has been a developer since 2013. How: This shows ten plus years.
+	{ labStr : 'Years Experience',    valStr : '10+'               }, // What: Years Stat Row. Why: z4nta0 has been a developer since 2013. How: This shows ten plus years.
 	{ labStr : 'Projects Shipped',    valStr : `${ SHI_COU_NUM }+` }, // What: Projects Stat Row. Why: The count should grow as projects are added, and older projects that are no longer online still count. How: This shows the project list's count with a plus.
 	{ labStr : 'Happy Clients',       valStr : `${ CLI_COU_NUM }+` }, // What: Clients Stat Row. Why: The count should grow as client projects are added, and earlier clients whose sites are no longer online still count. How: This shows the client count with a plus.
-	{ labStr : 'Client Satisfaction', valStr : '100%'               }  // What: Satisfaction Stat Row. Why: Every client has been satisfied. How: This shows one hundred percent.
+	{ labStr : 'Client Satisfaction', valStr : '100%'              }  // What: Satisfaction Stat Row. Why: Every client has been satisfied. How: This shows one hundred percent.
 
 
 ];
+
+
+
+const TIC_COP_NUM = 4; // What: Ticker Copy Number. Why: The strip has to stay full while it slides one set's width, and one set is about 415px to 428px, depending on the browser, against a pitch column of up to about 927px, so it needs the column plus one set, a little over three sets. How: This repeats the skill list four times, and the strip's keyframe slides it by a quarter of its width, so the two have to change together.
+
+
+
+const TIC_ITE_ARR = Array.from( Array( TIC_COP_NUM ).keys() ).flatMap( ( copIndNum ) => SKI_TIC_ARR.map( ( skiNamStr ) => ( { copIndNum, skiNamStr } ) ) ); // What: Ticker Item Array. Why: The strip shows the skill list several times over so its loop has no seam. How: This lists every skill once per copy, each with its copy's index, which the strip uses to key the items and hide the repeats from screen readers.
 
 // #endregion Constants
 
 
 
 // #region Helpers
-
-
 
 // #region ranPicFun
 
@@ -342,7 +350,7 @@ function ranPicFun< T > ( souRecArr : readonly T[], picCouNum : number ) : T[] {
 
 
 
-	return shuRecArr.slice( 0, picCouNum );
+	return shuRecArr.slice( 0, picCouNum ); // What: Picked Records. Why: Only the requested number of items is wanted. How: This keeps the first picCouNum items of the shuffled copy.
 
 
 }
@@ -362,10 +370,10 @@ function ranPicFun< T > ( souRecArr : readonly T[], picCouNum : number ) : T[] {
  *
  * @summary
  * Renders the home page. The hero pairs the pitch, its two buttons, and a
- * ticker that scrolls SKI_TIC_ARR twice over, so the loop has no seam, with
- * a code window and a floating badge, all decoration hidden from screen
- * readers. Below it come the stats from STA_REC_ARR, four featured
- * projects picked at random with a link to the rest, a card per service in
+ * ticker that scrolls SKI_TIC_ARR four times over, so the loop has no seam,
+ * with a code window and a floating badge, all decoration hidden from screen
+ * readers. Below it come the stats from STA_REC_ARR, four featured projects
+ * picked at random with a link to the rest, a card per service in
  * SER_CAR_ARR, and a banner leading to the Contact page.
  *
  * It also sets the page's canonical address, which React moves into the
@@ -442,6 +450,8 @@ function HomPagCom () : JSX.Element {
 
 
 							<div className={ cssModObj.herLabDiv }>{ /* What: Hero Label Div Element. Why: The label says z4nta0 is taking on work. How: This shows a pulsing dot beside the line. */ }
+
+
 								<span
 									className={ cssModObj.pulDotSpa }
 
@@ -449,6 +459,8 @@ function HomPagCom () : JSX.Element {
 								/>{ /* What: Pulse Dot Span Element. Why: A pulsing dot signals availability. How: This draws it, hidden from screen readers as decoration. */ }
 
 								<span className={ cssModObj.avaTexSpa }>Available for freelance work</span>{ /* What: Availability Text Span Element. Why: The label's words say what the dot means. How: This shows them in the mono font. */ }
+
+
 							</div>
 
 							<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up what z4nta0 does. How: This sets I Build Digital Experiences over two lines, with Digital in the accent and a closing dot. */ }
@@ -512,13 +524,15 @@ function HomPagCom () : JSX.Element {
 								<div className={ cssModObj.ticInnDiv }>{ /* What: Ticker Inner Div Element. Why: The row moves as one strip. How: This holds every item and slides it along. */ }
 
 
-									{ [ ...SKI_TIC_ARR, ...SKI_TIC_ARR ].map( ( skiNamStr, skiIndNum ) => ( // What: Ticker Item Map Call. Why: The strip repeats the list once, so its loop has no seam. How: This renders each technology twice over, keyed by position since each name appears twice.
+									{ TIC_ITE_ARR.map( ( { copIndNum, skiNamStr } ) => ( // What: Ticker Item Map Call. Why: The strip repeats the list so its loop has no seam. How: This renders every technology once per copy in TIC_ITE_ARR.
 
 
 										<span
-											key={ skiIndNum }
+											key={ `${ copIndNum }-${ skiNamStr }` } // What: Ticker Item Key. Why: Each name appears once per copy, so the name alone isn't unique. How: This joins the copy's index to the name.
 
 											className={ cssModObj.ticIteSpa }
+
+											aria-hidden={ copIndNum > 0 || undefined } // What: Repeat Copy Hiding. Why: A screen reader should hear the skills once, not four times. How: This hides every copy after the first and leaves the attribute off the first.
 										>{ skiNamStr }</span> // What: Ticker Item Span Element. Why: Each technology is one item in the strip. How: This shows its name.
 
 
@@ -694,9 +708,13 @@ function HomPagCom () : JSX.Element {
 
 									className={ cssModObj.staIteDiv }
 								>{ /* What: Stat Item Div Element. Why: Each figure sits above its label. How: This stacks them. */ }
+
+
 									<span className={ cssModObj.staValSpa }>{ staRecObj.valStr }</span>{ /* What: Stat Value Span Element. Why: The figure is the stat's point. How: This shows it large. */ }
 
 									<span className={ cssModObj.staLabSpa }>{ staRecObj.labStr }</span>{ /* What: Stat Label Span Element. Why: The label says what the figure counts. How: This shows it under the figure. */ }
+
+
 								</div>
 
 

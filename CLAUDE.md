@@ -218,10 +218,11 @@ on `close-out`.
      screenshots into `src/assets/images/`, and the unused business card
      SVGs into `design/business-cards/`, with a byte-identical build.
    - **Fonts**: the same latin files Google served, declared in
-     `styles/fonts.css`; Syne (400 to 800) and Lora's upright face (400 to
-     700) are variable, while Lora's italic and the four DM Mono faces are
-     single weights. The rendering suite matched apart from the WebKit flake
-     (see "## Test suites").
+     `styles/fonts.css`; Syne (400 to 800) is variable, while Lora's italic
+     and the DM Mono faces are single weights. The rendering suite matched
+     apart from the WebKit flake (see "## Test suites"). The close-out removed
+     the faces nothing used (DM Mono's light weight and its italic, and Lora's
+     upright face), leaving DM Mono at 400 and 500.
    - **Email function**: `netlify/functions/send-email.mts`, written to the
      formatting rules and type checked through `tsconfig.node.json`, with
      `@netlify/functions` now a dev dependency for its types. Checked with a
@@ -546,6 +547,25 @@ ticker, and the status dots) when waiting for the page to settle.
   card, with nothing on the page changed.
 
 ## Found for later
+Raised by the close-out's audit (2026-10-14) and left for the user to decide,
+since each changes how the site looks or is a judgment call the rules don't
+settle.
+- **Version number**: the bump at the end of the close-out (1.13.0 now), and
+  whether to mark the finished portfolio with 2.0.0.
+- **Footer copyright size**: `.fooCopSpa` sets `0.875em` (about 12.8px), a
+  free-standing number rather than a type step. The nearest steps are the base
+  (11px, as the tagline and links use) and the base plus 1 (about 14.6px).
+- **h1 line height**: `styles.css` sets the h1's `line-height` to a literal
+  1.15 rather than a rhythm step; the nearest is the m01 step, exactly 1,
+  which tightens multi-line headings.
+- **Project card hover color**: the cards lift and deepen their shadow on
+  hover but shift no color, which the hover baseline asks for. A border
+  shifting to the blue would add one.
+- **SVG opacity literals**: a few `opacity` attributes on SVG shapes (0.6,
+  0.7, 0.8) and the background patterns' strengths (0.18, 0.25) sit within 10%
+  of a reciprocal power of the core design number. The transparency rule is
+  written for alphas read through relative color syntax, so whether it reaches
+  these is undecided.
 
 ## Deferred items
 Decided 2026-10-12 to leave these until the cleanup plan is finished, and

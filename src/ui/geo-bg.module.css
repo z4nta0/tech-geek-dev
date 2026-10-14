@@ -6,17 +6,14 @@
  *
  * @summary
  * Styles for GeoBacCom: the wrapper stretches over its whole section behind
- * the content, lets the pointer pass through, and sets the dark blue the
- * patterns draw in through currentColor. The circuit's SVG repeats that
- * color for itself.
+ * the content, lets the pointer pass through, and sets the dark blue every
+ * pattern inside it draws in through currentColor.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
 */
 
 
-
-/* #region geoBacDiv */
 
 .geoBacDiv { /* What: Geometric Background Div. Why: The pattern fills its section behind the content without catching clicks. How: This pins it over the whole section at the bottom of the stack, in the dark blue the patterns draw with. */
 
@@ -29,15 +26,5 @@
 
 
 }
-
-.cirPatSvg { /* What: Circuit Pattern SVG. Why: The circuit draws in the same dark blue as the wrapper. How: This sets its color. */
-
-
-	color : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
-
-
-}
-
-/* #endregion geoBacDiv */
 
 

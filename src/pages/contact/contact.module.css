@@ -252,7 +252,7 @@
 
 }
 
-.resForBut { /* What: Reset Form Button. Why: A visitor may want to send another message. How: This sets an orange outlined button in mono capitals, easing its fill, press, and focus. */
+.resForBut { /* What: Reset Form Button. Why: A visitor may want to send another message. How: This sets an orange outlined button in mono capitals, easing its fill, lift, press, and focus. */
 
 
 	border         : var( --bor-wid-bas ) solid var( --acc-mai-col ); /* Border Width Base ~= 1.160px, Accent Main Color = #F26419 */
@@ -267,15 +267,16 @@
 
 
 }
-.resForBut:hover { /* What: Hovered Reset Form Button. Why: A button should respond to the pointer. How: This fills it orange with ink text. */
+.resForBut:hover { /* What: Hovered Reset Form Button. Why: A button should respond to the pointer. How: This fills it orange with ink text and lifts it 1px. */
 
 
 	background : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
 	color      : var( --tex-acc-col ); /* Text Accent Color = #1A1A2E */
+	transform  : translateY( -1px );
 
 
 }
-.resForBut:active { /* What: Pressed Reset Form Button. Why: A press should register before anything else happens. How: This presses the button in slightly. */
+.resForBut:active { /* What: Pressed Reset Form Button. Why: A press should register before anything else happens. How: This presses the button in slightly, which also undoes its hover lift. */
 
 
 	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
@@ -285,7 +286,7 @@
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Reset Form Button. Why: Someone who asked for less motion shouldn't see the button fill fade. How: This applies only when the reduced-motion preference is set. */
 
 
-	.resForBut { /* What: Motionless Reset Form Button. Why: The fill, press, and focus looks should simply switch, the press still applying at once. How: This turns the transition off. */
+	.resForBut { /* What: Motionless Reset Form Button. Why: The fill, lift, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
 
 
 		transition : none;
@@ -297,6 +298,7 @@
 }
 
 /* #endregion sucStaDiv */
+
 
 
 /* #region conForFor */
@@ -332,6 +334,7 @@
 
 
 }
+
 
 
 /* #region forRowDiv */
@@ -397,19 +400,19 @@
 	font-family   : var( --fon-fam-mai );                                               /* Font Family Main = 'Syne', sans-serif */
 	font-size     : var( --fon-siz-p01 );                                               /* Font Size Base Plus 1 ~= 14.572px */
 	padding       : var( --spa-ver-m01 ) var( --spa-hor-bas );                          /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
-	transition    : border-color var( --dur-tra-bas ), box-shadow var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+	transition    : border-color var( --dur-tra-bas ), box-shadow var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */ /* What: Focus Glow Transition. Why: The glow is a spread around the field's rounded edge, which no transform or opacity change can draw, so its box-shadow animates instead. How: The border color and the glow ease in together on focus. */
 	width         : 100%;
 
 
 }
 .forConInp:focus,
 .forConSel:focus,
-.forConTex:focus { /* What: Focused Form Control Fields. Why: A visitor has to see which field they're typing in. How: This swaps the default outline for an orange border and a pale orange glow. */
+.forConTex:focus { /* What: Focused Form Control Fields. Why: A visitor has to see which field they're typing in. How: This draws an orange border and a pale orange glow, over a transparent outline. */
 
 
 	border-color : var( --foc-rin-col );                            /* Focus Ring Color ~= #bd3000 */
 	box-shadow   : 0 0 0 var( --bor-wid-xla ) var( --acc-tin-col ); /* Border Width Extra Large ~= 3.571px, Accent Tint Color = #FDDCC8 */
-	outline      : none;
+	outline      : var( --bor-wid-bas ) solid transparent;         /* Border Width Base ~= 1.160px */ /* What: Transparent Outline. Why: Forced colors mode drops the glow and recolors the border, which would leave a focused field unmarked. How: Forced colors mode turns this transparent outline visible, while the border and glow carry the look otherwise. */
 
 
 }
@@ -433,7 +436,7 @@
 
 
 	appearance          : none;
-	background-image    : url( "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A7A99' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E" );
+	background-image    : url( 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%23646482" stroke-width="2.5"%3E%3Cpolyline points="6 9 12 15 18 9"/%3E%3C/svg%3E' ); /* What: Chevron Image. Why: The select's arrow should read as quiet as the other muted text. How: This draws it in #646482, the Text Muted Color's value, written out since a data URL can't read a custom property. */
 	background-position : right var( --spa-hor-bas ) center; /* Spacing Horizontal Base ~= 14.572px */
 	background-repeat   : no-repeat;
 	cursor              : pointer;
@@ -455,6 +458,7 @@
 /* #endregion forFieDiv */
 
 /* #endregion forRowDiv */
+
 
 
 .errMesPar { /* What: Error Message Paragraph. Why: A failed send has to stand out. How: This sets the message on a pale red panel with a red border and text. */
@@ -547,6 +551,7 @@
 /* #endregion forWraDiv */
 
 
+
 /* #region conSidAsi */
 
 .conSidAsi { /* What: Contact Sidebar Aside. Why: The other ways to get in touch stay in view beside the form. How: This stacks the cards and sticks them just under the fixed bar. */
@@ -600,6 +605,7 @@
 }
 
 
+
 /* #region conIteDiv */
 
 .conIteDiv { /* What: Contact Items Div. Why: The contact details stack in a list. How: This stacks them with gaps. */
@@ -615,7 +621,7 @@
 
 /* #region conIteAnc */
 
-.conIteAnc { /* What: Contact Item Anchor. Why: Each detail is one tappable row. How: This sets the icon beside the text, padded and rounded, easing its background, press, and focus. */
+.conIteAnc { /* What: Contact Item Anchor. Why: Each detail is one tappable row. How: This sets the icon beside the text, padded and rounded, easing its background, lift, press, and focus. *
 
 
 	align-items   : center;
@@ -627,14 +633,15 @@
 
 
 }
-.conIteAnc:hover { /* What: Hovered Contact Item Anchor. Why: A row should respond to the pointer. How: This tints it ivory. */
+.conIteAnc:hover { /* What: Hovered Contact Item Anchor. Why: A row should respond to the pointer. How: This tints it ivory and lifts it 1px. */
 
 
 	background : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
+	transform  : translateY( -1px );
 
 
 }
-.conIteAnc:active { /* What: Pressed Contact Item Anchor. Why: A press should register before anything else happens. How: This presses the row in slightly. */
+.conIteAnc:active { /* What: Pressed Contact Item Anchor. Why: A press should register before anything else happens. How: This presses the row in slightly, which also undoes its hover lift. */
 
 
 	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
@@ -644,7 +651,7 @@
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Contact Item Anchor. Why: Someone who asked for less motion shouldn't see the rows fade. How: This applies only when the reduced-motion preference is set. */
 
 
-	.conIteAnc { /* What: Motionless Contact Item Anchor. Why: The hover tint, press, and focus looks should simply switch, the press still applying at once. How: This turns the transition off. */
+	.conIteAnc { /* What: Motionless Contact Item Anchor. Why: The hover tint, lift, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
 
 
 		transition : none;
@@ -698,6 +705,7 @@
 /* #endregion conIteAnc */
 
 /* #endregion conIteDiv */
+
 
 
 /* #region avaRowDiv */

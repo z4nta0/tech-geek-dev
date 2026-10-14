@@ -66,7 +66,7 @@ npm run og-image     # captures design/og-image/card.html as public/og-image.png
 npm run icons        # renders favicon.ico, the PNG icons, and the Apple touch icon from public/favicon.svg
 ```
 
-The originals in `design/images/originals/` are kept out of git, so a fresh checkout needs `npm run screenshots` (or the original files) before `npm run images` can run. To add a project, give it a record in `src/ui/projects.ts` and a row in `SIT_REC_ARR` in `design/images/capture.mts` and in `IMA_REC_ARR` in `design/images/render.mts`, then run `npm run screenshots`. Apps cache a link's preview card for days, so a changed card should get a new file name (`og-image-2.png`), with every tag in `index.html` that points at it updated.
+The originals in `design/images/originals/` are kept out of git, so a fresh checkout needs `npm run screenshots` (or the original files) before `npm run images` can run. To add a project, give it a record in `src/ui/projects.ts` and a row in `SIT_REC_ARR` in `design/images/capture.mts`, add its name to the project list in `IMA_REC_ARR` in `design/images/render.mts`, then run `npm run screenshots`. Apps cache a link's preview card for days, so a changed card should get a new file name (`og-image-2.png`), with every tag in `index.html` that points at it updated.
 
 ## Project structure
 

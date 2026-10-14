@@ -137,10 +137,13 @@ const TIM_LIN_ARR = [ // What: Timeline Array. Why: The timeline shows the same 
 const VAL_CAR_ARR = [ // What: Value Card Array. Why: The values section shows the same four cards every visit. How: Each row holds one value.
 
 
-	{ icoStr : '⬡', titStr : 'Craft Over Speed',     desStr : 'I take time to do it right. Technical debt has compounding interest.'                      }, // What: Craft Over Speed Row. Why: Doing it right comes first. How: This is the first value.
+	{ icoStr : '⬡', titStr : 'Craft Over Speed',     desStr : 'I take time to do it right. Technical debt has compounding interest.' }, // What: Craft Over Speed Row. Why: Doing it right comes first. How: This is the first value.
+
 	{ icoStr : '◎', titStr : 'Accessibility First',  desStr : 'The web is for everyone. I build with WCAG compliance as a baseline, not an afterthought.' }, // What: Accessibility First Row. Why: The work serves everyone. How: This is the second value.
-	{ icoStr : '△', titStr : 'Honest Communication', desStr : "I'd rather tell you something takes three weeks than promise one and deliver late."        }, // What: Honest Communication Row. Why: Clients hear the truth. How: This is the third value.
-	{ icoStr : '◇', titStr : 'Continuous Learning',  desStr : 'The best developers I know are the most curious. I read, I experiment, I teach.'           }  // What: Continuous Learning Row. Why: The craft keeps moving. How: This is the last value.
+
+	{ icoStr : '△', titStr : 'Honest Communication', desStr : "I'd rather tell you something takes three weeks than promise one and deliver late." }, // What: Honest Communication Row. Why: Clients hear the truth. How: This is the third value.
+
+	{ icoStr : '◇', titStr : 'Continuous Learning',  desStr : 'The best developers I know are the most curious. I read, I experiment, I teach.' } // What: Continuous Learning Row. Why: The craft keeps moving. How: This is the last value.
 
 
 ];
@@ -316,6 +319,7 @@ function AboPagCom () : JSX.Element {
 
 
 							</div>
+
 
 
 							<div className={` ${ cssModObj.floFacDiv }   ${ cssModObj.floFacDivTop } `}>{ /* What: Floating Fact Div Element. Why: A floating fact highlights the years of experience. How: This shows the figure over its label at the portrait's top corner. */ }

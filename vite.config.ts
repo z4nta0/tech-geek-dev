@@ -24,8 +24,8 @@ import type { Plugin } from 'vite'; // What: Plugin. Why: The page minifier is a
  * index.html, which Vite processes but never minifies, so the page's comments
  * and indentation stay out of what visitors download. Every other setting
  * stays at Vite's default, including building index.html as the one page and
- * copying the files in public/ (the favicon and Netlify's _redirects) into
- * the build untouched.
+ * copying the files in public/ (the icons, the social card, the crawler
+ * files, and Netlify's _headers and _redirects) into the build untouched.
  *
  * Sections:
  *  - Helpers

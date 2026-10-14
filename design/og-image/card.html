@@ -78,6 +78,7 @@
 			/* #endregion hexDecSvg */
 
 
+
 			/* #region carColDiv */
 
 			.carColDiv { /* What: Card Column Div. Why: Some apps crop the card to its center square, so everything that matters sits inside the middle 630px. How: This stacks the mark, the wordmark, the role, and the name in one centered column above the decoration. */
@@ -188,21 +189,44 @@
 		><!-- What: Hexagon Decoration SVG Element. Why: The sides echo the site's geometric look. How: This draws outlined hexagons left and right of the center square, hidden from screen readers since it's decoration. -->
 
 
-			<polygon class='hexOutPol' points='150,40 240,92 240,196 150,248 60,196 60,92' />          <!-- What: Hexagon Outline Polygon Element. Why: The left side carries a quiet hexagon. How: This draws it near the top left. -->
+			<polygon
+				class='hexOutPol'
 
-			<polygon class='hexAccPol' points='190,330 250,365 250,435 190,470 130,435 130,365' />     <!-- What: Hexagon Accent Polygon Element. Why: The left side carries one orange hexagon. How: This draws it below the first. -->
+				points='150,40 240,92 240,196 150,248 60,196 60,92'
+			/><!-- What: Hexagon Outline Polygon Element. Why: The left side carries a quiet hexagon. How: This draws it near the top left. -->
 
-			<polygon class='hexOutPol' points='90,470 150,505 150,575 90,610 30,575 30,505' />         <!-- What: Hexagon Outline Polygon Element. Why: The left side carries a small quiet hexagon. How: This draws it near the bottom left. -->
+			<polygon
+				class='hexAccPol'
 
-			<polygon class='hexOutPol' points='1050,382 1140,434 1140,538 1050,590 960,538 960,434' /> <!-- What: Hexagon Outline Polygon Element. Why: The right side mirrors the left. How: This draws a quiet hexagon near the bottom right. -->
+				points='190,330 250,365 250,435 190,470 130,435 130,365'
+			/><!-- What: Hexagon Accent Polygon Element. Why: The left side carries one orange hexagon. How: This draws it below the first. -->
 
-			<polygon class='hexAccPol' points='1010,160 1070,195 1070,265 1010,300 950,265 950,195' /> <!-- What: Hexagon Accent Polygon Element. Why: The right side carries one orange hexagon. How: This draws it above the large one. -->
+			<polygon
+				class='hexOutPol'
 
-			<polygon class='hexOutPol' points='1110,20 1170,55 1170,125 1110,160 1050,125 1050,55' />  <!-- What: Hexagon Outline Polygon Element. Why: The right side carries a small quiet hexagon. How: This draws it near the top right. -->
+				points='90,470 150,505 150,575 90,610 30,575 30,505'
+			/><!-- What: Hexagon Outline Polygon Element. Why: The left side carries a small quiet hexagon. How: This draws it near the bottom left. -->
+
+			<polygon
+				class='hexOutPol'
+
+				points='1050,382 1140,434 1140,538 1050,590 960,538 960,434'
+			/><!-- What: Hexagon Outline Polygon Element. Why: The right side mirrors the left. How: This draws a quiet hexagon near the bottom right. -->
+
+			<polygon
+				class='hexAccPol'
+
+				points='1010,160 1070,195 1070,265 1010,300 950,265 950,195'
+			/><!-- What: Hexagon Accent Polygon Element. Why: The right side carries one orange hexagon. How: This draws it above the large one. -->
+
+			<polygon
+				class='hexOutPol'
+
+				points='1110,20 1170,55 1170,125 1110,160 1050,125 1050,55'
+			/><!-- What: Hexagon Outline Polygon Element. Why: The right side carries a small quiet hexagon. How: This draws it near the top right. -->
 
 
 		</svg>
-
 
 
 		<div class='carColDiv'><!-- What: Card Column Div Element. Why: The card's content sits in one centered column. How: This stacks the mark, the wordmark, the role, and the name. -->
@@ -218,11 +242,25 @@
 			><!-- What: Hexagon Mark SVG Element. Why: The site's mark leads the card. How: This draws the nav's mark, hidden from screen readers since the wordmark names it. -->
 
 
-				<polygon fill='none' points='14,2 26,8 26,20 14,26 2,20 2,8' stroke='#F26419' stroke-width='2' />  <!-- What: Outer Hexagon Polygon Element. Why: The mark's outline is an orange hexagon. How: This traces it in the main accent, #F26419. -->
+				<polygon
+					fill='none'
+					points='14,2 26,8 26,20 14,26 2,20 2,8'
+					stroke='#F26419'
+					stroke-width='2'
+				/><!-- What: Outer Hexagon Polygon Element. Why: The mark's outline is an orange hexagon. How: This traces it in the main accent, #F26419. -->
 
-				<polygon fill='#7DB9D8' opacity='0.6' points='14,7 21,11 21,17 14,21 7,17 7,11' /> <!-- What: Inner Hexagon Polygon Element. Why: A softer blue hexagon fills the mark's center. How: This draws it in the secondary accent, #7DB9D8, at 60% strength. -->
+				<polygon
+					fill='#7DB9D8'
+					opacity='0.6'
+					points='14,7 21,11 21,17 14,21 7,17 7,11'
+				/><!-- What: Inner Hexagon Polygon Element. Why: A softer blue hexagon fills the mark's center. How: This draws it in the secondary accent, #7DB9D8, at 60% strength. -->
 
-				<circle cx='14' cy='14' fill='#F26419' r='3' />                                      <!-- What: Center Dot Circle Element. Why: An orange dot finishes the mark. How: This draws it in the main accent at the center. -->
+				<circle
+					cx='14'
+					cy='14'
+					fill='#F26419'
+					r='3'
+				/><!-- What: Center Dot Circle Element. Why: An orange dot finishes the mark. How: This draws it in the main accent at the center. -->
 
 
 			</svg>
@@ -241,3 +279,5 @@
 
 
 </html>
+
+
