@@ -76,10 +76,10 @@ const SKI_GRO_ARR = [ // What: Skill Group Array. Why: The skills grid shows the
 
 
 
-// #region TIM_LIN_ARR
+// #region TIM_MIL_ARR
 
 /**
- * TIM_LIN_ARR = Timeline Array
+ * TIM_MIL_ARR = Timeline Milestone Array
  *
  * @summary
  * The journey the timeline shows, newest first. Every row shares one shape,
@@ -94,7 +94,7 @@ const SKI_GRO_ARR = [ // What: Skill Group Array. Why: The skills grid shows the
  *
 */
 
-const TIM_LIN_ARR = [ // What: Timeline Array. Why: The timeline shows the same milestones every visit. How: Each row holds one milestone.
+const TIM_MIL_ARR = [ // What: Timeline Milestone Array. Why: The timeline shows the same milestones every visit. How: Each row holds one milestone.
 
 
 	{ orgStr : 'Freelance', titStr : 'Web Veteran',          yeaStr : '2026', desStr : 'With the rise of AI it is no longer a constraint to design websites and I can focus on just coding, rapidly increasing the rate at which I could deliver solutions.' }, // What: Web Veteran Row. Why: The latest milestone. How: This is the 2026 entry.
@@ -114,7 +114,7 @@ const TIM_LIN_ARR = [ // What: Timeline Array. Why: The timeline shows the same 
 
 ];
 
-// #endregion TIM_LIN_ARR
+// #endregion TIM_MIL_ARR
 
 
 
@@ -166,7 +166,7 @@ const VAL_CAR_ARR = [ // What: Value Card Array. Why: The values section shows t
  * the Contact page with the portrait in its hexagon frame and two floating
  * facts, the second counted from the project list. The skills section shows
  * a card per group in SKI_GRO_ARR with a tag per skill; the timeline shows
- * TIM_LIN_ARR's milestones joined by a line that stops at the last one; and
+ * TIM_MIL_ARR's milestones joined by a line that stops at the last one; and
  * the values section shows a card per value in VAL_CAR_ARR. Every
  * decorative frame, line, and symbol is hidden from screen readers.
  *
@@ -236,7 +236,7 @@ function AboPagCom () : JSX.Element {
 
 							<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up z4nta0 in three words. How: This sets Dev and Creator over Problem Solver, the second line in the accent. */ }
 								Dev. Creator.<br />
-								<span className={ cssModObj.titAccSpa }>Problem Solver.</span>
+								<span className={ cssModObj.titAccSpa }>Problem Solver.</span>{ /* What: Title Accent Span Element. Why: The heading's second line carries the accent. How: This sets Problem Solver in the dark blue. */ }
 							</h1>
 
 							<p className={ cssModObj.herLeaPar }>{ /* What: Hero Lead Paragraph Element. Why: The opening line says who z4nta0 is. How: This shows it in the larger lead style. */ }
@@ -402,7 +402,7 @@ function AboPagCom () : JSX.Element {
 												labTexStr={ skiNamStr }
 												tagSizStr='md'
 												tagVarStr='blue'
-											/> // What: Skill Tag Label Component. Why: The pill names one technology. How: This shows the name in the medium blue variant.
+											/> // What: Tag Label Component. Why: The pill names one technology. How: This shows the name in the medium blue variant.
 
 
 										))}
@@ -451,11 +451,11 @@ function AboPagCom () : JSX.Element {
 						<div className={ cssModObj.timLisDiv }>{ /* What: Timeline List Div Element. Why: The milestones stack newest first. How: This holds one item per milestone. */ }
 
 
-							{ TIM_LIN_ARR.map( ( timLinObj, timIndNum ) => ( // What: Timeline Item Map Call. Why: Every milestone shows in order. How: This renders each one, with a connecting line under every one but the last.
+							{ TIM_MIL_ARR.map( ( timMilObj, timIndNum ) => ( // What: Timeline Item Map Call. Why: Every milestone shows in order. How: This renders each one, with a connecting line under every one but the last.
 
 
 								<div
-									key={ timLinObj.yeaStr }
+									key={ timMilObj.yeaStr }
 
 									className={ cssModObj.timIteDiv }
 								>{ /* What: Timeline Item Div Element. Why: Each milestone is one row. How: This sets its year, its connector, and its text side by side. */ }
@@ -464,7 +464,7 @@ function AboPagCom () : JSX.Element {
 									<div className={ cssModObj.timLefDiv }>{ /* What: Timeline Left Div Element. Why: The year sits in its own column. How: This holds the year. */ }
 
 
-										<span className={ cssModObj.timYeaSpa }>{ timLinObj.yeaStr }</span>{ /* What: Timeline Year Span Element. Why: Each milestone is dated. How: This shows the year. */ }
+										<span className={ cssModObj.timYeaSpa }>{ timMilObj.yeaStr }</span>{ /* What: Timeline Year Span Element. Why: Each milestone is dated. How: This shows the year. */ }
 
 
 									</div>
@@ -478,7 +478,7 @@ function AboPagCom () : JSX.Element {
 
 										<div className={ cssModObj.timDotDiv } />{ /* What: Timeline Dot Div Element. Why: Each milestone has its own dot. How: This draws it. */ }
 
-										{ timIndNum < TIM_LIN_ARR.length - 1 && ( // What: Timeline Line Check. Why: The line joins a milestone to the next, so the last has none. How: This draws it under every milestone but the last.
+										{ timIndNum < TIM_MIL_ARR.length - 1 && ( // What: Timeline Line Check. Why: The line joins a milestone to the next, so the last has none. How: This draws it under every milestone but the last.
 
 
 											<div className={ cssModObj.timLinDiv } /> // What: Timeline Line Div Element. Why: A line leads down to the next milestone. How: This draws it.
@@ -492,11 +492,11 @@ function AboPagCom () : JSX.Element {
 									<div className={ cssModObj.timCotDiv }>{ /* What: Timeline Content Div Element. Why: The milestone's text sits in its own column. How: This stacks its title, organization, and description. */ }
 
 
-										<h3 className={ cssModObj.timTitHea }>{ timLinObj.titStr }</h3>{ /* What: Timeline Title Heading Element. Why: Each milestone is named. How: This shows the title as an h3 under the section's h2. */ }
+										<h3 className={ cssModObj.timTitHea }>{ timMilObj.titStr }</h3>{ /* What: Timeline Title Heading Element. Why: Each milestone is named. How: This shows the title as an h3 under the section's h2. */ }
 
-										<span className={ cssModObj.timOrgSpa }>{ timLinObj.orgStr }</span>{ /* What: Timeline Organization Span Element. Why: The milestone says who the work was for. How: This shows the organization. */ }
+										<span className={ cssModObj.timOrgSpa }>{ timMilObj.orgStr }</span>{ /* What: Timeline Organization Span Element. Why: The milestone says who the work was for. How: This shows the organization. */ }
 
-										<p className={ cssModObj.timDesPar }>{ timLinObj.desStr }</p>{ /* What: Timeline Description Paragraph Element. Why: A sentence says what happened. How: This shows it. */ }
+										<p className={ cssModObj.timDesPar }>{ timMilObj.desStr }</p>{ /* What: Timeline Description Paragraph Element. Why: A sentence says what happened. How: This shows it. */ }
 
 
 									</div>

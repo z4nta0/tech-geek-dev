@@ -6,7 +6,7 @@
 import cssModObj from './not-found.module.css'; // What: CSS Module Object. Why: The 404 page's own layout and button styles live in its own module. How: This maps each class name in not-found.module.css to its hashed module class.
 
 
-import { Link } from 'react-router'; // What: Link. Why: The page's button takes a visitor home without a full page load. How: This renders it as a router link.
+import { Link } from 'react-router'; // What: Link. Why: The page's buttons move to the home and Contact pages without a full page load. How: This renders them as router links.
 
 
 import type { JSX } from 'react'; // What: JSX. Why: The component declares the element it returns. How: This types its return as a JSX element.

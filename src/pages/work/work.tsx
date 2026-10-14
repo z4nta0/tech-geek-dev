@@ -217,7 +217,7 @@ function WorPagCom () : JSX.Element {
 
 						<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading names what it shows. How: This sets Projects and Case Studies over two lines, the second in the accent. */ }
 							Projects &<br />
-							<span className={ cssModObj.titAccSpa }>Case Studies</span>
+							<span className={ cssModObj.titAccSpa }>Case Studies</span>{ /* What: Title Accent Span Element. Why: The heading's second line carries the accent. How: This sets Case Studies in the dark blue. */ }
 						</h1>
 
 						<p className={ cssModObj.herSubPar }>{ /* What: Hero Subtitle Paragraph Element. Why: A line under the heading says what the catalog holds. How: This describes the range of work. */ }

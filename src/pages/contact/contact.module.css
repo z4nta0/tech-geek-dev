@@ -480,12 +480,12 @@
 
 
 	animation     : global( contentEnterFadeUp ) var( --dur-ani-p02 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
-	background    : var( --err-tin-col );                                                         /* Error Tint Color = #fdf0ee */
-	border        : var( --bor-wid-bas ) solid var( --err-mai-col );                              /* Border Width Base ~= 1.160px, Error Main Color = #e8b4ae */
-	border-radius : var( --rad-bor-sma );                                                         /* Radius Border Small ~= 8.304px */
-	color         : var( --err-dar-col );                                                         /* Error Dark Color = #c0392b */
-	font-size     : var( --fon-siz-p01 );                                                         /* Font Size Base Plus 1 ~= 14.572px */
-	padding       : var( --spa-ver-m01 ) var( --spa-hor-bas );                                    /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
+	background    : var( --err-tin-col );                                                        /* Error Tint Color = #fdf0ee */
+	border        : var( --bor-wid-bas ) solid var( --err-mai-col );                             /* Border Width Base ~= 1.160px, Error Main Color = #e8b4ae */
+	border-radius : var( --rad-bor-sma );                                                        /* Radius Border Small ~= 8.304px */
+	color         : var( --err-dar-col );                                                        /* Error Dark Color = #c0392b */
+	font-size     : var( --fon-siz-p01 );                                                        /* Font Size Base Plus 1 ~= 14.572px */
+	padding       : var( --spa-ver-m01 ) var( --spa-hor-bas );                                   /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
 
 
 }
@@ -503,7 +503,7 @@
 
 }
 
-.senMesBut { /* What: Send Message Button. Why: Sending is the form's main action. How: This sets an orange button in mono capitals at the form's left, easing its color, lift, press, and focus. */
+.senMesBut { /* What: Send Message Button. Why: Sending is the form's main action. How: This sets an orange button in mono capitals at the form's left, easing its color, sending dim, lift, press, and focus. */
 
 
 	align-items    : center;
@@ -519,7 +519,7 @@
 	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );    /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	text-transform : uppercase;
-	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition     : background var( --dur-tra-bas ), opacity var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }

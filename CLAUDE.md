@@ -64,7 +64,7 @@ Decided 2026-10-12 by the user, in the step 7 content review.
   never existed.
 - **Copy**: American spelling throughout, and no em dashes.
 - **Home's featured projects** (decided 2026-10-13): four featured projects
-  picked at random on each visit (`ranPicFun`, once per page load), set two by
+  picked at random on each visit (`ranPicFun`, once each time the page opens), set two by
   two on desktops and tablets and one column on phones. Four keeps every row
   even; the pick changes from visit to visit.
 - **Services** (decided 2026-10-13): Local SEO Optimized, Frontend
@@ -330,7 +330,8 @@ on `close-out`.
      three dots and its pale code text stay literal colors, since they draw a
      fixed editor look whatever the theme.
    - **Fonts**: `--fon-fam-mai` (Syne), `--fon-fam-sec` (DM Mono), and
-     `--fon-fam-acc` (Lora, the italic accent words), a role this site adds.
+     `--fon-fam-acc` (Lora's italic, for the occasional pull quote: About's
+     lead and the phone menu's tagline), a role this site adds.
    - **Type and spacing**: the root is 68.75% (1rem is 11px) and the body
      reads the base plus 1 size. Font sizes, the vertical rhythm, vertical and
      horizontal spacing, border widths, radii, and text widths copy
@@ -510,6 +511,11 @@ ticker, and the status dots) when waiting for the page to settle.
   checks it lists the page links, both profiles, and the email over a scrim
   with the page inert, and that tapping the scrim, Escape (which returns focus
   to the toggle), tapping the brand, and widening the screen each close it.
+  `form.spec.ts` (added in the close-out) answers the root's POST the way
+  Netlify Forms does and checks that an empty form and a malformed email
+  stay put and send nothing, while a filled-in form posts as form contact
+  and shows the thank-you. It came from the audit finding that the form had
+  turned the browser's validation off without checking anything itself.
 - `npm run test:rendering`: compares a full-page screenshot of every state
   with its baseline in `tests/rendering/baselines/`, with zero tolerance,
   under reduced motion, with the page's clock fixed to one date, since the
@@ -578,6 +584,11 @@ settle.
   puts a personal name in the page's copy, while the site otherwise names its
   owner z4nta0. Keep it, or show a label such as "LinkedIn profile" (the link
   itself can't change).
+- **Hooks rules on .ts files**: ESLint's React Hooks rules cover only `.tsx`
+  files, as in ease-my-life and the user-level rules, so the two hooks in `.ts`
+  files (`ui/scroll-top.ts`, `ui/page-description.ts`) go unchecked by them.
+  Both pass the rules when linted as `.tsx` copies today. Widening the config
+  to `src/**/*.ts` would keep them checked; the siblings would want the same.
 - **Unused tag variants**: `ui/tag.module.css` keeps neutral and orange
   variants nothing renders (every tag is blue), along with the orange tag the
   `--acc-tin-col` comment mentions. Keep them for future tags, or remove them.

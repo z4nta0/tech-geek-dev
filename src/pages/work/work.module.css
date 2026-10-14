@@ -76,7 +76,7 @@
 	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position       : relative;
 	width          : 100%;
-	z-index        : 1;
+	z-index        : 1;                      /* What: Pattern Clearing Layer. Why: The hero's label, heading, and line have to sit above the hero's grid pattern, which is positioned at 0. How: This lifts the column one layer above the pattern. */
 
 
 }
@@ -502,7 +502,7 @@
 	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position       : relative;
 	width          : 100%;
-	z-index        : 1;
+	z-index        : 1;                      /* What: Pattern Clearing Layer. Why: The process heading and steps have to sit above the section's dot pattern, which is positioned at 0. How: This lifts the column one layer above the pattern. */
 
 
 }

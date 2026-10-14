@@ -40,7 +40,7 @@ npm run typecheck  # TypeScript across src/, the configs, tests/, and the design
 ```bash
 npm test                    # every suite
 npm run test:accessibility  # axe-core plus scripted keyboard, naming, reflow, and motion checks
-npm run test:interaction    # page navigation, the phone menu, and every link and button's hover, press, and focus feedback
+npm run test:interaction    # page navigation, the phone menu, the contact form, and every link and button's hover, press, and focus feedback
 npm run test:rendering      # full-page screenshots of each page state against approved baselines
 npm run test:responsive     # every page and the phone menu from 320 to 1,920px: no sideways scroll, spill, or overlap, and every paragraph within its measure
 npm run test:seo            # titles, descriptions, canonical links, robots, social tags, structured data, the preview card, icons, robots.txt, and the sitemap
@@ -86,7 +86,7 @@ src/
 public/                Files served at fixed addresses: the icons, the social card, robots.txt, sitemap.xml, and Netlify's _headers and _redirects
 tests/
 ├── accessibility/     axe-core scan and scripted checks
-├── interaction/       navigation, phone menu, and hover, press, and focus feedback checks
+├── interaction/       navigation, phone menu, contact form, and hover, press, and focus feedback checks
 ├── rendering/         screenshot comparisons, their baselines/, and the stylesheet that hides the background patterns
 ├── responsive/        layout checks across screen widths
 ├── seo/               head tags, structured data, preview card, icon, and crawler file checks
@@ -102,11 +102,11 @@ design/                Source artwork and the scripts that render it, not served
 
 ## Design notes
 
-- **Type pairing:** Syne, a wide display face, for headings and the wordmark; DM Mono for labels, buttons, and code; and Lora's italic for the occasional accent word. All three are self-hosted (`src/assets/fonts/`, declared in `src/styles/fonts.css`), so a visit makes no third-party requests.
+- **Type pairing:** Syne, a wide display face, for headings, body text, and the wordmark; DM Mono for labels, buttons, and code; and Lora's italic for the occasional pull quote (About's lead and the phone menu's tagline). All three are self-hosted (`src/assets/fonts/`, declared in `src/styles/fonts.css`), so a visit makes no third-party requests.
 - **Palette:** A warm ivory page (`#F5F0E8`) and a deep ink (`#1A1A2E`) for text and the footer, with a bright orange (`#F26419`) and a soft blue (`#7DB9D8`) as the accents. Text in those hues reads darker shades of each so it meets contrast.
 - **Scale:** Every size, from type to spacing to motion, is a step on one scale built from the plastic ratio (about 1.32) on an 11px base, and layout widths grow with the screen between fixed bounds.
 - **Theme:** A geometric, technical motif runs through the site: hexagons, grid and dot patterns, circuit lines, and a code window on Home.
-- **Motion:** Each page fades up into place, and the hero's shapes turn slowly. Links, buttons, and cards respond to hover, press, and keyboard focus with a color shift, a small lift or press-in, and a focus ring that eases in, and the phone menu fades in over a dimmed page with its rows arriving one after another. All of it turns off when a visitor's system asks for reduced motion, leaving only the instant color and position changes.
+- **Motion:** Each page fades up into place, and the hero's shapes turn slowly. Links, buttons, and cards respond to hover, press, and keyboard focus with a color shift, a small lift or press-in, and a focus ring that eases in, and the phone menu slides and fades in over a dimmed page with its rows arriving one after another. All of it turns off when a visitor's system asks for reduced motion, leaving only the instant color and position changes.
 
 ## Search and the contact form
 

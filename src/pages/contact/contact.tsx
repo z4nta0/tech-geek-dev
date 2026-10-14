@@ -180,14 +180,15 @@ const EMP_FOR_OBJ = { 'bot-field' : '', budget : '', email : '', message : '', n
  *
  * @summary
  * Renders the Contact page. The form keeps its fields in state, keyed by
- * each field's name attribute. Sending it posts the fields to Netlify Forms,
- * disabling the button and showing Sending while it waits; a reply Netlify
- * doesn't answer with ok counts as an error, just like a network failure, so
- * either one leaves the form in place with an error above the message field,
- * while a sent message swaps the form for a thank-you with a button that
- * empties the form for another. The sidebar lists CON_ITE_ARR's contact
- * details, the profiles opening in a new tab, beside the availability and
- * response time.
+ * each field's name attribute, and the browser checks the required fields
+ * and the email format before letting it send. Sending it posts the fields to
+ * Netlify Forms, disabling the button and showing Sending while it waits; a
+ * reply Netlify doesn't answer with ok counts as an error, just like a
+ * network failure, so either one leaves the form in place with an error above
+ * the message field, while a sent message swaps the form for a thank-you with
+ * a button that empties the form for another. The sidebar lists CON_ITE_ARR's
+ * contact details, the profiles opening in a new tab, beside the availability
+ * and response time.
  *
  * It also sets the page's title and canonical address, which React moves
  * into the document head, and swaps the search description for its own
@@ -243,8 +244,9 @@ function ConPagCom () : JSX.Element {
 	 * subForFun = Submit Form Function
 	 *
 	 * @summary
-	 * Sends the form through Netlify Forms. It stops the browser's own
-	 * submission, marks the form as sending, and clears any earlier error,
+	 * Sends the form through Netlify Forms, running only once the browser has
+	 * passed the required fields and the email format. It stops the browser's
+	 * own submission, marks the form as sending, and clears any earlier error,
 	 * then posts the fields form-encoded to the site's root under the contact
 	 * form's name, which Netlify matches to the hidden copy of the form in
 	 * index.html, with the budget or Not specified when none was chosen and
@@ -445,10 +447,8 @@ function ConPagCom () : JSX.Element {
 								<form
 									className={ cssModObj.conForFor }
 
-									noValidate
-
 									onSubmit={ subForFun }
-								>{ /* What: Contact Form Form Element. Why: A visitor writes their message here. How: This sends the fields through subForFun, leaving the browser's own validation off. */ }
+								>{ /* What: Contact Form Form Element. Why: A visitor writes their message here. How: The browser first checks the required fields and the email format, then this sends the fields through subForFun. */ }
 
 
 									<h2 className={ cssModObj.forTitHea }>Send a Message</h2>{ /* What: Form Title Heading Element. Why: The form's heading names it. How: This shows Send a Message as an h2. */ }
