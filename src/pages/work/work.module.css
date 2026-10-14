@@ -5,15 +5,16 @@
  * work.module.css = Work Page Module
  *
  * @summary
- * Styles for WorPagCom. The page fades up into view like every page. Its
- * ivory hero clears the fixed bar and stacks an orange label, the heading
- * with its blue accent, and a muted line, with two faint triangles in the
- * corner. Below it a white filter bar sticks under the bar as the page
- * scrolls, holding the label, a sideways-scrolling row of pill buttons (the
- * active one marked with data-filter-button-active), and the count. The
- * projects grid steps from three columns to two to one, and the closing
- * process section lays its four step cards in a row with arrows between
- * them, stacking with turned arrows below 1024px. The page's centered
+ * Styles for WorPagCom. The page fades up into view like every page. Its ivory
+ * hero clears the fixed bar and stacks an orange label, the heading with its
+ * blue accent, and a line in the secondary text color, with two faint
+ * triangles in the corner. Below it a white filter bar sticks under the bar as
+ * the page scrolls, holding the label, a sideways-scrolling row of pill
+ * buttons (the active one marked with data-filter-button-active), and the
+ * count. The projects grid steps from three columns to two to one, and the
+ * closing process section lays its four step cards in a row with arrows
+ * between them, forming a two-by-two grid without arrows at 1,024px and below
+ * and stacking with turned arrows at 768px and below. The page's centered
  * columns take the shared container values, and its sections the shared
  * section padding, merged into their own rules. Everything that moves holds
  * still under reduced motion.
@@ -48,7 +49,6 @@
 }
 
 
-
 /* #region pagHerSec */
 
 .pagHerSec { /* What: Page Hero Section. Why: The page opens with its heading block clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips its corner drawing. */
@@ -76,7 +76,7 @@
 	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position       : relative;
 	width          : 100%;
-	z-index        : 1;
+	z-index        : 1;                      /* What: Pattern Clearing Layer. Why: The hero's label, heading, and line have to sit above the hero's grid pattern, which is positioned at 0. How: This lifts the column one layer above the pattern. */
 
 
 }
@@ -134,7 +134,7 @@
 /* #endregion herTitHea */
 
 
-.herSubPar { /* What: Hero Subtitle Paragraph. Why: The line under the heading reads a little larger and quieter. How: This sets it muted and caps it at the paragraph measure, about 68 characters. */
+.herSubPar { /* What: Hero Subtitle Paragraph. Why: The line under the heading reads a little larger and quieter. How: This sets it in the secondary text color and caps it at the paragraph measure, about 68 characters. */
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -145,6 +145,7 @@
 }
 
 /* #endregion herInnDiv */
+
 
 
 .corAccSvg { /* What: Corner Accent SVG. Why: The triangles sit in the hero's bottom right corner. How: This pins the drawing there, letting the pointer pass through. */
@@ -173,7 +174,7 @@
 	padding       : var( --spa-ver-bas ) 0;                          /* Spacing Vertical Base ~= 14.572px */
 	position      : sticky;
 	top           : var( --nav-bar-hei );                            /* Navigation Bar Height ~= 78.751px */
-	z-index       : 2;                                               /* What: Filter Bar Layer. Why: The projects scrolling under the bar sit at 1 and lift on hover, while the phone menu's scrim at 3 has to cover the bar. How: This puts it just above the projects. */
+	z-index       : 2;                                               /* What: Filter Bar Layer. Why: The hero's and the process section's columns scrolling under the bar sit at 1, and the projects lift on hover, while the phone menu's scrim at 3 has to cover the bar. How: This puts it just above the projects. */
 
 
 }
@@ -395,7 +396,7 @@
 	border      : 0;
 	clip-path   : inset( 50% );
 	height      : 1px;
-	margin      : calc( var( --spa-ver-m09 ) * -1 ) calc( var( --spa-hor-m09 ) * -1 ); /* Spacing Vertical Base Minus 9 ~= 1.16px, Spacing Horizontal Base Minus 9 ~= 1.16px */
+	margin      : -1px;
 	overflow    : hidden;
 	padding     : 0;
 	position    : absolute;
@@ -417,7 +418,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Projects Grid Div. Why: Three columns crowd a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Projects Grid Div. Why: Three columns crowd a tablet. How: This applies at 1,024px and below. */
 
 
 	.proGriDiv { /* What: Two Column Projects Grid Div. Why: Two cards fit side by side on a tablet. How: This hands each card half the row less the gap. */
@@ -444,16 +445,28 @@
 
 }
 
-.empMesDiv { /* What: Empty Message Div. Why: A filter that finds nothing should say so clearly. How: This centers the message in muted mono with generous room around it. */
+
+/* #region empMesDiv */
+
+.empMesDiv { /* What: Empty Message Div. Why: A filter that finds nothing should say so with generous room around it. How: This pads the space the grid would fill. */
 
 
-	color       : var( --tex-mut-col );   /* Text Muted Color = #646482 */
-	font-family : var( --fon-fam-sec );   /* Font Family Secondary = 'DM Mono', monospace */
-	padding     : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
+	padding : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
+
+
+}
+
+.empMesPar { /* What: Empty Message Paragraph. Why: A filter that finds nothing should say so clearly, and the global paragraph style would set it in Syne and the secondary ink. How: This centers the message in muted mono. */
+
+
+	color       : var( --tex-mut-col ); /* Text Muted Color = #646482 */
+	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	text-align  : center;
 
 
 }
+
+/* #endregion empMesDiv */
 
 /* #endregion proInnDiv */
 
@@ -489,7 +502,7 @@
 	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position       : relative;
 	width          : 100%;
-	z-index        : 1;
+	z-index        : 1;                      /* What: Pattern Clearing Layer. Why: The process heading and steps have to sit above the section's dot pattern, which is positioned at 0. How: This lifts the column one layer above the pattern. */
 
 
 }
@@ -507,7 +520,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Process Steps Div. Why: Four cards in a row crowd a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Process Steps Div. Why: Four cards in a row crowd a tablet. How: This applies at 1,024px and below. */
 
 
 	.prcSteDiv { /* What: Paired Process Steps Div. Why: Four cards divide evenly into two rows of two on a tablet, and their numbers already show the order. How: This sets a two-column grid with gaps. */
@@ -580,7 +593,7 @@
 
 }
 
-.steDesPar { /* What: Step Description Paragraph. Why: A sentence explains the step more quietly. How: This sets it small and muted. */
+.steDesPar { /* What: Step Description Paragraph. Why: A sentence explains the step more quietly. How: This sets it at the body size in the secondary text color with roomy lines. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -593,7 +606,7 @@
 /* #endregion steCarDiv */
 
 
-.steArrDiv { /* What: Step Arrow Div. Why: An arrow leads from one card to the next. How: This holds the arrow at the row's top, dropped to sit beside the cards' titles, never shrinking or stretching. */
+.steArrDiv { /* What: Step Arrow Div. Why: An arrow leads from one card to the next. How: This holds the arrow at the row's top, dropped to sit beside the cards' step numbers, never shrinking or stretching. */
 
 
 	align-items : center;
@@ -604,7 +617,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Step Arrow Div. Why: A sideways arrow would break up the two-by-two grid. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Step Arrow Div. Why: A sideways arrow would break up the two-by-two grid. How: This applies at 1,024px and below. */
 
 
 	.steArrDiv { /* What: Hidden Step Arrow Div. Why: The grid's cards read in order by their numbers. How: This hides the arrows. */

@@ -21,9 +21,9 @@ import { fileURLToPath } from 'node:url';         // What: File URL To Path. Why
  * check runs, interaction, rendering, responsive, and seo. Playwright starts
  * the Vite dev server on port 5194 for the run and stops it afterwards, so a
  * dev server already running on the usual 5173, or a sibling project's suites
- * on 5190 through 5193, are never touched. Reports and failure screenshots land
- * in tests/output, which git ignores, while the rendering suite's approved
- * screenshots live in tests/rendering/baselines and are committed.
+ * on 5190 through 5193, are never touched. Reports and failure screenshots
+ * land in tests/output, which git ignores, while the rendering suite's
+ * approved screenshots live in tests/rendering/baselines and are committed.
  *
  * Sections:
  *  - Constants

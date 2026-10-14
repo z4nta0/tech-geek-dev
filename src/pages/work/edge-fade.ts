@@ -30,38 +30,35 @@
  * togFadFun = Toggle Fade Function
  *
  * @summary
- * Sets a rail's data-scroll-start-active/data-scroll-end-active attributes
- * from its current scroll position. A rail that can't scroll at all counts as
+ * Sets a row's data-scroll-start-active/data-scroll-end-active attributes
+ * from its current scroll position. A row that can't scroll at all counts as
  * having reached both edges, so neither fade shows. A 1px tolerance keeps
  * subpixel scroll positions from leaving a fade stuck on at either end.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
- * @param scrCurEle - Scroll Current Element: The element that actually
- *                    scrolls.
- * @param attCurEle - Attribute Current Element: The element the edge
- *                    attributes go on, defaulting to scrCurEle itself when
- *                    the scroller carries its own fades.
+ * @param scrCurEle - Scroll Current Element: The element that scrolls and
+ *                    carries its own edge attributes.
  *
  * @returns This function does not return anything.
  *
  * @example
  * ```ts
- * togFadFun(raiCurEle) // => void
+ * togFadFun(filScrEle) // => void
  * ```
  *
 */
 
-const togFadFun = ( scrCurEle : HTMLElement, attCurEle : HTMLElement = scrCurEle ) : void => { // What: Toggle Fade Function. Why: A scrolling row hides each edge fade once that edge is reached. How: This measures scrCurEle and toggles both attributes on attCurEle.
+const togFadFun = ( scrCurEle : HTMLElement ) : void => { // What: Toggle Fade Function. Why: A scrolling row hides each edge fade once that edge is reached. How: This measures scrCurEle and toggles both attributes on it.
 
 
-	const canScrBoo = scrCurEle.scrollWidth - scrCurEle.clientWidth > 1;                                       // What: Can Scroll Boolean. Why: A rail that doesn't overflow has no edge to fade at all. How: This checks for more than 1px of overflow.
-	const reaStaBoo = !canScrBoo || scrCurEle.scrollLeft <= 1;                                                 // What: Reached Start Boolean. Why: The left fade should hide once the rail is scrolled all the way left. How: This is true when the rail can't scroll or sits within 1px of its start.
-	const reaEndBoo = !canScrBoo || scrCurEle.scrollLeft + scrCurEle.clientWidth >= scrCurEle.scrollWidth - 1; // What: Reached End Boolean. Why: The right fade should hide once the rail is scrolled all the way right. How: This is true when the rail can't scroll or sits within 1px of its end.
+	const canScrBoo = scrCurEle.scrollWidth - scrCurEle.clientWidth > 1;                                       // What: Can Scroll Boolean. Why: A row that doesn't overflow has no edge to fade at all. How: This checks for more than 1px of overflow.
+	const reaStaBoo = !canScrBoo || scrCurEle.scrollLeft <= 1;                                                 // What: Reached Start Boolean. Why: The left fade should hide once the row is scrolled all the way left. How: This is true when the row can't scroll or sits within 1px of its start.
+	const reaEndBoo = !canScrBoo || scrCurEle.scrollLeft + scrCurEle.clientWidth >= scrCurEle.scrollWidth - 1; // What: Reached End Boolean. Why: The right fade should hide once the row is scrolled all the way right. How: This is true when the row can't scroll or sits within 1px of its end.
 
 
-	attCurEle.toggleAttribute( 'data-scroll-start-active', reaStaBoo ); // What: Scroll Start Toggle. Why: This is the attribute CSS reads to hide the left fade. How: This sets the presence-only attribute while reaStaBoo is true.
-	attCurEle.toggleAttribute( 'data-scroll-end-active', reaEndBoo );   // What: Scroll End Toggle. Why: This is the attribute CSS reads to hide the right fade. How: This sets the presence-only attribute while reaEndBoo is true.
+	scrCurEle.toggleAttribute( 'data-scroll-start-active', reaStaBoo ); // What: Scroll Start Toggle. Why: This is the attribute CSS reads to hide the left fade. How: This sets the presence-only attribute while reaStaBoo is true.
+	scrCurEle.toggleAttribute( 'data-scroll-end-active', reaEndBoo );   // What: Scroll End Toggle. Why: This is the attribute CSS reads to hide the right fade. How: This sets the presence-only attribute while reaEndBoo is true.
 
 
 };

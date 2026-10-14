@@ -41,14 +41,16 @@ import { useNavigationType } from 'react-router'; // What: Use Navigation Type. 
  *
  * @summary
  * Scrolls the window to the top after every navigation a link or a redirect
- * makes, including a link to the page already showing, before the new page
- * is drawn. A navigation whose address carries a hash scrolls that section
- * into view instead, when an element with that id exists. Back and forward
- * (a POP) are skipped, so the browser can return the visitor to where they
- * were. The jump to the top is instant whatever the stylesheet's
- * scroll-behavior says, since a smooth scroll down a whole page reads as
- * motion rather than as arriving on a new page. Call it once, in a
- * component inside the router that stays mounted across routes.
+ * makes, including a link to the page already showing, before the new page is
+ * drawn. A navigation whose address carries a hash scrolls that section into
+ * view instead, when an element with that id exists; a hash holding a
+ * malformed percent escape can't be decoded, so it's dropped and the page
+ * opens at its top rather than throwing. Back and forward (a POP) are skipped,
+ * so the browser can return the visitor to where they were. The jump to the
+ * top is instant whatever the stylesheet's scroll-behavior says, since a
+ * smooth scroll down a whole page reads as motion rather than as arriving on a
+ * new page. Call it once, in a component inside the router that stays mounted
+ * across routes.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -77,7 +79,17 @@ function useScrTopFun () : void {
 
 
 
-		const ancTarEle = locCurObj.hash ? document.getElementById( decodeURIComponent( locCurObj.hash.slice( 1 ) ) ) : null; // What: Anchor Target Element. Why: A link like /#contact should land on its section, not the top. How: This finds the element the hash names, or holds null when there's no hash or no such element.
+		let ancIdeStr = locCurObj.hash.slice( 1 ); // What: Anchor Identifier String. Why: A link like /#contact names the section to land on. How: This holds the hash without its #, still percent-encoded, or an empty string when there's no hash.
+
+
+
+		try { ancIdeStr = decodeURIComponent( ancIdeStr ); } // What: Anchor Decode Attempt. Why: An id with spaces or other special characters arrives percent-encoded in the address. How: This decodes it back to the id the element carries.
+
+		catch { ancIdeStr = ''; } // What: Malformed Escape Fallback. Why: A mistyped or crafted hash such as #%E0 holds an escape that can't be decoded, and the thrown error would take down the whole site. How: This drops the hash, so the page opens at its top instead.
+
+
+
+		const ancTarEle = ancIdeStr ? document.getElementById( ancIdeStr ) : null; // What: Anchor Target Element. Why: A link like /#contact should land on its section, not the top. How: This finds the element the decoded hash names, or holds null when there's no usable hash or no such element.
 
 
 		if ( ancTarEle ) { ancTarEle.scrollIntoView(); return; } // What: Anchor Scroll Guard. Why: A named section takes the place of the top. How: This scrolls it into view, following the stylesheet's scroll-behavior, and stops.

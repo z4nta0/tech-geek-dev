@@ -100,11 +100,11 @@ const draPagObj = await broInsObj.newPage(); // What: Draw Page Object. Why: The
  * @param icoSizNum - Icon Size Number: The icon's width and height in pixels.
  * @param icoOpaBoo - Icon Opaque Boolean: Whether to draw on solid ivory.
  *
- * @returns The finished PNG's bytes.
+ * @returns A promise that resolves with the finished PNG's bytes.
  *
  * @example
  * ```ts
- * renPngFun(32, false) // => Buffer
+ * renPngFun(32, false) // => Promise<Buffer>
  * ```
  *
 */
@@ -133,7 +133,6 @@ async function renPngFun ( icoSizNum : number, icoOpaBoo : boolean ) : Promise< 
 		const finConObj = finCanEle.getContext( '2d' )!;                 // What: Final Context Object. Why: Drawing goes through the canvas's 2D context. How: This gets it. // What: Non-Null Note. Why: getContext can return null for an unsupported type. How: A 2D context is always available on a fresh canvas.
 		const marSizNum = solBacBoo ? tarSizNum * touScaNum : tarSizNum; // What: Mark Size Number. Why: The touch icon leaves room around the mark for iOS's rounded corners. How: This shrinks the mark for the opaque icon and fills the square otherwise.
 		const marOffNum = ( tarSizNum - marSizNum ) / 2;                 // What: Mark Offset Number. Why: The shrunk mark sits in the middle of its square. How: This splits the spare room evenly on each side.
-
 
 
 		if ( solBacBoo ) { // What: Solid Background Fill. Why: iOS fills transparency with black. How: For the opaque icon, this paints the square ivory before the mark goes on.

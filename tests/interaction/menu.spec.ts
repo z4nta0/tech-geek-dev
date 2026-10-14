@@ -21,10 +21,10 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helper dri
  * runs. While the menu is open, the page behind it is dimmed by a scrim and
  * inert, so keyboard and screen reader users stay in the bar, and the menu
  * offers the page links, z4nta0's two profiles, and the contact email. The
- * usual ways out each close it
- * and give the page back: tapping the scrim, pressing Escape, which also
- * returns focus to the toggle, tapping the brand, which also goes home, and
- * widening the screen past the phone layout, which hides the toggle.
+ * usual ways out each close it and give the page back: tapping the scrim,
+ * pressing Escape, which also returns focus to the toggle, tapping the brand,
+ * which also goes home, and widening the screen past the phone layout, which
+ * hides the toggle.
  *
  * Sections:
  *  - Helpers
@@ -166,6 +166,8 @@ test( 'widening the screen closes the menu', async ( { page : curPagObj } ) => {
 	await menOpeFun( curPagObj ); // What: Menu Open Call. Why: The check needs the menu open. How: This opens and checks it.
 
 	await curPagObj.setViewportSize( { height : 900, width : 1024 } ); // What: Wide Viewport Call. Why: A tablet turned sideways, or a widened window, passes the phone layout. How: This resizes the page past the 768px breakpoint.
+
+	await expect( curPagObj.getByRole( 'button', { includeHidden : true, name : 'Toggle menu' } ) ).toHaveAttribute( 'aria-expanded', 'false' ); // What: Closed State Assertion. Why: Widening the screen should close the menu, not just hide its toggle. How: This checks the toggle, hidden at this width, reports the menu closed.
 
 	await expect( curPagObj.locator( '[inert]' ) ).toHaveCount( 0 ); // What: Page Restored Assertion. Why: The wide page has to be usable. How: This checks nothing is left inert.
 

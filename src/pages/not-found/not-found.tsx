@@ -6,7 +6,7 @@
 import cssModObj from './not-found.module.css'; // What: CSS Module Object. Why: The 404 page's own layout and button styles live in its own module. How: This maps each class name in not-found.module.css to its hashed module class.
 
 
-import { Link } from 'react-router'; // What: Link. Why: The page's button takes a visitor home without a full page load. How: This renders it as a router link.
+import { Link } from 'react-router'; // What: Link. Why: The page's buttons move to the home and Contact pages without a full page load. How: This renders them as router links.
 
 
 import type { JSX } from 'react'; // What: JSX. Why: The component declares the element it returns. How: This types its return as a JSX element.
@@ -82,7 +82,7 @@ function NotFouCom () : JSX.Element {
 
 
 
-			<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The 404 content sits centered in the page. How: This fills the space between the bar and the footer and fades in like every page. */ }
+			<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The 404 content sits centered in the page. How: This fills the screen above the footer, centering its content, and fades in like every page. */ }
 
 
 				<div className={ cssModObj.nofInnDiv }>{ /* What: Not-Found Inner Div Element. Why: The number, the drawing, the text, and the buttons read as one centered block. How: This stacks them. */ }
@@ -107,26 +107,28 @@ function NotFouCom () : JSX.Element {
 						<polygon
 							opacity='0.5'
 							points='100,10 190,55 190,145 100,190 10,145 10,55'
-							stroke='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
+							stroke='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
 							strokeWidth='1.5'
 						/>{ /* What: Outer Hexagon Polygon Element. Why: The drawing's outer shape is a faint blue hexagon. How: This traces it at half strength. */ }
 
 						<polygon
-							opacity='0.4'
+							style={{ opacity : 'var( --cdn-pow-003-rec )' }} // Core-Design-Number to the Power of 3 Reciprocal ~= 0.430
+
 							points='100,30 170,67.5 170,132.5 100,170 30,132.5 30,67.5'
-							stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
+							stroke='var( --acc-mai-col )' // Accent Main Color = #F26419
 							strokeWidth='1'
-						/>{ /* What: Inner Hexagon Polygon Element. Why: A thinner orange hexagon sits inside the blue one. How: This traces it at 40% strength. */ }
+						/>{ /* What: Inner Hexagon Polygon Element. Why: A thinner orange hexagon sits inside the blue one. How: This traces it at about 43% strength. */ }
 
 						<circle
+							style={{ opacity : 'var( --cdn-pow-002-rec )' }} // Core-Design-Number to the Power of 2 Reciprocal ~= 0.570
+
 							cx='100'
 							cy='100'
 							fill='none'
-							opacity='0.6'
 							r='20'
-							stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
+							stroke='var( --acc-mai-col )' // Accent Main Color = #F26419
 							strokeWidth='1.5'
-						/>{ /* What: Center Ring Circle Element. Why: An orange ring marks the drawing's center. How: This traces it at 60% strength. */ }
+						/>{ /* What: Center Ring Circle Element. Why: An orange ring marks the drawing's center. How: This traces it at about 57% strength. */ }
 
 
 					</svg>
@@ -137,22 +139,22 @@ function NotFouCom () : JSX.Element {
 						The page you're looking for doesn't exist or has been moved.
 					</p>
 
-
-
 					<div className={ cssModObj.nofActDiv }>{ /* What: Not-Found Actions Div Element. Why: A visitor who lands here gets two ways onward side by side. How: This sets the buttons in a row that wraps. */ }
 
 
 						<Link
-							className={ cssModObj.nofHomAnc }
+							className={ cssModObj.butPriAnc }
 
 							to='/'
-						>Go Home</Link>{ /* What: Not-Found Home Anchor Element. Why: Home is the natural place to start over. How: This routes to the home page as a button. */ }
+						>Go Home</Link>{ /* What: Go Home Link. Why: Home is the natural place to start over. How: This routes to the home page as a button. */ }
+
+
 
 						<Link
-							className={ cssModObj.nofConAnc }
+							className={ cssModObj.butSecAnc }
 
 							to='/contact'
-						>Get In Touch</Link>{ /* What: Not-Found Contact Anchor Element. Why: Getting in touch is the site's main action. How: This routes to the Contact page as an outlined button. */ }
+						>Get In Touch</Link>{ /* What: Get In Touch Link. Why: Getting in touch is the site's main action. How: This routes to the Contact page as an outlined button. */ }
 
 
 					</div>

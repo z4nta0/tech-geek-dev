@@ -1,7 +1,7 @@
 # Project CLAUDE.md: tech-geek-dev
 
 z4nta0's developer portfolio (React, Vite, React Router, deployed on Netlify
-at https://techgeek.dev/, not launched yet). Every rule in the user-level
+at https://techgeek.dev/, now live). Every rule in the user-level
 CLAUDE.md applies here; this file records only what's specific to this
 project. ease-my-life, reese-roofing, seal-and-shield, tonys-toppers,
 the-bernie-bears, and hair-designs have already been converted to those rules
@@ -64,7 +64,7 @@ Decided 2026-10-12 by the user, in the step 7 content review.
   never existed.
 - **Copy**: American spelling throughout, and no em dashes.
 - **Home's featured projects** (decided 2026-10-13): four featured projects
-  picked at random on each visit (`ranPicFun`, once per page load), set two by
+  picked at random on each visit (`ranPicFun`, once each time the page opens), set two by
   two on desktops and tablets and one column on phones. Four keeps every row
   even; the pick changes from visit to visit.
 - **Services** (decided 2026-10-13): Local SEO Optimized, Frontend
@@ -106,8 +106,10 @@ src/
     not-found/           the 404 page every unknown path shows
   ui/                    what more than one page uses (the bar, the footer,
                          the background pattern, the section header, the
-                         tag, the project card and the project list with its
-                         screenshots)
+                         tag, the project card and the project list), plus
+                         the page and profile link lists, a page's own
+                         search description hook, and the scroll-to-top
+                         hook
   styles/                global CSS only (fonts.css, styles.css)
 ```
 Outside `src/`: `public/` (the favicon set, the social preview card,
@@ -218,10 +220,11 @@ on `close-out`.
      screenshots into `src/assets/images/`, and the unused business card
      SVGs into `design/business-cards/`, with a byte-identical build.
    - **Fonts**: the same latin files Google served, declared in
-     `styles/fonts.css`; Syne (400 to 800) and Lora's upright face (400 to
-     700) are variable, while Lora's italic and the four DM Mono faces are
-     single weights. The rendering suite matched apart from the WebKit flake
-     (see "## Test suites").
+     `styles/fonts.css`; Syne (400 to 800) is variable, while Lora's italic
+     and the DM Mono faces are single weights. The rendering suite matched
+     apart from the WebKit flake (see "## Test suites"). The close-out removed
+     the faces nothing used (DM Mono's light weight and its italic, and Lora's
+     upright face), leaving DM Mono at 400 and 500.
    - **Email function**: `netlify/functions/send-email.mts`, written to the
      formatting rules and type checked through `tsconfig.node.json`, with
      `@netlify/functions` now a dev dependency for its types. Checked with a
@@ -327,7 +330,8 @@ on `close-out`.
      three dots and its pale code text stay literal colors, since they draw a
      fixed editor look whatever the theme.
    - **Fonts**: `--fon-fam-mai` (Syne), `--fon-fam-sec` (DM Mono), and
-     `--fon-fam-acc` (Lora, the italic accent words), a role this site adds.
+     `--fon-fam-acc` (Lora's italic, for the occasional pull quote: About's
+     lead and the phone menu's tagline), a role this site adds.
    - **Type and spacing**: the root is 68.75% (1rem is 11px) and the body
      reads the base plus 1 size. Font sizes, the vertical rhythm, vertical and
      horizontal spacing, border widths, radii, and text widths copy
@@ -463,7 +467,59 @@ on `close-out`.
       every domain allowed in the security headers.
 12. **Deferred items** below, as the user decides them.
 13. **Close-out**: the README, the design scripts type checked, rule audit
-    rounds until clean, and the version bump.
+    rounds until clean, and the version bump. Worked on 2026-10-14 on the `close-out`
+    branch while the user was away.
+    - **Design scripts type checked**: `tsconfig.design.json`, from the
+      siblings, brings `design/` under the type check; all four scripts passed
+      strict mode as they were.
+    - **README** rewritten to describe the finished site, its two sister
+      sites, every script and test suite, and the project's layout.
+    - **Text measure check**: `tests/responsive/measure.spec.ts` walks every
+      paragraph one character at a time; its first run capped four kinds of
+      card description that ran up to 103 characters a line.
+    - **Rule audit**: rounds of seven fresh reviewers, each reading its share
+      of every file against both CLAUDE.md files, found about 150, 70, 50, 25,
+      30, 25, 8, and 4 items, the eighth round only comments and alignment,
+      so the audit stopped there. Most were stale comments, spacing,
+      alignment, and token comments, but the real problems fixed along the
+      way were:
+      - Home's skills ticker ran out of pills and showed an empty band at wide
+        widths;
+      - Contact's form had the browser's validation turned off with no
+        checking of its own, so a blank or malformed message could be sent
+        (now covered by `tests/interaction/form.spec.ts`);
+      - Contact's email row opened an empty tab, and a comment left unclosed
+        in round 1 had hidden its rows' centering until round 2 caught it;
+      - the project screenshots were a pixel wider than the cards declared;
+      - the 404 page's hexagons painted over its text and buttons;
+      - Home's tablet stats drew a stray divider at the grid's edge;
+      - Work's empty-filter message lost its style to the global paragraph
+        rule;
+      - several press targets (the overlay, footer, and brand icons) needed
+        WebKit's pointer pass-through, and keyboard users couldn't see a
+        project card's links;
+      - unused font faces and files, a dead pattern rule, unreachable
+        defaults, and a decorative-only Person image were removed.
+      The open questions the audit raised are listed under "## Found for
+      later" for the user.
+    - **Decided with the user** (2026-10-14): the version is 2.0.0, marking
+      the finished portfolio; the footer's copyright reads the base size like
+      the footer's other text; headings take the m01 line height, exactly 1,
+      with any font that needs more room given it case by case; the project,
+      service, and value cards turn their border the strong blue on hover;
+      Work's cards no longer take the featured border, which only means
+      something on Home; every opacity within 10% of a reciprocal power reads
+      it, the SVG shapes through their `style` and the background patterns
+      through `GeoBacCom`'s `patOpaStr`; the m05 step is quoted as 3.572px,
+      its correct rounding; Contact's LinkedIn row shows "LinkedIn profile"
+      rather than the address; ESLint's hooks rules also cover the `.ts` files
+      under `src/`; and the About timeline's 2015 and 2026 rows were reworded.
+      The heading, opacity, hooks, and m05 decisions went into the user-level
+      rules too. The bar's mark, the footer's mark, and the footer's profile
+      icons size by rhythm steps in CSS (p02, p02, and p01, about 25.6px,
+      25.6px, and 19.3px, from 28px, 24px, and 18px) after a side-by-side
+      look, and the tag keeps only its blue, since its orange and neutral
+      variants were never used.
 14. **Shared design package** (decided by the user 2026-10-13): the last step
     of this project, after the close-out. The package is built from this
     site's code (see the shared design package under "## Deferred items" for
@@ -507,6 +563,11 @@ ticker, and the status dots) when waiting for the page to settle.
   checks it lists the page links, both profiles, and the email over a scrim
   with the page inert, and that tapping the scrim, Escape (which returns focus
   to the toggle), tapping the brand, and widening the screen each close it.
+  `form.spec.ts` (added in the close-out) answers the root's POST the way
+  Netlify Forms does and checks that an empty form and a malformed email
+  stay put and send nothing, while a filled-in form posts as form contact
+  and shows the thank-you. It came from the audit finding that the form had
+  turned the browser's validation off without checking anything itself.
 - `npm run test:rendering`: compares a full-page screenshot of every state
   with its baseline in `tests/rendering/baselines/`, with zero tolerance,
   under reduced motion, with the page's clock fixed to one date, since the
@@ -523,7 +584,12 @@ ticker, and the status dots) when waiting for the page to settle.
   open menu at 14 widths from 320 to 1,920px (the 640px, 768px, and 1,024px
   breakpoints and the pixel past each included), failing on sideways
   scrolling, an unclipped element past either edge, text spilling its box,
-  or two reachable controls overlapping.
+  or two reachable controls overlapping. `measure.spec.ts` (added in the close-out)
+  walks every visible paragraph one character at a time at the same widths
+  and fails a rendered line past 75 characters, or 60 for text below the body
+  size, the upper limits of the text measure rule. Its first run found the
+  project, service, value, and Response Time descriptions running up to 103
+  characters, now capped at `--tex-wid-bas`.
 - `npm run test:seo`: checks each page's head as the-bernie-bears' suite
   does (`head.spec.ts`): every page's own title, description, and canonical
   link, the 404 page's noindex, the tags swapping as a visitor moves between
@@ -541,6 +607,15 @@ ticker, and the status dots) when waiting for the page to settle.
   card, with nothing on the page changed.
 
 ## Found for later
+Raised by the close-out's audit (2026-10-14) and left for the user to decide,
+since each changes how the site looks or is a judgment call the rules don't
+settle.
+- **The sibling sites' scroll hook**: `useScrTopFun` (copied from
+  the-bernie-bears) decodes the address's hash unguarded, so a router link to
+  a malformed escape (`/#%E0`) would throw and blank the site. No such link
+  exists, and typed or bookmarked addresses load as a POP the hook skips, so
+  it's unreachable today; this site's copy now guards the decode anyway, and
+  the siblings could take the same guard.
 
 ## Deferred items
 Decided 2026-10-12 to leave these until the cleanup plan is finished, and

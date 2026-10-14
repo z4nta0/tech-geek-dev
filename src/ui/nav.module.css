@@ -16,9 +16,9 @@
  * its rows arriving one after another: the availability pill copied from
  * Home's hero, the links, the button, and the profile tiles, email, and
  * tagline. It turns invisible once it has slid away, so its links leave the
- * Tab order. The row's width and side
- * padding are the page's shared container values, merged into its own rule.
- * Everything that moves holds still under reduced motion.
+ * Tab order. The row's width and side padding are the page's shared
+ * container values, merged into its own rule. Everything that moves holds
+ * still under reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -36,7 +36,7 @@
 	position   : fixed;
 	transition : opacity var( --dur-tra-p03 ) var( --mot-acc-eas ), visibility 0s linear var( --dur-tra-p03 ); /* Duration Transition Base Plus 3 ~= 366.9ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */
 	visibility : hidden;
-	z-index    : 3;                                                                                            /* What: Scrim Layer. Why: The scrim has to cover the page's highest layers, the About page's floating facts and Work's filter bar at 2, and stay under the bar at 4. How: This puts it between them. */
+	z-index    : 3;                                                                                            /* What: Scrim Layer. Why: The scrim has to cover the page's highest layer, Work's filter bar at 2, and stay under the bar at 4. How: This puts it between them. */
 
 
 }
@@ -93,19 +93,17 @@
 	position                : fixed;
 	right                   : 0;
 	top                     : 0;
-	transition              : background var( --dur-tra-p02 ) var( --mot-dec-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-dec-eas ), border-color var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
-	z-index                 : 4;                                               /* What: Bar Layer. Why: The bar has to stay above the phone menu's scrim at 3, which covers the page's highest layers, the About page's floating facts and Work's filter bar at 2. How: This sits one above the scrim. */
+	transition              : background var( --dur-tra-p02 ) var( --mot-dec-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-dec-eas ), border-color var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Shadow Fade. Why: The scrolled bar's shadow eases in, and box-shadow repaints on every frame rather than running on the compositor. How: The compositor version would draw the shadow on an extra pseudo-element and fade its opacity, which this small, one-time change doesn't warrant, so the shadow transitions directly. */
+	z-index                 : 4;                                               /* What: Bar Layer. Why: The bar has to stay above the phone menu's scrim at 3, which covers the page's highest layer, Work's filter bar at 2. How: This sits one above the scrim. */
 
 
 }
 .navBarHed[data-nav-bar-scrolled] { /* What: Scrolled Navigation Bar Header. Why: Once the page moves under the bar, the bar needs to stand apart from it. How: This firms up the background, shows the bottom border, and casts the small shadow. */
 
 
-	-webkit-backdrop-filter : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
-	backdrop-filter         : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
-	background              : oklch( from var( --bac-pag-col ) l c h / 0.92 ); /* Background Page Color = #F5F0E8 @ 0.92 opacity */
-	border-bottom-color     : var( --bor-mai-col );                            /* Border Main Color = #D8CFBE */
-	box-shadow              : var( --ele-sma-sha );                            /* Elevation Small Shadow, about 0 1.2px 2.7px */
+	background          : oklch( from var( --bac-pag-col ) l c h / 0.92 ); /* Background Page Color = #F5F0E8 @ 0.92 opacity */
+	border-bottom-color : var( --bor-mai-col );                            /* Border Main Color = #D8CFBE */
+	box-shadow          : var( --ele-sma-sha );                            /* Elevation Small Shadow, about 0 1.2px 2.7px */
 
 
 }
@@ -190,6 +188,16 @@
 
 }
 
+.braMarSvg { /* What: Brand Mark SVG. Why: The mark leads the wordmark at a size that follows a visitor's font size, and a press anywhere on it should register as a press on the link. How: This sizes it at the p02 rhythm step and keeps it from catching the pointer. */
+
+
+	height         : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */
+	pointer-events : none;                                /* What: Pass-Through Pointer. Why: WebKit doesn't mark a link pressed when the press lands on an SVG shape inside it, as the-bernie-bears found. How: This lets every press fall through the mark to the link itself. */
+	width          : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */
+
+
+}
+
 
 /* #region braWorSpa */
 
@@ -233,7 +241,7 @@
 
 }
 
-.worLasSpa { /* What: Wordmark Last Span. Why: The domain ending carries the accent. How: This sets .dev in orange. */
+.worLasSpa { /* What: Wordmark Last Span. Why: The domain ending carries the accent. How: This sets .dev in the dark orange. */
 
 
 	color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
@@ -244,6 +252,7 @@
 /* #endregion braWorSpa */
 
 /* #endregion braLogAnc */
+
 
 
 /* #region priNavNav */
@@ -272,10 +281,10 @@
 
 }
 
-.barLinAnc { /* What: Bar Link Anchor. Why: Each page link reads in small mono capitals with room for its underline. How: This sets the link muted and padded, easing its color, background, press, and focus. */
+.barLinAnc { /* What: Bar Link Anchor. Why: Each page link reads in small mono capitals with room for its underline. How: This sets the link in the secondary text color and padded, easing its color, background, press, and focus. */
 
 
-	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
 	color          : var( --tex-sec-col );                      /* Text Secondary Color = #3D3D5C */
 	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
@@ -356,7 +365,7 @@
 
 
 	background     : var( --acc-mai-col );                      /* Accent Main Color = #F26419 */
-	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
 	color          : var( --tex-acc-col );                      /* Text Accent Color = #1A1A2E */
 	flex-shrink    : 0;
 	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
@@ -464,7 +473,7 @@
 
 
 	background    : var( --bac-inv-col );                                                                                               /* Background Inverse Color = #1A1A2E */
-	border-radius : var( --rad-bor-xsm );                                                                                               /* Radius Border Extra Small ~= 3.571px */
+	border-radius : var( --rad-bor-xsm );                                                                                               /* Radius Border Extra Small ~= 3.572px */
 	display       : block;
 	height        : var( --bor-wid-lar );                                                                                               /* Border Width Large ~= 2.035px */
 	transition    : transform var( --dur-tra-p02 ) var( --mot-dec-eas ), opacity var( --dur-tra-p02 ), background var( --dur-tra-bas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Transition Base ~= 157.8ms */
@@ -496,7 +505,7 @@
 .menTogBut[aria-expanded='true'] .togBarSpa:nth-child( 3 ) { /* What: Open Last Toggle Bar Span. Why: The open menu's toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
 
 
-	transform : translateY( calc( ( var( --spa-ver-m04 ) + var( --bor-wid-lar ) ) * -1 ) ) rotate( -45deg ); /* Spacing Vertical Base Minus 4 ~= 4.732px, Border Width Large ~= 2.035px */ /* What: Cross Shift. Why: The bottom bar has to land exactly on the middle one. How: This moves it up by the gap between the bars plus one bar's height. */
+	transform : translateY( calc( ( var( --spa-ver-m04 ) + var( --bor-wid-lar ) ) * -1 ) ) rotate( -45deg ); /* Spacing Vertical Base Minus 4 ~= -4.732px, Border Width Large ~= -2.035px */ /* What: Cross Shift. Why: The bottom bar has to land exactly on the middle one. How: This moves it up by the gap between the bars plus one bar's height. */
 
 
 }
@@ -519,6 +528,7 @@
 /* #endregion navInnDiv */
 
 
+
 /* #region menDraDiv */
 
 .menDraDiv { /* What: Menu Drawer Div. Why: On a phone the page links and the menu's extras drop down under the bar. How: This fixes the drawer under the bar, stacks its rows, and starts it slid up, faded, and invisible once its slide ends, so its links leave the Tab order. */
@@ -537,7 +547,7 @@
 	right          : 0;
 	top            : var( --nav-bar-hei );                            /* Navigation Bar Height ~= 78.751px */
 	transform      : translateY( -100% );
-	transition     : transform var( --dur-tra-p02 ) var( --mot-dec-eas ), opacity var( --dur-tra-p02 ), visibility 0s linear var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Delayed Visibility. Why: The drawer has to stay visible while it slides away. How: Visibility flips to hidden only once the 280ms slide has finished. */
+	transition     : transform var( --dur-tra-p02 ) var( --mot-acc-eas ), opacity var( --dur-tra-p02 ) var( --mot-acc-eas ), visibility 0s linear var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */ /* What: Delayed Visibility. Why: The drawer has to stay visible while it slides away. How: Visibility flips to hidden only once the slide, about 277ms, has finished. */
 	visibility     : hidden;
 	z-index        : -1;                                              /* What: Drawer Layer. Why: The drawer slides down from behind the bar's row rather than across it. How: Inside the bar's own stacking context, this draws it above the bar's background but under the logo, links, and toggle. */
 
@@ -627,7 +637,7 @@
 
 /* #region herLabDiv */
 
-.herLabDiv { /* What: Hero Label Div. Why: The drawer opens on the same availability pill Home's hero shows, so it keeps that element's name. How: This sets a warm ivory pill in muted mono capitals, only as wide as its content. */
+.herLabDiv { /* What: Hero Label Div. Why: The drawer opens on the same availability pill Home's hero shows, so it keeps that element's name. How: This sets a warm ivory pill in mono capitals in the secondary text color, only as wide as its content. */
 
 
 	align-items    : center;
@@ -697,7 +707,7 @@
 
 }
 
-.draLinAnc { /* What: Drawer Link Anchor. Why: Each page link in the drawer is a full-width row. How: This sets it in muted mono capitals with a divider under it, easing its color, nudge, press, and focus. */
+.draLinAnc { /* What: Drawer Link Anchor. Why: Each page link in the drawer is a full-width row. How: This sets it in mono capitals in the secondary text color with a divider under it, easing its color, nudge, press, and focus. */
 
 
 	border-bottom  : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
@@ -719,7 +729,7 @@
 
 }
 .draLinAnc[aria-current='page'],
-.draLinAnc:hover { /* What: Current Or Hovered Drawer Link Anchor. Why: The page that's showing and the link under the pointer stand out. How: This turns the text orange. */
+.draLinAnc:hover { /* What: Current Or Hovered Drawer Link Anchor. Why: The page that's showing and the link under the pointer stand out. How: This turns the text the dark orange. */
 
 
 	color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
@@ -761,7 +771,7 @@
 
 
 	background      : var( --acc-mai-col );                      /* Accent Main Color = #F26419 */
-	border-radius   : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	border-radius   : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
 	color           : var( --tex-acc-col );                      /* Text Accent Color = #1A1A2E */
 	display         : inline-flex;
 	font-family     : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
@@ -865,7 +875,7 @@
 
 
 }
-.menSocAnc:hover { /* What: Hovered Menu Social Anchor. Why: A tile should respond to the pointer. How: This tints it pale orange with a dark orange mark and edge and lifts it 2px. */
+.menSocAnc:hover { /* What: Hovered Menu Social Anchor. Why: A tile should respond to the pointer. How: This tints it pale orange with a dark orange mark and an orange edge, and lifts it 2px. */
 
 
 	background   : var( --acc-tin-col );                            /* Accent Tint Color = #FDDCC8 */
@@ -948,7 +958,7 @@
 
 }
 
-.menTagPar { /* What: Menu Tagline Paragraph. Why: The menu ends on the site's tagline, as the footer does. How: This sets it small, italic, and centered in the muted ink, no wider than the small text width cap. */
+.menTagPar { /* What: Menu Tagline Paragraph. Why: The menu ends on the site's tagline, as the footer does. How: This sets it italic and centered in the muted ink, no wider than the small text width cap. */
 
 
 	color       : var( --tex-mut-col ); /* Text Muted Color = #646482 */

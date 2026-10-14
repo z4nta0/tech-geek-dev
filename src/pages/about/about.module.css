@@ -49,7 +49,6 @@
 }
 
 
-
 /* #region aboHerSec */
 
 .aboHerSec { /* What: About Hero Section. Why: The page opens with its introduction clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips the pattern behind it. */
@@ -78,11 +77,11 @@
 	padding               : 0 var( --gut-sid-pad );                                                                                      /* Gutter Side Padding, about 19.304px - 44.876px */
 	position              : relative;
 	width                 : 100%;
-	z-index               : 1;
+	z-index               : 1; /* What: Pattern Clearing Layer. Why: The introduction and the portrait have to sit above the hero's dot pattern, which is positioned at 0. How: This lifts the column one layer above the pattern. */
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Grid Div. Why: The portrait column crowds a tablet's row beside the heading. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Grid Div. Why: The portrait column crowds a tablet's row beside the heading. How: This applies at 1,024px and below. */
 
 
 	.herGriDiv { /* What: Tablet Hero Grid Div Layout. Why: The heading takes the full width, with the portrait beside the paragraphs below it. How: This sets a flexible text column and a column sized to the portrait, with the text's own row gap. */
@@ -122,7 +121,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Text Div. Why: On a tablet the portrait sits beside the paragraphs rather than the whole column, so the column's pieces have to join the hero's grid. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Text Div. Why: On a tablet the portrait sits beside the paragraphs rather than the whole column, so the column's pieces have to join the hero's grid. How: This applies at 1,024px and below. */
 
 
 	.herTexDiv { /* What: Dissolved Hero Text Div. Why: The label, heading, paragraphs, and button each take their own place in the hero's grid. How: This lets its children act as the grid's own items, leaving their reading order unchanged. */
@@ -153,7 +152,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Label Span. Why: The label sits above the portrait's row on a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Label Span. Why: The label sits above the portrait's row on a tablet. How: This applies at 1,024px and below. */
 
 
 	.herLabSpa { /* What: Spanning Hero Label Span. Why: The label leads the whole hero. How: This spans both columns. */
@@ -190,7 +189,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Title Heading. Why: The heading sits above the portrait's row on a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Title Heading. Why: The heading sits above the portrait's row on a tablet. How: This applies at 1,024px and below. */
 
 
 	.herTitHea { /* What: Spanning Hero Title Heading. Why: The heading keeps the full width so it reads large. How: This spans both columns. */
@@ -215,7 +214,7 @@
 /* #endregion herTitHea */
 
 
-.herLeaPar { /* What: Hero Lead Paragraph. Why: The opening line reads as a quiet pull quote. How: This sets it a little larger in italic Lora, muted, capped at the paragraph measure. */
+.herLeaPar { /* What: Hero Lead Paragraph. Why: The opening line reads as a quiet pull quote. How: This sets it a little larger in italic Lora in the secondary text color, capped at the paragraph measure. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -228,7 +227,7 @@
 
 }
 
-.herBodPar { /* What: Hero Body Paragraph. Why: The longer story reads comfortably. How: This sets it muted with roomy lines, capped at the paragraph measure. */
+.herBodPar { /* What: Hero Body Paragraph. Why: The longer story reads comfortably. How: This sets it in the secondary text color with roomy lines, capped at the paragraph measure. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -257,7 +256,7 @@
 
 	align-items    : center;
 	background     : var( --acc-mai-col );                      /* Accent Main Color = #F26419 */
-	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
 	color          : var( --tex-acc-col );                      /* Text Accent Color = #1A1A2E */
 	display        : inline-flex;
 	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
@@ -270,11 +269,11 @@
 
 
 }
-.butPriAnc:hover { /* What: Hovered Button Primary Anchor. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
+.butPriAnc:hover { /* What: Hovered Button Primary Anchor. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 2px. */
 
 
-	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
-	transform  : translateY( -1px );
+	background : var( --acc-hov-col );                            /* Accent Hover Color ~= #e45700 */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
@@ -304,6 +303,7 @@
 /* #endregion herTexDiv */
 
 
+
 /* #region herVisDiv */
 
 .herVisDiv { /* What: Hero Visual Div. Why: The portrait and its facts sit centered in their column. How: This centers them, positioning the floating cards against the column. */
@@ -316,10 +316,10 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Visual Div. Why: The portrait and facts still fit on a tablet, beside the paragraphs rather than the heading. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Visual Div. Why: The portrait and facts still fit on a tablet, beside the paragraphs rather than the heading. How: This applies at 1,024px and below. */
 
 
-	.herVisDiv { /* What: Beside Paragraphs Hero Visual Div. Why: The portrait sits to the right of the paragraphs and button, below the full-width heading. How: This places it in the second column across the paragraphs' three rows. */
+	.herVisDiv { /* What: Beside Paragraphs Hero Visual Div. Why: The portrait sits to the right of the paragraphs and button, below the full-width heading. How: This places it in the second column across the three rows holding the paragraphs and the button. */
 
 
 		grid-column : 2;
@@ -380,14 +380,14 @@
 
 
 	height   : calc( 100% + var( --spa-ver-p01 ) * 2 );                             /* Spacing Vertical Base Plus 1 ~= 19.304px */
-	inset    : calc( var( --spa-ver-p01 ) * -1 ) calc( var( --spa-hor-p01 ) * -1 ); /* Spacing Vertical Base Plus 1 ~= 19.304px, Spacing Horizontal Base Plus 1 ~= 19.304px */
+	inset    : calc( var( --spa-ver-p01 ) * -1 ) calc( var( --spa-hor-p01 ) * -1 ); /* Spacing Vertical Base Plus 1 ~= -19.304px, Spacing Horizontal Base Plus 1 ~= -19.304px */
 	position : absolute;
 	width    : calc( 100% + var( --spa-hor-p01 ) * 2 );                             /* Spacing Horizontal Base Plus 1 ~= 19.304px */
 
 
 }
 
-.porPhoIma { /* What: Portrait Photo Image. Why: The photo fills its box above the frame. How: This sizes and crops it, rounds its corners, and lifts it over the frame. */
+.porPhoIma { /* What: Portrait Photo Image. Why: The photo fills its box above the frame. How: This sizes and crops it, rounds its corners, and positions it so it paints over the frame, which comes before it. */
 
 
 	border-radius : var( --rad-bor-med ); /* Radius Border Medium = 11px */
@@ -395,7 +395,6 @@
 	object-fit    : cover;
 	position      : relative;
 	width         : 100%;
-	z-index       : 1;
 
 
 }
@@ -405,7 +404,7 @@
 
 /* #region floFacDiv */
 
-.floFacDiv { /* What: Floating Fact Div. Why: Each fact sits on a small white card over the portrait's corner. How: This sets the bordered card with a soft shadow, stacking its figure over its label above the portrait. */
+.floFacDiv { /* What: Floating Fact Div. Why: Each fact sits on a small white card over the portrait's corner. How: This sets the bordered card with a soft shadow, stacking its figure over its label, the card painting over the portrait photo since it comes after it. */
 
 
 	background     : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
@@ -416,23 +415,22 @@
 	flex-direction : column;
 	padding        : var( --spa-ver-bas ) var( --spa-hor-p02 );       /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	position       : absolute;
-	z-index        : 2;
 
 
 }
 .floFacDiv--top { /* What: Top Floating Fact Div. Why: The first fact sits off the portrait's top right corner. How: This places it just past that corner. */
 
 
-	right : calc( var( --spa-hor-p02 ) * -1 ); /* Spacing Horizontal Base Plus 2 ~= 25.572px */
-	top   : calc( var( --spa-ver-bas ) * -1 ); /* Spacing Vertical Base ~= 14.572px */
+	right : calc( var( --spa-hor-p02 ) * -1 ); /* Spacing Horizontal Base Plus 2 ~= -25.572px */
+	top   : calc( var( --spa-ver-bas ) * -1 ); /* Spacing Vertical Base ~= -14.572px */
 
 
 }
 .floFacDiv--bottom { /* What: Bottom Floating Fact Div. Why: The second fact sits off the portrait's bottom left corner. How: This places it just past that corner. */
 
 
-	bottom : calc( var( --spa-ver-bas ) * -1 ); /* Spacing Vertical Base ~= 14.572px */
-	left   : calc( var( --spa-hor-p02 ) * -1 ); /* Spacing Horizontal Base Plus 2 ~= 25.572px */
+	bottom : calc( var( --spa-ver-bas ) * -1 ); /* Spacing Vertical Base ~= -14.572px */
+	left   : calc( var( --spa-hor-p02 ) * -1 ); /* Spacing Horizontal Base Plus 2 ~= -25.572px */
 
 
 }
@@ -510,7 +508,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Skills Grid Div. Why: Four groups crowd a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Skills Grid Div. Why: Four groups crowd a tablet. How: This applies at 1,024px and below. */
 
 
 	.skiGriDiv { /* What: Two Column Skills Grid Div. Why: Two groups fit side by side on a tablet. How: This sets two columns. */
@@ -575,7 +573,7 @@
 
 }
 
-.groTitHea { /* What: Group Title Heading. Why: The group's name reads as a small label. How: This sets it in muted mono capitals. */
+.groTitHea { /* What: Group Title Heading. Why: The group's name reads as a small label. How: This sets it in mono capitals in the secondary text color. */
 
 
 	color          : var( --tex-sec-col );                   /* Text Secondary Color = #3D3D5C */
@@ -638,7 +636,7 @@
 	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position       : relative;
 	width          : 100%;
-	z-index        : 1;
+	z-index        : 1;                      /* What: Pattern Clearing Layer. Why: The milestones have to sit above the timeline's grid pattern, which is positioned at 0. How: This lifts the column one layer above the pattern. */
 
 
 }
@@ -708,7 +706,7 @@
 	.timIteDiv + .timIteDiv { /* What: Interlocked Timeline Item Div. Why: Alternating sides would leave each side half empty if every milestone took a full row. How: This pulls each milestone up by the p03 step into the one before it, which sits on the other side. */
 
 
-		margin-top : calc( var( --spa-ver-p03 ) * -1 ); /* Spacing Vertical Base Plus 3 ~= 33.876px */
+		margin-top : calc( var( --spa-ver-p03 ) * -1 ); /* Spacing Vertical Base Plus 3 ~= -33.876px */
 
 
 	}
@@ -798,7 +796,7 @@
 
 }
 
-.timDotDiv { /* What: Timeline Dot Div. Why: Each milestone has its own ring. How: This draws an 11px white circle with a dark blue ring, never shrinking. */
+.timDotDiv { /* What: Timeline Dot Div. Why: Each milestone has its own ring. How: This draws an 11px white circle with a strong blue ring, never shrinking. */
 
 
 	background    : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
@@ -892,7 +890,7 @@
 
 }
 
-.timDesPar { /* What: Timeline Description Paragraph. Why: A sentence says what happened, quietly. How: This sets it small and muted, capped at the paragraph measure. */
+.timDesPar { /* What: Timeline Description Paragraph. Why: A sentence says what happened, quietly. How: This sets it in the secondary text color, capped at the paragraph measure. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -953,7 +951,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Values Grid Div. Why: Four cards crowd a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Values Grid Div. Why: Four cards crowd a tablet. How: This applies at 1,024px and below. */
 
 
 	.valGriDiv { /* What: Two Column Values Grid Div. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
@@ -983,25 +981,26 @@
 
 /* #region valCarDiv */
 
-.valCarDiv { /* What: Value Card Div. Why: Each value is one white card. How: This sets the bordered card, stacks its symbol, title, and description, and eases its lift and shadow. */
+.valCarDiv { /* What: Value Card Div. Why: Each value is one white card. How: This sets the bordered card, stacks its symbol, title, and description, and eases its border color, lift, and shadow. */
 
 
-	background     : var( --bac-sur-col );                                            /* Background Surface Color = #FFFFFF */
-	border         : var( --bor-wid-bas ) solid var( --bor-mai-col );                 /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
-	border-radius  : var( --rad-bor-med );                                            /* Radius Border Medium = 11px */
+	background     : var( --bac-sur-col );                                                                               /* Background Surface Color = #FFFFFF */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col );                                                    /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : var( --rad-bor-med );                                                                               /* Radius Border Medium = 11px */
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --spa-ver-m01 );                                            /* Spacing Vertical Base Minus 1 = 11px */
-	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );                       /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
-	transition     : box-shadow var( --dur-tra-p02 ), transform var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms */
+	gap            : var( --spa-ver-m01 );                                                                               /* Spacing Vertical Base Minus 1 = 11px */
+	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );                                                          /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	transition     : border-color var( --dur-tra-p02 ), box-shadow var( --dur-tra-p02 ), transform var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms */ /* What: Shadow Transition. Why: A box-shadow animates on paint rather than the compositor, but a compositor version would need a second shadow layer faded through opacity, and only the one hovered card repaints. How: This eases the shadow alongside the lift. */
 
 
 }
-.valCarDiv:hover { /* What: Hovered Value Card Div. Why: A card should respond to the pointer. How: This lifts it 3px and casts the medium shadow. */
+.valCarDiv:hover { /* What: Hovered Value Card Div. Why: A card should respond to the pointer. How: This lifts it 3px, turns its border the strong blue, and casts the medium shadow. */
 
 
-	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
-	transform  : translateY( -3px );
+	border-color : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
+	box-shadow   : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
+	transform    : translateY( -3px );
 
 
 }
@@ -1039,12 +1038,13 @@
 
 }
 
-.valDesPar { /* What: Value Description Paragraph. Why: A sentence says what the value means, quietly. How: This sets it small and muted. */
+.valDesPar { /* What: Value Description Paragraph. Why: A sentence says what the value means, quietly. How: This sets it in the secondary text color, no wider than the paragraph measure, which a wide card would otherwise pass. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	max-width   : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
 
 
 }

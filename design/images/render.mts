@@ -47,7 +47,7 @@ const BOX_REC_OBJ : Record< string, BoxRecTyp > = { // What: Box Record Object. 
 
 
 	'portrait' : { cutBoo : true,  heiNum : 850, widNum : 642  }, // What: Portrait Box. Why: The About portrait fills a frame up to about 321 by 425 on a phone, which crops it the same way. How: This cuts it to twice that, centered, so no hidden pixels ship.
-	'project'  : { cutBoo : false, heiNum : 752, widNum : 1336 }  // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 667px wide, in Home's two-by-two grid. How: This covers twice that.
+	'project'  : { cutBoo : true,  heiNum : 752, widNum : 1336 }  // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 667px wide, in Home's two-by-two grid. How: This cuts it to exactly twice that, centered, since covering the box alone came out a pixel wider than the size the cards declare.
 
 
 };
@@ -59,7 +59,15 @@ type ImaRecTyp = { boxStr : string, outStr : string, souStr : string }; // What:
 const IMA_REC_ARR : ImaRecTyp[] = [ // What: Image Record Array. Why: Every image the site shows is rebuilt from this one list. How: Each row names the original, where it's written, and which box it fits.
 
 
-	...[ 'ease-my-life', 'hair-designs', 'reese-roofing', 'seal-and-shield', 'tech-geek', 'the-bernie-bears', 'tonys-toppers' ].map( ( proNamStr ) => ( { boxStr : 'project', outStr : `src/assets/images/${ proNamStr }-website.webp`, souStr : `${ proNamStr }-website.png` } ) ), // What: Project Screenshot Rows. Why: Every project card shows a screenshot of its site. How: This builds one row per project.
+	...[ 'ease-my-life', 'hair-designs', 'reese-roofing', 'seal-and-shield', 'tech-geek', 'the-bernie-bears', 'tonys-toppers' ].map( ( proNamStr ) => ({ // What: Project Screenshot Rows. Why: Every project card shows a screenshot of its site. How: This builds one row per project name.
+
+
+		boxStr : 'project',                                       // What: Box String. Why: Every screenshot shares the project box. How: This names it.
+		outStr : `src/assets/images/${ proNamStr }-website.webp`, // What: Output String. Why: The cards import each screenshot from the shared images folder. How: This names the project's WebP there.
+		souStr : `${ proNamStr }-website.png`                     // What: Source String. Why: The capture script saves each original under the project's name. How: This names the project's PNG.
+
+
+	}) ),
 
 	{ boxStr : 'portrait', outStr : 'src/pages/about/self-portrait.webp', souStr : 'self-portrait.jpg' } // What: Portrait Row. Why: The About page shows the portrait. How: This fits it to the portrait box.
 
@@ -81,9 +89,11 @@ const ROO_DIR_STR = fileURLToPath( new URL( '../../', import.meta.url ) );      
 const broInsObj = await chromium.launch();   // What: Browser Instance Object. Why: The images are drawn by a real browser. How: This launches Chromium.
 const encPagObj = await broInsObj.newPage(); // What: Encode Page Object. Why: The canvas work runs in a page. How: This opens a blank one.
 
+
+
 let aftBytNum = 0; // What: After Bytes Number. Why: The run reports how much smaller the images got. How: This adds up the encoded files' sizes.
 let befBytNum = 0; // What: Before Bytes Number. Why: The run reports how much smaller the images got. How: This adds up the originals' sizes.
-let wroCouNum = 0; // What: Written Count Number. Why: The run reports how many images it wrote. How: This counts them.
+let wriCouNum = 0; // What: Written Count Number. Why: The run reports how many images it wrote. How: This counts them.
 
 
 for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each original is rebuilt the same way. How: This scales, encodes, and writes one image per pass.
@@ -93,9 +103,9 @@ for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each o
 
 
 
-	try { statSync( souPatStr ); }
+	try { statSync( souPatStr ); } // What: Original Existence Check. Why: A fresh checkout may lack an original, since the originals stay out of git. How: This reads the file's details, throwing when it's missing.
 
-	catch { continue; }
+	catch { continue; } // What: Missing Original Skip. Why: A missing original shouldn't stop the rest from rebuilding. How: This moves on to the next image.
 
 
 
@@ -104,7 +114,7 @@ for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each o
 	const souUrlStr = `data:image/${ imaRecObj.souStr.endsWith( '.jpg' ) ? 'jpeg' : 'png' };base64,${ readFileSync( souPatStr ).toString( 'base64' ) }`; // What: Source URL String. Why: A canvas drawn from a file URL can't be read back, while one drawn from data can. How: This hands the original to the page as a data URL.
 
 
-	const encResObj = await encPagObj.evaluate( async ( [ souUrlStr, boxRecObj, mimTypStr, quaValNum ] ) => { // What: Encode Result Object. Why: The browser scales and encodes the image. How: This decodes the original, draws it onto a canvas at the fitted size, and returns the encoded data.
+	const encResStr = await encPagObj.evaluate( async ( [ souUrlStr, boxRecObj, mimTypStr, quaValNum ] ) => { // What: Encode Result String. Why: The browser scales and encodes the image. How: This decodes the original, draws it onto a canvas at the fitted size, and returns the encoded data.
 
 
 		const souImaEle = new Image(); // What: Source Image Element. Why: The original has to be decoded before it's drawn. How: This creates an image to load it into.
@@ -115,14 +125,14 @@ for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each o
 		await souImaEle.decode(); // What: Source Decode Wait. Why: Drawing an undecoded image draws nothing. How: This waits until it's ready.
 
 
-		const souHeiNum = souImaEle.naturalHeight;                                                                                // What: Source Height Number. Why: The fit is measured against the original. How: This reads its height.
-		const souWidNum = souImaEle.naturalWidth;                                                                                 // What: Source Width Number. Why: The fit is measured against the original. How: This reads its width.
-		const scaValNum = Math.min( 1, Math.max( boxRecObj.widNum / souWidNum, boxRecObj.heiNum / souHeiNum ) );                  // What: Scale Value Number. Why: The image covers its box, as object-fit cover shows it, but is never enlarged. How: This takes the larger of the two fits, capped at 1.
-		const drwHeiNum = Math.round( souHeiNum * scaValNum );                                                                    // What: Drawn Height Number. Why: The original is drawn at the fitted size. How: This scales its height.
-		const drwWidNum = Math.round( souWidNum * scaValNum );                                                                    // What: Drawn Width Number. Why: The original is drawn at the fitted size. How: This scales its width.
-		const outHeiNum = boxRecObj.cutBoo ? boxRecObj.heiNum : drwHeiNum;                                                        // What: Output Height Number. Why: A cut image is exactly its box, and any other is its fitted size. How: This picks between them.
-		const outWidNum = boxRecObj.cutBoo ? boxRecObj.widNum : drwWidNum;                                                        // What: Output Width Number. Why: A cut image is exactly its box, and any other is its fitted size. How: This picks between them.
-		const outCanEle = document.createElement( 'canvas' );                                                                     // What: Output Canvas Element. Why: The image is redrawn at its new size. How: This creates the canvas.
+		const souHeiNum = souImaEle.naturalHeight;                                                               // What: Source Height Number. Why: The fit is measured against the original. How: This reads its height.
+		const souWidNum = souImaEle.naturalWidth;                                                                // What: Source Width Number. Why: The fit is measured against the original. How: This reads its width.
+		const scaValNum = Math.min( 1, Math.max( boxRecObj.widNum / souWidNum, boxRecObj.heiNum / souHeiNum ) ); // What: Scale Value Number. Why: The image covers its box, as object-fit cover shows it, but is never enlarged. How: This takes the larger of the two fits, capped at 1.
+		const draHeiNum = Math.round( souHeiNum * scaValNum );                                                   // What: Drawn Height Number. Why: The original is drawn at the fitted size. How: This scales its height.
+		const draWidNum = Math.round( souWidNum * scaValNum );                                                   // What: Drawn Width Number. Why: The original is drawn at the fitted size. How: This scales its width.
+		const outHeiNum = boxRecObj.cutBoo ? boxRecObj.heiNum : draHeiNum;                                       // What: Output Height Number. Why: A cut image is exactly its box, and any other is its fitted size. How: This picks between them.
+		const outWidNum = boxRecObj.cutBoo ? boxRecObj.widNum : draWidNum;                                       // What: Output Width Number. Why: A cut image is exactly its box, and any other is its fitted size. How: This picks between them.
+		const outCanEle = document.createElement( 'canvas' );                                                    // What: Output Canvas Element. Why: The image is redrawn at its new size. How: This creates the canvas.
 
 
 		outCanEle.height = outHeiNum; // What: Canvas Height Assignment. Why: The canvas has to match the output size. How: This sets its height.
@@ -134,7 +144,7 @@ for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each o
 
 		outConObj.imageSmoothingQuality = 'high'; // What: Smoothing Quality Assignment. Why: A large downscale should stay sharp without jagged edges. How: This asks for the browser's best resampling.
 
-		outConObj.drawImage( souImaEle, ( outWidNum - drwWidNum ) / 2, ( outHeiNum - drwHeiNum ) / 2, drwWidNum, drwHeiNum ); // What: Image Draw Call. Why: A cut image keeps its center, the way object-fit cover crops it. How: This draws the scaled original centered on the canvas, which crops nothing unless the box is cut.
+		outConObj.drawImage( souImaEle, ( outWidNum - draWidNum ) / 2, ( outHeiNum - draHeiNum ) / 2, draWidNum, draHeiNum ); // What: Image Draw Call. Why: A cut image keeps its center, the way object-fit cover crops it. How: This draws the scaled original centered on the canvas, which crops nothing unless the box is cut.
 
 
 
@@ -145,7 +155,7 @@ for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each o
 
 
 	const outPatStr = `${ ROO_DIR_STR }${ imaRecObj.outStr }`; // What: Output Path String. Why: The image is written where the site reads it. How: This joins the project root and the output path.
-	const outBufObj = Buffer.from( encResObj, 'base64' );      // What: Output Buffer Object. Why: The file is written as bytes. How: This decodes the base64 data.
+	const outBufObj = Buffer.from( encResStr, 'base64' );      // What: Output Buffer Object. Why: The file is written as bytes. How: This decodes the base64 data.
 
 
 	mkdirSync( outPatStr.slice( 0, outPatStr.lastIndexOf( '/' ) ), { recursive : true } ); // What: Output Folder Creation. Why: A fresh checkout may lack the folder. How: This creates it, doing nothing when it exists.
@@ -155,7 +165,7 @@ for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each o
 
 	aftBytNum += outBufObj.length;           // What: After Bytes Increase. Why: The total covers every encoded image. How: This adds this file's size.
 	befBytNum += statSync( souPatStr ).size; // What: Before Bytes Increase. Why: The total covers every original. How: This adds this original's size.
-	wroCouNum += 1;                          // What: Written Count Increase. Why: The total counts every image written. How: This adds one.
+	wriCouNum += 1;                          // What: Written Count Increase. Why: The total counts every image written. How: This adds one.
 
 
 }
@@ -166,7 +176,7 @@ await broInsObj.close(); // What: Browser Close Call. Why: The script should exi
 
 
 
-console.log( `Wrote ${ wroCouNum } images, ${ Math.round( befBytNum / 1024 ).toLocaleString() } KB down to ${ Math.round( aftBytNum / 1024 ).toLocaleString() } KB.` ); // What: Result Log Call. Why: The run should say what it wrote. How: This prints the count and the sizes before and after.
+console.log( `Wrote ${ wriCouNum } images, ${ Math.round( befBytNum / 1024 ).toLocaleString() } KB down to ${ Math.round( aftBytNum / 1024 ).toLocaleString() } KB.` ); // What: Result Log Call. Why: The run should say what it wrote. How: This prints the count and the sizes before and after.
 
 // #endregion Module Init
 

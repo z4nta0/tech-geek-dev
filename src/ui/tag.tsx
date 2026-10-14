@@ -17,9 +17,8 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  *
  * @summary
  * The small pill that names a technology, used on every project card and in
- * the About page's skills grid. It comes in three colors (blue, orange, and
- * a neutral grey) and two sizes (small and medium), each a class in its own
- * module.
+ * the About page's skills grid. It's drawn in the site's blue, in two sizes
+ * (small and medium), each a class in its own module.
  *
  * Sections:
  *  - Components
@@ -33,7 +32,7 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
 
 // #region Components
 
-type TlcProTyp = { labTexStr : string, tagSizStr? : 'md' | 'sm', tagVarStr? : 'blue' | 'neutral' | 'orange' }; // What: Tag-Label-Component Props Type. Why: A tag shows its text in one of the module's colors and sizes. How: This types TagLabCom's props.
+type TlcProTyp = { labTexStr : string, tagSizStr? : 'md' | 'sm' }; // What: Tag-Label-Component Props Type. Why: A tag shows its text in one of the module's sizes. How: This types TagLabCom's props.
 
 // #region TagLabCom
 
@@ -41,9 +40,9 @@ type TlcProTyp = { labTexStr : string, tagSizStr? : 'md' | 'sm', tagVarStr? : 'b
  * TagLabCom = Tag Label Component
  *
  * @summary
- * Renders one pill holding its label, styled by the base tag class plus the
- * classes for its color and its size, which the module names after the
- * values themselves.
+ * Renders one pill holding its label, styled by the base tag class plus one
+ * modifier class for its size, chosen by an explicit comparison, since a
+ * hashed module class can't be looked up by a built string.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -51,25 +50,23 @@ type TlcProTyp = { labTexStr : string, tagSizStr? : 'md' | 'sm', tagVarStr? : 'b
  *                          as a technology's name.
  * @param props.tagSizStr - Tag Size String: The pill's size, 'sm' or 'md',
  *                          defaulting to 'sm'.
- * @param props.tagVarStr - Tag Variant String: The pill's color, 'blue',
- *                          'neutral', or 'orange', defaulting to 'neutral'.
  *
  * @returns The tag's span.
  *
  * @example
  * ```tsx
- * TagLabCom({ labTexStr, tagSizStr, tagVarStr }) // => <TagLabCom />
+ * TagLabCom({ labTexStr, tagSizStr }) // => <TagLabCom />
  * ```
  *
 */
 
-function TagLabCom ( { labTexStr, tagSizStr = 'sm', tagVarStr = 'neutral' } : TlcProTyp ) : JSX.Element {
+function TagLabCom ( { labTexStr, tagSizStr = 'sm' } : TlcProTyp ) : JSX.Element {
 
 
 	return (
 
 
-		<span className={` ${ cssModObj.tagLabSpa }   ${ tagVarStr === 'blue' ? cssModObj.tagLabSpaBlue : '' }   ${ tagVarStr === 'neutral' ? cssModObj.tagLabSpaNeutral : '' }   ${ tagVarStr === 'orange' ? cssModObj.tagLabSpaOrange : '' }   ${ tagSizStr === 'md' ? cssModObj.tagLabSpaMedium : '' }   ${ tagSizStr === 'sm' ? cssModObj.tagLabSpaSmall : '' } `}>{ labTexStr }</span> // What: Tag Label Span Element. Why: The pill is a single inline element. How: This shows the label with the base class plus the one color and one size modifier its props name, each written out since a hashed module class can't be looked up by a built string.
+		<span className={` ${ cssModObj.tagLabSpa }   ${ tagSizStr === 'md' ? cssModObj.tagLabSpaMedium : '' }   ${ tagSizStr === 'sm' ? cssModObj.tagLabSpaSmall : '' } `}>{ labTexStr }</span> // What: Tag Label Span Element. Why: The pill is a single inline element. How: This shows the label with the base class plus the one size modifier its props name, written out since a hashed module class can't be looked up by a built string.
 
 
 	);

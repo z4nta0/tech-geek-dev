@@ -16,8 +16,9 @@
 # data: for the Contact page's select arrow, a small SVG written into the
 # stylesheet. form-action stays 'self' so the form can still post to the
 # site if its script ever fails. style-src needs no 'unsafe-inline': the
-# build ships no inline styles, and React sets its one dynamic style through
-# the DOM, which the policy doesn't restrict. WebKit still reports one
+# build ships no inline styles, and React sets its dynamic styles (a
+# pattern's opacity, the menu rows' stagger index) through the DOM, which the
+# policy doesn't restrict. WebKit still reports one
 # style-src-attr violation on the Contact page's budget select, a style it
 # applies to the element internally; blocking it changes nothing on screen,
 # which a screenshot with and without the policy confirmed.

@@ -22,10 +22,10 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  *
  * @summary
  * The site's footer: the hexagon mark with the tagline and links to the
- * sister sites, a link to each page, and the copyright line beside links to
- * z4nta0's GitHub and LinkedIn. It
- * reads the current year each time it renders, so the copyright never goes
- * stale. Every page renders it below its content.
+ * sister sites, a link to each page, and the copyright line above links to
+ * z4nta0's GitHub and LinkedIn. It reads the current year each time it
+ * renders, so the copyright never goes stale. Every page renders it below
+ * its content.
  *
  * Sections:
  *  - Components
@@ -49,7 +49,7 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * decoration, above the tagline and a line linking the sister sites,
  * TechGeek.support and TechGeek.cards; a link to each page in a navigation
  * landmark labelled Footer navigation, so screen readers can tell it from the
- * bar's; and the copyright with the current year beside the GitHub and
+ * bar's; and the copyright with the current year above the GitHub and
  * LinkedIn links, each named by its aria-label and opening in a new tab.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -85,24 +85,24 @@ function SitFooCom () : JSX.Element {
 
 
 					<svg
+						className={ cssModObj.fooMarSvg }
+
 						fill='none'
-						height='24'
 						viewBox='0 0 28 28'
-						width='24'
 
 						aria-hidden='true'
-					>{ /* What: Hexagon Mark SVG Element. Why: The site's hexagon mark signs off the footer. How: This draws the outlined hexagon, its filled core, and its center dot, hidden from screen readers as decoration. */ }
+					>{ /* What: Footer Mark SVG Element. Why: The site's hexagon mark signs off the footer. How: This draws the outlined hexagon, its filled core, and its center dot, hidden from screen readers as decoration. */ }
 
 
 						<polygon
 							fill='none'
 							points='14,2 26,8 26,20 14,26 2,20 2,8'
-							stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
+							stroke='var( --acc-mai-col )' // Accent Main Color = #F26419
 							strokeWidth='2'
 						/>{ /* What: Outer Hexagon Polygon Element. Why: The mark's outline is an orange hexagon. How: This traces it around the whole mark. */ }
 
 						<polygon
-							fill='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
+							fill='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
 							opacity='0.5'
 							points='14,7 21,11 21,17 14,21 7,17 7,11'
 						/>{ /* What: Inner Hexagon Polygon Element. Why: A softer blue hexagon fills the mark's center. How: This draws it at half strength inside the outline. */ }
@@ -110,14 +110,14 @@ function SitFooCom () : JSX.Element {
 						<circle
 							cx='14'
 							cy='14'
-							fill='var(--acc-mai-col)' // Accent Main Color = #F26419
+							fill='var( --acc-mai-col )' // Accent Main Color = #F26419
 							r='3'
 						/>{ /* What: Center Dot Circle Element. Why: An orange dot finishes the mark's center. How: This draws it in the middle of the hexagons. */ }
 
 
 					</svg>
 
-					<span className={ cssModObj.fooTagSpa }>Building the web, one commit at a time.</span>{ /* What: Footer Tagline Span Element. Why: The tagline sums up the site in a line. How: This shows it beside the mark. */ }
+					<span className={ cssModObj.fooTagSpa }>Building the web, one commit at a time.</span>{ /* What: Footer Tagline Span Element. Why: The tagline sums up the site in a line. How: This shows it under the mark. */ }
 
 					<p className={ cssModObj.fooSisPar }>More from TechGeek: <span className={ cssModObj.fooSisSpa }><a className={ cssModObj.fooSisAnc } href='https://techgeek.support/'>TechGeek.support</a> <span aria-hidden='true'>·</span> <a className={ cssModObj.fooSisAnc } href='https://techgeek.cards/'>TechGeek.cards</a></span></p>{ /* What: Footer Sister Paragraph Element. Why: TechGeek.dev is one of three sister sites, and a visitor here may want tech support or a greeting card. How: This links to TechGeek.support and TechGeek.cards in the same tab, kept together on one line so a narrow screen breaks after the colon, their dot hidden from screen readers as decoration. */ }
 
@@ -141,7 +141,7 @@ function SitFooCom () : JSX.Element {
 							className={ cssModObj.fooLinAnc }
 
 							to={ pagLinObj.patStr }
-						>{ pagLinObj.labStr }</Link> // What: Footer Link Anchor Element. Why: Each page has its own link. How: This routes to the row's path, labelled with its name.
+						>{ pagLinObj.labStr }</Link> // What: Footer Page Link. Why: Each page has its own link. How: This routes to the row's path, labelled with its name.
 
 
 					))}
@@ -150,7 +150,7 @@ function SitFooCom () : JSX.Element {
 				</nav>
 
 
-				<div className={ cssModObj.fooCopDiv }>{ /* What: Footer Copy Div Element. Why: The copyright and the profile links share the footer's last row. How: This sets them side by side. */ }
+				<div className={ cssModObj.fooCopDiv }>{ /* What: Footer Copyright Div Element. Why: The copyright and the profile links share the footer's last row. How: This stacks the copyright above the profile icons. */ }
 
 
 					<span className={ cssModObj.fooCopSpa }>© { curYeaNum } TechGeek.dev. All rights reserved.</span>{ /* What: Footer Copyright Span Element. Why: The footer ends with the copyright. How: This prints the current year read on each render. */ }
@@ -175,13 +175,13 @@ function SitFooCom () : JSX.Element {
 
 
 								<svg
+									className={ cssModObj.fooIcoSvg }
+
 									fill='currentColor'
-									height='18'
 									viewBox='0 0 24 24'
-									width='18'
 
 									aria-hidden='true'
-								>{ /* What: Profile Mark SVG Element. Why: The platform's mark tells a visitor where the link goes. How: This draws the mark in the link's color, hidden from screen readers since the link is named. */ }
+								>{ /* What: Footer Icon SVG Element. Why: The platform's mark tells a visitor where the link goes. How: This draws the mark in the link's color, hidden from screen readers since the link is named, and lets presses fall through to the link. */ }
 
 
 									<path d={ proLinObj.icoStr } />{ /* What: Profile Mark Path Element. Why: The mark is one path. How: This traces the row's path data. */ }

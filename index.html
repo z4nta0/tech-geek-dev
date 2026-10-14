@@ -142,7 +142,6 @@
 						"url": "https://techgeek.dev/",
 						"email": "contact@techgeek.dev",
 						"jobTitle": "Full Stack Web Developer",
-						"image": "https://techgeek.dev/og-image.png",
 						"sameAs": [
 							"https://github.com/z4nta0",
 							"https://www.linkedin.com/in/gary-s-walton-654739400/"
@@ -172,7 +171,7 @@
 	<body><!-- What: Document Body Element. Why: This holds the site's mount point, the hidden copy of the contact form Netlify reads, and the entry script. How: The mount point stays empty until React renders the site into it. -->
 
 
-		<div id='appMouDiv'></div> <!-- What: App Mount Div Element. Why: React needs one element to render the site into. How: main.tsx renders the app into this id. -->
+		<div id='appMouDiv'></div><!-- What: App Mount Div Element. Why: React needs one element to render the site into. How: main.tsx renders the app into this id. -->
 
 		<form
 			name='contact'
@@ -191,7 +190,7 @@
 				name='name'
 
 				type='text'
-			/><!-- What: Name Input Element. Why: Netlify registers the name field by its name. How: This declares the name text field. -->
+			/><!-- What: Hidden Name Input Element. Why: Netlify registers the name field by its name. How: This declares the name text field. -->
 
 			<label for='hidEmaInp'>Email</label><!-- What: Email Label Element. Why: The email field needs a label for Netlify's form record. How: This labels hidEmaInp. -->
 
@@ -201,7 +200,7 @@
 				name='email'
 
 				type='email'
-			/><!-- What: Email Input Element. Why: Netlify registers the email field by its name and uses it as the notification's reply-to. How: This declares the email field. -->
+			/><!-- What: Hidden Email Input Element. Why: Netlify registers the email field by its name and uses it as the notification's reply-to. How: This declares the email field. -->
 
 			<label for='hidBudInp'>Budget</label><!-- What: Budget Label Element. Why: The budget field needs a label for Netlify's form record. How: This labels hidBudInp. -->
 
@@ -211,7 +210,7 @@
 				name='budget'
 
 				type='text'
-			/><!-- What: Budget Input Element. Why: Netlify registers the budget field by its name. How: This declares the budget text field, which the page fills from its budget select. -->
+			/><!-- What: Hidden Budget Input Element. Why: Netlify registers the budget field by its name. How: This declares the budget text field, which the page fills from its budget select. -->
 
 			<label for='hidMesTex'>Message</label><!-- What: Message Label Element. Why: The message field needs a label for Netlify's form record. How: This labels hidMesTex. -->
 
@@ -219,7 +218,7 @@
 				id='hidMesTex'
 
 				name='message'
-			></textarea><!-- What: Message Textarea Element. Why: Netlify registers the message field by its name. How: This declares the message text area. -->
+			></textarea><!-- What: Hidden Message Textarea Element. Why: Netlify registers the message field by its name. How: This declares the message text area. -->
 
 			<label for='hidBotInp'>Leave this field blank</label><!-- What: Bot Label Element. Why: The honeypot field needs a label for Netlify's form record. How: This labels hidBotInp. -->
 
@@ -229,7 +228,7 @@
 				name='bot-field'
 
 				type='text'
-			/><!-- What: Bot Input Element. Why: Netlify drops any submission that fills its honeypot field. How: This declares the bot-field honeypot named in the form's netlify-honeypot attribute. -->
+			/><!-- What: Hidden Bot Input Element. Why: Netlify drops any submission that fills its honeypot field. How: This declares the bot-field honeypot named in the form's netlify-honeypot attribute. -->
 
 
 		</form>
@@ -241,7 +240,6 @@
 
 
 	</body>
-
 
 
 </html>

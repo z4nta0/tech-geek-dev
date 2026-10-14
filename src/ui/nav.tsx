@@ -91,14 +91,14 @@ function NavBarCom () : JSX.Element {
 	useEffect( () => { // What: Scroll Listener Effect. Why: The scrolled flag has to follow the page as it moves. How: This listens for scrolling and removes the listener on unmount.
 
 
-		const onScrFun = () => setIsaScrBoo( window.scrollY > 24 ); // What: On Scroll Function. Why: The bar counts as scrolled once the page has moved more than 24px. How: This sets the flag from the scroll position.
+		const onScrWinFun = () => setIsaScrBoo( window.scrollY > 24 ); // What: On Scroll Window Function. Why: The bar counts as scrolled once the page has moved more than 24px. How: This sets the flag from the scroll position.
 
 
-		window.addEventListener( 'scroll', onScrFun, { passive : true } ); // What: Scroll Listener Registration. Why: The flag updates as the visitor scrolls. How: This listens passively, so it never delays scrolling.
+		window.addEventListener( 'scroll', onScrWinFun, { passive : true } ); // What: Scroll Listener Registration. Why: The flag updates as the visitor scrolls. How: This listens passively, so it never delays scrolling.
 
 
 
-		return () => window.removeEventListener( 'scroll', onScrFun ); // What: Scroll Listener Cleanup. Why: A listener left behind would update a bar that no longer exists. How: This removes it when the bar unmounts.
+		return () => window.removeEventListener( 'scroll', onScrWinFun ); // What: Scroll Listener Cleanup. Why: A listener left behind would update a bar that no longer exists. How: This removes it when the bar unmounts.
 
 
 	}, [] ); // What: Effect Dependency Array. Why: The listener only needs adding once. How: This runs the effect on mount only.
@@ -124,8 +124,6 @@ function NavBarCom () : JSX.Element {
 
 
 	}, [ curLocObj ] ); // What: Effect Dependency Array. Why: The drawer closes on every change of page. How: curLocObj is a new object for each navigation, even to the page already showing, so the effect runs after each one.
-
-
 
 	useEffect( () => { // What: Open Menu Effect. Why: The open menu sits over a dimmed page, so keyboard and screen reader users should stay in the bar until it closes, and it needs the usual ways out. How: While the menu is open, this makes the bar's siblings inert and listens for Escape and resizing, and its cleanup undoes both.
 
@@ -156,6 +154,7 @@ function NavBarCom () : JSX.Element {
 
 
 		const onResWinFun = () => { if ( !togButEle.getClientRects().length ) setMenOpeBoo( false ); }; // What: On Resize Window Function. Why: A screen widened past the phone layout hides the toggle, which would leave the page inert with no way to close the menu. How: This closes the menu once the toggle has no box.
+
 
 
 		for ( const sibCurEle of sibEleArr ) sibCurEle.setAttribute( 'inert', '' ); // What: Sibling Inert Loop. Why: Content under the scrim shouldn't take focus or be read while the menu is open. How: This marks each sibling inert, removing it from the tab order and the accessibility tree.
@@ -212,7 +211,7 @@ function NavBarCom () : JSX.Element {
 
 				className={ cssModObj.navBarHed }
 
-				data-nav-bar-scrolled={ isaScrBoo || undefined }
+				data-nav-bar-scrolled={ isaScrBoo || undefined } // What: Nav Bar Scrolled Flag. Why: The bar firms up and casts its shadow once the page moves under it. How: This marks the bar while isaScrBoo is true, and drops the attribute otherwise.
 			>{ /* What: Navigation Bar Header Element. Why: The bar sits at the top of every page. How: This holds the bar's row and the phone drawer, marked with data-nav-bar-scrolled once the page moves, which its module styles. */ }
 
 
@@ -223,36 +222,37 @@ function NavBarCom () : JSX.Element {
 						className={ cssModObj.braLogAnc }
 
 						to='/'
-					>{ /* What: Brand Logo Anchor Element. Why: The mark and wordmark take a visitor home from any page. How: This routes to the root path. */ }
+					>{ /* What: Brand Logo Navigation Link. Why: The mark and wordmark take a visitor home from any page. How: This routes to the root path. */ }
 
 
 						<svg
+							className={ cssModObj.braMarSvg }
+
 							fill='none'
-							height='28'
 							viewBox='0 0 28 28'
-							width='28'
 
 							aria-hidden='true'
-						>{ /* What: Hexagon Mark SVG Element. Why: The site's hexagon mark leads the wordmark. How: This draws the outlined hexagon, its filled core, and its center dot, hidden from screen readers since the wordmark names the link. */ }
+						>{ /* What: Brand Mark SVG Element. Why: The site's hexagon mark leads the wordmark. How: This draws the outlined hexagon, its filled core, and its center dot, hidden from screen readers since the wordmark names the link, and lets presses fall through to the link. */ }
 
 
 							<polygon
 								fill='none'
 								points='14,2 26,8 26,20 14,26 2,20 2,8'
-								stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
+								stroke='var( --acc-mai-col )' // Accent Main Color = #F26419
 								strokeWidth='2'
 							/>{ /* What: Outer Hexagon Polygon Element. Why: The mark's outline is an orange hexagon. How: This traces it around the whole mark. */ }
 
 							<polygon
-								fill='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
-								opacity='0.6'
+								style={{ opacity : 'var( --cdn-pow-002-rec )' }} // Core-Design-Number to the Power of 2 Reciprocal ~= 0.570
+
+								fill='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
 								points='14,7 21,11 21,17 14,21 7,17 7,11'
-							/>{ /* What: Inner Hexagon Polygon Element. Why: A softer blue hexagon fills the mark's center. How: This draws it at 60% strength inside the outline. */ }
+							/>{ /* What: Inner Hexagon Polygon Element. Why: A softer blue hexagon fills the mark's center. How: This draws it at about 57% strength inside the outline. */ }
 
 							<circle
 								cx='14'
 								cy='14'
-								fill='var(--acc-mai-col)' // Accent Main Color = #F26419
+								fill='var( --acc-mai-col )' // Accent Main Color = #F26419
 								r='3'
 							/>{ /* What: Center Dot Circle Element. Why: An orange dot finishes the mark's center. How: This draws it in the middle of the hexagons. */ }
 
@@ -286,7 +286,7 @@ function NavBarCom () : JSX.Element {
 								className={ cssModObj.barLinAnc }
 
 								to={ pagLinObj.patStr }
-							>{ pagLinObj.labStr }</NavLink> // What: Bar Link Anchor Element. Why: Each page has its own link in the bar. How: This routes to the row's path, labelled with its name, and NavLink sets aria-current on the one whose route is showing, which its module styles.
+							>{ pagLinObj.labStr }</NavLink> // What: Bar Page Navigation Link. Why: Each page has its own link in the bar. How: This routes to the row's path, labelled with its name, and NavLink sets aria-current on the one whose route is showing, which its module styles.
 
 
 						))}
@@ -295,11 +295,14 @@ function NavBarCom () : JSX.Element {
 					</nav>
 
 
+
 					<Link
 						className={ cssModObj.barHirAnc }
 
 						to='/contact'
-					>Hire Me</Link>{ /* What: Bar Hire Anchor Element. Why: The bar's one call to action leads to the Contact page. How: This routes there as a button without reloading the site. */ }
+					>Hire Me</Link>{ /* What: Bar Hire Link. Why: The bar's one call to action leads to the Contact page. How: This routes there as a button without reloading the site. */ }
+
+
 
 					<button
 						ref={ togButRef }
@@ -322,10 +325,11 @@ function NavBarCom () : JSX.Element {
 				</div>
 
 
+
 				<div
 					className={ cssModObj.menDraDiv }
 
-					data-mobile-menu-open={ menOpeBoo || undefined }
+					data-mobile-menu-open={ menOpeBoo || undefined } // What: Mobile Menu Open Flag. Why: The drawer slides into view only while the menu is open. How: This marks the drawer while menOpeBoo is true, and drops the attribute otherwise.
 				>{ /* What: Menu Drawer Div Element. Why: On phones the page links and the button move into a drawer under the bar, with a few extras so it doesn't feel bare. How: This holds them, marked with data-mobile-menu-open while the menu is open, which its module styles to slide the drawer into view and bring its rows in one after another. */ }
 
 
@@ -334,6 +338,8 @@ function NavBarCom () : JSX.Element {
 
 						style={ { '--men-ite-ind' : 0 } as CSSProperties } // What: Menu Item Index. Why: The drawer's rows arrive one after another, the label first. How: This hands the label its place, which the stylesheet multiplies into its delay. // What: Type Assertion Note. Why: React's style type doesn't list custom properties. How: The stylesheet reads this one by name.
 					>{ /* What: Hero Label Div Element. Why: The drawer opens on Home's availability label, so a visitor on any page sees z4nta0 is taking on work. How: This shows the pulsing dot beside the line, the same pill Home's hero shows. */ }
+
+
 						<span
 							className={ cssModObj.pulDotSpa }
 
@@ -341,8 +347,9 @@ function NavBarCom () : JSX.Element {
 						/>{ /* What: Pulse Dot Span Element. Why: A pulsing dot signals availability. How: This draws it, hidden from screen readers as decoration. */ }
 
 						<span className={ cssModObj.avaTexSpa }>Available for freelance work</span>{ /* What: Availability Text Span Element. Why: The label's words say what the dot means. How: This shows them in the mono font. */ }
-					</div>
 
+
+					</div>
 
 					<nav
 						className={ cssModObj.menLinNav }
@@ -362,7 +369,7 @@ function NavBarCom () : JSX.Element {
 								style={ { '--men-ite-ind' : linIndNum + 1 } as CSSProperties } // What: Menu Item Index. Why: Each link arrives a step after the one above it. How: This hands the link its place after the label. // What: Type Assertion Note. Why: React's style type doesn't list custom properties. How: The stylesheet reads this one by name.
 
 								to={ pagLinObj.patStr }
-							>{ pagLinObj.labStr }</NavLink> // What: Drawer Link Anchor Element. Why: Each page has its own link in the drawer. How: This routes to the row's path, labelled with its name, and NavLink sets aria-current on the one whose route is showing, which its module styles.
+							>{ pagLinObj.labStr }</NavLink> // What: Drawer Page Navigation Link. Why: Each page has its own link in the drawer. How: This routes to the row's path, labelled with its name, and NavLink sets aria-current on the one whose route is showing, which its module styles.
 
 
 						))}
@@ -371,13 +378,14 @@ function NavBarCom () : JSX.Element {
 					</nav>
 
 
+
 					<Link
 						className={ cssModObj.draHirAnc }
 
 						style={ { '--men-ite-ind' : PAG_LIN_ARR.length + 1 } as CSSProperties } // What: Menu Item Index. Why: The button arrives after the last link. How: This hands it the next place. // What: Type Assertion Note. Why: React's style type doesn't list custom properties. How: The stylesheet reads this one by name.
 
 						to='/contact'
-					>Hire Me</Link>{ /* What: Drawer Hire Anchor Element. Why: The drawer repeats the bar's call to action. How: This routes to the Contact page as a button without reloading the site, and the menu closes as the page changes. */ }
+					>Hire Me</Link>{ /* What: Drawer Hire Link. Why: The drawer repeats the bar's call to action. How: This routes to the Contact page as a button without reloading the site, and the menu closes as the page changes. */ }
 
 
 
@@ -441,7 +449,7 @@ function NavBarCom () : JSX.Element {
 							href='mailto:contact@techgeek.dev'
 						>contact@techgeek.dev</a>{ /* What: Menu Email Anchor Element. Why: Email is the quickest way to reach z4nta0 without the form. How: This opens a new message to the contact address. */ }
 
-						<p className={ cssModObj.menTagPar }>Building the web, one commit at a time.</p>{ /* What: Menu Tagline Paragraph Element. Why: The menu ends on the site's tagline, as the footer does. How: This shows it small and quiet. */ }
+						<p className={ cssModObj.menTagPar }>Building the web, one commit at a time.</p>{ /* What: Menu Tagline Paragraph Element. Why: The menu ends on the site's tagline, as the footer does. How: This shows it quiet, in italics. */ }
 
 
 					</div>

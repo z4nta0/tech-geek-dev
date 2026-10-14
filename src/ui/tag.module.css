@@ -5,9 +5,10 @@
  * tag.module.css = Tag Label Module
  *
  * @summary
- * Styles for TagLabCom: a small pill in the mono font, with one modifier for
- * each of its two sizes and three colors. The modifiers are named after the
- * values TagLabCom's props take, so the component reads them by those names.
+ * Styles for TagLabCom: a small pill in the mono font and the site's blue,
+ * with one modifier for each of its two sizes. TagLabCom maps each size its
+ * props take ('sm', 'md') to its modifier (--small, --medium) through an
+ * explicit comparison.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -15,19 +16,22 @@
 
 
 
-.tagLabSpa { /* What: Tag Label Span. Why: A technology's name reads as a compact pill. How: This sets it inline in the mono font, rounded, with its letters a little apart and never wrapping. */
+.tagLabSpa { /* What: Tag Label Span. Why: A technology's name reads as a compact pill. How: This sets it inline in the mono font and the site's blue, a pale blue fill inside a blue border with dark blue text, rounded, with its letters a little apart and never wrapping. */
 
 
 	align-items    : center;
-	border-radius  : var( --rad-bor-xsm ); /* Radius Border Extra Small ~= 3.571px */
+	background     : var( --acs-tin-col );                            /* Accent-Secondary Tint Color = #B8D9EC */
+	border         : var( --bor-wid-bas ) solid var( --acc-sec-col ); /* Border Width Base ~= 1.160px, Accent Secondary Color = #7DB9D8 */
+	border-radius  : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.572px */
+	color          : var( --acs-dar-col );                            /* Accent-Secondary Dark Color ~= #126186 */
 	display        : inline-flex;
-	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
+	font-family    : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
 	letter-spacing : 0.04em;
 	white-space    : nowrap;
 
 
 }
-.tagLabSpa--small { /* What: Small Tag Label Span. Why: Project cards fit several tags in a row. How: This sets the smaller text and padding. */
+.tagLabSpa--small { /* What: Small Tag Label Span. Why: Project cards fit several tags in a row. How: This sets the tighter padding, the text staying at the base size. */
 
 
 	font-size : var( --fon-siz-bas );                      /* Font Size Base = 11px */
@@ -35,38 +39,11 @@
 
 
 }
-.tagLabSpa--medium { /* What: Medium Tag Label Span. Why: The About page's skills grid shows larger tags. How: This sets the larger text and padding. */
+.tagLabSpa--medium { /* What: Medium Tag Label Span. Why: The About page's skills grid shows larger tags. How: This sets the roomier padding, the text staying at the base size. */
 
 
 	font-size : var( --fon-siz-bas );                      /* Font Size Base = 11px */
 	padding   : var( --spa-ver-m04 ) var( --spa-hor-m01 ); /* Spacing Vertical Base Minus 4 ~= 4.732px, Spacing Horizontal Base Minus 1 = 11px */
-
-
-}
-.tagLabSpa--neutral { /* What: Neutral Tag Label Span. Why: A tag with no color of its own stays quiet. How: This sets it on the warm ivory with a matching border. */
-
-
-	background : var( --bac-sun-col );                            /* Background Sunken Color = #EDE6D8 */
-	border     : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
-	color      : var( --tex-sec-col );                            /* Text Secondary Color = #3D3D5C */
-
-
-}
-.tagLabSpa--blue { /* What: Blue Tag Label Span. Why: Technologies show in the site's blue. How: This sets the pale blue fill, blue border, and dark blue text. */
-
-
-	background : var( --acs-tin-col );                            /* Accent-Secondary Tint Color = #B8D9EC */
-	border     : var( --bor-wid-bas ) solid var( --acc-sec-col ); /* Border Width Base ~= 1.160px, Accent Secondary Color = #7DB9D8 */
-	color      : var( --acs-dar-col );                            /* Accent-Secondary Dark Color ~= #126186 */
-
-
-}
-.tagLabSpa--orange { /* What: Orange Tag Label Span. Why: A tag can stand out in the site's accent. How: This sets the pale orange fill, orange border, and dark orange text. */
-
-
-	background : var( --acc-tin-col );                            /* Accent Tint Color = #FDDCC8 */
-	border     : var( --bor-wid-bas ) solid var( --acc-mai-col ); /* Border Width Base ~= 1.160px, Accent Main Color = #F26419 */
-	color      : var( --acc-dar-col );                            /* Accent Dark Color ~= #bd3000 */
 
 
 }

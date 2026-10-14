@@ -16,9 +16,9 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * section-header.tsx = Section Header
  *
  * @summary
- * The heading block that opens most sections: an optional small label in
- * the mono font with a short rule before it, the section's heading, and an
- * optional subtitle, aligned to the left or centered.
+ * The heading block that opens most sections: a small label in the mono
+ * font with a short rule before it, the section's heading, and an optional
+ * subtitle, aligned to the left or centered.
  *
  * Sections:
  *  - Components
@@ -32,7 +32,7 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
 
 // #region Components
 
-type ShcProTyp = { aliPosStr? : 'center' | 'left', labTexStr? : string, subTexStr? : string, titTexStr : string }; // What: Section-Header-Component Props Type. Why: Every section header has a heading, and some add a label, a subtitle, or centering. How: This types SecHeaCom's props.
+type ShcProTyp = { aliPosStr? : 'center' | 'left', labTexStr : string, subTexStr? : string, titTexStr : string }; // What: Section-Header-Component Props Type. Why: Every section header has a label and a heading, and some add a subtitle or centering. How: This types SecHeaCom's props.
 
 // #region SecHeaCom
 
@@ -40,8 +40,8 @@ type ShcProTyp = { aliPosStr? : 'center' | 'left', labTexStr? : string, subTexSt
  * SecHeaCom = Section Header Component
  *
  * @summary
- * Renders a section's heading block: the label with its decorative rule when
- * one is given, the heading as an h2, and the subtitle when one is given.
+ * Renders a section's heading block: the label with its decorative rule, the
+ * heading as an h2, and the subtitle when one is given.
  * The block is left-aligned unless the section asks for it centered.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -49,7 +49,7 @@ type ShcProTyp = { aliPosStr? : 'center' | 'left', labTexStr? : string, subTexSt
  * @param props.aliPosStr - Alignment Position String: 'left' or 'center',
  *                          defaulting to 'left'.
  * @param props.labTexStr - Label Text String: The small label above the
- *                          heading, left out when not given.
+ *                          heading.
  * @param props.subTexStr - Subtitle Text String: The line under the heading,
  *                          left out when not given.
  * @param props.titTexStr - Title Text String: The section's heading.
@@ -72,21 +72,15 @@ function SecHeaCom ( { aliPosStr = 'left', labTexStr, subTexStr, titTexStr } : S
 		<div className={` ${ cssModObj.secHeaDiv }   ${ aliPosStr === 'center' ? cssModObj.secHeaDivCenter : '' } `}>{ /* What: Section Header Div Element. Why: The label, heading, and subtitle read as one block. How: This stacks them, centered when the section asks. */ }
 
 
-			{ labTexStr && ( // What: Label Presence Check. Why: Not every section has a label. How: This renders the label only when one is given.
+			<span className={ cssModObj.secLabSpa }>{ /* What: Section Label Span Element. Why: A small label names the section before its heading. How: This shows the label after its decorative rule. */ }
+				<span
+					className={ cssModObj.labLinSpa }
 
+					aria-hidden='true'
+				/>{ /* What: Label Line Span Element. Why: A short rule leads into the label. How: This draws the rule, hidden from screen readers as decoration. */ }
 
-				<span className={ cssModObj.secLabSpa }>{ /* What: Section Label Span Element. Why: A small label names the section before its heading. How: This shows the label after its decorative rule. */ }
-					<span
-						className={ cssModObj.labLinSpa }
-
-						aria-hidden='true'
-					/>{ /* What: Label Line Span Element. Why: A short rule leads into the label. How: This draws the rule, hidden from screen readers as decoration. */ }
-
-					{ labTexStr }
-				</span>
-
-
-			) }
+				{ labTexStr }
+			</span>
 
 			<h2 className={ cssModObj.secTitHea }>{ titTexStr }</h2>{ /* What: Section Title Heading Element. Why: Every section is introduced by its heading. How: This shows the title as an h2. */ }
 

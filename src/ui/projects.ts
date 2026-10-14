@@ -7,7 +7,7 @@ import emlScrUrl from '../assets/images/ease-my-life-website.webp';     // What:
 import hadScrUrl from '../assets/images/hair-designs-website.webp';     // What: Hair-Designs Screenshot URL. Why: The Hair Designs project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
 import rerScrUrl from '../assets/images/reese-roofing-website.webp';    // What: Reese-Roofing Screenshot URL. Why: The Reese Roofing project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
 import sasScrUrl from '../assets/images/seal-and-shield-website.webp';  // What: Seal-And-Shield Screenshot URL. Why: The Seal and Shield project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
-import tbbScrUrl from '../assets/images/the-bernie-bears-website.webp'; // What: The-Bernie-Bears Screenshot URL. Why: The The Bernie Bears project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
+import tbbScrUrl from '../assets/images/the-bernie-bears-website.webp'; // What: The-Bernie-Bears Screenshot URL. Why: The Bernie Bears project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
 import tegScrUrl from '../assets/images/tech-geek-website.webp';        // What: Tech-Geek Screenshot URL. Why: The Tech Geek project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
 import totScrUrl from '../assets/images/tonys-toppers-website.webp';    // What: Tonys-Toppers Screenshot URL. Why: The Tony's Toppers project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
 
@@ -20,13 +20,13 @@ import totScrUrl from '../assets/images/tonys-toppers-website.webp';    // What:
  *
  * @summary
  * The list of projects the site showcases, in the order the Work page shows
- * them, with the type every record follows. Home shows the first three
- * featured ones, and the Work page shows them all behind its tag filter. Home
- * and About also show two counts taken from the list, the projects shipped
- * and the clients served, so both grow as projects are added; the pages add
- * a plus to each, since z4nta0's older projects that are no longer online
- * still count. Each record's screenshot comes from src/assets/images,
- * rendered there by npm run images.
+ * them, with the type every record follows. Home shows four featured ones,
+ * picked at random on each visit, and the Work page shows them all behind its
+ * tag filter. Home and About also show two counts taken from the list, the
+ * projects shipped and the clients served, so both grow as projects are added;
+ * the pages add a plus to each, since z4nta0's older projects that are no
+ * longer online still count. Each record's screenshot comes from
+ * src/assets/images, rendered there by npm run images.
  *
  * Sections:
  *  - Types
@@ -146,7 +146,7 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : true,
-		desStr : 'A website for a young man with down syndrome who sells hand made crafts.',
+		desStr : 'A website for a young man with Down syndrome who sells handmade crafts.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/tonys-toppers',
 		ideStr : 'proj-04',

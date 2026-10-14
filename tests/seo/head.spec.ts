@@ -20,19 +20,19 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
  * Checks the site's SEO setup in whichever engine the project runs. Home,
  * Work, About, and Contact are all indexed: each has its own title, a
  * description of 100 to 125 characters, and one canonical address on this
- * domain, while the 404 page carries noindex and no canonical link. Every
- * page has exactly one description, index.html's, which every page but Home
- * swaps for its own, names z4nta0 as its author, and has one h1, and moving
+ * domain, while the 404 page carries noindex and no canonical link. Every page
+ * has exactly one description, index.html's, which Work, About, and Contact
+ * swap for their own, names z4nta0 as its author, and has one h1, and moving
  * between pages swaps the tags rather than piling them up. The raw page, read
- * without running the site's script the way link checkers read it, carries
- * the home page's full title and description. The structured data describes
- * z4nta0 as a Person, with the GitHub and LinkedIn profiles the footer links
- * to and the email the Contact page offers, and this domain as a WebSite
- * z4nta0 wrote. The social preview tags are complete, use absolute addresses,
- * and match the home page's title and description; the card they point at is
- * a 1,200x630 PNG under 300 KB; and every icon the head links to is served,
- * the PNGs at the size their links promise. robots.txt lets every crawler in
- * and names the sitemap, which lists the four indexed pages. Adapted from
+ * without running the site's script the way link checkers read it, carries the
+ * home page's full title and description. The structured data describes z4nta0
+ * as a Person, with the GitHub and LinkedIn profiles the footer links to and
+ * the email the Contact page offers, and this domain as a WebSite z4nta0
+ * wrote. The social preview tags are complete, use absolute addresses, and
+ * match the home page's title and description; the card they point at is a
+ * 1,200x630 PNG under 300 KB; and every icon the head links to is served, the
+ * PNGs at the size their links promise. robots.txt lets every crawler in and
+ * names the sitemap, which lists the four indexed pages. Adapted from
  * the-bernie-bears.
  *
  * Sections:
@@ -49,7 +49,7 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
 // #region Constants
 
 const HOM_DES_STR = 'Portfolio of z4nta0, a full stack web developer building fast, accessible websites and web apps for small businesses.'; // What: Home Description String. Why: The raw page and the social tags carry the home page's description. How: This is the exact text they should hold.
-const LIV_URL_STR = 'https://techgeek.dev/';                                                                                                  // What: Live URL String. Why: The canonical links, structured data, social tags, and sitemap all name the live site. How: This is its address.
+const LIV_URL_STR = 'https://techgeek.dev/';                                                                                                 // What: Live URL String. Why: The canonical links, structured data, social tags, and sitemap all name the live site. How: This is its address.
 
 
 
@@ -139,7 +139,7 @@ const SOC_KEY_ARR = [ // What: Social Key Array. Why: The social preview rule li
  *
  * @summary
  * Checks that the page showing now has the head its row describes: its exact
- * title, exactly one description, the brand as author, and one h1. A page
+ * title, exactly one description, z4nta0 as author, and one h1. A page
  * with a canonical address has that one canonical link, a description of 100
  * to 125 characters, and no robots tag; a page without one has a noindex
  * robots tag and no canonical link. Counting the tags also catches a
@@ -167,7 +167,7 @@ async function heaCheFun ( curPagObj : Page, heaRowObj : typeof PAG_HEA_ARR[ num
 
 	expect( heaRowObj.titStr.length ).toBeLessThanOrEqual( 60 ); // What: Title Length Assertion. Why: Search listings and link cards cut long titles off. How: This keeps it to 60 characters.
 
-	await expect( curPagObj.locator( 'meta[name="author"]' ) ).toHaveAttribute( 'content', 'z4nta0' ); // What: Author Assertion. Why: A real brand's site names the brand as its author. How: This checks the author tag.
+	await expect( curPagObj.locator( 'meta[name="author"]' ) ).toHaveAttribute( 'content', 'z4nta0' ); // What: Author Assertion. Why: The site names z4nta0, who built and owns it, as its author. How: This checks the author tag.
 
 	await expect( curPagObj.locator( 'meta[name="description"]' ) ).toHaveCount( 1 ); // What: Single Description Assertion. Why: Two descriptions leave search engines to guess. How: This checks there's exactly one, index.html's, on every page.
 
@@ -244,7 +244,10 @@ test( 'moving between pages swaps their head tags', async ( { page : curPagObj }
 	for ( const heaRowObj of PAG_HEA_ARR.slice( 1, 4 ) ) { // What: Footer Walk Loop. Why: Each page should take over the head from the one before. How: This follows the footer's link to Work, About, and Contact in turn.
 
 
-		await curPagObj.getByRole( 'navigation', { name : 'Footer navigation' } ).getByRole( 'link', { exact : true, name : heaRowObj.patStr.slice( 1, 2 ).toUpperCase() + heaRowObj.patStr.slice( 2 ) } ).click(); // What: Footer Link Click. Why: Visitors move between pages without reloading. How: This clicks the footer link named after the page's path.
+		const linNamStr = heaRowObj.patStr.slice( 1, 2 ).toUpperCase() + heaRowObj.patStr.slice( 2 ); // What: Link Name String. Why: The footer names each page the way its path reads, capitalized. How: This capitalizes the path's first letter and drops its slash.
+
+
+		await curPagObj.getByRole( 'navigation', { name : 'Footer navigation' } ).getByRole( 'link', { exact : true, name : linNamStr } ).click(); // What: Footer Link Click. Why: Visitors move between pages without reloading. How: This clicks the footer link named after the page's path.
 
 		await expect( curPagObj ).toHaveURL( heaRowObj.patStr ); // What: Destination Assertion. Why: The head is only checked once the new page shows. How: This waits for the address to change.
 
@@ -273,7 +276,6 @@ test( 'the structured data describes z4nta0 and matches the pages', async ( { pa
 	type LdjNodTyp = { '@id'? : string, '@type'? : string, author? : { '@id' : string }, email? : string, name? : string, sameAs? : string[], url? : string }; // What: Linked-Data-JSON Node Type. Why: The checks read a handful of each node's fields. How: This types the fields they use.
 
 	const ldjGraArr : LdjNodTyp[] = JSON.parse( ldjTexStr )[ '@graph' ] ?? []; // What: Linked-Data-JSON Graph Array. Why: The person and the site are separate nodes, each checked on its own. How: This parses the text and reads its graph.
-
 
 	const perNodObj = ldjGraArr.find( ( graNodObj ) => graNodObj[ '@type' ] === 'Person' ) ?? {};  // What: Person Node Object. Why: z4nta0's details are checked together. How: This finds the person node, or an empty object.
 	const webNodObj = ldjGraArr.find( ( graNodObj ) => graNodObj[ '@type' ] === 'WebSite' ) ?? {}; // What: WebSite Node Object. Why: This site's details are checked together. How: This finds its node, or an empty object.

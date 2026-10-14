@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './home.module.css'; // What: CSS Module Object. Why: The home page's own hero, stats, services, and banner styles live in its own module. How: This maps each class name in home.module.css to its hashed module class.
+import cssModObj from './home.module.css'; // What: CSS Module Object. Why: The home page's own hero, stats, featured projects, services, and banner styles live in its own module. How: This maps each class name in home.module.css to its hashed module class.
 
 
 import { CLI_COU_NUM } from '../../ui/projects.ts';        // What: Client Count Number. Why: The stats count the clients served. How: This is the count taken from the project list.
@@ -277,24 +277,32 @@ const SKI_TIC_ARR = [ // What: Skill Ticker Array. Why: The hero's ticker scroll
 
 ];
 
+
+
 const STA_REC_ARR = [ // What: Stat Record Array. Why: The stats strip shows the same four figures every visit. How: Each row holds a figure and its label.
 
 
-	{ labStr : 'Years Experience',    valStr : '10+'                }, // What: Years Stat Row. Why: z4nta0 has been a developer since 2013. How: This shows ten plus years.
+	{ labStr : 'Years Experience',    valStr : '10+'               }, // What: Years Stat Row. Why: z4nta0 has been a developer since 2013. How: This shows ten plus years.
 	{ labStr : 'Projects Shipped',    valStr : `${ SHI_COU_NUM }+` }, // What: Projects Stat Row. Why: The count should grow as projects are added, and older projects that are no longer online still count. How: This shows the project list's count with a plus.
 	{ labStr : 'Happy Clients',       valStr : `${ CLI_COU_NUM }+` }, // What: Clients Stat Row. Why: The count should grow as client projects are added, and earlier clients whose sites are no longer online still count. How: This shows the client count with a plus.
-	{ labStr : 'Client Satisfaction', valStr : '100%'               }  // What: Satisfaction Stat Row. Why: Every client has been satisfied. How: This shows one hundred percent.
+	{ labStr : 'Client Satisfaction', valStr : '100%'              }  // What: Satisfaction Stat Row. Why: Every client has been satisfied. How: This shows one hundred percent.
 
 
 ];
+
+
+
+const TIC_COP_NUM = 4; // What: Ticker Copy Number. Why: The strip has to stay full while it slides one set's width, and one set is about 415px to 428px, depending on the browser, against a pitch column of up to about 927px, so it needs the column plus one set, a little over three sets. How: This repeats the skill list four times, and the strip's keyframe slides it by a quarter of its width, so the two have to change together.
+
+
+
+const TIC_ITE_ARR = Array.from( Array( TIC_COP_NUM ).keys() ).flatMap( ( copIndNum ) => SKI_TIC_ARR.map( ( skiNamStr ) => ( { copIndNum, skiNamStr } ) ) ); // What: Ticker Item Array. Why: The strip shows the skill list several times over so its loop has no seam. How: This lists every skill once per copy, each with its copy's index, which the strip uses to key the items and hide the repeats from screen readers.
 
 // #endregion Constants
 
 
 
 // #region Helpers
-
-
 
 // #region ranPicFun
 
@@ -342,7 +350,7 @@ function ranPicFun< T > ( souRecArr : readonly T[], picCouNum : number ) : T[] {
 
 
 
-	return shuRecArr.slice( 0, picCouNum );
+	return shuRecArr.slice( 0, picCouNum ); // What: Picked Records. Why: Only the requested number of items is wanted. How: This keeps the first picCouNum items of the shuffled copy.
 
 
 }
@@ -362,10 +370,10 @@ function ranPicFun< T > ( souRecArr : readonly T[], picCouNum : number ) : T[] {
  *
  * @summary
  * Renders the home page. The hero pairs the pitch, its two buttons, and a
- * ticker that scrolls SKI_TIC_ARR twice over, so the loop has no seam, with
- * a code window and a floating badge, all decoration hidden from screen
- * readers. Below it come the stats from STA_REC_ARR, four featured
- * projects picked at random with a link to the rest, a card per service in
+ * ticker that scrolls SKI_TIC_ARR four times over, so the loop has no seam,
+ * with a code window and a floating badge, all decoration hidden from screen
+ * readers. Below it come the stats from STA_REC_ARR, four featured projects
+ * picked at random with a link to the rest, a card per service in
  * SER_CAR_ARR, and a banner leading to the Contact page.
  *
  * It also sets the page's canonical address, which React moves into the
@@ -411,9 +419,9 @@ function HomPagCom () : JSX.Element {
 
 
 					<GeoBacCom
-						patOpaNum={ 0.18 }
+						patOpaStr='var( --cdn-pow-006-rec )' // Core-Design-Number to the Power of 6 Reciprocal ~= 0.185
 						patVarStr='circuit'
-					/>{ /* What: Hero Geometric Background Component. Why: A faint circuit sits behind the hero. How: This draws it at 18% strength. */ }
+					/>{ /* What: Geometric Background Component. Why: A faint circuit sits behind the hero. How: This draws it at about 19% strength. */ }
 
 
 
@@ -435,13 +443,15 @@ function HomPagCom () : JSX.Element {
 
 
 
-					<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The pitch and the code window sit side by side in the page's centered column. How: This lays out the two columns. */ }
+					<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The pitch and the code window sit side by side in the page's centered column. How: This lays out the two columns, stacking them on a phone. */ }
 
 
 						<div className={ cssModObj.herConDiv }>{ /* What: Hero Content Div Element. Why: The pitch reads as one column. How: This stacks the label, heading, line, buttons, and ticker. */ }
 
 
 							<div className={ cssModObj.herLabDiv }>{ /* What: Hero Label Div Element. Why: The label says z4nta0 is taking on work. How: This shows a pulsing dot beside the line. */ }
+
+
 								<span
 									className={ cssModObj.pulDotSpa }
 
@@ -449,13 +459,15 @@ function HomPagCom () : JSX.Element {
 								/>{ /* What: Pulse Dot Span Element. Why: A pulsing dot signals availability. How: This draws it, hidden from screen readers as decoration. */ }
 
 								<span className={ cssModObj.avaTexSpa }>Available for freelance work</span>{ /* What: Availability Text Span Element. Why: The label's words say what the dot means. How: This shows them in the mono font. */ }
+
+
 							</div>
 
 							<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up what z4nta0 does. How: This sets I Build Digital Experiences over two lines, with Digital in the accent and a closing dot. */ }
 								I Build <span className={ cssModObj.titAccSpa }>Digital</span>
-								<br />
+								<br />{ /* What: Title Break Element. Why: The heading sets Experiences on a line of its own. How: This breaks the line after Digital. */ }
 								Experiences
-								<span className={ cssModObj.titDotSpa }>.</span>
+								<span className={ cssModObj.titDotSpa }>.</span>{ /* What: Title Dot Span Element. Why: The heading ends on an orange full stop. How: This shows the dot in the dark accent. */ }
 							</h1>
 
 							<p className={ cssModObj.herSubPar }>{ /* What: Hero Subtitle Paragraph Element. Why: A line under the heading says what kind of work this is. How: This describes the full-stack work for local businesses. */ }
@@ -471,7 +483,7 @@ function HomPagCom () : JSX.Element {
 									className={ cssModObj.butPriAnc }
 
 									to='/work'
-								>{ /* What: Button Primary Anchor Element. Why: Most visitors want to see the work first. How: This routes to the Work page with an arrow. */ }
+								>{ /* What: View My Work Link. Why: Most visitors want to see the work first. How: This routes to the Work page with an arrow. */ }
 
 
 									View My Work
@@ -500,7 +512,7 @@ function HomPagCom () : JSX.Element {
 									className={ cssModObj.butSecAnc }
 
 									to='/contact'
-								>Get In Touch</Link>{ /* What: Button Secondary Anchor Element. Why: A visitor ready to talk can go straight to Contact. How: This routes there as the secondary button. */ }
+								>Get In Touch</Link>{ /* What: Get In Touch Link. Why: A visitor ready to talk can go straight to Contact. How: This routes there as the secondary button. */ }
 
 
 							</div>
@@ -512,13 +524,15 @@ function HomPagCom () : JSX.Element {
 								<div className={ cssModObj.ticInnDiv }>{ /* What: Ticker Inner Div Element. Why: The row moves as one strip. How: This holds every item and slides it along. */ }
 
 
-									{ [ ...SKI_TIC_ARR, ...SKI_TIC_ARR ].map( ( skiNamStr, skiIndNum ) => ( // What: Ticker Item Map Call. Why: The strip repeats the list once, so its loop has no seam. How: This renders each technology twice over, keyed by position since each name appears twice.
+									{ TIC_ITE_ARR.map( ( { copIndNum, skiNamStr } ) => ( // What: Ticker Item Map Call. Why: The strip repeats the list so its loop has no seam. How: This renders every technology once per copy in TIC_ITE_ARR.
 
 
 										<span
-											key={ skiIndNum }
+											key={ `${ copIndNum }-${ skiNamStr }` } // What: Ticker Item Key. Why: Each name appears once per copy, so the name alone isn't unique. How: This joins the copy's index to the name.
 
 											className={ cssModObj.ticIteSpa }
+
+											aria-hidden={ copIndNum > 0 || undefined } // What: Repeat Copy Hiding. Why: A screen reader should hear the skills once, not four times. How: This hides every copy after the first and leaves the attribute off the first.
 										>{ skiNamStr }</span> // What: Ticker Item Span Element. Why: Each technology is one item in the strip. How: This shows its name.
 
 
@@ -571,32 +585,35 @@ function HomPagCom () : JSX.Element {
 
 
 									<circle
+										style={{ opacity : 'var( --cdn-pow-001-rec )' }} // Core-Design-Number to the Power of 1 Reciprocal ~= 0.755
+
 										cx='280'
 										cy='20'
-										fill='var(--acc-mai-col)' // Accent Main Color = #F26419
-										opacity='0.8'
+										fill='var( --acc-mai-col )' // Accent Main Color = #F26419
 										r='4'
 									/>{ /* What: Node Circle Element. Why: Each node is a dot. How: This draws one in orange. */ }
 
 									<circle
+										style={{ opacity : 'var( --cdn-pow-001-rec )' }} // Core-Design-Number to the Power of 1 Reciprocal ~= 0.755
+
 										cx='300'
 										cy='60'
-										fill='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
-										opacity='0.7'
+										fill='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
 										r='2.5'
 									/>{ /* What: Node Circle Element. Why: Each node is a dot. How: This draws one in blue. */ }
 
 									<circle
+										style={{ opacity : 'var( --cdn-pow-002-rec )' }} // Core-Design-Number to the Power of 2 Reciprocal ~= 0.570
+
 										cx='260'
 										cy='200'
-										fill='var(--acc-mai-col)' // Accent Main Color = #F26419
-										opacity='0.6'
+										fill='var( --acc-mai-col )' // Accent Main Color = #F26419
 										r='4'
 									/>{ /* What: Node Circle Element. Why: Each node is a dot. How: This draws one in orange. */ }
 
 									<line
 										opacity='0.5'
-										stroke='var(--acs-tin-col)' // Accent-Secondary Tint Color = #B8D9EC
+										stroke='var( --acs-tin-col )' // Accent-Secondary Tint Color = #B8D9EC
 										strokeWidth='1'
 										x1='280'
 										x2='300'
@@ -606,7 +623,7 @@ function HomPagCom () : JSX.Element {
 
 									<line
 										opacity='0.5'
-										stroke='var(--acs-tin-col)' // Accent-Secondary Tint Color = #B8D9EC
+										stroke='var( --acs-tin-col )' // Accent-Secondary Tint Color = #B8D9EC
 										strokeWidth='1'
 										x1='300'
 										x2='260'
@@ -635,14 +652,14 @@ function HomPagCom () : JSX.Element {
 									<polygon
 										fill='none'
 										points='14,2 26,8 26,20 14,26 2,20 2,8'
-										stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
+										stroke='var( --acc-mai-col )' // Accent Main Color = #F26419
 										strokeWidth='1.5'
 									/>{ /* What: Badge Hexagon Polygon Element. Why: The mark's outline is an orange hexagon. How: This traces it. */ }
 
 									<circle
 										cx='14'
 										cy='14'
-										fill='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
+										fill='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
 										r='4'
 									/>{ /* What: Badge Center Circle Element. Why: A blue dot fills the mark's center. How: This draws it. */ }
 
@@ -683,7 +700,7 @@ function HomPagCom () : JSX.Element {
 					<div className={ cssModObj.staInnDiv }>{ /* What: Stats Inner Div Element. Why: The strip sits in the page's centered column. How: This holds the grid. */ }
 
 
-						<div className={ cssModObj.staGriDiv }>{ /* What: Stats Grid Div Element. Why: The figures line up in a row. How: This lays out one item per stat. */ }
+						<div className={ cssModObj.staGriDiv }>{ /* What: Stats Grid Div Element. Why: The figures line up in a row, or two by two below a desktop. How: This lays out one item per stat. */ }
 
 
 							{ STA_REC_ARR.map( ( staRecObj ) => ( // What: Stat Map Call. Why: Every stat shows. How: This renders one item per row.
@@ -694,9 +711,13 @@ function HomPagCom () : JSX.Element {
 
 									className={ cssModObj.staIteDiv }
 								>{ /* What: Stat Item Div Element. Why: Each figure sits above its label. How: This stacks them. */ }
+
+
 									<span className={ cssModObj.staValSpa }>{ staRecObj.valStr }</span>{ /* What: Stat Value Span Element. Why: The figure is the stat's point. How: This shows it large. */ }
 
 									<span className={ cssModObj.staLabSpa }>{ staRecObj.labStr }</span>{ /* What: Stat Label Span Element. Why: The label says what the figure counts. How: This shows it under the figure. */ }
+
+
 								</div>
 
 
@@ -726,7 +747,7 @@ function HomPagCom () : JSX.Element {
 								labTexStr='Selected Work'
 								subTexStr='A curated selection of full-stack projects, from idea to deployed product.'
 								titTexStr="Projects I'm Proud Of"
-							/>{ /* What: Featured Section Header Component. Why: The section opens with its heading. How: This shows its label, title, and subtitle. */ }
+							/>{ /* What: Section Header Component. Why: The section opens with its heading. How: This shows its label, title, and subtitle. */ }
 
 
 
@@ -734,7 +755,7 @@ function HomPagCom () : JSX.Element {
 								className={ cssModObj.vieAllAnc }
 
 								to='/work'
-							>{ /* What: View All Anchor Element. Why: Home shows only four projects, so the rest are a click away. How: This routes to the Work page with an arrow. */ }
+							>{ /* What: View All Link. Why: Home shows only four projects, so the rest are a click away. How: This routes to the Work page with an arrow. */ }
 
 
 								View all projects
@@ -793,9 +814,9 @@ function HomPagCom () : JSX.Element {
 
 
 					<GeoBacCom
-						patOpaNum={ 0.25 }
+						patOpaStr='var( --cdn-pow-005-rec )' // Core-Design-Number to the Power of 5 Reciprocal ~= 0.245
 						patVarStr='dots'
-					/>{ /* What: Services Geometric Background Component. Why: A faint field of dots sits behind the services. How: This draws it at 25% strength. */ }
+					/>{ /* What: Geometric Background Component. Why: A faint field of dots sits behind the services. How: This draws it at about 25% strength. */ }
 
 
 
@@ -807,7 +828,7 @@ function HomPagCom () : JSX.Element {
 							labTexStr='What I Do'
 							subTexStr='From backend architecture to frontend UI, I handle the full picture.'
 							titTexStr='End-to-End Development'
-						/>{ /* What: Services Section Header Component. Why: The section opens with its heading. How: This centers the label, title, and subtitle. */ }
+						/>{ /* What: Section Header Component. Why: The section opens with its heading. How: This centers the label, title, and subtitle. */ }
 
 
 
@@ -850,7 +871,7 @@ function HomPagCom () : JSX.Element {
 				<section className={ cssModObj.homCtaSec }>{ /* What: Home Call-To-Action Section Element. Why: The page ends by inviting a visitor to start a project. How: This holds the banner's line and button. */ }
 
 
-					<div className={ cssModObj.ctaInnDiv }>{ /* What: Call-To-Action Inner Div Element. Why: The banner sits in the page's centered column. How: This sets the text and the button side by side. */ }
+					<div className={ cssModObj.ctaInnDiv }>{ /* What: Call-To-Action Inner Div Element. Why: The banner sits in the page's centered column. How: This sets the text and the button side by side, stacking them below a desktop. */ }
 
 
 						<div>{ /* What: Banner Text Div Element. Why: The label and heading read as one. How: This stacks them. */ }
@@ -870,7 +891,7 @@ function HomPagCom () : JSX.Element {
 								className={ cssModObj.ctaStaAnc }
 
 								to='/contact'
-							>Start a Project</Link>{ /* What: Call-To-Action Start Anchor Element. Why: A visitor ready to start goes straight to Contact. How: This routes there as the banner's button. */ }
+							>Start a Project</Link>{ /* What: Start A Project Link. Why: A visitor ready to start goes straight to Contact. How: This routes there as the banner's button. */ }
 
 
 						</div>

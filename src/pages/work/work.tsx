@@ -46,10 +46,10 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
 
 // #region Constants
 
-// #region PRO_STE_ARR
+// #region PRC_STE_ARR
 
 /**
- * PRO_STE_ARR = Process Step Array
+ * PRC_STE_ARR = Process Step Array
  *
  * @summary
  * The four steps the process section walks through, in order, with an arrow
@@ -64,18 +64,21 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  *
 */
 
-const PRO_STE_ARR = [ // What: Process Step Array. Why: The process section shows the same four steps every visit. How: Each row holds one step's number, title, and description.
+const PRC_STE_ARR = [ // What: Process Step Array. Why: The process section shows the same four steps every visit. How: Each row holds one step's number, title, and description.
 
 
-	{ desStr : 'Deep-dive into your goals, users, and constraints. No assumptions.',          numStr : '01', titStr : 'Discover' }, // What: Discover Step Row. Why: Every project starts by learning what it needs. How: This is the first step.
-	{ desStr : 'Architecture diagrams, wireframes, and API contracts before a line of code.', numStr : '02', titStr : 'Design'   }, // What: Design Step Row. Why: The plan comes before the code. How: This is the second step.
-	{ desStr : 'Iterative development with regular demos. Fully tested and documented.',      numStr : '03', titStr : 'Build'    }, // What: Build Step Row. Why: The site is built in steps the client can see. How: This is the third step.
-	{ desStr : 'CI/CD deployment, monitoring, and handover documentation included.',          numStr : '04', titStr : 'Ship'     }  // What: Ship Step Row. Why: Every project ends deployed and handed over. How: This is the last step.
+	{ numStr : '01', titStr : 'Discover', desStr : 'Deep-dive into your goals, users, and constraints. No assumptions.' }, // What: Discover Step Row. Why: Every project starts by learning what it needs. How: This is the first step.
+
+	{ numStr : '02', titStr : 'Design',   desStr : 'Architecture diagrams, wireframes, and API contracts before a line of code.' }, // What: Design Step Row. Why: The plan comes before the code. How: This is the second step.
+
+	{ numStr : '03', titStr : 'Build',    desStr : 'Iterative development with regular demos. Fully tested and documented.' }, // What: Build Step Row. Why: The site is built in steps the client can see. How: This is the third step.
+
+	{ numStr : '04', titStr : 'Ship',     desStr : 'CI/CD deployment, monitoring, and handover documentation included.' } // What: Ship Step Row. Why: Every project ends deployed and handed over. How: This is the last step.
 
 
 ];
 
-// #endregion PRO_STE_ARR
+// #endregion PRC_STE_ARR
 
 
 
@@ -97,7 +100,7 @@ const TAG_FIL_ARR = [ 'All', ...Array.from( new Set( PRO_REC_ARR.flatMap( ( proR
  * narrows the grid to the projects using that technology (All shows every
  * one) and updates the count beside them; an empty grid says no projects
  * match. A visually hidden h2 heads the grid, so the cards' h3 titles follow
- * the page's h1 in order. The process section lists PRO_STE_ARR's steps
+ * the page's h1 in order. The process section lists PRC_STE_ARR's steps
  * with an arrow, hidden from screen readers, between each pair.
  *
  * It also sets the page's title and canonical address, which React moves
@@ -158,13 +161,16 @@ function WorPagCom () : JSX.Element {
 
 
 			filScrEle.removeEventListener( 'scroll', updFadFun ); // What: Scroll Unsubscribe Call. Why: The listener must not outlive the page. How: This removes updFadFun from the row.
-			resObsObj.disconnect();                               // What: Observer Disconnect Call. Why: The observer must not outlive the page either. How: This disconnects resObsObj.
+
+			resObsObj.disconnect(); // What: Observer Disconnect Call. Why: The observer must not outlive the page either. How: This disconnects resObsObj.
 
 
 		};
 
 
 	}, [] ); // What: Effect Dependency Array. Why: The row and its buttons never change while the page is open, so the listeners are wired once. How: This empty list runs the effect only on mount and cleans it up on unmount.
+
+
 
 	const filProArr = actTagStr === 'All' // What: Filtered Project Array. Why: The grid and the count show only what the filter allows. How: This keeps every project for All, or only those tagged with the active technology.
 		? PRO_REC_ARR                                                                    // What: All Projects Branch. Why: All means no filter. How: This keeps the whole list.
@@ -194,9 +200,9 @@ function WorPagCom () : JSX.Element {
 
 
 					<GeoBacCom
-						patOpaNum={ 0.15 }
+						patOpaStr='var( --cdn-pow-007-rec )' // Core-Design-Number to the Power of 7 Reciprocal ~= 0.140
 						patVarStr='grid'
-					/>{ /* What: Hero Geometric Background Component. Why: A faint grid sits behind the hero. How: This draws it at 15% strength. */ }
+					/>{ /* What: Geometric Background Component. Why: A faint grid sits behind the hero. How: This draws it at about 14% strength. */ }
 
 
 
@@ -211,7 +217,7 @@ function WorPagCom () : JSX.Element {
 
 						<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading names what it shows. How: This sets Projects and Case Studies over two lines, the second in the accent. */ }
 							Projects &<br />
-							<span className={ cssModObj.titAccSpa }>Case Studies</span>
+							<span className={ cssModObj.titAccSpa }>Case Studies</span>{ /* What: Title Accent Span Element. Why: The heading's second line carries the accent. How: This sets Case Studies in the dark blue. */ }
 						</h1>
 
 						<p className={ cssModObj.herSubPar }>{ /* What: Hero Subtitle Paragraph Element. Why: A line under the heading says what the catalog holds. How: This describes the range of work. */ }
@@ -235,20 +241,22 @@ function WorPagCom () : JSX.Element {
 
 
 						<polygon
+							style={{ opacity : 'var( --cdn-pow-005-rec )' }} // Core-Design-Number to the Power of 5 Reciprocal ~= 0.245
+
 							fill='none'
-							opacity='0.25'
 							points='200,0 200,200 0,200'
-							stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
+							stroke='var( --acc-mai-col )' // Accent Main Color = #F26419
 							strokeWidth='2'
-						/>{ /* What: Outer Triangle Polygon Element. Why: The larger triangle fills the corner. How: This traces it in orange at 25% strength. */ }
+						/>{ /* What: Outer Triangle Polygon Element. Why: The larger triangle fills the corner. How: This traces it in orange at about 25% strength. */ }
 
 						<polygon
+							style={{ opacity : 'var( --cdn-pow-006-rec )' }} // Core-Design-Number to the Power of 6 Reciprocal ~= 0.185
+
 							fill='none'
-							opacity='0.2'
 							points='200,40 200,200 40,200'
-							stroke='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
+							stroke='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
 							strokeWidth='1'
-						/>{ /* What: Inner Triangle Polygon Element. Why: A smaller triangle nests inside the first. How: This traces it in blue at 20% strength. */ }
+						/>{ /* What: Inner Triangle Polygon Element. Why: A smaller triangle nests inside the first. How: This traces it in blue at about 19% strength. */ }
 
 
 					</svg>
@@ -265,6 +273,8 @@ function WorPagCom () : JSX.Element {
 
 
 						<span className={ cssModObj.filLabSpa }>{ /* What: Filter Label Span Element. Why: The row says what its buttons do. How: This shows Filter by tech after a funnel icon. */ }
+
+
 							<svg
 								fill='none'
 								height='14'
@@ -281,7 +291,10 @@ function WorPagCom () : JSX.Element {
 							</svg>
 
 							Filter by tech
+
+
 						</span>
+
 
 						<div
 							ref={ filScrRef }
@@ -344,9 +357,8 @@ function WorPagCom () : JSX.Element {
 									<ProCarCom
 										key={ proRecObj.ideStr }
 
-										isaFeaBoo={ proRecObj.feaBoo }
 										proRecObj={ proRecObj }
-									/> // What: Project Card Component. Why: Each project shows as a card. How: This renders the record, styled as featured when it is.
+									/> // What: Project Card Component. Why: Each project shows as a card. How: This renders the record in the plain card style, since the featured border only means something on Home, where a few projects are picked out.
 
 
 								))}
@@ -358,10 +370,10 @@ function WorPagCom () : JSX.Element {
 						) : ( // What: Empty Message Branch. Why: The grid shouldn't just vanish when nothing matches. How: This renders the empty message instead.
 
 
-							<div className={ cssModObj.empMesDiv }>{ /* What: Empty Message Div Element. Why: The empty message sits where the grid would. How: This holds the message. */ }
+							<div className={ cssModObj.empMesDiv }>{ /* What: Empty Message Div Element. Why: The empty message sits where the grid would. How: This holds the message with generous room around it. */ }
 
 
-								<p>No projects match that filter.</p>{ /* What: Empty Message Paragraph Element. Why: A visitor learns the filter found nothing. How: This says so. */ }
+								<p className={ cssModObj.empMesPar }>No projects match that filter.</p>{ /* What: Empty Message Paragraph Element. Why: A visitor learns the filter found nothing. How: This says so in muted mono, centered. */ }
 
 
 							</div>
@@ -381,9 +393,9 @@ function WorPagCom () : JSX.Element {
 
 
 					<GeoBacCom
-						patOpaNum={ 0.2 }
+						patOpaStr='var( --cdn-pow-006-rec )' // Core-Design-Number to the Power of 6 Reciprocal ~= 0.185
 						patVarStr='dots'
-					/>{ /* What: Process Geometric Background Component. Why: A faint field of dots sits behind the process. How: This draws it at 20% strength. */ }
+					/>{ /* What: Geometric Background Component. Why: A faint field of dots sits behind the process. How: This draws it at about 19% strength. */ }
 
 
 
@@ -395,33 +407,33 @@ function WorPagCom () : JSX.Element {
 							labTexStr='How I Work'
 							subTexStr='Every project follows the same disciplined approach, from first conversation to final deployment.'
 							titTexStr='My Process'
-						/>{ /* What: Process Section Header Component. Why: The section opens with its heading. How: This centers the label, title, and subtitle. */ }
+						/>{ /* What: Section Header Component. Why: The section opens with its heading. How: This centers the label, title, and subtitle. */ }
 
 
 
-						<div className={ cssModObj.prcSteDiv }>{ /* What: Process Steps Div Element. Why: The four steps read left to right with arrows between them. How: This lays out each step and arrow in a row. */ }
+						<div className={ cssModObj.prcSteDiv }>{ /* What: Process Steps Div Element. Why: The four steps read in order, with arrows between them where the layout runs in a line. How: This lays out each step and arrow in a row, a two-by-two grid without arrows on tablets, or a column with downward arrows on phones. */ }
 
 
-							{ PRO_STE_ARR.map( ( proSteObj, steIndNum ) => ( // What: Process Step Map Call. Why: Every step shows in order. How: This renders each step, followed by an arrow unless it's the last.
+							{ PRC_STE_ARR.map( ( prcSteObj, steIndNum ) => ( // What: Process Step Map Call. Why: Every step shows in order. How: This renders each step, followed by an arrow unless it's the last.
 
 
-								<Fragment key={ proSteObj.numStr }>{ /* What: Step Fragment. Why: A step and its arrow are one keyed pair with no wrapper. How: This groups them. */ }
+								<Fragment key={ prcSteObj.numStr }>{ /* What: Step Fragment. Why: A step and its arrow are one keyed pair with no wrapper. How: This groups them. */ }
 
 
 									<div className={ cssModObj.steCarDiv }>{ /* What: Step Card Div Element. Why: Each step is one card. How: This stacks its number, title, and description. */ }
 
 
-										<div className={ cssModObj.steNumDiv }>{ proSteObj.numStr }</div>{ /* What: Step Number Div Element. Why: The number shows the step's place. How: This prints it. */ }
+										<div className={ cssModObj.steNumDiv }>{ prcSteObj.numStr }</div>{ /* What: Step Number Div Element. Why: The number shows the step's place. How: This prints it. */ }
 
-										<h3 className={ cssModObj.steTitHea }>{ proSteObj.titStr }</h3>{ /* What: Step Title Heading Element. Why: Each step is named. How: This shows the title as an h3 under the section's h2. */ }
+										<h3 className={ cssModObj.steTitHea }>{ prcSteObj.titStr }</h3>{ /* What: Step Title Heading Element. Why: Each step is named. How: This shows the title as an h3 under the section's h2. */ }
 
-										<p className={ cssModObj.steDesPar }>{ proSteObj.desStr }</p>{ /* What: Step Description Paragraph Element. Why: A sentence says what the step covers. How: This shows it. */ }
+										<p className={ cssModObj.steDesPar }>{ prcSteObj.desStr }</p>{ /* What: Step Description Paragraph Element. Why: A sentence says what the step covers. How: This shows it. */ }
 
 
 									</div>
 
 
-									{ steIndNum < PRO_STE_ARR.length - 1 && ( // What: Arrow Presence Check. Why: Arrows only sit between steps. How: This renders one after every step but the last.
+									{ steIndNum < PRC_STE_ARR.length - 1 && ( // What: Arrow Presence Check. Why: Arrows only sit between steps. How: This renders one after every step but the last.
 
 
 										<div
@@ -434,7 +446,7 @@ function WorPagCom () : JSX.Element {
 											<svg
 												fill='none'
 												height='24'
-												stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
+												stroke='var( --acc-mai-col )' // Accent Main Color = #F26419
 												strokeWidth='2'
 												viewBox='0 0 24 24'
 												width='24'

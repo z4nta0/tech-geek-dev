@@ -14,9 +14,10 @@
  * projects, the services in white cards that lift on hover, and an orange
  * closing card. On a tablet the code window keeps its natural width beside
  * the pitch, and on a phone it stacks under it, while the grids step down,
- * reaching one column on a phone. The shapes, the entrances, and the dot play
- * the shared shapeLoopSpin, contentEnterFadeUp, and statusLoopPulse keyframes
- * from the global sheet; the ticker plays its own. The page's centered
+ * the projects and services reaching one column on a phone and the stats
+ * staying in pairs. The shapes, the entrances, and the dot play the shared
+ * shapeLoopSpin, contentEnterFadeUp, and statusLoopPulse keyframes from the
+ * global sheet; the ticker plays its own. The page's centered
  * columns take the shared container values, and its sections the shared
  * section padding, merged into their own rules. Everything that moves holds
  * still under reduced motion.
@@ -49,7 +50,6 @@
 
 
 }
-
 
 
 /* #region homHerSec */
@@ -93,7 +93,7 @@
 	background : var( --acc-sec-col );                                         /* Accent Secondary Color = #7DB9D8 */
 	clip-path  : polygon( 50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25% );
 	height     : calc( var( --ver-rhy-p11 ) * 1rem );                          /* Vertical Rhythm Base Plus 11 ~= 321.273px */
-	right      : calc( var( --spa-hor-p06 ) * -1 );                            /* Spacing Horizontal Base Plus 6 ~= 78.751px */
+	right      : calc( var( --spa-hor-p06 ) * -1 );                            /* Spacing Horizontal Base Plus 6 ~= -78.751px */
 	top        : 10%;
 	width      : calc( var( --ver-rhy-p11 ) * 1rem );                          /* Vertical Rhythm Base Plus 11 ~= 321.273px */
 
@@ -104,7 +104,7 @@
 
 	animation     : global( shapeLoopSpin ) var( --dur-ani-p18 ) linear infinite reverse; /* Duration Animation Base Plus 18 ~= 24,914.0ms */
 	background    : transparent;
-	border        : var( --bor-wid-xla ) solid var( --acc-mai-col );                      /* Border Width Extra Large ~= 3.571px, Accent Main Color = #F26419 */
+	border        : var( --bor-wid-xla ) solid var( --acc-mai-col );                      /* Border Width Extra Large ~= 3.572px, Accent Main Color = #F26419 */
 	border-radius : 50%;
 	bottom        : 10%;
 	height        : calc( var( --ver-rhy-p09 ) * 1rem );                                  /* Vertical Rhythm Base Plus 9 ~= 183.074px */
@@ -114,7 +114,7 @@
 
 
 }
-.herShaDiv--square { /* What: Square Hero Shape Div. Why: A tilted outlined square varies the shapes near the hero's top. How: This draws a 104px dark blue square tipped 45 degrees through rotate, which the turning transform adds to, and turns it every 19 seconds. */
+.herShaDiv--square { /* What: Square Hero Shape Div. Why: A tilted outlined square varies the shapes near the hero's top. How: This draws a 104px strong blue square tipped 45 degrees through rotate, which the turning transform adds to, and turns it every 19 seconds. */
 
 
 	animation  : global( shapeLoopSpin ) var( --dur-ani-p17 ) linear infinite; /* Duration Animation Base Plus 17 ~= 18,807.0ms */
@@ -129,7 +129,7 @@
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Shape Layer Div. Why: Someone who asked for less motion shouldn't see the shapes turn. How: This applies only when the reduced-motion preference is set. */
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hero Shape Div. Why: Someone who asked for less motion shouldn't see the shapes turn. How: This applies only when the reduced-motion preference is set. */
 
 
 	.herShaDiv--hexagon,
@@ -148,6 +148,7 @@
 /* #endregion shaLayDiv */
 
 
+
 /* #region herInnDiv */
 
 .herInnDiv { /* What: Hero Inner Div. Why: The pitch and the code window sit side by side in the page's centered column, above the shapes. How: This caps and centers the column with its side padding and lays out a wide pitch column beside a narrow visual one. */
@@ -159,14 +160,14 @@
 	grid-template-columns : 3fr 1fr;
 	margin                : 0 auto;
 	max-width             : var( --con-max-wid );                                                                           /* Container Maximum Width ~= 1,449.365px */
-	padding               : 0 var( --gut-sid-pad );                                                                         /* Gutter Side Padding, about 19.304px - 44.876px */ /* What: Container Padding. Why: The global container rule loaded after this module, so its padding always zeroed the 96px top and 128px bottom padding this rule once asked for. How: This keeps the padding that has always applied. */
+	padding               : 0 var( --gut-sid-pad );                                                                         /* Gutter Side Padding, about 19.304px - 44.876px */ /* What: Container Padding. Why: The hero section already pads above and below this column, so the column only needs the page's side gutters. How: This pads its sides by the gutter and leaves its top and bottom at zero. */
 	position              : relative;
 	width                 : 100%;
 	z-index               : 1;
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Inner Div. Why: On a tablet the code window would squeeze the pitch in a quarter of the row. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Inner Div. Why: On a tablet the code window would squeeze the pitch in a quarter of the row. How: This applies at 1,024px and below. */
 
 
 	.herInnDiv { /* What: Tablet Hero Inner Div Columns. Why: The window keeps its natural width beside the pitch, which takes the rest. How: This sets a flexible pitch column and a column sized to the window. */
@@ -226,7 +227,7 @@
 
 /* #region herLabDiv */
 
-.herLabDiv { /* What: Hero Label Div. Why: The availability label reads as a small pill. How: This sets a warm ivory pill in muted mono capitals, only as wide as its content. */
+.herLabDiv { /* What: Hero Label Div. Why: The availability label reads as a small pill. How: This sets a warm ivory pill in mono capitals in the secondary text color, only as wide as its content. */
 
 
 	align-items    : center;
@@ -289,7 +290,7 @@
 
 
 	color       : var( --tex-mai-col );                                        /* Text Main Color = #1A1A2E */
-	font-size   : clamp( var( --fon-siz-p02 ), 9.6cqi, var( --fon-siz-p07 ) ); /* Font Size Base Plus 2 ~= 25.572px, Font Size Base Plus 7 ~= 78.751px */ /* What: Column-Sized Heading. Why: Experiences is about 10em wide, so at the global h1 size it ran past its column on phones and under the code window on a desktop. How: The size is 9.6% of the column's width, which keeps the word inside it, within the p02 and p07 steps. */
+	font-size   : clamp( var( --fon-siz-p02 ), 9.6cqi, var( --fon-siz-p07 ) ); /* Font Size Base Plus 2 ~= 19.304px, Font Size Base Plus 7 ~= 78.751px */ /* What: Column-Sized Heading. Why: Experiences is about 10em wide, so at the global h1 size it ran past its column on phones and under the code window on a desktop. How: The size is 9.6% of the column's width, which keeps the word inside it, within the p02 and p07 steps. */
 	line-height : var( --ver-rhy-m01 );                                        /* Vertical Rhythm Base Minus 1 = 1 */
 
 
@@ -308,7 +309,7 @@
 
 
 	background    : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
-	border-radius : var( --rad-bor-xsm );                /* Radius Border Extra Small ~= 3.571px */
+	border-radius : var( --rad-bor-xsm );                /* Radius Border Extra Small ~= 3.572px */
 	bottom        : var( --spa-ver-m05 );                /* Spacing Vertical Base Minus 5 ~= 3.572px */
 	content       : '';
 	height        : calc( var( --ver-rhy-m05 ) * 1rem ); /* Vertical Rhythm Base Minus 5 ~= 3.572px */
@@ -331,7 +332,7 @@
 /* #endregion herTitHea */
 
 
-.herSubPar { /* What: Hero Subtitle Paragraph. Why: The pitch line reads a little larger and quieter. How: This sets it muted with roomy lines, capped at the paragraph measure. */
+.herSubPar { /* What: Hero Subtitle Paragraph. Why: The pitch line reads a little larger and quieter. How: This sets it in the secondary text color with roomy lines, capped at the paragraph measure. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -360,7 +361,7 @@
 
 	align-items    : center;
 	background     : var( --acc-mai-col );                      /* Accent Main Color = #F26419 */
-	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
 	color          : var( --tex-acc-col );                      /* Text Accent Color = #1A1A2E */
 	display        : inline-flex;
 	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
@@ -378,7 +379,7 @@
 
 
 	background : var( --acc-hov-col );                            /* Accent Hover Color ~= #e45700 */
-	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= 2.035px */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
@@ -403,12 +404,12 @@
 
 }
 
-.butSecAnc { /* What: Button Secondary Anchor. Why: The second next step sits back from the first. How: This sets an outlined button in mono capitals, easing its border, color,, lift, press, and focus. */
+.butSecAnc { /* What: Button Secondary Anchor. Why: The second next step sits back from the first. How: This sets an outlined button in mono capitals, easing its border, color, lift, press, and focus. */
 
 
 	align-items    : center;
 	border         : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
-	border-radius  : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.571px */
+	border-radius  : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.572px */
 	color          : var( --tex-mai-col );                            /* Text Main Color = #1A1A2E */
 	display        : inline-flex;
 	font-family    : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
@@ -421,12 +422,12 @@
 
 
 }
-.butSecAnc:hover { /* What: Hovered Button Secondary Anchor. Why: A button should respond to the pointer. How: This turns its border and text dark blue and lifts it 2px. */
+.butSecAnc:hover { /* What: Hovered Button Secondary Anchor. Why: A button should respond to the pointer. How: This turns its border blue and its text dark blue and lifts it 2px. */
 
 
 	border-color : var( --acs-str-col );                            /* Accent-Secondary Strong Color = #4A91B8 */
 	color        : var( --acs-dar-col );                            /* Accent-Secondary Dark Color ~= #126186 */
-	transform    : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= 2.035px */
+	transform    : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }
@@ -454,6 +455,7 @@
 /* #endregion herActDiv */
 
 
+
 /* #region skiTicDiv */
 
 .skiTicDiv { /* What: Skills Ticker Div. Why: The skills scroll past under the buttons, fading at both ends. How: This clips the strip, masks its edges to fade out, and lets it shrink below its content. */
@@ -469,12 +471,14 @@
 
 /* #region ticInnDiv */
 
-.ticInnDiv { /* What: Ticker Inner Div. Why: The strip slides along endlessly. How: This lines up the items and plays the ticker's own scroll once every 77 seconds, forever. */
+.ticInnDiv { /* What: Ticker Inner Div. Why: The strip slides along endlessly. How: This lines up the items at their own width, past the clipping column, and plays the ticker's own scroll once every 77 seconds, forever. */
 
 
-	animation : ticInnDivLoopScroll var( --dur-ani-p22 ) linear infinite; /* Duration Animation Base Plus 22 ~= 76,725.0ms */
-	display   : flex;
-	gap       : var( --spa-hor-m01 );                                     /* Spacing Horizontal Base Minus 1 = 11px */
+	animation     : ticInnDivLoopScroll var( --dur-ani-p22 ) linear infinite; /* Duration Animation Base Plus 22 ~= 76,725.0ms */
+	display       : flex;
+	gap           : var( --spa-hor-m01 );                                     /* Spacing Horizontal Base Minus 1 = 11px */
+	padding-right : var( --spa-hor-m01 );                                     /* Spacing Horizontal Base Minus 1 = 11px */ /* What: Trailing Gap. Why: Each copy of the skills has to be exactly as wide as the slide, gap included, or the loop jumps. How: This adds one gap after the last item, so the strip is four equal copies, each a set plus its gap. */
+	width         : max-content;                                              /* What: Content Width. Why: The slide is measured against the strip's own width, which would otherwise be the column's. How: This sizes the strip to its items, so a percentage of it is a whole number of copies. */
 
 
 }
@@ -491,7 +495,7 @@
 
 
 }
-@keyframes ticInnDivLoopScroll { /* What: Ticker Inner Div Loop Scroll. Why: The strip holds every skill twice, so sliding it by its full width brings the second set to where the first began, with no seam. How: This moves the strip from its start to one strip's width left. */
+@keyframes ticInnDivLoopScroll { /* What: Ticker Inner Div Loop Scroll. Why: The strip holds four equal copies of the skills, so sliding it by a quarter of its width brings the second copy to where the first began, with no seam, while the copies after it keep the column full. How: This moves the strip from its start to one copy's width left, a quarter that has to match TIC_COP_NUM in home.tsx. */
 
 
 	from {
@@ -505,7 +509,7 @@
 	to {
 
 
-		transform : translateX( -100% );
+		transform : translateX( -25% );
 
 
 	}
@@ -535,6 +539,7 @@
 /* #endregion skiTicDiv */
 
 /* #endregion herConDiv */
+
 
 
 /* #region herVisDiv */
@@ -669,7 +674,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Code Block Pre. Why: Below a desktop the window has to fit beside the pitch on a tablet and inside a 320px phone. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Code Block Pre. Why: Below a desktop the window has to fit beside the pitch on a tablet and inside a 320px phone. How: This applies at 1,024px and below. */
 
 
 	.codBloPre { /* What: Compact Code Block Pre. Why: The code's longest line has to fit a narrow window. How: This sets the code at the base size with tighter padding. */
@@ -711,6 +716,7 @@
 /* #endregion codWinDiv */
 
 
+
 /* #region floBadDiv */
 
 .floBadDiv { /* What: Floating Badge Div. Why: The open source badge sits off the window's bottom left corner, arriving last. How: This sets a white rounded card with a soft shadow just past that corner and plays the shared contentEnterFadeUp after the window. */
@@ -721,11 +727,11 @@
 	background    : var( --bac-sur-col );                                                                             /* Background Surface Color = #FFFFFF */
 	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );                                                  /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
 	border-radius : var( --rad-bor-med );                                                                             /* Radius Border Medium = 11px */
-	bottom        : calc( var( --spa-ver-p03 ) * -1 );                                                                /* Spacing Vertical Base Plus 3 ~= 33.876px */
+	bottom        : calc( var( --spa-ver-p03 ) * -1 );                                                                /* Spacing Vertical Base Plus 3 ~= -33.876px */
 	box-shadow    : var( --ele-med-sha );                                                                             /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
 	display       : flex;
 	gap           : var( --spa-hor-m01 );                                                                             /* Spacing Horizontal Base Minus 1 = 11px */
-	left          : calc( var( --spa-hor-p02 ) * -1 );                                                                /* Spacing Horizontal Base Plus 2 ~= 25.572px */
+	left          : calc( var( --spa-hor-p02 ) * -1 );                                                                /* Spacing Horizontal Base Plus 2 ~= -25.572px */
 	padding       : var( --spa-ver-bas ) var( --spa-hor-p02 );                                                        /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	position      : absolute;
 
@@ -737,7 +743,7 @@
 	.floBadDiv { /* What: Fitted Floating Badge Div. Why: The badge should stick out past the window as far as the screen allows, like on a desktop, and tuck in on a narrow phone. How: The overhang is the room left beside the centered window, less the gutter, held between the m02 and p02 steps, so it reaches the full p02 from about 525px wide and eases down to m02 below about 490px. */
 
 
-		left : calc( clamp( var( --spa-hor-m02 ), calc( ( 100vw - var( --ver-rhy-p12 ) * 1rem ) / 2 - var( --gut-sid-pad ) ), var( --spa-hor-p02 ) ) * -1 ); /* Spacing Horizontal Base Minus 2 ~= 8.304px, Vertical Rhythm Base Plus 12 ~= 425.592px, Gutter Side Padding, about 19.304px - 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+		left : calc( clamp( var( --spa-hor-m02 ), calc( ( 100vw - var( --ver-rhy-p12 ) * 1rem ) / 2 - var( --gut-sid-pad ) ), var( --spa-hor-p02 ) ) * -1 ); /* Spacing Horizontal Base Minus 2 ~= -8.304px, Vertical Rhythm Base Plus 12 ~= 425.592px, Gutter Side Padding, about 19.304px - 44.876px, Spacing Horizontal Base Plus 2 ~= -25.572px */
 
 
 	}
@@ -788,11 +794,12 @@
 /* #endregion herInnDiv */
 
 
+
 .herDivDiv { /* What: Hero Divider Div. Why: A slanted white edge leads from the hero into the stats strip. How: This clips a 59px white band along the hero's bottom to a triangle. */
 
 
 	background : var( --bac-sur-col );                /* Background Surface Color = #FFFFFF */
-	bottom     : calc( var( --spa-ver-m09 ) * -1 );   /* Spacing Vertical Base Minus 9 ~= 1.16px */
+	bottom     : calc( var( --spa-ver-m09 ) * -1 );   /* Spacing Vertical Base Minus 9 ~= -1.160px */
 	clip-path  : polygon( 0 100%, 100% 0, 100% 100% );
 	height     : calc( var( --ver-rhy-p05 ) * 1rem ); /* Vertical Rhythm Base Plus 5 ~= 59.447px */
 	left       : 0;
@@ -844,26 +851,13 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Stats Grid Div. Why: Four figures crowd a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Stats Grid Div. Why: Four figures crowd a tablet or a phone. How: This applies at 1,024px and below. */
 
 
-	.staGriDiv { /* What: Two Column Stats Grid Div. Why: Two figures fit side by side on a tablet. How: This sets two columns. */
+	.staGriDiv { /* What: Two Column Stats Grid Div. Why: Two figures fit side by side on a tablet, and two short figures still do on a phone. How: This sets two columns. */
 
 
 		grid-template-columns : repeat( 2, 1fr );
-
-
-	}
-
-
-}
-@media ( max-width : 640px ) { /* What: Phone Stats Grid Div. Why: The figures stay in pairs on a phone. How: This applies at 640px and below. */
-
-
-	.staGriDiv { /* What: Paired Stats Grid Div. Why: Two short figures still fit side by side on a phone. How: This sets two even columns. */
-
-
-		grid-template-columns : 1fr 1fr;
 
 
 	}
@@ -888,10 +882,23 @@
 
 
 }
-.staIteDiv:last-child { /* What: Last Stat Item Div. Why: The last figure needs no divider after it. How: This removes its right rule. */
+.staIteDiv:last-child { /* What: Last Stat Item Div. Why: The last figure ends the row, so it needs no divider after it. How: This removes its right rule. */
 
 
 	border-right : none;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Stat Item Div. Why: In two columns the second figure ends its row too, and its divider would sit against the grid's right edge. How: This applies at 1,024px and below. */
+
+
+	.staIteDiv:nth-child( 2n ) { /* What: Row End Stat Item Div. Why: Every figure in the right column ends its row. How: This removes the right rule from every second item. */
+
+
+		border-right : none;
+
+
+	}
 
 
 }
@@ -916,7 +923,7 @@
 
 	color          : var( --tex-mai-col );                                       /* Text Main Color = #1A1A2E */
 	font-family    : var( --fon-fam-mai );                                       /* Font Family Main = 'Syne', sans-serif */
-	font-size      : clamp( var( --fon-siz-p02 ), 26cqi, var( --fon-siz-p05 ) ); /* Font Size Base Plus 2 ~= 25.572px, Font Size Base Plus 5 ~= 44.876px */ /* What: Item-Sized Figure. Why: 100% is about 3.8em wide, too wide for half a phone's width at the full size. How: The figure is 26% of its item's width, held between the p02 and p05 steps, so desktop keeps the full size. */
+	font-size      : clamp( var( --fon-siz-p02 ), 26cqi, var( --fon-siz-p05 ) ); /* Font Size Base Plus 2 ~= 19.304px, Font Size Base Plus 5 ~= 44.876px */ /* What: Item-Sized Figure. Why: 100% is about 3.8em wide, too wide for half a phone's width at the full size. How: The figure is 26% of its item's width, held between the p02 and p05 steps, so desktop keeps the full size. */
 	font-weight    : 800;
 	letter-spacing : -0.04em;
 	line-height    : var( --ver-rhy-m01 );                                       /* Vertical Rhythm Base Minus 1 = 1 */
@@ -927,10 +934,10 @@
 
 
 	background    : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
-	border-radius : var( --rad-bor-xsm );                /* Radius Border Extra Small ~= 3.571px */
+	border-radius : var( --rad-bor-xsm );                /* Radius Border Extra Small ~= 3.572px */
 	content       : '';
 	display       : block;
-	height        : var( --bor-wid-xla );                /* Border Width Extra Large ~= 3.571px */
+	height        : var( --bor-wid-xla );                /* Border Width Extra Large ~= 3.572px */
 	margin        : var( --spa-ver-m02 ) auto 0;         /* Spacing Vertical Base Minus 2 ~= 8.304px */
 	width         : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */
 
@@ -1006,6 +1013,7 @@
 
 		align-items    : flex-start;
 		flex-direction : column;
+		gap            : var( --spa-ver-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px */
 
 
 	}
@@ -1168,7 +1176,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Service Grid Div. Why: Four cards crowd a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Service Grid Div. Why: Four cards crowd a tablet. How: This applies at 1,024px and below. */
 
 
 	.serGriDiv { /* What: Two Column Service Grid Div. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
@@ -1198,25 +1206,26 @@
 
 /* #region serCarDiv */
 
-.serCarDiv { /* What: Service Card Div. Why: Each service is one white card. How: This sets the bordered card, stacks its icon, title, and description, and eases its lift and shadow. */
+.serCarDiv { /* What: Service Card Div. Why: Each service is one white card. How: This sets the bordered card, stacks its icon, title, and description, and eases its border color, lift, and shadow. */
 
 
-	background     : var( --bac-sur-col );                                            /* Background Surface Color = #FFFFFF */
-	border         : var( --bor-wid-bas ) solid var( --bor-mai-col );                 /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
-	border-radius  : var( --rad-bor-med );                                            /* Radius Border Medium = 11px */
+	background     : var( --bac-sur-col );                                                                               /* Background Surface Color = #FFFFFF */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col );                                                    /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : var( --rad-bor-med );                                                                               /* Radius Border Medium = 11px */
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --spa-ver-bas );                                            /* Spacing Vertical Base ~= 14.572px */
-	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );                       /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
-	transition     : box-shadow var( --dur-tra-p02 ), transform var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms */
+	gap            : var( --spa-ver-bas );                                                                               /* Spacing Vertical Base ~= 14.572px */
+	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );                                                          /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	transition     : border-color var( --dur-tra-p02 ), box-shadow var( --dur-tra-p02 ), transform var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms */ /* What: Shadow Transition. Why: A box-shadow animates on paint rather than the compositor, but a compositor version would need a second shadow layer faded through opacity, and only the one hovered card repaints. How: This eases the shadow alongside the lift. */
 
 
 }
-.serCarDiv:hover { /* What: Hovered Service Card Div. Why: A card should respond to the pointer. How: This lifts it 3px and casts the medium shadow. */
+.serCarDiv:hover { /* What: Hovered Service Card Div. Why: A card should respond to the pointer. How: This lifts it 3px, turns its border the strong blue, and casts the medium shadow. */
 
 
-	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
-	transform  : translateY( -3px );
+	border-color : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
+	box-shadow   : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
+	transform    : translateY( -3px );
 
 
 }
@@ -1239,7 +1248,7 @@
 
 	align-items     : center;
 	background      : var( --acs-tin-col );                /* Accent-Secondary Tint Color = #B8D9EC */
-	border-radius   : var( --rad-bor-sma );                /* Radius Border Small ~= 8.3px */
+	border-radius   : var( --rad-bor-sma );                /* Radius Border Small ~= 8.304px */
 	color           : var( --acs-dar-col );                /* Accent-Secondary Dark Color ~= #126186 */
 	display         : flex;
 	height          : calc( var( --ver-rhy-p04 ) * 1rem ); /* Vertical Rhythm Base Plus 4 ~= 44.876px */
@@ -1259,12 +1268,13 @@
 
 }
 
-.serDesPar { /* What: Service Description Paragraph. Why: A sentence says what the service covers, quietly. How: This sets it small and muted. */
+.serDesPar { /* What: Service Description Paragraph. Why: A sentence says what the service covers, quietly. How: This sets it in the secondary text color, no wider than the paragraph measure, which a wide card would otherwise pass. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	max-width   : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
 
 
 }
@@ -1310,7 +1320,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Call-To-Action Inner Div. Why: The text and button crowd one row below a desktop. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Call-To-Action Inner Div. Why: The text and button crowd one row below a desktop. How: This applies at 1,024px and below. */
 
 
 	.ctaInnDiv { /* What: Stacked Call-To-Action Inner Div. Why: The button reads better under the text. How: This stacks them against the left. */
@@ -1318,6 +1328,7 @@
 
 		align-items    : flex-start;
 		flex-direction : column;
+		gap            : var( --spa-ver-p04 ); /* Spacing Vertical Base Plus 4 ~= 44.876px */
 
 
 	}
@@ -1366,7 +1377,7 @@
 
 
 	background     : var( --bac-inv-col );                      /* Background Inverse Color = #1A1A2E */
-	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
 	color          : var( --bac-pag-col );                      /* Background Page Color = #F5F0E8 */
 	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
@@ -1382,7 +1393,7 @@
 
 
 	background : oklch( from var( --bac-inv-col ) calc( l + 0.08 ) c h ); /* Background Inverse Color = #1A1A2E, lightened to about #2d2d43 */
-	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) );         /* Spacing Vertical Base Minus 7 ~= 2.035px */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) );         /* Spacing Vertical Base Minus 7 ~= -2.035px */
 
 
 }

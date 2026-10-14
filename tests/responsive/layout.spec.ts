@@ -56,7 +56,7 @@ const LAY_CAS_ARR : LayCasTyp[] = [ // What: Layout Case Array. Why: Every page 
 	{ ideStr : 'work',      menBoo : false, patStr : '/work'    }, // What: Work Case. Why: The Work page holds the filters, every project card, and the process steps. How: This measures it as loaded.
 	{ ideStr : 'about',     menBoo : false, patStr : '/about'   }, // What: About Case. Why: The About page holds the bio, the skills, the timeline, and the values. How: This measures it as loaded.
 	{ ideStr : 'contact',   menBoo : false, patStr : '/contact' }, // What: Contact Case. Why: The Contact page holds the form and the contact details. How: This measures it as loaded.
-	{ ideStr : 'not-found', menBoo : false, patStr : '/missing' }, // What: Not Found Case. Why: Every unknown address lands on the 404 page. How: This measures an address the site doesn't have, closed.
+	{ ideStr : 'not-found', menBoo : false, patStr : '/missing' }, // What: Not Found Case. Why: Every unknown address lands on the 404 page. How: This measures an address the site doesn't have.
 	{ ideStr : 'menu',      menBoo : true,  patStr : '/'        }  // What: Menu Case. Why: The open menu stacks the page links its own way. How: This measures the home page with the menu open.
 
 
@@ -64,8 +64,8 @@ const LAY_CAS_ARR : LayCasTyp[] = [ // What: Layout Case Array. Why: Every page 
 
 
 
-const MEN_MAX_NUM = 768;                                                                                 // What: Menu Maximum Number. Why: The mobile menu exists only up to the site's 768px breakpoint. How: The menu case is measured only at widths up to this.
-const WID_LIS_ARR = [ 320, 360, 390, 414, 480, 640, 641, 768, 769, 1024, 1025, 1280, 1440, 1920 ];      // What: Width List Array. Why: Layouts crowd at the narrowest widths and switch at the breakpoints. How: This lists common screen widths (480px a landscape phone, 1,280px a laptop) plus the site's 640px, 768px, and 1,024px breakpoints and the pixel past each.
+const MEN_MAX_NUM = 768;                                                                           // What: Menu Maximum Number. Why: The mobile menu exists only up to the site's 768px breakpoint. How: The menu case is measured only at widths up to this.
+const WID_LIS_ARR = [ 320, 360, 390, 414, 480, 640, 641, 768, 769, 1024, 1025, 1280, 1440, 1920 ]; // What: Width List Array. Why: Layouts crowd at the narrowest widths and switch at the breakpoints. How: This lists common screen widths (480px a landscape phone, 1,280px a laptop) plus the site's 640px, 768px, and 1,024px breakpoints and the pixel past each.
 
 // #endregion Constants
 
@@ -102,7 +102,7 @@ const WID_LIS_ARR = [ 320, 360, 390, 414, 480, 640, 641, 768, 769, 1024, 1025, 1
  *
  * @example
  * ```ts
- * page.evaluate(layProFun) // => [ 'a.navBraAnc overlaps button.navTogBut' ]
+ * page.evaluate(layProFun) // => [ 'a.braLogAnc overlaps button.menTogBut' ]
  * ```
  *
 */
