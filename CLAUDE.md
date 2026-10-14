@@ -533,26 +533,34 @@ ticker, and the status dots) when waiting for the page to settle.
 ## Found for later
 
 ## Deferred items
-Decided 2026-10-12 to leave these until the cleanup plan is finished.
-- **Linking the three sites**: this site should link out to techgeek.support
-  and techgeek.cards, but where and how isn't decided. The Home call to
-  action's "Need Tech Help?" link to `/support` was removed until then.
-- **Tech Geek project entry** (Work and Home): it stays, but its screenshot
-  (and possibly its description and GitHub link) needs updating once
-  `../tech-geek-support` is finished.
-- **Business card SVGs** (`design/business-cards/`): kept as the
-  starting point for new business cards based on this site. Update their
-  URL and email to techgeek.dev once everything else is done.
-- **Cloudflare** (asked for by the user 2026-10-13, once the cleanup plan
-  is finished): put techgeek.dev behind Cloudflare the way ease-my-life is,
-  which the user's own sites use and the client sites don't. ease-my-life's
-  repository records only that its www address redirects to HTTPS through
-  Cloudflare, so its Cloudflare and Netlify settings are checked first and
-  copied.
-- **Shared design package** (suggested 2026-10-12, once this project is
-  done): a repository holding what has to match across the three sites (the
-  tokens, the self-hosted fonts and base element styles, the logo and favicon
-  artwork, and possibly the bar and footer if they end up identical), added
-  to each project as a GitHub dependency (`github:z4nta0/<repo>#<tag>`) so
-  all three stay in sync. Each site's own page components stay in their own
-  project.
+Decided 2026-10-12 to leave these until the cleanup plan is finished, and
+decided by the user on 2026-10-13 (step 12, on the `deferred-items` branch).
+- **Linking the three sites** (decided 2026-10-13): the footer links to
+  TechGeek.support and TechGeek.cards under its tagline, in the same tab,
+  ahead of those sites' own conversions, which follow this project directly.
+  Only the footer for now.
+- **Tech Geek project entry** (Work and Home, decided 2026-10-13): stays live
+  with its current screenshot until `../tech-geek-support` is finished (under
+  a week), then its screenshot, description, and GitHub link are updated and
+  a TechGeek.cards entry is added.
+- **Business card SVGs** (`design/business-cards/`, decided 2026-10-13): no
+  redesign, only the details changed to techgeek.dev and the text enlarged,
+  since the printed cards' text was too small (the 11-unit text printed at
+  about 4.3pt on the 3.5 by 2 inch card). The back's QR code was decorative
+  squares that encoded nothing, so it's replaced with a real code for
+  https://techgeek.dev/.
+- **Cloudflare** (asked for by the user 2026-10-13): after the close-out and
+  everything else is done, the user puts techgeek.dev behind Cloudflare the
+  way ease-my-life is, guided step by step, which the user's own sites use and
+  the client sites don't. ease-my-life's repository records only that its www
+  address redirects to HTTPS through Cloudflare, so its Cloudflare and Netlify
+  settings are checked first and copied. If Google Search Console was
+  verified with a DNS TXT record, that record moves to Cloudflare with the
+  rest of the DNS, or verification lapses.
+- **Shared design package** (suggested 2026-10-12, shape decided by the user
+  2026-10-13): a repository the three sites share as a GitHub dependency
+  (`github:z4nta0/<repo>#<tag>`), holding the tokens, the self-hosted fonts
+  and base element styles, the logo and favicon artwork, and the bar and
+  footer. Each site keeps its own theme (this site's geometric, tech motif
+  stays here) and its own layout widths and caps, on the same horizontal and
+  vertical scales.
