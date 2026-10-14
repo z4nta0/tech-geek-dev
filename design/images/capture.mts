@@ -95,7 +95,14 @@ const broInsObj = await chromium.launch(); // What: Browser Instance Object. Why
 for ( const sitRecObj of SIT_REC_ARR ) { // What: Site Record Loop. Why: Each project is captured the same way. How: This opens, settles, photographs, and closes one site per pass.
 
 
-	const capPagObj = await broInsObj.newPage( { reducedMotion : 'reduce', viewport : { height : VIE_HEI_NUM, width : VIE_WID_NUM } } ); // What: Capture Page Object. Why: Each site needs a fresh page at the cards' shape, with its entrances finished. How: This opens one at 1,440 by 810 with reduced motion.
+	const capPagObj = await broInsObj.newPage({ // What: Capture Page Object. Why: Each site needs a fresh page at the cards' shape, with its entrances finished. How: This opens one at 1,440 by 810 with reduced motion.
+
+
+		reducedMotion : 'reduce',                                     // What: Reduced Motion. Why: An entrance caught partway would spoil the screenshot. How: This asks the site to skip its motion.
+		viewport      : { height : VIE_HEI_NUM, width : VIE_WID_NUM } // What: Viewport. Why: The cards show a 16:9 frame. How: This opens the page at 1,440 by 810.
+
+
+	});
 
 
 	await capPagObj.goto( sitRecObj.urlStr, { waitUntil : 'networkidle' } ); // What: Site Navigation Call. Why: The screenshot should show the site fully loaded. How: This opens it and waits until its network goes quiet.

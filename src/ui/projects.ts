@@ -146,7 +146,7 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : true,
-		desStr : 'A website for a young man with down syndrome who sells hand made crafts.',
+		desStr : 'A website for a young man with Down syndrome who sells handmade crafts.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/tonys-toppers',
 		ideStr : 'proj-04',

@@ -958,7 +958,7 @@
 
 }
 
-.menTagPar { /* What: Menu Tagline Paragraph. Why: The menu ends on the site's tagline, as the footer does. How: This sets it small, italic, and centered in the muted ink, no wider than the small text width cap. */
+.menTagPar { /* What: Menu Tagline Paragraph. Why: The menu ends on the site's tagline, as the footer does. How: This sets it italic and centered in the muted ink, no wider than the small text width cap. */
 
 
 	color       : var( --tex-mut-col ); /* Text Muted Color = #646482 */

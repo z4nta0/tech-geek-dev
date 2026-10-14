@@ -118,19 +118,6 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Phone Footer Sister Paragraph. Why: The stacked footer is centered. How: This applies at 768px and below. */
-
-
-	.fooSisPar { /* What: Centered Footer Sister Paragraph. Why: A line that wraps should stay centered under the tagline. How: This centers its text. */
-
-
-		text-align : center;
-
-
-	}
-
-
-}
 
 
 /* #region fooSisSpa */
@@ -248,7 +235,7 @@
 
 /* #region fooCopDiv */
 
-.fooCopDiv { /* What: Footer Copy Div. Why: The copyright and the profile icons share the footer's right column. How: This stacks them against the right edge. */
+.fooCopDiv { /* What: Footer Copyright Div. Why: The copyright and the profile icons share the footer's right column. How: This stacks them against the right edge. */
 
 
 	align-items    : flex-end;
@@ -258,10 +245,10 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Phone Footer Copy Div. Why: The stacked footer is centered. How: This applies at 768px and below. */
+@media ( max-width : 768px ) { /* What: Phone Footer Copyright Div. Why: The stacked footer is centered. How: This applies at 768px and below. */
 
 
-	.fooCopDiv { /* What: Centered Footer Copy Div. Why: The copyright and icons sit in the middle of the stacked footer. How: This centers them. */
+	.fooCopDiv { /* What: Centered Footer Copyright Div. Why: The copyright and icons sit in the middle of the stacked footer. How: This centers them. */
 
 
 		align-items : center;

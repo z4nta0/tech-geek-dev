@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './home.module.css'; // What: CSS Module Object. Why: The home page's own hero, stats, services, and banner styles live in its own module. How: This maps each class name in home.module.css to its hashed module class.
+import cssModObj from './home.module.css'; // What: CSS Module Object. Why: The home page's own hero, stats, featured projects, services, and banner styles live in its own module. How: This maps each class name in home.module.css to its hashed module class.
 
 
 import { CLI_COU_NUM } from '../../ui/projects.ts';        // What: Client Count Number. Why: The stats count the clients served. How: This is the count taken from the project list.

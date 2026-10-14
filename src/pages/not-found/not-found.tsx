@@ -82,7 +82,7 @@ function NotFouCom () : JSX.Element {
 
 
 
-			<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The 404 content sits centered in the page. How: This fills the space between the bar and the footer and fades in like every page. */ }
+			<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The 404 content sits centered in the page. How: This fills the screen above the footer, centering its content, and fades in like every page. */ }
 
 
 				<div className={ cssModObj.nofInnDiv }>{ /* What: Not-Found Inner Div Element. Why: The number, the drawing, the text, and the buttons read as one centered block. How: This stacks them. */ }

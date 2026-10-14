@@ -377,6 +377,9 @@
 
 }
 
+/* #endregion forRowDiv */
+
+
 
 /* #region forFieDiv */
 
@@ -472,9 +475,6 @@
 
 /* #endregion forFieDiv */
 
-/* #endregion forRowDiv */
-
-
 
 .errMesPar { /* What: Error Message Paragraph. Why: A failed send has to stand out, and its arrival should be seen. How: This fades the message up into view with the shared entrance on a pale red panel with a red border and text. */
 
@@ -564,7 +564,7 @@
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Send Message Button. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.senMesBut { /* What: Motionless Send Message Button. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
+	.senMesBut { /* What: Motionless Send Message Button. Why: The hover, sending dim, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
 
 
 		transition : none;

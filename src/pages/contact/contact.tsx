@@ -221,7 +221,37 @@ function ConPagCom () : JSX.Element {
 	const [ isaLoaBoo, setIsaLoaBoo ] = useState( false );                 // What: Is-A Loading Boolean And Setter. Why: The button shows Sending while the message is on its way. How: This starts false.
 	const [ isaSenBoo, setIsaSenBoo ] = useState( false );                 // What: Is-A Sent Boolean And Setter. Why: A sent message swaps the form for a thank-you. How: This starts false.
 
+
+
+	// #region chaFieFun
+
+	/**
+	 * chaFieFun = Change Field Function
+	 *
+	 * @summary
+	 * Writes one field's edit into the form's state. The edited field's name
+	 * attribute picks the key it writes, so every field's name has to match a
+	 * key of EMP_FOR_OBJ (name, email, budget, message, or bot-field); a field
+	 * named anything else would add a stray key that never posts. The previous
+	 * fields are copied, so the other fields keep their values.
+	 *
+	 * @author z4nta0 <https://github.com/z4nta0>
+	 *
+	 * @param chaEveObj - Change Event Object: The edited field's change event.
+	 *
+	 * @returns This function does not return anything.
+	 *
+	 * @example
+	 * ```ts
+	 * chaFieFun(chaEveObj) // => void
+	 * ```
+	 *
+	*/
+
 	const chaFieFun = ( chaEveObj : ChangeEvent< HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement > ) => setForDatObj( ( preForObj ) => ( { ...preForObj, [ chaEveObj.target.name ] : chaEveObj.target.value } ) ); // What: Change Field Function. Why: Every field writes its edits into the form's state. How: This copies the previous fields and replaces the one named by the edited field's name attribute.
+
+	// #endregion chaFieFun
+
 
 
 	const resForFun = () => { // What: Reset Form Function. Why: The thank-you's button lets a visitor send another message. How: This hides the thank-you and empties the fields.

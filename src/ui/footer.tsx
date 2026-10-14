@@ -22,7 +22,7 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  *
  * @summary
  * The site's footer: the hexagon mark with the tagline and links to the
- * sister sites, a link to each page, and the copyright line beside links to
+ * sister sites, a link to each page, and the copyright line above links to
  * z4nta0's GitHub and LinkedIn. It reads the current year each time it
  * renders, so the copyright never goes stale. Every page renders it below
  * its content.
@@ -49,7 +49,7 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * decoration, above the tagline and a line linking the sister sites,
  * TechGeek.support and TechGeek.cards; a link to each page in a navigation
  * landmark labelled Footer navigation, so screen readers can tell it from the
- * bar's; and the copyright with the current year beside the GitHub and
+ * bar's; and the copyright with the current year above the GitHub and
  * LinkedIn links, each named by its aria-label and opening in a new tab.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -150,7 +150,7 @@ function SitFooCom () : JSX.Element {
 				</nav>
 
 
-				<div className={ cssModObj.fooCopDiv }>{ /* What: Footer Copy Div Element. Why: The copyright and the profile links share the footer's last row. How: This sets them side by side. */ }
+				<div className={ cssModObj.fooCopDiv }>{ /* What: Footer Copyright Div Element. Why: The copyright and the profile links share the footer's last row. How: This stacks the copyright above the profile icons. */ }
 
 
 					<span className={ cssModObj.fooCopSpa }>© { curYeaNum } TechGeek.dev. All rights reserved.</span>{ /* What: Footer Copyright Span Element. Why: The footer ends with the copyright. How: This prints the current year read on each render. */ }

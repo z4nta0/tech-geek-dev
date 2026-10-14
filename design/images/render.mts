@@ -89,6 +89,8 @@ const ROO_DIR_STR = fileURLToPath( new URL( '../../', import.meta.url ) );      
 const broInsObj = await chromium.launch();   // What: Browser Instance Object. Why: The images are drawn by a real browser. How: This launches Chromium.
 const encPagObj = await broInsObj.newPage(); // What: Encode Page Object. Why: The canvas work runs in a page. How: This opens a blank one.
 
+
+
 let aftBytNum = 0; // What: After Bytes Number. Why: The run reports how much smaller the images got. How: This adds up the encoded files' sizes.
 let befBytNum = 0; // What: Before Bytes Number. Why: The run reports how much smaller the images got. How: This adds up the originals' sizes.
 let wriCouNum = 0; // What: Written Count Number. Why: The run reports how many images it wrote. How: This counts them.

@@ -81,7 +81,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Grid Div. Why: The portrait column crowds a tablet's row beside the heading. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Grid Div. Why: The portrait column crowds a tablet's row beside the heading. How: This applies at 1,024px and below. */
 
 
 	.herGriDiv { /* What: Tablet Hero Grid Div Layout. Why: The heading takes the full width, with the portrait beside the paragraphs below it. How: This sets a flexible text column and a column sized to the portrait, with the text's own row gap. */
@@ -121,7 +121,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Text Div. Why: On a tablet the portrait sits beside the paragraphs rather than the whole column, so the column's pieces have to join the hero's grid. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Text Div. Why: On a tablet the portrait sits beside the paragraphs rather than the whole column, so the column's pieces have to join the hero's grid. How: This applies at 1,024px and below. */
 
 
 	.herTexDiv { /* What: Dissolved Hero Text Div. Why: The label, heading, paragraphs, and button each take their own place in the hero's grid. How: This lets its children act as the grid's own items, leaving their reading order unchanged. */
@@ -152,7 +152,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Label Span. Why: The label sits above the portrait's row on a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Label Span. Why: The label sits above the portrait's row on a tablet. How: This applies at 1,024px and below. */
 
 
 	.herLabSpa { /* What: Spanning Hero Label Span. Why: The label leads the whole hero. How: This spans both columns. */
@@ -189,7 +189,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Title Heading. Why: The heading sits above the portrait's row on a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Title Heading. Why: The heading sits above the portrait's row on a tablet. How: This applies at 1,024px and below. */
 
 
 	.herTitHea { /* What: Spanning Hero Title Heading. Why: The heading keeps the full width so it reads large. How: This spans both columns. */
@@ -214,7 +214,7 @@
 /* #endregion herTitHea */
 
 
-.herLeaPar { /* What: Hero Lead Paragraph. Why: The opening line reads as a quiet pull quote. How: This sets it a little larger in italic Lora, muted, capped at the paragraph measure. */
+.herLeaPar { /* What: Hero Lead Paragraph. Why: The opening line reads as a quiet pull quote. How: This sets it a little larger in italic Lora in the secondary text color, capped at the paragraph measure. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -227,7 +227,7 @@
 
 }
 
-.herBodPar { /* What: Hero Body Paragraph. Why: The longer story reads comfortably. How: This sets it muted with roomy lines, capped at the paragraph measure. */
+.herBodPar { /* What: Hero Body Paragraph. Why: The longer story reads comfortably. How: This sets it in the secondary text color with roomy lines, capped at the paragraph measure. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -316,7 +316,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Visual Div. Why: The portrait and facts still fit on a tablet, beside the paragraphs rather than the heading. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Visual Div. Why: The portrait and facts still fit on a tablet, beside the paragraphs rather than the heading. How: This applies at 1,024px and below. */
 
 
 	.herVisDiv { /* What: Beside Paragraphs Hero Visual Div. Why: The portrait sits to the right of the paragraphs and button, below the full-width heading. How: This places it in the second column across the paragraphs' three rows. */
@@ -387,7 +387,7 @@
 
 }
 
-.porPhoIma { /* What: Portrait Photo Image. Why: The photo fills its box above the frame. How: This sizes and crops it, rounds its corners, and lifts it over the frame. */
+.porPhoIma { /* What: Portrait Photo Image. Why: The photo fills its box above the frame. How: This sizes and crops it, rounds its corners, and positions it so it paints over the frame, which comes before it. */
 
 
 	border-radius : var( --rad-bor-med ); /* Radius Border Medium = 11px */
@@ -395,7 +395,6 @@
 	object-fit    : cover;
 	position      : relative;
 	width         : 100%;
-	z-index       : 1;                    /* What: Frame Clearing Layer. Why: The photo has to sit above the hexagon frame drawing, which is positioned at auto. How: This lifts the photo one layer above the frame. */
 
 
 }
@@ -405,7 +404,7 @@
 
 /* #region floFacDiv */
 
-.floFacDiv { /* What: Floating Fact Div. Why: Each fact sits on a small white card over the portrait's corner. How: This sets the bordered card with a soft shadow, stacking its figure over its label above the portrait photo, which sits at 1. */
+.floFacDiv { /* What: Floating Fact Div. Why: Each fact sits on a small white card over the portrait's corner. How: This sets the bordered card with a soft shadow, stacking its figure over its label, the card painting over the portrait photo since it comes after it. */
 
 
 	background     : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
@@ -416,7 +415,6 @@
 	flex-direction : column;
 	padding        : var( --spa-ver-bas ) var( --spa-hor-p02 );       /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	position       : absolute;
-	z-index        : 2;                                               /* What: Photo Clearing Layer. Why: Each fact card overlaps the portrait photo, which sits at 1. How: This lifts the cards one layer above the photo. */
 
 
 }
@@ -510,7 +508,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Skills Grid Div. Why: Four groups crowd a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Skills Grid Div. Why: Four groups crowd a tablet. How: This applies at 1,024px and below. */
 
 
 	.skiGriDiv { /* What: Two Column Skills Grid Div. Why: Two groups fit side by side on a tablet. How: This sets two columns. */
@@ -575,7 +573,7 @@
 
 }
 
-.groTitHea { /* What: Group Title Heading. Why: The group's name reads as a small label. How: This sets it in muted mono capitals. */
+.groTitHea { /* What: Group Title Heading. Why: The group's name reads as a small label. How: This sets it in mono capitals in the secondary text color. */
 
 
 	color          : var( --tex-sec-col );                   /* Text Secondary Color = #3D3D5C */
@@ -892,7 +890,7 @@
 
 }
 
-.timDesPar { /* What: Timeline Description Paragraph. Why: A sentence says what happened, quietly. How: This sets it muted, capped at the paragraph measure. */
+.timDesPar { /* What: Timeline Description Paragraph. Why: A sentence says what happened, quietly. How: This sets it in the secondary text color, capped at the paragraph measure. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -953,7 +951,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Values Grid Div. Why: Four cards crowd a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Values Grid Div. Why: Four cards crowd a tablet. How: This applies at 1,024px and below. */
 
 
 	.valGriDiv { /* What: Two Column Values Grid Div. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
@@ -1039,7 +1037,7 @@
 
 }
 
-.valDesPar { /* What: Value Description Paragraph. Why: A sentence says what the value means, quietly. How: This sets it muted, no wider than the paragraph measure, which a wide card would otherwise pass. */
+.valDesPar { /* What: Value Description Paragraph. Why: A sentence says what the value means, quietly. How: This sets it in the secondary text color, no wider than the paragraph measure, which a wide card would otherwise pass. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */

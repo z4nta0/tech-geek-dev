@@ -589,6 +589,16 @@ settle.
   files (`ui/scroll-top.ts`, `ui/page-description.ts`) go unchecked by them.
   Both pass the rules when linted as `.tsx` copies today. Widening the config
   to `src/**/*.ts` would keep them checked; the siblings would want the same.
+- **Icon sizes in pixels**: the bar's mark (28px), the footer's mark (24px),
+  and the footer's profile icons (18px) set their size as `width` and
+  `height` attributes in pixels, which ignore a visitor's font size, where the
+  rules size icons by rhythm steps. The nearest steps would change their size
+  visibly (28px is between about 25.6px and 33.9px), so it's left for a look
+  together.
+- **Featured project cards**: every project in `ui/projects.ts` is marked
+  featured, and Work passes the flag to its cards, so every Work card wears the
+  blue border meant to make featured ones stand apart. Mark only some as
+  featured, stop Work passing it, or drop the variant.
 - **Unused tag variants**: `ui/tag.module.css` keeps neutral and orange
   variants nothing renders (every tag is blue), along with the orange tag the
   `--acc-tin-col` comment mentions. Keep them for future tags, or remove them.

@@ -410,7 +410,7 @@ function WorPagCom () : JSX.Element {
 
 
 
-						<div className={ cssModObj.prcSteDiv }>{ /* What: Process Steps Div Element. Why: The four steps read left to right with arrows between them. How: This lays out each step and arrow in a row. */ }
+						<div className={ cssModObj.prcSteDiv }>{ /* What: Process Steps Div Element. Why: The four steps read in order, with arrows between them where the layout runs in a line. How: This lays out each step and arrow in a row, a two-by-two grid without arrows on tablets, or a column with downward arrows on phones. */ }
 
 
 							{ PRC_STE_ARR.map( ( prcSteObj, steIndNum ) => ( // What: Process Step Map Call. Why: Every step shows in order. How: This renders each step, followed by an arrow unless it's the last.

@@ -91,14 +91,14 @@ function NavBarCom () : JSX.Element {
 	useEffect( () => { // What: Scroll Listener Effect. Why: The scrolled flag has to follow the page as it moves. How: This listens for scrolling and removes the listener on unmount.
 
 
-		const onScrFun = () => setIsaScrBoo( window.scrollY > 24 ); // What: On Scroll Function. Why: The bar counts as scrolled once the page has moved more than 24px. How: This sets the flag from the scroll position.
+		const onScrWinFun = () => setIsaScrBoo( window.scrollY > 24 ); // What: On Scroll Window Function. Why: The bar counts as scrolled once the page has moved more than 24px. How: This sets the flag from the scroll position.
 
 
-		window.addEventListener( 'scroll', onScrFun, { passive : true } ); // What: Scroll Listener Registration. Why: The flag updates as the visitor scrolls. How: This listens passively, so it never delays scrolling.
+		window.addEventListener( 'scroll', onScrWinFun, { passive : true } ); // What: Scroll Listener Registration. Why: The flag updates as the visitor scrolls. How: This listens passively, so it never delays scrolling.
 
 
 
-		return () => window.removeEventListener( 'scroll', onScrFun ); // What: Scroll Listener Cleanup. Why: A listener left behind would update a bar that no longer exists. How: This removes it when the bar unmounts.
+		return () => window.removeEventListener( 'scroll', onScrWinFun ); // What: Scroll Listener Cleanup. Why: A listener left behind would update a bar that no longer exists. How: This removes it when the bar unmounts.
 
 
 	}, [] ); // What: Effect Dependency Array. Why: The listener only needs adding once. How: This runs the effect on mount only.
@@ -450,7 +450,7 @@ function NavBarCom () : JSX.Element {
 							href='mailto:contact@techgeek.dev'
 						>contact@techgeek.dev</a>{ /* What: Menu Email Anchor Element. Why: Email is the quickest way to reach z4nta0 without the form. How: This opens a new message to the contact address. */ }
 
-						<p className={ cssModObj.menTagPar }>Building the web, one commit at a time.</p>{ /* What: Menu Tagline Paragraph Element. Why: The menu ends on the site's tagline, as the footer does. How: This shows it small and quiet. */ }
+						<p className={ cssModObj.menTagPar }>Building the web, one commit at a time.</p>{ /* What: Menu Tagline Paragraph Element. Why: The menu ends on the site's tagline, as the footer does. How: This shows it quiet, in italics. */ }
 
 
 					</div>

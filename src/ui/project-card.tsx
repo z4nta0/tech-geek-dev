@@ -22,8 +22,9 @@ import type { ProRecTyp } from './projects.ts'; // What: Project Record Type. Wh
  * @summary
  * The card that shows one project on Home and the Work page: a screenshot of
  * the site with its year in a badge, an overlay that reveals links to the
- * live site and the source on hover, then the project's name, description,
- * and technologies, finished with a small orange corner accent.
+ * live site and the source on hover or keyboard focus, then the project's
+ * name, description, and technologies, finished with a small orange corner
+ * accent.
  *
  * Sections:
  *  - Constants

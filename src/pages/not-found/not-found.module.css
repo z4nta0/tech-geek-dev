@@ -119,7 +119,7 @@
 
 }
 
-.nofDesPar { /* What: Not-Found Description Paragraph. Why: The line explaining the missing page stays short. How: This sets it muted and caps it at the small text measure, about 51 characters, lifting it over the drawing. */
+.nofDesPar { /* What: Not-Found Description Paragraph. Why: The line explaining the missing page stays short. How: This sets it in the secondary text color and caps it at the small text measure, about 51 characters, lifting it over the drawing. */
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
