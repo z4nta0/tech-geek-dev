@@ -558,7 +558,14 @@ decided by the user on 2026-10-13 (step 12, on the `deferred-items` branch).
   since the printed cards' text was too small (the 11-unit text printed at
   about 4.3pt on the 3.5 by 2 inch card). The back's QR code was decorative
   squares that encoded nothing, so it's replaced with a real code for
-  https://techgeek.dev/.
+  https://techgeek.dev/. Done 2026-10-13 with the user's pick of two options:
+  the small text two type steps larger (about 7.5pt printed) and the name
+  and wordmarks one step, the front's overlapping name and wordmark fixed,
+  and the back set as the brand on the left beside a QR code about 2.4cm
+  across, made with the qrcode-generator package outside the project and
+  checked by decoding it. The text is set in Syne and DM Mono, so printing
+  needs those fonts installed, and a test print should be scanned before an
+  order.
 - **Cloudflare** (asked for by the user 2026-10-13): after the close-out and
   the shared design package, the user puts techgeek.dev behind Cloudflare the
   way ease-my-life is, guided step by step, which the user's own sites use and
