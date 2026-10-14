@@ -125,6 +125,20 @@
 
 }
 
+
+/* #region nofActDiv */
+
+.nofActDiv { /* What: Not-Found Actions Div. Why: The two ways onward sit side by side, one height, and wrap on a narrow phone. How: This lines up the buttons centered in a wrapping row with gaps, stretching them to the taller one. */
+
+
+	display         : flex;
+	flex-wrap       : wrap;
+	gap             : var( --spa-ver-bas ) var( --spa-hor-bas ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base ~= 14.572px */
+	justify-content : center;
+
+
+}
+
 .nofHomAnc { /* What: Not-Found Home Anchor. Why: The way back into the site stands out. How: This sets an orange button in mono capitals, easing its color and lift. */
 
 
@@ -164,6 +178,49 @@
 
 
 }
+
+.nofConAnc { /* What: Not-Found Contact Anchor. Why: The second way onward sits back from the first. How: This sets an outlined button in mono capitals, easing its border, color, and lift, the same as Home's secondary button. */
+
+
+	align-items    : center;
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col );                                               /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : var( --rad-bor-xsm );                                                                          /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --tex-mai-col );                                                                          /* Text Main Color = #1A1A2E */
+	display        : inline-flex;
+	font-family    : var( --fon-fam-sec );                                                                          /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                                                                          /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight    : 500;
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );                                                        /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	padding        : var( --spa-ver-m01 ) var( --spa-hor-p03 );                                                     /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	text-transform : uppercase;
+	transition     : border-color var( --dur-tra-bas ), color var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+
+
+}
+.nofConAnc:hover { /* What: Hovered Not-Found Contact Anchor. Why: A button should respond to the pointer. How: This turns its border and text dark blue and lifts it 1px. */
+
+
+	border-color : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
+	color        : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
+	transform    : translateY( -1px );
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Not-Found Contact Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.nofConAnc { /* What: Motionless Not-Found Contact Anchor. Why: The hover look and lift should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion nofActDiv */
 
 /* #endregion nofInnDiv */
 
