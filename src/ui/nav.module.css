@@ -254,7 +254,7 @@
 
 	align-items : center;
 	display     : flex;
-	gap         : var( --spa-hor-m05 ); /* Spacing Horizontal Base Minus 5 ~= 3.572px */
+	gap         : var( --spa-hor-m05 ); /* Spacing Horizontal Base Minus 5 ~= 3.571px */
 	margin-left : auto;
 
 
@@ -273,7 +273,7 @@
 
 }
 
-.barLinAnc { /* What: Bar Link Anchor. Why: Each page link reads in small mono capitals with room for its underline. How: This sets the link muted and padded, easing its color, background, press, and focus. */
+.barLinAnc { /* What: Bar Link Anchor. Why: Each page link reads in small mono capitals with room for its underline. How: This sets the link in the secondary text color and padded, easing its color, background, press, and focus. */
 
 
 	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
@@ -293,7 +293,7 @@
 
 
 	background       : var( --acc-mai-col );                                /* Accent Main Color = #F26419 */
-	bottom           : var( --spa-ver-m05 );                                /* Spacing Vertical Base Minus 5 ~= 3.572px */
+	bottom           : var( --spa-ver-m05 );                                /* Spacing Vertical Base Minus 5 ~= 3.571px */
 	content          : '';
 	height           : var( --bor-wid-lar );                                /* Border Width Large ~= 2.035px */
 	left             : var( --spa-hor-m01 );                                /* Spacing Horizontal Base Minus 1 = 11px */
@@ -629,7 +629,7 @@
 
 /* #region herLabDiv */
 
-.herLabDiv { /* What: Hero Label Div. Why: The drawer opens on the same availability pill Home's hero shows, so it keeps that element's name. How: This sets a warm ivory pill in muted mono capitals, only as wide as its content. */
+.herLabDiv { /* What: Hero Label Div. Why: The drawer opens on the same availability pill Home's hero shows, so it keeps that element's name. How: This sets a warm ivory pill in mono capitals in the secondary text color, only as wide as its content. */
 
 
 	align-items    : center;
@@ -699,7 +699,7 @@
 
 }
 
-.draLinAnc { /* What: Drawer Link Anchor. Why: Each page link in the drawer is a full-width row. How: This sets it in muted mono capitals with a divider under it, easing its color, nudge, press, and focus. */
+.draLinAnc { /* What: Drawer Link Anchor. Why: Each page link in the drawer is a full-width row. How: This sets it in mono capitals in the secondary text color with a divider under it, easing its color, nudge, press, and focus. */
 
 
 	border-bottom  : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
@@ -731,7 +731,7 @@
 .draLinAnc:hover { /* What: Hovered Drawer Link Anchor. Why: Hovering the current page's row should still respond. How: This nudges the row about 4px right, as a stacked menu's rows do. */
 
 
-	transform : translateX( var( --spa-hor-m05 ) ); /* Spacing Horizontal Base Minus 5 ~= 3.572px */
+	transform : translateX( var( --spa-hor-m05 ) ); /* Spacing Horizontal Base Minus 5 ~= 3.571px */
 
 
 }
@@ -867,7 +867,7 @@
 
 
 }
-.menSocAnc:hover { /* What: Hovered Menu Social Anchor. Why: A tile should respond to the pointer. How: This tints it pale orange with a dark orange mark and edge and lifts it 2px. */
+.menSocAnc:hover { /* What: Hovered Menu Social Anchor. Why: A tile should respond to the pointer. How: This tints it pale orange with a dark orange mark and an orange edge, and lifts it 2px. */
 
 
 	background   : var( --acc-tin-col );                            /* Accent Tint Color = #FDDCC8 */

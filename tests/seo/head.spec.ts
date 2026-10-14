@@ -20,19 +20,19 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
  * Checks the site's SEO setup in whichever engine the project runs. Home,
  * Work, About, and Contact are all indexed: each has its own title, a
  * description of 100 to 125 characters, and one canonical address on this
- * domain, while the 404 page carries noindex and no canonical link. Every
- * page has exactly one description, index.html's, which every page but Home
- * swaps for its own, names z4nta0 as its author, and has one h1, and moving
+ * domain, while the 404 page carries noindex and no canonical link. Every page
+ * has exactly one description, index.html's, which Work, About, and Contact
+ * swap for their own, names z4nta0 as its author, and has one h1, and moving
  * between pages swaps the tags rather than piling them up. The raw page, read
- * without running the site's script the way link checkers read it, carries
- * the home page's full title and description. The structured data describes
- * z4nta0 as a Person, with the GitHub and LinkedIn profiles the footer links
- * to and the email the Contact page offers, and this domain as a WebSite
- * z4nta0 wrote. The social preview tags are complete, use absolute addresses,
- * and match the home page's title and description; the card they point at is
- * a 1,200x630 PNG under 300 KB; and every icon the head links to is served,
- * the PNGs at the size their links promise. robots.txt lets every crawler in
- * and names the sitemap, which lists the four indexed pages. Adapted from
+ * without running the site's script the way link checkers read it, carries the
+ * home page's full title and description. The structured data describes z4nta0
+ * as a Person, with the GitHub and LinkedIn profiles the footer links to and
+ * the email the Contact page offers, and this domain as a WebSite z4nta0
+ * wrote. The social preview tags are complete, use absolute addresses, and
+ * match the home page's title and description; the card they point at is a
+ * 1,200x630 PNG under 300 KB; and every icon the head links to is served, the
+ * PNGs at the size their links promise. robots.txt lets every crawler in and
+ * names the sitemap, which lists the four indexed pages. Adapted from
  * the-bernie-bears.
  *
  * Sections:

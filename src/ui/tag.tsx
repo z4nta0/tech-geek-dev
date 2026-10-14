@@ -33,7 +33,7 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
 
 // #region Components
 
-type TlcProTyp = { labTexStr : string, tagSizStr? : 'md' | 'sm', tagVarStr? : 'blue' | 'neutral' | 'orange' }; // What: Tag-Label-Component Props Type. Why: A tag shows its text in one of the module's colors and sizes. How: This types TagLabCom's props.
+type TlcProTyp = { labTexStr : string, tagSizStr? : 'md' | 'sm', tagVarStr : 'blue' | 'neutral' | 'orange' }; // What: Tag-Label-Component Props Type. Why: A tag shows its text in one of the module's colors and sizes. How: This types TagLabCom's props.
 
 // #region TagLabCom
 
@@ -41,9 +41,10 @@ type TlcProTyp = { labTexStr : string, tagSizStr? : 'md' | 'sm', tagVarStr? : 'b
  * TagLabCom = Tag Label Component
  *
  * @summary
- * Renders one pill holding its label, styled by the base tag class plus the
- * classes for its color and its size, which the module names after the
- * values themselves.
+ * Renders one pill holding its label, styled by the base tag class plus one
+ * modifier class for its color and one for its size, each chosen by an
+ * explicit comparison, since a hashed module class can't be looked up by a
+ * built string.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -52,7 +53,7 @@ type TlcProTyp = { labTexStr : string, tagSizStr? : 'md' | 'sm', tagVarStr? : 'b
  * @param props.tagSizStr - Tag Size String: The pill's size, 'sm' or 'md',
  *                          defaulting to 'sm'.
  * @param props.tagVarStr - Tag Variant String: The pill's color, 'blue',
- *                          'neutral', or 'orange', defaulting to 'neutral'.
+ *                          'neutral', or 'orange'.
  *
  * @returns The tag's span.
  *
@@ -63,7 +64,7 @@ type TlcProTyp = { labTexStr : string, tagSizStr? : 'md' | 'sm', tagVarStr? : 'b
  *
 */
 
-function TagLabCom ( { labTexStr, tagSizStr = 'sm', tagVarStr = 'neutral' } : TlcProTyp ) : JSX.Element {
+function TagLabCom ( { labTexStr, tagSizStr = 'sm', tagVarStr } : TlcProTyp ) : JSX.Element {
 
 
 	return (

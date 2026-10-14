@@ -5,17 +5,17 @@
  * contact.module.css = Contact Page Module
  *
  * @summary
- * Styles for ConPagCom. The page fades up into view like every page. Its
- * ivory hero clears the fixed bar and stacks an orange label, the heading
- * with its orange accent, and a muted line. Below it the form, in a white
- * card, sits beside a sidebar of three cards that sticks under the bar as
- * the page scrolls; below 1024px they stack. The fields share one look, with
- * an orange border and glow while focused, the select draws its own arrow,
- * and the thank-you replaces the form once a message is sent. The sidebar's
- * availability dot pulses with the shared statusLoopPulse keyframe. The page's
- * centered column takes the shared container values, and its section the
- * shared section padding, merged into their own rules. Everything that moves
- * holds still under reduced motion.
+ * Styles for ConPagCom. The page fades up into view like every page. Its ivory
+ * hero clears the fixed bar and stacks an orange label, the heading with its
+ * orange accent, and a line in the secondary text color. Below it the form, in
+ * a white card, sits beside a sidebar of three cards that sticks under the bar
+ * as the page scrolls; at 1,024px and below they stack. The fields share one
+ * look, with an orange border and glow while focused, the select draws its own
+ * arrow, and the thank-you replaces the form once a message is sent. The
+ * sidebar's availability dot pulses with the shared statusLoopPulse keyframe.
+ * The page's centered column takes the shared container values, and its
+ * section the shared section padding, merged into their own rules. Everything
+ * that moves holds still under reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -45,7 +45,6 @@
 
 
 }
-
 
 
 /* #region conHerSec */
@@ -133,7 +132,7 @@
 /* #endregion herTitHea */
 
 
-.herSubPar { /* What: Hero Subtitle Paragraph. Why: The line under the heading reads a little larger and quieter. How: This sets it muted, capped at the paragraph measure. */
+.herSubPar { /* What: Hero Subtitle Paragraph. Why: The line under the heading reads a little larger and quieter. How: This sets it in the secondary text color, capped at the paragraph measure. */
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -177,7 +176,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Contact Grid Div. Why: The sidebar crowds the form on a tablet. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Contact Grid Div. Why: The sidebar crowds the form on a tablet. How: This applies at 1,024px and below. */
 
 
 	.conGriDiv { /* What: Stacked Contact Grid Div. Why: The form and the sidebar read better one above the other. How: This sets one column. */
@@ -243,7 +242,7 @@
 
 }
 
-.sucTexPar { /* What: Success Text Paragraph. Why: The line under the heading says when to expect a reply. How: This sets it muted and capped at the small text measure, about 51 characters. */
+.sucTexPar { /* What: Success Text Paragraph. Why: The line under the heading says when to expect a reply. How: This sets it in the secondary text color, capped at the small text measure, about 51 characters. */
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -375,7 +374,7 @@
 
 }
 
-.fieLabLab { /* What: Field Label Label. Why: Each field's name reads as a small label. How: This sets it in muted mono capitals. */
+.fieLabLab { /* What: Field Label Label. Why: Each field's name reads as a small label. How: This sets it in mono capitals in the secondary text color. */
 
 
 	color          : var( --tex-sec-col );                   /* Text Secondary Color = #3D3D5C */
@@ -395,7 +394,7 @@
 
 	background    : var( --bac-pag-col );                                               /* Background Page Color = #F5F0E8 */
 	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );                    /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
-	border-radius : var( --rad-bor-sma );                                               /* Radius Border Small ~= 8.3px */
+	border-radius : var( --rad-bor-sma );                                               /* Radius Border Small ~= 8.304px */
 	color         : var( --tex-mai-col );                                               /* Text Main Color = #1A1A2E */
 	font-family   : var( --fon-fam-mai );                                               /* Font Family Main = 'Syne', sans-serif */
 	font-size     : var( --fon-siz-p01 );                                               /* Font Size Base Plus 1 ~= 14.572px */
@@ -412,7 +411,7 @@
 
 	border-color : var( --foc-rin-col );                            /* Focus Ring Color ~= #bd3000 */
 	box-shadow   : 0 0 0 var( --bor-wid-xla ) var( --acc-tin-col ); /* Border Width Extra Large ~= 3.571px, Accent Tint Color = #FDDCC8 */
-	outline      : var( --bor-wid-bas ) solid transparent;         /* Border Width Base ~= 1.160px */ /* What: Transparent Outline. Why: Forced colors mode drops the glow and recolors the border, which would leave a focused field unmarked. How: Forced colors mode turns this transparent outline visible, while the border and glow carry the look otherwise. */
+	outline      : var( --bor-wid-bas ) solid transparent;          /* Border Width Base ~= 1.160px */ /* What: Transparent Outline. Why: Forced colors mode drops the glow and recolors the border, which would leave a focused field unmarked. How: Forced colors mode turns this transparent outline visible, while the border and glow carry the look otherwise. */
 
 
 }
@@ -466,7 +465,7 @@
 
 	background    : var( --err-tin-col );                            /* Error Tint Color = #fdf0ee */
 	border        : var( --bor-wid-bas ) solid var( --err-mai-col ); /* Border Width Base ~= 1.160px, Error Main Color = #e8b4ae */
-	border-radius : var( --rad-bor-sma );                            /* Radius Border Small ~= 8.3px */
+	border-radius : var( --rad-bor-sma );                            /* Radius Border Small ~= 8.304px */
 	color         : var( --err-dar-col );                            /* Error Dark Color = #c0392b */
 	font-size     : var( --fon-siz-p01 );                            /* Font Size Base Plus 1 ~= 14.572px */
 	padding       : var( --spa-ver-m01 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
@@ -565,7 +564,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Contact Sidebar Aside. Why: The stacked sidebar sits under the form. How: This applies at 1024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Contact Sidebar Aside. Why: The stacked sidebar sits under the form. How: This applies at 1,024px and below. */
 
 
 	.conSidAsi { /* What: Unstuck Contact Sidebar Aside. Why: A stacked sidebar shouldn't stick over the form. How: This returns it to the normal flow. */
@@ -621,11 +620,11 @@
 
 /* #region conIteAnc */
 
-.conIteAnc { /* What: Contact Item Anchor. Why: Each detail is one tappable row. How: This sets the icon beside the text, padded and rounded, easing its background, lift, press, and focus. *
+.conIteAnc { /* What: Contact Item Anchor. Why: Each detail is one tappable row. How: This sets the icon beside the text, padded and rounded, easing its background, lift, press, and focus. */
 
 
 	align-items   : center;
-	border-radius : var( --rad-bor-sma );                      /* Radius Border Small ~= 8.3px */
+	border-radius : var( --rad-bor-sma );                      /* Radius Border Small ~= 8.304px */
 	display       : flex;
 	gap           : var( --spa-hor-m01 );                      /* Spacing Horizontal Base Minus 1 = 11px */
 	padding       : var( --spa-ver-m01 ) var( --spa-hor-m01 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Minus 1 = 11px */
@@ -667,7 +666,7 @@
 
 	align-items     : center;
 	background      : var( --acs-tin-col );                /* Accent-Secondary Tint Color = #B8D9EC */
-	border-radius   : var( --rad-bor-sma );                /* Radius Border Small ~= 8.3px */
+	border-radius   : var( --rad-bor-sma );                /* Radius Border Small ~= 8.304px */
 	color           : var( --acs-dar-col );                /* Accent-Secondary Dark Color ~= #126186 */
 	display         : flex;
 	flex-shrink     : 0;
@@ -765,7 +764,7 @@
 	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : var( --fon-siz-bas ); /* Font Size Base = 11px */
 	letter-spacing : 0.04em;
-	margin-top     : var( --spa-ver-m05 ); /* Spacing Vertical Base Minus 5 ~= 3.572px */
+	margin-top     : var( --spa-ver-m05 ); /* Spacing Vertical Base Minus 5 ~= 3.571px */
 
 
 }
@@ -775,7 +774,7 @@
 
 /* #region resTexPar */
 
-.resTexPar { /* What: Response Text Paragraph. Why: The response promise reads as small body text. How: This sets it muted with roomy lines, no wider than the paragraph measure, which the full-width card on tablets would otherwise pass. */
+.resTexPar { /* What: Response Text Paragraph. Why: The response promise reads as small body text. How: This sets it in the secondary text color with roomy lines, no wider than the paragraph measure, which the full-width card on tablets would otherwise pass. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */

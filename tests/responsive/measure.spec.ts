@@ -77,7 +77,7 @@ const WID_LIS_ARR = [ 320, 360, 390, 414, 480, 640, 641, 768, 769, 1024, 1025, 1
  * Runs inside the page and returns a problem for each visible paragraph
  * whose longest rendered line holds more characters than its limit. Each
  * character's box is read through a range, and a character whose box starts
- * lower than the previous line's top by more than half its own height begins
+ * lower than the current line's top by more than half its own height begins
  * a new line, so wrapped lines are counted as drawn. Spaces at a line's end
  * aren't counted. Passed to Playwright's evaluate, so it reads its limits
  * from its argument rather than from this file.

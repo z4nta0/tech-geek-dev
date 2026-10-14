@@ -45,12 +45,12 @@ type SitRecTyp = { disStr? : string, namStr : string, urlStr : string }; // What
  * @summary
  * Every project the cards show, matching src/ui/projects.ts. Every row
  * shares the SitRecTyp shape, so its fields carry no comments of their own:
- * - `namStr` (String): Name String, the project's file name, saved as
- *   originals/<name>-website.png, the original render.mts reads.
- * - `urlStr` (String): URL String, the project's live site.
  * - `disStr` (String, optional): Dismiss String, the name of a button the
  *   site's first visit shows over its content, clicked before the capture:
  *   Ease My Life's welcome dialog, dismissed with I’ll explore myself.
+ * - `namStr` (String): Name String, the project's file name, saved as
+ *   originals/<name>-website.png, the original render.mts reads.
+ * - `urlStr` (String): URL String, the project's live site.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -118,7 +118,14 @@ for ( const sitRecObj of SIT_REC_ARR ) { // What: Site Record Loop. Why: Each pr
 
 
 
-	await capPagObj.screenshot( { animations : 'disabled', path : `${ ORI_DIR_STR }${ sitRecObj.namStr }-website.png` } ); // What: Screenshot Call. Why: The card shows the site's first screen. How: This saves the window as the project's original, with any looping animation held still.
+	await capPagObj.screenshot({ // What: Screenshot Call. Why: The card shows the site's first screen. How: This saves the window as the project's original, with any looping animation held still.
+
+
+		animations : 'disabled',                                           // What: Animations. Why: A looping animation would be caught mid-frame. How: This holds every animation still for the capture.
+		path       : `${ ORI_DIR_STR }${ sitRecObj.namStr }-website.png` // What: Path. Why: render.mts reads each original by the project's name. How: This saves it in the originals folder under that name.
+
+
+	});
 
 	await capPagObj.close(); // What: Page Close Call. Why: Each site gets a fresh page. How: This closes the finished one.
 

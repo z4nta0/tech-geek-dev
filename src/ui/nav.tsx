@@ -223,7 +223,7 @@ function NavBarCom () : JSX.Element {
 						className={ cssModObj.braLogAnc }
 
 						to='/'
-					>{ /* What: Brand Logo Anchor Element. Why: The mark and wordmark take a visitor home from any page. How: This routes to the root path. */ }
+					>{ /* What: Brand Logo Navigation Link. Why: The mark and wordmark take a visitor home from any page. How: This routes to the root path. */ }
 
 
 						<svg
@@ -239,12 +239,12 @@ function NavBarCom () : JSX.Element {
 							<polygon
 								fill='none'
 								points='14,2 26,8 26,20 14,26 2,20 2,8'
-								stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
+								stroke='var( --acc-mai-col )' // Accent Main Color = #F26419
 								strokeWidth='2'
 							/>{ /* What: Outer Hexagon Polygon Element. Why: The mark's outline is an orange hexagon. How: This traces it around the whole mark. */ }
 
 							<polygon
-								fill='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
+								fill='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
 								opacity='0.6'
 								points='14,7 21,11 21,17 14,21 7,17 7,11'
 							/>{ /* What: Inner Hexagon Polygon Element. Why: A softer blue hexagon fills the mark's center. How: This draws it at 60% strength inside the outline. */ }
@@ -252,7 +252,7 @@ function NavBarCom () : JSX.Element {
 							<circle
 								cx='14'
 								cy='14'
-								fill='var(--acc-mai-col)' // Accent Main Color = #F26419
+								fill='var( --acc-mai-col )' // Accent Main Color = #F26419
 								r='3'
 							/>{ /* What: Center Dot Circle Element. Why: An orange dot finishes the mark's center. How: This draws it in the middle of the hexagons. */ }
 
@@ -286,7 +286,7 @@ function NavBarCom () : JSX.Element {
 								className={ cssModObj.barLinAnc }
 
 								to={ pagLinObj.patStr }
-							>{ pagLinObj.labStr }</NavLink> // What: Bar Link Anchor Element. Why: Each page has its own link in the bar. How: This routes to the row's path, labelled with its name, and NavLink sets aria-current on the one whose route is showing, which its module styles.
+							>{ pagLinObj.labStr }</NavLink> // What: Bar Page Navigation Link. Why: Each page has its own link in the bar. How: This routes to the row's path, labelled with its name, and NavLink sets aria-current on the one whose route is showing, which its module styles.
 
 
 						))}
@@ -300,7 +300,7 @@ function NavBarCom () : JSX.Element {
 						className={ cssModObj.barHirAnc }
 
 						to='/contact'
-					>Hire Me</Link>{ /* What: Bar Hire Anchor Element. Why: The bar's one call to action leads to the Contact page. How: This routes there as a button without reloading the site. */ }
+					>Hire Me</Link>{ /* What: Bar Hire Link. Why: The bar's one call to action leads to the Contact page. How: This routes there as a button without reloading the site. */ }
 
 
 
@@ -323,6 +323,7 @@ function NavBarCom () : JSX.Element {
 
 
 				</div>
+
 
 
 				<div
@@ -368,7 +369,7 @@ function NavBarCom () : JSX.Element {
 								style={ { '--men-ite-ind' : linIndNum + 1 } as CSSProperties } // What: Menu Item Index. Why: Each link arrives a step after the one above it. How: This hands the link its place after the label. // What: Type Assertion Note. Why: React's style type doesn't list custom properties. How: The stylesheet reads this one by name.
 
 								to={ pagLinObj.patStr }
-							>{ pagLinObj.labStr }</NavLink> // What: Drawer Link Anchor Element. Why: Each page has its own link in the drawer. How: This routes to the row's path, labelled with its name, and NavLink sets aria-current on the one whose route is showing, which its module styles.
+							>{ pagLinObj.labStr }</NavLink> // What: Drawer Page Navigation Link. Why: Each page has its own link in the drawer. How: This routes to the row's path, labelled with its name, and NavLink sets aria-current on the one whose route is showing, which its module styles.
 
 
 						))}
@@ -384,7 +385,7 @@ function NavBarCom () : JSX.Element {
 						style={ { '--men-ite-ind' : PAG_LIN_ARR.length + 1 } as CSSProperties } // What: Menu Item Index. Why: The button arrives after the last link. How: This hands it the next place. // What: Type Assertion Note. Why: React's style type doesn't list custom properties. How: The stylesheet reads this one by name.
 
 						to='/contact'
-					>Hire Me</Link>{ /* What: Drawer Hire Anchor Element. Why: The drawer repeats the bar's call to action. How: This routes to the Contact page as a button without reloading the site, and the menu closes as the page changes. */ }
+					>Hire Me</Link>{ /* What: Drawer Hire Link. Why: The drawer repeats the bar's call to action. How: This routes to the Contact page as a button without reloading the site, and the menu closes as the page changes. */ }
 
 
 

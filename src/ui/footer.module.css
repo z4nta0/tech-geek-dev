@@ -8,10 +8,10 @@
  * Styles for SitFooCom: the dark band that ends every page, holding the
  * page's centered column split into three: the mark and tagline on the left,
  * the page links stacked in the middle, and the copyright with the profile
- * icons on the right. Below 768px the three stack and center. The column's
- * width and side padding are the page's shared container values, merged
- * into its own rule. The links and icons ease their hover color, and hold
- * still under reduced motion.
+ * icons on the right. At 768px and below the three stack and center. The
+ * column's width and side padding are the page's shared container values,
+ * merged into its own rule. The links and icons ease their hover color, and
+ * hold still under reduced motion.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *

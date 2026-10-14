@@ -50,6 +50,8 @@ import type { JSX         } from 'react'; // What: JSX. Why: The component decla
  * @summary
  * The sidebar's contact details, in the order they show. Every row shares one
  * shape, so its fields carry no comments of their own:
+ * - `extBoo` (Boolean): External Boolean, true for a profile on another site,
+ *   which opens in a new tab, and false for the email address.
  * - `hreStr` (String): Hypertext Reference String, where the item links.
  * - `icoEle` (Element): Icon Element, the item's small icon.
  * - `labStr` (String): Label String, the item's name, also its React key.
@@ -65,6 +67,7 @@ const CON_ITE_ARR = [ // What: Contact Item Array. Why: The sidebar lists the sa
 	{ // What: Email Item Row. Why: Email is the most direct way to get in touch. How: This links to the contact address.
 
 
+		extBoo : false,
 		hreStr : 'mailto:contact@techgeek.dev',
 		labStr : 'Email',
 		valStr : 'contact@techgeek.dev',
@@ -98,6 +101,7 @@ const CON_ITE_ARR = [ // What: Contact Item Array. Why: The sidebar lists the sa
 	{ // What: GitHub Item Row. Why: A visitor can browse z4nta0's code. How: This links to the GitHub profile.
 
 
+		extBoo : true,
 		hreStr : 'https://github.com/z4nta0',
 		labStr : 'GitHub',
 		valStr : 'github.com/z4nta0',
@@ -127,6 +131,7 @@ const CON_ITE_ARR = [ // What: Contact Item Array. Why: The sidebar lists the sa
 	{ // What: LinkedIn Item Row. Why: A visitor can find z4nta0's work history. How: This links to the LinkedIn profile.
 
 
+		extBoo : true,
 		hreStr : 'https://www.linkedin.com/in/gary-s-walton-654739400/',
 		labStr : 'LinkedIn',
 		valStr : 'linkedin.com/in/gary-s-walton-654739400',
@@ -180,8 +185,8 @@ const EMP_FOR_OBJ = { 'bot-field' : '', budget : '', email : '', message : '', n
  * doesn't answer with ok counts as an error, just like a network failure, so
  * either one leaves the form in place with an error above the message field,
  * while a sent message swaps the form for a thank-you with a button that
- * empties the form for another. The sidebar lists CON_ITE_ARR's
- * contact details, each opening in a new tab, beside the availability and
+ * empties the form for another. The sidebar lists CON_ITE_ARR's contact
+ * details, the profiles opening in a new tab, beside the availability and
  * response time.
  *
  * It also sets the page's title and canonical address, which React moves
@@ -285,7 +290,7 @@ function ConPagCom () : JSX.Element {
 				body : new URLSearchParams({ // What: Body. Why: Netlify reads a standard form-encoded body whose field names match the hidden form in index.html. How: This encodes the form's name, the honeypot, and the four real fields.
 
 
-					'bot-field' : forDatObj[ 'bot-field' ],              // What: Bot Field. Why: Netlify drops a submission whose honeypot is filled, which a person never does. How: This posts the hidden field as it stands.
+					'bot-field' : forDatObj[ 'bot-field' ],            // What: Bot Field. Why: Netlify drops a submission whose honeypot is filled, which a person never does. How: This posts the hidden field as it stands.
 					budget      : forDatObj.budget || 'Not specified', // What: Budget. Why: The email shows the visitor's budget range. How: This sends the choice, or Not specified when none was made.
 					email       : forDatObj.email,                     // What: Email. Why: Netlify sets a field named email as the notification's reply-to, so a reply goes straight back to the visitor. How: This sends the address they entered.
 					'form-name' : 'contact',                           // What: Form Name. Why: Netlify matches the POST to its detected form by this field. How: This names the contact form.
@@ -357,7 +362,7 @@ function ConPagCom () : JSX.Element {
 					<GeoBacCom
 						patOpaNum={ 0.14 }
 						patVarStr='circuit'
-					/>{ /* What: Hero Geometric Background Component. Why: A faint circuit sits behind the hero. How: This draws it at 14% strength. */ }
+					/>{ /* What: Geometric Background Component. Why: A faint circuit sits behind the hero. How: This draws it at 14% strength. */ }
 
 
 
@@ -406,7 +411,7 @@ function ConPagCom () : JSX.Element {
 									<svg
 										fill='none'
 										height='56'
-										stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
+										stroke='var( --acc-mai-col )' // Accent Main Color = #F26419
 										strokeWidth='1.5'
 										viewBox='0 0 24 24'
 										width='56'
@@ -614,6 +619,7 @@ function ConPagCom () : JSX.Element {
 
 									</div>
 
+
 									<button
 										className={ cssModObj.senMesBut }
 
@@ -686,9 +692,9 @@ function ConPagCom () : JSX.Element {
 											className={ cssModObj.conIteAnc }
 
 											href={ conIteObj.hreStr }
-											rel='noreferrer'
-											target='_blank'
-										>{ /* What: Contact Item Anchor Element. Why: Each item links to its address. How: This opens the address in a new tab, showing the icon beside the name and address. */ }
+											rel={ conIteObj.extBoo ? 'noreferrer' : undefined } // What: Relationship Ternary. Why: A profile on another site shouldn't learn which page sent the visitor. How: This sets noreferrer on the external rows and leaves the email row without one.
+											target={ conIteObj.extBoo ? '_blank' : undefined } // What: Target Ternary. Why: A profile opens beside the site, while a mailto link in a new tab would leave an empty tab behind. How: This opens only the external rows in a new tab.
+										>{ /* What: Contact Item Anchor Element. Why: Each item links to its address. How: This opens a profile in a new tab, or the email address in the visitor's mail app, showing the icon beside the name and address. */ }
 
 
 											<span className={ cssModObj.conIcoSpa }>{ conIteObj.icoEle }</span>{ /* What: Contact Icon Span Element. Why: An icon marks each item at a glance. How: This frames the row's icon. */ }
@@ -721,6 +727,7 @@ function ConPagCom () : JSX.Element {
 
 
 								<h3 className={ cssModObj.sidTitHea }>Availability</h3>{ /* What: Sidebar Title Heading Element. Why: The card is named. How: This shows its title. */ }
+
 
 								<div className={ cssModObj.avaRowDiv }>{ /* What: Availability Row Div Element. Why: The status dot sits beside its text. How: This sets them side by side. */ }
 

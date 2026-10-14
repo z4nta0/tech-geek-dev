@@ -218,7 +218,7 @@ function AboPagCom () : JSX.Element {
 					<GeoBacCom
 						patOpaNum={ 0.2 }
 						patVarStr='dots'
-					/>{ /* What: Hero Geometric Background Component. Why: A faint field of dots sits behind the hero. How: This draws it at 20% strength. */ }
+					/>{ /* What: Geometric Background Component. Why: A faint field of dots sits behind the hero. How: This draws it at 20% strength. */ }
 
 
 
@@ -259,7 +259,7 @@ function AboPagCom () : JSX.Element {
 									className={ cssModObj.butPriAnc }
 
 									to='/contact'
-								>Work With Me</Link>{ /* What: Button Primary Anchor Element. Why: A visitor who likes what they read can get in touch. How: This routes to the Contact page as a button. */ }
+								>Work With Me</Link>{ /* What: Work With Me Link. Why: A visitor who likes what they read can get in touch. How: This routes to the Contact page as a button. */ }
 
 
 							</div>
@@ -289,14 +289,14 @@ function AboPagCom () : JSX.Element {
 										<polygon
 											opacity='0.5'
 											points='160,10 310,90 310,270 160,350 10,270 10,90'
-											stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
+											stroke='var( --acc-mai-col )' // Accent Main Color = #F26419
 											strokeWidth='2'
 										/>{ /* What: Outer Frame Polygon Element. Why: The frame's outer hexagon is orange. How: This traces it at half strength. */ }
 
 										<polygon
 											opacity='0.35'
 											points='160,30 290,100 290,260 160,330 30,260 30,100'
-											stroke='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
+											stroke='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
 											strokeWidth='1'
 										/>{ /* What: Inner Frame Polygon Element. Why: A thinner blue hexagon nests inside the first. How: This traces it at 35% strength. */ }
 
@@ -323,15 +323,23 @@ function AboPagCom () : JSX.Element {
 
 
 							<div className={` ${ cssModObj.floFacDiv }   ${ cssModObj.floFacDivTop } `}>{ /* What: Floating Fact Div Element. Why: A floating fact highlights the years of experience. How: This shows the figure over its label at the portrait's top corner. */ }
+
+
 								<span className={ cssModObj.facFigSpa }>10+</span>{ /* What: Fact Figure Span Element. Why: z4nta0 has been a developer since 2013. How: This shows ten plus. */ }
 
-								<span className={ cssModObj.facLabSpa }>Years coding</span>{ /* What: Fact Label Span Element. Why: The label says what the figure counts. How: This shows Years coding. */ }
+								<span className={ cssModObj.facLabSpa }>Years Experience</span>{ /* What: Fact Label Span Element. Why: The label says what the figure counts. How: This shows Years Experience. */ }
+
+
 							</div>
 
 							<div className={` ${ cssModObj.floFacDiv }   ${ cssModObj.floFacDivBottom } `}>{ /* What: Floating Fact Div Element. Why: A floating fact highlights the projects shipped. How: This shows the figure over its label at the portrait's bottom corner. */ }
+
+
 								<span className={ cssModObj.facFigSpa }>{ SHI_COU_NUM }+</span>{ /* What: Fact Figure Span Element. Why: The count should grow as projects are added, and older projects that are no longer online still count. How: This shows the project list's count with a plus. */ }
 
-								<span className={ cssModObj.facLabSpa }>Projects shipped</span>{ /* What: Fact Label Span Element. Why: The label says what the figure counts. How: This shows Projects shipped. */ }
+								<span className={ cssModObj.facLabSpa }>Projects Shipped</span>{ /* What: Fact Label Span Element. Why: The label says what the figure counts. How: This shows Projects Shipped. */ }
+
+
 							</div>
 
 
@@ -425,7 +433,7 @@ function AboPagCom () : JSX.Element {
 					<GeoBacCom
 						patOpaNum={ 0.12 }
 						patVarStr='grid'
-					/>{ /* What: Timeline Geometric Background Component. Why: A faint grid sits behind the timeline. How: This draws it at 12% strength. */ }
+					/>{ /* What: Geometric Background Component. Why: A faint grid sits behind the timeline. How: This draws it at 12% strength. */ }
 
 
 

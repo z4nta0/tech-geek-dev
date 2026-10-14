@@ -161,6 +161,9 @@
 
 }
 
+
+/* #region oveButAnc */
+
 .oveButAnc { /* What: Overlay Button Anchor. Why: Each link in the overlay reads as a button. How: This sets the orange button with its icon and mono capitals, easing its color, press, and focus. */
 
 
@@ -180,7 +183,7 @@
 
 
 }
-.oveButAnc:hover { /* What: Hovered Overlay Button Anchor. Why: A button should respond to the pointer. How: This darkens its orange. */
+.oveButAnc:hover { /* What: Hovered Overlay Button Anchor. Why: A button should respond to the pointer. How: This darkens its orange, color only, since the two buttons sit in a row over the screenshot and WebKit stopped registering a press on a lifted one. */
 
 
 	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
@@ -223,6 +226,16 @@
 
 
 }
+
+.oveIcoSvg { /* What: Overlay Icon SVG. Why: A press anywhere on the button should register as a press on the link. How: This keeps the icon from catching the pointer. */
+
+
+	pointer-events : none; /* What: Pass-Through Pointer. Why: WebKit doesn't mark a link pressed when the press lands on an SVG shape inside it, as the-bernie-bears found. How: This lets every press fall through the icon to the link itself. */
+
+
+}
+
+/* #endregion oveButAnc */
 
 /* #endregion oveLinDiv */
 
@@ -295,8 +308,8 @@
 
 	display     : flex;
 	flex-wrap   : wrap;
-	gap         : var( --spa-ver-m05 ) var( --spa-hor-m05 ); /* Spacing Vertical Base Minus 5 ~= 3.572px, Spacing Horizontal Base Minus 5 ~= 3.572px */
-	padding-top : var( --spa-ver-m05 );                      /* Spacing Vertical Base Minus 5 ~= 3.572px */
+	gap         : var( --spa-ver-m05 ) var( --spa-hor-m05 ); /* Spacing Vertical Base Minus 5 ~= 3.571px, Spacing Horizontal Base Minus 5 ~= 3.571px */
+	padding-top : var( --spa-ver-m05 );                      /* Spacing Vertical Base Minus 5 ~= 3.571px */
 
 
 }

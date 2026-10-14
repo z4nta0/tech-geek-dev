@@ -1,7 +1,7 @@
 # Project CLAUDE.md: tech-geek-dev
 
 z4nta0's developer portfolio (React, Vite, React Router, deployed on Netlify
-at https://techgeek.dev/, not launched yet). Every rule in the user-level
+at https://techgeek.dev/, now live). Every rule in the user-level
 CLAUDE.md applies here; this file records only what's specific to this
 project. ease-my-life, reese-roofing, seal-and-shield, tonys-toppers,
 the-bernie-bears, and hair-designs have already been converted to those rules
@@ -106,8 +106,7 @@ src/
     not-found/           the 404 page every unknown path shows
   ui/                    what more than one page uses (the bar, the footer,
                          the background pattern, the section header, the
-                         tag, the project card and the project list with its
-                         screenshots)
+                         tag, the project card and the project list)
   styles/                global CSS only (fonts.css, styles.css)
 ```
 Outside `src/`: `public/` (the favicon set, the social preview card,
@@ -566,6 +565,14 @@ settle.
   of a reciprocal power of the core design number. The transparency rule is
   written for alphas read through relative color syntax, so whether it reaches
   these is undecided.
+- **The m05 step's quoted value**: every comment quotes the m05 rhythm step
+  (11px over the fourth power) as about 3.571px, as the user-level rules do,
+  but it's 3.5719px, which rounds to 3.572px. The close-out kept 3.571 so the
+  family's comments agree; correcting it would mean the user-level rules and
+  every sibling site too.
+- **Unused tag variants**: `ui/tag.module.css` keeps neutral and orange
+  variants nothing renders (every tag is blue), along with the orange tag the
+  `--acc-tin-col` comment mentions. Keep them for future tags, or remove them.
 
 ## Deferred items
 Decided 2026-10-12 to leave these until the cleanup plan is finished, and

@@ -42,7 +42,7 @@ import type { Page          } from '@playwright/test'; // What: Page. Why: Every
 
 // #region Constants
 
-const SET_WAI_NUM = 400; // What: Settle Wait Number. Why: Each look is read once its transition has finished, and the longest transition on a link or button runs about 367ms. How: This is the pause, in milliseconds, after each hover, press, or focus.
+const SET_WAI_NUM = 400; // What: Settle Wait Number. Why: Each look is read once its transition has finished, and the longest transition on a link or button, or anything inside one, runs about 277ms (the bar links' underline, the menu toggle's bars, and the project cards' link overlay). How: This is the pause, in milliseconds, after each hover, press, or focus, leaving over 100ms of margin for a slow frame or a short delay.
 
 // #endregion Constants
 

@@ -7,7 +7,7 @@ import emlScrUrl from '../assets/images/ease-my-life-website.webp';     // What:
 import hadScrUrl from '../assets/images/hair-designs-website.webp';     // What: Hair-Designs Screenshot URL. Why: The Hair Designs project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
 import rerScrUrl from '../assets/images/reese-roofing-website.webp';    // What: Reese-Roofing Screenshot URL. Why: The Reese Roofing project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
 import sasScrUrl from '../assets/images/seal-and-shield-website.webp';  // What: Seal-And-Shield Screenshot URL. Why: The Seal and Shield project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
-import tbbScrUrl from '../assets/images/the-bernie-bears-website.webp'; // What: The-Bernie-Bears Screenshot URL. Why: The The Bernie Bears project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
+import tbbScrUrl from '../assets/images/the-bernie-bears-website.webp'; // What: The-Bernie-Bears Screenshot URL. Why: The Bernie Bears project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
 import tegScrUrl from '../assets/images/tech-geek-website.webp';        // What: Tech-Geek Screenshot URL. Why: The Tech Geek project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
 import totScrUrl from '../assets/images/tonys-toppers-website.webp';    // What: Tonys-Toppers Screenshot URL. Why: The Tony's Toppers project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
 

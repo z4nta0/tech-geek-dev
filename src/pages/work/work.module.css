@@ -395,7 +395,7 @@
 	border      : 0;
 	clip-path   : inset( 50% );
 	height      : 1px;
-	margin      : calc( var( --spa-ver-m09 ) * -1 ) calc( var( --spa-hor-m09 ) * -1 ); /* Spacing Vertical Base Minus 9 ~= 1.16px, Spacing Horizontal Base Minus 9 ~= 1.16px */
+	margin      : -1px;
 	overflow    : hidden;
 	padding     : 0;
 	position    : absolute;
@@ -444,16 +444,28 @@
 
 }
 
-.empMesDiv { /* What: Empty Message Div. Why: A filter that finds nothing should say so clearly. How: This centers the message in muted mono with generous room around it. */
+
+/* #region empMesDiv */
+
+.empMesDiv { /* What: Empty Message Div. Why: A filter that finds nothing should say so with generous room around it. How: This pads the space the grid would fill. */
 
 
-	color       : var( --tex-mut-col );   /* Text Muted Color = #646482 */
-	font-family : var( --fon-fam-sec );   /* Font Family Secondary = 'DM Mono', monospace */
-	padding     : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
+	padding : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
+
+
+}
+
+.empMesPar { /* What: Empty Message Paragraph. Why: A filter that finds nothing should say so clearly, and the global paragraph style would set it in Syne and the secondary ink. How: This centers the message in muted mono. */
+
+
+	color       : var( --tex-mut-col ); /* Text Muted Color = #646482 */
+	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	text-align  : center;
 
 
 }
+
+/* #endregion empMesDiv */
 
 /* #endregion proInnDiv */
 

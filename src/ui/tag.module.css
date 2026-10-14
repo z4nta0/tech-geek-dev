@@ -6,8 +6,9 @@
  *
  * @summary
  * Styles for TagLabCom: a small pill in the mono font, with one modifier for
- * each of its two sizes and three colors. The modifiers are named after the
- * values TagLabCom's props take, so the component reads them by those names.
+ * each of its two sizes and three colors. TagLabCom maps each value its props
+ * take ('sm', 'md', 'blue', ...) to its modifier (--small, --medium, --blue,
+ * ...) through an explicit comparison.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *

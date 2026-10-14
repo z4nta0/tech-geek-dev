@@ -421,7 +421,7 @@ function HomPagCom () : JSX.Element {
 					<GeoBacCom
 						patOpaNum={ 0.18 }
 						patVarStr='circuit'
-					/>{ /* What: Hero Geometric Background Component. Why: A faint circuit sits behind the hero. How: This draws it at 18% strength. */ }
+					/>{ /* What: Geometric Background Component. Why: A faint circuit sits behind the hero. How: This draws it at 18% strength. */ }
 
 
 
@@ -465,9 +465,9 @@ function HomPagCom () : JSX.Element {
 
 							<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up what z4nta0 does. How: This sets I Build Digital Experiences over two lines, with Digital in the accent and a closing dot. */ }
 								I Build <span className={ cssModObj.titAccSpa }>Digital</span>
-								<br />
+								<br />{ /* What: Title Break Element. Why: The heading sets Experiences on a line of its own. How: This breaks the line after Digital. */ }
 								Experiences
-								<span className={ cssModObj.titDotSpa }>.</span>
+								<span className={ cssModObj.titDotSpa }>.</span>{ /* What: Title Dot Span Element. Why: The heading ends on an orange full stop. How: This shows the dot in the dark accent. */ }
 							</h1>
 
 							<p className={ cssModObj.herSubPar }>{ /* What: Hero Subtitle Paragraph Element. Why: A line under the heading says what kind of work this is. How: This describes the full-stack work for local businesses. */ }
@@ -483,7 +483,7 @@ function HomPagCom () : JSX.Element {
 									className={ cssModObj.butPriAnc }
 
 									to='/work'
-								>{ /* What: Button Primary Anchor Element. Why: Most visitors want to see the work first. How: This routes to the Work page with an arrow. */ }
+								>{ /* What: View My Work Link. Why: Most visitors want to see the work first. How: This routes to the Work page with an arrow. */ }
 
 
 									View My Work
@@ -512,7 +512,7 @@ function HomPagCom () : JSX.Element {
 									className={ cssModObj.butSecAnc }
 
 									to='/contact'
-								>Get In Touch</Link>{ /* What: Button Secondary Anchor Element. Why: A visitor ready to talk can go straight to Contact. How: This routes there as the secondary button. */ }
+								>Get In Touch</Link>{ /* What: Get In Touch Link. Why: A visitor ready to talk can go straight to Contact. How: This routes there as the secondary button. */ }
 
 
 							</div>
@@ -587,7 +587,7 @@ function HomPagCom () : JSX.Element {
 									<circle
 										cx='280'
 										cy='20'
-										fill='var(--acc-mai-col)' // Accent Main Color = #F26419
+										fill='var( --acc-mai-col )' // Accent Main Color = #F26419
 										opacity='0.8'
 										r='4'
 									/>{ /* What: Node Circle Element. Why: Each node is a dot. How: This draws one in orange. */ }
@@ -595,7 +595,7 @@ function HomPagCom () : JSX.Element {
 									<circle
 										cx='300'
 										cy='60'
-										fill='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
+										fill='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
 										opacity='0.7'
 										r='2.5'
 									/>{ /* What: Node Circle Element. Why: Each node is a dot. How: This draws one in blue. */ }
@@ -603,14 +603,14 @@ function HomPagCom () : JSX.Element {
 									<circle
 										cx='260'
 										cy='200'
-										fill='var(--acc-mai-col)' // Accent Main Color = #F26419
+										fill='var( --acc-mai-col )' // Accent Main Color = #F26419
 										opacity='0.6'
 										r='4'
 									/>{ /* What: Node Circle Element. Why: Each node is a dot. How: This draws one in orange. */ }
 
 									<line
 										opacity='0.5'
-										stroke='var(--acs-tin-col)' // Accent-Secondary Tint Color = #B8D9EC
+										stroke='var( --acs-tin-col )' // Accent-Secondary Tint Color = #B8D9EC
 										strokeWidth='1'
 										x1='280'
 										x2='300'
@@ -620,7 +620,7 @@ function HomPagCom () : JSX.Element {
 
 									<line
 										opacity='0.5'
-										stroke='var(--acs-tin-col)' // Accent-Secondary Tint Color = #B8D9EC
+										stroke='var( --acs-tin-col )' // Accent-Secondary Tint Color = #B8D9EC
 										strokeWidth='1'
 										x1='300'
 										x2='260'
@@ -649,14 +649,14 @@ function HomPagCom () : JSX.Element {
 									<polygon
 										fill='none'
 										points='14,2 26,8 26,20 14,26 2,20 2,8'
-										stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
+										stroke='var( --acc-mai-col )' // Accent Main Color = #F26419
 										strokeWidth='1.5'
 									/>{ /* What: Badge Hexagon Polygon Element. Why: The mark's outline is an orange hexagon. How: This traces it. */ }
 
 									<circle
 										cx='14'
 										cy='14'
-										fill='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
+										fill='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
 										r='4'
 									/>{ /* What: Badge Center Circle Element. Why: A blue dot fills the mark's center. How: This draws it. */ }
 
@@ -752,7 +752,7 @@ function HomPagCom () : JSX.Element {
 								className={ cssModObj.vieAllAnc }
 
 								to='/work'
-							>{ /* What: View All Anchor Element. Why: Home shows only four projects, so the rest are a click away. How: This routes to the Work page with an arrow. */ }
+							>{ /* What: View All Link. Why: Home shows only four projects, so the rest are a click away. How: This routes to the Work page with an arrow. */ }
 
 
 								View all projects
@@ -813,7 +813,7 @@ function HomPagCom () : JSX.Element {
 					<GeoBacCom
 						patOpaNum={ 0.25 }
 						patVarStr='dots'
-					/>{ /* What: Services Geometric Background Component. Why: A faint field of dots sits behind the services. How: This draws it at 25% strength. */ }
+					/>{ /* What: Geometric Background Component. Why: A faint field of dots sits behind the services. How: This draws it at 25% strength. */ }
 
 
 
@@ -888,7 +888,7 @@ function HomPagCom () : JSX.Element {
 								className={ cssModObj.ctaStaAnc }
 
 								to='/contact'
-							>Start a Project</Link>{ /* What: Call-To-Action Start Anchor Element. Why: A visitor ready to start goes straight to Contact. How: This routes there as the banner's button. */ }
+							>Start a Project</Link>{ /* What: Start A Project Link. Why: A visitor ready to start goes straight to Contact. How: This routes there as the banner's button. */ }
 
 
 						</div>

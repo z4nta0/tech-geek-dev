@@ -64,7 +64,7 @@
 
 }
 
-.errCodDiv { /* What: Error Code Div. Why: A huge quiet 404 says what happened at a glance without shouting. How: This sets it in the display font, scaling with the screen, in a deep beige that still reaches the 3:1 large-text contrast, and keeps it from being selected. */
+.errCodDiv { /* What: Error Code Div. Why: A huge quiet 404 says what happened at a glance without shouting. How: This sets it in the display font, scaling with the screen, in a deep beige that still reaches the 3:1 large-text contrast, keeps it from being selected, and lifts it over the drawing. */
 
 
 	color          : oklch( from var( --bor-mai-col ) calc( l - 0.24 ) c h );                /* Border Main Color = #D8CFBE, darkened to about #8d8475 */
@@ -73,7 +73,9 @@
 	font-weight    : 800;
 	letter-spacing : calc( var( --cdn-pow-010-rec ) * -1em );                                /* Core-Design-Number to the Power of 10 Reciprocal ~= -0.060em */
 	line-height    : var( --ver-rhy-m01 );                                                   /* Vertical Rhythm Base Minus 1 = 1 */
+	position       : relative;
 	user-select    : none;
+	z-index        : 1;                                                                      /* What: Drawing Clearing Layer. Why: The turning hexagon drawing is positioned, so it would paint over the number. How: This lifts the number one layer above the drawing, which sits at auto. */
 
 
 }
@@ -117,11 +119,13 @@
 
 }
 
-.nofDesPar { /* What: Not-Found Description Paragraph. Why: The line explaining the missing page stays short. How: This sets it muted and caps it at the small text measure, about 51 characters. */
+.nofDesPar { /* What: Not-Found Description Paragraph. Why: The line explaining the missing page stays short. How: This sets it muted and caps it at the small text measure, about 51 characters, lifting it over the drawing. */
 
 
 	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	max-width : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
+	position  : relative;
+	z-index   : 1;                    /* What: Drawing Clearing Layer. Why: The turning hexagon drawing is positioned, so it would paint over the line. How: This lifts the line one layer above the drawing, which sits at auto. */
 
 
 }
@@ -129,13 +133,15 @@
 
 /* #region nofActDiv */
 
-.nofActDiv { /* What: Not-Found Actions Div. Why: The two ways onward sit side by side, one height, and wrap on a narrow phone. How: This lines up the buttons centered in a wrapping row with gaps, stretching them to the taller one. */
+.nofActDiv { /* What: Not-Found Actions Div. Why: The two ways onward sit side by side, one height, and wrap on a narrow phone. How: This lines up the buttons centered in a wrapping row with gaps, stretching them to the taller one, and lifts them over the drawing. */
 
 
 	display         : flex;
 	flex-wrap       : wrap;
 	gap             : var( --spa-ver-bas ) var( --spa-hor-bas ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base ~= 14.572px */
 	justify-content : center;
+	position        : relative;
+	z-index         : 1;                                         /* What: Drawing Clearing Layer. Why: The turning hexagon drawing is positioned, so it would paint over the buttons. How: This lifts the buttons one layer above the drawing, which sits at auto. */
 
 
 }

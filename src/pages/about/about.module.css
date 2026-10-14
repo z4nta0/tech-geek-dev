@@ -49,7 +49,6 @@
 }
 
 
-
 /* #region aboHerSec */
 
 .aboHerSec { /* What: About Hero Section. Why: The page opens with its introduction clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips the pattern behind it. */
@@ -725,7 +724,7 @@
 
 	display         : flex;
 	justify-content : flex-end;
-	padding-top     : var( --spa-ver-m05 ); /* Spacing Vertical Base Minus 5 ~= 3.572px */
+	padding-top     : var( --spa-ver-m05 ); /* Spacing Vertical Base Minus 5 ~= 3.571px */
 
 
 }
@@ -807,7 +806,7 @@
 	border-radius : 50%;
 	flex-shrink   : 0;
 	height        : calc( var( --ver-rhy-m01 ) * 1rem );             /* Vertical Rhythm Base Minus 1 = 11px */
-	margin-top    : var( --spa-ver-m05 );                            /* Spacing Vertical Base Minus 5 ~= 3.572px */
+	margin-top    : var( --spa-ver-m05 );                            /* Spacing Vertical Base Minus 5 ~= 3.571px */
 	width         : calc( var( --ver-rhy-m01 ) * 1rem );             /* Vertical Rhythm Base Minus 1 = 11px */
 
 
