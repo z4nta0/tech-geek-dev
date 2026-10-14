@@ -28,7 +28,7 @@ the demo treatment.
   z4nta0, never a business.
 - **Name**: z4nta0 wherever the owner's name appears (the author meta, the
   structured data, copy), and https://github.com/z4nta0 as the GitHub link.
-- **Contact email**: contact@techgeek.dev (mailbox not set up yet). The
+- **Contact email**: contact@techgeek.dev (set up by the user 2026-10-13). The
   contact form sends through Netlify Forms (decided by the user 2026-10-13,
   as in ease-my-life, replacing a Netlify function that called EmailJS): a
   hidden copy of the form in `index.html` registers its fields, the page
@@ -487,10 +487,12 @@ Decided 2026-10-12 to leave these until the cleanup plan is finished.
 - **Business card SVGs** (`design/business-cards/`): kept as the
   starting point for new business cards based on this site. Update their
   URL and email to techgeek.dev once everything else is done.
-- **Contact email setup**: create the contact@techgeek.dev mailbox; in
-  Netlify, turn on form detection and add an email notification for the
-  `contact` form sent to that address; and remove the old EmailJS
-  environment variables, which nothing reads any more.
+- **Cloudflare** (asked for by the user 2026-10-13, once the cleanup plan
+  is finished): put techgeek.dev behind Cloudflare the way ease-my-life is,
+  which the user's own sites use and the client sites don't. ease-my-life's
+  repository records only that its www address redirects to HTTPS through
+  Cloudflare, so its Cloudflare and Netlify settings are checked first and
+  copied.
 - **Shared design package** (suggested 2026-10-12, once this project is
   done): a repository holding what has to match across the three sites (the
   tokens, the self-hosted fonts and base element styles, the logo and favicon
