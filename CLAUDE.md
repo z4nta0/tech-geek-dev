@@ -467,7 +467,39 @@ on `close-out`.
       every domain allowed in the security headers.
 12. **Deferred items** below, as the user decides them.
 13. **Close-out**: the README, the design scripts type checked, rule audit
-    rounds until clean, and the version bump.
+    rounds until clean, and the version bump. Worked on 2026-10-14 on the `close-out`
+    branch while the user was away.
+    - **Design scripts type checked**: `tsconfig.design.json`, from the
+      siblings, brings `design/` under the type check; all four scripts passed
+      strict mode as they were.
+    - **README** rewritten to describe the finished site, its two sister
+      sites, every script and test suite, and the project's layout.
+    - **Text measure check**: `tests/responsive/measure.spec.ts` walks every
+      paragraph one character at a time; its first run capped four kinds of
+      card description that ran up to 103 characters a line.
+    - **Rule audit**: rounds of seven fresh reviewers, each reading its share
+      of every file against both CLAUDE.md files, found about 150, 70, 50, 25,
+      30, and 25 items. Most were stale comments, spacing, alignment, and
+      token comments, but the real problems fixed along the way were:
+      - Home's skills ticker ran out of pills and showed an empty band at wide
+        widths;
+      - Contact's form had the browser's validation turned off with no
+        checking of its own, so a blank or malformed message could be sent
+        (now covered by `tests/interaction/form.spec.ts`);
+      - Contact's email row opened an empty tab, and a comment left unclosed
+        in round 1 had hidden its rows' centering until round 2 caught it;
+      - the project screenshots were a pixel wider than the cards declared;
+      - the 404 page's hexagons painted over its text and buttons;
+      - Home's tablet stats drew a stray divider at the grid's edge;
+      - Work's empty-filter message lost its style to the global paragraph
+        rule;
+      - several press targets (the overlay, footer, and brand icons) needed
+        WebKit's pointer pass-through, and keyboard users couldn't see a
+        project card's links;
+      - unused font faces and files, a dead pattern rule, unreachable
+        defaults, and a decorative-only Person image were removed.
+      The open questions the audit raised are listed under "## Found for
+      later" for the user.
 14. **Shared design package** (decided by the user 2026-10-13): the last step
     of this project, after the close-out. The package is built from this
     site's code (see the shared design package under "## Deferred items" for
