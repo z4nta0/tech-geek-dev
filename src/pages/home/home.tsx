@@ -368,11 +368,14 @@ function ranPicFun< T > ( souRecArr : readonly T[], picCouNum : number ) : T[] {
  * projects picked at random with a link to the rest, a card per service in
  * SER_CAR_ARR, and a banner leading to the Contact page.
  *
+ * It also sets the page's canonical address, which React moves into the
+ * document head.
+ *
  * @author z4nta0 <https://github.com/z4nta0>
  *
  * @param props - This component does not use any props.
  *
- * @returns The page's wrapper div.
+ * @returns The page's canonical link and wrapper div.
  *
  * @example
  * ```tsx
@@ -391,85 +394,358 @@ function HomPagCom () : JSX.Element {
 	return (
 
 
-		<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
+		<>{ /* What: Page Fragment. Why: The page's head tags and its content render side by side. How: This groups them without adding an element. */ }
 
 
-			<section className={ cssModObj.homHerSec }>{ /* What: Home Hero Section Element. Why: The page opens by introducing z4nta0. How: This holds the pattern, the shapes, the hero's two columns, and the divider. */ }
-
-
-				<GeoBacCom
-					patOpaNum={ 0.18 }
-					patVarStr='circuit'
-				/>{ /* What: Hero Geometric Background Component. Why: A faint circuit sits behind the hero. How: This draws it at 18% strength. */ }
+			<link
+				href='https://techgeek.dev/'
+				rel='canonical'
+			/>{ /* What: Canonical Link Element. Why: Every address Netlify serves the page at should count as its one live address. How: React 19 moves this link into the document head while the page is shown. */ }
 
 
 
-				<div
-					className={ cssModObj.shaLayDiv }
-
-					aria-hidden='true'
-				>{ /* What: Shape Layer Div Element. Why: Slowly turning shapes give the hero motion. How: This holds them, hidden from screen readers as decoration. */ }
+			<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
 
 
-					<div className={` ${ cssModObj.herShaDiv }   ${ cssModObj.herShaDivHexagon } `} />{ /* What: Hero Shape Div Element. Why: A hexagon echoes the site's mark. How: This draws it turning slowly. */ }
-
-					<div className={` ${ cssModObj.herShaDiv }   ${ cssModObj.herShaDivCircle } `} />{ /* What: Hero Shape Div Element. Why: A circle varies the shapes. How: This draws it turning slowly. */ }
-
-					<div className={` ${ cssModObj.herShaDiv }   ${ cssModObj.herShaDivSquare } `} />{ /* What: Hero Shape Div Element. Why: A square varies the shapes. How: This draws it turning slowly. */ }
+				<section className={ cssModObj.homHerSec }>{ /* What: Home Hero Section Element. Why: The page opens by introducing z4nta0. How: This holds the pattern, the shapes, the hero's two columns, and the divider. */ }
 
 
-				</div>
+					<GeoBacCom
+						patOpaNum={ 0.18 }
+						patVarStr='circuit'
+					/>{ /* What: Hero Geometric Background Component. Why: A faint circuit sits behind the hero. How: This draws it at 18% strength. */ }
 
 
 
-				<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The pitch and the code window sit side by side in the page's centered column. How: This lays out the two columns. */ }
+					<div
+						className={ cssModObj.shaLayDiv }
+
+						aria-hidden='true'
+					>{ /* What: Shape Layer Div Element. Why: Slowly turning shapes give the hero motion. How: This holds them, hidden from screen readers as decoration. */ }
 
 
-					<div className={ cssModObj.herConDiv }>{ /* What: Hero Content Div Element. Why: The pitch reads as one column. How: This stacks the label, heading, line, buttons, and ticker. */ }
+						<div className={` ${ cssModObj.herShaDiv }   ${ cssModObj.herShaDivHexagon } `} />{ /* What: Hero Shape Div Element. Why: A hexagon echoes the site's mark. How: This draws it turning slowly. */ }
+
+						<div className={` ${ cssModObj.herShaDiv }   ${ cssModObj.herShaDivCircle } `} />{ /* What: Hero Shape Div Element. Why: A circle varies the shapes. How: This draws it turning slowly. */ }
+
+						<div className={` ${ cssModObj.herShaDiv }   ${ cssModObj.herShaDivSquare } `} />{ /* What: Hero Shape Div Element. Why: A square varies the shapes. How: This draws it turning slowly. */ }
 
 
-						<div className={ cssModObj.herLabDiv }>{ /* What: Hero Label Div Element. Why: The label says z4nta0 is taking on work. How: This shows a pulsing dot beside the line. */ }
-							<span
-								className={ cssModObj.pulDotSpa }
+					</div>
 
-								aria-hidden='true'
-							/>{ /* What: Pulse Dot Span Element. Why: A pulsing dot signals availability. How: This draws it, hidden from screen readers as decoration. */ }
 
-							<span className={ cssModObj.avaTexSpa }>Available for freelance work</span>{ /* What: Availability Text Span Element. Why: The label's words say what the dot means. How: This shows them in the mono font. */ }
+
+					<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The pitch and the code window sit side by side in the page's centered column. How: This lays out the two columns. */ }
+
+
+						<div className={ cssModObj.herConDiv }>{ /* What: Hero Content Div Element. Why: The pitch reads as one column. How: This stacks the label, heading, line, buttons, and ticker. */ }
+
+
+							<div className={ cssModObj.herLabDiv }>{ /* What: Hero Label Div Element. Why: The label says z4nta0 is taking on work. How: This shows a pulsing dot beside the line. */ }
+								<span
+									className={ cssModObj.pulDotSpa }
+
+									aria-hidden='true'
+								/>{ /* What: Pulse Dot Span Element. Why: A pulsing dot signals availability. How: This draws it, hidden from screen readers as decoration. */ }
+
+								<span className={ cssModObj.avaTexSpa }>Available for freelance work</span>{ /* What: Availability Text Span Element. Why: The label's words say what the dot means. How: This shows them in the mono font. */ }
+							</div>
+
+							<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up what z4nta0 does. How: This sets I Build Digital Experiences over two lines, with Digital in the accent and a closing dot. */ }
+								I Build <span className={ cssModObj.titAccSpa }>Digital</span>
+								<br />
+								Experiences
+								<span className={ cssModObj.titDotSpa }>.</span>
+							</h1>
+
+							<p className={ cssModObj.herSubPar }>{ /* What: Hero Subtitle Paragraph Element. Why: A line under the heading says what kind of work this is. How: This describes the full-stack work for local businesses. */ }
+								Full-stack web developer specializing in performant, accessible, and
+								beautifully crafted websites for local businesses, from backend architecture to
+								pixel-perfect frontends.
+							</p>
+
+							<div className={ cssModObj.herActDiv }>{ /* What: Hero Actions Div Element. Why: The pitch ends with the two next steps. How: This sets the buttons side by side. */ }
+
+
+								<Link
+									className={ cssModObj.butPriAnc }
+
+									to='/work'
+								>{ /* What: Button Primary Anchor Element. Why: Most visitors want to see the work first. How: This routes to the Work page with an arrow. */ }
+
+
+									View My Work
+
+									<svg
+										fill='none'
+										height='16'
+										stroke='currentColor'
+										strokeWidth='2.5'
+										viewBox='0 0 24 24'
+										width='16'
+									>{ /* What: Arrow SVG Element. Why: An arrow invites the click. How: This draws it after the label. */ }
+
+
+										<path d='M5 12h14M12 5l7 7-7 7' />{ /* What: Arrow Path Element. Why: The arrow is a shaft and a head. How: This traces both in one stroke. */ }
+
+
+									</svg>
+
+
+								</Link>
+
+
+
+								<Link
+									className={ cssModObj.butSecAnc }
+
+									to='/contact'
+								>Get In Touch</Link>{ /* What: Button Secondary Anchor Element. Why: A visitor ready to talk can go straight to Contact. How: This routes there as the secondary button. */ }
+
+
+							</div>
+
+
+							<div className={ cssModObj.skiTicDiv }>{ /* What: Skills Ticker Div Element. Why: The main technologies scroll past under the pitch. How: This clips the scrolling row. */ }
+
+
+								<div className={ cssModObj.ticInnDiv }>{ /* What: Ticker Inner Div Element. Why: The row moves as one strip. How: This holds every item and slides it along. */ }
+
+
+									{ [ ...SKI_TIC_ARR, ...SKI_TIC_ARR ].map( ( skiNamStr, skiIndNum ) => ( // What: Ticker Item Map Call. Why: The strip repeats the list once, so its loop has no seam. How: This renders each technology twice over, keyed by position since each name appears twice.
+
+
+										<span
+											key={ skiIndNum }
+
+											className={ cssModObj.ticIteSpa }
+										>{ skiNamStr }</span> // What: Ticker Item Span Element. Why: Each technology is one item in the strip. How: This shows its name.
+
+
+									))}
+
+
+								</div>
+
+
+							</div>
+
+
 						</div>
 
-						<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up what z4nta0 does. How: This sets I Build Digital Experiences over two lines, with Digital in the accent and a closing dot. */ }
-							I Build <span className={ cssModObj.titAccSpa }>Digital</span>
-							<br />
-							Experiences
-							<span className={ cssModObj.titDotSpa }>.</span>
-						</h1>
-
-						<p className={ cssModObj.herSubPar }>{ /* What: Hero Subtitle Paragraph Element. Why: A line under the heading says what kind of work this is. How: This describes the full-stack work for local businesses. */ }
-							Full-stack web developer specializing in performant, accessible, and
-							beautifully crafted websites for local businesses, from backend architecture to
-							pixel-perfect frontends.
-						</p>
-
-						<div className={ cssModObj.herActDiv }>{ /* What: Hero Actions Div Element. Why: The pitch ends with the two next steps. How: This sets the buttons side by side. */ }
 
 
-							<Link
-								className={ cssModObj.butPriAnc }
+						<div
+							className={ cssModObj.herVisDiv }
 
-								to='/work'
-							>{ /* What: Button Primary Anchor Element. Why: Most visitors want to see the work first. How: This routes to the Work page with an arrow. */ }
+							aria-hidden='true'
+						>{ /* What: Hero Visual Div Element. Why: A code window and a badge illustrate the pitch. How: This holds both, hidden from screen readers as decoration. */ }
 
 
-								View My Work
+							<div className={ cssModObj.codWinDiv }>{ /* What: Code Window Div Element. Why: z4nta0 is introduced as a code object, the way a developer would. How: This draws an editor window around the code. */ }
+
+
+								<div className={ cssModObj.winBarDiv }>{ /* What: Window Bar Div Element. Why: A title bar makes the window read as an editor. How: This shows three dots and the file name. */ }
+
+
+									<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaFirst } `} />{ /* What: Window Dot Span Element. Why: Editor windows have three colored dots. How: This draws the first. */ }
+
+									<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaSecond } `} />{ /* What: Window Dot Span Element. Why: Editor windows have three colored dots. How: This draws the second. */ }
+
+									<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaThird } `} />{ /* What: Window Dot Span Element. Why: Editor windows have three colored dots. How: This draws the third. */ }
+
+									<span className={ cssModObj.winTitSpa }>techgeek.dev.ts</span>{ /* What: Window Title Span Element. Why: The window names its file after the site. How: This shows techgeek.dev.ts. */ }
+
+
+								</div>
+
+								<pre className={ cssModObj.codBloPre }>{ /* What: Code Block Pre Element. Why: The code keeps its line breaks and indentation. How: This shows the code as written. */ }
+									<code className={ cssModObj.codTexCod }>{ COD_WIN_STR }</code>{ /* What: Code Text Code Element. Why: The text is code. How: This marks it as code and prints COD_WIN_STR. */ }
+								</pre>
+
+								<svg
+									className={ cssModObj.nodOveSvg }
+
+									viewBox='0 0 320 240'
+								>{ /* What: Node Overlay SVG Element. Why: A few linked nodes give the window the site's geometric touch. How: This draws three dots joined by two lines. */ }
+
+
+									<circle
+										cx='280'
+										cy='20'
+										fill='var(--acc-mai-col)' // Accent Main Color = #F26419
+										opacity='0.8'
+										r='4'
+									/>{ /* What: Node Circle Element. Why: Each node is a dot. How: This draws one in orange. */ }
+
+									<circle
+										cx='300'
+										cy='60'
+										fill='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
+										opacity='0.7'
+										r='2.5'
+									/>{ /* What: Node Circle Element. Why: Each node is a dot. How: This draws one in blue. */ }
+
+									<circle
+										cx='260'
+										cy='200'
+										fill='var(--acc-mai-col)' // Accent Main Color = #F26419
+										opacity='0.6'
+										r='4'
+									/>{ /* What: Node Circle Element. Why: Each node is a dot. How: This draws one in orange. */ }
+
+									<line
+										opacity='0.5'
+										stroke='var(--acs-tin-col)' // Accent-Secondary Tint Color = #B8D9EC
+										strokeWidth='1'
+										x1='280'
+										x2='300'
+										y1='20'
+										y2='60'
+									/>{ /* What: Link Line Element. Why: Lines join the nodes. How: This draws one in the light blue. */ }
+
+									<line
+										opacity='0.5'
+										stroke='var(--acs-tin-col)' // Accent-Secondary Tint Color = #B8D9EC
+										strokeWidth='1'
+										x1='300'
+										x2='260'
+										y1='60'
+										y2='200'
+									/>{ /* What: Link Line Element. Why: Lines join the nodes. How: This draws one in the light blue. */ }
+
+
+								</svg>
+
+
+							</div>
+
+
+							<div className={ cssModObj.floBadDiv }>{ /* What: Floating Badge Div Element. Why: A badge highlights that z4nta0's work is open source. How: This shows a small mark beside its figure and label. */ }
+
 
 								<svg
 									fill='none'
-									height='16'
+									height='32'
+									viewBox='0 0 28 28'
+									width='32'
+								>{ /* What: Badge Mark SVG Element. Why: A small hexagon echoes the site's mark. How: This draws it with a blue center. */ }
+
+
+									<polygon
+										fill='none'
+										points='14,2 26,8 26,20 14,26 2,20 2,8'
+										stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
+										strokeWidth='1.5'
+									/>{ /* What: Badge Hexagon Polygon Element. Why: The mark's outline is an orange hexagon. How: This traces it. */ }
+
+									<circle
+										cx='14'
+										cy='14'
+										fill='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
+										r='4'
+									/>{ /* What: Badge Center Circle Element. Why: A blue dot fills the mark's center. How: This draws it. */ }
+
+
+								</svg>
+
+								<div>{ /* What: Badge Text Div Element. Why: The figure and its label read as one. How: This stacks them. */ }
+
+
+									<div className={ cssModObj.badValDiv }>100%</div>{ /* What: Badge Value Div Element. Why: The figure is the badge's point. How: This shows one hundred percent. */ }
+
+									<div className={ cssModObj.badLabDiv }>Open Source</div>{ /* What: Badge Label Div Element. Why: The label says what the figure counts. How: This shows Open Source. */ }
+
+
+								</div>
+
+
+							</div>
+
+
+						</div>
+
+
+					</div>
+
+
+
+					<div className={ cssModObj.herDivDiv } />{ /* What: Hero Divider Div Element. Why: A diagonal edge leads from the hero into the stats. How: This draws the slanted divider. */ }
+
+
+				</section>
+
+
+
+				<section className={ cssModObj.homStaSec }>{ /* What: Home Stats Section Element. Why: A few figures sum up z4nta0's track record. How: This holds the stats strip. */ }
+
+
+					<div className={ cssModObj.staInnDiv }>{ /* What: Stats Inner Div Element. Why: The strip sits in the page's centered column. How: This holds the grid. */ }
+
+
+						<div className={ cssModObj.staGriDiv }>{ /* What: Stats Grid Div Element. Why: The figures line up in a row. How: This lays out one item per stat. */ }
+
+
+							{ STA_REC_ARR.map( ( staRecObj ) => ( // What: Stat Map Call. Why: Every stat shows. How: This renders one item per row.
+
+
+								<div
+									key={ staRecObj.labStr }
+
+									className={ cssModObj.staIteDiv }
+								>{ /* What: Stat Item Div Element. Why: Each figure sits above its label. How: This stacks them. */ }
+									<span className={ cssModObj.staValSpa }>{ staRecObj.valStr }</span>{ /* What: Stat Value Span Element. Why: The figure is the stat's point. How: This shows it large. */ }
+
+									<span className={ cssModObj.staLabSpa }>{ staRecObj.labStr }</span>{ /* What: Stat Label Span Element. Why: The label says what the figure counts. How: This shows it under the figure. */ }
+								</div>
+
+
+							))}
+
+
+						</div>
+
+
+					</div>
+
+
+				</section>
+
+
+
+				<section className={ cssModObj.homFeaSec }>{ /* What: Home Featured Section Element. Why: The best projects show right on the home page. How: This holds the heading row and the cards. */ }
+
+
+					<div className={ cssModObj.feaInnDiv }>{ /* What: Featured Inner Div Element. Why: The section sits in the page's centered column. How: This stacks the heading row and the grid. */ }
+
+
+						<div className={ cssModObj.feaHeaDiv }>{ /* What: Featured Header Div Element. Why: The heading and the link to every project share a row. How: This sets them side by side. */ }
+
+
+							<SecHeaCom
+								labTexStr='Selected Work'
+								subTexStr='A curated selection of full-stack projects, from idea to deployed product.'
+								titTexStr="Projects I'm Proud Of"
+							/>{ /* What: Featured Section Header Component. Why: The section opens with its heading. How: This shows its label, title, and subtitle. */ }
+
+
+
+							<Link
+								className={ cssModObj.vieAllAnc }
+
+								to='/work'
+							>{ /* What: View All Anchor Element. Why: Home shows only three projects, so the rest are a click away. How: This routes to the Work page with an arrow. */ }
+
+
+								View all projects
+
+								<svg
+									fill='none'
+									height='14'
 									stroke='currentColor'
 									strokeWidth='2.5'
 									viewBox='0 0 24 24'
-									width='16'
+									width='14'
 								>{ /* What: Arrow SVG Element. Why: An arrow invites the click. How: This draws it after the label. */ }
 
 
@@ -482,37 +758,23 @@ function HomPagCom () : JSX.Element {
 							</Link>
 
 
-
-							<Link
-								className={ cssModObj.butSecAnc }
-
-								to='/contact'
-							>Get In Touch</Link>{ /* What: Button Secondary Anchor Element. Why: A visitor ready to talk can go straight to Contact. How: This routes there as the secondary button. */ }
-
-
 						</div>
 
-
-						<div className={ cssModObj.skiTicDiv }>{ /* What: Skills Ticker Div Element. Why: The main technologies scroll past under the pitch. How: This clips the scrolling row. */ }
-
-
-							<div className={ cssModObj.ticInnDiv }>{ /* What: Ticker Inner Div Element. Why: The row moves as one strip. How: This holds every item and slides it along. */ }
+						<div className={ cssModObj.proGriDiv }>{ /* What: Projects Grid Div Element. Why: The featured cards line up in columns. How: This lays out one card per featured project. */ }
 
 
-								{ [ ...SKI_TIC_ARR, ...SKI_TIC_ARR ].map( ( skiNamStr, skiIndNum ) => ( // What: Ticker Item Map Call. Why: The strip repeats the list once, so its loop has no seam. How: This renders each technology twice over, keyed by position since each name appears twice.
+							{ feaProArr.map( ( proRecObj ) => ( // What: Featured Card Map Call. Why: Every featured project gets a card. How: This renders one per record.
 
 
-									<span
-										key={ skiIndNum }
+								<ProCarCom
+									key={ proRecObj.ideStr }
 
-										className={ cssModObj.ticIteSpa }
-									>{ skiNamStr }</span> // What: Ticker Item Span Element. Why: Each technology is one item in the strip. How: This shows its name.
-
-
-								))}
+									isaFeaBoo
+									proRecObj={ proRecObj }
+								/> // What: Project Card Component. Why: Each featured project shows as a card. How: This renders the record with the featured styling.
 
 
-							</div>
+							))}
 
 
 						</div>
@@ -521,353 +783,107 @@ function HomPagCom () : JSX.Element {
 					</div>
 
 
+				</section>
 
-					<div
-						className={ cssModObj.herVisDiv }
 
-						aria-hidden='true'
-					>{ /* What: Hero Visual Div Element. Why: A code window and a badge illustrate the pitch. How: This holds both, hidden from screen readers as decoration. */ }
 
+				<section className={ cssModObj.homSerSec }>{ /* What: Home Services Section Element. Why: A visitor learns what z4nta0 offers. How: This holds the pattern, the heading block, and the service cards. */ }
 
-						<div className={ cssModObj.codWinDiv }>{ /* What: Code Window Div Element. Why: z4nta0 is introduced as a code object, the way a developer would. How: This draws an editor window around the code. */ }
 
+					<GeoBacCom
+						patOpaNum={ 0.25 }
+						patVarStr='dots'
+					/>{ /* What: Services Geometric Background Component. Why: A faint field of dots sits behind the services. How: This draws it at 25% strength. */ }
 
-							<div className={ cssModObj.winBarDiv }>{ /* What: Window Bar Div Element. Why: A title bar makes the window read as an editor. How: This shows three dots and the file name. */ }
 
 
-								<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaFirst } `} />{ /* What: Window Dot Span Element. Why: Editor windows have three colored dots. How: This draws the first. */ }
-
-								<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaSecond } `} />{ /* What: Window Dot Span Element. Why: Editor windows have three colored dots. How: This draws the second. */ }
-
-								<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaThird } `} />{ /* What: Window Dot Span Element. Why: Editor windows have three colored dots. How: This draws the third. */ }
-
-								<span className={ cssModObj.winTitSpa }>techgeek.dev.ts</span>{ /* What: Window Title Span Element. Why: The window names its file after the site. How: This shows techgeek.dev.ts. */ }
-
-
-							</div>
-
-							<pre className={ cssModObj.codBloPre }>{ /* What: Code Block Pre Element. Why: The code keeps its line breaks and indentation. How: This shows the code as written. */ }
-								<code className={ cssModObj.codTexCod }>{ COD_WIN_STR }</code>{ /* What: Code Text Code Element. Why: The text is code. How: This marks it as code and prints COD_WIN_STR. */ }
-							</pre>
-
-							<svg
-								className={ cssModObj.nodOveSvg }
-
-								viewBox='0 0 320 240'
-							>{ /* What: Node Overlay SVG Element. Why: A few linked nodes give the window the site's geometric touch. How: This draws three dots joined by two lines. */ }
-
-
-								<circle
-									cx='280'
-									cy='20'
-									fill='var(--acc-mai-col)' // Accent Main Color = #F26419
-									opacity='0.8'
-									r='4'
-								/>{ /* What: Node Circle Element. Why: Each node is a dot. How: This draws one in orange. */ }
-
-								<circle
-									cx='300'
-									cy='60'
-									fill='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
-									opacity='0.7'
-									r='2.5'
-								/>{ /* What: Node Circle Element. Why: Each node is a dot. How: This draws one in blue. */ }
-
-								<circle
-									cx='260'
-									cy='200'
-									fill='var(--acc-mai-col)' // Accent Main Color = #F26419
-									opacity='0.6'
-									r='4'
-								/>{ /* What: Node Circle Element. Why: Each node is a dot. How: This draws one in orange. */ }
-
-								<line
-									opacity='0.5'
-									stroke='var(--acs-tin-col)' // Accent-Secondary Tint Color = #B8D9EC
-									strokeWidth='1'
-									x1='280'
-									x2='300'
-									y1='20'
-									y2='60'
-								/>{ /* What: Link Line Element. Why: Lines join the nodes. How: This draws one in the light blue. */ }
-
-								<line
-									opacity='0.5'
-									stroke='var(--acs-tin-col)' // Accent-Secondary Tint Color = #B8D9EC
-									strokeWidth='1'
-									x1='300'
-									x2='260'
-									y1='60'
-									y2='200'
-								/>{ /* What: Link Line Element. Why: Lines join the nodes. How: This draws one in the light blue. */ }
-
-
-							</svg>
-
-
-						</div>
-
-
-						<div className={ cssModObj.floBadDiv }>{ /* What: Floating Badge Div Element. Why: A badge highlights that z4nta0's work is open source. How: This shows a small mark beside its figure and label. */ }
-
-
-							<svg
-								fill='none'
-								height='32'
-								viewBox='0 0 28 28'
-								width='32'
-							>{ /* What: Badge Mark SVG Element. Why: A small hexagon echoes the site's mark. How: This draws it with a blue center. */ }
-
-
-								<polygon
-									fill='none'
-									points='14,2 26,8 26,20 14,26 2,20 2,8'
-									stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
-									strokeWidth='1.5'
-								/>{ /* What: Badge Hexagon Polygon Element. Why: The mark's outline is an orange hexagon. How: This traces it. */ }
-
-								<circle
-									cx='14'
-									cy='14'
-									fill='var(--acc-sec-col)' // Accent Secondary Color = #7DB9D8
-									r='4'
-								/>{ /* What: Badge Center Circle Element. Why: A blue dot fills the mark's center. How: This draws it. */ }
-
-
-							</svg>
-
-							<div>{ /* What: Badge Text Div Element. Why: The figure and its label read as one. How: This stacks them. */ }
-
-
-								<div className={ cssModObj.badValDiv }>100%</div>{ /* What: Badge Value Div Element. Why: The figure is the badge's point. How: This shows one hundred percent. */ }
-
-								<div className={ cssModObj.badLabDiv }>Open Source</div>{ /* What: Badge Label Div Element. Why: The label says what the figure counts. How: This shows Open Source. */ }
-
-
-							</div>
-
-
-						</div>
-
-
-					</div>
-
-
-				</div>
-
-
-
-				<div className={ cssModObj.herDivDiv } />{ /* What: Hero Divider Div Element. Why: A diagonal edge leads from the hero into the stats. How: This draws the slanted divider. */ }
-
-
-			</section>
-
-
-
-			<section className={ cssModObj.homStaSec }>{ /* What: Home Stats Section Element. Why: A few figures sum up z4nta0's track record. How: This holds the stats strip. */ }
-
-
-				<div className={ cssModObj.staInnDiv }>{ /* What: Stats Inner Div Element. Why: The strip sits in the page's centered column. How: This holds the grid. */ }
-
-
-					<div className={ cssModObj.staGriDiv }>{ /* What: Stats Grid Div Element. Why: The figures line up in a row. How: This lays out one item per stat. */ }
-
-
-						{ STA_REC_ARR.map( ( staRecObj ) => ( // What: Stat Map Call. Why: Every stat shows. How: This renders one item per row.
-
-
-							<div
-								key={ staRecObj.labStr }
-
-								className={ cssModObj.staIteDiv }
-							>{ /* What: Stat Item Div Element. Why: Each figure sits above its label. How: This stacks them. */ }
-								<span className={ cssModObj.staValSpa }>{ staRecObj.valStr }</span>{ /* What: Stat Value Span Element. Why: The figure is the stat's point. How: This shows it large. */ }
-
-								<span className={ cssModObj.staLabSpa }>{ staRecObj.labStr }</span>{ /* What: Stat Label Span Element. Why: The label says what the figure counts. How: This shows it under the figure. */ }
-							</div>
-
-
-						))}
-
-
-					</div>
-
-
-				</div>
-
-
-			</section>
-
-
-
-			<section className={ cssModObj.homFeaSec }>{ /* What: Home Featured Section Element. Why: The best projects show right on the home page. How: This holds the heading row and the cards. */ }
-
-
-				<div className={ cssModObj.feaInnDiv }>{ /* What: Featured Inner Div Element. Why: The section sits in the page's centered column. How: This stacks the heading row and the grid. */ }
-
-
-					<div className={ cssModObj.feaHeaDiv }>{ /* What: Featured Header Div Element. Why: The heading and the link to every project share a row. How: This sets them side by side. */ }
+					<div className={ cssModObj.serInnDiv }>{ /* What: Services Inner Div Element. Why: The services sit in the page's centered column. How: This stacks the heading block and the cards. */ }
 
 
 						<SecHeaCom
-							labTexStr='Selected Work'
-							subTexStr='A curated selection of full-stack projects, from idea to deployed product.'
-							titTexStr="Projects I'm Proud Of"
-						/>{ /* What: Featured Section Header Component. Why: The section opens with its heading. How: This shows its label, title, and subtitle. */ }
+							aliPosStr='center'
+							labTexStr='What I Do'
+							subTexStr='From backend architecture to frontend UI, I handle the full picture.'
+							titTexStr='End-to-End Development'
+						/>{ /* What: Services Section Header Component. Why: The section opens with its heading. How: This centers the label, title, and subtitle. */ }
 
 
 
-						<Link
-							className={ cssModObj.vieAllAnc }
-
-							to='/work'
-						>{ /* What: View All Anchor Element. Why: Home shows only three projects, so the rest are a click away. How: This routes to the Work page with an arrow. */ }
+						<div className={ cssModObj.serGriDiv }>{ /* What: Service Grid Div Element. Why: The service cards line up in columns. How: This lays out one card per service. */ }
 
 
-							View all projects
-
-							<svg
-								fill='none'
-								height='14'
-								stroke='currentColor'
-								strokeWidth='2.5'
-								viewBox='0 0 24 24'
-								width='14'
-							>{ /* What: Arrow SVG Element. Why: An arrow invites the click. How: This draws it after the label. */ }
+							{ SER_CAR_ARR.map( ( serCarObj ) => ( // What: Service Card Map Call. Why: Every service gets a card. How: This renders one per row.
 
 
-								<path d='M5 12h14M12 5l7 7-7 7' />{ /* What: Arrow Path Element. Why: The arrow is a shaft and a head. How: This traces both in one stroke. */ }
+								<div
+									key={ serCarObj.titStr }
+
+									className={ cssModObj.serCarDiv }
+								>{ /* What: Service Card Div Element. Why: Each service is one card. How: This stacks its icon, title, and description. */ }
 
 
-							</svg>
+									<div className={ cssModObj.serIcoDiv }>{ serCarObj.icoEle }</div>{ /* What: Service Icon Div Element. Why: An icon marks each service at a glance. How: This frames the row's icon. */ }
+
+									<h3 className={ cssModObj.serTitHea }>{ serCarObj.titStr }</h3>{ /* What: Service Title Heading Element. Why: Each service is named. How: This shows the title as an h3 under the section's h2. */ }
+
+									<p className={ cssModObj.serDesPar }>{ serCarObj.desStr }</p>{ /* What: Service Description Paragraph Element. Why: A sentence says what the service covers. How: This shows it. */ }
 
 
-						</Link>
+								</div>
 
 
-					</div>
-
-					<div className={ cssModObj.proGriDiv }>{ /* What: Projects Grid Div Element. Why: The featured cards line up in columns. How: This lays out one card per featured project. */ }
+							))}
 
 
-						{ feaProArr.map( ( proRecObj ) => ( // What: Featured Card Map Call. Why: Every featured project gets a card. How: This renders one per record.
-
-
-							<ProCarCom
-								key={ proRecObj.ideStr }
-
-								isaFeaBoo
-								proRecObj={ proRecObj }
-							/> // What: Project Card Component. Why: Each featured project shows as a card. How: This renders the record with the featured styling.
-
-
-						))}
+						</div>
 
 
 					</div>
 
 
-				</div>
-
-
-			</section>
+				</section>
 
 
 
-			<section className={ cssModObj.homSerSec }>{ /* What: Home Services Section Element. Why: A visitor learns what z4nta0 offers. How: This holds the pattern, the heading block, and the service cards. */ }
+				<section className={ cssModObj.homCtaSec }>{ /* What: Home Call-To-Action Section Element. Why: The page ends by inviting a visitor to start a project. How: This holds the banner's line and button. */ }
 
 
-				<GeoBacCom
-					patOpaNum={ 0.25 }
-					patVarStr='dots'
-				/>{ /* What: Services Geometric Background Component. Why: A faint field of dots sits behind the services. How: This draws it at 25% strength. */ }
+					<div className={ cssModObj.ctaInnDiv }>{ /* What: Call-To-Action Inner Div Element. Why: The banner sits in the page's centered column. How: This sets the text and the button side by side. */ }
 
 
-
-				<div className={ cssModObj.serInnDiv }>{ /* What: Services Inner Div Element. Why: The services sit in the page's centered column. How: This stacks the heading block and the cards. */ }
-
-
-					<SecHeaCom
-						aliPosStr='center'
-						labTexStr='What I Do'
-						subTexStr='From backend architecture to frontend UI, I handle the full picture.'
-						titTexStr='End-to-End Development'
-					/>{ /* What: Services Section Header Component. Why: The section opens with its heading. How: This centers the label, title, and subtitle. */ }
+						<div>{ /* What: Banner Text Div Element. Why: The label and heading read as one. How: This stacks them. */ }
 
 
+							<span className={ cssModObj.ctaLabSpa }>Ready to build something?</span>{ /* What: Call-To-Action Label Span Element. Why: A question leads into the invitation. How: This shows it above the heading. */ }
 
-					<div className={ cssModObj.serGriDiv }>{ /* What: Service Grid Div Element. Why: The service cards line up in columns. How: This lays out one card per service. */ }
-
-
-						{ SER_CAR_ARR.map( ( serCarObj ) => ( // What: Service Card Map Call. Why: Every service gets a card. How: This renders one per row.
+							<h2 className={ cssModObj.ctaTitHea }>Let's Work Together</h2>{ /* What: Call-To-Action Title Heading Element. Why: The banner's heading makes the invitation. How: This shows it as an h2. */ }
 
 
-							<div
-								key={ serCarObj.titStr }
+						</div>
 
-								className={ cssModObj.serCarDiv }
-							>{ /* What: Service Card Div Element. Why: Each service is one card. How: This stacks its icon, title, and description. */ }
+						<div className={ cssModObj.ctaActDiv }>{ /* What: Call-To-Action Actions Div Element. Why: The banner's button sits apart from its text. How: This holds the button. */ }
 
 
-								<div className={ cssModObj.serIcoDiv }>{ serCarObj.icoEle }</div>{ /* What: Service Icon Div Element. Why: An icon marks each service at a glance. How: This frames the row's icon. */ }
+							<Link
+								className={ cssModObj.ctaStaAnc }
 
-								<h3 className={ cssModObj.serTitHea }>{ serCarObj.titStr }</h3>{ /* What: Service Title Heading Element. Why: Each service is named. How: This shows the title as an h3 under the section's h2. */ }
-
-								<p className={ cssModObj.serDesPar }>{ serCarObj.desStr }</p>{ /* What: Service Description Paragraph Element. Why: A sentence says what the service covers. How: This shows it. */ }
-
-
-							</div>
+								to='/contact'
+							>Start a Project</Link>{ /* What: Call-To-Action Start Anchor Element. Why: A visitor ready to start goes straight to Contact. How: This routes there as the banner's button. */ }
 
 
-						))}
+						</div>
 
 
 					</div>
 
 
-				</div>
+				</section>
 
 
-			</section>
+			</div>
 
 
-
-			<section className={ cssModObj.homCtaSec }>{ /* What: Home Call-To-Action Section Element. Why: The page ends by inviting a visitor to start a project. How: This holds the banner's line and button. */ }
-
-
-				<div className={ cssModObj.ctaInnDiv }>{ /* What: Call-To-Action Inner Div Element. Why: The banner sits in the page's centered column. How: This sets the text and the button side by side. */ }
-
-
-					<div>{ /* What: Banner Text Div Element. Why: The label and heading read as one. How: This stacks them. */ }
-
-
-						<span className={ cssModObj.ctaLabSpa }>Ready to build something?</span>{ /* What: Call-To-Action Label Span Element. Why: A question leads into the invitation. How: This shows it above the heading. */ }
-
-						<h2 className={ cssModObj.ctaTitHea }>Let's Work Together</h2>{ /* What: Call-To-Action Title Heading Element. Why: The banner's heading makes the invitation. How: This shows it as an h2. */ }
-
-
-					</div>
-
-					<div className={ cssModObj.ctaActDiv }>{ /* What: Call-To-Action Actions Div Element. Why: The banner's button sits apart from its text. How: This holds the button. */ }
-
-
-						<Link
-							className={ cssModObj.ctaStaAnc }
-
-							to='/contact'
-						>Start a Project</Link>{ /* What: Call-To-Action Start Anchor Element. Why: A visitor ready to start goes straight to Contact. How: This routes there as the banner's button. */ }
-
-
-					</div>
-
-
-				</div>
-
-
-			</section>
-
-
-		</div>
+		</>
 
 
 	);

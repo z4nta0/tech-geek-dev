@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'><!-- What: URL Set Element. Why: Search engines read the sitemap to find every page worth indexing. How: This holds one entry per indexable page, in the sitemaps.org format. -->
+
+
+	<url><!-- What: Home URL Element. Why: The home page is the first of the four indexed pages. How: This lists it by its canonical address. -->
+
+
+		<loc>https://techgeek.dev/</loc><!-- What: Home Location Element. Why: The entry has to name the page's address. How: This gives the canonical address, matching the page's canonical link. -->
+
+
+	</url>
+
+	<url><!-- What: Work URL Element. Why: The Work page lists every project and is indexed. How: This lists it by its canonical address. -->
+
+
+		<loc>https://techgeek.dev/work</loc><!-- What: Work Location Element. Why: The entry has to name the page's address. How: This gives the canonical address, matching the page's canonical link. -->
+
+
+	</url>
+
+	<url><!-- What: About URL Element. Why: The About page tells z4nta0's story and is indexed. How: This lists it by its canonical address. -->
+
+
+		<loc>https://techgeek.dev/about</loc><!-- What: About Location Element. Why: The entry has to name the page's address. How: This gives the canonical address, matching the page's canonical link. -->
+
+
+	</url>
+
+	<url><!-- What: Contact URL Element. Why: The Contact page is how to reach z4nta0 and is indexed. How: This lists it by its canonical address. -->
+
+
+		<loc>https://techgeek.dev/contact</loc><!-- What: Contact Location Element. Why: The entry has to name the page's address. How: This gives the canonical address, matching the page's canonical link. -->
+
+
+	</url>
+
+
+</urlset>
