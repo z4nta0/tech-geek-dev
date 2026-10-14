@@ -330,7 +330,7 @@ function ConPagCom () : JSX.Element {
 					name        : forDatObj.name                       // What: Name. Why: The email says who wrote. How: This sends the name they entered.
 
 
-				}).toString()
+				}).toString() // What: Body String Call. Why: Netlify reads the fields as one form-encoded string. How: This serializes the URLSearchParams into it.
 
 
 			} );

@@ -64,10 +64,10 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
 const SKI_GRO_ARR = [ // What: Skill Group Array. Why: The skills grid shows the same groups every visit. How: Each row names a group and its technologies.
 
 
-	{ labStr : 'Frontend', skiArr : [ 'React', 'TypeScript', 'Next.js', 'Vite', 'CSS / Sass', 'GreenSock', 'React Router' ] }, // What: Frontend Group Row. Why: The interface side of the work. How: This lists its technologies.
-	{ labStr : 'Backend',  skiArr : [ 'Node.js', 'Express', 'REST APIs', 'PHP' ]                                            }, // What: Backend Group Row. Why: The server side of the work. How: This lists its technologies.
-	{ labStr : 'Data',     skiArr : [ 'MongoDB', 'MySQL' ]                                                                  }, // What: Data Group Row. Why: Where the work stores its data. How: This lists its databases.
-	{ labStr : 'DevOps',   skiArr : [ 'Apache', 'Netlify', 'GitHub Actions' ]                                               }  // What: DevOps Group Row. Why: How the work is served and deployed. How: This lists its tools.
+	{ labStr : 'Frontend', skiArr : [ 'React', 'TypeScript', 'Next.js', 'Vite', 'CSS / Sass', 'GreenSock', 'React Router' ] }, // What: Frontend Group Row. Why: The interface side of the work gets its own group. How: This lists its technologies.
+	{ labStr : 'Backend',  skiArr : [ 'Node.js', 'Express', 'REST APIs', 'PHP' ]                                            }, // What: Backend Group Row. Why: The server side of the work gets its own group. How: This lists its technologies.
+	{ labStr : 'Data',     skiArr : [ 'MongoDB', 'MySQL' ]                                                                  }, // What: Data Group Row. Why: The work's data stores get their own group. How: This lists its databases.
+	{ labStr : 'DevOps',   skiArr : [ 'Apache', 'Netlify', 'GitHub Actions' ]                                               }  // What: DevOps Group Row. Why: The tools that serve and deploy the work get their own group. How: This lists its tools.
 
 
 ];
@@ -97,19 +97,19 @@ const SKI_GRO_ARR = [ // What: Skill Group Array. Why: The skills grid shows the
 const TIM_MIL_ARR = [ // What: Timeline Milestone Array. Why: The timeline shows the same milestones every visit. How: Each row holds one milestone.
 
 
-	{ orgStr : 'Freelance', titStr : 'Web Veteran',          yeaStr : '2026', desStr : 'With the rise of AI it is no longer a constraint to design websites and I can focus on just coding, rapidly increasing the rate at which I could deliver solutions.' }, // What: Web Veteran Row. Why: The latest milestone. How: This is the 2026 entry.
+	{ orgStr : 'Freelance', titStr : 'Web Veteran',          yeaStr : '2026', desStr : 'With the rise of AI it is no longer a constraint to design websites and I can focus on just coding, rapidly increasing the rate at which I could deliver solutions.' }, // What: Web Veteran Row. Why: This is the latest milestone. How: This is the 2026 entry.
 
-	{ orgStr : 'Self',      titStr : 'Web App Developer',    yeaStr : '2018', desStr : 'A personal web app that creates a todo list using randomly generated tasks with a Node.js, Express.js and MongoDB backend.' }, // What: Web App Developer Row. Why: The first web app. How: This is the 2018 entry.
+	{ orgStr : 'Self',      titStr : 'Web App Developer',    yeaStr : '2018', desStr : 'A personal web app that creates a todo list using randomly generated tasks with a Node.js, Express.js and MongoDB backend.' }, // What: Web App Developer Row. Why: This marks the first web app. How: This is the 2018 entry.
 
-	{ orgStr : 'Freelance', titStr : 'Full Stack Developer', yeaStr : '2015', desStr : 'My first real website, it was for a local church with some simple social features that taught me all about backend architecture using Apache, PHP and MySQL.' }, // What: Full Stack Developer Row. Why: The first website for someone else. How: This is the 2015 entry.
+	{ orgStr : 'Freelance', titStr : 'Full Stack Developer', yeaStr : '2015', desStr : 'My first real website, it was for a local church with some simple social features that taught me all about backend architecture using Apache, PHP and MySQL.' }, // What: Full Stack Developer Row. Why: This marks the first website for someone else. How: This is the 2015 entry.
 
-	{ orgStr : 'Self',      titStr : 'Tech Veteran',         yeaStr : '2014', desStr : 'My first fully custom built computer, allowing me to explore advanced hardware configurations and performance optimizations.' }, // What: Tech Veteran Row. Why: The first custom computer. How: This is the 2014 entry.
+	{ orgStr : 'Self',      titStr : 'Tech Veteran',         yeaStr : '2014', desStr : 'My first fully custom built computer, allowing me to explore advanced hardware configurations and performance optimizations.' }, // What: Tech Veteran Row. Why: This marks the first custom computer. How: This is the 2014 entry.
 
-	{ orgStr : 'Self',      titStr : 'Web Newbie',           yeaStr : '2013', desStr : 'My first foray into coding, starting with developing websites using simple HTML and CSS.' }, // What: Web Newbie Row. Why: The start of coding. How: This is the 2013 entry.
+	{ orgStr : 'Self',      titStr : 'Web Newbie',           yeaStr : '2013', desStr : 'My first foray into coding, starting with developing websites using simple HTML and CSS.' }, // What: Web Newbie Row. Why: This marks the start of coding. How: This is the 2013 entry.
 
-	{ orgStr : 'Self',      titStr : 'Tech Tinkerer',        yeaStr : '2007', desStr : 'My first experiments with changing and upgrading my computer hardware, setting the stage for building my own custom computers.' }, // What: Tech Tinkerer Row. Why: The first hardware upgrades. How: This is the 2007 entry.
+	{ orgStr : 'Self',      titStr : 'Tech Tinkerer',        yeaStr : '2007', desStr : 'My first experiments with changing and upgrading my computer hardware, setting the stage for building my own custom computers.' }, // What: Tech Tinkerer Row. Why: This marks the first hardware upgrades. How: This is the 2007 entry.
 
-	{ orgStr : 'Self',      titStr : 'Tech Newbie',          yeaStr : '2004', desStr : 'I purchased my first personally owned computer, sparking my passion for technology.' } // What: Tech Newbie Row. Why: Where it all began. How: This is the 2004 entry.
+	{ orgStr : 'Self',      titStr : 'Tech Newbie',          yeaStr : '2004', desStr : 'I purchased my first personally owned computer, sparking my passion for technology.' } // What: Tech Newbie Row. Why: This is where it all began. How: This is the 2004 entry.
 
 
 ];

@@ -56,7 +56,7 @@ const LAY_CAS_ARR : LayCasTyp[] = [ // What: Layout Case Array. Why: Every page 
 	{ ideStr : 'work',      menBoo : false, patStr : '/work'    }, // What: Work Case. Why: The Work page holds the filters, every project card, and the process steps. How: This measures it as loaded.
 	{ ideStr : 'about',     menBoo : false, patStr : '/about'   }, // What: About Case. Why: The About page holds the bio, the skills, the timeline, and the values. How: This measures it as loaded.
 	{ ideStr : 'contact',   menBoo : false, patStr : '/contact' }, // What: Contact Case. Why: The Contact page holds the form and the contact details. How: This measures it as loaded.
-	{ ideStr : 'not-found', menBoo : false, patStr : '/missing' }, // What: Not Found Case. Why: Every unknown address lands on the 404 page. How: This measures an address the site doesn't have, closed.
+	{ ideStr : 'not-found', menBoo : false, patStr : '/missing' }, // What: Not Found Case. Why: Every unknown address lands on the 404 page. How: This measures an address the site doesn't have.
 	{ ideStr : 'menu',      menBoo : true,  patStr : '/'        }  // What: Menu Case. Why: The open menu stacks the page links its own way. How: This measures the home page with the menu open.
 
 

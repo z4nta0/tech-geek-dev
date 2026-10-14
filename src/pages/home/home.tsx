@@ -443,7 +443,7 @@ function HomPagCom () : JSX.Element {
 
 
 
-					<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The pitch and the code window sit side by side in the page's centered column. How: This lays out the two columns. */ }
+					<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The pitch and the code window sit side by side in the page's centered column. How: This lays out the two columns, stacking them on a phone. */ }
 
 
 						<div className={ cssModObj.herConDiv }>{ /* What: Hero Content Div Element. Why: The pitch reads as one column. How: This stacks the label, heading, line, buttons, and ticker. */ }
@@ -697,7 +697,7 @@ function HomPagCom () : JSX.Element {
 					<div className={ cssModObj.staInnDiv }>{ /* What: Stats Inner Div Element. Why: The strip sits in the page's centered column. How: This holds the grid. */ }
 
 
-						<div className={ cssModObj.staGriDiv }>{ /* What: Stats Grid Div Element. Why: The figures line up in a row. How: This lays out one item per stat. */ }
+						<div className={ cssModObj.staGriDiv }>{ /* What: Stats Grid Div Element. Why: The figures line up in a row, or two by two below a desktop. How: This lays out one item per stat. */ }
 
 
 							{ STA_REC_ARR.map( ( staRecObj ) => ( // What: Stat Map Call. Why: Every stat shows. How: This renders one item per row.
@@ -868,7 +868,7 @@ function HomPagCom () : JSX.Element {
 				<section className={ cssModObj.homCtaSec }>{ /* What: Home Call-To-Action Section Element. Why: The page ends by inviting a visitor to start a project. How: This holds the banner's line and button. */ }
 
 
-					<div className={ cssModObj.ctaInnDiv }>{ /* What: Call-To-Action Inner Div Element. Why: The banner sits in the page's centered column. How: This sets the text and the button side by side. */ }
+					<div className={ cssModObj.ctaInnDiv }>{ /* What: Call-To-Action Inner Div Element. Why: The banner sits in the page's centered column. How: This sets the text and the button side by side, stacking them below a desktop. */ }
 
 
 						<div>{ /* What: Banner Text Div Element. Why: The label and heading read as one. How: This stacks them. */ }

@@ -167,6 +167,8 @@ test( 'widening the screen closes the menu', async ( { page : curPagObj } ) => {
 
 	await curPagObj.setViewportSize( { height : 900, width : 1024 } ); // What: Wide Viewport Call. Why: A tablet turned sideways, or a widened window, passes the phone layout. How: This resizes the page past the 768px breakpoint.
 
+	await expect( curPagObj.getByRole( 'button', { includeHidden : true, name : 'Toggle menu' } ) ).toHaveAttribute( 'aria-expanded', 'false' ); // What: Closed State Assertion. Why: Widening the screen should close the menu, not just hide its toggle. How: This checks the toggle, hidden at this width, reports the menu closed.
+
 	await expect( curPagObj.locator( '[inert]' ) ).toHaveCount( 0 ); // What: Page Restored Assertion. Why: The wide page has to be usable. How: This checks nothing is left inert.
 
 

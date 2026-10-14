@@ -599,6 +599,12 @@ settle.
   featured, and Work passes the flag to its cards, so every Work card wears the
   blue border meant to make featured ones stand apart. Mark only some as
   featured, stop Work passing it, or drop the variant.
+- **The sibling sites' scroll hook**: `useScrTopFun` (copied from
+  the-bernie-bears) decodes the address's hash unguarded, so a router link to
+  a malformed escape (`/#%E0`) would throw and blank the site. No such link
+  exists, and typed or bookmarked addresses load as a POP the hook skips, so
+  it's unreachable today; this site's copy now guards the decode anyway, and
+  the siblings could take the same guard.
 - **Unused tag variants**: `ui/tag.module.css` keeps neutral and orange
   variants nothing renders (every tag is blue), along with the orange tag the
   `--acc-tin-col` comment mentions. Keep them for future tags, or remove them.

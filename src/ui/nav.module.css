@@ -36,7 +36,7 @@
 	position   : fixed;
 	transition : opacity var( --dur-tra-p03 ) var( --mot-acc-eas ), visibility 0s linear var( --dur-tra-p03 ); /* Duration Transition Base Plus 3 ~= 366.9ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */
 	visibility : hidden;
-	z-index    : 3;                                                                                            /* What: Scrim Layer. Why: The scrim has to cover the page's highest layers, the About page's floating facts and Work's filter bar at 2, and stay under the bar at 4. How: This puts it between them. */
+	z-index    : 3;                                                                                            /* What: Scrim Layer. Why: The scrim has to cover the page's highest layer, Work's filter bar at 2, and stay under the bar at 4. How: This puts it between them. */
 
 
 }
@@ -94,18 +94,16 @@
 	right                   : 0;
 	top                     : 0;
 	transition              : background var( --dur-tra-p02 ) var( --mot-dec-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-dec-eas ), border-color var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Shadow Fade. Why: The scrolled bar's shadow eases in, and box-shadow repaints on every frame rather than running on the compositor. How: The compositor version would draw the shadow on an extra pseudo-element and fade its opacity, which this small, one-time change doesn't warrant, so the shadow transitions directly. */
-	z-index                 : 4;                                               /* What: Bar Layer. Why: The bar has to stay above the phone menu's scrim at 3, which covers the page's highest layers, the About page's floating facts and Work's filter bar at 2. How: This sits one above the scrim. */
+	z-index                 : 4;                                               /* What: Bar Layer. Why: The bar has to stay above the phone menu's scrim at 3, which covers the page's highest layer, Work's filter bar at 2. How: This sits one above the scrim. */
 
 
 }
 .navBarHed[data-nav-bar-scrolled] { /* What: Scrolled Navigation Bar Header. Why: Once the page moves under the bar, the bar needs to stand apart from it. How: This firms up the background, shows the bottom border, and casts the small shadow. */
 
 
-	-webkit-backdrop-filter : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
-	backdrop-filter         : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
-	background              : oklch( from var( --bac-pag-col ) l c h / 0.92 ); /* Background Page Color = #F5F0E8 @ 0.92 opacity */
-	border-bottom-color     : var( --bor-mai-col );                            /* Border Main Color = #D8CFBE */
-	box-shadow              : var( --ele-sma-sha );                            /* Elevation Small Shadow, about 0 1.2px 2.7px */
+	background          : oklch( from var( --bac-pag-col ) l c h / 0.92 ); /* Background Page Color = #F5F0E8 @ 0.92 opacity */
+	border-bottom-color : var( --bor-mai-col );                            /* Border Main Color = #D8CFBE */
+	box-shadow          : var( --ele-sma-sha );                            /* Elevation Small Shadow, about 0 1.2px 2.7px */
 
 
 }
