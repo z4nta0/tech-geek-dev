@@ -3,16 +3,17 @@
 
 // #region Imports
 
-import { AboPagCom   } from './pages/about/about.tsx';         // What: About Page Component. Why: The About route shows who built the projects. How: The about route renders it.
-import { ConPagCom   } from './pages/contact/contact.tsx';     // What: Contact Page Component. Why: The Contact route shows the form and the contact details. How: The contact route renders it.
-import { HomPagCom   } from './pages/home/home.tsx';           // What: Home Page Component. Why: The site's root address is its home page. How: The home route renders it.
-import { NavBarCom   } from './ui/nav.tsx';                    // What: Navigation Bar Component. Why: Every page starts with the shared bar. How: This renders above the routes.
-import { NotFouCom   } from './pages/not-found/not-found.tsx'; // What: Not Found Component. Why: Every unknown address shows the 404 page. How: The catch-all route renders it.
-import { Route       } from 'react-router';                    // What: Route. Why: Each page is matched to its path. How: This declares one route per page.
-import { Routes      } from 'react-router';                    // What: Routes. Why: Only one page should render for any path. How: This renders the first route whose path matches.
-import { SitFooCom   } from './ui/footer.tsx';                 // What: Site Footer Component. Why: Every page ends with the shared footer. How: This renders below the routes.
-import { useLocation } from 'react-router';                    // What: Use Location. Why: Each page change remounts the page, replaying its entrance. How: This reads the current path for the routes' key.
-import { WorPagCom   } from './pages/work/work.tsx';           // What: Work Page Component. Why: The Work route shows every project. How: The work route renders it.
+import { AboPagCom    } from './pages/about/about.tsx';         // What: About Page Component. Why: The About route shows who built the projects. How: The about route renders it.
+import { ConPagCom    } from './pages/contact/contact.tsx';     // What: Contact Page Component. Why: The Contact route shows the form and the contact details. How: The contact route renders it.
+import { HomPagCom    } from './pages/home/home.tsx';           // What: Home Page Component. Why: The site's root address is its home page. How: The home route renders it.
+import { NavBarCom    } from './ui/nav.tsx';                    // What: Navigation Bar Component. Why: Every page starts with the shared bar. How: This renders above the routes.
+import { NotFouCom    } from './pages/not-found/not-found.tsx'; // What: Not Found Component. Why: Every unknown address shows the 404 page. How: The catch-all route renders it.
+import { Route        } from 'react-router';                    // What: Route. Why: Each page is matched to its path. How: This declares one route per page.
+import { Routes       } from 'react-router';                    // What: Routes. Why: Only one page should render for any path. How: This renders the first route whose path matches.
+import { SitFooCom    } from './ui/footer.tsx';                 // What: Site Footer Component. Why: Every page ends with the shared footer. How: This renders below the routes.
+import { useLocation  } from 'react-router';                    // What: Use Location. Why: Each page change remounts the page, replaying its entrance. How: This reads the current path for the routes' key.
+import { useScrTopFun } from './ui/scroll-top.ts';              // What: Use Scroll Top Function. Why: A new page should open at its top rather than where the last one was scrolled. How: The app root calls it once inside the router.
+import { WorPagCom    } from './pages/work/work.tsx';           // What: Work Page Component. Why: The Work route shows every project. How: The work route renders it.
 
 
 import type { JSX } from 'react'; // What: JSX. Why: The component declares the element it returns. How: This types its return as a JSX element.
@@ -53,7 +54,9 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * matches inside the main landmark, and the footer, so every page shares the
  * same frame. The routes take the current location and use its path as their
  * key, so moving to another page replaces the old page's tree rather than
- * updating it, which restarts the new page's entrance animation.
+ * updating it, which restarts the new page's entrance animation. It calls
+ * useScrTopFun so every link opens its page at the top, as a real page load
+ * would, while back and forward keep the browser's restored position.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -72,6 +75,10 @@ function AppRooCom () : JSX.Element {
 
 
 	const curLocObj = useLocation(); // What: Current Location Object. Why: The routes remount on each change of page. How: This reads the router's current location.
+
+
+
+	useScrTopFun(); // What: Scroll Top Call. Why: Every link to another page should open it at its top, and a link with a hash at its section. How: This runs the hook once from the root, which stays mounted across every route.
 
 
 

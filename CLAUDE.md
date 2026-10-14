@@ -28,7 +28,7 @@ the demo treatment.
   z4nta0, never a business.
 - **Name**: z4nta0 wherever the owner's name appears (the author meta, the
   structured data, copy), and https://github.com/z4nta0 as the GitHub link.
-- **Contact email**: contact@techgeek.dev (mailbox not set up yet). The
+- **Contact email**: contact@techgeek.dev (set up by the user 2026-10-13). The
   contact form sends through Netlify Forms (decided by the user 2026-10-13,
   as in ease-my-life, replacing a Netlify function that called EmailJS): a
   hidden copy of the form in `index.html` registers its fields, the page
@@ -414,12 +414,41 @@ on `close-out`.
     security headers (the form posts to the site itself), image
     optimization and the favicon set, the SEO pass and social preview card
     per "## Kind of site", interaction feedback, and the phone menu's scrim
-    and inert page.
+    and inert page. Done 2026-10-13 on `site-features`:
+    - **404 page**: its own title and noindex, and Get In Touch beside Go
+      Home.
+    - **Pages open at the top**: the-bernie-bears' `useScrTopFun`
+      (`ui/scroll-top.ts`), with the interaction suite's navigation spec.
+    - **Hire Me** in the bar and the menu became router links.
+    - **Security headers**: `public/_headers` with a strict
+      Content-Security-Policy (only the site's own files, data images for the
+      select arrow, and form posts to itself), HSTS, and the rest of the
+      siblings' set.
+    - **Images**: `npm run screenshots` captures each project's live site
+      (`design/images/capture.mts`, its originals git-ignored) and encodes
+      them, the portrait was rebuilt from its 1,374 by 2,048 original, and
+      `npm run icons` draws the favicon set from `favicon.svg`.
+    - **SEO**: every page's own title, description, and canonical link,
+      `robots.txt`, the sitemap, the Person and WebSite structured data, and
+      the Open Graph and Twitter tags, checked by the SEO suite.
+    - **Social preview card**: `npm run og-image` renders
+      `public/og-image.png` (52 KB) from `design/og-image/card.html`, the
+      wordmark at the p05 size, since Syne is too wide to fit the center
+      square any larger.
+    - **Interaction feedback**: every control grows its focus ring in, presses
+      in or dims, and has a hover; the footer and the project cards' overlay
+      draw their rings in the bright orange, and the overlay also shows while a
+      link in it has focus.
+    - **Phone menu**: a scrim with the page inert, the four ways to close it,
+      and the extras the user approved, arriving one after another: Home's
+      availability pill, the links in a labelled nav, Hire Me, the profile
+      tiles (from `ui/profile-links.ts`, which the footer shares), the email,
+      and the tagline.
     - **Phone menu extras** (asked for by the user 2026-10-13, after the
       sibling sites' menus, which they found too plain until dressed up):
-      modeled on the-bernie-bears' and hair-designs', done together with the
-      scrim and the inert page since they change the same component. The
-      extras under the links are proposed to the user first.
+      modeled on the-bernie-bears', done together with the scrim and the inert
+      page since they change the same component, with the extras the user
+      approved.
     - **Project screenshots by script** (decided by the user 2026-10-13):
       a script in `design/` takes a fresh screenshot of each project's live
       site and writes the optimized WebP into `src/assets/images/`, rerun
@@ -452,11 +481,32 @@ ticker, and the status dots) when waiting for the page to settle.
   visible), reflow at 320px, and motion under reduced motion. axe's "needs
   review" results are printed and attached to the report rather than failing
   the run.
+- `npm run test:interaction`: how moving between pages and using controls
+  behaves. `navigation.spec.ts` (from the-bernie-bears, added in step 11)
+  checks that a footer link clicked at the bottom of each page opens the next
+  page at its top, the current page's own bar link and a phone menu link do
+  the same, back returns near the earlier position, and the bar's Hire Me
+  switches to Contact without reloading the site.
+  `feedback.spec.ts` (from the-bernie-bears) checks the interaction feedback
+  rule on every state: each reachable link and button looks different
+  hovered than at rest and pressed than hovered, lists its focus ring's
+  outline in its transition, the first Tab stop grows its ring to full width,
+  and under reduced motion every control still changes but transitions
+  nothing. Real clicks are blocked while it probes.
+  `menu.spec.ts` (from the-bernie-bears) opens the phone menu on About and
+  checks it lists the page links, both profiles, and the email over a scrim
+  with the page inert, and that tapping the scrim, Escape (which returns focus
+  to the toggle), tapping the brand, and widening the screen each close it.
 - `npm run test:rendering`: compares a full-page screenshot of every state
   with its baseline in `tests/rendering/baselines/`, with zero tolerance,
   under reduced motion, with the page's clock fixed to one date, since the
   footer's year comes from it, and with `Math.random` fixed, since Home picks
-  its featured projects at random. Baselines are captured on Linux. After an
+  its featured projects at random. Chromium and WebKit capture with
+  `tests/rendering/hide-patterns.css`, which hides the faint background
+  patterns (found by their `geoBacDiv` hook): those engines tile the SVG
+  pattern fills a few color levels differently from run to run, which had
+  spread from Contact to most pages. Firefox draws them the same every time
+  and still checks them. Baselines are captured on Linux. After an
   intended visual change, refresh with `npm run test:rendering --
   --update-snapshots` and commit the baselines with it.
 - `npm run test:responsive`: measures every route, the 404 page, and the
@@ -464,17 +514,23 @@ ticker, and the status dots) when waiting for the page to settle.
   breakpoints and the pixel past each included), failing on sideways
   scrolling, an unclipped element past either edge, text spilling its box,
   or two reachable controls overlapping.
+- `npm run test:seo`: checks each page's head as the-bernie-bears' suite
+  does (`head.spec.ts`): every page's own title, description, and canonical
+  link, the 404 page's noindex, the tags swapping as a visitor moves between
+  pages, the raw page carrying the home title and description for crawlers
+  that run no script, the Person and WebSite structured data against the
+  footer's profiles and Contact's email, `robots.txt`, the sitemap, the
+  social preview tags and card, and every icon the head links to.
 - `npm test` runs every suite.
 - **Flakes**: before step 8 the infinite animations kept moving while the
   suite captured, so a few states failed now and then. With every animation
   stopped under reduced motion they no longer run during a capture. A
   failure that two reruns don't reproduce still gets a rerun, not new
-  baselines.
+  baselines. One remains (2026-10-13): Chromium's contact-desktop fails
+  about one run in five on two corner pixels of the sidebar's Response Time
+  card, with nothing on the page changed.
 
 ## Found for later
-- **The Hire Me buttons reload the whole site** (step 11): the bar's and the
-  drawer's Hire Me are plain `<a href='/contact'>` links rather than router
-  links, so they load the page from scratch instead of switching routes.
 
 ## Deferred items
 Decided 2026-10-12 to leave these until the cleanup plan is finished.
@@ -487,10 +543,12 @@ Decided 2026-10-12 to leave these until the cleanup plan is finished.
 - **Business card SVGs** (`design/business-cards/`): kept as the
   starting point for new business cards based on this site. Update their
   URL and email to techgeek.dev once everything else is done.
-- **Contact email setup**: create the contact@techgeek.dev mailbox; in
-  Netlify, turn on form detection and add an email notification for the
-  `contact` form sent to that address; and remove the old EmailJS
-  environment variables, which nothing reads any more.
+- **Cloudflare** (asked for by the user 2026-10-13, once the cleanup plan
+  is finished): put techgeek.dev behind Cloudflare the way ease-my-life is,
+  which the user's own sites use and the client sites don't. ease-my-life's
+  repository records only that its www address redirects to HTTPS through
+  Cloudflare, so its Cloudflare and Netlify settings are checked first and
+  copied.
 - **Shared design package** (suggested 2026-10-12, once this project is
   done): a repository holding what has to match across the three sites (the
   tokens, the self-hosted fonts and base element styles, the logo and favicon

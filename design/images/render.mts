@@ -46,8 +46,8 @@ type BoxRecTyp = { cutBoo : boolean, heiNum : number, widNum : number }; // What
 const BOX_REC_OBJ : Record< string, BoxRecTyp > = { // What: Box Record Object. Why: Each kind of image is shown at a different largest size, and its file should be no more than twice that. How: This maps each kind to its box.
 
 
-	'portrait' : { cutBoo : false, heiNum : 640, widNum : 560  }, // What: Portrait Box. Why: The About portrait fills a 280 by 320 frame. How: This covers twice that.
-	'project'  : { cutBoo : false, heiNum : 698, widNum : 1240 }  // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 620px wide. How: This covers twice that.
+	'portrait' : { cutBoo : true,  heiNum : 850, widNum : 642  }, // What: Portrait Box. Why: The About portrait fills a frame up to about 321 by 425 on a phone, which crops it the same way. How: This cuts it to twice that, centered, so no hidden pixels ship.
+	'project'  : { cutBoo : false, heiNum : 752, widNum : 1336 }  // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 667px wide, in Home's two-by-two grid. How: This covers twice that.
 
 
 };

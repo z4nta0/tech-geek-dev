@@ -75,8 +75,10 @@ function GeoBacCom ( { patOpaNum = 0.4, patVarStr = 'grid' } : GbcProTyp ) : JSX
 
 			style={{ opacity : patOpaNum }}
 
+			data-element-name-hook='geoBacDiv'
+
 			aria-hidden='true'
-		>{ /* What: Geometric Background Div Element. Why: The pattern sits behind its section's content without being announced. How: This fills the section, fades to the section's opacity, and is hidden from screen readers. */ }
+		>{ /* What: Geometric Background Div Element. Why: The pattern sits behind its section's content without being announced. How: This fills the section, fades to the section's opacity, and is hidden from screen readers; the rendering suite finds it by its hook to hide the pattern in the engines that don't draw it the same every run. */ }
 
 
 			{ patVarStr === 'grid' && ( // What: Grid Variant Check. Why: Only the chosen pattern draws. How: This renders the grid when the section asks for it.

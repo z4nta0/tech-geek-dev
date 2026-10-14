@@ -21,8 +21,10 @@
 
 /* #region sitFooFoo */
 
-.sitFooFoo { /* What: Site Footer Footer. Why: Every page ends on a dark band set apart from the content above. How: This fills it with the ink color, sets its text ivory, pads it, and pushes it to the bottom of a short page. */
+.sitFooFoo { /* What: Site Footer Footer. Why: Every page ends on a dark band set apart from the content above. How: This fills it with the ink color, sets its text ivory, pads it, pushes it to the bottom of a short page, and draws its focus rings in the bright orange. */
 
+
+	--foc-rin-col : var( --acc-mai-col ); /* Accent Main Color = #F26419 */ /* What: Focus Ring Color. Why: The site's dark orange ring would sink into the dark band. How: This draws focus rings in the footer in the bright orange, about 5.4:1 against the ink. */
 
 	background : var( --bac-inv-col );   /* Background Inverse Color = #1A1A2E */
 	color      : var( --bac-pag-col );   /* Background Page Color = #F5F0E8 */
@@ -118,7 +120,7 @@
 
 }
 
-.fooLinAnc { /* What: Footer Link Anchor. Why: The page links read quietly on the dark band. How: This sets them small in muted mono capitals and eases their color. */
+.fooLinAnc { /* What: Footer Link Anchor. Why: The page links read quietly on the dark band. How: This sets them small in muted mono capitals and eases their color, press, and focus. */
 
 
 	color          : var( --tex-inm-col );                   /* Text Inverse-Muted Color = #8181a1 */
@@ -126,7 +128,7 @@
 	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
 	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em ); /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	text-transform : uppercase;
-	transition     : color var( --dur-tra-bas );             /* Duration Transition Base ~= 157.8ms */
+	transition     : color var( --dur-tra-bas ), opacity var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -137,10 +139,17 @@
 
 
 }
+.fooLinAnc:active { /* What: Pressed Footer Link Anchor. Why: A press should register before the page changes. How: This dims the link slightly while it's held, as every text link does on press. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Footer Link Anchor. Why: Someone who asked for less motion shouldn't see the links fade. How: This applies only when the reduced-motion preference is set. */
 
 
-	.fooLinAnc { /* What: Motionless Footer Link Anchor. Why: The hover color should simply switch. How: This turns the transition off. */
+	.fooLinAnc { /* What: Motionless Footer Link Anchor. Why: The hover, press, and focus looks should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -202,12 +211,12 @@
 
 }
 
-.fooIcoAnc { /* What: Footer Icon Anchor. Why: Each profile link is a bare icon on the dark band. How: This sets it in the muted ink and eases its color and lift. */
+.fooIcoAnc { /* What: Footer Icon Anchor. Why: Each profile link is a bare icon on the dark band. How: This sets it in the muted ink and eases its color, lift, press, and focus. */
 
 
-	color      : var( --tex-inm-col );                                       /* Text Inverse-Muted Color = #8181a1 */
+	color      : var( --tex-inm-col ); /* Text Inverse-Muted Color = #8181a1 */
 	display    : flex;
-	transition : color var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+	transition : color var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -219,10 +228,17 @@
 
 
 }
+.fooIcoAnc:active { /* What: Pressed Footer Icon Anchor. Why: A press should register before anything else happens. How: This presses the icon in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
+
+
+}
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Footer Icon Anchor. Why: Someone who asked for less motion shouldn't see the icons glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.fooIcoAnc { /* What: Motionless Footer Icon Anchor. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+	.fooIcoAnc { /* What: Motionless Footer Icon Anchor. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
 
 
 		transition : none;

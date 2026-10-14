@@ -252,22 +252,22 @@
 
 }
 
-.resForBut { /* What: Reset Form Button. Why: A visitor may want to send another message. How: This sets an orange outlined button in mono capitals, easing its fill. */
+.resForBut { /* What: Reset Form Button. Why: A visitor may want to send another message. How: This sets an orange outlined button in mono capitals, easing its fill, press, and focus. */
 
 
-	border         : var( --bor-wid-bas ) solid var( --acc-mai-col );             /* Border Width Base ~= 1.160px, Accent Main Color = #F26419 */
-	border-radius  : var( --rad-bor-xsm );                                        /* Radius Border Extra Small ~= 3.571px */
-	color          : var( --acc-dar-col );                                        /* Accent Dark Color ~= #bd3000 */
-	font-family    : var( --fon-fam-sec );                                        /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : var( --fon-siz-p01 );                                        /* Font Size Base Plus 1 ~= 14.572px */
+	border         : var( --bor-wid-bas ) solid var( --acc-mai-col ); /* Border Width Base ~= 1.160px, Accent Main Color = #F26419 */
+	border-radius  : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --acc-dar-col );                            /* Accent Dark Color ~= #bd3000 */
+	font-family    : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                            /* Font Size Base Plus 1 ~= 14.572px */
 	letter-spacing : 0.04em;
-	padding        : var( --spa-ver-m01 ) var( --spa-hor-p02 );                   /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	padding        : var( --spa-ver-m01 ) var( --spa-hor-p02 );       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	text-transform : uppercase;
-	transition     : background var( --dur-tra-bas ), color var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+	transition     : background var( --dur-tra-bas ), color var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
-.resForBut:hover { /* What: Hovered Reset Form Button. Why: A button should respond to the pointer. How: This fills it orange with white text. */
+.resForBut:hover { /* What: Hovered Reset Form Button. Why: A button should respond to the pointer. How: This fills it orange with ink text. */
 
 
 	background : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
@@ -275,10 +275,17 @@
 
 
 }
+.resForBut:active { /* What: Pressed Reset Form Button. Why: A press should register before anything else happens. How: This presses the button in slightly. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
+
+
+}
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Reset Form Button. Why: Someone who asked for less motion shouldn't see the button fill fade. How: This applies only when the reduced-motion preference is set. */
 
 
-	.resForBut { /* What: Motionless Reset Form Button. Why: The fill should simply switch. How: This turns the transition off. */
+	.resForBut { /* What: Motionless Reset Form Button. Why: The fill, press, and focus looks should simply switch, the press still applying at once. How: This turns the transition off. */
 
 
 		transition : none;
@@ -463,23 +470,23 @@
 
 }
 
-.senMesBut { /* What: Send Message Button. Why: Sending is the form's main action. How: This sets an orange button in mono capitals at the form's left, easing its color and lift. */
+.senMesBut { /* What: Send Message Button. Why: Sending is the form's main action. How: This sets an orange button in mono capitals at the form's left, easing its color, lift, press, and focus. */
 
 
 	align-items    : center;
 	align-self     : flex-start;
-	background     : var( --acc-mai-col );                                            /* Accent Main Color = #F26419 */
-	border-radius  : var( --rad-bor-xsm );                                            /* Radius Border Extra Small ~= 3.571px */
-	color          : var( --tex-acc-col );                                            /* Text Accent Color = #1A1A2E */
+	background     : var( --acc-mai-col );                      /* Accent Main Color = #F26419 */
+	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --tex-acc-col );                      /* Text Accent Color = #1A1A2E */
 	display        : inline-flex;
-	font-family    : var( --fon-fam-sec );                                            /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : var( --fon-siz-p01 );                                            /* Font Size Base Plus 1 ~= 14.572px */
+	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight    : 500;
-	gap            : var( --spa-hor-m01 );                                            /* Spacing Horizontal Base Minus 1 = 11px */
-	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );                          /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
-	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 );                       /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
+	gap            : var( --spa-hor-m01 );                      /* Spacing Horizontal Base Minus 1 = 11px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );    /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	text-transform : uppercase;
-	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -491,7 +498,14 @@
 
 
 }
-.senMesBut:disabled { /* What: Disabled Send Message Button. Why: While a message is sending the button can't be pressed again. How: This fades it, shows the not-allowed cursor, and cancels the hover lift, winning over the hover rule above it. */
+.senMesBut:active { /* What: Pressed Send Message Button. Why: A press should register before anything else happens. How: This presses it in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
+
+
+}
+.senMesBut:disabled { /* What: Disabled Send Message Button. Why: While a message is sending the button can't be pressed again. How: This fades it, shows the not-allowed cursor, and cancels the hover lift and press, winning over the rules above it. */
 
 
 	cursor    : not-allowed;
@@ -517,7 +531,7 @@
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Send Message Button. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.senMesBut { /* What: Motionless Send Message Button. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+	.senMesBut { /* What: Motionless Send Message Button. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
 
 
 		transition : none;
@@ -601,7 +615,7 @@
 
 /* #region conIteAnc */
 
-.conIteAnc { /* What: Contact Item Anchor. Why: Each detail is one tappable row. How: This sets the icon beside the text, padded and rounded, easing its background. */
+.conIteAnc { /* What: Contact Item Anchor. Why: Each detail is one tappable row. How: This sets the icon beside the text, padded and rounded, easing its background, press, and focus. */
 
 
 	align-items   : center;
@@ -609,7 +623,7 @@
 	display       : flex;
 	gap           : var( --spa-hor-m01 );                      /* Spacing Horizontal Base Minus 1 = 11px */
 	padding       : var( --spa-ver-m01 ) var( --spa-hor-m01 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Minus 1 = 11px */
-	transition    : background var( --dur-tra-bas );           /* Duration Transition Base ~= 157.8ms */
+	transition    : background var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -620,10 +634,17 @@
 
 
 }
+.conIteAnc:active { /* What: Pressed Contact Item Anchor. Why: A press should register before anything else happens. How: This presses the row in slightly. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
+
+
+}
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Contact Item Anchor. Why: Someone who asked for less motion shouldn't see the rows fade. How: This applies only when the reduced-motion preference is set. */
 
 
-	.conIteAnc { /* What: Motionless Contact Item Anchor. Why: The hover tint should simply switch. How: This turns the transition off. */
+	.conIteAnc { /* What: Motionless Contact Item Anchor. Why: The hover tint, press, and focus looks should simply switch, the press still applying at once. How: This turns the transition off. */
 
 
 		transition : none;

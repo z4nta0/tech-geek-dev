@@ -6,8 +6,9 @@
 import cssModObj from './contact.module.css'; // What: CSS Module Object. Why: The Contact page's own hero, form, and sidebar styles live in its own module. How: This maps each class name in contact.module.css to its hashed module class.
 
 
-import { GeoBacCom } from '../../ui/geo-bg.tsx'; // What: Geometric Background Component. Why: The hero sits over a faint pattern. How: This draws the circuit.
-import { useState  } from 'react';               // What: Use State. Why: The page remembers the form's fields and whether a message is sending, sent, or failed. How: This holds each of those.
+import { GeoBacCom    } from '../../ui/geo-bg.tsx';          // What: Geometric Background Component. Why: The hero sits over a faint pattern. How: This draws the circuit.
+import { usePagDesFun } from '../../ui/page-description.ts'; // What: Use Page Description Function. Why: The page's search description differs from the home page's. How: The page calls it to swap the one description tag's text while it shows.
+import { useState     } from 'react';                        // What: Use State. Why: The page remembers the form's fields and whether a message is sending, sent, or failed. How: This holds each of those.
 
 
 import type { ChangeEvent } from 'react'; // What: Change Event. Why: The fields report each edit. How: This types chaFieFun's event.
@@ -183,11 +184,15 @@ const EMP_FOR_OBJ = { 'bot-field' : '', budget : '', email : '', message : '', n
  * contact details, each opening in a new tab, beside the availability and
  * response time.
  *
+ * It also sets the page's title and canonical address, which React moves
+ * into the document head, and swaps the search description for its own
+ * through usePagDesFun until the page leaves.
+ *
  * @author z4nta0 <https://github.com/z4nta0>
  *
  * @param props - This component does not use any props.
  *
- * @returns The page's wrapper div.
+ * @returns The page's title, canonical link, and wrapper div.
  *
  * @example
  * ```tsx
@@ -197,6 +202,10 @@ const EMP_FOR_OBJ = { 'bot-field' : '', budget : '', email : '', message : '', n
 */
 
 function ConPagCom () : JSX.Element {
+
+
+	usePagDesFun( 'Have a project in mind? Send z4nta0 a message about your website or web app and expect a reply within 24 hours.' ); // What: Page Description Call. Why: Search listings should describe this page, not repeat the home page. How: This swaps the one description tag's text for the page's own while it shows.
+
 
 
 	// #region Form State
@@ -327,386 +336,374 @@ function ConPagCom () : JSX.Element {
 	return (
 
 
-		<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
+		<>{ /* What: Page Fragment. Why: The page's head tags and its content render side by side. How: This groups them without adding an element. */ }
 
 
-			<section className={ cssModObj.conHerSec }>{ /* What: Contact Hero Section Element. Why: The page opens by inviting a visitor to get in touch. How: This holds the pattern and the heading block. */ }
+			<title>Contact z4nta0 About Your Project | TechGeek.dev</title>{ /* What: Page Title Element. Why: A visitor's tab, history, and search listings should name the page. How: React 19 moves this title into the document head while the page is shown. */ }
 
+			<link
+				href='https://techgeek.dev/contact'
+				rel='canonical'
+			/>{ /* What: Canonical Link Element. Why: Every address Netlify serves the page at should count as its one live address. How: React 19 moves this link into the document head while the page is shown. */ }
 
-				<GeoBacCom
-					patOpaNum={ 0.14 }
-					patVarStr='circuit'
-				/>{ /* What: Hero Geometric Background Component. Why: A faint circuit sits behind the hero. How: This draws it at 14% strength. */ }
 
 
+			<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The page's sections stack in one column. How: This holds them and fades in like every page. */ }
 
-				<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The hero's text sits in the page's centered column. How: This stacks the label, heading, and line. */ }
 
+				<section className={ cssModObj.conHerSec }>{ /* What: Contact Hero Section Element. Why: The page opens by inviting a visitor to get in touch. How: This holds the pattern and the heading block. */ }
 
-					<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows Get In Touch after a short rule. */ }
-						<span className={ cssModObj.herLinSpa } />{ /* What: Hero Line Span Element. Why: A short rule leads into the label. How: This draws the rule. */ }
 
-						Get In Touch
-					</span>
+					<GeoBacCom
+						patOpaNum={ 0.14 }
+						patVarStr='circuit'
+					/>{ /* What: Hero Geometric Background Component. Why: A faint circuit sits behind the hero. How: This draws it at 14% strength. */ }
 
-					<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading makes the invitation. How: This sets Let's Build over Something Together, with Something in the accent. */ }
-						Let's Build<br />
-						<span className={ cssModObj.titAccSpa }>Something</span> Together
-					</h1>
 
-					<p className={ cssModObj.herSubPar }>{ /* What: Hero Subtitle Paragraph Element. Why: A line under the heading says what to expect. How: This promises a reply within a day. */ }
-						Have a project in mind? I'd love to hear about it. Send me a message
-						and I'll get back to you within 24 hours.
-					</p>
 
+					<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The hero's text sits in the page's centered column. How: This stacks the label, heading, and line. */ }
 
-				</div>
 
+						<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows Get In Touch after a short rule. */ }
+							<span className={ cssModObj.herLinSpa } />{ /* What: Hero Line Span Element. Why: A short rule leads into the label. How: This draws the rule. */ }
 
-			</section>
+							Get In Touch
+						</span>
 
+						<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading makes the invitation. How: This sets Let's Build over Something Together, with Something in the accent. */ }
+							Let's Build<br />
+							<span className={ cssModObj.titAccSpa }>Something</span> Together
+						</h1>
 
-
-			<section className={ cssModObj.conBodSec }>{ /* What: Contact Body Section Element. Why: The form and the details sit together. How: This holds the two columns. */ }
-
-
-				<div className={ cssModObj.conGriDiv }>{ /* What: Contact Grid Div Element. Why: The form and the sidebar sit side by side in the page's centered column. How: This lays out the two columns. */ }
-
-
-					<div className={ cssModObj.forWraDiv }>{ /* What: Form Wrap Div Element. Why: The form and its thank-you share one place. How: This holds whichever one shows. */ }
-
-
-						{ isaSenBoo ? ( // What: Sent Or Form Check. Why: A sent message replaces the form with a thank-you. How: This renders the thank-you once sent, or the form otherwise.
-
-
-							<div className={ cssModObj.sucStaDiv }>{ /* What: Success State Div Element. Why: A visitor learns the message went out. How: This shows a check, a thank-you, and a button for another message. */ }
-
-
-								<svg
-									fill='none'
-									height='56'
-									stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
-									strokeWidth='1.5'
-									viewBox='0 0 24 24'
-									width='56'
-								>{ /* What: Check SVG Element. Why: A circled check says the message went out. How: This draws it in orange. */ }
-
-
-									<path d='M22 11.08V12a10 10 0 1 1-5.93-9.14' />{ /* What: Check Circle Path Element. Why: An open circle frames the check. How: This draws it. */ }
-
-									<polyline points='22 4 12 14.01 9 11.01' />{ /* What: Check Mark Polyline Element. Why: The check mark is the success sign. How: This draws it through the circle's gap. */ }
-
-
-								</svg>
-
-								<h2 className={ cssModObj.sucTitHea }>Message Sent!</h2>{ /* What: Success Title Heading Element. Why: The thank-you's heading says what happened. How: This shows Message Sent. */ }
-
-								<p className={ cssModObj.sucTexPar }>Thanks for reaching out. I'll be in touch within 24 hours.</p>{ /* What: Success Text Paragraph Element. Why: A visitor learns when to expect a reply. How: This thanks them and promises a reply within a day. */ }
-
-								<button
-									className={ cssModObj.resForBut }
-
-									onClick={ resForFun }
-								>Send Another Message</button>{ /* What: Reset Form Button Element. Why: A visitor may want to send another message. How: This empties the form and shows it again. */ }
-
-
-							</div>
-
-
-						) : ( // What: Form Branch. Why: Until a message is sent, the form shows. How: This renders the form.
-
-
-							<form
-								className={ cssModObj.conForFor }
-
-								noValidate
-
-								onSubmit={ subForFun }
-							>{ /* What: Contact Form Form Element. Why: A visitor writes their message here. How: This sends the fields through subForFun, leaving the browser's own validation off. */ }
-
-
-								<h2 className={ cssModObj.forTitHea }>Send a Message</h2>{ /* What: Form Title Heading Element. Why: The form's heading names it. How: This shows Send a Message as an h2. */ }
-
-								<p
-									className={ cssModObj.forHonPar }
-
-									aria-hidden='true'
-								>{ /* What: Form Honeypot Paragraph Element. Why: A person never sees or fills this field, so a bot that does gives itself away, and Netlify drops its submission. How: This holds a label and input moved off screen and hidden from screen readers. */ }
-
-
-									<label>{ /* What: Honeypot Label Element. Why: A hidden field still needs a label. How: This wraps the honeypot input in its label text. */ }
-
-
-										Leave this field blank:
-
-										<input
-											name='bot-field'
-
-											autoComplete='off'
-											value={ forDatObj[ 'bot-field' ] }
-
-											tabIndex={ -1 }
-
-											onChange={ chaFieFun }
-										/>{ /* What: Bot Field Input Element. Why: A filled honeypot marks a bot. How: This writes into the form's bot-field through the shared change handler and posts with the other fields. */ }
-
-
-									</label>
-
-
-								</p>
-
-
-								<div className={ cssModObj.forRowDiv }>{ /* What: Form Row Div Element. Why: The name and email fields share a row on wide screens. How: This sets them side by side. */ }
-
-
-									<div className={ cssModObj.forFieDiv }>{ /* What: Form Field Div Element. Why: The name's label and input read as one field. How: This stacks them. */ }
-
-
-										<label
-											className={ cssModObj.fieLabLab }
-
-											htmlFor='c-name'
-										>Full Name</label>{ /* What: Field Label Label Element. Why: The input needs a visible name. How: This labels it Full Name. */ }
-
-										<input
-											id='c-name'
-
-											className={ cssModObj.forConInp }
-
-											name='name'
-
-											placeholder='Your name'
-											required
-											type='text'
-											value={ forDatObj.name }
-
-											onChange={ chaFieFun }
-										/>{ /* What: Form Control Input Element. Why: The visitor says who they are. How: This holds the name in the form's state. */ }
-
-
-									</div>
-
-									<div className={ cssModObj.forFieDiv }>{ /* What: Form Field Div Element. Why: The email's label and input read as one field. How: This stacks them. */ }
-
-
-										<label
-											className={ cssModObj.fieLabLab }
-
-											htmlFor='c-email'
-										>Email</label>{ /* What: Field Label Label Element. Why: The input needs a visible name. How: This labels it Email. */ }
-
-										<input
-											id='c-email'
-
-											className={ cssModObj.forConInp }
-
-											name='email'
-
-											placeholder='you@example.com'
-											required
-											type='email'
-											value={ forDatObj.email }
-
-											onChange={ chaFieFun }
-										/>{ /* What: Form Control Input Element. Why: A reply needs somewhere to go. How: This holds the address in the form's state. */ }
-
-
-									</div>
-
-
-								</div>
-
-
-								<div className={ cssModObj.forFieDiv }>{ /* What: Form Field Div Element. Why: The budget's label and menu read as one field. How: This stacks them. */ }
-
-
-									<label
-										className={ cssModObj.fieLabLab }
-
-										htmlFor='c-budget'
-									>Project Budget</label>{ /* What: Field Label Label Element. Why: The menu needs a visible name. How: This labels it Project Budget. */ }
-
-									<select
-										id='c-budget'
-
-										className={ cssModObj.forConSel }
-
-										name='budget'
-
-										value={ forDatObj.budget }
-
-										onChange={ chaFieFun }
-									>{ /* What: Form Control Select Element. Why: A visitor can say roughly what they mean to spend. How: This offers the ranges, holding the choice in the form's state. */ }
-
-
-										<option value=''>Select a range…</option>{ /* What: Placeholder Option Element. Why: The menu starts with no range chosen. How: This prompts a choice with an empty value. */ }
-
-										<option>Under $100</option>{ /* What: Range Option Element. Why: Each range is one choice. How: This offers under $100. */ }
-
-										<option>$100 – $250</option>{ /* What: Range Option Element. Why: Each range is one choice. How: This offers $100 to $250. */ }
-
-										<option>$250 – $500</option>{ /* What: Range Option Element. Why: Each range is one choice. How: This offers $250 to $500. */ }
-
-										<option>$500 – $1,000</option>{ /* What: Range Option Element. Why: Each range is one choice. How: This offers $500 to $1,000. */ }
-
-										<option>$1,000+</option>{ /* What: Range Option Element. Why: Each range is one choice. How: This offers $1,000 and up. */ }
-
-
-									</select>
-
-
-								</div>
-
-								{ errMesStr && ( // What: Error Presence Check. Why: An error shows only after a failed send. How: This renders the message when there is one.
-
-
-									<p className={ cssModObj.errMesPar }>{ errMesStr }</p> // What: Error Message Paragraph Element. Why: A visitor learns the message didn't go out. How: This shows the error under the fields.
-
-
-								) }
-
-								<div className={ cssModObj.forFieDiv }>{ /* What: Form Field Div Element. Why: The message's label and box read as one field. How: This stacks them. */ }
-
-
-									<label
-										className={ cssModObj.fieLabLab }
-
-										htmlFor='c-message'
-									>Message</label>{ /* What: Field Label Label Element. Why: The box needs a visible name. How: This labels it Message. */ }
-
-									<textarea
-										id='c-message'
-
-										className={ cssModObj.forConTex }
-
-										name='message'
-
-										placeholder='Tell me about your project…'
-										required
-										rows={ 6 }
-										value={ forDatObj.message }
-
-										onChange={ chaFieFun }
-									/>{ /* What: Form Control Textarea Element. Why: The visitor writes their message here. How: This holds it in the form's state, six rows tall. */ }
-
-
-								</div>
-
-								<button
-									className={ cssModObj.senMesBut }
-
-									disabled={ isaLoaBoo }
-									type='submit'
-								>{ /* What: Send Message Button Element. Why: The visitor sends the message. How: This submits the form, disabled and reading Sending while it's on its way. */ }
-									{ isaLoaBoo ? 'Sending…' : 'Send Message' }{ /* What: Submit Label Text. Why: The button says what's happening. How: This reads Sending while sending, or Send Message otherwise. */ }
-
-									{ !isaLoaBoo && ( // What: Send Icon Check. Why: The paper plane only shows while the button is ready. How: This renders it unless sending.
-
-
-										<svg
-											fill='none'
-											height='16'
-											stroke='currentColor'
-											strokeWidth='2.5'
-											viewBox='0 0 24 24'
-											width='16'
-										>{ /* What: Paper Plane SVG Element. Why: A paper plane stands for sending. How: This draws it after the label. */ }
-
-
-											<line
-												x1='22'
-												x2='11'
-												y1='2'
-												y2='13'
-											/>{ /* What: Plane Fold Line Element. Why: The fold splits the plane's wings. How: This draws it. */ }
-
-											<polygon points='22 2 15 22 11 13 2 9 22 2' />{ /* What: Plane Body Polygon Element. Why: The plane's outline is one shape. How: This traces it. */ }
-
-
-										</svg>
-
-
-									) }
-								</button>
-
-
-							</form>
-
-
-						) }
+						<p className={ cssModObj.herSubPar }>{ /* What: Hero Subtitle Paragraph Element. Why: A line under the heading says what to expect. How: This promises a reply within a day. */ }
+							Have a project in mind? I'd love to hear about it. Send me a message
+							and I'll get back to you within 24 hours.
+						</p>
 
 
 					</div>
 
 
-
-					<aside className={ cssModObj.conSidAsi }>{ /* What: Contact Sidebar Aside Element. Why: The other ways to get in touch sit beside the form. How: This stacks the details, availability, and response time cards. */ }
-
-
-						<div className={ cssModObj.sidCarDiv }>{ /* What: Sidebar Card Div Element. Why: A visitor may prefer email or a profile to the form. How: This lists each contact item. */ }
+				</section>
 
 
-							<h3 className={ cssModObj.sidTitHea }>Contact Details</h3>{ /* What: Sidebar Title Heading Element. Why: The card is named. How: This shows its title. */ }
 
-							<div className={ cssModObj.conIteDiv }>{ /* What: Contact Items Div Element. Why: The items stack in a list. How: This holds one link per item. */ }
-
-
-								{ CON_ITE_ARR.map( ( conIteObj ) => ( // What: Contact Item Map Call. Why: Every contact item shows. How: This renders one link per row.
+				<section className={ cssModObj.conBodSec }>{ /* What: Contact Body Section Element. Why: The form and the details sit together. How: This holds the two columns. */ }
 
 
-									<a
-										key={ conIteObj.labStr }
-
-										className={ cssModObj.conIteAnc }
-
-										href={ conIteObj.hreStr }
-										rel='noreferrer'
-										target='_blank'
-									>{ /* What: Contact Item Anchor Element. Why: Each item links to its address. How: This opens the address in a new tab, showing the icon beside the name and address. */ }
+					<div className={ cssModObj.conGriDiv }>{ /* What: Contact Grid Div Element. Why: The form and the sidebar sit side by side in the page's centered column. How: This lays out the two columns. */ }
 
 
-										<span className={ cssModObj.conIcoSpa }>{ conIteObj.icoEle }</span>{ /* What: Contact Icon Span Element. Why: An icon marks each item at a glance. How: This frames the row's icon. */ }
-
-										<div>{ /* What: Contact Text Div Element. Why: The name and the address read as one. How: This stacks them. */ }
+						<div className={ cssModObj.forWraDiv }>{ /* What: Form Wrap Div Element. Why: The form and its thank-you share one place. How: This holds whichever one shows. */ }
 
 
-											<span className={ cssModObj.conLabSpa }>{ conIteObj.labStr }</span>{ /* What: Contact Label Span Element. Why: The item is named. How: This shows its name. */ }
+							{ isaSenBoo ? ( // What: Sent Or Form Check. Why: A sent message replaces the form with a thank-you. How: This renders the thank-you once sent, or the form otherwise.
 
-											<span className={ cssModObj.conValSpa }>{ conIteObj.valStr }</span>{ /* What: Contact Value Span Element. Why: The address is shown, not just linked. How: This shows it. */ }
+
+								<div className={ cssModObj.sucStaDiv }>{ /* What: Success State Div Element. Why: A visitor learns the message went out. How: This shows a check, a thank-you, and a button for another message. */ }
+
+
+									<svg
+										fill='none'
+										height='56'
+										stroke='var(--acc-mai-col)' // Accent Main Color = #F26419
+										strokeWidth='1.5'
+										viewBox='0 0 24 24'
+										width='56'
+									>{ /* What: Check SVG Element. Why: A circled check says the message went out. How: This draws it in orange. */ }
+
+
+										<path d='M22 11.08V12a10 10 0 1 1-5.93-9.14' />{ /* What: Check Circle Path Element. Why: An open circle frames the check. How: This draws it. */ }
+
+										<polyline points='22 4 12 14.01 9 11.01' />{ /* What: Check Mark Polyline Element. Why: The check mark is the success sign. How: This draws it through the circle's gap. */ }
+
+
+									</svg>
+
+									<h2 className={ cssModObj.sucTitHea }>Message Sent!</h2>{ /* What: Success Title Heading Element. Why: The thank-you's heading says what happened. How: This shows Message Sent. */ }
+
+									<p className={ cssModObj.sucTexPar }>Thanks for reaching out. I'll be in touch within 24 hours.</p>{ /* What: Success Text Paragraph Element. Why: A visitor learns when to expect a reply. How: This thanks them and promises a reply within a day. */ }
+
+									<button
+										className={ cssModObj.resForBut }
+
+										onClick={ resForFun }
+									>Send Another Message</button>{ /* What: Reset Form Button Element. Why: A visitor may want to send another message. How: This empties the form and shows it again. */ }
+
+
+								</div>
+
+
+							) : ( // What: Form Branch. Why: Until a message is sent, the form shows. How: This renders the form.
+
+
+								<form
+									className={ cssModObj.conForFor }
+
+									noValidate
+
+									onSubmit={ subForFun }
+								>{ /* What: Contact Form Form Element. Why: A visitor writes their message here. How: This sends the fields through subForFun, leaving the browser's own validation off. */ }
+
+
+									<h2 className={ cssModObj.forTitHea }>Send a Message</h2>{ /* What: Form Title Heading Element. Why: The form's heading names it. How: This shows Send a Message as an h2. */ }
+
+									<p
+										className={ cssModObj.forHonPar }
+
+										aria-hidden='true'
+									>{ /* What: Form Honeypot Paragraph Element. Why: A person never sees or fills this field, so a bot that does gives itself away, and Netlify drops its submission. How: This holds a label and input moved off screen and hidden from screen readers. */ }
+
+
+										<label>{ /* What: Honeypot Label Element. Why: A hidden field still needs a label. How: This wraps the honeypot input in its label text. */ }
+
+
+											Leave this field blank:
+
+											<input
+												name='bot-field'
+
+												autoComplete='off'
+												value={ forDatObj[ 'bot-field' ] }
+
+												tabIndex={ -1 }
+
+												onChange={ chaFieFun }
+											/>{ /* What: Bot Field Input Element. Why: A filled honeypot marks a bot. How: This writes into the form's bot-field through the shared change handler and posts with the other fields. */ }
+
+
+										</label>
+
+
+									</p>
+
+
+									<div className={ cssModObj.forRowDiv }>{ /* What: Form Row Div Element. Why: The name and email fields share a row on wide screens. How: This sets them side by side. */ }
+
+
+										<div className={ cssModObj.forFieDiv }>{ /* What: Form Field Div Element. Why: The name's label and input read as one field. How: This stacks them. */ }
+
+
+											<label
+												className={ cssModObj.fieLabLab }
+
+												htmlFor='c-name'
+											>Full Name</label>{ /* What: Field Label Label Element. Why: The input needs a visible name. How: This labels it Full Name. */ }
+
+											<input
+												id='c-name'
+
+												className={ cssModObj.forConInp }
+
+												name='name'
+
+												placeholder='Your name'
+												required
+												type='text'
+												value={ forDatObj.name }
+
+												onChange={ chaFieFun }
+											/>{ /* What: Form Control Input Element. Why: The visitor says who they are. How: This holds the name in the form's state. */ }
+
+
+										</div>
+
+										<div className={ cssModObj.forFieDiv }>{ /* What: Form Field Div Element. Why: The email's label and input read as one field. How: This stacks them. */ }
+
+
+											<label
+												className={ cssModObj.fieLabLab }
+
+												htmlFor='c-email'
+											>Email</label>{ /* What: Field Label Label Element. Why: The input needs a visible name. How: This labels it Email. */ }
+
+											<input
+												id='c-email'
+
+												className={ cssModObj.forConInp }
+
+												name='email'
+
+												placeholder='you@example.com'
+												required
+												type='email'
+												value={ forDatObj.email }
+
+												onChange={ chaFieFun }
+											/>{ /* What: Form Control Input Element. Why: A reply needs somewhere to go. How: This holds the address in the form's state. */ }
 
 
 										</div>
 
 
-									</a>
+									</div>
 
 
-								))}
+									<div className={ cssModObj.forFieDiv }>{ /* What: Form Field Div Element. Why: The budget's label and menu read as one field. How: This stacks them. */ }
 
 
-							</div>
+										<label
+											className={ cssModObj.fieLabLab }
+
+											htmlFor='c-budget'
+										>Project Budget</label>{ /* What: Field Label Label Element. Why: The menu needs a visible name. How: This labels it Project Budget. */ }
+
+										<select
+											id='c-budget'
+
+											className={ cssModObj.forConSel }
+
+											name='budget'
+
+											value={ forDatObj.budget }
+
+											onChange={ chaFieFun }
+										>{ /* What: Form Control Select Element. Why: A visitor can say roughly what they mean to spend. How: This offers the ranges, holding the choice in the form's state. */ }
+
+
+											<option value=''>Select a range…</option>{ /* What: Placeholder Option Element. Why: The menu starts with no range chosen. How: This prompts a choice with an empty value. */ }
+
+											<option>Under $100</option>{ /* What: Range Option Element. Why: Each range is one choice. How: This offers under $100. */ }
+
+											<option>$100 – $250</option>{ /* What: Range Option Element. Why: Each range is one choice. How: This offers $100 to $250. */ }
+
+											<option>$250 – $500</option>{ /* What: Range Option Element. Why: Each range is one choice. How: This offers $250 to $500. */ }
+
+											<option>$500 – $1,000</option>{ /* What: Range Option Element. Why: Each range is one choice. How: This offers $500 to $1,000. */ }
+
+											<option>$1,000+</option>{ /* What: Range Option Element. Why: Each range is one choice. How: This offers $1,000 and up. */ }
+
+
+										</select>
+
+
+									</div>
+
+									{ errMesStr && ( // What: Error Presence Check. Why: An error shows only after a failed send. How: This renders the message when there is one.
+
+
+										<p className={ cssModObj.errMesPar }>{ errMesStr }</p> // What: Error Message Paragraph Element. Why: A visitor learns the message didn't go out. How: This shows the error under the fields.
+
+
+									) }
+
+									<div className={ cssModObj.forFieDiv }>{ /* What: Form Field Div Element. Why: The message's label and box read as one field. How: This stacks them. */ }
+
+
+										<label
+											className={ cssModObj.fieLabLab }
+
+											htmlFor='c-message'
+										>Message</label>{ /* What: Field Label Label Element. Why: The box needs a visible name. How: This labels it Message. */ }
+
+										<textarea
+											id='c-message'
+
+											className={ cssModObj.forConTex }
+
+											name='message'
+
+											placeholder='Tell me about your project…'
+											required
+											rows={ 6 }
+											value={ forDatObj.message }
+
+											onChange={ chaFieFun }
+										/>{ /* What: Form Control Textarea Element. Why: The visitor writes their message here. How: This holds it in the form's state, six rows tall. */ }
+
+
+									</div>
+
+									<button
+										className={ cssModObj.senMesBut }
+
+										disabled={ isaLoaBoo }
+										type='submit'
+									>{ /* What: Send Message Button Element. Why: The visitor sends the message. How: This submits the form, disabled and reading Sending while it's on its way. */ }
+										{ isaLoaBoo ? 'Sending…' : 'Send Message' }{ /* What: Submit Label Text. Why: The button says what's happening. How: This reads Sending while sending, or Send Message otherwise. */ }
+
+										{ !isaLoaBoo && ( // What: Send Icon Check. Why: The paper plane only shows while the button is ready. How: This renders it unless sending.
+
+
+											<svg
+												fill='none'
+												height='16'
+												stroke='currentColor'
+												strokeWidth='2.5'
+												viewBox='0 0 24 24'
+												width='16'
+											>{ /* What: Paper Plane SVG Element. Why: A paper plane stands for sending. How: This draws it after the label. */ }
+
+
+												<line
+													x1='22'
+													x2='11'
+													y1='2'
+													y2='13'
+												/>{ /* What: Plane Fold Line Element. Why: The fold splits the plane's wings. How: This draws it. */ }
+
+												<polygon points='22 2 15 22 11 13 2 9 22 2' />{ /* What: Plane Body Polygon Element. Why: The plane's outline is one shape. How: This traces it. */ }
+
+
+											</svg>
+
+
+										) }
+									</button>
+
+
+								</form>
+
+
+							) }
 
 
 						</div>
 
 
-						<div className={ cssModObj.sidCarDiv }>{ /* What: Sidebar Card Div Element. Why: A visitor learns whether z4nta0 can take on their project. How: This shows the status and the earliest start. */ }
+
+						<aside className={ cssModObj.conSidAsi }>{ /* What: Contact Sidebar Aside Element. Why: The other ways to get in touch sit beside the form. How: This stacks the details, availability, and response time cards. */ }
 
 
-							<h3 className={ cssModObj.sidTitHea }>Availability</h3>{ /* What: Sidebar Title Heading Element. Why: The card is named. How: This shows its title. */ }
-
-							<div className={ cssModObj.avaRowDiv }>{ /* What: Availability Row Div Element. Why: The status dot sits beside its text. How: This sets them side by side. */ }
+							<div className={ cssModObj.sidCarDiv }>{ /* What: Sidebar Card Div Element. Why: A visitor may prefer email or a profile to the form. How: This lists each contact item. */ }
 
 
-								<span className={ cssModObj.staDotSpa } />{ /* What: Status Dot Span Element. Why: A pulsing dot signals availability. How: This draws it. */ }
+								<h3 className={ cssModObj.sidTitHea }>Contact Details</h3>{ /* What: Sidebar Title Heading Element. Why: The card is named. How: This shows its title. */ }
 
-								<div>{ /* What: Status Text Div Element. Why: The status and the start date read as one. How: This stacks them. */ }
+								<div className={ cssModObj.conIteDiv }>{ /* What: Contact Items Div Element. Why: The items stack in a list. How: This holds one link per item. */ }
 
 
-									<span className={ cssModObj.staTexSpa }>Available for new projects</span>{ /* What: Status Text Span Element. Why: The card says z4nta0 is taking on work. How: This shows the status. */ }
+									{ CON_ITE_ARR.map( ( conIteObj ) => ( // What: Contact Item Map Call. Why: Every contact item shows. How: This renders one link per row.
 
-									<span className={ cssModObj.staSubSpa }>Earliest start: Anytime</span>{ /* What: Status Subtitle Span Element. Why: A visitor learns how soon work can start. How: This shows the earliest start. */ }
+
+										<a
+											key={ conIteObj.labStr }
+
+											className={ cssModObj.conIteAnc }
+
+											href={ conIteObj.hreStr }
+											rel='noreferrer'
+											target='_blank'
+										>{ /* What: Contact Item Anchor Element. Why: Each item links to its address. How: This opens the address in a new tab, showing the icon beside the name and address. */ }
+
+
+											<span className={ cssModObj.conIcoSpa }>{ conIteObj.icoEle }</span>{ /* What: Contact Icon Span Element. Why: An icon marks each item at a glance. How: This frames the row's icon. */ }
+
+											<div>{ /* What: Contact Text Div Element. Why: The name and the address read as one. How: This stacks them. */ }
+
+
+												<span className={ cssModObj.conLabSpa }>{ conIteObj.labStr }</span>{ /* What: Contact Label Span Element. Why: The item is named. How: This shows its name. */ }
+
+												<span className={ cssModObj.conValSpa }>{ conIteObj.valStr }</span>{ /* What: Contact Value Span Element. Why: The address is shown, not just linked. How: This shows it. */ }
+
+
+											</div>
+
+
+										</a>
+
+
+									))}
 
 
 								</div>
@@ -715,33 +712,60 @@ function ConPagCom () : JSX.Element {
 							</div>
 
 
-						</div>
+							<div className={ cssModObj.sidCarDiv }>{ /* What: Sidebar Card Div Element. Why: A visitor learns whether z4nta0 can take on their project. How: This shows the status and the earliest start. */ }
 
 
-						<div className={ cssModObj.sidCarDiv }>{ /* What: Sidebar Card Div Element. Why: A visitor learns how soon to expect a reply. How: This shows the response promise. */ }
+								<h3 className={ cssModObj.sidTitHea }>Availability</h3>{ /* What: Sidebar Title Heading Element. Why: The card is named. How: This shows its title. */ }
+
+								<div className={ cssModObj.avaRowDiv }>{ /* What: Availability Row Div Element. Why: The status dot sits beside its text. How: This sets them side by side. */ }
 
 
-							<h3 className={ cssModObj.sidTitHea }>Response Time</h3>{ /* What: Sidebar Title Heading Element. Why: The card is named. How: This shows its title. */ }
+									<span className={ cssModObj.staDotSpa } />{ /* What: Status Dot Span Element. Why: A pulsing dot signals availability. How: This draws it. */ }
 
-							<p className={ cssModObj.resTexPar }>{ /* What: Response Text Paragraph Element. Why: The promise is the card's point. How: This says inquiries get a reply within a business day, with LinkedIn for anything urgent. */ }
-								I respond to all inquiries within <strong className={ cssModObj.resTimStr }>24 hours</strong> on business days.
-								For urgent matters, reach out on LinkedIn.
-							</p>
+									<div>{ /* What: Status Text Div Element. Why: The status and the start date read as one. How: This stacks them. */ }
 
 
-						</div>
+										<span className={ cssModObj.staTexSpa }>Available for new projects</span>{ /* What: Status Text Span Element. Why: The card says z4nta0 is taking on work. How: This shows the status. */ }
+
+										<span className={ cssModObj.staSubSpa }>Earliest start: Anytime</span>{ /* What: Status Subtitle Span Element. Why: A visitor learns how soon work can start. How: This shows the earliest start. */ }
 
 
-					</aside>
+									</div>
 
 
-				</div>
+								</div>
 
 
-			</section>
+							</div>
 
 
-		</div>
+							<div className={ cssModObj.sidCarDiv }>{ /* What: Sidebar Card Div Element. Why: A visitor learns how soon to expect a reply. How: This shows the response promise. */ }
+
+
+								<h3 className={ cssModObj.sidTitHea }>Response Time</h3>{ /* What: Sidebar Title Heading Element. Why: The card is named. How: This shows its title. */ }
+
+								<p className={ cssModObj.resTexPar }>{ /* What: Response Text Paragraph Element. Why: The promise is the card's point. How: This says inquiries get a reply within a business day, with LinkedIn for anything urgent. */ }
+									I respond to all inquiries within <strong className={ cssModObj.resTimStr }>24 hours</strong> on business days.
+									For urgent matters, reach out on LinkedIn.
+								</p>
+
+
+							</div>
+
+
+						</aside>
+
+
+					</div>
+
+
+				</section>
+
+
+			</div>
+
+
+		</>
 
 
 	);

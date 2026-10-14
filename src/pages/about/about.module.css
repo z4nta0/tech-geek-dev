@@ -252,21 +252,21 @@
 
 }
 
-.butPriAnc { /* What: Button Primary Anchor. Why: The way to get in touch stands out. How: This sets an orange button in mono capitals, easing its color and lift. */
+.butPriAnc { /* What: Button Primary Anchor. Why: The way to get in touch stands out. How: This sets an orange button in mono capitals, easing its color, lift, press, and focus. */
 
 
 	align-items    : center;
-	background     : var( --acc-mai-col );                                            /* Accent Main Color = #F26419 */
-	border-radius  : var( --rad-bor-xsm );                                            /* Radius Border Extra Small ~= 3.571px */
-	color          : var( --tex-acc-col );                                            /* Text Accent Color = #1A1A2E */
+	background     : var( --acc-mai-col );                      /* Accent Main Color = #F26419 */
+	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --tex-acc-col );                      /* Text Accent Color = #1A1A2E */
 	display        : inline-flex;
-	font-family    : var( --fon-fam-sec );                                            /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : var( --fon-siz-p01 );                                            /* Font Size Base Plus 1 ~= 14.572px */
+	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight    : 500;
-	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );                          /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
-	padding        : var( --spa-ver-m01 ) var( --spa-hor-p03 );                       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );    /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	padding        : var( --spa-ver-m01 ) var( --spa-hor-p03 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	text-transform : uppercase;
-	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -278,10 +278,17 @@
 
 
 }
+.butPriAnc:active { /* What: Pressed Button Primary Anchor. Why: A press should register before anything else happens. How: This presses it in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
+
+
+}
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Primary Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.butPriAnc { /* What: Motionless Button Primary Anchor. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+	.butPriAnc { /* What: Motionless Button Primary Anchor. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
 
 
 		transition : none;

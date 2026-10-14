@@ -5,23 +5,164 @@
 <html lang='en'><!-- What: Root HTML Element. Why: Screen readers and translation tools need the page's language. How: This marks the document as English. -->
 
 
-	<head><!-- What: Document Head Element. Why: The page's metadata and icon load before the body paints. How: This holds them in the sections below. -->
+	<head><!-- What: Document Head Element. Why: The page's metadata and icons load before the body paints. How: This holds them in the sections below. -->
 
 
 		<!-- #region Document -->
 
 		<meta charset='UTF-8' />                                                 <!-- What: Character Set Meta. Why: The browser has to decode the page as UTF-8 before it reads anything else. How: This sits first in the head, inside the first 1,024 bytes the browser checks. -->
 		<meta name='viewport' content='width=device-width, initial-scale=1.0' /> <!-- What: Viewport Meta. Why: Phones should lay the site out at device width instead of a zoomed-out desktop width. How: This sets the layout width to the device's and starts at no zoom. -->
-		<title>TechGeek.dev, Full Stack Developer</title>                         <!-- What: Page Title Element. Why: Browser tabs, bookmarks, and search listings name the page by its title. How: This titles every page until the SEO pass gives each its own. -->
+		<title>z4nta0, Full Stack Web Developer Portfolio | TechGeek.dev</title> <!-- What: Page Title Element. Why: Browser tabs, bookmarks, and search listings name the page by its title, and checkers and crawlers that never run the site's script read only this one. How: This is the home page's full title, and every other page renders its own, which React 19 places ahead of it. -->
 
 		<!-- #endregion Document -->
 
 
+		<!-- #region Search -->
+
+		<!--
+			index.html = Search Section
+
+			@summary
+			Each page renders its own canonical link or noindex tag, and every
+			page but Home its own title, since React 19 adds those beside any
+			in this file rather than replacing them. Work, About, and Contact
+			swap this one description's text for their own while they show.
+			So this section holds no canonical or robots tag, and the title
+			above and the description below are the home page's.
+
+			@author z4nta0 <https://github.com/z4nta0>
+
+		-->
+
+
+
+		<meta name='author'      content='z4nta0' /> <!-- What: Author Meta. Why: Search engines and link preview inspectors look for who a page belongs to. How: This names z4nta0, who built and owns the site. -->
+		<meta name='description' content='Portfolio of z4nta0, a full stack web developer building fast, accessible websites and web apps for small businesses.' /> <!-- What: Description Meta. Why: Search listings show a summary under the title, and checkers and crawlers that never run the script read only this one. How: This is the home page's description, which the other pages swap for their own while they show. -->
+
+		<!-- #endregion Search -->
+
+
+		<!-- #region Web App -->
+
+		<meta name='theme-color' content='#F26419' /> <!-- What: Theme Color Meta. Why: Mobile browsers tint their chrome around the page, and Discord edges its link previews in this color. How: This sets the brand orange, the main accent color. -->
+
+		<!-- #endregion Web App -->
+
+
 		<!-- #region Icons -->
 
-		<link rel='icon' type='image/svg+xml' href='/favicon.svg' /> <!-- What: SVG Favicon Link. Why: Browsers show the site's icon in the tab. How: This points modern browsers at the SVG in public/, served at a fixed address. -->
+		<!--
+			index.html = Icons Section
+
+			@summary
+			The SVG comes first, since modern browsers prefer it and it stays
+			sharp at any tab density, then the root favicon.ico for older
+			browsers, then the PNG sizes from smallest to largest. Every raster
+			icon is rendered from favicon.svg by npm run icons. The order is
+			the browser's order of preference, so it stays as written rather
+			than alphabetical.
+
+			@author z4nta0 <https://github.com/z4nta0>
+
+		-->
+
+
+
+		<link href='/favicon.svg'         rel='icon' type='image/svg+xml' />             <!-- What: SVG Icon Link. Why: Modern browsers prefer a vector favicon that stays sharp at any tab density. How: This points at the hexagon mark in public/. -->
+		<link href='/favicon.ico'         rel='icon' sizes='any' />                      <!-- What: ICO Icon Link. Why: Older browsers read only a .ico favicon. How: This points at the root favicon.ico, which also answers the request browsers make for it on their own. -->
+		<link href='/favicon-16x16.png'   rel='icon' sizes='16x16'   type='image/png' /> <!-- What: Small PNG Icon Link. Why: Small tab icons look crisper drawn at their own size. How: This offers the 16px PNG. -->
+		<link href='/favicon-32x32.png'   rel='icon' sizes='32x32'   type='image/png' /> <!-- What: Medium PNG Icon Link. Why: A browser without SVG favicons needs a raster fallback, and most pick a 32px tab icon. How: This offers the 32px PNG. -->
+		<link href='/favicon-192x192.png' rel='icon' sizes='192x192' type='image/png' /> <!-- What: Large PNG Icon Link. Why: Some browsers and Android pick a large icon for shortcuts and tab previews. How: This offers the 192px PNG. -->
+		<link href='/favicon-512x512.png' rel='icon' sizes='512x512' type='image/png' /> <!-- What: Extra Large PNG Icon Link. Why: High-density screens and app launchers can ask for a bigger icon still. How: This offers the 512px PNG. -->
 
 		<!-- #endregion Icons -->
+
+
+		<!-- #region Home Screen -->
+
+		<link href='/apple-touch-icon.png' rel='apple-touch-icon' sizes='180x180' /> <!-- What: Apple Touch Icon Link. Why: iOS draws the home screen icon, and some apps the icon beside a shared link, from this link. How: This points at the 180px touch icon, the hexagon mark on ivory. -->
+
+		<!-- #endregion Home Screen -->
+
+
+		<!-- #region Open Graph -->
+
+		<!--
+			index.html = Open Graph Section
+
+			@summary
+			Link scrapers read only this file and never run the site's script,
+			so every page shares this one card, describing the home page: its
+			title and description, and the card npm run og-image renders. A
+			page that ever needs a card of its own would need the site
+			prerendered first.
+
+			@author z4nta0 <https://github.com/z4nta0>
+
+		-->
+
+
+
+		<meta property='og:description'  content='Portfolio of z4nta0, a full stack web developer building fast, accessible websites and web apps for small businesses.' /> <!-- What: Open Graph Description Meta. Why: A shared link shows a summary under its title. How: This matches the home page's description. -->
+		<meta property='og:image'        content='https://techgeek.dev/og-image.png' />                                                               <!-- What: Open Graph Image Meta. Why: A shared link shows a preview image. How: This points at the card npm run og-image renders, by its absolute address. -->
+		<meta property='og:image:alt'    content='The TechGeek.dev hexagon mark and wordmark above the words Full Stack Web Developer and z4nta0.' /> <!-- What: Open Graph Image Alt Meta. Why: Screen readers on social sites read the preview image's description. How: This describes the card. -->
+		<meta property='og:image:height' content='630' />                                                                                             <!-- What: Open Graph Image Height Meta. Why: Sites can lay out the preview before the image arrives. How: This gives the card's height. -->
+		<meta property='og:image:type'   content='image/png' />                                                                                       <!-- What: Open Graph Image Type Meta. Why: Some apps check an image's type before fetching it. How: This names the card a PNG. -->
+		<meta property='og:image:width'  content='1200' />                                                                                            <!-- What: Open Graph Image Width Meta. Why: Sites can lay out the preview before the image arrives. How: This gives the card's width. -->
+		<meta property='og:locale'       content='en_US' />                                                                                           <!-- What: Open Graph Locale Meta. Why: Sites can tell which language the page is in. How: This names American English. -->
+		<meta property='og:site_name'    content='TechGeek.dev' />                                                                                    <!-- What: Open Graph Site Name Meta. Why: Previews show which site a link belongs to. How: This names TechGeek.dev. -->
+		<meta property='og:title'        content='z4nta0, Full Stack Web Developer Portfolio | TechGeek.dev' />                                       <!-- What: Open Graph Title Meta. Why: A shared link shows a title. How: This matches the home page's title. -->
+		<meta property='og:type'         content='website' />                                                                                         <!-- What: Open Graph Type Meta. Why: Sites shape a preview by what kind of page it is. How: This names the site a website. -->
+		<meta property='og:url'          content='https://techgeek.dev/' />                                                                           <!-- What: Open Graph URL Meta. Why: Shares from any address should count as one page. How: This names the home page's canonical address. -->
+
+		<!-- #endregion Open Graph -->
+
+
+		<!-- #region Twitter Card -->
+
+		<meta name='twitter:card'        content='summary_large_image' />                                                                                                   <!-- What: Twitter Card Meta. Why: X and similar sites pick a preview layout from this tag. How: This asks for the large image card. -->
+		<meta name='twitter:description' content='Portfolio of z4nta0, a full stack web developer building fast, accessible websites and web apps for small businesses.' /> <!-- What: Twitter Description Meta. Why: The preview shows a summary. How: This matches the home page's description. -->
+		<meta name='twitter:image'       content='https://techgeek.dev/og-image.png' />                                                                                     <!-- What: Twitter Image Meta. Why: The preview shows an image. How: This points at the same card as Open Graph. -->
+		<meta name='twitter:image:alt'   content='The TechGeek.dev hexagon mark and wordmark above the words Full Stack Web Developer and z4nta0.' />                       <!-- What: Twitter Image Alt Meta. Why: Screen readers read the preview image's description. How: This describes the card. -->
+		<meta name='twitter:title'       content='z4nta0, Full Stack Web Developer Portfolio | TechGeek.dev' />                                                             <!-- What: Twitter Title Meta. Why: The preview shows a title. How: This matches the home page's title. -->
+
+		<!-- #endregion Twitter Card -->
+
+
+		<!-- #region Structured Data -->
+
+		<script type='application/ld+json'>
+			{
+				"@context": "https://schema.org",
+				"@graph": [
+					{
+						"@type": "Person",
+						"@id": "https://techgeek.dev/#person",
+						"name": "z4nta0",
+						"url": "https://techgeek.dev/",
+						"email": "contact@techgeek.dev",
+						"jobTitle": "Full Stack Web Developer",
+						"image": "https://techgeek.dev/og-image.png",
+						"sameAs": [
+							"https://github.com/z4nta0",
+							"https://www.linkedin.com/in/gary-s-walton-654739400/"
+						]
+					},
+					{
+						"@type": "WebSite",
+						"@id": "https://techgeek.dev/#website",
+						"name": "TechGeek.dev",
+						"url": "https://techgeek.dev/",
+						"inLanguage": "en-US",
+						"author": {
+							"@id": "https://techgeek.dev/#person"
+						}
+					}
+				]
+			}
+		</script> <!-- What: Site Structured Data Script. Why: Search engines read JSON-LD to tell who a site belongs to, and this portfolio belongs to a person, never a business. How: This describes z4nta0, with the contact email and the GitHub and LinkedIn profiles the site links to, and this domain as a website z4nta0 wrote. -->
+
+		<!-- #endregion Structured Data -->
 
 
 	</head>
@@ -31,7 +172,7 @@
 	<body><!-- What: Document Body Element. Why: This holds the site's mount point, the hidden copy of the contact form Netlify reads, and the entry script. How: The mount point stays empty until React renders the site into it. -->
 
 
-		<div id='appMouDiv'></div><!-- What: App Mount Div Element. Why: React needs one element to render the site into. How: main.tsx renders the app into this id. -->
+		<div id='appMouDiv'></div> <!-- What: App Mount Div Element. Why: React needs one element to render the site into. How: main.tsx renders the app into this id. -->
 
 		<form
 			name='contact'

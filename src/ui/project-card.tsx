@@ -26,12 +26,22 @@ import type { ProRecTyp } from './projects.ts'; // What: Project Record Type. Wh
  * and technologies, finished with a small orange corner accent.
  *
  * Sections:
+ *  - Constants
  *  - Components
  *  - Exports
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
 */
+
+
+
+// #region Constants
+
+const SCR_HEI_NUM = 752;  // What: Screenshot Height Number. Why: The screenshot's img needs its intrinsic size so the card doesn't shift while it loads. How: This is the height every screenshot is written at, the project box in design/images/render.mts.
+const SCR_WID_NUM = 1336; // What: Screenshot Width Number. Why: The screenshot's img needs its intrinsic size so the card doesn't shift while it loads. How: This is the width every screenshot is written at, the project box in design/images/render.mts.
+
+// #endregion Constants
 
 
 
@@ -81,8 +91,10 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 				<img
 					className={ cssModObj.proScrIma }
 
+					height={ SCR_HEI_NUM } // What: Intrinsic Height. Why: The browser reserves the image's shape before it loads, so nothing below it moves. How: This passes the size every screenshot is written at.
 					loading='lazy'
 					src={ proRecObj.imaStr }
+					width={ SCR_WID_NUM } // What: Intrinsic Width. Why: The browser reserves the image's shape before it loads, so nothing below it moves. How: This passes the size every screenshot is written at.
 
 					alt={ proRecObj.titStr }
 				/>{ /* What: Project Screenshot Image Element. Why: A screenshot shows what the project looks like. How: This loads the record's screenshot lazily, named by the project's title. */ }

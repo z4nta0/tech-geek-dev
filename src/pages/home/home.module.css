@@ -355,22 +355,22 @@
 
 }
 
-.butPriAnc { /* What: Button Primary Anchor. Why: The main next step stands out. How: This sets an orange button in mono capitals with its arrow, easing its color and lift. */
+.butPriAnc { /* What: Button Primary Anchor. Why: The main next step stands out. How: This sets an orange button in mono capitals with its arrow, easing its color, lift, press, and focus. */
 
 
 	align-items    : center;
-	background     : var( --acc-mai-col );                                            /* Accent Main Color = #F26419 */
-	border-radius  : var( --rad-bor-xsm );                                            /* Radius Border Extra Small ~= 3.571px */
-	color          : var( --tex-acc-col );                                            /* Text Accent Color = #1A1A2E */
+	background     : var( --acc-mai-col );                      /* Accent Main Color = #F26419 */
+	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --tex-acc-col );                      /* Text Accent Color = #1A1A2E */
 	display        : inline-flex;
-	font-family    : var( --fon-fam-sec );                                            /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : var( --fon-siz-p01 );                                            /* Font Size Base Plus 1 ~= 14.572px */
+	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight    : 500;
-	gap            : var( --spa-hor-m02 );                                            /* Spacing Horizontal Base Minus 2 ~= 8.304px */
+	gap            : var( --spa-hor-m02 );                      /* Spacing Horizontal Base Minus 2 ~= 8.304px */
 	letter-spacing : 0.04em;
-	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 );                       /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
+	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	text-transform : uppercase;
-	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -382,10 +382,17 @@
 
 
 }
+.butPriAnc:active { /* What: Pressed Button Primary Anchor. Why: A press should register before anything else happens. How: This presses it in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
+
+
+}
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Primary Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.butPriAnc { /* What: Motionless Button Primary Anchor. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+	.butPriAnc { /* What: Motionless Button Primary Anchor. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
 
 
 		transition : none;
@@ -396,21 +403,21 @@
 
 }
 
-.butSecAnc { /* What: Button Secondary Anchor. Why: The second next step sits back from the first. How: This sets an outlined button in mono capitals, easing its border, color, and lift. */
+.butSecAnc { /* What: Button Secondary Anchor. Why: The second next step sits back from the first. How: This sets an outlined button in mono capitals, easing its border, color,, lift, press, and focus. */
 
 
 	align-items    : center;
-	border         : var( --bor-wid-bas ) solid var( --bor-mai-col );                                               /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
-	border-radius  : var( --rad-bor-xsm );                                                                          /* Radius Border Extra Small ~= 3.571px */
-	color          : var( --tex-mai-col );                                                                          /* Text Main Color = #1A1A2E */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --tex-mai-col );                            /* Text Main Color = #1A1A2E */
 	display        : inline-flex;
-	font-family    : var( --fon-fam-sec );                                                                          /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : var( --fon-siz-p01 );                                                                          /* Font Size Base Plus 1 ~= 14.572px */
+	font-family    : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                            /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight    : 500;
 	letter-spacing : 0.04em;
-	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 );                                                     /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
+	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 );       /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	text-transform : uppercase;
-	transition     : border-color var( --dur-tra-bas ), color var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+	transition     : border-color var( --dur-tra-bas ), color var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -423,10 +430,17 @@
 
 
 }
+.butSecAnc:active { /* What: Pressed Button Secondary Anchor. Why: A press should register before anything else happens. How: This presses it in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
+
+
+}
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Secondary Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.butSecAnc { /* What: Motionless Button Secondary Anchor. Why: The hover look and lift should simply switch. How: This turns the transition off. */
+	.butSecAnc { /* What: Motionless Button Secondary Anchor. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
 
 
 		transition : none;
@@ -999,7 +1013,10 @@
 
 }
 
-.vieAllAnc { /* What: View All Anchor. Why: The rest of the projects are one click away. How: This sets an orange mono link with its arrow that never shrinks, easing the gap to its arrow. */
+
+/* #region vieAllAnc */
+
+.vieAllAnc { /* What: View All Anchor. Why: The rest of the projects are one click away. How: This sets an orange mono link with its arrow that never shrinks, easing its color, press, and focus. */
 
 
 	align-items    : center;
@@ -1011,21 +1028,28 @@
 	gap            : var( --spa-hor-m02 );                   /* Spacing Horizontal Base Minus 2 ~= 8.304px */
 	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em ); /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	text-transform : uppercase;
-	transition     : gap var( --dur-tra-bas );               /* Duration Transition Base ~= 157.8ms */
+	transition     : color var( --dur-tra-bas ), opacity var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
-.vieAllAnc:hover { /* What: Hovered View All Anchor. Why: The arrow nudges toward where the link goes. How: This widens the gap to its arrow. */
+.vieAllAnc:hover { /* What: Hovered View All Anchor. Why: A link should respond to the pointer. How: This darkens it to the ink. */
 
 
-	gap : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
+	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
 
 
 }
-@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion View All Anchor. Why: Someone who asked for less motion shouldn't see the arrow slide. How: This applies only when the reduced-motion preference is set. */
+.vieAllAnc:active { /* What: Pressed View All Anchor. Why: A press should register before the page changes. How: This dims the link slightly while it's held, as every text link does on press. */
 
 
-	.vieAllAnc { /* What: Motionless View All Anchor. Why: The arrow should simply step over. How: This turns the transition off. */
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion View All Anchor. Why: Someone who asked for less motion shouldn't see the link fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.vieAllAnc { /* What: Motionless View All Anchor. Why: The hover, press, and focus looks should simply switch. How: This turns the transition off. */
 
 
 		transition : none;
@@ -1035,6 +1059,36 @@
 
 
 }
+
+.vieArrSvg { /* What: View Arrow SVG. Why: The arrow nudges toward where the link goes. How: This eases its slide on hover, on the compositor rather than through the gap beside it. */
+
+
+	transition : transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+
+
+}
+.vieAllAnc:hover .vieArrSvg { /* What: Hovered View Arrow SVG. Why: The arrow nudges toward where the link goes. How: This slides it about 3px right. */
+
+
+	transform : translateX( var( --spa-hor-m06 ) ); /* Spacing Horizontal Base Minus 6 ~= 2.696px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion View Arrow SVG. Why: Someone who asked for less motion shouldn't see the arrow slide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.vieArrSvg { /* What: Motionless View Arrow SVG. Why: The arrow should simply step over. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion vieAllAnc */
 
 /* #endregion feaHeaDiv */
 
@@ -1308,19 +1362,19 @@
 
 }
 
-.ctaStaAnc { /* What: Call-To-Action Start Anchor. Why: The banner's one action stands out. How: This sets an ink button in mono capitals on the orange card, easing its color and lift. */
+.ctaStaAnc { /* What: Call-To-Action Start Anchor. Why: The banner's one action stands out. How: This sets an ink button in mono capitals on the orange card, easing its color, lift, press, and focus. */
 
 
-	background     : var( --bac-inv-col );                                            /* Background Inverse Color = #1A1A2E */
-	border-radius  : var( --rad-bor-xsm );                                            /* Radius Border Extra Small ~= 3.571px */
-	color          : var( --bac-pag-col );                                            /* Background Page Color = #F5F0E8 */
-	font-family    : var( --fon-fam-sec );                                            /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : var( --fon-siz-p01 );                                            /* Font Size Base Plus 1 ~= 14.572px */
+	background     : var( --bac-inv-col );                      /* Background Inverse Color = #1A1A2E */
+	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --bac-pag-col );                      /* Background Page Color = #F5F0E8 */
+	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight    : 500;
 	letter-spacing : 0.04em;
-	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 );                       /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
+	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	text-transform : uppercase;
-	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -1332,10 +1386,17 @@
 
 
 }
+.ctaStaAnc:active { /* What: Pressed Call-To-Action Start Anchor. Why: A press should register before anything else happens. How: This presses it in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
+
+
+}
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Call-To-Action Start Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.ctaStaAnc { /* What: Motionless Call-To-Action Start Anchor. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+	.ctaStaAnc { /* What: Motionless Call-To-Action Start Anchor. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
 
 
 		transition : none;
