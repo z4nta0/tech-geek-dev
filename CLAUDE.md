@@ -414,12 +414,41 @@ on `close-out`.
     security headers (the form posts to the site itself), image
     optimization and the favicon set, the SEO pass and social preview card
     per "## Kind of site", interaction feedback, and the phone menu's scrim
-    and inert page.
+    and inert page. Done 2026-10-13 on `site-features`:
+    - **404 page**: its own title and noindex, and Get In Touch beside Go
+      Home.
+    - **Pages open at the top**: the-bernie-bears' `useScrTopFun`
+      (`ui/scroll-top.ts`), with the interaction suite's navigation spec.
+    - **Hire Me** in the bar and the menu became router links.
+    - **Security headers**: `public/_headers` with a strict
+      Content-Security-Policy (only the site's own files, data images for the
+      select arrow, and form posts to itself), HSTS, and the rest of the
+      siblings' set.
+    - **Images**: `npm run screenshots` captures each project's live site
+      (`design/images/capture.mts`, its originals git-ignored) and encodes
+      them, the portrait was rebuilt from its 1,374 by 2,048 original, and
+      `npm run icons` draws the favicon set from `favicon.svg`.
+    - **SEO**: every page's own title, description, and canonical link,
+      `robots.txt`, the sitemap, the Person and WebSite structured data, and
+      the Open Graph and Twitter tags, checked by the SEO suite.
+    - **Social preview card**: `npm run og-image` renders
+      `public/og-image.png` (52 KB) from `design/og-image/card.html`, the
+      wordmark at the p05 size, since Syne is too wide to fit the center
+      square any larger.
+    - **Interaction feedback**: every control grows its focus ring in, presses
+      in or dims, and has a hover; the footer and the project cards' overlay
+      draw their rings in the bright orange, and the overlay also shows while a
+      link in it has focus.
+    - **Phone menu**: a scrim with the page inert, the four ways to close it,
+      and the extras the user approved, arriving one after another: Home's
+      availability pill, the links in a labelled nav, Hire Me, the profile
+      tiles (from `ui/profile-links.ts`, which the footer shares), the email,
+      and the tagline.
     - **Phone menu extras** (asked for by the user 2026-10-13, after the
       sibling sites' menus, which they found too plain until dressed up):
-      modeled on the-bernie-bears' and hair-designs', done together with the
-      scrim and the inert page since they change the same component. The
-      extras under the links are proposed to the user first.
+      modeled on the-bernie-bears', done together with the scrim and the inert
+      page since they change the same component, with the extras the user
+      approved.
     - **Project screenshots by script** (decided by the user 2026-10-13):
       a script in `design/` takes a fresh screenshot of each project's live
       site and writes the optimized WebP into `src/assets/images/`, rerun
