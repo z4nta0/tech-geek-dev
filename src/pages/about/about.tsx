@@ -7,12 +7,12 @@ import cssModObj from './about.module.css';   // What: CSS Module Object. Why: T
 import selPorUrl from './self-portrait.webp'; // What: Self Portrait URL. Why: The hero shows z4nta0's portrait. How: Vite resolves this to the image's fingerprinted URL.
 
 
-import { GeoBacCom    } from '../../ui/geo-bg.tsx';          // What: Geometric Background Component. Why: The hero and the timeline sit over faint patterns. How: This draws the dots and the grid.
-import { Link         } from 'react-router';                 // What: Link. Why: The hero's button moves to the Contact page without a full page load. How: This renders it as a router link.
-import { SecHeaCom    } from '../../ui/section-header.tsx';  // What: Section Header Component. Why: The skills, timeline, and values sections open with a heading block. How: This renders each label, title, and subtitle.
-import { SHI_COU_NUM  } from '../../ui/projects.ts';         // What: Shipped Count Number. Why: The hero's floating fact counts the projects shipped. How: This is the count taken from the project list.
-import { TagLabCom    } from '../../ui/tag.tsx';             // What: Tag Label Component. Why: Each skill shows as a pill. How: This renders one tag per skill.
-import { usePagDesFun } from '../../ui/page-description.ts'; // What: Use Page Description Function. Why: The page's search description differs from the home page's. How: The page calls it to swap the one description tag's text while it shows.
+import { GeoBacCom    } from '../../ui/geo-bg.tsx';                    // What: Geometric Background Component. Why: The hero and the timeline sit over faint patterns. How: This draws the dots and the grid.
+import { Link         } from 'react-router';                           // What: Link. Why: The hero's button moves to the Contact page without a full page load. How: This renders it as a router link.
+import { SecHeaCom    } from '../../ui/section-header.tsx';            // What: Section Header Component. Why: The skills, timeline, and values sections open with a heading block. How: This renders each label, title, and subtitle.
+import { SHI_COU_NUM  } from '../../ui/projects.ts';                   // What: Shipped Count Number. Why: The hero's floating fact counts the projects shipped. How: This is the count taken from the project list.
+import { TagLabCom    } from '../../ui/tag.tsx';                       // What: Tag Label Component. Why: Each skill shows as a pill. How: This renders one tag per skill.
+import { usePagDesFun } from 'techgeek-design/ui/page-description.ts'; // What: Use Page Description Function. Why: The page's search description differs from the home page's. How: The page calls it to swap the one description tag's text while it shows.
 
 
 import type { JSX } from 'react'; // What: JSX. Why: The component declares the element it returns. How: This types its return as a JSX element.

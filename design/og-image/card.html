@@ -18,11 +18,13 @@
 
 		<!-- #region Card Styles -->
 
-		<style>/* What: Card Style Element. Why: The card is one fixed-size image, styled here from the site's own fonts and tokens. How: This imports the site's font faces and global stylesheet, then lays out the card. */
+		<style>/* What: Card Style Element. Why: The card is one fixed-size image, styled here from the site's own fonts and tokens. How: This imports the shared package's font faces, tokens, and base styles and the site's own global stylesheet, then lays out the card. */
 
 
-			@import url( '../../src/styles/fonts.css' );  /* What: Site Fonts Import. Why: The card should be set in the site's own typefaces. How: This loads the site's font faces, whose file paths resolve from that stylesheet's own folder. */
-			@import url( '../../src/styles/styles.css' ); /* What: Site Styles Import. Why: The card should read the site's colors and scale rather than copies of them. How: This loads the global tokens and base styles, including the 11px root the rem steps assume. */
+			@import url( '../../node_modules/techgeek-design/src/styles/fonts.css' );  /* What: Package Fonts Import. Why: The card should be set in the family's own typefaces. How: This loads the shared package's font faces, whose file paths resolve from that stylesheet's own folder. */
+			@import url( '../../node_modules/techgeek-design/src/styles/tokens.css' ); /* What: Package Tokens Import. Why: The card should read the family's colors and scale rather than copies of them. How: This loads the shared tokens. */
+			@import url( '../../node_modules/techgeek-design/src/styles/base.css' );   /* What: Package Base Import. Why: The rem steps assume the family's 11px root. How: This loads the shared base styles, which set it. */
+			@import url( '../../src/styles/styles.css' );                              /* What: Site Styles Import. Why: The card should match the site's own overrides. How: This loads the site's global stylesheet last, as the site does. */
 
 
 

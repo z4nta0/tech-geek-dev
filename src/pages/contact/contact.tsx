@@ -6,9 +6,9 @@
 import cssModObj from './contact.module.css'; // What: CSS Module Object. Why: The Contact page's own hero, form, and sidebar styles live in its own module. How: This maps each class name in contact.module.css to its hashed module class.
 
 
-import { GeoBacCom    } from '../../ui/geo-bg.tsx';          // What: Geometric Background Component. Why: The hero sits over a faint pattern. How: This draws the circuit.
-import { usePagDesFun } from '../../ui/page-description.ts'; // What: Use Page Description Function. Why: The page's search description differs from the home page's. How: The page calls it to swap the one description tag's text while it shows.
-import { useState     } from 'react';                        // What: Use State. Why: The page remembers the form's fields and whether a message is sending, sent, or failed. How: This holds each of those.
+import { GeoBacCom    } from '../../ui/geo-bg.tsx';                    // What: Geometric Background Component. Why: The hero sits over a faint pattern. How: This draws the circuit.
+import { usePagDesFun } from 'techgeek-design/ui/page-description.ts'; // What: Use Page Description Function. Why: The page's search description differs from the home page's. How: The page calls it to swap the one description tag's text while it shows.
+import { useState     } from 'react';                                  // What: Use State. Why: The page remembers the form's fields and whether a message is sending, sent, or failed. How: This holds each of those.
 
 
 import type { ChangeEvent } from 'react'; // What: Change Event. Why: The fields report each edit. How: This types chaFieFun's event.

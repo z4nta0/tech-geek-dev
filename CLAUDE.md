@@ -95,22 +95,23 @@ target layout step 5 moves to.
 ```
 src/
   main.tsx               entry point
-  app.tsx                the route table, the bar, and the footer
-  assets/                fonts/ (the self-hosted fonts) and images/ (the
-                         project screenshots Home and Work both show)
+  app.tsx                the route table, and the design package's bar and
+                         footer with this site's details
+  assets/                images/ (the project screenshots Home and Work
+                         both show)
   pages/
     home/                the home page
     work/                the Work page
     about/               the About page and its portrait
     contact/             the Contact page
     not-found/           the 404 page every unknown path shows
-  ui/                    what more than one page uses (the bar, the footer,
-                         the background pattern, the section header, the
-                         tag, the project card and the project list), plus
-                         the page and profile link lists, a page's own
-                         search description hook, and the scroll-to-top
-                         hook
-  styles/                global CSS only (fonts.css, styles.css)
+  ui/                    what more than one page uses (the background
+                         pattern, the section header, the tag, the project
+                         card and the project list), plus the page list the
+                         bar and footer link to
+  styles/                styles.css only: this site's layout values and its
+                         own keyframe, loaded after the design package's
+                         fonts.css, tokens.css, and base.css
 ```
 Outside `src/`: `public/` (the favicon set, the social preview card,
 `robots.txt`, the sitemap, and Netlify's `_redirects` and `_headers`),
@@ -527,6 +528,37 @@ on `close-out`.
     converted next and needs it from its first day. TechGeek.support is
     converted last, because its content has to be cut out only once it's live
     elsewhere.
+    Done 2026-10-14 on the `design-package` branch, as `techgeek-design`
+    (`../techgeek-design`, https://github.com/z4nta0/techgeek-design), first
+    released as `v0.1.0`:
+    - **What moved**: the tokens, the fonts and their files, the base element
+      styles and the two keyframes the bar and pages share, the bar and
+      footer, z4nta0's profile links, the scroll and page description hooks,
+      and the favicon artwork. The token comments were reworded for the whole
+      family, and a Breakpoint Tokens section lists 640px, 768px, and 1,024px
+      as commented-out tokens.
+    - **What stayed**: the pages, the background patterns, the tag, the
+      section header, the project card and list, the page list, the
+      `shapeLoopSpin` keyframe only Home and the 404 page play, and the
+      layout values, which `styles/styles.css` sets on the root after the
+      package's stylesheets load. `app.tsx` hands the bar and footer this
+      site's details (the `.dev` ending, the page list, Hire Me, the
+      availability line, the email, the tagline, and the two sister sites).
+    - **The favicon script stays here**: Node won't strip TypeScript types
+      from a file inside `node_modules`, so `design/icons/render.mts` reads
+      the package's artwork, copies it into `public/`, and draws the rest of
+      the set from it.
+    - **Installing it**: `package.json` names `github:z4nta0/techgeek-design#
+      v0.1.0`. npm records the address over SSH, but falls back to HTTPS for
+      a public GitHub repository, which a clean install with SSH turned off
+      and an empty cache confirmed, so Netlify fetches it without a key. While
+      the package and this site change together, `npm install --install-links
+      ../techgeek-design` installs a copy of the local folder (a plain link
+      would load a second React and need Vite to serve files outside the
+      project), and a release goes back to the tag.
+    - **Verified**: every suite passed after each move with every rendering
+      baseline unchanged, and the favicon set and social preview card
+      re-rendered byte-identical.
 
 ## Test suites
 Added 2026-10-12, adapted from the-bernie-bears'. Playwright suites live in
@@ -650,19 +682,20 @@ decided by the user on 2026-10-13 (step 12, on the `deferred-items` branch).
   verified with a DNS TXT record, that record moves to Cloudflare with the
   rest of the DNS, or verification lapses.
 - **Shared design package** (suggested 2026-10-12, shape decided by the user
-  2026-10-13): a repository the three sites share as a GitHub dependency
-  (`github:z4nta0/<repo>#<tag>`), holding the tokens, the self-hosted fonts
-  and base element styles, the logo and favicon artwork, and the bar and
-  footer. Each site keeps its own theme (this site's geometric, tech motif
-  stays here) and its own layout widths and caps, on the same horizontal and
-  vertical scales. Its tokens come in layers: the scales (core design
-  numbers, rhythm, type, spacing, durations, easing, radii, borders, and
-  shadows) shared and never overridden; the color and font roles shared as
-  defaults a site may override; and the layout values (the content cap, side
-  padding, and hero gap) as defaults each site overrides. The bar and footer
-  take props for what differs (the wordmark ending, page links, tagline, menu
-  extras, and sister-site links). It ships source, not a build, which each
-  site's Vite compiles. Breakpoints can't be custom properties, so the package
-  lists them as commented-out tokens in a region of their own, each with its
-  value and what it switches (decided by the user 2026-10-13), and every site
-  keeps the same ones, since the bar and footer switch at 768px.
+  2026-10-13, built 2026-10-14 as step 14): a repository the three sites share
+  as a GitHub dependency (`github:z4nta0/<repo>#<tag>`), holding the tokens,
+  the self-hosted fonts and base element styles, the logo and favicon artwork,
+  and the bar and footer. Each site keeps its own theme (this site's
+  geometric, tech motif stays here) and its own layout widths and caps, on the
+  same horizontal and vertical scales. Its tokens come in layers: the scales
+  (core design numbers, rhythm, type, spacing, durations, easing, radii,
+  borders, and shadows) shared and never overridden; the color and font roles
+  shared as defaults a site may override; and the layout values (the content
+  cap, side padding, and hero gap) as defaults each site overrides. The bar
+  and footer take props for what differs (the wordmark ending, page links,
+  tagline, menu extras, and sister-site links). It ships source, not a build,
+  which each site's Vite compiles. Breakpoints can't be custom properties, so
+  the package lists them as commented-out tokens in a region of their own,
+  each with its value and what it switches (decided by the user 2026-10-13),
+  and every site keeps the same ones, since the bar and footer switch at
+  768px.

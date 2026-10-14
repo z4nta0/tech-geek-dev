@@ -4,8 +4,9 @@
 // #region Imports
 
 import { chromium      } from '@playwright/test'; // What: Chromium. Why: The icons are drawn in a real browser's canvas, the one image tool every machine running the tests already has. How: This launches Playwright's Chromium.
+import { copyFileSync  } from 'node:fs';          // What: Copy File Sync. Why: Browsers that read SVG favicons fetch favicon.svg from the site's root. How: This copies the package's artwork into public/.
 import { fileURLToPath } from 'node:url';         // What: File URL To Path. Why: The source and output paths are resolved from this script's own location. How: This turns a file URL into a path.
-import { readFileSync  } from 'node:fs';          // What: Read File Sync. Why: The mark is handed to the browser as data. How: This reads it from public/.
+import { readFileSync  } from 'node:fs';          // What: Read File Sync. Why: The mark is handed to the browser as data. How: This reads it from the design package.
 import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why: Each finished icon is saved into public/. How: This writes its bytes.
 
 // #endregion Imports
@@ -16,18 +17,21 @@ import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why:
  * render.mts = Favicon Set Renderer
  *
  * @summary
- * Rebuilds the site's raster icons in public/ from favicon.svg, TechGeek's
- * orange hexagon around a blue hexagon and an orange dot, on a transparent
- * background. Browsers that read SVG favicons use favicon.svg itself; this
- * script draws the fallbacks: PNG icons at 16, 32, 192, and 512px, a
+ * Rebuilds the site's icons in public/ from the TechGeek family's mark, the
+ * design package's favicon.svg: TechGeek's orange hexagon around a blue
+ * hexagon and an orange dot, on a transparent background. Browsers that read
+ * SVG favicons use favicon.svg itself, which this script copies into public/;
+ * it also draws the fallbacks: PNG icons at 16, 32, 192, and 512px, a
  * favicon.ico holding the 16, 32, and 48px sizes for older browsers and the
  * request browsers make for /favicon.ico on their own, and a 180px
- * apple-touch-icon.png on a solid square of the site's ivory, since iOS
- * fills transparency with black and rounds the corners itself. The touch
- * icon draws the mark a little smaller than the square, so the rounded
- * corners never crowd it. Since the mark is a vector, each size is drawn
- * straight from it. Copied from the-bernie-bears. Run it with npm run icons
- * whenever the mark changes.
+ * apple-touch-icon.png on a solid square of the site's ivory, since iOS fills
+ * transparency with black and rounds the corners itself. The touch icon draws
+ * the mark a little smaller than the square, so the rounded corners never
+ * crowd it. Since the mark is a vector, each size is drawn straight from it.
+ * The script stays in the site rather than the package, since Node won't strip
+ * TypeScript types from a file inside node_modules. Copied from
+ * the-bernie-bears. Run it with npm run icons whenever the package's mark
+ * changes.
  *
  * Sections:
  *  - Constants
@@ -69,8 +73,9 @@ const ICO_SIZ_ARR = [ 16, 32, 48 ]; // What: ICO Size Array. Why: favicon.ico sh
 
 
 
-const OUT_DIR_STR = fileURLToPath( new URL( '../../public/', import.meta.url ) );                                // What: Output Directory String. Why: Browsers request icons from the site's root. How: This resolves public/ from this script's folder.
-const SOU_B64_STR = readFileSync( new URL( '../../public/favicon.svg', import.meta.url ) ).toString( 'base64' ); // What: Source Base64 String. Why: The browser draws the mark from data rather than a file path. How: This reads favicon.svg and encodes it.
+const OUT_DIR_STR = fileURLToPath( new URL( '../../public/', import.meta.url ) );                                                       // What: Output Directory String. Why: Browsers request icons from the site's root. How: This resolves public/ from this script's folder.
+const SOU_SVG_STR = fileURLToPath( new URL( '../../node_modules/techgeek-design/src/assets/brand/favicon.svg', import.meta.url ) ); // What: Source SVG String. Why: The TechGeek family's mark lives in the shared design package. How: This resolves the installed package's artwork from this script's folder.
+const SOU_B64_STR = readFileSync( SOU_SVG_STR ).toString( 'base64' );                                                                   // What: Source Base64 String. Why: The browser draws the mark from data rather than a file path. How: This reads the artwork and encodes it.
 const TOU_SCA_NUM = 0.8;                                                                                         // What: Touch Scale Number. Why: iOS rounds the touch icon's corners, which would crowd a mark drawn edge to edge. How: The touch icon draws the mark at this share of its square, centered.
 
 // #endregion Constants
@@ -208,7 +213,13 @@ writeFileSync( OUT_DIR_STR + 'favicon.ico', Buffer.concat( [ icoHeaBuf, ...icoPn
 
 await broInsObj.close(); // What: Browser Close Call. Why: The script should exit once the icons are saved. How: This shuts Chromium down.
 
-console.log( `Wrote ${ ICO_REC_ARR.length } PNG icons and favicon.ico to ${ OUT_DIR_STR }.` ); // What: Result Log Call. Why: The run should say what it wrote. How: This prints the count and folder.
+
+
+copyFileSync( SOU_SVG_STR, OUT_DIR_STR + 'favicon.svg' ); // What: SVG Copy Call. Why: Browsers that read SVG favicons use the artwork itself. How: This copies it into public/ beside the drawn icons.
+
+
+
+console.log( `Wrote favicon.svg, ${ ICO_REC_ARR.length } PNG icons, and favicon.ico to ${ OUT_DIR_STR }.` ); // What: Result Log Call. Why: The run should say what it wrote. How: This prints the files and folder.
 
 // #endregion Module Init
 

@@ -4,7 +4,7 @@ The developer portfolio of z4nta0, a full stack web developer. It shows the webs
 
 Live at [techgeek.dev](https://techgeek.dev/).
 
-It's one of three sister sites that share a design so they read as one family, and its footer links to the other two:
+It's one of three sister sites that share a design so they read as one family, and its footer links to the other two. The shared design (the tokens, fonts, base styles, bar, footer, and mark) lives in the [techgeek-design](https://github.com/z4nta0/techgeek-design) package, which each site installs:
 
 - **[techgeek.dev](https://techgeek.dev/)**: this portfolio.
 - **[techgeek.support](https://techgeek.support/)**: tech support help and articles.
@@ -16,6 +16,7 @@ It's one of three sister sites that share a design so they read as one family, a
 - **Vite 8** dev server / bundler
 - **React 19** + **TypeScript 6**
 - **React Router 8** (Home, Work, About, and Contact, plus a 404 page for every other path)
+- **techgeek-design**, the family's shared design package, installed from GitHub at a tagged release
 - **ESLint 9** with typescript-eslint, and **Playwright** with axe-core for the test suites
 - Deployed on **Netlify**, which serves `index.html` for every path (`public/_redirects`), sends the security headers in `public/_headers`, and handles the contact form through Netlify Forms
 
@@ -63,7 +64,7 @@ The project screenshots, the portrait, the social preview card, and the icons ar
 npm run screenshots  # photographs each project's live site, then runs npm run images
 npm run images       # encodes the originals in design/images/originals/ as WebP where the site imports them
 npm run og-image     # captures design/og-image/card.html as public/og-image.png
-npm run icons        # renders favicon.ico, the PNG icons, and the Apple touch icon from public/favicon.svg
+npm run icons        # copies the design package's favicon.svg into public/ and renders favicon.ico, the PNG icons, and the Apple touch icon from it
 ```
 
 The originals in `design/images/originals/` are kept out of git, so a fresh checkout needs `npm run screenshots` (or the original files) before `npm run images` can run. To add a project, give it a record in `src/ui/projects.ts` and a row in `SIT_REC_ARR` in `design/images/capture.mts`, add its name to the project list in `IMA_REC_ARR` in `design/images/render.mts`, then run `npm run screenshots`. Apps cache a link's preview card for days, so a changed card should get a new file name (`og-image-2.png`), with every tag in `index.html` that points at it updated.
@@ -72,15 +73,15 @@ The originals in `design/images/originals/` are kept out of git, so a fresh chec
 
 ```
 src/
-├── assets/            Self-hosted fonts and the project screenshots
+├── assets/            The project screenshots
 ├── pages/
 │   ├── home/          Home page and its .module.css
 │   ├── work/          Work page, its .module.css, and edge-fade.ts (the filter row's scroll fades)
 │   ├── about/         About page, its .module.css, and the portrait
 │   ├── contact/       Contact page and its .module.css
 │   └── not-found/     The 404 page every unknown path shows, with its .module.css
-├── ui/                What more than one page uses: the bar and its phone menu, the footer, the background pattern, the section header, the tag, the project card and the project list (projects.ts), plus page-links.ts, profile-links.ts, page-description.ts (a page's own search description), and scroll-top.ts (each new page opens at its top)
-├── styles/            fonts.css (@font-face) + styles.css (design tokens, base element styles, the shared focus ring, and the shared keyframes)
+├── ui/                What more than one page uses: the background pattern, the section header, the tag, the project card and the project list (projects.ts), plus page-links.ts, the pages the bar and footer link to
+├── styles/            styles.css: this site's layout values and its own keyframe, loaded after the design package's stylesheets
 ├── app.tsx            Root component and the route table
 └── main.tsx           Entry point
 public/                Files served at fixed addresses: the icons, the social card, robots.txt, sitemap.xml, and Netlify's _headers and _redirects

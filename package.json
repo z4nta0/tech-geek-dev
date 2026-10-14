@@ -1,6 +1,6 @@
 {
 	"name": "tech-geek-dev",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"private": true,
 	"type": "module",
 	"scripts": {
@@ -23,7 +23,8 @@
 	"dependencies": {
 		"react": "^19.3.0",
 		"react-dom": "^19.3.0",
-		"react-router": "^8.4.0"
+		"react-router": "^8.4.0",
+		"techgeek-design": "github:z4nta0/techgeek-design#v0.1.0"
 	},
 	"devDependencies": {
 		"@axe-core/playwright": "^4.13.0",
