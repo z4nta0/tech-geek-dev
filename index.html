@@ -1,19 +1,108 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TechGeek.support — Full Stack Developer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<!doctype html><!-- What: Document Type Declaration. Why: Browsers render the page in standards mode only with a doctype. How: This declares HTML5. -->
+
+
+
+<html lang='en'><!-- What: Root HTML Element. Why: Screen readers and translation tools need the page's language. How: This marks the document as English. -->
+
+
+	<head><!-- What: Document Head Element. Why: The page's metadata and icon load before the body paints. How: This holds them in the sections below. -->
+
+
+		<!-- #region Document -->
+
+		<meta charset='UTF-8' />                                                 <!-- What: Character Set Meta. Why: The browser has to decode the page as UTF-8 before it reads anything else. How: This sits first in the head, inside the first 1,024 bytes the browser checks. -->
+		<meta name='viewport' content='width=device-width, initial-scale=1.0' /> <!-- What: Viewport Meta. Why: Phones should lay the site out at device width instead of a zoomed-out desktop width. How: This sets the layout width to the device's and starts at no zoom. -->
+		<title>TechGeek.dev, Full Stack Developer</title>                         <!-- What: Page Title Element. Why: Browser tabs, bookmarks, and search listings name the page by its title. How: This titles every page until the SEO pass gives each its own. -->
+
+		<!-- #endregion Document -->
+
+
+		<!-- #region Icons -->
+
+		<link rel='icon' type='image/svg+xml' href='/favicon.svg' /> <!-- What: SVG Favicon Link. Why: Browsers show the site's icon in the tab. How: This points modern browsers at the SVG in public/, served at a fixed address. -->
+
+		<!-- #endregion Icons -->
+
+
+	</head>
+
+
+
+	<body><!-- What: Document Body Element. Why: This holds the site's mount point, the hidden copy of the contact form Netlify reads, and the entry script. How: The mount point stays empty until React renders the site into it. -->
+
+
+		<div id='appMouDiv'></div><!-- What: App Mount Div Element. Why: React needs one element to render the site into. How: main.tsx renders the app into this id. -->
+
+		<form
+			name='contact'
+			netlify
+			netlify-honeypot='bot-field'
+
+			hidden
+		><!-- What: Contact Form Element. Why: Netlify registers a site's forms by reading the built HTML, and the Contact page's form only exists once React runs. How: This hidden copy carries the form and field names Netlify needs. --><!-- Netlify finds forms by parsing the built HTML at deploy time, never running the site, so the React form in pages/contact/contact.tsx is invisible to it. This copy registers the form and its fields, and the page then POSTs to '/' with a matching form-name. Keep the name and every field name in sync with ConPagCom's submit, or submissions are rejected. hidden keeps it off the page, and Netlify still parses it. -->
+
+
+			<label for='hidNamInp'>Name</label><!-- What: Name Label Element. Why: The name field needs a label for Netlify's form record. How: This labels hidNamInp. -->
+
+			<input
+				id='hidNamInp'
+
+				name='name'
+
+				type='text'
+			/><!-- What: Name Input Element. Why: Netlify registers the name field by its name. How: This declares the name text field. -->
+
+			<label for='hidEmaInp'>Email</label><!-- What: Email Label Element. Why: The email field needs a label for Netlify's form record. How: This labels hidEmaInp. -->
+
+			<input
+				id='hidEmaInp'
+
+				name='email'
+
+				type='email'
+			/><!-- What: Email Input Element. Why: Netlify registers the email field by its name and uses it as the notification's reply-to. How: This declares the email field. -->
+
+			<label for='hidBudInp'>Budget</label><!-- What: Budget Label Element. Why: The budget field needs a label for Netlify's form record. How: This labels hidBudInp. -->
+
+			<input
+				id='hidBudInp'
+
+				name='budget'
+
+				type='text'
+			/><!-- What: Budget Input Element. Why: Netlify registers the budget field by its name. How: This declares the budget text field, which the page fills from its budget select. -->
+
+			<label for='hidMesTex'>Message</label><!-- What: Message Label Element. Why: The message field needs a label for Netlify's form record. How: This labels hidMesTex. -->
+
+			<textarea
+				id='hidMesTex'
+
+				name='message'
+			></textarea><!-- What: Message Textarea Element. Why: Netlify registers the message field by its name. How: This declares the message text area. -->
+
+			<label for='hidBotInp'>Leave this field blank</label><!-- What: Bot Label Element. Why: The honeypot field needs a label for Netlify's form record. How: This labels hidBotInp. -->
+
+			<input
+				id='hidBotInp'
+
+				name='bot-field'
+
+				type='text'
+			/><!-- What: Bot Input Element. Why: Netlify drops any submission that fills its honeypot field. How: This declares the bot-field honeypot named in the form's netlify-honeypot attribute. -->
+
+
+		</form>
+
+		<script
+			src='/src/main.tsx'
+			type='module'
+		>/* What: Site Module Script Element. Why: This loads the site itself. How: Vite replaces it with the built, hashed bundle at build time. */</script>
+
+
+	</body>
+
+
+
 </html>
+
+

@@ -1,0 +1,491 @@
+
+
+
+/**
+ * nav.module.css = Navigation Bar Module
+ *
+ * @summary
+ * Styles for NavBarCom: the translucent, blurred bar fixed to the top of
+ * every page, which firms up and casts a shadow once the page has scrolled
+ * (data-nav-bar-scrolled). Its row holds the hexagon mark and two-tone
+ * wordmark, the page links with an orange underline that grows on hover and
+ * stays under the current page (aria-current), the orange Hire Me button,
+ * and on phones the three-bar toggle, which turns into a cross while the
+ * menu is open (aria-expanded). The phone drawer slides down from under the
+ * bar while data-mobile-menu-open is set, and turns invisible once it has
+ * slid away, so its links leave the Tab order. The row's width and side
+ * padding are the page's shared container values, merged into its own rule.
+ * Everything that moves holds still under reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region navBarHed */
+
+.navBarHed { /* What: Navigation Bar Header. Why: The bar stays at the top of every page above the content. How: This fixes it full width at the bar height, on a translucent blurred ivory, easing its look as the page scrolls. */
+
+
+	-webkit-backdrop-filter : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
+	backdrop-filter         : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
+	background              : oklch( from var( --bac-pag-col ) l c h / 0.85 ); /* Background Page Color = #F5F0E8 @ 0.85 opacity */
+	border-bottom           : var( --bor-wid-bas ) solid transparent;          /* Border Width Base ~= 1.160px */
+	height                  : var( --nav-bar-hei );                            /* Navigation Bar Height ~= 78.751px */
+	left                    : 0;
+	position                : fixed;
+	right                   : 0;
+	top                     : 0;
+	transition              : background var( --dur-tra-p02 ) var( --mot-dec-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-dec-eas ), border-color var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	z-index                 : 100;
+
+
+}
+.navBarHed[data-nav-bar-scrolled] { /* What: Scrolled Navigation Bar Header. Why: Once the page moves under the bar, the bar needs to stand apart from it. How: This firms up the background, shows the bottom border, and casts the small shadow. */
+
+
+	-webkit-backdrop-filter : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
+	backdrop-filter         : blur( calc( var( --ver-rhy-m01 ) * 1rem ) );     /* Vertical Rhythm Base Minus 1 = 11px */
+	background              : oklch( from var( --bac-pag-col ) l c h / 0.92 ); /* Background Page Color = #F5F0E8 @ 0.92 opacity */
+	border-bottom-color     : var( --bor-mai-col );                            /* Border Main Color = #D8CFBE */
+	box-shadow              : var( --ele-sma-sha );                            /* Elevation Small Shadow, about 0 1.2px 2.7px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Navigation Bar Header. Why: Someone who asked for less motion shouldn't see the bar fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.navBarHed { /* What: Motionless Navigation Bar Header. Why: The scrolled look should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+
+/* #region navInnDiv */
+
+.navInnDiv { /* What: Navigation Inner Div. Why: The bar's content sits in the page's centered column. How: This caps and centers the row with its side padding, filling the bar's height and lining up the brand, links, button, and toggle. */
+
+
+	align-items : center;
+	display     : flex;
+	gap         : var( --spa-hor-p03 );   /* Spacing Horizontal Base Plus 3 ~= 33.876px */
+	height      : 100%;
+	margin      : 0 auto;
+	max-width   : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
+	padding     : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
+	width       : 100%;
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Navigation Inner Div. Why: On a phone only the brand and the menu toggle share the row. How: This applies at 768px and below. */
+
+
+	.navInnDiv { /* What: Snug Navigation Inner Div. Why: The narrowest phones need every pixel between the brand and the toggle. How: This narrows the gap, the toggle's own margin keeping it at the far edge. */
+
+
+		gap : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
+
+
+	}
+
+
+}
+
+
+/* #region braLogAnc */
+
+.braLogAnc { /* What: Brand Logo Anchor. Why: The mark and wordmark read as one link home. How: This sets them side by side, never shrinking. */
+
+
+	align-items     : center;
+	display         : flex;
+	flex-shrink     : 0;
+	gap             : var( --spa-hor-m02 ); /* Spacing Horizontal Base Minus 2 ~= 8.304px */
+	text-decoration : none;
+
+
+}
+
+
+/* #region braWorSpa */
+
+.braWorSpa { /* What: Brand Wordmark Span. Why: The site's name reads beside its mark. How: This sets it bold in the display font, a little tight, easing smaller on the narrowest phones. */
+
+
+	font-family    : var( --fon-fam-mai );                                       /* Font Family Main = 'Syne', sans-serif */
+	font-size      : clamp( var( --fon-siz-p01 ), 5.3vw, var( --fon-siz-p02 ) ); /* Font Size Base Plus 1 ~= 14.572px, Font Size Base Plus 2 ~= 19.304px */ /* What: Narrow Phone Wordmark. Why: At 320px the mark, the wordmark, and the menu toggle ran 21px past the screen. How: The wordmark follows the screen below about 364px, about 17px at 320px. */
+	font-weight    : 800;
+	letter-spacing : -0.03em;
+
+
+}
+
+.worFirSpa { /* What: Wordmark First Span. Why: The brand reads in the main text color. How: This sets TechGeek in the ink. */
+
+
+	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+
+
+}
+
+.worLasSpa { /* What: Wordmark Last Span. Why: The domain ending carries the accent. How: This sets .dev in orange. */
+
+
+	color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
+
+
+}
+
+/* #endregion braWorSpa */
+
+/* #endregion braLogAnc */
+
+
+/* #region priNavNav */
+
+.priNavNav { /* What: Primary Navigation Nav. Why: The page links sit together at the bar's right. How: This lines them up with small gaps, pushed right. */
+
+
+	align-items : center;
+	display     : flex;
+	gap         : var( --spa-hor-m05 ); /* Spacing Horizontal Base Minus 5 ~= 3.572px */
+	margin-left : auto;
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Primary Navigation Nav. Why: On a phone the links move into the drawer. How: This applies at 768px and below. */
+
+
+	.priNavNav { /* What: Hidden Primary Navigation Nav. Why: The drawer holds the links instead. How: This hides the row. */
+
+
+		display : none;
+
+
+	}
+
+
+}
+
+.barLinAnc { /* What: Bar Link Anchor. Why: Each page link reads in small mono capitals with room for its underline. How: This sets the link muted and padded, easing its color and background. */
+
+
+	border-radius  : var( --rad-bor-xsm );                                        /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --tex-sec-col );                                        /* Text Secondary Color = #3D3D5C */
+	font-family    : var( --fon-fam-sec );                                        /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                                        /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight    : 400;
+	letter-spacing : 0.04em;
+	padding        : var( --spa-ver-m02 ) var( --spa-hor-m01 );                   /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base Minus 1 = 11px */
+	position       : relative;
+	text-transform : uppercase;
+	transition     : color var( --dur-tra-bas ), background var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+
+
+}
+.barLinAnc::after { /* What: Bar Link Anchor Underline. Why: An orange underline marks a hovered or current link. How: This draws it inside the link's padding, collapsed to nothing until needed, easing its growth from the left. */
+
+
+	background       : var( --acc-mai-col );                                /* Accent Main Color = #F26419 */
+	bottom           : var( --spa-ver-m05 );                                /* Spacing Vertical Base Minus 5 ~= 3.572px */
+	content          : '';
+	height           : var( --bor-wid-lar );                                /* Border Width Large ~= 2.035px */
+	left             : var( --spa-hor-m01 );                                /* Spacing Horizontal Base Minus 1 = 11px */
+	position         : absolute;
+	right            : var( --spa-hor-m01 );                                /* Spacing Horizontal Base Minus 1 = 11px */
+	transform        : scaleX( 0 );
+	transform-origin : left;
+	transition       : transform var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.barLinAnc:hover,
+.barLinAnc[aria-current='page'] { /* What: Hovered Or Current Bar Link Anchor. Why: The link under the pointer and the page that's showing stand out. How: This darkens the text to the ink. */
+
+
+	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+
+
+}
+.barLinAnc:hover::after,
+.barLinAnc[aria-current='page']::after { /* What: Hovered Or Current Bar Link Anchor Underline. Why: The underline marks the hovered link and the current page. How: This grows it to full width. */
+
+
+	transform : scaleX( 1 );
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Bar Link Anchor. Why: Someone who asked for less motion shouldn't see the links fade or their underline grow. How: This applies only when the reduced-motion preference is set. */
+
+
+	.barLinAnc,
+	.barLinAnc::after { /* What: Motionless Bar Link Anchor. Why: The color and the underline should simply switch. How: This turns both transitions off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion priNavNav */
+
+
+.barHirAnc { /* What: Bar Hire Anchor. Why: The bar's one call to action stands out from the links. How: This sets it as an orange button in mono capitals that never shrinks, easing its color and lift. */
+
+
+	background     : var( --acc-mai-col );                                            /* Accent Main Color = #F26419 */
+	border-radius  : var( --rad-bor-xsm );                                            /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --tex-acc-col );                                            /* Text Accent Color = #1A1A2E */
+	flex-shrink    : 0;
+	font-family    : var( --fon-fam-sec );                                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                                            /* Font Size Base = 11px */
+	font-weight    : 500;
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );                          /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	padding        : var( --spa-ver-m01 ) var( --spa-hor-p02 );                       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	text-transform : uppercase;
+	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+
+
+}
+.barHirAnc:hover { /* What: Hovered Bar Hire Anchor. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
+
+
+	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
+	transform  : translateY( -1px );
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Bar Hire Anchor. Why: On a phone the button moves into the drawer. How: This applies at 768px and below. */
+
+
+	.barHirAnc { /* What: Hidden Bar Hire Anchor. Why: The drawer holds the button instead. How: This hides it from the bar. */
+
+
+		display : none;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Bar Hire Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.barHirAnc { /* What: Motionless Bar Hire Anchor. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+
+/* #region menTogBut */
+
+.menTogBut { /* What: Menu Toggle Button. Why: On a phone the toggle opens the drawer. How: This stacks its three bars, hidden above the phone breakpoint and pushed right. */
+
+
+	display        : none;
+	flex-direction : column;
+	gap            : var( --spa-ver-m04 );                      /* Spacing Vertical Base Minus 4 ~= 4.732px */
+	margin-left    : auto;
+	padding        : var( --spa-ver-m02 ) var( --spa-hor-m02 ); /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base Minus 2 ~= 8.304px */
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Menu Toggle Button. Why: The toggle only exists on a phone. How: This applies at 768px and below. */
+
+
+	.menTogBut { /* What: Shown Menu Toggle Button. Why: On a phone the links live behind the toggle. How: This shows its column of bars. */
+
+
+		display : flex;
+
+
+	}
+
+
+}
+
+.togBarSpa { /* What: Toggle Bar Span. Why: Three bars draw the menu icon. How: This draws one 19px rounded ink bar, easing its turn and fade. */
+
+
+	background    : var( --bac-inv-col );                                                              /* Background Inverse Color = #1A1A2E */
+	border-radius : var( --rad-bor-xsm );                                                              /* Radius Border Extra Small ~= 3.571px */
+	display       : block;
+	height        : var( --bor-wid-lar );                                                              /* Border Width Large ~= 2.035px */
+	transition    : transform var( --dur-tra-p02 ) var( --mot-dec-eas ), opacity var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	width         : calc( var( --ver-rhy-p01 ) * 1rem );                                               /* Vertical Rhythm Base Plus 1 ~= 19.304px */
+
+
+}
+.menTogBut[aria-expanded='true'] .togBarSpa:nth-child( 1 ) { /* What: Open First Toggle Bar Span. Why: The open menu's toggle shows a cross. How: This drops the top bar to the middle and tilts it 45 degrees. */
+
+
+	transform : translateY( calc( var( --spa-ver-m04 ) + var( --bor-wid-lar ) ) ) rotate( 45deg ); /* Spacing Vertical Base Minus 4 ~= 4.732px, Border Width Large ~= 2.035px */ /* What: Cross Shift. Why: The top bar has to land exactly on the middle one. How: This moves it down by the gap between the bars plus one bar's height. */
+
+
+}
+.menTogBut[aria-expanded='true'] .togBarSpa:nth-child( 2 ) { /* What: Open Middle Toggle Bar Span. Why: The cross has only two strokes. How: This fades the middle bar out. */
+
+
+	opacity : 0;
+
+
+}
+.menTogBut[aria-expanded='true'] .togBarSpa:nth-child( 3 ) { /* What: Open Last Toggle Bar Span. Why: The open menu's toggle shows a cross. How: This lifts the bottom bar to the middle and tilts it the other way. */
+
+
+	transform : translateY( calc( ( var( --spa-ver-m04 ) + var( --bor-wid-lar ) ) * -1 ) ) rotate( -45deg ); /* Spacing Vertical Base Minus 4 ~= 4.732px, Border Width Large ~= 2.035px */ /* What: Cross Shift. Why: The bottom bar has to land exactly on the middle one. How: This moves it up by the gap between the bars plus one bar's height. */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Toggle Bar Span. Why: Someone who asked for less motion shouldn't see the bars turn. How: This applies only when the reduced-motion preference is set. */
+
+
+	.togBarSpa { /* What: Motionless Toggle Bar Span. Why: The bars should simply switch to the cross. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion menTogBut */
+
+/* #endregion navInnDiv */
+
+
+/* #region menDraDiv */
+
+.menDraDiv { /* What: Menu Drawer Div. Why: On a phone the page links drop down under the bar. How: This fixes the drawer under the bar, stacks its links, and starts it slid up, faded, and invisible once its slide ends, so its links leave the Tab order. */
+
+
+	background     : var( --bac-pag-col );                            /* Background Page Color = #F5F0E8 */
+	border-bottom  : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-m02 );                            /* Spacing Vertical Base Minus 2 ~= 8.304px */
+	left           : 0;
+	opacity        : 0;
+	padding        : var( --spa-ver-p02 ) var( --gut-sid-pad );       /* Spacing Vertical Base Plus 2 ~= 25.572px, Gutter Side Padding, about 19.304px - 44.876px */
+	pointer-events : none;
+	position       : fixed;
+	right          : 0;
+	top            : var( --nav-bar-hei );                            /* Navigation Bar Height ~= 78.751px */
+	transform      : translateY( -100% );
+	transition     : transform var( --dur-tra-p02 ) var( --mot-dec-eas ), opacity var( --dur-tra-p02 ), visibility 0s linear var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Delayed Visibility. Why: The drawer has to stay visible while it slides away. How: Visibility flips to hidden only once the 280ms slide has finished. */
+	visibility     : hidden;
+	z-index        : 99;
+
+
+}
+.menDraDiv[data-mobile-menu-open] { /* What: Open Menu Drawer Div. Why: The open menu shows its links. How: This slides the drawer down, fades it in, and makes it visible at once, taking pointer events again. */
+
+
+	opacity        : 1;
+	pointer-events : all;
+	transform      : translateY( 0 );
+	transition     : transform var( --dur-tra-p02 ) var( --mot-dec-eas ), opacity var( --dur-tra-p02 ), visibility 0s; /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	visibility     : visible;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Menu Drawer Div. Why: Someone who asked for less motion shouldn't see the drawer slide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.menDraDiv,
+	.menDraDiv[data-mobile-menu-open] { /* What: Motionless Menu Drawer Div. Why: The drawer should simply appear and disappear. How: This turns the transition off for both states, the open one's own included. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.draLinAnc { /* What: Drawer Link Anchor. Why: Each page link in the drawer is a full-width row. How: This sets it in muted mono capitals with a divider under it, easing its color. */
+
+
+	border-bottom  : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	color          : var( --tex-sec-col );                            /* Text Secondary Color = #3D3D5C */
+	font-family    : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                            /* Font Size Base Plus 1 ~= 14.572px */
+	letter-spacing : 0.04em;
+	padding        : var( --spa-ver-m01 ) 0;                          /* Spacing Vertical Base Minus 1 = 11px */
+	text-transform : uppercase;
+	transition     : color var( --dur-tra-bas );                      /* Duration Transition Base ~= 157.8ms */
+
+
+}
+.draLinAnc:last-of-type { /* What: Last Drawer Link Anchor. Why: The last link needs no divider above the button. How: This removes its border. */
+
+
+	border-bottom : none;
+
+
+}
+.draLinAnc[aria-current='page'],
+.draLinAnc:hover { /* What: Current Or Hovered Drawer Link Anchor. Why: The page that's showing and the link under the pointer stand out. How: This turns the text orange. */
+
+
+	color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Drawer Link Anchor. Why: Someone who asked for less motion shouldn't see the links fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.draLinAnc { /* What: Motionless Drawer Link Anchor. Why: The hover color should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.draHirAnc { /* What: Drawer Hire Anchor. Why: The drawer repeats the bar's call to action. How: This sets it as a full-width orange button in mono capitals under the links. */
+
+
+	background      : var( --acc-mai-col );                      /* Accent Main Color = #F26419 */
+	border-radius   : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	color           : var( --tex-acc-col );                      /* Text Accent Color = #1A1A2E */
+	display         : inline-flex;
+	font-family     : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
+	font-size       : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight     : 500;
+	justify-content : center;
+	letter-spacing  : calc( var( --cdn-pow-010-rec ) * 1em );    /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	margin-top      : var( --spa-ver-m01 );                      /* Spacing Vertical Base Minus 1 = 11px */
+	padding         : var( --spa-ver-m01 ) var( --spa-hor-m01 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Minus 1 = 11px */
+	text-transform  : uppercase;
+
+
+}
+
+/* #endregion menDraDiv */
+
+/* #endregion navBarHed */
+
+

@@ -1,0 +1,1357 @@
+
+
+
+/**
+ * home.module.css = Home Page Module
+ *
+ * @summary
+ * Styles for HomPagCom. The page fades up into view like every page. Its
+ * ivory hero clears the fixed bar by a gap that grows with the screen, with
+ * three faint shapes turning slowly behind it, the pitch fading up beside a
+ * dark code window and a white badge that follow it in, a pulsing
+ * availability dot, and a ticker of skills scrolling under the buttons; a
+ * slanted white edge leads into the stats strip. Below come the featured
+ * projects, the services in white cards that lift on hover, and an orange
+ * closing card. On a tablet the code window keeps its natural width beside
+ * the pitch, and on a phone it stacks under it, while the grids step down,
+ * reaching one column on a phone. The shapes, the entrances, and the dot play
+ * the shared shapeLoopSpin, contentEnterFadeUp, and statusLoopPulse keyframes
+ * from the global sheet; the ticker plays its own. The page's centered
+ * columns take the shared container values, and its sections the shared
+ * section padding, merged into their own rules. Everything that moves holds
+ * still under reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region pagEntDiv */
+
+.pagEntDiv { /* What: Page Enter Div. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global contentEnterFadeUp keyframe. */
+
+
+	animation : global( contentEnterFadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Div. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.pagEntDiv { /* What: Motionless Page Enter Div. Why: The page should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+
+
+/* #region homHerSec */
+
+.homHerSec { /* What: Home Hero Section. Why: The page opens on an introduction clear of the fixed bar, with the same breathing room on every screen shape. How: This sets the ivory background, centers the hero's row, clips the turning shapes, and pads it by the bar's height plus a gap that grows with the screen's width, so a tall window no longer opens a huge gap the way filling the window's height did. */
+
+
+	align-items : center;
+	background  : var( --bac-pag-col );                                                                                            /* Background Page Color = #F5F0E8 */
+	display     : flex;
+	overflow    : hidden;
+	padding     : calc( var( --nav-bar-hei ) + var( --her-gap-pad ) ) 0 clamp( var( --spa-ver-p06 ), 12vw, var( --spa-ver-p08 ) ); /* Navigation Bar Height ~= 78.751px, Hero Gap Padding, about 59.447px - 138.199px, Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Vertical Base Plus 8 ~= 138.199px */ /* What: Hero Padding. Why: The gap under the bar and above the slanted edge should suit the screen. How: The top clears the bar plus the shared hero gap, and the bottom is 12vw, about 79px to 138px, which keeps the content clear of the 59px slanted edge. */
+	position    : relative;
+
+
+}
+
+
+/* #region shaLayDiv */
+
+.shaLayDiv { /* What: Shape Layer Div. Why: The turning shapes sit behind the hero without catching clicks. How: This lets the pointer pass through. */
+
+
+	pointer-events : none;
+
+
+}
+
+.herShaDiv { /* What: Hero Shape Div. Why: Each shape floats faintly behind the hero. How: This positions it against the hero and nearly fades it out. */
+
+
+	opacity  : 0.07;
+	position : absolute;
+
+
+}
+.herShaDiv--hexagon { /* What: Hexagon Hero Shape Div. Why: A large blue hexagon echoes the site's mark at the hero's right. How: This clips a 321px blue square to a hexagon past the right edge and turns it once every 33 seconds. */
+
+
+	animation  : global( shapeLoopSpin ) var( --dur-ani-p19 ) linear infinite; /* Duration Animation Base Plus 19 ~= 33,004.0ms */
+	background : var( --acc-sec-col );                                         /* Accent Secondary Color = #7DB9D8 */
+	clip-path  : polygon( 50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25% );
+	height     : calc( var( --ver-rhy-p11 ) * 1rem );                          /* Vertical Rhythm Base Plus 11 ~= 321.273px */
+	right      : calc( var( --spa-hor-p06 ) * -1 );                            /* Spacing Horizontal Base Plus 6 ~= 78.751px */
+	top        : 10%;
+	width      : calc( var( --ver-rhy-p11 ) * 1rem );                          /* Vertical Rhythm Base Plus 11 ~= 321.273px */
+
+
+}
+.herShaDiv--circle { /* What: Circle Hero Shape Div. Why: An orange ring varies the shapes at the hero's lower left. How: This draws a 183px ring a little stronger than the others and turns it backward every 25 seconds. */
+
+
+	animation     : global( shapeLoopSpin ) var( --dur-ani-p18 ) linear infinite reverse; /* Duration Animation Base Plus 18 ~= 24,914.0ms */
+	background    : transparent;
+	border        : var( --bor-wid-xla ) solid var( --acc-mai-col );                      /* Border Width Extra Large ~= 3.571px, Accent Main Color = #F26419 */
+	border-radius : 50%;
+	bottom        : 10%;
+	height        : calc( var( --ver-rhy-p09 ) * 1rem );                                  /* Vertical Rhythm Base Plus 9 ~= 183.074px */
+	left          : 5%;
+	opacity       : var( --cdn-pow-007-rec );                                             /* Core-Design-Number to the Power of 7 Reciprocal ~= 0.140 */
+	width         : calc( var( --ver-rhy-p09 ) * 1rem );                                  /* Vertical Rhythm Base Plus 9 ~= 183.074px */
+
+
+}
+.herShaDiv--square { /* What: Square Hero Shape Div. Why: A tilted outlined square varies the shapes near the hero's top. How: This draws a 104px dark blue square tipped 45 degrees through rotate, which the turning transform adds to, and turns it every 19 seconds. */
+
+
+	animation  : global( shapeLoopSpin ) var( --dur-ani-p17 ) linear infinite; /* Duration Animation Base Plus 17 ~= 18,807.0ms */
+	background : transparent;
+	border     : var( --bor-wid-lar ) solid var( --acs-str-col );              /* Border Width Large ~= 2.035px, Accent-Secondary Strong Color = #4A91B8 */
+	height     : calc( var( --ver-rhy-p07 ) * 1rem );                          /* Vertical Rhythm Base Plus 7 ~= 104.323px */
+	left       : 45%;
+	opacity    : 0.12;
+	rotate     : 45deg;
+	top        : 15%;
+	width      : calc( var( --ver-rhy-p07 ) * 1rem );                          /* Vertical Rhythm Base Plus 7 ~= 104.323px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Shape Layer Div. Why: Someone who asked for less motion shouldn't see the shapes turn. How: This applies only when the reduced-motion preference is set. */
+
+
+	.herShaDiv--hexagon,
+	.herShaDiv--circle,
+	.herShaDiv--square { /* What: Motionless Hero Shape Div. Why: The shapes should hold still. How: This turns every rotation off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+/* #endregion shaLayDiv */
+
+
+/* #region herInnDiv */
+
+.herInnDiv { /* What: Hero Inner Div. Why: The pitch and the code window sit side by side in the page's centered column, above the shapes. How: This caps and centers the column with its side padding and lays out a wide pitch column beside a narrow visual one. */
+
+
+	align-items           : center;
+	display               : grid;
+	gap                   : var( --spa-ver-p08 ) clamp( var( --spa-hor-p05 ), var( --hor-rhy-018 ), var( --spa-hor-p08 ) ); /* Spacing Vertical Base Plus 8 ~= 138.199px, Spacing Horizontal Base Plus 5 ~= 59.447px, Horizontal Rhythm 18 ~= 152.824px @ 1,920px width, Spacing Horizontal Base Plus 8 ~= 138.199px */
+	grid-template-columns : 3fr 1fr;
+	margin                : 0 auto;
+	max-width             : var( --con-max-wid );                                                                           /* Container Maximum Width ~= 1,449.365px */
+	padding               : 0 var( --gut-sid-pad );                                                                         /* Gutter Side Padding, about 19.304px - 44.876px */ /* What: Container Padding. Why: The global container rule loaded after this module, so its padding always zeroed the 96px top and 128px bottom padding this rule once asked for. How: This keeps the padding that has always applied. */
+	position              : relative;
+	width                 : 100%;
+	z-index               : 1;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Hero Inner Div. Why: On a tablet the code window would squeeze the pitch in a quarter of the row. How: This applies at 1024px and below. */
+
+
+	.herInnDiv { /* What: Tablet Hero Inner Div Columns. Why: The window keeps its natural width beside the pitch, which takes the rest. How: This sets a flexible pitch column and a column sized to the window. */
+
+
+		grid-template-columns : minmax( 0, 1fr ) auto;
+
+
+	}
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Hero Inner Div. Why: Two columns crowd a phone. How: This applies at 768px and below. */
+
+
+	.herInnDiv { /* What: One Column Hero Inner Div. Why: The pitch takes the full width on a phone. How: This sets one column. */
+
+
+		gap                   : var( --spa-ver-p05 ); /* Spacing Vertical Base Plus 5 ~= 59.447px */
+		grid-template-columns : 1fr;
+
+
+	}
+
+
+}
+
+
+/* #region herConDiv */
+
+.herConDiv { /* What: Hero Content Div. Why: The pitch reads as one column that fades up first. How: This stacks the label, heading, line, buttons, and ticker, lets the column shrink below its content, and plays the shared contentEnterFadeUp. */
+
+
+	animation      : global( contentEnterFadeUp ) var( --dur-ani-p05 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	container-type : inline-size;                                                                 /* What: Column Container. Why: The heading sizes itself by this column. How: This lets the heading's cqi units measure the column's width. */
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-p02 );                                                        /* Spacing Vertical Base Plus 2 ~= 25.572px */
+	min-width      : 0;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hero Content Div. Why: Someone who asked for less motion shouldn't see the pitch slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.herConDiv { /* What: Motionless Hero Content Div. Why: The pitch should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+
+/* #region herLabDiv */
+
+.herLabDiv { /* What: Hero Label Div. Why: The availability label reads as a small pill. How: This sets a warm ivory pill in muted mono capitals, only as wide as its content. */
+
+
+	align-items    : center;
+	background     : var( --bac-sun-col );                            /* Background Sunken Color = #EDE6D8 */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : 999px;
+	color          : var( --tex-sec-col );                            /* Text Secondary Color = #3D3D5C */
+	display        : inline-flex;
+	font-family    : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                            /* Font Size Base = 11px */
+	gap            : var( --spa-hor-m02 );                            /* Spacing Horizontal Base Minus 2 ~= 8.304px */
+	letter-spacing : calc( var( --cdn-pow-009-rec ) * 1em );          /* Core-Design-Number to the Power of 9 Reciprocal ~= 0.080em */
+	padding        : var( --spa-ver-m03 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 3 ~= 6.268px, Spacing Horizontal Base ~= 14.572px */
+	text-transform : uppercase;
+	width          : fit-content;
+
+
+}
+
+.pulDotSpa { /* What: Pulse Dot Span. Why: A pulsing green dot signals availability. How: This draws an 8px green circle, never shrinking, playing the shared pulse forever. */
+
+
+	animation     : global( statusLoopPulse ) var( --dur-ani-p10 ) var( --mot-sta-eas ) infinite; /* Duration Animation Base Plus 10 ~= 2,627.0ms, Motion Standard Easing = ease */
+	background    : var( --suc-mai-col );                                                         /* Success Main Color = #22c55e */
+	border-radius : 50%;
+	flex-shrink   : 0;
+	height        : calc( var( --ver-rhy-m02 ) * 1rem );                                          /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+	width         : calc( var( --ver-rhy-m02 ) * 1rem );                                          /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Pulse Dot Span. Why: Someone who asked for less motion shouldn't see the dot pulse. How: This applies only when the reduced-motion preference is set. */
+
+
+	.pulDotSpa { /* What: Motionless Pulse Dot Span. Why: The dot should hold still. How: This turns the pulse off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+.avaTexSpa { /* What: Availability Text Span. Why: The label's words read in the mono font at the label's own size, the smallest the type scale allows. How: This sets the mono font, inheriting the label's size. */
+
+
+	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
+
+
+}
+
+/* #endregion herLabDiv */
+
+
+/* #region herTitHea */
+
+.herTitHea { /* What: Hero Title Heading. Why: The heading reads large and tight. How: This sets its color, a size that follows its column, and a tight line height. */
+
+
+	color       : var( --tex-mai-col );                                        /* Text Main Color = #1A1A2E */
+	font-size   : clamp( var( --fon-siz-p02 ), 9.6cqi, var( --fon-siz-p07 ) ); /* Font Size Base Plus 2 ~= 25.572px, Font Size Base Plus 7 ~= 78.751px */ /* What: Column-Sized Heading. Why: Experiences is about 10em wide, so at the global h1 size it ran past its column on phones and under the code window on a desktop. How: The size is 9.6% of the column's width, which keeps the word inside it, within the p02 and p07 steps. */
+	line-height : var( --ver-rhy-m01 );                                        /* Vertical Rhythm Base Minus 1 = 1 */
+
+
+}
+
+.titAccSpa { /* What: Title Accent Span. Why: Digital carries the accent with an underline stroke. How: This sets it dark blue and positions its stroke. */
+
+
+	color    : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
+	display  : inline-block;
+	position : relative;
+
+
+}
+.titAccSpa::after { /* What: Title Accent Span Stroke. Why: A soft orange stroke underlines the accent word. How: This draws a 4px rounded orange bar along its bottom, partly faded. */
+
+
+	background    : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
+	border-radius : var( --rad-bor-xsm );                /* Radius Border Extra Small ~= 3.571px */
+	bottom        : var( --spa-ver-m05 );                /* Spacing Vertical Base Minus 5 ~= 3.572px */
+	content       : '';
+	height        : calc( var( --ver-rhy-m05 ) * 1rem ); /* Vertical Rhythm Base Minus 5 ~= 3.572px */
+	left          : 0;
+	opacity       : var( --cdn-pow-002-rec );            /* Core-Design-Number to the Power of 2 Reciprocal ~= 0.570 */
+	position      : absolute;
+	right         : 0;
+
+
+}
+
+.titDotSpa { /* What: Title Dot Span. Why: The heading ends on an orange full stop. How: This sets the dot orange. */
+
+
+	color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
+
+
+}
+
+/* #endregion herTitHea */
+
+
+.herSubPar { /* What: Hero Subtitle Paragraph. Why: The pitch line reads a little larger and quieter. How: This sets it muted with roomy lines, capped at the paragraph measure. */
+
+
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
+	font-size   : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	max-width   : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
+
+
+}
+
+
+/* #region herActDiv */
+
+.herActDiv { /* What: Hero Actions Div. Why: The two next steps sit side by side. How: This lines them up with a gap, wrapping when they don't fit. */
+
+
+	display   : flex;
+	flex-wrap : wrap;
+	gap       : var( --spa-ver-bas ) var( --spa-hor-bas ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base ~= 14.572px */
+
+
+}
+
+.butPriAnc { /* What: Button Primary Anchor. Why: The main next step stands out. How: This sets an orange button in mono capitals with its arrow, easing its color and lift. */
+
+
+	align-items    : center;
+	background     : var( --acc-mai-col );                                            /* Accent Main Color = #F26419 */
+	border-radius  : var( --rad-bor-xsm );                                            /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --tex-acc-col );                                            /* Text Accent Color = #1A1A2E */
+	display        : inline-flex;
+	font-family    : var( --fon-fam-sec );                                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                                            /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight    : 500;
+	gap            : var( --spa-hor-m02 );                                            /* Spacing Horizontal Base Minus 2 ~= 8.304px */
+	letter-spacing : 0.04em;
+	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 );                       /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
+	text-transform : uppercase;
+	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+
+
+}
+.butPriAnc:hover { /* What: Hovered Button Primary Anchor. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 2px. */
+
+
+	background : var( --acc-hov-col );                            /* Accent Hover Color ~= #e45700 */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= 2.035px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Primary Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.butPriAnc { /* What: Motionless Button Primary Anchor. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.butSecAnc { /* What: Button Secondary Anchor. Why: The second next step sits back from the first. How: This sets an outlined button in mono capitals, easing its border, color, and lift. */
+
+
+	align-items    : center;
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col );                                               /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : var( --rad-bor-xsm );                                                                          /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --tex-mai-col );                                                                          /* Text Main Color = #1A1A2E */
+	display        : inline-flex;
+	font-family    : var( --fon-fam-sec );                                                                          /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                                                                          /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight    : 500;
+	letter-spacing : 0.04em;
+	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 );                                                     /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
+	text-transform : uppercase;
+	transition     : border-color var( --dur-tra-bas ), color var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+
+
+}
+.butSecAnc:hover { /* What: Hovered Button Secondary Anchor. Why: A button should respond to the pointer. How: This turns its border and text dark blue and lifts it 2px. */
+
+
+	border-color : var( --acs-str-col );                            /* Accent-Secondary Strong Color = #4A91B8 */
+	color        : var( --acs-dar-col );                            /* Accent-Secondary Dark Color ~= #126186 */
+	transform    : translateY( calc( var( --spa-ver-m07 ) * -1 ) ); /* Spacing Vertical Base Minus 7 ~= 2.035px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Secondary Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.butSecAnc { /* What: Motionless Button Secondary Anchor. Why: The hover look and lift should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion herActDiv */
+
+
+/* #region skiTicDiv */
+
+.skiTicDiv { /* What: Skills Ticker Div. Why: The skills scroll past under the buttons, fading at both ends. How: This clips the strip, masks its edges to fade out, and lets it shrink below its content. */
+
+
+	mask-image : linear-gradient( 90deg, transparent, black 10%, black 90%, transparent );
+	min-width  : 0;
+	overflow   : hidden;
+
+
+}
+
+
+/* #region ticInnDiv */
+
+.ticInnDiv { /* What: Ticker Inner Div. Why: The strip slides along endlessly. How: This lines up the items and plays the ticker's own scroll once every 77 seconds, forever. */
+
+
+	animation : ticInnDivLoopScroll var( --dur-ani-p22 ) linear infinite; /* Duration Animation Base Plus 22 ~= 76,725.0ms */
+	display   : flex;
+	gap       : var( --spa-hor-m01 );                                     /* Spacing Horizontal Base Minus 1 = 11px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Ticker Inner Div. Why: Someone who asked for less motion shouldn't see the strip scroll. How: This applies only when the reduced-motion preference is set. */
+
+
+	.ticInnDiv { /* What: Motionless Ticker Inner Div. Why: The strip should hold still. How: This turns the scroll off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+@keyframes ticInnDivLoopScroll { /* What: Ticker Inner Div Loop Scroll. Why: The strip holds every skill twice, so sliding it by its full width brings the second set to where the first began, with no seam. How: This moves the strip from its start to one strip's width left. */
+
+
+	from {
+
+
+		transform : translateX( 0 );
+
+
+	}
+
+	to {
+
+
+		transform : translateX( -100% );
+
+
+	}
+
+
+}
+
+.ticIteSpa { /* What: Ticker Item Span. Why: Each skill reads as a small pill. How: This sets a warm ivory pill in muted mono capitals that never wraps. */
+
+
+	background     : var( --bac-sun-col );                            /* Background Sunken Color = #EDE6D8 */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : 999px;
+	color          : var( --tex-mut-col );                            /* Text Muted Color = #646482 */
+	font-family    : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                            /* Font Size Base = 11px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );          /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	padding        : var( --spa-ver-m05 ) var( --spa-hor-m01 );       /* Spacing Vertical Base Minus 5 ~= 3.572px, Spacing Horizontal Base Minus 1 = 11px */
+	text-transform : uppercase;
+	white-space    : nowrap;
+
+
+}
+
+/* #endregion ticInnDiv */
+
+/* #endregion skiTicDiv */
+
+/* #endregion herConDiv */
+
+
+/* #region herVisDiv */
+
+.herVisDiv { /* What: Hero Visual Div. Why: The code window and badge follow the pitch in. How: This positions the badge against the column and plays the shared contentEnterFadeUp a little after the pitch. */
+
+
+	animation : global( contentEnterFadeUp ) var( --dur-ani-p05 ) var( --dur-ani-bas ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 5 ~= 643.9ms, Duration Animation Base ~= 157.8ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	position  : relative;
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Hero Visual Div. Why: On a phone the code window stacks under the pitch rather than beside it. How: This applies at 768px and below. */
+
+
+	.herVisDiv { /* What: Stacked Hero Visual Div. Why: The window should fill a phone's column without stretching too wide on a large phone, sit centered under the pitch, and never push the page sideways. How: This centers it at the column's full width, capped at the p12 rhythm step, and lets it shrink below its code's width. */
+
+
+		margin    : 0 auto;
+		max-width : calc( var( --ver-rhy-p12 ) * 1rem ); /* Vertical Rhythm Base Plus 12 ~= 425.592px */
+		min-width : 0;
+		width     : 100%;                                /* What: Full Width. Why: The auto margins would otherwise shrink the window to its content. How: This keeps it at the column's width up to its cap. */
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hero Visual Div. Why: Someone who asked for less motion shouldn't see the window slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.herVisDiv { /* What: Motionless Hero Visual Div. Why: The window should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+
+/* #region codWinDiv */
+
+.codWinDiv { /* What: Code Window Div. Why: z4nta0 is introduced as code in a dark editor window. How: This sets a dark rounded window with a faint light border, a large shadow, and a faint blue outline. */
+
+
+	background    : var( --bac-inv-col );                                                                                                 /* Background Inverse Color = #1A1A2E */
+	border        : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-009-rec ) );                       /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.080 opacity */
+	border-radius : var( --rad-bor-med );                                                                                                 /* Radius Border Medium = 11px */
+	box-shadow    : var( --ele-lar-sha ), 0 0 0 var( --bor-wid-bas ) oklch( from var( --acc-sec-col ) l c h / var( --cdn-pow-007-rec ) ); /* Elevation Large Shadow, about 0 11px 44.9px plus 0 3.6px 11px -2.7px, Border Width Base ~= 1.160px, Accent Secondary Color = #7DB9D8 @ 0.140 opacity */
+	overflow      : hidden;
+	position      : relative;
+
+
+}
+
+
+/* #region winBarDiv */
+
+.winBarDiv { /* What: Window Bar Div. Why: A title bar makes the window read as an editor. How: This lines up the dots and the file name on a faint light strip with a divider below. */
+
+
+	align-items   : center;
+	background    : oklch( from var( --bac-sur-col ) l c h / 0.04 );                                                /* Background Surface Color = #FFFFFF @ 0.04 opacity */
+	border-bottom : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-010-rec ) ); /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.060 opacity */
+	display       : flex;
+	gap           : var( --spa-hor-m02 );                                                                           /* Spacing Horizontal Base Minus 2 ~= 8.304px */
+	padding       : var( --spa-ver-m01 ) var( --spa-hor-p02 );                                                      /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+
+
+}
+
+.winDotSpa { /* What: Window Dot Span. Why: Editor windows have three colored dots. How: This draws each as an 11px circle. */
+
+
+	border-radius : 50%;
+	height        : calc( var( --ver-rhy-m01 ) * 1rem ); /* Vertical Rhythm Base Minus 1 = 11px */
+	width         : calc( var( --ver-rhy-m01 ) * 1rem ); /* Vertical Rhythm Base Minus 1 = 11px */
+
+
+}
+.winDotSpa--first { /* What: First Window Dot Span. Why: The first dot is red. How: This sets its color. */
+
+
+	background : #ff5f56;
+
+
+}
+.winDotSpa--second { /* What: Second Window Dot Span. Why: The second dot is yellow. How: This sets its color. */
+
+
+	background : #ffbd2e;
+
+
+}
+.winDotSpa--third { /* What: Third Window Dot Span. Why: The third dot is green. How: This sets its color. */
+
+
+	background : #27c93f;
+
+
+}
+
+.winTitSpa { /* What: Window Title Span. Why: The file name sits quietly after the dots. How: This sets it small in faint mono, spaced from the dots. */
+
+
+	color       : oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-004-rec ) ); /* Background Surface Color = #FFFFFF @ 0.325 opacity */
+	font-family : var( --fon-fam-sec );                                                /* Font Family Secondary = 'DM Mono', monospace */
+	font-size   : var( --fon-siz-bas );                                                /* Font Size Base = 11px */
+	margin-left : var( --spa-hor-m01 );                                                /* Spacing Horizontal Base Minus 1 = 11px */
+
+
+}
+
+/* #endregion winBarDiv */
+
+
+/* #region codBloPre */
+
+.codBloPre { /* What: Code Block Pre. Why: The code keeps its layout and reads light on the dark window. How: This pads it and sets it in light mono, keeping its whitespace and scrolling if it overflows. */
+
+
+	color       : #e2e8f0;
+	font-family : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
+	font-size   : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
+	line-height : var( --ver-rhy-p01 );                      /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	overflow    : auto;
+	padding     : var( --spa-ver-p03 ) var( --spa-hor-p03 ); /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	white-space : pre;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Code Block Pre. Why: Below a desktop the window has to fit beside the pitch on a tablet and inside a 320px phone. How: This applies at 1024px and below. */
+
+
+	.codBloPre { /* What: Compact Code Block Pre. Why: The code's longest line has to fit a narrow window. How: This sets the code at the base size with tighter padding. */
+
+
+		font-size : var( --fon-siz-bas );                      /* Font Size Base = 11px */
+		padding   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+
+
+	}
+
+
+}
+
+.codTexCod { /* What: Code Text Code. Why: The code element takes the block's light color. How: This inherits the color. */
+
+
+	color : inherit;
+
+
+}
+
+/* #endregion codBloPre */
+
+
+.nodOveSvg { /* What: Node Overlay SVG. Why: The linked nodes sit over the whole window without catching clicks. How: This stretches the drawing across the window and lets the pointer pass through. */
+
+
+	height         : 100%;
+	pointer-events : none;
+	position       : absolute;
+	right          : 0;
+	top            : 0;
+	width          : 100%;
+
+
+}
+
+/* #endregion codWinDiv */
+
+
+/* #region floBadDiv */
+
+.floBadDiv { /* What: Floating Badge Div. Why: The open source badge sits off the window's bottom left corner, arriving last. How: This sets a white rounded card with a soft shadow just past that corner and plays the shared contentEnterFadeUp after the window. */
+
+
+	align-items   : center;
+	animation     : global( contentEnterFadeUp ) var( --dur-ani-p06 ) var( --dur-ani-p02 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 6 ~= 853.0ms, Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	background    : var( --bac-sur-col );                                                                             /* Background Surface Color = #FFFFFF */
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );                                                  /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius : var( --rad-bor-med );                                                                             /* Radius Border Medium = 11px */
+	bottom        : calc( var( --spa-ver-p03 ) * -1 );                                                                /* Spacing Vertical Base Plus 3 ~= 33.876px */
+	box-shadow    : var( --ele-med-sha );                                                                             /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
+	display       : flex;
+	gap           : var( --spa-hor-m01 );                                                                             /* Spacing Horizontal Base Minus 1 = 11px */
+	left          : calc( var( --spa-hor-p02 ) * -1 );                                                                /* Spacing Horizontal Base Plus 2 ~= 25.572px */
+	padding       : var( --spa-ver-bas ) var( --spa-hor-p02 );                                                        /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	position      : absolute;
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Floating Badge Div. Why: Once the window stacks and centers, the room beside it shrinks with the screen, and the badge's full overhang would cross the gutter on a narrow phone. How: This applies at 768px and below. */
+
+
+	.floBadDiv { /* What: Fitted Floating Badge Div. Why: The badge should stick out past the window as far as the screen allows, like on a desktop, and tuck in on a narrow phone. How: The overhang is the room left beside the centered window, less the gutter, held between the m02 and p02 steps, so it reaches the full p02 from about 525px wide and eases down to m02 below about 490px. */
+
+
+		left : calc( clamp( var( --spa-hor-m02 ), calc( ( 100vw - var( --ver-rhy-p12 ) * 1rem ) / 2 - var( --gut-sid-pad ) ), var( --spa-hor-p02 ) ) * -1 ); /* Spacing Horizontal Base Minus 2 ~= 8.304px, Vertical Rhythm Base Plus 12 ~= 425.592px, Gutter Side Padding, about 19.304px - 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Floating Badge Div. Why: Someone who asked for less motion shouldn't see the badge slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.floBadDiv { /* What: Motionless Floating Badge Div. Why: The badge should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+.badValDiv { /* What: Badge Value Div. Why: The figure is the badge's point. How: This sets it bold in the display font. */
+
+
+	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+	font-family : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
+	font-size   : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	font-weight : 800;
+
+
+}
+
+.badLabDiv { /* What: Badge Label Div. Why: The label says what the figure counts, quietly. How: This sets it small in muted mono capitals. */
+
+
+	color          : var( --tex-mut-col );                   /* Text Muted Color = #646482 */
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em ); /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	text-transform : uppercase;
+
+
+}
+
+/* #endregion floBadDiv */
+
+/* #endregion herVisDiv */
+
+/* #endregion herInnDiv */
+
+
+.herDivDiv { /* What: Hero Divider Div. Why: A slanted white edge leads from the hero into the stats strip. How: This clips a 59px white band along the hero's bottom to a triangle. */
+
+
+	background : var( --bac-sur-col );                /* Background Surface Color = #FFFFFF */
+	bottom     : calc( var( --spa-ver-m09 ) * -1 );   /* Spacing Vertical Base Minus 9 ~= 1.16px */
+	clip-path  : polygon( 0 100%, 100% 0, 100% 100% );
+	height     : calc( var( --ver-rhy-p05 ) * 1rem ); /* Vertical Rhythm Base Plus 5 ~= 59.447px */
+	left       : 0;
+	position   : absolute;
+	right      : 0;
+
+
+}
+
+/* #endregion homHerSec */
+
+
+
+/* #region homStaSec */
+
+.homStaSec { /* What: Home Stats Section. Why: The figures sit on a white strip under the hero. How: This sets the background, pads the strip, and rules it off below. */
+
+
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
+	border-bottom : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	padding       : var( --spa-ver-p05 ) 0;                          /* Spacing Vertical Base Plus 5 ~= 59.447px */
+
+
+}
+
+
+/* #region staInnDiv */
+
+.staInnDiv { /* What: Stats Inner Div. Why: The strip sits in the page's centered column. How: This caps and centers the column with its side padding. */
+
+
+	margin    : 0 auto;
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
+	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
+	width     : 100%;
+
+
+}
+
+
+/* #region staGriDiv */
+
+.staGriDiv { /* What: Stats Grid Div. Why: The four figures line up in a row. How: This sets four columns with gaps. */
+
+
+	display               : grid;
+	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	grid-template-columns : repeat( 4, 1fr );
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Stats Grid Div. Why: Four figures crowd a tablet. How: This applies at 1024px and below. */
+
+
+	.staGriDiv { /* What: Two Column Stats Grid Div. Why: Two figures fit side by side on a tablet. How: This sets two columns. */
+
+
+		grid-template-columns : repeat( 2, 1fr );
+
+
+	}
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Stats Grid Div. Why: The figures stay in pairs on a phone. How: This applies at 640px and below. */
+
+
+	.staGriDiv { /* What: Paired Stats Grid Div. Why: Two short figures still fit side by side on a phone. How: This sets two even columns. */
+
+
+		grid-template-columns : 1fr 1fr;
+
+
+	}
+
+
+}
+
+
+/* #region staIteDiv */
+
+.staIteDiv { /* What: Stat Item Div. Why: Each figure sits centered over its label, divided from the next. How: This stacks and centers them, padded, with a rule on the right. */
+
+
+	align-items    : center;
+	border-right   : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	container-type : inline-size;                                     /* What: Item Container. Why: The figure sizes itself by its item. How: This lets the figure's cqi units measure the item's width and keeps the item from widening to fit the figure. */
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-m02 );                            /* Spacing Vertical Base Minus 2 ~= 8.304px */
+	padding        : var( --spa-ver-p02 ) var( --spa-hor-p02 );       /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	text-align     : center;
+
+
+}
+.staIteDiv:last-child { /* What: Last Stat Item Div. Why: The last figure needs no divider after it. How: This removes its right rule. */
+
+
+	border-right : none;
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Stat Item Div. Why: Side dividers don't suit the paired layout. How: This applies at 640px and below. */
+
+
+	.staIteDiv { /* What: Underlined Stat Item Div. Why: The paired figures divide better from the row below. How: This swaps the right rule for one underneath and narrows the side padding. */
+
+
+		border-bottom : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+		border-right  : none;
+		padding       : var( --spa-ver-p02 ) var( --spa-hor-m01 );       /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Minus 1 = 11px */
+
+
+	}
+
+
+}
+
+.staValSpa { /* What: Stat Value Span. Why: The figure is the stat's point. How: This sets it large and bold in the display font, tight, scaling down with its item on a phone. */
+
+
+	color          : var( --tex-mai-col );                                       /* Text Main Color = #1A1A2E */
+	font-family    : var( --fon-fam-mai );                                       /* Font Family Main = 'Syne', sans-serif */
+	font-size      : clamp( var( --fon-siz-p02 ), 26cqi, var( --fon-siz-p05 ) ); /* Font Size Base Plus 2 ~= 25.572px, Font Size Base Plus 5 ~= 44.876px */ /* What: Item-Sized Figure. Why: 100% is about 3.8em wide, too wide for half a phone's width at the full size. How: The figure is 26% of its item's width, held between the p02 and p05 steps, so desktop keeps the full size. */
+	font-weight    : 800;
+	letter-spacing : -0.04em;
+	line-height    : var( --ver-rhy-m01 );                                       /* Vertical Rhythm Base Minus 1 = 1 */
+
+
+}
+.staValSpa::after { /* What: Stat Value Span Underline. Why: A short orange stroke sits under each figure. How: This draws a 26px rounded orange bar centered below it. */
+
+
+	background    : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
+	border-radius : var( --rad-bor-xsm );                /* Radius Border Extra Small ~= 3.571px */
+	content       : '';
+	display       : block;
+	height        : var( --bor-wid-xla );                /* Border Width Extra Large ~= 3.571px */
+	margin        : var( --spa-ver-m02 ) auto 0;         /* Spacing Vertical Base Minus 2 ~= 8.304px */
+	width         : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */
+
+
+}
+
+.staLabSpa { /* What: Stat Label Span. Why: The label says what the figure counts, quietly. How: This sets it small in muted mono capitals. */
+
+
+	color          : var( --tex-mut-col );                   /* Text Muted Color = #646482 */
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em ); /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	text-transform : uppercase;
+
+
+}
+
+/* #endregion staIteDiv */
+
+/* #endregion staGriDiv */
+
+/* #endregion staInnDiv */
+
+/* #endregion homStaSec */
+
+
+
+/* #region homFeaSec */
+
+.homFeaSec { /* What: Home Featured Section. Why: The featured projects sit on the ivory with the section spacing. How: This sets the background and the shared section padding. */
+
+
+	background : var( --bac-pag-col );   /* Background Page Color = #F5F0E8 */
+	padding    : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
+
+
+}
+
+
+/* #region feaInnDiv */
+
+.feaInnDiv { /* What: Featured Inner Div. Why: The section sits in the page's centered column. How: This caps and centers the column with its side padding. */
+
+
+	margin    : 0 auto;
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
+	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
+	width     : 100%;
+
+
+}
+
+
+/* #region feaHeaDiv */
+
+.feaHeaDiv { /* What: Featured Header Div. Why: The heading and the link to every project share a row. How: This spreads them to either end, aligned to their bottoms, with room below. */
+
+
+	align-items     : flex-end;
+	display         : flex;
+	gap             : var( --spa-hor-p02 ); /* Spacing Horizontal Base Plus 2 ~= 25.572px */
+	justify-content : space-between;
+	margin-bottom   : var( --spa-ver-p05 ); /* Spacing Vertical Base Plus 5 ~= 59.447px */
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Featured Header Div. Why: The heading and link crowd one row on a phone. How: This applies at 640px and below. */
+
+
+	.feaHeaDiv { /* What: Stacked Featured Header Div. Why: The link reads better under the heading on a phone. How: This stacks them against the left. */
+
+
+		align-items    : flex-start;
+		flex-direction : column;
+
+
+	}
+
+
+}
+
+.vieAllAnc { /* What: View All Anchor. Why: The rest of the projects are one click away. How: This sets an orange mono link with its arrow that never shrinks, easing the gap to its arrow. */
+
+
+	align-items    : center;
+	color          : var( --acc-dar-col );                   /* Accent Dark Color ~= #bd3000 */
+	display        : inline-flex;
+	flex-shrink    : 0;
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
+	gap            : var( --spa-hor-m02 );                   /* Spacing Horizontal Base Minus 2 ~= 8.304px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em ); /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	text-transform : uppercase;
+	transition     : gap var( --dur-tra-bas );               /* Duration Transition Base ~= 157.8ms */
+
+
+}
+.vieAllAnc:hover { /* What: Hovered View All Anchor. Why: The arrow nudges toward where the link goes. How: This widens the gap to its arrow. */
+
+
+	gap : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion View All Anchor. Why: Someone who asked for less motion shouldn't see the arrow slide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.vieAllAnc { /* What: Motionless View All Anchor. Why: The arrow should simply step over. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion feaHeaDiv */
+
+
+.proGriDiv { /* What: Projects Grid Div. Why: The featured cards line up in even columns. How: This sets the four cards two by two, so every row stays even, with gaps. */
+
+
+	display               : grid;
+	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	grid-template-columns : repeat( 2, 1fr );
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Projects Grid Div. Why: Two cards crowd a phone. How: This applies at 640px and below. */
+
+
+	.proGriDiv { /* What: One Column Projects Grid Div. Why: One card fits across a phone. How: This sets one column. */
+
+
+		grid-template-columns : 1fr;
+
+
+	}
+
+
+}
+
+/* #endregion feaInnDiv */
+
+/* #endregion homFeaSec */
+
+
+
+/* #region homSerSec */
+
+.homSerSec { /* What: Home Services Section. Why: The services sit on a warmer band with the section spacing. How: This sets the warm ivory, the shared section padding, and clips the pattern behind it. */
+
+
+	background : var( --bac-sun-col );   /* Background Sunken Color = #EDE6D8 */
+	overflow   : hidden;
+	padding    : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
+	position   : relative;
+
+
+}
+
+
+/* #region serInnDiv */
+
+.serInnDiv { /* What: Services Inner Div. Why: The services sit in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the heading block over the cards. */
+
+
+	align-items    : center;
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-p07 );   /* Spacing Vertical Base Plus 7 ~= 104.323px */
+	margin         : 0 auto;
+	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
+	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
+	position       : relative;
+	width          : 100%;
+	z-index        : 1;
+
+
+}
+
+
+/* #region serGriDiv */
+
+.serGriDiv { /* What: Service Grid Div. Why: The service cards line up in even columns. How: This sets four full-width columns with gaps. */
+
+
+	display               : grid;
+	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	grid-template-columns : repeat( 4, 1fr );
+	width                 : 100%;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Service Grid Div. Why: Four cards crowd a tablet. How: This applies at 1024px and below. */
+
+
+	.serGriDiv { /* What: Two Column Service Grid Div. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
+
+
+		grid-template-columns : repeat( 2, 1fr );
+
+
+	}
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Service Grid Div. Why: Two cards crowd a phone. How: This applies at 640px and below. */
+
+
+	.serGriDiv { /* What: One Column Service Grid Div. Why: One card fits across a phone. How: This sets one column. */
+
+
+		grid-template-columns : 1fr;
+
+
+	}
+
+
+}
+
+
+/* #region serCarDiv */
+
+.serCarDiv { /* What: Service Card Div. Why: Each service is one white card. How: This sets the bordered card, stacks its icon, title, and description, and eases its lift and shadow. */
+
+
+	background     : var( --bac-sur-col );                                            /* Background Surface Color = #FFFFFF */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col );                 /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : var( --rad-bor-med );                                            /* Radius Border Medium = 11px */
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-bas );                                            /* Spacing Vertical Base ~= 14.572px */
+	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );                       /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	transition     : box-shadow var( --dur-tra-p02 ), transform var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms */
+
+
+}
+.serCarDiv:hover { /* What: Hovered Service Card Div. Why: A card should respond to the pointer. How: This lifts it 3px and casts the medium shadow. */
+
+
+	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
+	transform  : translateY( -3px );
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Service Card Div. Why: Someone who asked for less motion shouldn't see the cards glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.serCarDiv { /* What: Motionless Service Card Div. Why: The lift and shadow should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.serIcoDiv { /* What: Service Icon Div. Why: Each service's icon sits on a pale blue tile. How: This draws a 45px rounded tile centering the icon in dark blue. */
+
+
+	align-items     : center;
+	background      : var( --acs-tin-col );                /* Accent-Secondary Tint Color = #B8D9EC */
+	border-radius   : var( --rad-bor-sma );                /* Radius Border Small ~= 8.3px */
+	color           : var( --acs-dar-col );                /* Accent-Secondary Dark Color ~= #126186 */
+	display         : flex;
+	height          : calc( var( --ver-rhy-p04 ) * 1rem ); /* Vertical Rhythm Base Plus 4 ~= 44.876px */
+	justify-content : center;
+	width           : calc( var( --ver-rhy-p04 ) * 1rem ); /* Vertical Rhythm Base Plus 4 ~= 44.876px */
+
+
+}
+
+.serTitHea { /* What: Service Title Heading. Why: Each service is named. How: This sets the title bold in the main text color. */
+
+
+	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight : 700;
+
+
+}
+
+.serDesPar { /* What: Service Description Paragraph. Why: A sentence says what the service covers, quietly. How: This sets it small and muted. */
+
+
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+
+
+}
+
+/* #endregion serCarDiv */
+
+/* #endregion serGriDiv */
+
+/* #endregion serInnDiv */
+
+/* #endregion homSerSec */
+
+
+
+/* #region homCtaSec */
+
+.homCtaSec { /* What: Home Call-To-Action Section. Why: The page ends on an invitation that has to read apart from the dark footer below it. How: This leaves the page's ivory showing around the banner's card and pads the section. */
+
+
+	padding : var( --spa-ver-p06 ) 0; /* Spacing Vertical Base Plus 6 ~= 78.751px */
+
+
+}
+
+
+/* #region ctaInnDiv */
+
+.ctaInnDiv { /* What: Call-To-Action Inner Div. Why: The banner is a bold orange card, set apart from the footer by color and by the ivory around it. How: This draws a rounded orange card as wide as the page's content, padded inside, and spreads the text and the button to either end. */
+
+
+	--foc-rin-col : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */ /* What: Focus Ring Color. Why: The site's dark orange ring would vanish against the orange card. How: This draws focus rings inside the card in ink, 5.4:1 against the orange. */
+
+	align-items     : center;
+	background      : var( --acc-mai-col );                                                                           /* Accent Main Color = #F26419 */
+	border-radius   : var( --rad-bor-xla );                                                                           /* Radius Border Extra Large ~= 19.304px */
+	display         : flex;
+	gap             : var( --spa-hor-p04 );                                                                           /* Spacing Horizontal Base Plus 4 ~= 44.876px */
+	justify-content : space-between;
+	margin          : 0 auto;
+	max-width       : calc( var( --con-max-wid ) - var( --gut-sid-pad ) * 2 );                                        /* Container Maximum Width ~= 1,449.365px, Gutter Side Padding, about 19.304px - 44.876px */ /* What: Content Width. Why: The card's edges line up with the content of the page's other columns. How: This takes the cap less the gutter on both sides. */
+	padding         : var( --spa-ver-p06 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-016 ), var( --spa-hor-p06 ) ); /* Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 16 ~= 87.085px @ 1,920px width, Spacing Horizontal Base Plus 6 ~= 78.751px */
+	width           : calc( 100% - var( --gut-sid-pad ) * 2 );                                                        /* Gutter Side Padding, about 19.304px - 44.876px */ /* What: Gutter Inset. Why: The card keeps the page's side margins. How: This takes the full width less the gutter on both sides. */
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Call-To-Action Inner Div. Why: The text and button crowd one row below a desktop. How: This applies at 1024px and below. */
+
+
+	.ctaInnDiv { /* What: Stacked Call-To-Action Inner Div. Why: The button reads better under the text. How: This stacks them against the left. */
+
+
+		align-items    : flex-start;
+		flex-direction : column;
+
+
+	}
+
+
+}
+
+.ctaLabSpa { /* What: Call-To-Action Label Span. Why: A question leads into the invitation. How: This sets it on its own line in ink mono capitals, above the heading. */
+
+
+	color          : var( --tex-mai-col );                   /* Text Main Color = #1A1A2E */
+	display        : block;
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
+	letter-spacing : calc( var( --cdn-pow-009-rec ) * 1em ); /* Core-Design-Number to the Power of 9 Reciprocal ~= 0.080em */
+	margin-bottom  : var( --spa-ver-m01 );                   /* Spacing Vertical Base Minus 1 = 11px */
+	text-transform : uppercase;
+
+
+}
+
+.ctaTitHea { /* What: Call-To-Action Title Heading. Why: The invitation reads dark on the orange card. How: This sets it in ink, scaling with the screen. */
+
+
+	color     : var( --tex-mai-col );                                       /* Text Main Color = #1A1A2E */
+	font-size : clamp( var( --fon-siz-p03 ), 3.5vw, var( --fon-siz-p05 ) ); /* Font Size Base Plus 3 ~= 25.572px, Font Size Base Plus 5 ~= 44.876px */
+
+
+}
+
+
+/* #region ctaActDiv */
+
+.ctaActDiv { /* What: Call-To-Action Actions Div. Why: The banner's button holds its size. How: This lines up the button, never shrinking, wrapping if more join it. */
+
+
+	display     : flex;
+	flex-shrink : 0;
+	flex-wrap   : wrap;
+	gap         : var( --spa-ver-bas ) var( --spa-hor-bas ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base ~= 14.572px */
+
+
+}
+
+.ctaStaAnc { /* What: Call-To-Action Start Anchor. Why: The banner's one action stands out. How: This sets an ink button in mono capitals on the orange card, easing its color and lift. */
+
+
+	background     : var( --bac-inv-col );                                            /* Background Inverse Color = #1A1A2E */
+	border-radius  : var( --rad-bor-xsm );                                            /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --bac-pag-col );                                            /* Background Page Color = #F5F0E8 */
+	font-family    : var( --fon-fam-sec );                                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                                            /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight    : 500;
+	letter-spacing : 0.04em;
+	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 );                       /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
+	text-transform : uppercase;
+	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+
+
+}
+.ctaStaAnc:hover { /* What: Hovered Call-To-Action Start Anchor. Why: A button should respond to the pointer. How: This lightens its ink a step and lifts it 2px. */
+
+
+	background : oklch( from var( --bac-inv-col ) calc( l + 0.08 ) c h ); /* Background Inverse Color = #1A1A2E, lightened to about #2d2d43 */
+	transform  : translateY( calc( var( --spa-ver-m07 ) * -1 ) );         /* Spacing Vertical Base Minus 7 ~= 2.035px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Call-To-Action Start Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.ctaStaAnc { /* What: Motionless Call-To-Action Start Anchor. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion ctaActDiv */
+
+/* #endregion ctaInnDiv */
+
+/* #endregion homCtaSec */
+
+/* #endregion pagEntDiv */
+
+

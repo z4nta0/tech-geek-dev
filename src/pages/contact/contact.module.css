@@ -1,0 +1,779 @@
+
+
+
+/**
+ * contact.module.css = Contact Page Module
+ *
+ * @summary
+ * Styles for ConPagCom. The page fades up into view like every page. Its
+ * ivory hero clears the fixed bar and stacks an orange label, the heading
+ * with its orange accent, and a muted line. Below it the form, in a white
+ * card, sits beside a sidebar of three cards that sticks under the bar as
+ * the page scrolls; below 1024px they stack. The fields share one look, with
+ * an orange border and glow while focused, the select draws its own arrow,
+ * and the thank-you replaces the form once a message is sent. The sidebar's
+ * availability dot pulses with the shared statusLoopPulse keyframe. The page's
+ * centered column takes the shared container values, and its section the
+ * shared section padding, merged into their own rules. Everything that moves
+ * holds still under reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region pagEntDiv */
+
+.pagEntDiv { /* What: Page Enter Div. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global contentEnterFadeUp keyframe. */
+
+
+	animation : global( contentEnterFadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Div. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.pagEntDiv { /* What: Motionless Page Enter Div. Why: The page should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+
+
+/* #region conHerSec */
+
+.conHerSec { /* What: Contact Hero Section. Why: The page opens with its invitation clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips the pattern behind it. */
+
+
+	background : var( --bac-pag-col );                                                       /* Background Page Color = #F5F0E8 */
+	overflow   : hidden;
+	padding    : calc( var( --nav-bar-hei ) + var( --her-gap-pad ) ) 0 var( --her-gap-pad ); /* Navigation Bar Height ~= 78.751px, Hero Gap Padding, about 59.447px - 138.199px */
+	position   : relative;
+
+
+}
+
+
+/* #region herInnDiv */
+
+.herInnDiv { /* What: Hero Inner Div. Why: The hero's text sits in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the label, heading, and line. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-p02 );   /* Spacing Vertical Base Plus 2 ~= 25.572px */
+	margin         : 0 auto;
+	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */ /* What: Container Cap. Why: The global container rule loaded after this module, so its cap always beat the 640px this rule once asked for. How: This keeps the cap that has always applied. */
+	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
+	position       : relative;
+	width          : 100%;
+	z-index        : 1;
+
+
+}
+
+
+/* #region herLabSpa */
+
+.herLabSpa { /* What: Hero Label Span. Why: A small label names the page above its heading. How: This sets it in orange mono capitals after its rule. */
+
+
+	align-items    : center;
+	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
+	display        : inline-flex;
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas ); /* Font Size Base = 11px */
+	gap            : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
+	letter-spacing : 0.12em;
+	text-transform : uppercase;
+
+
+}
+
+.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws a 26px orange stroke. */
+
+
+	background : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
+	display    : inline-block;
+	height     : var( --bor-wid-bas );                /* Border Width Base ~= 1.160px */
+	width      : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */
+
+
+}
+
+/* #endregion herLabSpa */
+
+
+/* #region herTitHea */
+
+.herTitHea { /* What: Hero Title Heading. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
+
+
+	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+
+
+}
+
+.titAccSpa { /* What: Title Accent Span. Why: One word of the heading carries the accent. How: This sets it in orange. */
+
+
+	color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
+
+
+}
+
+/* #endregion herTitHea */
+
+
+.herSubPar { /* What: Hero Subtitle Paragraph. Why: The line under the heading reads a little larger and quieter. How: This sets it muted, capped at the paragraph measure. */
+
+
+	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
+	font-size : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	max-width : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
+
+
+}
+
+/* #endregion herInnDiv */
+
+/* #endregion conHerSec */
+
+
+
+/* #region conBodSec */
+
+.conBodSec { /* What: Contact Body Section. Why: The form and the sidebar sit on the ivory with the section spacing. How: This sets the background and the shared section padding. */
+
+
+	background : var( --bac-pag-col );   /* Background Page Color = #F5F0E8 */
+	padding    : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
+
+
+}
+
+
+/* #region conGriDiv */
+
+.conGriDiv { /* What: Contact Grid Div. Why: The form and the sidebar sit side by side in the page's centered column. How: This caps and centers the column with its side padding and lays out the form beside a sidebar that grows with the screen, about 243px to 321px, aligned to their tops. */
+
+
+	align-items           : start;
+	display               : grid;
+	gap                   : var( --spa-ver-p05 ) clamp( var( --spa-hor-p03 ), var( --hor-rhy-016 ), var( --spa-hor-p05 ) );              /* Spacing Vertical Base Plus 5 ~= 59.447px, Spacing Horizontal Base Plus 3 ~= 33.876px, Horizontal Rhythm 16 ~= 87.085px @ 1,920px width, Spacing Horizontal Base Plus 5 ~= 59.447px */
+	grid-template-columns : 1fr clamp( calc( var( --ver-rhy-p10 ) * 1rem ), var( --hor-rhy-022 ), calc( var( --ver-rhy-p11 ) * 1rem ) ); /* Vertical Rhythm Base Plus 10 ~= 242.522px, Horizontal Rhythm 22 ~= 470.635px @ 1,920px width, Vertical Rhythm Base Plus 11 ~= 321.273px */
+	margin                : 0 auto;
+	max-width             : var( --con-max-wid );                                                                                        /* Container Maximum Width ~= 1,449.365px */
+	padding               : 0 var( --gut-sid-pad );                                                                                      /* Gutter Side Padding, about 19.304px - 44.876px */
+	width                 : 100%;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Contact Grid Div. Why: The sidebar crowds the form on a tablet. How: This applies at 1024px and below. */
+
+
+	.conGriDiv { /* What: Stacked Contact Grid Div. Why: The form and the sidebar read better one above the other. How: This sets one column. */
+
+
+		grid-template-columns : 1fr;
+
+
+	}
+
+
+}
+
+
+/* #region forWraDiv */
+
+.forWraDiv { /* What: Form Wrap Div. Why: The form and its thank-you sit on one white card. How: This sets the bordered card with generous padding. */
+
+
+	background    : var( --bac-sur-col );                                                                           /* Background Surface Color = #FFFFFF */
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );                                                /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius : var( --rad-bor-med );                                                                           /* Radius Border Medium = 11px */
+	padding       : var( --spa-ver-p04 ) clamp( var( --spa-hor-p02 ), var( --hor-rhy-015 ), var( --spa-hor-p04 ) ); /* Spacing Vertical Base Plus 4 ~= 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px, Horizontal Rhythm 15 ~= 65.739px @ 1,920px width, Spacing Horizontal Base Plus 4 ~= 44.876px */
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Form Wrap Div. Why: The card's padding eats a phone's width. How: This applies at 640px and below. */
+
+
+	.forWraDiv { /* What: Snug Form Wrap Div. Why: The fields need the room. How: This reduces the padding. */
+
+
+		padding : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+
+
+	}
+
+
+}
+
+
+/* #region sucStaDiv */
+
+.sucStaDiv { /* What: Success State Div. Why: The thank-you takes the form's place once the message is sent. How: This centers its check, heading, line, and button in a padded column. */
+
+
+	align-items    : center;
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-bas );                      /* Spacing Vertical Base ~= 14.572px */
+	padding        : var( --spa-ver-p07 ) var( --spa-hor-p03 ); /* Spacing Vertical Base Plus 7 ~= 104.323px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	text-align     : center;
+
+
+}
+
+.sucTitHea { /* What: Success Title Heading. Why: The thank-you's heading says the message went out. How: This sets it in the main text color, a little smaller than the global h2. */
+
+
+	color     : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+	font-size : var( --fon-siz-p03 ); /* Font Size Base Plus 3 ~= 25.572px */
+
+
+}
+
+.sucTexPar { /* What: Success Text Paragraph. Why: The line under the heading says when to expect a reply. How: This sets it muted and capped at the small text measure, about 51 characters. */
+
+
+	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
+	max-width : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
+
+
+}
+
+.resForBut { /* What: Reset Form Button. Why: A visitor may want to send another message. How: This sets an orange outlined button in mono capitals, easing its fill. */
+
+
+	border         : var( --bor-wid-bas ) solid var( --acc-mai-col );             /* Border Width Base ~= 1.160px, Accent Main Color = #F26419 */
+	border-radius  : var( --rad-bor-xsm );                                        /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --acc-dar-col );                                        /* Accent Dark Color ~= #bd3000 */
+	font-family    : var( --fon-fam-sec );                                        /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                                        /* Font Size Base Plus 1 ~= 14.572px */
+	letter-spacing : 0.04em;
+	padding        : var( --spa-ver-m01 ) var( --spa-hor-p02 );                   /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	text-transform : uppercase;
+	transition     : background var( --dur-tra-bas ), color var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+
+
+}
+.resForBut:hover { /* What: Hovered Reset Form Button. Why: A button should respond to the pointer. How: This fills it orange with white text. */
+
+
+	background : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
+	color      : var( --tex-acc-col ); /* Text Accent Color = #1A1A2E */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Reset Form Button. Why: Someone who asked for less motion shouldn't see the button fill fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.resForBut { /* What: Motionless Reset Form Button. Why: The fill should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion sucStaDiv */
+
+
+/* #region conForFor */
+
+.conForFor { /* What: Contact Form Form. Why: The fields stack in order. How: This stacks them with gaps. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px */
+
+
+}
+
+.forTitHea { /* What: Form Title Heading. Why: The form's heading is a little smaller than the page's sections. How: This sets it in the main text color with room below. */
+
+
+	color         : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+	font-size     : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	margin-bottom : var( --spa-ver-p03 ); /* Spacing Vertical Base Plus 3 ~= 33.876px */
+
+
+}
+
+.forHonPar { /* What: Form Honeypot Paragraph. Why: Bots should find and fill the honeypot while people never see it, and some bots skip fields hidden with display none. How: This moves it off screen into a 1px box instead, the same as ease-my-life's. */
+
+
+	height   : 1px;
+	left     : -9999px;
+	overflow : hidden;
+	position : absolute;
+	width    : 1px;
+
+
+}
+
+
+/* #region forRowDiv */
+
+.forRowDiv { /* What: Form Row Div. Why: The name and email fields share a row on wider screens. How: This sets two even columns with a gap. */
+
+
+	display               : grid;
+	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	grid-template-columns : 1fr 1fr;
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Form Row Div. Why: Two fields side by side crowd a phone. How: This applies at 640px and below. */
+
+
+	.forRowDiv { /* What: Stacked Form Row Div. Why: Each field needs the full width on a phone. How: This sets one column. */
+
+
+		grid-template-columns : 1fr;
+
+
+	}
+
+
+}
+
+
+/* #region forFieDiv */
+
+.forFieDiv { /* What: Form Field Div. Why: Each label sits over its field. How: This stacks them with a small gap. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-m02 ); /* Spacing Vertical Base Minus 2 ~= 8.304px */
+
+
+}
+
+.fieLabLab { /* What: Field Label Label. Why: Each field's name reads as a small label. How: This sets it in muted mono capitals. */
+
+
+	color          : var( --tex-sec-col );                   /* Text Secondary Color = #3D3D5C */
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
+	font-weight    : 500;
+	letter-spacing : calc( var( --cdn-pow-009-rec ) * 1em ); /* Core-Design-Number to the Power of 9 Reciprocal ~= 0.080em */
+	text-transform : uppercase;
+
+
+}
+
+.forConInp,
+.forConSel,
+.forConTex { /* What: Form Control Fields. Why: The inputs, the select, and the textarea share one look. How: This sets them full width on the ivory with a pale border and rounded corners, easing their focus border and glow. */
+
+
+	background    : var( --bac-pag-col );                                               /* Background Page Color = #F5F0E8 */
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );                    /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius : var( --rad-bor-sma );                                               /* Radius Border Small ~= 8.3px */
+	color         : var( --tex-mai-col );                                               /* Text Main Color = #1A1A2E */
+	font-family   : var( --fon-fam-mai );                                               /* Font Family Main = 'Syne', sans-serif */
+	font-size     : var( --fon-siz-p01 );                                               /* Font Size Base Plus 1 ~= 14.572px */
+	padding       : var( --spa-ver-m01 ) var( --spa-hor-bas );                          /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
+	transition    : border-color var( --dur-tra-bas ), box-shadow var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+	width         : 100%;
+
+
+}
+.forConInp:focus,
+.forConSel:focus,
+.forConTex:focus { /* What: Focused Form Control Fields. Why: A visitor has to see which field they're typing in. How: This swaps the default outline for an orange border and a pale orange glow. */
+
+
+	border-color : var( --foc-rin-col );                            /* Focus Ring Color ~= #bd3000 */
+	box-shadow   : 0 0 0 var( --bor-wid-xla ) var( --acc-tin-col ); /* Border Width Extra Large ~= 3.571px, Accent Tint Color = #FDDCC8 */
+	outline      : none;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Form Control Fields. Why: Someone who asked for less motion shouldn't see the focus glow fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.forConInp,
+	.forConSel,
+	.forConTex { /* What: Motionless Form Control Fields. Why: The focus border and glow should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.forConSel { /* What: Form Control Select. Why: The select draws its own arrow in the site's style. How: This removes the native arrow and draws a muted chevron at the right, making room for it. */
+
+
+	appearance          : none;
+	background-image    : url( "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A7A99' stroke-width='2.5'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E" );
+	background-position : right var( --spa-hor-bas ) center; /* Spacing Horizontal Base ~= 14.572px */
+	background-repeat   : no-repeat;
+	cursor              : pointer;
+	padding-right       : var( --spa-hor-p04 );              /* Spacing Horizontal Base Plus 4 ~= 44.876px */
+
+
+}
+
+.forConTex { /* What: Form Control Textarea. Why: A message needs room and only grows downward. How: This sets a 138px minimum, roomy lines, and vertical resizing only. */
+
+
+	line-height : var( --ver-rhy-p01 );                /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	min-height  : calc( var( --ver-rhy-p08 ) * 1rem ); /* Vertical Rhythm Base Plus 8 ~= 138.199px */
+	resize      : vertical;
+
+
+}
+
+/* #endregion forFieDiv */
+
+/* #endregion forRowDiv */
+
+
+.errMesPar { /* What: Error Message Paragraph. Why: A failed send has to stand out. How: This sets the message on a pale red panel with a red border and text. */
+
+
+	background    : var( --err-tin-col );                            /* Error Tint Color = #fdf0ee */
+	border        : var( --bor-wid-bas ) solid var( --err-mai-col ); /* Border Width Base ~= 1.160px, Error Main Color = #e8b4ae */
+	border-radius : var( --rad-bor-sma );                            /* Radius Border Small ~= 8.3px */
+	color         : var( --err-dar-col );                            /* Error Dark Color = #c0392b */
+	font-size     : var( --fon-siz-p01 );                            /* Font Size Base Plus 1 ~= 14.572px */
+	padding       : var( --spa-ver-m01 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
+
+
+}
+
+.senMesBut { /* What: Send Message Button. Why: Sending is the form's main action. How: This sets an orange button in mono capitals at the form's left, easing its color and lift. */
+
+
+	align-items    : center;
+	align-self     : flex-start;
+	background     : var( --acc-mai-col );                                            /* Accent Main Color = #F26419 */
+	border-radius  : var( --rad-bor-xsm );                                            /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --tex-acc-col );                                            /* Text Accent Color = #1A1A2E */
+	display        : inline-flex;
+	font-family    : var( --fon-fam-sec );                                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                                            /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight    : 500;
+	gap            : var( --spa-hor-m01 );                                            /* Spacing Horizontal Base Minus 1 = 11px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );                          /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 );                       /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
+	text-transform : uppercase;
+	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+
+
+}
+.senMesBut:hover { /* What: Hovered Send Message Button. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
+
+
+	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
+	transform  : translateY( -1px );
+
+
+}
+.senMesBut:disabled { /* What: Disabled Send Message Button. Why: While a message is sending the button can't be pressed again. How: This fades it, shows the not-allowed cursor, and cancels the hover lift, winning over the hover rule above it. */
+
+
+	cursor    : not-allowed;
+	opacity   : 0.65;
+	transform : none;
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Send Message Button. Why: A small button is hard to tap on a phone. How: This applies at 640px and below. */
+
+
+	.senMesBut { /* What: Full Width Send Message Button. Why: The button spans the form on a phone. How: This stretches it and centers its label. */
+
+
+		justify-content : center;
+		width           : 100%;
+
+
+	}
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Send Message Button. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.senMesBut { /* What: Motionless Send Message Button. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion conForFor */
+
+/* #endregion forWraDiv */
+
+
+/* #region conSidAsi */
+
+.conSidAsi { /* What: Contact Sidebar Aside. Why: The other ways to get in touch stay in view beside the form. How: This stacks the cards and sticks them just under the fixed bar. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-p02 );                                /* Spacing Vertical Base Plus 2 ~= 25.572px */
+	position       : sticky;
+	top            : calc( var( --nav-bar-hei ) + var( --spa-ver-p03 ) ); /* Navigation Bar Height ~= 78.751px, Spacing Vertical Base Plus 3 ~= 33.876px */
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Contact Sidebar Aside. Why: The stacked sidebar sits under the form. How: This applies at 1024px and below. */
+
+
+	.conSidAsi { /* What: Unstuck Contact Sidebar Aside. Why: A stacked sidebar shouldn't stick over the form. How: This returns it to the normal flow. */
+
+
+		position : static;
+
+
+	}
+
+
+}
+
+
+/* #region sidCarDiv */
+
+.sidCarDiv { /* What: Sidebar Card Div. Why: Each group of details sits on its own white card. How: This sets the bordered, rounded, padded card. */
+
+
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius : var( --rad-bor-med );                            /* Radius Border Medium = 11px */
+	padding       : var( --spa-ver-p02 ) var( --spa-hor-p02 );       /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+
+
+}
+
+.sidTitHea { /* What: Sidebar Title Heading. Why: Each card is named. How: This sets the title small and bold with room below. */
+
+
+	color         : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+	font-size     : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight   : 700;
+	margin-bottom : var( --spa-ver-bas ); /* Spacing Vertical Base ~= 14.572px */
+
+
+}
+
+
+/* #region conIteDiv */
+
+.conIteDiv { /* What: Contact Items Div. Why: The contact details stack in a list. How: This stacks them with gaps. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-bas ); /* Spacing Vertical Base ~= 14.572px */
+
+
+}
+
+
+/* #region conIteAnc */
+
+.conIteAnc { /* What: Contact Item Anchor. Why: Each detail is one tappable row. How: This sets the icon beside the text, padded and rounded, easing its background. */
+
+
+	align-items   : center;
+	border-radius : var( --rad-bor-sma );                      /* Radius Border Small ~= 8.3px */
+	display       : flex;
+	gap           : var( --spa-hor-m01 );                      /* Spacing Horizontal Base Minus 1 = 11px */
+	padding       : var( --spa-ver-m01 ) var( --spa-hor-m01 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Minus 1 = 11px */
+	transition    : background var( --dur-tra-bas );           /* Duration Transition Base ~= 157.8ms */
+
+
+}
+.conIteAnc:hover { /* What: Hovered Contact Item Anchor. Why: A row should respond to the pointer. How: This tints it ivory. */
+
+
+	background : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Contact Item Anchor. Why: Someone who asked for less motion shouldn't see the rows fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.conIteAnc { /* What: Motionless Contact Item Anchor. Why: The hover tint should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.conIcoSpa { /* What: Contact Icon Span. Why: Each detail's icon sits on a pale blue tile. How: This draws a 34px rounded tile centering the icon in dark blue, never shrinking. */
+
+
+	align-items     : center;
+	background      : var( --acs-tin-col );                /* Accent-Secondary Tint Color = #B8D9EC */
+	border-radius   : var( --rad-bor-sma );                /* Radius Border Small ~= 8.3px */
+	color           : var( --acs-dar-col );                /* Accent-Secondary Dark Color ~= #126186 */
+	display         : flex;
+	flex-shrink     : 0;
+	height          : calc( var( --ver-rhy-p03 ) * 1rem ); /* Vertical Rhythm Base Plus 3 ~= 33.876px */
+	justify-content : center;
+	width           : calc( var( --ver-rhy-p03 ) * 1rem ); /* Vertical Rhythm Base Plus 3 ~= 33.876px */
+
+
+}
+
+.conLabSpa { /* What: Contact Label Span. Why: The detail's name reads as a small label. How: This sets it on its own line in muted mono capitals. */
+
+
+	color          : var( --tex-mut-col );                   /* Text Muted Color = #646482 */
+	display        : block;
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em ); /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	text-transform : uppercase;
+
+
+}
+
+.conValSpa { /* What: Contact Value Span. Why: The address reads clearly under its name. How: This sets it on its own line in the main text color. */
+
+
+	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+	display     : block;
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight : 500;
+
+
+}
+
+/* #endregion conIteAnc */
+
+/* #endregion conIteDiv */
+
+
+/* #region avaRowDiv */
+
+.avaRowDiv { /* What: Availability Row Div. Why: The status dot sits beside its text. How: This lines them up with a gap. */
+
+
+	align-items : center;
+	display     : flex;
+	gap         : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
+
+
+}
+
+.staDotSpa { /* What: Status Dot Span. Why: A pulsing green dot signals availability. How: This draws an 11px green circle, never shrinking, playing the shared pulse forever. */
+
+
+	animation     : global( statusLoopPulse ) var( --dur-ani-p10 ) var( --mot-sta-eas ) infinite; /* Duration Animation Base Plus 10 ~= 2,627.0ms, Motion Standard Easing = ease */
+	background    : var( --suc-mai-col );                                                         /* Success Main Color = #22c55e */
+	border-radius : 50%;
+	flex-shrink   : 0;
+	height        : calc( var( --ver-rhy-m01 ) * 1rem );                                          /* Vertical Rhythm Base Minus 1 = 11px */
+	width         : calc( var( --ver-rhy-m01 ) * 1rem );                                          /* Vertical Rhythm Base Minus 1 = 11px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Status Dot Span. Why: Someone who asked for less motion shouldn't see the dot pulse. How: This applies only when the reduced-motion preference is set. */
+
+
+	.staDotSpa { /* What: Motionless Status Dot Span. Why: The dot should hold still. How: This turns the pulse off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+.staTexSpa { /* What: Status Text Span. Why: The status reads clearly. How: This sets it on its own line, semibold in the main text color. */
+
+
+	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+	display     : block;
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight : 600;
+
+
+}
+
+.staSubSpa { /* What: Status Subtitle Span. Why: The earliest start reads quietly under the status. How: This sets it on its own line in small muted mono. */
+
+
+	color          : var( --tex-mut-col ); /* Text Muted Color = #646482 */
+	display        : block;
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas ); /* Font Size Base = 11px */
+	letter-spacing : 0.04em;
+	margin-top     : var( --spa-ver-m05 ); /* Spacing Vertical Base Minus 5 ~= 3.572px */
+
+
+}
+
+/* #endregion avaRowDiv */
+
+
+/* #region resTexPar */
+
+.resTexPar { /* What: Response Text Paragraph. Why: The response promise reads as small body text. How: This sets it muted with roomy lines. */
+
+
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+
+
+}
+
+.resTimStr { /* What: Response Time Strong. Why: The 24 hours is the promise's point. How: This sets it in the main text color. */
+
+
+	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+
+
+}
+
+/* #endregion resTexPar */
+
+/* #endregion sidCarDiv */
+
+/* #endregion conSidAsi */
+
+/* #endregion conGriDiv */
+
+/* #endregion conBodSec */
+
+/* #endregion pagEntDiv */
+
+

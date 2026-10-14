@@ -1,0 +1,630 @@
+
+
+
+/**
+ * work.module.css = Work Page Module
+ *
+ * @summary
+ * Styles for WorPagCom. The page fades up into view like every page. Its
+ * ivory hero clears the fixed bar and stacks an orange label, the heading
+ * with its blue accent, and a muted line, with two faint triangles in the
+ * corner. Below it a white filter bar sticks under the bar as the page
+ * scrolls, holding the label, a sideways-scrolling row of pill buttons (the
+ * active one marked with data-filter-button-active), and the count. The
+ * projects grid steps from three columns to two to one, and the closing
+ * process section lays its four step cards in a row with arrows between
+ * them, stacking with turned arrows below 1024px. The page's centered
+ * columns take the shared container values, and its sections the shared
+ * section padding, merged into their own rules. Everything that moves holds
+ * still under reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region pagEntDiv */
+
+.pagEntDiv { /* What: Page Enter Div. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global contentEnterFadeUp keyframe. */
+
+
+	animation : global( contentEnterFadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Div. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.pagEntDiv { /* What: Motionless Page Enter Div. Why: The page should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+
+
+/* #region pagHerSec */
+
+.pagHerSec { /* What: Page Hero Section. Why: The page opens with its heading block clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips its corner drawing. */
+
+
+	background : var( --bac-pag-col );                                                       /* Background Page Color = #F5F0E8 */
+	overflow   : hidden;
+	padding    : calc( var( --nav-bar-hei ) + var( --her-gap-pad ) ) 0 var( --her-gap-pad ); /* Navigation Bar Height ~= 78.751px, Hero Gap Padding, about 59.447px - 138.199px */
+	position   : relative;
+
+
+}
+
+
+/* #region herInnDiv */
+
+.herInnDiv { /* What: Hero Inner Div. Why: The hero's text sits in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the label, heading, and line. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-p02 );   /* Spacing Vertical Base Plus 2 ~= 25.572px */
+	margin         : 0 auto;
+	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */ /* What: Container Cap. Why: The global container rule loaded after this module, so its cap always beat the 640px this rule once asked for. How: This keeps the cap that has always applied. */
+	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
+	position       : relative;
+	width          : 100%;
+	z-index        : 1;
+
+
+}
+
+
+/* #region herLabSpa */
+
+.herLabSpa { /* What: Hero Label Span. Why: A small label names the page above its heading. How: This sets it in orange mono capitals after its rule. */
+
+
+	align-items    : center;
+	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
+	display        : inline-flex;
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas ); /* Font Size Base = 11px */
+	gap            : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
+	letter-spacing : 0.12em;
+	text-transform : uppercase;
+
+
+}
+
+.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws a 26px orange stroke. */
+
+
+	background : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
+	display    : inline-block;
+	height     : var( --bor-wid-bas );                /* Border Width Base ~= 1.160px */
+	width      : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */
+
+
+}
+
+/* #endregion herLabSpa */
+
+
+/* #region herTitHea */
+
+.herTitHea { /* What: Hero Title Heading. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
+
+
+	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+
+
+}
+
+.titAccSpa { /* What: Title Accent Span. Why: The heading's second line carries the accent. How: This sets it in the dark blue. */
+
+
+	color : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
+
+
+}
+
+/* #endregion herTitHea */
+
+
+.herSubPar { /* What: Hero Subtitle Paragraph. Why: The line under the heading reads a little larger and quieter. How: This sets it muted and caps it at the paragraph measure, about 68 characters. */
+
+
+	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
+	font-size : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	max-width : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
+
+
+}
+
+/* #endregion herInnDiv */
+
+
+.corAccSvg { /* What: Corner Accent SVG. Why: The triangles sit in the hero's bottom right corner. How: This pins the drawing there, letting the pointer pass through. */
+
+
+	bottom         : 0;
+	pointer-events : none;
+	position       : absolute;
+	right          : 0;
+
+
+}
+
+/* #endregion pagHerSec */
+
+
+
+/* #region filBarSec */
+
+.filBarSec { /* What: Filter Bar Section. Why: The filter stays reachable while the visitor scrolls the projects. How: This sets a white band between two rules that sticks just under the fixed bar. */
+
+
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
+	border-bottom : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-top    : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	padding       : var( --spa-ver-bas ) 0;                          /* Spacing Vertical Base ~= 14.572px */
+	position      : sticky;
+	top           : var( --nav-bar-hei );                            /* Navigation Bar Height ~= 78.751px */
+	z-index       : 10;
+
+
+}
+
+
+/* #region filInnDiv */
+
+.filInnDiv { /* What: Filter Inner Div. Why: The filter sits in the page's centered column. How: This caps and centers the row with its side padding and lines up the label, the buttons, and the count. */
+
+
+	align-items : center;
+	display     : flex;
+	gap         : var( --spa-hor-p02 );   /* Spacing Horizontal Base Plus 2 ~= 25.572px */
+	margin      : 0 auto;
+	max-width   : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
+	padding     : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
+	width       : 100%;
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Filter Inner Div. Why: The label, buttons, and count can't share one row on a phone. How: This applies at 640px and below. */
+
+
+	.filInnDiv { /* What: Wrapping Filter Inner Div. Why: The row needs room on a phone. How: This lets it wrap, with a row gap between its lines. */
+
+
+		flex-wrap : wrap;
+		gap       : var( --spa-ver-m01 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+
+
+	}
+
+
+}
+
+.filLabSpa { /* What: Filter Label Span. Why: The row says what its buttons do. How: This sets the label in muted mono capitals beside its funnel icon, never shrinking. */
+
+
+	align-items    : center;
+	color          : var( --tex-mut-col );                   /* Text Muted Color = #646482 */
+	display        : flex;
+	flex-shrink    : 0;
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
+	gap            : var( --spa-hor-m02 );                   /* Spacing Horizontal Base Minus 2 ~= 8.304px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em ); /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	text-transform : uppercase;
+
+
+}
+
+
+/* #region filScrDiv */
+
+.filScrDiv { /* What: Filter Scroll Div. Why: The buttons can outgrow the row, and a faded edge tells a visitor there's more to scroll to. How: This lays them in a row that fills the space and scrolls sideways with its scrollbar hidden, with a gradient mask fading each end, the same as ease-my-life's filter rails. */
+
+
+	--fad-edg-off : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */ /* What: Fade Edge Offset. Why: This is how far each edge fade reaches into the row. How: --fad-lef-off and --fad-rig-off start from it. */
+	--fad-lef-off : var( --fad-edg-off );                /* Fade Edge Offset ~= 25.572px */ /* What: Fade Left Offset. Why: The left edge fades until the row reaches its start. How: The mask reads this, and edge-fade.ts zeroes it through data-scroll-start-active. */
+	--fad-rig-off : var( --fad-edg-off );                /* Fade Edge Offset ~= 25.572px */ /* What: Fade Right Offset. Why: The right edge fades until the row reaches its end. How: The mask reads this, and edge-fade.ts zeroes it through data-scroll-end-active. */
+
+	-webkit-mask-image : linear-gradient( to right, transparent 0, #000 var( --fad-lef-off ), #000 calc( 100% - var( --fad-rig-off ) ), transparent 100% ); /* Fade Left Offset ~= 25.572px, Fade Right Offset ~= 25.572px */
+	display            : flex;
+	flex               : 1;
+	gap                : var( --spa-hor-m02 ); /* Spacing Horizontal Base Minus 2 ~= 8.304px */
+	mask-image         : linear-gradient( to right, transparent 0, #000 var( --fad-lef-off ), #000 calc( 100% - var( --fad-rig-off ) ), transparent 100% ); /* Fade Left Offset ~= 25.572px, Fade Right Offset ~= 25.572px */
+	overflow-x         : auto;
+	scrollbar-width    : none;
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Filter Scroll Div. Why: Squeezed between the label and the count, the row showed about 100px of its buttons on a phone, hiding most of them. How: This applies at 640px and below. */
+
+
+	.filScrDiv { /* What: Full Width Filter Scroll Div. Why: The buttons need the phone's whole width. How: This gives the row its own line under the label and the count, still scrolling sideways. */
+
+
+		flex-basis : 100%;
+		order      : 1;
+
+
+	}
+
+
+}
+.filScrDiv::-webkit-scrollbar { /* What: Filter Scroll Div Scrollbar. Why: WebKit and Chromium ignore scrollbar-width on older versions. How: This hides their scrollbar too. */
+
+
+	display : none;
+
+
+}
+.filScrDiv[data-scroll-start-active] { /* What: Filter Scroll Div At Start. Why: No buttons hide past the left edge. How: This zeroes the left fade. */
+
+
+	--fad-lef-off : 0px;
+
+
+}
+.filScrDiv[data-scroll-end-active] { /* What: Filter Scroll Div At End. Why: No buttons hide past the right edge. How: This zeroes the right fade. */
+
+
+	--fad-rig-off : 0px;
+
+
+}
+
+.filOptBut { /* What: Filter Option Button. Why: Each technology is a pill the visitor can choose. How: This sets an outlined pill in mono capitals that never wraps, easing every change. */
+
+
+	background     : transparent;
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : 999px;
+	color          : var( --tex-sec-col );                            /* Text Secondary Color = #3D3D5C */
+	font-family    : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                            /* Font Size Base = 11px */
+	letter-spacing : 0.04em;
+	padding        : var( --spa-ver-m03 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 3 ~= 6.268px, Spacing Horizontal Base ~= 14.572px */
+	text-transform : uppercase;
+	transition     : all var( --dur-tra-bas );                        /* Duration Transition Base ~= 157.8ms */
+	white-space    : nowrap;
+
+
+}
+.filOptBut:hover { /* What: Hovered Filter Option Button. Why: A button should respond to the pointer. How: This turns its border and text blue. */
+
+
+	border-color : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
+	color        : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
+
+
+}
+.filOptBut[data-filter-button-active] { /* What: Active Filter Option Button. Why: The chosen technology stands out. How: This fills the pill dark blue with white text. */
+
+
+	background   : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
+	border-color : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
+	color        : var( --tex-acc-col ); /* Text Accent Color = #1A1A2E */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Filter Option Button. Why: Someone who asked for less motion shouldn't see the pills fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.filOptBut { /* What: Motionless Filter Option Button. Why: The hover and active looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion filScrDiv */
+
+
+.filCouSpa { /* What: Filter Count Span. Why: The row says how many projects remain. How: This sets the count in muted mono, never shrinking. */
+
+
+	color       : var( --tex-mut-col ); /* Text Muted Color = #646482 */
+	flex-shrink : 0;
+	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
+	font-size   : var( --fon-siz-bas ); /* Font Size Base = 11px */
+
+
+}
+
+/* #endregion filInnDiv */
+
+/* #endregion filBarSec */
+
+
+
+/* #region proLisSec */
+
+.proLisSec { /* What: Projects List Section. Why: The grid sits on the ivory with the page's section spacing. How: This sets the background and the shared section padding. */
+
+
+	background : var( --bac-pag-col );   /* Background Page Color = #F5F0E8 */
+	padding    : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
+
+
+}
+
+
+/* #region proInnDiv */
+
+.proInnDiv { /* What: Projects Inner Div. Why: The grid sits in the page's centered column. How: This caps and centers the column with its side padding. */
+
+
+	margin    : 0 auto;
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
+	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
+	width     : 100%;
+
+
+}
+
+.visHidHea { /* What: Visually Hidden Heading. Why: The projects grid's h2 keeps the headings in order for screen readers, while the hero already introduces the grid on screen. How: This shrinks the heading to a clipped 1px box out of the layout, the standard technique that keeps it in the accessibility tree. */
+
+
+	border      : 0;
+	clip-path   : inset( 50% );
+	height      : 1px;
+	margin      : calc( var( --spa-ver-m09 ) * -1 ) calc( var( --spa-hor-m09 ) * -1 ); /* Spacing Vertical Base Minus 9 ~= 1.16px, Spacing Horizontal Base Minus 9 ~= 1.16px */
+	overflow    : hidden;
+	padding     : 0;
+	position    : absolute;
+	white-space : nowrap;
+	width       : 1px;
+
+
+}
+
+.proGriDiv { /* What: Projects Grid Div. Why: The cards line up in columns, and since the list changes with the filter and grows as projects are added, a short last row should sit centered rather than leave empty slots at one side, which the user's Card Grids exception allows. How: This wraps the cards in rows with gaps, centering each row, and hands every card a third of the row less the gaps, so full rows look like a three-column grid. */
+
+
+	--pro-car-wid : calc( ( 100% - var( --spa-hor-p02 ) * 2 ) / 3 ); /* Spacing Horizontal Base Plus 2 ~= 25.572px */ /* What: Project Card Width. Why: Each card takes one column's share of the row. How: This is a third of the row less its two gaps, which the card reads as its flex basis. */
+
+	display         : flex;
+	flex-wrap       : wrap;
+	gap             : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	justify-content : center;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Projects Grid Div. Why: Three columns crowd a tablet. How: This applies at 1024px and below. */
+
+
+	.proGriDiv { /* What: Two Column Projects Grid Div. Why: Two cards fit side by side on a tablet. How: This hands each card half the row less the gap. */
+
+
+		--pro-car-wid : calc( ( 100% - var( --spa-hor-p02 ) ) / 2 ); /* Spacing Horizontal Base Plus 2 ~= 25.572px */
+
+
+	}
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Projects Grid Div. Why: Two columns crowd a phone. How: This applies at 640px and below. */
+
+
+	.proGriDiv { /* What: One Column Projects Grid Div. Why: One card fits across a phone. How: This hands each card the full row. */
+
+
+		--pro-car-wid : 100%;
+
+
+	}
+
+
+}
+
+.empMesDiv { /* What: Empty Message Div. Why: A filter that finds nothing should say so clearly. How: This centers the message in muted mono with generous room around it. */
+
+
+	color       : var( --tex-mut-col );   /* Text Muted Color = #646482 */
+	font-family : var( --fon-fam-sec );   /* Font Family Secondary = 'DM Mono', monospace */
+	padding     : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
+	text-align  : center;
+
+
+}
+
+/* #endregion proInnDiv */
+
+/* #endregion proLisSec */
+
+
+
+/* #region worPrcSec */
+
+.worPrcSec { /* What: Work Process Section. Why: The page closes on a warmer band with the section spacing. How: This sets the warm ivory, the shared section padding, and clips the pattern behind it. */
+
+
+	background : var( --bac-sun-col );   /* Background Sunken Color = #EDE6D8 */
+	overflow   : hidden;
+	padding    : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
+	position   : relative;
+
+
+}
+
+
+/* #region prcInnDiv */
+
+.prcInnDiv { /* What: Process Inner Div. Why: The process sits in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the heading block over the steps. */
+
+
+	align-items    : center;
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-p07 );   /* Spacing Vertical Base Plus 7 ~= 104.323px */
+	margin         : 0 auto;
+	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
+	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
+	position       : relative;
+	width          : 100%;
+	z-index        : 1;
+
+
+}
+
+
+/* #region prcSteDiv */
+
+.prcSteDiv { /* What: Process Steps Div. Why: The four steps read left to right as cards of one height. How: This lays the cards and arrows in a full-width row, stretching every card to the tallest one. */
+
+
+	align-items : stretch;
+	display     : flex;
+	gap         : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
+	width       : 100%;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Process Steps Div. Why: Four cards in a row crowd a tablet. How: This applies at 1024px and below. */
+
+
+	.prcSteDiv { /* What: Paired Process Steps Div. Why: Four cards divide evenly into two rows of two on a tablet, and their numbers already show the order. How: This sets a two-column grid with gaps. */
+
+
+		display               : grid;
+		gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+		grid-template-columns : repeat( 2, 1fr );
+
+
+	}
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Process Steps Div. Why: Two cards side by side crowd a phone. How: This applies at 768px and below. */
+
+
+	.prcSteDiv { /* What: Stacked Process Steps Div. Why: The steps read top to bottom on a phone, each card as wide as the column. How: This stacks the cards and arrows in a flex column, stretching every card to the full width. */
+
+
+		align-items    : stretch;
+		display        : flex;
+		flex-direction : column;
+		gap            : var( --spa-ver-m01 ); /* Spacing Vertical Base Minus 1 = 11px */
+
+
+	}
+
+
+}
+
+
+/* #region steCarDiv */
+
+.steCarDiv { /* What: Step Card Div. Why: Each step is one white card. How: This sets the card, sharing the row evenly, and stacks its number, title, and description. */
+
+
+	background     : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : var( --rad-bor-med );                            /* Radius Border Medium = 11px */
+	display        : flex;
+	flex           : 1;
+	flex-direction : column;
+	gap            : var( --spa-ver-m01 );                            /* Spacing Vertical Base Minus 1 = 11px */
+	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );       /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+
+
+}
+
+.steNumDiv { /* What: Step Number Div. Why: The number shows the step's place at a glance. How: This sets it large in orange mono, tight. */
+
+
+	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p04 ); /* Font Size Base Plus 4 ~= 33.876px */
+	font-weight    : 500;
+	letter-spacing : -0.04em;
+	line-height    : var( --ver-rhy-m01 ); /* Vertical Rhythm Base Minus 1 = 1 */
+
+
+}
+
+.steTitHea { /* What: Step Title Heading. Why: Each step is named. How: This sets the title bold in the main text color. */
+
+
+	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight : 700;
+
+
+}
+
+.steDesPar { /* What: Step Description Paragraph. Why: A sentence explains the step more quietly. How: This sets it small and muted. */
+
+
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+
+
+}
+
+/* #endregion steCarDiv */
+
+
+.steArrDiv { /* What: Step Arrow Div. Why: An arrow leads from one card to the next. How: This holds the arrow at the row's top, dropped to sit beside the cards' titles, never shrinking or stretching. */
+
+
+	align-items : center;
+	align-self  : flex-start;
+	display     : flex;
+	flex-shrink : 0;
+	padding-top : var( --spa-ver-p04 ); /* Spacing Vertical Base Plus 4 ~= 44.876px */
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Step Arrow Div. Why: A sideways arrow would break up the two-by-two grid. How: This applies at 1024px and below. */
+
+
+	.steArrDiv { /* What: Hidden Step Arrow Div. Why: The grid's cards read in order by their numbers. How: This hides the arrows. */
+
+
+		display : none;
+
+
+	}
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Step Arrow Div. Why: The stacked steps read top to bottom. How: This applies at 768px and below. */
+
+
+	.steArrDiv { /* What: Turned Step Arrow Div. Why: The arrow has to point down to the next card. How: This shows it again, centered between the cards, and turns it a quarter turn. */
+
+
+		align-self  : center;
+		display     : flex;
+		padding-top : 0;
+		transform   : rotate( 90deg );
+
+
+	}
+
+
+}
+
+/* #endregion prcSteDiv */
+
+/* #endregion prcInnDiv */
+
+/* #endregion worPrcSec */
+
+/* #endregion pagEntDiv */
+
+

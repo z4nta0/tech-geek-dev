@@ -1,0 +1,172 @@
+
+
+
+/**
+ * not-found.module.css = Not Found Module
+ *
+ * @summary
+ * Styles for NotFouCom: a full-screen ivory panel that fades up into view
+ * like every page, centering a huge quiet 404 with a hexagon drawing slowly
+ * turning behind it, the heading and line above the drawing, and an orange
+ * Go Home button. The page's entrance and the drawing's turn play the shared
+ * contentEnterFadeUp and shapeLoopSpin keyframes from the global sheet.
+ * Everything that moves holds still under reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region pagEntDiv */
+
+.pagEntDiv { /* What: Page Enter Div. Why: The 404 content fills the screen and fades in like every page. How: This centers its content on a full-height ivory panel and plays the shared page entrance. */
+
+
+	align-items     : center;
+	animation       : global( contentEnterFadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	background      : var( --bac-pag-col );                                                        /* Background Page Color = #F5F0E8 */
+	display         : flex;
+	justify-content : center;
+	min-height      : 100vh;
+	padding         : var( --spa-ver-p04 ) var( --gut-sid-pad );                                   /* Spacing Vertical Base Plus 4 ~= 44.876px, Gutter Side Padding, about 19.304px - 44.876px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Div. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.pagEntDiv { /* What: Motionless Page Enter Div. Why: The page should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+
+/* #region nofInnDiv */
+
+.nofInnDiv { /* What: Not-Found Inner Div. Why: The number, drawing, text, and button read as one centered block. How: This stacks and centers them, positioning the drawing against the block. */
+
+
+	align-items    : center;
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px */
+	position       : relative;
+	text-align     : center;
+
+
+}
+
+.errCodDiv { /* What: Error Code Div. Why: A huge quiet 404 says what happened at a glance without shouting. How: This sets it in the display font, scaling with the screen, in a deep beige that still reaches the 3:1 large-text contrast, and keeps it from being selected. */
+
+
+	color          : oklch( from var( --bor-mai-col ) calc( l - 0.24 ) c h );                /* Border Main Color = #D8CFBE, darkened to about #8d8475 */
+	font-family    : var( --fon-fam-mai );                                                   /* Font Family Main = 'Syne', sans-serif */
+	font-size      : clamp( min( 27vw, var( --fon-siz-p08 ) ), 20vw, var( --fon-siz-p10 ) ); /* Font Size Base Plus 8 ~= 104.323px, Font Size Base Plus 10 ~= 183.074px */ /* What: Small Phone Floor. Why: About 3.1em wide, the number ran past a 320px screen in WebKit at the p08 floor. How: The floor is the smaller of p08 and 27vw, which only bites below about 386px, about 86px at 320px. */
+	font-weight    : 800;
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * -1em );                                /* Core-Design-Number to the Power of 10 Reciprocal ~= -0.060em */
+	line-height    : var( --ver-rhy-m01 );                                                   /* Vertical Rhythm Base Minus 1 = 1 */
+	user-select    : none;
+
+
+}
+
+.hexDraSvg { /* What: Hexagon Drawing SVG. Why: Nested hexagons turn slowly behind the number, echoing the site's mark. How: This centers the 183px drawing over the block through translate, which combines with the turning transform, and plays the shared slow rotation forever. */
+
+
+	animation      : global( shapeLoopSpin ) var( --dur-ani-p18 ) linear infinite; /* Duration Animation Base Plus 18 ~= 24,914.0ms */
+	height         : calc( var( --ver-rhy-p09 ) * 1rem );                          /* Vertical Rhythm Base Plus 9 ~= 183.074px */
+	left           : 50%;
+	pointer-events : none;
+	position       : absolute;
+	top            : 50%;
+	translate      : -50% -50%;
+	width          : calc( var( --ver-rhy-p09 ) * 1rem );                          /* Vertical Rhythm Base Plus 9 ~= 183.074px */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Hexagon Drawing SVG. Why: Someone who asked for less motion shouldn't see the drawing turn. How: This applies only when the reduced-motion preference is set. */
+
+
+	.hexDraSvg { /* What: Motionless Hexagon Drawing SVG. Why: The drawing should hold still. How: This turns the rotation off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+.nofTitHea { /* What: Not-Found Title Heading. Why: The heading sits above the turning drawing. How: This sets its size and color and lifts it over the drawing. */
+
+
+	color     : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+	font-size : var( --fon-siz-p03 ); /* Font Size Base Plus 3 ~= 25.572px */
+	position  : relative;
+	z-index   : 1;
+
+
+}
+
+.nofDesPar { /* What: Not-Found Description Paragraph. Why: The line explaining the missing page stays short. How: This sets it muted and caps it at the small text measure, about 51 characters. */
+
+
+	color     : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
+	max-width : var( --tex-wid-sma ); /* Text Width Small ~= 22.047em */
+
+
+}
+
+.nofHomAnc { /* What: Not-Found Home Anchor. Why: The way back into the site stands out. How: This sets an orange button in mono capitals, easing its color and lift. */
+
+
+	align-items    : center;
+	background     : var( --acc-mai-col );                                            /* Accent Main Color = #F26419 */
+	border-radius  : var( --rad-bor-xsm );                                            /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --tex-acc-col );                                            /* Text Accent Color = #1A1A2E */
+	display        : inline-flex;
+	font-family    : var( --fon-fam-sec );                                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                                            /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight    : 500;
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );                          /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	padding        : var( --spa-ver-m01 ) var( --spa-hor-p03 );                       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	text-transform : uppercase;
+	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+
+
+}
+.nofHomAnc:hover { /* What: Hovered Not-Found Home Anchor. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
+
+
+	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
+	transform  : translateY( -1px );
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Not-Found Home Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.nofHomAnc { /* What: Motionless Not-Found Home Anchor. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion nofInnDiv */
+
+/* #endregion pagEntDiv */
+
+

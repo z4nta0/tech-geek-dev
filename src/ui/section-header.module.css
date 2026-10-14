@@ -1,0 +1,102 @@
+
+
+
+/**
+ * section-header.module.css = Section Header Module
+ *
+ * @summary
+ * Styles for SecHeaCom: a capped column stacking a small orange label led by
+ * a short rule, the section's heading, and a muted subtitle. The centered
+ * variant centers the whole block and drops the label's rule, which would
+ * otherwise sit off to one side.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region secHeaDiv */
+
+.secHeaDiv { /* What: Section Header Div. Why: The label, heading, and subtitle read as one block no wider than a comfortable line. How: This stacks them with gaps, capped at the subtitle's own line length, so the heading never runs wider than the text under it. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-m01 );                                /* Spacing Vertical Base Minus 1 = 11px */
+	max-width      : calc( var( --cdn-pow-012 ) * var( --fon-siz-p02 ) ); /* Core-Design-Number to the Power of 12 ~= 29.207, Font Size Base Plus 2 ~= 19.304px */ /* What: Subtitle Measure. Why: A container holding reading text takes its width from that text. How: This is the paragraph measure, 29.207em, at the subtitle's own size, about 564px, written out since an em here would read the header's own font size. */
+
+
+}
+.secHeaDiv--center { /* What: Centered Section Header Div. Why: Some sections center their heading. How: This centers the block and its text within the section. */
+
+
+	align-items : center;
+	margin      : 0 auto;
+	text-align  : center;
+
+
+}
+
+
+/* #region secLabSpa */
+
+.secLabSpa { /* What: Section Label Span. Why: A small label names the section before its heading. How: This sets it in the orange mono capitals, spaced out, after its rule. */
+
+
+	align-items    : center;
+	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
+	display        : inline-flex;
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas ); /* Font Size Base = 11px */
+	gap            : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
+	letter-spacing : 0.12em;
+	text-transform : uppercase;
+
+
+}
+
+.labLinSpa { /* What: Label Line Span. Why: A short rule leads into the label. How: This draws a 26px orange stroke that never shrinks. */
+
+
+	background  : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
+	display     : inline-block;
+	flex-shrink : 0;
+	height      : var( --bor-wid-bas );                /* Border Width Base ~= 1.160px */
+	width       : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */
+
+
+}
+.secHeaDiv--center .labLinSpa { /* What: Centered Label Line Span. Why: In a centered header the rule would sit lopsided to one side. How: This hides it. */
+
+
+	display : none;
+
+
+}
+
+/* #endregion secLabSpa */
+
+
+.secTitHea { /* What: Section Title Heading. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
+
+
+	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+
+
+}
+
+.secSubPar { /* What: Section Subtitle Paragraph. Why: The subtitle expands on the heading more quietly. How: This sets it muted, a little larger than body text, and capped at the paragraph measure, about 68 characters. */
+
+
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
+	font-size   : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	max-width   : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
+
+
+}
+
+/* #endregion secHeaDiv */
+
+

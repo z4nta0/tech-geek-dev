@@ -23,12 +23,11 @@ import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why:
  * the repository again. Each image is scaled so it covers its box, which is
  * twice the largest size the site shows it at, never scaled up, and encoded
  * at 0.85 quality, the lowest that showed no difference from the original at
- * 3x zoom. The card illustrations are shown at up to 1920 by 1080, larger
- * than their originals, so they keep their full size. Everything is written
- * as WebP into src/assets, except the birthday card's social preview, which
- * link scrapers need as a JPEG at exactly 1200 by 630, written into public/.
- * Run it with npm run images whenever an image is added or replaced, or a
- * display size changes.
+ * 3x zoom. Everything is written as WebP where the site imports it (the
+ * project screenshots into src/assets/images, the portrait beside the About
+ * page), though a box can cut an image to exactly its size instead, and an
+ * output named .jpg is written as a JPEG. Run it with npm run images whenever
+ * an image is added or replaced, or a display size changes.
  *
  * Sections:
  *  - Constants
@@ -42,16 +41,13 @@ import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why:
 
 // #region Constants
 
-type BoxRecTyp = { cutBoo : boolean, heiNum : number, widNum : number }; // What: Box Record Type. Why: A kind of image is either fitted to cover its box or cut to exactly its size. How: This names whether it's cut, and the box's height and width in pixels, Infinity for no limit.
+type BoxRecTyp = { cutBoo : boolean, heiNum : number, widNum : number }; // What: Box Record Type. Why: A kind of image is either fitted to cover its box or cut to exactly its size. How: This names whether it's cut, and the box's height and width in pixels.
 
 const BOX_REC_OBJ : Record< string, BoxRecTyp > = { // What: Box Record Object. Why: Each kind of image is shown at a different largest size, and its file should be no more than twice that. How: This maps each kind to its box.
 
 
-	'card'     : { cutBoo : false, heiNum : Infinity, widNum : Infinity }, // What: Card Box. Why: The card illustrations fill a 1920 by 1080 stage, larger than their originals. How: This leaves them at full size.
-	'portrait' : { cutBoo : false, heiNum : 640,      widNum : 560      }, // What: Portrait Box. Why: The About portrait fills a 280 by 320 frame. How: This covers twice that.
-	'preview'  : { cutBoo : false, heiNum : 930,      widNum : 1240     }, // What: Preview Box. Why: A card preview fills a 4:3 frame up to about 620px wide. How: This covers twice that.
-	'project'  : { cutBoo : false, heiNum : 698,      widNum : 1240     }, // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 620px wide. How: This covers twice that.
-	'social'   : { cutBoo : true,  heiNum : 630,      widNum : 1200     }  // What: Social Box. Why: Link previews expect a 1200 by 630 image. How: This cuts the original to exactly that.
+	'portrait' : { cutBoo : false, heiNum : 640, widNum : 560  }, // What: Portrait Box. Why: The About portrait fills a 280 by 320 frame. How: This covers twice that.
+	'project'  : { cutBoo : false, heiNum : 698, widNum : 1240 }  // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 620px wide. How: This covers twice that.
 
 
 };
@@ -63,14 +59,9 @@ type ImaRecTyp = { boxStr : string, outStr : string, souStr : string }; // What:
 const IMA_REC_ARR : ImaRecTyp[] = [ // What: Image Record Array. Why: Every image the site shows is rebuilt from this one list. How: Each row names the original, where it's written, and which box it fits.
 
 
-	...[ 'fathers-day-card', 'fdc-special', 'mothers-day-card' ].flatMap( ( dirNamStr ) => [ 'appreciate', 'appreciate-you', 'celebration', 'everything', 'everything-you-do', 'extra-1', 'extra-2', 'extra-image-1', 'extra-image-2', 'feces-flinging', 'important-role', 'little-things', 'love', 'love-you', 'monkeying-around', 'mothers-love', 'need-you', 'need-your', 'our-responsibility', 'our-world', 'provide-for-us', 'simian-role', 'special-day', 'thank-you', 'through-the-generations', 'through-the-simian-offspring' ].map( ( filNamStr ) => ( { boxStr : 'card', outStr : `src/assets/${ dirNamStr }/${ filNamStr }.webp`, souStr : `${ dirNamStr }/${ filNamStr }.png` } ) ) ), // What: Card Illustration Rows. Why: The three cards share most illustration names, and each folder holds only some of them. How: This lists every name for every folder, and the loop skips an original that doesn't exist.
+	...[ 'ease-my-life', 'hair-designs', 'reese-roofing', 'seal-and-shield', 'tech-geek', 'the-bernie-bears', 'tonys-toppers' ].map( ( proNamStr ) => ( { boxStr : 'project', outStr : `src/assets/images/${ proNamStr }-website.webp`, souStr : `${ proNamStr }-website.png` } ) ), // What: Project Screenshot Rows. Why: Every project card shows a screenshot of its site. How: This builds one row per project.
 
-	...[ 'ease-my-life', 'hair-designs', 'reese-roofing', 'seal-and-shield', 'tech-geek', 'the-bernie-bears', 'tonys-toppers' ].map( ( proNamStr ) => ( { boxStr : 'project', outStr : `src/assets/${ proNamStr }-website.webp`, souStr : `${ proNamStr }-website.png` } ) ), // What: Project Screenshot Rows. Why: Every project card shows a screenshot of its site. How: This builds one row per project.
-
-	...[ 'fathers-day', 'fourth-of-july', 'happy-birthday', 'happy-halloween', 'happy-thanksgiving', 'mothers-day' ].map( ( carNamStr ) => ( { boxStr : 'preview', outStr : `src/assets/${ carNamStr }-card-preview-image.webp`, souStr : `${ carNamStr }-card-preview-image.png` } ) ), // What: Card Preview Rows. Why: Every card in the catalog shows a preview. How: This builds one row per card.
-
-	{ boxStr : 'portrait', outStr : 'src/assets/self-portrait.webp',                     souStr : 'self-portrait.jpg'          }, // What: Portrait Row. Why: The About page shows the portrait. How: This fits it to the portrait box.
-	{ boxStr : 'social',   outStr : 'public/happy-birthday-card-preview-image.jpg',      souStr : 'og-happy-birthday-card.png' }  // What: Social Preview Row. Why: The birthday card's link preview is fetched by its fixed URL. How: This cuts it to the social box as a JPEG in public/.
+	{ boxStr : 'portrait', outStr : 'src/pages/about/self-portrait.webp', souStr : 'self-portrait.jpg' } // What: Portrait Row. Why: The About page shows the portrait. How: This fits it to the portrait box.
 
 
 ];
@@ -109,7 +100,7 @@ for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each o
 
 
 	const boxRecObj = BOX_REC_OBJ[ imaRecObj.boxStr ];                                                                                                   // What: Box Record Object. Why: The image fits its kind's box. How: This looks the box up by kind.
-	const mimTypStr = imaRecObj.outStr.endsWith( '.jpg' ) ? 'image/jpeg' : 'image/webp';                                                                 // What: MIME Type String. Why: Only the social preview is a JPEG. How: This picks the format from the output's extension.
+	const mimTypStr = imaRecObj.outStr.endsWith( '.jpg' ) ? 'image/jpeg' : 'image/webp';                                                                 // What: MIME Type String. Why: An output named .jpg is a JPEG, and any other is WebP. How: This picks the format from the output's extension.
 	const souUrlStr = `data:image/${ imaRecObj.souStr.endsWith( '.jpg' ) ? 'jpeg' : 'png' };base64,${ readFileSync( souPatStr ).toString( 'base64' ) }`; // What: Source URL String. Why: A canvas drawn from a file URL can't be read back, while one drawn from data can. How: This hands the original to the page as a data URL.
 
 

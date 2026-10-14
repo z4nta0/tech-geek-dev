@@ -1,0 +1,1055 @@
+
+
+
+/**
+ * about.module.css = About Page Module
+ *
+ * @summary
+ * Styles for AboPagCom. The page fades up into view like every page. Its
+ * ivory hero clears the fixed bar and sets the introduction beside the
+ * portrait in its hexagon frame, with two white fact cards floating off the
+ * portrait's corners; on a tablet the heading spans the row with the
+ * portrait beside the paragraphs, and on a phone the portrait stacks
+ * centered under the introduction. The skills grid steps from four groups
+ * across to two to one, the timeline alternates its milestones either side
+ * of a center line on a tablet or wider and runs each one's year, dot, and
+ * line, and text in three columns on a phone, and the values grid steps like
+ * the skills and lifts a card on hover. The page's centered columns take the
+ * shared container values, and its sections the shared section padding,
+ * merged into their own rules. Everything that moves holds still under
+ * reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region pagEntDiv */
+
+.pagEntDiv { /* What: Page Enter Div. Why: Every page fades up into view as it arrives. How: This plays the shared page entrance from the global contentEnterFadeUp keyframe. */
+
+
+	animation : global( contentEnterFadeUp ) var( --dur-ani-p03 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 3 ~= 366.9ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Page Enter Div. Why: Someone who asked for less motion shouldn't see the page slide in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.pagEntDiv { /* What: Motionless Page Enter Div. Why: The page should simply be there. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+
+
+
+/* #region aboHerSec */
+
+.aboHerSec { /* What: About Hero Section. Why: The page opens with its introduction clear of the fixed bar. How: This sets the ivory band, pads it below the bar, and clips the pattern behind it. */
+
+
+	background : var( --bac-pag-col );                                                       /* Background Page Color = #F5F0E8 */
+	overflow   : hidden;
+	padding    : calc( var( --nav-bar-hei ) + var( --her-gap-pad ) ) 0 var( --her-gap-pad ); /* Navigation Bar Height ~= 78.751px, Hero Gap Padding, about 59.447px - 138.199px */
+	position   : relative;
+
+
+}
+
+
+/* #region herGriDiv */
+
+.herGriDiv { /* What: Hero Grid Div. Why: The introduction and the portrait sit side by side in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and lays out the text beside a portrait column that grows with the screen, about 243px to 426px, with a gap that grows the same way. */
+
+
+	align-items           : center;
+	display               : grid;
+	gap                   : var( --spa-ver-p08 ) clamp( var( --spa-hor-p05 ), var( --hor-rhy-018 ), var( --spa-hor-p08 ) );              /* Spacing Vertical Base Plus 8 ~= 138.199px, Spacing Horizontal Base Plus 5 ~= 59.447px, Horizontal Rhythm 18 ~= 152.824px @ 1,920px width, Spacing Horizontal Base Plus 8 ~= 138.199px */
+	grid-template-columns : 1fr clamp( calc( var( --ver-rhy-p10 ) * 1rem ), var( --hor-rhy-022 ), calc( var( --ver-rhy-p12 ) * 1rem ) ); /* Vertical Rhythm Base Plus 10 ~= 242.522px, Horizontal Rhythm 22 ~= 470.635px @ 1,920px width, Vertical Rhythm Base Plus 12 ~= 425.592px */
+	margin                : 0 auto;
+	max-width             : var( --con-max-wid );                                                                                        /* Container Maximum Width ~= 1,449.365px */
+	padding               : 0 var( --gut-sid-pad );                                                                                      /* Gutter Side Padding, about 19.304px - 44.876px */
+	position              : relative;
+	width                 : 100%;
+	z-index               : 1;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Hero Grid Div. Why: The portrait column crowds a tablet's row beside the heading. How: This applies at 1024px and below. */
+
+
+	.herGriDiv { /* What: Tablet Hero Grid Div Layout. Why: The heading takes the full width, with the portrait beside the paragraphs below it. How: This sets a flexible text column and a column sized to the portrait, with the text's own row gap. */
+
+
+		gap                   : var( --spa-ver-p02 ) clamp( var( --spa-hor-p05 ), var( --hor-rhy-018 ), var( --spa-hor-p08 ) ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 5 ~= 59.447px, Horizontal Rhythm 18 ~= 152.824px @ 1,920px width, Spacing Horizontal Base Plus 8 ~= 138.199px */
+		grid-template-columns : minmax( 0, 1fr ) auto;
+
+
+	}
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Hero Grid Div. Why: A phone has no room for a second column. How: This applies at 768px and below. */
+
+
+	.herGriDiv { /* What: One Column Hero Grid Div. Why: The portrait stacks under the introduction on a phone. How: This sets one column. */
+
+
+		grid-template-columns : minmax( 0, 1fr );
+
+
+	}
+
+
+}
+
+
+/* #region herTexDiv */
+
+.herTexDiv { /* What: Hero Text Div. Why: The introduction reads as one column. How: This stacks the label, heading, paragraphs, and button with gaps. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px */
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Hero Text Div. Why: On a tablet the portrait sits beside the paragraphs rather than the whole column, so the column's pieces have to join the hero's grid. How: This applies at 1024px and below. */
+
+
+	.herTexDiv { /* What: Dissolved Hero Text Div. Why: The label, heading, paragraphs, and button each take their own place in the hero's grid. How: This lets its children act as the grid's own items, leaving their reading order unchanged. */
+
+
+		display : contents;
+
+
+	}
+
+
+}
+
+
+/* #region herLabSpa */
+
+.herLabSpa { /* What: Hero Label Span. Why: A small label names the page above its heading. How: This sets it in orange mono capitals after its rule. */
+
+
+	align-items    : center;
+	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
+	display        : inline-flex;
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas ); /* Font Size Base = 11px */
+	gap            : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
+	letter-spacing : 0.12em;
+	text-transform : uppercase;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Hero Label Span. Why: The label sits above the portrait's row on a tablet. How: This applies at 1024px and below. */
+
+
+	.herLabSpa { /* What: Spanning Hero Label Span. Why: The label leads the whole hero. How: This spans both columns. */
+
+
+		grid-column : 1 / -1;
+
+
+	}
+
+
+}
+
+.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws a 26px orange stroke. */
+
+
+	background : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
+	display    : inline-block;
+	height     : var( --bor-wid-bas );                /* Border Width Base ~= 1.160px */
+	width      : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */
+
+
+}
+
+/* #endregion herLabSpa */
+
+
+/* #region herTitHea */
+
+.herTitHea { /* What: Hero Title Heading. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
+
+
+	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Hero Title Heading. Why: The heading sits above the portrait's row on a tablet. How: This applies at 1024px and below. */
+
+
+	.herTitHea { /* What: Spanning Hero Title Heading. Why: The heading keeps the full width so it reads large. How: This spans both columns. */
+
+
+		grid-column : 1 / -1;
+
+
+	}
+
+
+}
+
+.titAccSpa { /* What: Title Accent Span. Why: The heading's second line carries the accent. How: This sets it in the dark blue. */
+
+
+	color : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
+
+
+}
+
+/* #endregion herTitHea */
+
+
+.herLeaPar { /* What: Hero Lead Paragraph. Why: The opening line reads as a quiet pull quote. How: This sets it a little larger in italic Lora, muted, capped at the paragraph measure. */
+
+
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
+	font-family : var( --fon-fam-acc ); /* Font Family Accent = 'Lora', serif */
+	font-size   : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	font-style  : italic;
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	max-width   : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
+
+
+}
+
+.herBodPar { /* What: Hero Body Paragraph. Why: The longer story reads comfortably. How: This sets it muted with roomy lines, capped at the paragraph measure. */
+
+
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	max-width   : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
+
+
+}
+
+
+/* #region herActDiv */
+
+.herActDiv { /* What: Hero Actions Div. Why: The introduction ends with its button. How: This lines the button up, wrapping if more join it. */
+
+
+	display   : flex;
+	flex-wrap : wrap;
+	gap       : var( --spa-ver-bas ) var( --spa-hor-bas ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base ~= 14.572px */
+
+
+}
+
+.butPriAnc { /* What: Button Primary Anchor. Why: The way to get in touch stands out. How: This sets an orange button in mono capitals, easing its color and lift. */
+
+
+	align-items    : center;
+	background     : var( --acc-mai-col );                                            /* Accent Main Color = #F26419 */
+	border-radius  : var( --rad-bor-xsm );                                            /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --tex-acc-col );                                            /* Text Accent Color = #1A1A2E */
+	display        : inline-flex;
+	font-family    : var( --fon-fam-sec );                                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                                            /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight    : 500;
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );                          /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	padding        : var( --spa-ver-m01 ) var( --spa-hor-p03 );                       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	text-transform : uppercase;
+	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+
+
+}
+.butPriAnc:hover { /* What: Hovered Button Primary Anchor. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
+
+
+	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
+	transform  : translateY( -1px );
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Button Primary Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.butPriAnc { /* What: Motionless Button Primary Anchor. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion herActDiv */
+
+/* #endregion herTexDiv */
+
+
+/* #region herVisDiv */
+
+.herVisDiv { /* What: Hero Visual Div. Why: The portrait and its facts sit centered in their column. How: This centers them, positioning the floating cards against the column. */
+
+
+	align-items     : center;
+	display         : flex;
+	justify-content : center;
+	position        : relative;
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Hero Visual Div. Why: The portrait and facts still fit on a tablet, beside the paragraphs rather than the heading. How: This applies at 1024px and below. */
+
+
+	.herVisDiv { /* What: Beside Paragraphs Hero Visual Div. Why: The portrait sits to the right of the paragraphs and button, below the full-width heading. How: This places it in the second column across the paragraphs' three rows. */
+
+
+		grid-column : 2;
+		grid-row    : 3 / span 3;
+
+
+	}
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Hero Visual Div. Why: On a phone the portrait stacks under the introduction. How: This applies at 768px and below. */
+
+
+	.herVisDiv { /* What: Stacked Hero Visual Div. Why: The portrait should sit centered under the button, larger than beside text, while its frame and facts stay inside the screen's margin. How: This returns it to the single column, centers it, and sets its width to the p11 rhythm step or the column less the facts' overhang, whichever is smaller. */
+
+
+		grid-column  : auto;
+		grid-row     : auto;
+		justify-self : center;
+		margin-top   : var( --spa-ver-p03 );                                                                /* Spacing Vertical Base Plus 3 ~= 33.876px */
+		width        : min( calc( var( --ver-rhy-p11 ) * 1rem ), calc( 100% - var( --spa-hor-p02 ) * 2 ) ); /* Vertical Rhythm Base Plus 11 ~= 321.273px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+
+
+	}
+
+
+}
+
+
+/* #region porWraDiv */
+
+.porWraDiv { /* What: Portrait Wrap Div. Why: The portrait and its frame share one 243 by 321px box. How: This sizes the box and positions the frame against it. */
+
+
+	height   : calc( var( --ver-rhy-p11 ) * 1rem ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
+	position : relative;
+	width    : calc( var( --ver-rhy-p10 ) * 1rem ); /* Vertical Rhythm Base Plus 10 ~= 242.522px */
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Portrait Wrap Div. Why: The stacked portrait grows with its column. How: This applies at 768px and below. */
+
+
+	.porWraDiv { /* What: Fluid Portrait Wrap Div. Why: The portrait fills the stacked column while keeping its desktop proportions. How: This takes the full width with its height following the same ratio as the desktop's p10 by p11 box. */
+
+
+		aspect-ratio : 1 / var( --cdn-pow-001 ); /* Core-Design-Number to the Power of 1 ~= 1.325 */
+		height       : auto;
+		width        : 100%;
+
+
+	}
+
+
+}
+
+.porFraSvg { /* What: Portrait Frame SVG. Why: The hexagon frame reaches about 19px past the portrait on every side. How: This stretches the drawing about 19px beyond the box. */
+
+
+	height   : calc( 100% + var( --spa-ver-p01 ) * 2 );                             /* Spacing Vertical Base Plus 1 ~= 19.304px */
+	inset    : calc( var( --spa-ver-p01 ) * -1 ) calc( var( --spa-hor-p01 ) * -1 ); /* Spacing Vertical Base Plus 1 ~= 19.304px, Spacing Horizontal Base Plus 1 ~= 19.304px */
+	position : absolute;
+	width    : calc( 100% + var( --spa-hor-p01 ) * 2 );                             /* Spacing Horizontal Base Plus 1 ~= 19.304px */
+
+
+}
+
+.porPhoIma { /* What: Portrait Photo Image. Why: The photo fills its box above the frame. How: This sizes and crops it, rounds its corners, and lifts it over the frame. */
+
+
+	border-radius : var( --rad-bor-med ); /* Radius Border Medium = 11px */
+	height        : 100%;
+	object-fit    : cover;
+	position      : relative;
+	width         : 100%;
+	z-index       : 1;
+
+
+}
+
+/* #endregion porWraDiv */
+
+
+/* #region floFacDiv */
+
+.floFacDiv { /* What: Floating Fact Div. Why: Each fact sits on a small white card over the portrait's corner. How: This sets the bordered card with a soft shadow, stacking its figure over its label above the portrait. */
+
+
+	background     : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : var( --rad-bor-med );                            /* Radius Border Medium = 11px */
+	box-shadow     : var( --ele-med-sha );                            /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
+	display        : flex;
+	flex-direction : column;
+	padding        : var( --spa-ver-bas ) var( --spa-hor-p02 );       /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	position       : absolute;
+	z-index        : 2;
+
+
+}
+.floFacDiv--top { /* What: Top Floating Fact Div. Why: The first fact sits off the portrait's top right corner. How: This places it just past that corner. */
+
+
+	right : calc( var( --spa-hor-p02 ) * -1 ); /* Spacing Horizontal Base Plus 2 ~= 25.572px */
+	top   : calc( var( --spa-ver-bas ) * -1 ); /* Spacing Vertical Base ~= 14.572px */
+
+
+}
+.floFacDiv--bottom { /* What: Bottom Floating Fact Div. Why: The second fact sits off the portrait's bottom left corner. How: This places it just past that corner. */
+
+
+	bottom : calc( var( --spa-ver-bas ) * -1 ); /* Spacing Vertical Base ~= 14.572px */
+	left   : calc( var( --spa-hor-p02 ) * -1 ); /* Spacing Horizontal Base Plus 2 ~= 25.572px */
+
+
+}
+
+.facFigSpa { /* What: Fact Figure Span. Why: The figure is the card's point. How: This sets it large and bold in the display font, tight. */
+
+
+	color          : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+	font-family    : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
+	font-size      : var( --fon-siz-p03 ); /* Font Size Base Plus 3 ~= 25.572px */
+	font-weight    : 800;
+	letter-spacing : -0.04em;
+	line-height    : var( --ver-rhy-m01 ); /* Vertical Rhythm Base Minus 1 = 1 */
+
+
+}
+
+.facLabSpa { /* What: Fact Label Span. Why: The label says what the figure counts, quietly. How: This sets it small in muted mono capitals. */
+
+
+	color          : var( --tex-mut-col );                   /* Text Muted Color = #646482 */
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em ); /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	text-transform : uppercase;
+
+
+}
+
+/* #endregion floFacDiv */
+
+/* #endregion herVisDiv */
+
+/* #endregion herGriDiv */
+
+/* #endregion aboHerSec */
+
+
+
+/* #region aboSkiSec */
+
+.aboSkiSec { /* What: About Skills Section. Why: The skills sit on white with the section spacing. How: This sets the background and the shared section padding. */
+
+
+	background : var( --bac-sur-col );   /* Background Surface Color = #FFFFFF */
+	padding    : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
+
+
+}
+
+
+/* #region skiInnDiv */
+
+.skiInnDiv { /* What: Skills Inner Div. Why: The section sits in the page's centered column. How: This caps and centers the column with its side padding. */
+
+
+	margin    : 0 auto;
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
+	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
+	width     : 100%;
+
+
+}
+
+
+/* #region skiGriDiv */
+
+.skiGriDiv { /* What: Skills Grid Div. Why: The groups line up in even columns under the heading. How: This sets four columns with gaps, dropped below the heading. */
+
+
+	display               : grid;
+	gap                   : var( --spa-ver-p03 ) var( --spa-hor-p03 ); /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	grid-template-columns : repeat( 4, 1fr );
+	margin-top            : var( --spa-ver-p05 );                      /* Spacing Vertical Base Plus 5 ~= 59.447px */
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Skills Grid Div. Why: Four groups crowd a tablet. How: This applies at 1024px and below. */
+
+
+	.skiGriDiv { /* What: Two Column Skills Grid Div. Why: Two groups fit side by side on a tablet. How: This sets two columns. */
+
+
+		grid-template-columns : repeat( 2, 1fr );
+
+
+	}
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Skills Grid Div. Why: Two groups crowd a phone. How: This applies at 640px and below. */
+
+
+	.skiGriDiv { /* What: One Column Skills Grid Div. Why: One group fits across a phone. How: This sets one column. */
+
+
+		grid-template-columns : 1fr;
+
+
+	}
+
+
+}
+
+
+/* #region skiGroDiv */
+
+.skiGroDiv { /* What: Skill Group Div. Why: Each group stacks its heading over its tags. How: This stacks them with a gap. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-bas ); /* Spacing Vertical Base ~= 14.572px */
+
+
+}
+
+
+/* #region groHeaDiv */
+
+.groHeaDiv { /* What: Group Header Div. Why: A dot leads into the group's name. How: This sets them side by side. */
+
+
+	align-items : center;
+	display     : flex;
+	gap         : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
+
+
+}
+
+.groDotSpa { /* What: Group Dot Span. Why: A small orange dot marks each group. How: This draws an 8px circle that never shrinks. */
+
+
+	background    : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
+	border-radius : 50%;
+	flex-shrink   : 0;
+	height        : calc( var( --ver-rhy-m02 ) * 1rem ); /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+	width         : calc( var( --ver-rhy-m02 ) * 1rem ); /* Vertical Rhythm Base Minus 2 ~= 8.304px */
+
+
+}
+
+.groTitHea { /* What: Group Title Heading. Why: The group's name reads as a small label. How: This sets it in muted mono capitals. */
+
+
+	color          : var( --tex-sec-col );                   /* Text Secondary Color = #3D3D5C */
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
+	font-weight    : 500;
+	letter-spacing : calc( var( --cdn-pow-009-rec ) * 1em ); /* Core-Design-Number to the Power of 9 Reciprocal ~= 0.080em */
+	text-transform : uppercase;
+
+
+}
+
+/* #endregion groHeaDiv */
+
+
+.skiTagDiv { /* What: Skill Tags Div. Why: The group's technologies read as one cluster. How: This wraps the tags with small gaps. */
+
+
+	display   : flex;
+	flex-wrap : wrap;
+	gap       : var( --spa-ver-m02 ) var( --spa-hor-m02 ); /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base Minus 2 ~= 8.304px */
+
+
+}
+
+/* #endregion skiGroDiv */
+
+/* #endregion skiGriDiv */
+
+/* #endregion skiInnDiv */
+
+/* #endregion aboSkiSec */
+
+
+
+/* #region aboTimSec */
+
+.aboTimSec { /* What: About Timeline Section. Why: The timeline sits on the ivory with the section spacing. How: This sets the background and the shared section padding, and clips the pattern behind it. */
+
+
+	background : var( --bac-pag-col );   /* Background Page Color = #F5F0E8 */
+	overflow   : hidden;
+	padding    : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
+	position   : relative;
+
+
+}
+
+
+/* #region timInnDiv */
+
+.timInnDiv { /* What: Timeline Inner Div. Why: The timeline sits in the page's centered column, above the pattern. How: This caps and centers the column with its side padding and stacks the heading block over the milestones. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-p05 );   /* Spacing Vertical Base Plus 5 ~= 59.447px */
+	margin         : 0 auto;
+	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
+	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
+	position       : relative;
+	width          : 100%;
+	z-index        : 1;
+
+
+}
+
+
+/* #region timLisDiv */
+
+.timLisDiv { /* What: Timeline List Div. Why: The milestones stack with no gaps, so their lines join. How: This stacks them flush. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : 0;
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Timeline List Div. Why: The single column would hug the left under the centered heading while the screen is still wider than the column. How: This applies at 768px and below. */
+
+
+	.timLisDiv { /* What: Centered Timeline List Div. Why: The column sits under the heading's center until the screen is too narrow to leave room beside it. How: This sizes the list to its own content, never wider than the row, and centers it. */
+
+
+		align-self : center;
+		width      : fit-content;
+
+
+	}
+
+
+}
+
+
+/* #region timIteDiv */
+
+.timIteDiv { /* What: Timeline Item Div. Why: Each milestone sets its year, its connector, and its text in columns. How: This lays out a 79px year column, a 34px connector, and the text. */
+
+
+	display               : grid;
+	gap                   : 0 var( --spa-hor-p02 );                                                      /* Spacing Horizontal Base Plus 2 ~= 25.572px */
+	grid-template-columns : calc( var( --ver-rhy-p06 ) * 1rem ) calc( var( --ver-rhy-p03 ) * 1rem ) 1fr; /* Vertical Rhythm Base Plus 6 ~= 78.751px, Vertical Rhythm Base Plus 3 ~= 33.876px */
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Timeline Item Div. Why: The year and connector columns crowd a phone. How: This applies at 640px and below. */
+
+
+	.timIteDiv { /* What: Narrow Timeline Item Div. Why: The text needs more of a phone's width. How: This narrows the year column. */
+
+
+		grid-template-columns : calc( var( --ver-rhy-p05 ) * 1rem ) calc( var( --ver-rhy-p03 ) * 1rem ) 1fr; /* Vertical Rhythm Base Plus 5 ~= 59.447px, Vertical Rhythm Base Plus 3 ~= 33.876px */
+
+
+	}
+
+
+}
+@media ( min-width : 769px ) { /* What: Wide Timeline Item Div. Why: A tablet or wider screen has room for the milestones to alternate either side of a center line, which uses the row's width instead of leaving its right half empty. How: This applies above 768px, beside the max-width 768px queries without overlapping them. */
+
+
+	.timIteDiv { /* What: Alternating Timeline Item Div. Why: Each milestone's text and year sit either side of the shared center line. How: This sets two equal sides around the connector column. */
+
+
+		grid-template-columns : minmax( 0, 1fr ) calc( var( --ver-rhy-p03 ) * 1rem ) minmax( 0, 1fr ); /* Vertical Rhythm Base Plus 3 ~= 33.876px */
+
+
+	}
+	.timIteDiv + .timIteDiv { /* What: Interlocked Timeline Item Div. Why: Alternating sides would leave each side half empty if every milestone took a full row. How: This pulls each milestone up by the p03 step into the one before it, which sits on the other side. */
+
+
+		margin-top : calc( var( --spa-ver-p03 ) * -1 ); /* Spacing Vertical Base Plus 3 ~= 33.876px */
+
+
+	}
+
+
+}
+
+
+/* #region timLefDiv */
+
+.timLefDiv { /* What: Timeline Left Div. Why: The year sits against the connector. How: This pushes it to the column's right edge, nudged down to the dot. */
+
+
+	display         : flex;
+	justify-content : flex-end;
+	padding-top     : var( --spa-ver-m05 ); /* Spacing Vertical Base Minus 5 ~= 3.572px */
+
+
+}
+@media ( min-width : 769px ) { /* What: Wide Timeline Left Div. Why: The year sits beside the dot on the side opposite its milestone. How: This applies above 768px. */
+
+
+	.timLefDiv { /* What: Placed Timeline Left Div. Why: The year shares the milestone's row. How: This keeps it on the item's one grid row. */
+
+
+		grid-row : 1;
+
+
+	}
+	.timIteDiv:nth-child( odd ) .timLefDiv { /* What: Right Timeline Left Div. Why: A milestone on the left puts its year on the right of the line. How: This moves the year to the right column, aligned to the line. */
+
+
+		grid-column     : 3;
+		justify-content : flex-start;
+
+
+	}
+	.timIteDiv:nth-child( even ) .timLefDiv { /* What: Left Timeline Left Div. Why: A milestone on the right puts its year on the left of the line. How: This places the year in the left column, still aligned to the line. */
+
+
+		grid-column : 1;
+
+
+	}
+
+
+}
+
+.timYeaSpa { /* What: Timeline Year Span. Why: Each milestone is dated in the accent. How: This sets the year in orange mono. */
+
+
+	color          : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
+	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas ); /* Font Size Base = 11px */
+	font-weight    : 500;
+	letter-spacing : 0.04em;
+
+
+}
+
+/* #endregion timLefDiv */
+
+
+/* #region timConDiv */
+
+.timConDiv { /* What: Timeline Connector Div. Why: The dot and its line stack in the middle column. How: This centers them in a column. */
+
+
+	align-items    : center;
+	display        : flex;
+	flex-direction : column;
+
+
+}
+@media ( min-width : 769px ) { /* What: Wide Timeline Connector Div. Why: The dot and line form the center line between the two sides. How: This applies above 768px. */
+
+
+	.timConDiv { /* What: Centered Timeline Connector Div. Why: Every milestone's dot sits on the one center line. How: This places it in the middle column of the item's row. */
+
+
+		grid-column : 2;
+		grid-row    : 1;
+
+
+	}
+
+
+}
+
+.timDotDiv { /* What: Timeline Dot Div. Why: Each milestone has its own ring. How: This draws an 11px white circle with a dark blue ring, never shrinking. */
+
+
+	background    : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
+	border        : var( --bor-wid-lar ) solid var( --acs-str-col ); /* Border Width Large ~= 2.035px, Accent-Secondary Strong Color = #4A91B8 */
+	border-radius : 50%;
+	flex-shrink   : 0;
+	height        : calc( var( --ver-rhy-m01 ) * 1rem );             /* Vertical Rhythm Base Minus 1 = 11px */
+	margin-top    : var( --spa-ver-m05 );                            /* Spacing Vertical Base Minus 5 ~= 3.572px */
+	width         : calc( var( --ver-rhy-m01 ) * 1rem );             /* Vertical Rhythm Base Minus 1 = 11px */
+
+
+}
+
+.timLinDiv { /* What: Timeline Line Div. Why: A line leads down to the next milestone. How: This draws a 2px pale stroke that fills the rest of the item. */
+
+
+	background : var( --bor-mai-col );                /* Border Main Color = #D8CFBE */
+	flex       : 1;
+	margin     : var( --spa-ver-m02 ) 0;              /* Spacing Vertical Base Minus 2 ~= 8.304px */
+	min-height : calc( var( --ver-rhy-p03 ) * 1rem ); /* Vertical Rhythm Base Plus 3 ~= 33.876px */
+	width      : var( --bor-wid-lar );                /* Border Width Large ~= 2.035px */
+
+
+}
+
+/* #endregion timConDiv */
+
+
+/* #region timCotDiv */
+
+.timCotDiv { /* What: Timeline Content Div. Why: The milestone's text stacks in the last column, with room before the next. How: This stacks the title, organization, and description, padded below. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-m02 ); /* Spacing Vertical Base Minus 2 ~= 8.304px */
+	padding-bottom : var( --spa-ver-p05 ); /* Spacing Vertical Base Plus 5 ~= 59.447px */
+
+
+}
+@media ( min-width : 769px ) { /* What: Wide Timeline Content Div. Why: Milestones alternate sides, newest on the left. How: This applies above 768px. */
+
+
+	.timCotDiv { /* What: Placed Timeline Content Div. Why: The milestone shares its year's row. How: This keeps it on the item's one grid row. */
+
+
+		grid-row : 1;
+
+
+	}
+	.timIteDiv:nth-child( odd ) .timCotDiv { /* What: Left Timeline Content Div. Why: Odd milestones sit left of the line and read toward it. How: This places them in the left column, aligned right. */
+
+
+		align-items : flex-end;
+		grid-column : 1;
+		text-align  : right;
+
+
+	}
+	.timIteDiv:nth-child( even ) .timCotDiv { /* What: Right Timeline Content Div. Why: Even milestones sit right of the line. How: This places them in the right column. */
+
+
+		grid-column : 3;
+
+
+	}
+
+
+}
+
+.timTitHea { /* What: Timeline Title Heading. Why: Each milestone is named. How: This sets the title bold in the main text color. */
+
+
+	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+	font-size   : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	font-weight : 700;
+	line-height : var( --ver-rhy-bas ); /* Vertical Rhythm Base ~= 1.325 */
+
+
+}
+
+.timOrgSpa { /* What: Timeline Organization Span. Why: Who the work was for reads as a small label. How: This sets it in dark blue mono capitals. */
+
+
+	color          : var( --acs-dar-col );                   /* Accent-Secondary Dark Color ~= #126186 */
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em ); /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	text-transform : uppercase;
+
+
+}
+
+.timDesPar { /* What: Timeline Description Paragraph. Why: A sentence says what happened, quietly. How: This sets it small and muted, capped at the paragraph measure. */
+
+
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	max-width   : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
+
+
+}
+
+/* #endregion timCotDiv */
+
+/* #endregion timIteDiv */
+
+/* #endregion timLisDiv */
+
+/* #endregion timInnDiv */
+
+/* #endregion aboTimSec */
+
+
+
+/* #region aboValSec */
+
+.aboValSec { /* What: About Values Section. Why: The page closes on a warmer band with the section spacing. How: This sets the warm ivory and the shared section padding. */
+
+
+	background : var( --bac-sun-col );   /* Background Sunken Color = #EDE6D8 */
+	padding    : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
+
+
+}
+
+
+/* #region valInnDiv */
+
+.valInnDiv { /* What: Values Inner Div. Why: The section sits in the page's centered column. How: This caps and centers the column with its side padding. */
+
+
+	margin    : 0 auto;
+	max-width : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
+	padding   : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
+	width     : 100%;
+
+
+}
+
+
+/* #region valGriDiv */
+
+.valGriDiv { /* What: Values Grid Div. Why: The value cards line up in even columns under the heading. How: This sets four columns with gaps, dropped below the heading. */
+
+
+	display               : grid;
+	gap                   : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	grid-template-columns : repeat( 4, 1fr );
+	margin-top            : var( --spa-ver-p05 );                      /* Spacing Vertical Base Plus 5 ~= 59.447px */
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Values Grid Div. Why: Four cards crowd a tablet. How: This applies at 1024px and below. */
+
+
+	.valGriDiv { /* What: Two Column Values Grid Div. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
+
+
+		grid-template-columns : repeat( 2, 1fr );
+
+
+	}
+
+
+}
+@media ( max-width : 640px ) { /* What: Phone Values Grid Div. Why: Two cards crowd a phone. How: This applies at 640px and below. */
+
+
+	.valGriDiv { /* What: One Column Values Grid Div. Why: One card fits across a phone. How: This sets one column. */
+
+
+		grid-template-columns : 1fr;
+
+
+	}
+
+
+}
+
+
+/* #region valCarDiv */
+
+.valCarDiv { /* What: Value Card Div. Why: Each value is one white card. How: This sets the bordered card, stacks its symbol, title, and description, and eases its lift and shadow. */
+
+
+	background     : var( --bac-sur-col );                                            /* Background Surface Color = #FFFFFF */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col );                 /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : var( --rad-bor-med );                                            /* Radius Border Medium = 11px */
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-m01 );                                            /* Spacing Vertical Base Minus 1 = 11px */
+	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );                       /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	transition     : box-shadow var( --dur-tra-p02 ), transform var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms */
+
+
+}
+.valCarDiv:hover { /* What: Hovered Value Card Div. Why: A card should respond to the pointer. How: This lifts it 3px and casts the medium shadow. */
+
+
+	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
+	transform  : translateY( -3px );
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Value Card Div. Why: Someone who asked for less motion shouldn't see the cards glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.valCarDiv { /* What: Motionless Value Card Div. Why: The lift and shadow should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.valIcoSpa { /* What: Value Icon Span. Why: A geometric symbol marks each value. How: This sets it large in orange. */
+
+
+	color       : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
+	font-size   : var( --fon-siz-p03 ); /* Font Size Base Plus 3 ~= 25.572px */
+	line-height : var( --ver-rhy-m01 ); /* Vertical Rhythm Base Minus 1 = 1 */
+
+
+}
+
+.valTitHea { /* What: Value Title Heading. Why: Each value is named. How: This sets the title bold in the main text color. */
+
+
+	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	font-weight : 700;
+
+
+}
+
+.valDesPar { /* What: Value Description Paragraph. Why: A sentence says what the value means, quietly. How: This sets it small and muted. */
+
+
+	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
+	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+
+
+}
+
+/* #endregion valCarDiv */
+
+/* #endregion valGriDiv */
+
+/* #endregion valInnDiv */
+
+/* #endregion aboValSec */
+
+/* #endregion pagEntDiv */
+
+

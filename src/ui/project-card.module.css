@@ -1,0 +1,305 @@
+
+
+
+/**
+ * project-card.module.css = Project Card Module
+ *
+ * @summary
+ * Styles for ProCarCom: a white card that lifts on hover, with a 16:9
+ * screenshot that zooms slightly, a dark overlay that fades in over it
+ * holding the Live Site and GitHub buttons, a year badge in its corner, then
+ * the title, a description clamped to three lines, and the tags, finished
+ * with an orange corner accent. A featured card takes a blue border.
+ * Everything that moves holds still under reduced motion.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+*/
+
+
+
+/* #region proCarArt */
+
+.proCarArt { /* What: Project Card Article. Why: Each project is one self-contained card. How: This sets the white card with its border and rounded corners, clipping what spills, and eases its lift and shadow. */
+
+
+	background    : var( --bac-sur-col );                                                                                      /* Background Surface Color = #FFFFFF */
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );                                                           /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius : var( --rad-bor-med );                                                                                      /* Radius Border Medium = 11px */
+	flex          : 0 0 var( --pro-car-wid, auto );                                                                            /* Project Card Width, set by its parent */ /* What: Card Flex. Why: Work's wrapping rows size each card to a column's share without stretching a short last row. How: This holds the card at the width its parent hands it, never growing or shrinking, and is ignored where the parent is a grid. */
+	overflow      : hidden;
+	position      : relative;
+	transition    : transform var( --dur-tra-p02 ) var( --mot-dec-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.proCarArt:hover { /* What: Hovered Project Card Article. Why: A card should respond to the pointer. How: This lifts it 4px and casts the large shadow. */
+
+
+	box-shadow : var( --ele-lar-sha ); /* Elevation Large Shadow, about 0 11px 44.9px plus 0 3.6px 11px -2.7px */
+	transform  : translateY( -4px );
+
+
+}
+.proCarArt--featured { /* What: Featured Project Card Article. Why: Featured projects stand apart from the rest. How: This turns the card's border blue. */
+
+
+	border-color : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Project Card Article. Why: Someone who asked for less motion shouldn't see the card glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.proCarArt { /* What: Motionless Project Card Article. Why: The lift and shadow should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+
+/* #region imaWraDiv */
+
+.imaWraDiv { /* What: Image Wrap Div. Why: The screenshot fills a fixed 16:9 frame. How: This sets the frame's ratio and clips the image as it zooms, positioning the overlay and badge over it. */
+
+
+	aspect-ratio : 16 / 9;
+	overflow     : hidden;
+	position     : relative;
+
+
+}
+
+.proScrIma { /* What: Project Screenshot Image. Why: The screenshot fills its frame without stretching. How: This sizes it to the frame, crops it to cover, and eases its zoom. */
+
+
+	height     : 100%;
+	object-fit : cover;
+	transition : transform var( --dur-tra-p04 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 4 ~= 486.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	width      : 100%;
+
+
+}
+.proCarArt:hover .proScrIma { /* What: Hovered Card Project Screenshot Image. Why: The screenshot leans in as the card lifts. How: This zooms it 4%. */
+
+
+	transform : scale( 1.04 );
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Project Screenshot Image. Why: Someone who asked for less motion shouldn't see the screenshot zoom. How: This applies only when the reduced-motion preference is set. */
+
+
+	.proScrIma { /* What: Motionless Project Screenshot Image. Why: The zoom should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+
+/* #region imaOveDiv */
+
+.imaOveDiv { /* What: Image Overlay Div. Why: The project's links appear over the screenshot on hover. How: This covers the frame in a blurred dark wash, centers the links, and starts hidden, easing in. */
+
+
+	align-items     : center;
+	backdrop-filter : blur( calc( var( --ver-rhy-m05 ) * 1rem ) );                         /* Vertical Rhythm Base Minus 5 ~= 3.571px */
+	background      : oklch( from var( --bac-inv-col ) l c h / var( --cdn-pow-001-rec ) ); /* Background Inverse Color = #1A1A2E @ 0.755 opacity */
+	display         : flex;
+	inset           : 0;
+	justify-content : center;
+	opacity         : 0;
+	position        : absolute;
+	transition      : opacity var( --dur-tra-p02 ) var( --mot-dec-eas );                   /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.proCarArt:hover .imaOveDiv { /* What: Hovered Card Image Overlay Div. Why: Hovering the card reveals its links. How: This fades the overlay in. */
+
+
+	opacity : 1;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Image Overlay Div. Why: Someone who asked for less motion shouldn't see the overlay fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.imaOveDiv { /* What: Motionless Image Overlay Div. Why: The overlay should simply appear. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+
+/* #region oveLinDiv */
+
+.oveLinDiv { /* What: Overlay Links Div. Why: The two buttons sit together in the overlay. How: This lines them up in a row with a gap. */
+
+
+	display : flex;
+	gap     : var( --spa-hor-m01 ); /* Spacing Horizontal Base Minus 1 = 11px */
+
+
+}
+
+.oveButAnc { /* What: Overlay Button Anchor. Why: Each link in the overlay reads as a button. How: This sets the orange button with its icon and mono capitals, easing its color. */
+
+
+	align-items    : center;
+	background     : var( --acc-mai-col );                      /* Accent Main Color = #F26419 */
+	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --tex-acc-col );                      /* Text Accent Color = #1A1A2E */
+	display        : inline-flex;
+	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                      /* Font Size Base = 11px */
+	font-weight    : 500;
+	gap            : var( --spa-hor-m02 );                      /* Spacing Horizontal Base Minus 2 ~= 8.304px */
+	letter-spacing : 0.04em;
+	padding        : var( --spa-ver-m01 ) var( --spa-hor-bas ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
+	text-transform : uppercase;
+	transition     : background var( --dur-tra-bas );           /* Duration Transition Base ~= 157.8ms */
+
+
+}
+.oveButAnc:hover { /* What: Hovered Overlay Button Anchor. Why: A button should respond to the pointer. How: This darkens its orange. */
+
+
+	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
+
+
+}
+.oveButAnc--ghost { /* What: Ghost Overlay Button Anchor. Why: The GitHub button sits back behind the Live Site one. How: This clears its fill and outlines it in translucent white. */
+
+
+	background : transparent;
+	border     : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / 0.5 ); /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.5 opacity */
+	color      : var( --bac-sur-col );                                                      /* Background Surface Color = #FFFFFF */
+
+
+}
+.oveButAnc--ghost:hover { /* What: Hovered Ghost Overlay Button Anchor. Why: The ghost button should respond to the pointer too. How: This gives it a faint white fill. */
+
+
+	background : oklch( from var( --bac-sur-col ) l c h / 0.12 ); /* Background Surface Color = #FFFFFF @ 0.12 opacity */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Overlay Button Anchor. Why: Someone who asked for less motion shouldn't see the buttons fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.oveButAnc { /* What: Motionless Overlay Button Anchor. Why: The hover color should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion oveLinDiv */
+
+/* #endregion imaOveDiv */
+
+
+.yeaBadDiv { /* What: Year Badge Div. Why: The year sits over the screenshot's corner. How: This sets a small blurred dark tag with white mono text in the top left. */
+
+
+	backdrop-filter : blur( calc( var( --ver-rhy-m05 ) * 1rem ) );     /* Vertical Rhythm Base Minus 5 ~= 3.571px */
+	background      : oklch( from var( --bac-inv-col ) l c h / 0.65 ); /* Background Inverse Color = #1A1A2E @ 0.65 opacity */
+	border-radius   : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.571px */
+	color           : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
+	font-family     : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
+	font-size       : var( --fon-siz-bas );                            /* Font Size Base = 11px */
+	left            : var( --spa-hor-m01 );                            /* Spacing Horizontal Base Minus 1 = 11px */
+	letter-spacing  : calc( var( --cdn-pow-010-rec ) * 1em );          /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	padding         : var( --spa-ver-m06 ) var( --spa-hor-m02 );       /* Spacing Vertical Base Minus 6 ~= 2.696px, Spacing Horizontal Base Minus 2 ~= 8.304px */
+	position        : absolute;
+	top             : var( --spa-ver-m01 );                            /* Spacing Vertical Base Minus 1 = 11px */
+
+
+}
+
+/* #endregion imaWraDiv */
+
+
+/* #region carBodDiv */
+
+.carBodDiv { /* What: Card Body Div. Why: The project's text sits below its screenshot. How: This pads it and stacks the title, description, and tags. */
+
+
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-m01 );                      /* Spacing Vertical Base Minus 1 = 11px */
+	padding        : var( --spa-ver-p02 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+
+
+}
+
+.proTitHea { /* What: Project Title Heading. Why: The card names its project. How: This sets the title bold in the main text color. */
+
+
+	color       : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+	font-size   : var( --fon-siz-p02 ); /* Font Size Base Plus 2 ~= 19.304px */
+	font-weight : 700;
+
+
+}
+
+.proDesPar { /* What: Project Description Paragraph. Why: Every card's text should end at the same height. How: This sets the description muted and clamps it to three lines. */
+
+
+	-webkit-box-orient : vertical;
+	-webkit-line-clamp : 3;
+	color              : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
+	display            : -webkit-box;
+	font-size          : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
+	line-height        : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	overflow           : hidden;
+
+
+}
+
+.proTagDiv { /* What: Project Tags Div. Why: The technologies read as one row of pills. How: This wraps them with small gaps under the description. */
+
+
+	display     : flex;
+	flex-wrap   : wrap;
+	gap         : var( --spa-ver-m05 ) var( --spa-hor-m05 ); /* Spacing Vertical Base Minus 5 ~= 3.572px, Spacing Horizontal Base Minus 5 ~= 3.572px */
+	padding-top : var( --spa-ver-m05 );                      /* Spacing Vertical Base Minus 5 ~= 3.572px */
+
+
+}
+
+/* #endregion carBodDiv */
+
+
+.corAccSvg { /* What: Corner Accent SVG. Why: The orange corner sits in the card's top right. How: This pins it there. */
+
+
+	position : absolute;
+	right    : 0;
+	top      : 0;
+
+
+}
+
+/* #endregion proCarArt */
+
+
