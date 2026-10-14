@@ -6,16 +6,16 @@
 import cssModObj from './work.module.css'; // What: CSS Module Object. Why: The Work page's own layout, filter, and process styles live in its own module. How: This maps each class name in work.module.css to its hashed module class.
 
 
-import { Fragment     } from 'react';                        // What: Fragment. Why: Each process step and the arrow after it render as one keyed pair with no wrapper. How: This groups them under one key.
-import { GeoBacCom    } from '../../ui/geo-bg.tsx';          // What: Geometric Background Component. Why: The hero and the process section sit over faint patterns. How: This draws the grid and the dots.
-import { PRO_REC_ARR  } from '../../ui/projects.ts';         // What: Project Record Array. Why: The page shows every project. How: This is the list it filters and renders.
-import { ProCarCom    } from '../../ui/project-card.tsx';    // What: Project Card Component. Why: Each project shows as a card. How: This renders one card per project.
-import { SecHeaCom    } from '../../ui/section-header.tsx';  // What: Section Header Component. Why: The process section opens with a heading block. How: This renders its label, title, and subtitle.
-import { togFadFun    } from './edge-fade.ts';               // What: Toggle Fade Function. Why: The filter row fades whichever edge still hides buttons. How: This sets the row's edge attributes from its scroll position.
-import { useEffect    } from 'react';                        // What: Use Effect. Why: The filter row's fades have to follow its scrolling and resizing. How: This wires and tears down those listeners with the page.
-import { usePagDesFun } from '../../ui/page-description.ts'; // What: Use Page Description Function. Why: The page's search description differs from the home page's. How: The page calls it to swap the one description tag's text while it shows.
-import { useRef       } from 'react';                        // What: Use Ref. Why: The fade effect needs the filter row's element. How: This holds it.
-import { useState     } from 'react';                        // What: Use State. Why: The page remembers which technology the visitor filtered by. How: This holds the active tag.
+import { Fragment     } from 'react';                                  // What: Fragment. Why: Each process step and the arrow after it render as one keyed pair with no wrapper. How: This groups them under one key.
+import { GeoBacCom    } from '../../ui/geo-bg.tsx';                    // What: Geometric Background Component. Why: The hero and the process section sit over faint patterns. How: This draws the grid and the dots.
+import { PRO_REC_ARR  } from '../../ui/projects.ts';                   // What: Project Record Array. Why: The page shows every project. How: This is the list it filters and renders.
+import { ProCarCom    } from '../../ui/project-card.tsx';              // What: Project Card Component. Why: Each project shows as a card. How: This renders one card per project.
+import { SecHeaCom    } from '../../ui/section-header.tsx';            // What: Section Header Component. Why: The process section opens with a heading block. How: This renders its label, title, and subtitle.
+import { togFadFun    } from './edge-fade.ts';                         // What: Toggle Fade Function. Why: The filter row fades whichever edge still hides buttons. How: This sets the row's edge attributes from its scroll position.
+import { useEffect    } from 'react';                                  // What: Use Effect. Why: The filter row's fades have to follow its scrolling and resizing. How: This wires and tears down those listeners with the page.
+import { usePagDesFun } from 'techgeek-design/ui/page-description.ts'; // What: Use Page Description Function. Why: The page's search description differs from the home page's. How: The page calls it to swap the one description tag's text while it shows.
+import { useRef       } from 'react';                                  // What: Use Ref. Why: The fade effect needs the filter row's element. How: This holds it.
+import { useState     } from 'react';                                  // What: Use State. Why: The page remembers which technology the visitor filtered by. How: This holds the active tag.
 
 
 import type { JSX } from 'react'; // What: JSX. Why: The component declares the element it returns. How: This types its return as a JSX element.
