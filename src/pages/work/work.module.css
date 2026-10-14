@@ -606,7 +606,7 @@
 /* #endregion steCarDiv */
 
 
-.steArrDiv { /* What: Step Arrow Div. Why: An arrow leads from one card to the next. How: This holds the arrow at the row's top, dropped to sit beside the cards' titles, never shrinking or stretching. */
+.steArrDiv { /* What: Step Arrow Div. Why: An arrow leads from one card to the next. How: This holds the arrow at the row's top, dropped to sit beside the cards' step numbers, never shrinking or stretching. */
 
 
 	align-items : center;

@@ -479,8 +479,10 @@ on `close-out`.
       card description that ran up to 103 characters a line.
     - **Rule audit**: rounds of seven fresh reviewers, each reading its share
       of every file against both CLAUDE.md files, found about 150, 70, 50, 25,
-      30, and 25 items. Most were stale comments, spacing, alignment, and
-      token comments, but the real problems fixed along the way were:
+      30, 25, 8, and 4 items, the eighth round only comments and alignment,
+      so the audit stopped there. Most were stale comments, spacing,
+      alignment, and token comments, but the real problems fixed along the
+      way were:
       - Home's skills ticker ran out of pills and showed an empty band at wide
         widths;
       - Contact's form had the browser's validation turned off with no

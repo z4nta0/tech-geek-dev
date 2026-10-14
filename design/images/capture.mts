@@ -128,7 +128,7 @@ for ( const sitRecObj of SIT_REC_ARR ) { // What: Site Record Loop. Why: Each pr
 	await capPagObj.screenshot({ // What: Screenshot Call. Why: The card shows the site's first screen. How: This saves the window as the project's original, with any looping animation held still.
 
 
-		animations : 'disabled',                                           // What: Animations. Why: A looping animation would be caught mid-frame. How: This holds every animation still for the capture.
+		animations : 'disabled',                                         // What: Animations. Why: A looping animation would be caught mid-frame. How: This holds every animation still for the capture.
 		path       : `${ ORI_DIR_STR }${ sitRecObj.namStr }-website.png` // What: Path. Why: render.mts reads each original by the project's name. How: This saves it in the originals folder under that name.
 
 
