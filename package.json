@@ -9,6 +9,7 @@
 		"images": "node design/images/render.mts",
 		"lint": "eslint .",
 		"preview": "vite preview",
+		"screenshots": "node design/images/capture.mts && node design/images/render.mts",
 		"test": "playwright test --config tests/playwright.config.ts",
 		"test:accessibility": "playwright test --config tests/playwright.config.ts --project \"accessibility-*\"",
 		"test:interaction": "playwright test --config tests/playwright.config.ts --project \"interaction-*\"",

@@ -47,7 +47,7 @@ const BOX_REC_OBJ : Record< string, BoxRecTyp > = { // What: Box Record Object. 
 
 
 	'portrait' : { cutBoo : false, heiNum : 640, widNum : 560  }, // What: Portrait Box. Why: The About portrait fills a 280 by 320 frame. How: This covers twice that.
-	'project'  : { cutBoo : false, heiNum : 698, widNum : 1240 }  // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 620px wide. How: This covers twice that.
+	'project'  : { cutBoo : false, heiNum : 752, widNum : 1336 }  // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 667px wide, in Home's two-by-two grid. How: This covers twice that.
 
 
 };
