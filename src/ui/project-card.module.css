@@ -272,7 +272,7 @@
 
 }
 
-.proDesPar { /* What: Project Description Paragraph. Why: Every card's text should end at the same height. How: This sets the description muted and clamps it to three lines. */
+.proDesPar { /* What: Project Description Paragraph. Why: Every card's text should end at the same height. How: This sets the description muted, no wider than the paragraph measure, and clamps it to three lines. */
 
 
 	-webkit-box-orient : vertical;
@@ -281,6 +281,7 @@
 	display            : -webkit-box;
 	font-size          : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	line-height        : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	max-width          : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
 	overflow           : hidden;
 
 

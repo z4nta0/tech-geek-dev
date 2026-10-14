@@ -523,7 +523,12 @@ ticker, and the status dots) when waiting for the page to settle.
   open menu at 14 widths from 320 to 1,920px (the 640px, 768px, and 1,024px
   breakpoints and the pixel past each included), failing on sideways
   scrolling, an unclipped element past either edge, text spilling its box,
-  or two reachable controls overlapping.
+  or two reachable controls overlapping. `measure.spec.ts` (added in the close-out)
+  walks every visible paragraph one character at a time at the same widths
+  and fails a rendered line past 75 characters, or 60 for text below the body
+  size, the upper limits of the text measure rule. Its first run found the
+  project, service, value, and Response Time descriptions running up to 103
+  characters, now capped at `--tex-wid-bas`.
 - `npm run test:seo`: checks each page's head as the-bernie-bears' suite
   does (`head.spec.ts`): every page's own title, description, and canonical
   link, the 404 page's noindex, the tags swapping as a visitor moves between

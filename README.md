@@ -42,7 +42,7 @@ npm test                    # every suite
 npm run test:accessibility  # axe-core plus scripted keyboard, naming, reflow, and motion checks
 npm run test:interaction    # page navigation, the phone menu, and every link and button's hover, press, and focus feedback
 npm run test:rendering      # full-page screenshots of each page state against approved baselines
-npm run test:responsive     # every page and the phone menu from 320 to 1,920px: no sideways scroll, spill, or overlap
+npm run test:responsive     # every page and the phone menu from 320 to 1,920px: no sideways scroll, spill, or overlap, and every paragraph within its measure
 npm run test:seo            # titles, descriptions, canonical links, robots, social tags, structured data, the preview card, icons, robots.txt, and the sitemap
 ```
 

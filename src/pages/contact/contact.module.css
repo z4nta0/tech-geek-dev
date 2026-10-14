@@ -767,12 +767,13 @@
 
 /* #region resTexPar */
 
-.resTexPar { /* What: Response Text Paragraph. Why: The response promise reads as small body text. How: This sets it muted with roomy lines. */
+.resTexPar { /* What: Response Text Paragraph. Why: The response promise reads as small body text. How: This sets it muted with roomy lines, no wider than the paragraph measure, which the full-width card on tablets would otherwise pass. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	max-width   : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
 
 
 }

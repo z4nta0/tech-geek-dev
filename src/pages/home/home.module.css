@@ -1259,12 +1259,13 @@
 
 }
 
-.serDesPar { /* What: Service Description Paragraph. Why: A sentence says what the service covers, quietly. How: This sets it small and muted. */
+.serDesPar { /* What: Service Description Paragraph. Why: A sentence says what the service covers, quietly. How: This sets it muted, no wider than the paragraph measure, which a wide card would otherwise pass. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
 	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	line-height : var( --ver-rhy-p01 ); /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	max-width   : var( --tex-wid-bas ); /* Text Width Base ~= 29.207em */
 
 
 }
