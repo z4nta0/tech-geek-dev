@@ -18,7 +18,10 @@ three:
 - **techgeek.cards** (`../tech-geek-cards`): the greeting cards.
 
 All three share one design so they read as a family, and this project is
-converted first, so its design becomes the shared base the other two copy.
+converted first, so its design becomes the shared base the other two use,
+through the shared design package (step 14). TechGeek.cards is converted
+next and TechGeek.support last (decided by the user 2026-10-13), since the
+support site's content can only be cut out of it once it's live elsewhere.
 
 ## Kind of site
 Decided 2026-10-12. z4nta0's real portfolio, so the site is indexed and gets
@@ -461,6 +464,13 @@ on `close-out`.
 12. **Deferred items** below, as the user decides them.
 13. **Close-out**: the README, the design scripts type checked, rule audit
     rounds until clean, and the version bump.
+14. **Shared design package** (decided by the user 2026-10-13): the last step
+    of this project, after the close-out. The package is built from this
+    site's code (see the shared design package under "## Deferred items" for
+    what it holds) and this site switches to it, since TechGeek.cards is
+    converted next and needs it from its first day. TechGeek.support is
+    converted last, because its content has to be cut out only once it's live
+    elsewhere.
 
 ## Test suites
 Added 2026-10-12, adapted from the-bernie-bears'. Playwright suites live in
@@ -550,7 +560,7 @@ decided by the user on 2026-10-13 (step 12, on the `deferred-items` branch).
   squares that encoded nothing, so it's replaced with a real code for
   https://techgeek.dev/.
 - **Cloudflare** (asked for by the user 2026-10-13): after the close-out and
-  everything else is done, the user puts techgeek.dev behind Cloudflare the
+  the shared design package, the user puts techgeek.dev behind Cloudflare the
   way ease-my-life is, guided step by step, which the user's own sites use and
   the client sites don't. ease-my-life's repository records only that its www
   address redirects to HTTPS through Cloudflare, so its Cloudflare and Netlify
@@ -563,4 +573,14 @@ decided by the user on 2026-10-13 (step 12, on the `deferred-items` branch).
   and base element styles, the logo and favicon artwork, and the bar and
   footer. Each site keeps its own theme (this site's geometric, tech motif
   stays here) and its own layout widths and caps, on the same horizontal and
-  vertical scales.
+  vertical scales. Its tokens come in layers: the scales (core design
+  numbers, rhythm, type, spacing, durations, easing, radii, borders, and
+  shadows) shared and never overridden; the color and font roles shared as
+  defaults a site may override; and the layout values (the content cap, side
+  padding, and hero gap) as defaults each site overrides. The bar and footer
+  take props for what differs (the wordmark ending, page links, tagline, menu
+  extras, and sister-site links). It ships source, not a build, which each
+  site's Vite compiles. Breakpoints can't be custom properties, so the package
+  lists them as commented-out tokens in a region of their own, each with its
+  value and what it switches (decided by the user 2026-10-13), and every site
+  keeps the same ones, since the bar and footer switch at 768px.
