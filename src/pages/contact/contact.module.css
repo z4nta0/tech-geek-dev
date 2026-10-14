@@ -271,7 +271,7 @@
 
 
 	border         : var( --bor-wid-bas ) solid var( --acc-mai-col ); /* Border Width Base ~= 1.160px, Accent Main Color = #F26419 */
-	border-radius  : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.571px */
+	border-radius  : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.572px */
 	color          : var( --acc-dar-col );                            /* Accent Dark Color ~= #bd3000 */
 	font-family    : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : var( --fon-siz-p01 );                            /* Font Size Base Plus 1 ~= 14.572px */
@@ -429,7 +429,7 @@
 
 
 	border-color : var( --foc-rin-col );                            /* Focus Ring Color ~= #bd3000 */
-	box-shadow   : 0 0 0 var( --bor-wid-xla ) var( --acc-tin-col ); /* Border Width Extra Large ~= 3.571px, Accent Tint Color = #FDDCC8 */
+	box-shadow   : 0 0 0 var( --bor-wid-xla ) var( --acc-tin-col ); /* Border Width Extra Large ~= 3.572px, Accent Tint Color = #FDDCC8 */
 	outline      : var( --bor-wid-bas ) solid transparent;          /* Border Width Base ~= 1.160px */ /* What: Transparent Outline. Why: Forced colors mode drops the glow and recolors the border, which would leave a focused field unmarked. How: Forced colors mode turns this transparent outline visible, while the border and glow carry the look otherwise. */
 
 
@@ -509,7 +509,7 @@
 	align-items    : center;
 	align-self     : flex-start;
 	background     : var( --acc-mai-col );                      /* Accent Main Color = #F26419 */
-	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
 	color          : var( --tex-acc-col );                      /* Text Accent Color = #1A1A2E */
 	display        : inline-flex;
 	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
@@ -794,7 +794,7 @@
 	font-family    : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : var( --fon-siz-bas ); /* Font Size Base = 11px */
 	letter-spacing : 0.04em;
-	margin-top     : var( --spa-ver-m05 ); /* Spacing Vertical Base Minus 5 ~= 3.571px */
+	margin-top     : var( --spa-ver-m05 ); /* Spacing Vertical Base Minus 5 ~= 3.572px */
 
 
 }

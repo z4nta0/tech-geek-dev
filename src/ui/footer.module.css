@@ -94,6 +94,15 @@
 
 }
 
+.fooMarSvg { /* What: Footer Mark SVG. Why: The mark signs off the footer at a size that follows a visitor's font size. How: This sizes it at the p02 rhythm step. */
+
+
+	height : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */
+	width  : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */
+
+
+}
+
 .fooTagSpa { /* What: Footer Tagline Span. Why: The tagline sits quietly under the mark. How: This sets it small in the mono font and the muted ink. */
 
 
@@ -260,12 +269,12 @@
 
 }
 
-.fooCopSpa { /* What: Footer Copyright Span. Why: The copyright line sits quietly in the mono font. How: This sets it a little smaller than its surroundings, in the muted ink. */
+.fooCopSpa { /* What: Footer Copyright Span. Why: The copyright line sits quietly in the mono font. How: This sets it at the base size the footer's other text uses, in the muted ink. */
 
 
 	color       : var( --tex-inm-col ); /* Text Inverse-Muted Color = #8181a1 */
 	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
-	font-size   : 0.875em;
+	font-size   : var( --fon-siz-bas ); /* Font Size Base = 11px */
 
 
 }
@@ -324,10 +333,12 @@
 
 }
 
-.fooIcoSvg { /* What: Footer Icon SVG. Why: A press anywhere on the icon should register as a press on the link. How: This keeps the icon from catching the pointer. */
+.fooIcoSvg { /* What: Footer Icon SVG. Why: The icon follows a visitor's font size, and a press anywhere on it should register as a press on the link. How: This sizes it at the p01 rhythm step and keeps it from catching the pointer. */
 
 
-	pointer-events : none; /* What: Pass-Through Pointer. Why: WebKit doesn't mark a link pressed when the press lands on an SVG shape inside it, as the-bernie-bears found. How: This lets every press fall through the icon to the link itself. */
+	height         : calc( var( --ver-rhy-p01 ) * 1rem ); /* Vertical Rhythm Base Plus 1 ~= 19.304px */
+	pointer-events : none;                                /* What: Pass-Through Pointer. Why: WebKit doesn't mark a link pressed when the press lands on an SVG shape inside it, as the-bernie-bears found. How: This lets every press fall through the icon to the link itself. */
+	width          : calc( var( --ver-rhy-p01 ) * 1rem ); /* Vertical Rhythm Base Plus 1 ~= 19.304px */
 
 
 }

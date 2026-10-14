@@ -85,13 +85,13 @@ function SitFooCom () : JSX.Element {
 
 
 					<svg
+						className={ cssModObj.fooMarSvg }
+
 						fill='none'
-						height='24'
 						viewBox='0 0 28 28'
-						width='24'
 
 						aria-hidden='true'
-					>{ /* What: Hexagon Mark SVG Element. Why: The site's hexagon mark signs off the footer. How: This draws the outlined hexagon, its filled core, and its center dot, hidden from screen readers as decoration. */ }
+					>{ /* What: Footer Mark SVG Element. Why: The site's hexagon mark signs off the footer. How: This draws the outlined hexagon, its filled core, and its center dot, hidden from screen readers as decoration. */ }
 
 
 						<polygon
@@ -178,9 +178,7 @@ function SitFooCom () : JSX.Element {
 									className={ cssModObj.fooIcoSvg }
 
 									fill='currentColor'
-									height='18'
 									viewBox='0 0 24 24'
-									width='18'
 
 									aria-hidden='true'
 								>{ /* What: Footer Icon SVG Element. Why: The platform's mark tells a visitor where the link goes. How: This draws the mark in the link's color, hidden from screen readers since the link is named, and lets presses fall through to the link. */ }

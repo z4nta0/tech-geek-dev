@@ -229,9 +229,7 @@ function NavBarCom () : JSX.Element {
 							className={ cssModObj.braMarSvg }
 
 							fill='none'
-							height='28'
 							viewBox='0 0 28 28'
-							width='28'
 
 							aria-hidden='true'
 						>{ /* What: Brand Mark SVG Element. Why: The site's hexagon mark leads the wordmark. How: This draws the outlined hexagon, its filled core, and its center dot, hidden from screen readers since the wordmark names the link, and lets presses fall through to the link. */ }
@@ -245,10 +243,11 @@ function NavBarCom () : JSX.Element {
 							/>{ /* What: Outer Hexagon Polygon Element. Why: The mark's outline is an orange hexagon. How: This traces it around the whole mark. */ }
 
 							<polygon
+								style={{ opacity : 'var( --cdn-pow-002-rec )' }} // Core-Design-Number to the Power of 2 Reciprocal ~= 0.570
+
 								fill='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
-								opacity='0.6'
 								points='14,7 21,11 21,17 14,21 7,17 7,11'
-							/>{ /* What: Inner Hexagon Polygon Element. Why: A softer blue hexagon fills the mark's center. How: This draws it at 60% strength inside the outline. */ }
+							/>{ /* What: Inner Hexagon Polygon Element. Why: A softer blue hexagon fills the mark's center. How: This draws it at about 57% strength inside the outline. */ }
 
 							<circle
 								cx='14'

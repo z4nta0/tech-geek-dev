@@ -35,7 +35,7 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
 
 // #region Components
 
-type GbcProTyp = { patOpaNum : number, patVarStr : 'circuit' | 'dots' | 'grid' }; // What: Geometric-Background-Component Props Type. Why: A section picks which pattern it shows and how strongly. How: This types GeoBacCom's props.
+type GbcProTyp = { patOpaStr : string, patVarStr : 'circuit' | 'dots' | 'grid' }; // What: Geometric-Background-Component Props Type. Why: A section picks which pattern it shows and how strongly. How: This types GeoBacCom's props.
 
 // #region GeoBacCom
 
@@ -51,20 +51,22 @@ type GbcProTyp = { patOpaNum : number, patVarStr : 'circuit' | 'dots' | 'grid' }
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
- * @param props.patOpaNum - Pattern Opacity Number: How strongly the pattern
- *                          shows, from 0 to 1.
+ * @param props.patOpaStr - Pattern Opacity String: How strongly the pattern
+ *                          shows, a reciprocal power token where one sits
+ *                          within 10% of the strength wanted, or a plain
+ *                          number from 0 to 1 where none does.
  * @param props.patVarStr - Pattern Variant String: Which pattern to draw.
  *
  * @returns The pattern's wrapper div.
  *
  * @example
  * ```tsx
- * GeoBacCom({ patOpaNum, patVarStr }) // => <GeoBacCom />
+ * GeoBacCom({ patOpaStr, patVarStr }) // => <GeoBacCom />
  * ```
  *
 */
 
-function GeoBacCom ( { patOpaNum, patVarStr } : GbcProTyp ) : JSX.Element {
+function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 
 
 	return (
@@ -73,7 +75,7 @@ function GeoBacCom ( { patOpaNum, patVarStr } : GbcProTyp ) : JSX.Element {
 		<div
 			className={ cssModObj.geoBacDiv }
 
-			style={{ opacity : patOpaNum }}
+			style={{ opacity : patOpaStr }}
 
 			data-element-name-hook='geoBacDiv'
 

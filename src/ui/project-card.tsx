@@ -220,8 +220,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 							key={ tagNamStr }
 
 							labTexStr={ tagNamStr }
-							tagVarStr='blue'
-						/> // What: Tag Label Component. Why: The pill names one technology. How: This shows the name in the blue variant.
+						/> // What: Tag Label Component. Why: The pill names one technology. How: This shows the name at the small size.
 
 
 					))}

@@ -200,9 +200,9 @@ function WorPagCom () : JSX.Element {
 
 
 					<GeoBacCom
-						patOpaNum={ 0.15 }
+						patOpaStr='var( --cdn-pow-007-rec )' // Core-Design-Number to the Power of 7 Reciprocal ~= 0.140
 						patVarStr='grid'
-					/>{ /* What: Geometric Background Component. Why: A faint grid sits behind the hero. How: This draws it at 15% strength. */ }
+					/>{ /* What: Geometric Background Component. Why: A faint grid sits behind the hero. How: This draws it at about 14% strength. */ }
 
 
 
@@ -241,20 +241,22 @@ function WorPagCom () : JSX.Element {
 
 
 						<polygon
+							style={{ opacity : 'var( --cdn-pow-005-rec )' }} // Core-Design-Number to the Power of 5 Reciprocal ~= 0.245
+
 							fill='none'
-							opacity='0.25'
 							points='200,0 200,200 0,200'
 							stroke='var( --acc-mai-col )' // Accent Main Color = #F26419
 							strokeWidth='2'
-						/>{ /* What: Outer Triangle Polygon Element. Why: The larger triangle fills the corner. How: This traces it in orange at 25% strength. */ }
+						/>{ /* What: Outer Triangle Polygon Element. Why: The larger triangle fills the corner. How: This traces it in orange at about 25% strength. */ }
 
 						<polygon
+							style={{ opacity : 'var( --cdn-pow-006-rec )' }} // Core-Design-Number to the Power of 6 Reciprocal ~= 0.185
+
 							fill='none'
-							opacity='0.2'
 							points='200,40 200,200 40,200'
 							stroke='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
 							strokeWidth='1'
-						/>{ /* What: Inner Triangle Polygon Element. Why: A smaller triangle nests inside the first. How: This traces it in blue at 20% strength. */ }
+						/>{ /* What: Inner Triangle Polygon Element. Why: A smaller triangle nests inside the first. How: This traces it in blue at about 19% strength. */ }
 
 
 					</svg>
@@ -355,9 +357,8 @@ function WorPagCom () : JSX.Element {
 									<ProCarCom
 										key={ proRecObj.ideStr }
 
-										isaFeaBoo={ proRecObj.feaBoo }
 										proRecObj={ proRecObj }
-									/> // What: Project Card Component. Why: Each project shows as a card. How: This renders the record, styled as featured when it is.
+									/> // What: Project Card Component. Why: Each project shows as a card. How: This renders the record in the plain card style, since the featured border only means something on Home, where a few projects are picked out.
 
 
 								))}
@@ -392,9 +393,9 @@ function WorPagCom () : JSX.Element {
 
 
 					<GeoBacCom
-						patOpaNum={ 0.2 }
+						patOpaStr='var( --cdn-pow-006-rec )' // Core-Design-Number to the Power of 6 Reciprocal ~= 0.185
 						patVarStr='dots'
-					/>{ /* What: Geometric Background Component. Why: A faint field of dots sits behind the process. How: This draws it at 20% strength. */ }
+					/>{ /* What: Geometric Background Component. Why: A faint field of dots sits behind the process. How: This draws it at about 19% strength. */ }
 
 
 

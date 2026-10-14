@@ -112,21 +112,23 @@ function NotFouCom () : JSX.Element {
 						/>{ /* What: Outer Hexagon Polygon Element. Why: The drawing's outer shape is a faint blue hexagon. How: This traces it at half strength. */ }
 
 						<polygon
-							opacity='0.4'
+							style={{ opacity : 'var( --cdn-pow-003-rec )' }} // Core-Design-Number to the Power of 3 Reciprocal ~= 0.430
+
 							points='100,30 170,67.5 170,132.5 100,170 30,132.5 30,67.5'
 							stroke='var( --acc-mai-col )' // Accent Main Color = #F26419
 							strokeWidth='1'
-						/>{ /* What: Inner Hexagon Polygon Element. Why: A thinner orange hexagon sits inside the blue one. How: This traces it at 40% strength. */ }
+						/>{ /* What: Inner Hexagon Polygon Element. Why: A thinner orange hexagon sits inside the blue one. How: This traces it at about 43% strength. */ }
 
 						<circle
+							style={{ opacity : 'var( --cdn-pow-002-rec )' }} // Core-Design-Number to the Power of 2 Reciprocal ~= 0.570
+
 							cx='100'
 							cy='100'
 							fill='none'
-							opacity='0.6'
 							r='20'
 							stroke='var( --acc-mai-col )' // Accent Main Color = #F26419
 							strokeWidth='1.5'
-						/>{ /* What: Center Ring Circle Element. Why: An orange ring marks the drawing's center. How: This traces it at 60% strength. */ }
+						/>{ /* What: Center Ring Circle Element. Why: An orange ring marks the drawing's center. How: This traces it at about 57% strength. */ }
 
 
 					</svg>

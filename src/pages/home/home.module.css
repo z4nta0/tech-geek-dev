@@ -104,7 +104,7 @@
 
 	animation     : global( shapeLoopSpin ) var( --dur-ani-p18 ) linear infinite reverse; /* Duration Animation Base Plus 18 ~= 24,914.0ms */
 	background    : transparent;
-	border        : var( --bor-wid-xla ) solid var( --acc-mai-col );                      /* Border Width Extra Large ~= 3.571px, Accent Main Color = #F26419 */
+	border        : var( --bor-wid-xla ) solid var( --acc-mai-col );                      /* Border Width Extra Large ~= 3.572px, Accent Main Color = #F26419 */
 	border-radius : 50%;
 	bottom        : 10%;
 	height        : calc( var( --ver-rhy-p09 ) * 1rem );                                  /* Vertical Rhythm Base Plus 9 ~= 183.074px */
@@ -309,10 +309,10 @@
 
 
 	background    : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
-	border-radius : var( --rad-bor-xsm );                /* Radius Border Extra Small ~= 3.571px */
-	bottom        : var( --spa-ver-m05 );                /* Spacing Vertical Base Minus 5 ~= 3.571px */
+	border-radius : var( --rad-bor-xsm );                /* Radius Border Extra Small ~= 3.572px */
+	bottom        : var( --spa-ver-m05 );                /* Spacing Vertical Base Minus 5 ~= 3.572px */
 	content       : '';
-	height        : calc( var( --ver-rhy-m05 ) * 1rem ); /* Vertical Rhythm Base Minus 5 ~= 3.571px */
+	height        : calc( var( --ver-rhy-m05 ) * 1rem ); /* Vertical Rhythm Base Minus 5 ~= 3.572px */
 	left          : 0;
 	opacity       : var( --cdn-pow-002-rec );            /* Core-Design-Number to the Power of 2 Reciprocal ~= 0.570 */
 	position      : absolute;
@@ -361,7 +361,7 @@
 
 	align-items    : center;
 	background     : var( --acc-mai-col );                      /* Accent Main Color = #F26419 */
-	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
 	color          : var( --tex-acc-col );                      /* Text Accent Color = #1A1A2E */
 	display        : inline-flex;
 	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
@@ -409,7 +409,7 @@
 
 	align-items    : center;
 	border         : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
-	border-radius  : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.571px */
+	border-radius  : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.572px */
 	color          : var( --tex-mai-col );                            /* Text Main Color = #1A1A2E */
 	display        : inline-flex;
 	font-family    : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
@@ -527,7 +527,7 @@
 	font-family    : var( --fon-fam-sec );                            /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : var( --fon-siz-bas );                            /* Font Size Base = 11px */
 	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );          /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
-	padding        : var( --spa-ver-m05 ) var( --spa-hor-m01 );       /* Spacing Vertical Base Minus 5 ~= 3.571px, Spacing Horizontal Base Minus 1 = 11px */
+	padding        : var( --spa-ver-m05 ) var( --spa-hor-m01 );       /* Spacing Vertical Base Minus 5 ~= 3.572px, Spacing Horizontal Base Minus 1 = 11px */
 	text-transform : uppercase;
 	white-space    : nowrap;
 
@@ -934,10 +934,10 @@
 
 
 	background    : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
-	border-radius : var( --rad-bor-xsm );                /* Radius Border Extra Small ~= 3.571px */
+	border-radius : var( --rad-bor-xsm );                /* Radius Border Extra Small ~= 3.572px */
 	content       : '';
 	display       : block;
-	height        : var( --bor-wid-xla );                /* Border Width Extra Large ~= 3.571px */
+	height        : var( --bor-wid-xla );                /* Border Width Extra Large ~= 3.572px */
 	margin        : var( --spa-ver-m02 ) auto 0;         /* Spacing Vertical Base Minus 2 ~= 8.304px */
 	width         : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */
 
@@ -1206,25 +1206,26 @@
 
 /* #region serCarDiv */
 
-.serCarDiv { /* What: Service Card Div. Why: Each service is one white card. How: This sets the bordered card, stacks its icon, title, and description, and eases its lift and shadow. */
+.serCarDiv { /* What: Service Card Div. Why: Each service is one white card. How: This sets the bordered card, stacks its icon, title, and description, and eases its border color, lift, and shadow. */
 
 
-	background     : var( --bac-sur-col );                                            /* Background Surface Color = #FFFFFF */
-	border         : var( --bor-wid-bas ) solid var( --bor-mai-col );                 /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
-	border-radius  : var( --rad-bor-med );                                            /* Radius Border Medium = 11px */
+	background     : var( --bac-sur-col );                                                                               /* Background Surface Color = #FFFFFF */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col );                                                    /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : var( --rad-bor-med );                                                                               /* Radius Border Medium = 11px */
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --spa-ver-bas );                                            /* Spacing Vertical Base ~= 14.572px */
-	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );                       /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
-	transition     : box-shadow var( --dur-tra-p02 ), transform var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms */ /* What: Shadow Transition. Why: A box-shadow animates on paint rather than the compositor, but a compositor version would need a second shadow layer faded through opacity, and only the one hovered card repaints. How: This eases the shadow alongside the lift. */
+	gap            : var( --spa-ver-bas );                                                                               /* Spacing Vertical Base ~= 14.572px */
+	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );                                                          /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	transition     : border-color var( --dur-tra-p02 ), box-shadow var( --dur-tra-p02 ), transform var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms */ /* What: Shadow Transition. Why: A box-shadow animates on paint rather than the compositor, but a compositor version would need a second shadow layer faded through opacity, and only the one hovered card repaints. How: This eases the shadow alongside the lift. */
 
 
 }
-.serCarDiv:hover { /* What: Hovered Service Card Div. Why: A card should respond to the pointer. How: This lifts it 3px and casts the medium shadow. */
+.serCarDiv:hover { /* What: Hovered Service Card Div. Why: A card should respond to the pointer. How: This lifts it 3px, turns its border the strong blue, and casts the medium shadow. */
 
 
-	box-shadow : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
-	transform  : translateY( -3px );
+	border-color : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
+	box-shadow   : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
+	transform    : translateY( -3px );
 
 
 }
@@ -1376,7 +1377,7 @@
 
 
 	background     : var( --bac-inv-col );                      /* Background Inverse Color = #1A1A2E */
-	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
 	color          : var( --bac-pag-col );                      /* Background Page Color = #F5F0E8 */
 	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */

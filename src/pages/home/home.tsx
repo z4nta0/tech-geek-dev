@@ -419,9 +419,9 @@ function HomPagCom () : JSX.Element {
 
 
 					<GeoBacCom
-						patOpaNum={ 0.18 }
+						patOpaStr='var( --cdn-pow-006-rec )' // Core-Design-Number to the Power of 6 Reciprocal ~= 0.185
 						patVarStr='circuit'
-					/>{ /* What: Geometric Background Component. Why: A faint circuit sits behind the hero. How: This draws it at 18% strength. */ }
+					/>{ /* What: Geometric Background Component. Why: A faint circuit sits behind the hero. How: This draws it at about 19% strength. */ }
 
 
 
@@ -585,26 +585,29 @@ function HomPagCom () : JSX.Element {
 
 
 									<circle
+										style={{ opacity : 'var( --cdn-pow-001-rec )' }} // Core-Design-Number to the Power of 1 Reciprocal ~= 0.755
+
 										cx='280'
 										cy='20'
 										fill='var( --acc-mai-col )' // Accent Main Color = #F26419
-										opacity='0.8'
 										r='4'
 									/>{ /* What: Node Circle Element. Why: Each node is a dot. How: This draws one in orange. */ }
 
 									<circle
+										style={{ opacity : 'var( --cdn-pow-001-rec )' }} // Core-Design-Number to the Power of 1 Reciprocal ~= 0.755
+
 										cx='300'
 										cy='60'
 										fill='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
-										opacity='0.7'
 										r='2.5'
 									/>{ /* What: Node Circle Element. Why: Each node is a dot. How: This draws one in blue. */ }
 
 									<circle
+										style={{ opacity : 'var( --cdn-pow-002-rec )' }} // Core-Design-Number to the Power of 2 Reciprocal ~= 0.570
+
 										cx='260'
 										cy='200'
 										fill='var( --acc-mai-col )' // Accent Main Color = #F26419
-										opacity='0.6'
 										r='4'
 									/>{ /* What: Node Circle Element. Why: Each node is a dot. How: This draws one in orange. */ }
 
@@ -811,9 +814,9 @@ function HomPagCom () : JSX.Element {
 
 
 					<GeoBacCom
-						patOpaNum={ 0.25 }
+						patOpaStr='var( --cdn-pow-005-rec )' // Core-Design-Number to the Power of 5 Reciprocal ~= 0.245
 						patVarStr='dots'
-					/>{ /* What: Geometric Background Component. Why: A faint field of dots sits behind the services. How: This draws it at 25% strength. */ }
+					/>{ /* What: Geometric Background Component. Why: A faint field of dots sits behind the services. How: This draws it at about 25% strength. */ }
 
 
 

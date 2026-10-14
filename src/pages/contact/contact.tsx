@@ -134,7 +134,7 @@ const CON_ITE_ARR = [ // What: Contact Item Array. Why: The sidebar lists the sa
 		extBoo : true,
 		hreStr : 'https://www.linkedin.com/in/gary-s-walton-654739400/',
 		labStr : 'LinkedIn',
-		valStr : 'linkedin.com/in/gary-s-walton-654739400',
+		valStr : 'LinkedIn profile',
 
 		icoEle : ( // What: LinkedIn Mark Icon. Why: LinkedIn's mark tells a visitor where the link goes. How: This draws it at the item's icon size.
 
@@ -392,9 +392,9 @@ function ConPagCom () : JSX.Element {
 
 
 					<GeoBacCom
-						patOpaNum={ 0.14 }
+						patOpaStr='var( --cdn-pow-007-rec )' // Core-Design-Number to the Power of 7 Reciprocal ~= 0.140
 						patVarStr='circuit'
-					/>{ /* What: Geometric Background Component. Why: A faint circuit sits behind the hero. How: This draws it at 14% strength. */ }
+					/>{ /* What: Geometric Background Component. Why: A faint circuit sits behind the hero. How: This draws it at about 14% strength. */ }
 
 
 

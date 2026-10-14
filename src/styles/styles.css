@@ -130,7 +130,7 @@
 	--bor-wid-sma : calc( var( --ver-rhy-m12 ) * 1rem ); /* What: Border Width Small ~= 0.499px. Why: This is the scale's hairline step, which nothing on this site draws yet. How: This multiplies the m12 rhythm step by 1rem, which browsers snap to whole pixels. */
 	--bor-wid-bas : calc( var( --ver-rhy-m09 ) * 1rem ); /* What: Border Width Base ~= 1.160px. Why: Card, field, tag, and divider outlines and the short label rules draw at about 1px. How: This multiplies the m09 rhythm step by 1rem, which browsers snap to 1px. */
 	--bor-wid-lar : calc( var( --ver-rhy-m07 ) * 1rem ); /* What: Border Width Large ~= 2.035px. Why: The focus ring, the bar links' underline, the toggle's bars, the timeline line, and the outlined shapes draw at 2px. How: This multiplies the m07 rhythm step by 1rem, which browsers snap to 2px. */
-	--bor-wid-xla : calc( var( --ver-rhy-m05 ) * 1rem ); /* What: Border Width Extra Large ~= 3.571px. Why: The hero ring, the stat underlines, the fields' focus glow, and the focus ring's offset need 3px. How: This multiplies the m05 rhythm step by 1rem, which browsers snap to 3px. */
+	--bor-wid-xla : calc( var( --ver-rhy-m05 ) * 1rem ); /* What: Border Width Extra Large ~= 3.572px. Why: The hero ring, the stat underlines, the fields' focus glow, and the focus ring's offset need 3px. How: This multiplies the m05 rhythm step by 1rem, which browsers snap to 3px. */
 
 	/* #endregion Border Width Tokens */
 
@@ -142,7 +142,7 @@
 	--acc-hov-col : oklch( from var( --acc-mai-col ) calc( l - 0.04 ) c h ); /* What: Accent Hover Color ~= #e45700. Why: Orange buttons darken a touch under the pointer, while their dark text has to keep 4.5:1. How: This darkens the main accent by 0.04 OKLCH lightness, the most that keeps the text at about 4.6:1. */
 	--acc-mai-col : #F26419;                                                 /* What: Accent Main Color = #F26419. Why: The brand's sharp orange marks the main actions and the site's accents. How: Buttons, rules, dots, underlines, and borders read it as a fill, never as text on a light background. */
 	--acc-sec-col : #7DB9D8;                                                 /* What: Accent Secondary Color = #7DB9D8. Why: The brand's powder blue is its second color. How: Home's hero shape, the featured card and tag borders, the filter pills' hover border and chosen hover fill, the scrollbar thumb, the code window's ring, the blue text on dark bands, the logo marks, Home's node drawing, and the pages' faint corner drawings read it. */
-	--acc-tin-col : #FDDCC8;                                                 /* What: Accent Tint Color = #FDDCC8. Why: A pale orange softens the focus glow and fills orange tags. How: The fields' focus glow, the orange tag, and the phone menu's hovered social tiles read it. */
+	--acc-tin-col : #FDDCC8;                                                 /* What: Accent Tint Color = #FDDCC8. Why: A pale orange softens the focus glow and tints hovered tiles. How: The fields' focus glow and the phone menu's hovered social tiles read it. */
 	--acs-dar-col : oklch( from var( --acs-str-col ) calc( l - 0.16 ) c h ); /* What: Accent-Secondary Dark Color ~= #126186. Why: The strong blue only reaches about 3.1:1 as text on the ivory and 2.4:1 on the pale blue, so blue text and icons need a deeper shade. How: This darkens the strong blue by 0.16 OKLCH lightness, the least that reaches 4.5:1 on the ivory, white, warm ivory, and pale blue, and blue text, tags, and icons read it. */
 	--acs-str-col : #4A91B8;                                                 /* What: Accent-Secondary Strong Color = #4A91B8. Why: A stronger blue draws the site's blue strokes and fills. How: The background patterns, the timeline dots, the tilted hero square, the active filter pill, the hovered scrollbar thumb, and the secondary buttons' hover borders on Home and the 404 page read it. */
 	--acs-tin-col : #B8D9EC;                                                 /* What: Accent-Secondary Tint Color = #B8D9EC. Why: A pale blue fills tags and icon tiles. How: Blue tags, the contact and service icon tiles, and the lines of Home's node drawing read it. */
@@ -150,7 +150,7 @@
 	--bac-hov-col : ;                                                        /* What: Background Hover Color. Why: The standard role set includes a hover overlay. How: This site's hovers change their own colors instead, so it stays empty. */
 	--bac-inv-col : var( --tex-mai-col );                                    /* What: Background Inverse Color = #1A1A2E. Why: The footer and the code window sit on dark bands, and dark buttons, bars, and overlays (the closing banner's button, the phone menu toggle's bars, the project card's overlay and year badge) fill with it too. How: This reads the main text color, the site's near-black ink. */
 	--bac-pag-col : #F5F0E8;                                                 /* What: Background Page Color = #F5F0E8. Why: The page sits on a creamy ivory. How: The body, the heroes, and most sections read it, and text on dark bands reads it as the light color. */
-	--bac-sun-col : #EDE6D8;                                                 /* What: Background Sunken Color = #EDE6D8. Why: Some bands and pills sit a little warmer and deeper than the page. How: The process, values, and services bands, the ivory pills and neutral tag, the bar links' hover tint, and the phone menu's social tiles read it. */
+	--bac-sun-col : #EDE6D8;                                                 /* What: Background Sunken Color = #EDE6D8. Why: Some bands and pills sit a little warmer and deeper than the page. How: The process, values, and services bands, the ivory pills, the bar links' hover tint, and the phone menu's social tiles read it. */
 	--bac-sur-col : #FFFFFF;                                                 /* What: Background Surface Color = #FFFFFF. Why: Cards and strips sit on white. How: Cards, panels, the stats strip, and the filter bar read it, and white text over dark overlays reads it too. */
 	--bor-mai-col : #D8CFBE;                                                 /* What: Border Main Color = #D8CFBE. Why: Borders and dividers need a quiet line color. How: Every card, field, and divider outline reads it, and the 404 page's number reads a darkened shade of it. */
 	--err-dar-col : #c0392b;                                                 /* What: Error Dark Color = #c0392b. Why: An error message has to read as one. How: The contact form's error text reads it. */
@@ -322,7 +322,7 @@
 
 	/* #region Radius Tokens */
 
-	--rad-bor-xsm : calc( var( --ver-rhy-m05 ) * 1rem ); /* What: Radius Border Extra Small ~= 3.571px. Why: Buttons, tags, links, and thin bars take a slight rounding. How: This multiplies the m05 rhythm step by 1rem. */
+	--rad-bor-xsm : calc( var( --ver-rhy-m05 ) * 1rem ); /* What: Radius Border Extra Small ~= 3.572px. Why: Buttons, tags, links, and thin bars take a slight rounding. How: This multiplies the m05 rhythm step by 1rem. */
 	--rad-bor-sma : calc( var( --ver-rhy-m02 ) * 1rem ); /* What: Radius Border Small ~= 8.304px. Why: Fields, icon tiles, contact rows, and the error panel round a little more. How: This multiplies the m02 rhythm step by 1rem. */
 	--rad-bor-med : calc( var( --ver-rhy-m01 ) * 1rem ); /* What: Radius Border Medium = 11px. Why: Cards, windows, and panels take a medium rounding. How: This multiplies the m01 rhythm step by 1rem. */
 	--rad-bor-lar : calc( var( --ver-rhy-bas ) * 1rem ); /* What: Radius Border Large ~= 14.572px. Why: The scale has a larger step, which nothing on this site rounds to yet. How: This multiplies the bas rhythm step by 1rem. */
@@ -338,7 +338,7 @@
 	--spa-hor-m08 : calc( var( --ver-rhy-m08 ) * 1rem ); /* What: Spacing Horizontal Base Minus 8 ~= 1.536px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the m08 rhythm step by 1rem. */
 	--spa-hor-m07 : calc( var( --ver-rhy-m07 ) * 1rem ); /* What: Spacing Horizontal Base Minus 7 ~= 2.035px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the m07 rhythm step by 1rem. */
 	--spa-hor-m06 : calc( var( --ver-rhy-m06 ) * 1rem ); /* What: Spacing Horizontal Base Minus 6 ~= 2.696px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the m06 rhythm step by 1rem. */
-	--spa-hor-m05 : calc( var( --ver-rhy-m05 ) * 1rem ); /* What: Spacing Horizontal Base Minus 5 ~= 3.571px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the m05 rhythm step by 1rem. */
+	--spa-hor-m05 : calc( var( --ver-rhy-m05 ) * 1rem ); /* What: Spacing Horizontal Base Minus 5 ~= 3.572px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the m05 rhythm step by 1rem. */
 	--spa-hor-m04 : calc( var( --ver-rhy-m04 ) * 1rem ); /* What: Spacing Horizontal Base Minus 4 ~= 4.732px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the m04 rhythm step by 1rem. */
 	--spa-hor-m03 : calc( var( --ver-rhy-m03 ) * 1rem ); /* What: Spacing Horizontal Base Minus 3 ~= 6.268px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the m03 rhythm step by 1rem. */
 	--spa-hor-m02 : calc( var( --ver-rhy-m02 ) * 1rem ); /* What: Spacing Horizontal Base Minus 2 ~= 8.304px. Why: Left and right padding, margins, gaps, and offsets read their own family. How: This multiplies the m02 rhythm step by 1rem. */
@@ -358,7 +358,7 @@
 	--spa-ver-m08 : calc( var( --ver-rhy-m08 ) * 1rem ); /* What: Spacing Vertical Base Minus 8 ~= 1.536px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the m08 rhythm step by 1rem. */
 	--spa-ver-m07 : calc( var( --ver-rhy-m07 ) * 1rem ); /* What: Spacing Vertical Base Minus 7 ~= 2.035px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the m07 rhythm step by 1rem. */
 	--spa-ver-m06 : calc( var( --ver-rhy-m06 ) * 1rem ); /* What: Spacing Vertical Base Minus 6 ~= 2.696px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the m06 rhythm step by 1rem. */
-	--spa-ver-m05 : calc( var( --ver-rhy-m05 ) * 1rem ); /* What: Spacing Vertical Base Minus 5 ~= 3.571px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the m05 rhythm step by 1rem. */
+	--spa-ver-m05 : calc( var( --ver-rhy-m05 ) * 1rem ); /* What: Spacing Vertical Base Minus 5 ~= 3.572px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the m05 rhythm step by 1rem. */
 	--spa-ver-m04 : calc( var( --ver-rhy-m04 ) * 1rem ); /* What: Spacing Vertical Base Minus 4 ~= 4.732px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the m04 rhythm step by 1rem. */
 	--spa-ver-m03 : calc( var( --ver-rhy-m03 ) * 1rem ); /* What: Spacing Vertical Base Minus 3 ~= 6.268px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the m03 rhythm step by 1rem. */
 	--spa-ver-m02 : calc( var( --ver-rhy-m02 ) * 1rem ); /* What: Spacing Vertical Base Minus 2 ~= 8.304px. Why: Top and bottom padding, margins, gaps, and offsets read their own family. How: This multiplies the m02 rhythm step by 1rem. */
@@ -486,13 +486,13 @@ h2,
 h3,
 h4,
 h5,
-h6 { /* What: Headings. Why: Every heading shares the bold, tight display style. How: This sets the display font at weight 700 with tight lines and letters. */
+h6 { /* What: Headings. Why: Every heading shares the bold, tight display style. How: This sets the display font at weight 700 with lines as tall as the text itself, since a heading rarely wraps and reads better set tight when it does, and slightly tightened letters. */
 
 
 	font-family    : var( --fon-fam-mai );                    /* Font Family Main = 'Syne', sans-serif */
 	font-weight    : 700;
 	letter-spacing : calc( var( --cdn-pow-014-rec ) * -1em ); /* Core-Design-Number to the Power of 14 Reciprocal ~= -0.020em */
-	line-height    : 1.15;
+	line-height    : var( --ver-rhy-m01 );                    /* Vertical Rhythm Base Minus 1 = 1 */
 
 
 }
@@ -626,7 +626,7 @@ ul { /* What: Lists. Why: Lists are only used for layout, never bullets. How: Th
 
 
 	background    : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
-	border-radius : var( --rad-bor-xsm ); /* Radius Border Extra Small ~= 3.571px */
+	border-radius : var( --rad-bor-xsm ); /* Radius Border Extra Small ~= 3.572px */
 
 
 }
@@ -642,7 +642,7 @@ ul { /* What: Lists. Why: Lists are only used for layout, never bullets. How: Th
 
 
 	outline        : var( --bor-wid-lar ) solid var( --foc-rin-col ); /* Border Width Large ~= 2.035px, Focus Ring Color ~= #bd3000 */
-	outline-offset : var( --bor-wid-xla );                            /* Border Width Extra Large ~= 3.571px */
+	outline-offset : var( --bor-wid-xla );                            /* Border Width Extra Large ~= 3.572px */
 
 
 }

@@ -188,10 +188,12 @@
 
 }
 
-.braMarSvg { /* What: Brand Mark SVG. Why: A press anywhere on the mark should register as a press on the link. How: This keeps the mark from catching the pointer. */
+.braMarSvg { /* What: Brand Mark SVG. Why: The mark leads the wordmark at a size that follows a visitor's font size, and a press anywhere on it should register as a press on the link. How: This sizes it at the p02 rhythm step and keeps it from catching the pointer. */
 
 
-	pointer-events : none; /* What: Pass-Through Pointer. Why: WebKit doesn't mark a link pressed when the press lands on an SVG shape inside it, as the-bernie-bears found. How: This lets every press fall through the mark to the link itself. */
+	height         : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */
+	pointer-events : none;                                /* What: Pass-Through Pointer. Why: WebKit doesn't mark a link pressed when the press lands on an SVG shape inside it, as the-bernie-bears found. How: This lets every press fall through the mark to the link itself. */
+	width          : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */
 
 
 }
@@ -260,7 +262,7 @@
 
 	align-items : center;
 	display     : flex;
-	gap         : var( --spa-hor-m05 ); /* Spacing Horizontal Base Minus 5 ~= 3.571px */
+	gap         : var( --spa-hor-m05 ); /* Spacing Horizontal Base Minus 5 ~= 3.572px */
 	margin-left : auto;
 
 
@@ -282,7 +284,7 @@
 .barLinAnc { /* What: Bar Link Anchor. Why: Each page link reads in small mono capitals with room for its underline. How: This sets the link in the secondary text color and padded, easing its color, background, press, and focus. */
 
 
-	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
 	color          : var( --tex-sec-col );                      /* Text Secondary Color = #3D3D5C */
 	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
@@ -299,7 +301,7 @@
 
 
 	background       : var( --acc-mai-col );                                /* Accent Main Color = #F26419 */
-	bottom           : var( --spa-ver-m05 );                                /* Spacing Vertical Base Minus 5 ~= 3.571px */
+	bottom           : var( --spa-ver-m05 );                                /* Spacing Vertical Base Minus 5 ~= 3.572px */
 	content          : '';
 	height           : var( --bor-wid-lar );                                /* Border Width Large ~= 2.035px */
 	left             : var( --spa-hor-m01 );                                /* Spacing Horizontal Base Minus 1 = 11px */
@@ -363,7 +365,7 @@
 
 
 	background     : var( --acc-mai-col );                      /* Accent Main Color = #F26419 */
-	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
 	color          : var( --tex-acc-col );                      /* Text Accent Color = #1A1A2E */
 	flex-shrink    : 0;
 	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
@@ -471,7 +473,7 @@
 
 
 	background    : var( --bac-inv-col );                                                                                               /* Background Inverse Color = #1A1A2E */
-	border-radius : var( --rad-bor-xsm );                                                                                               /* Radius Border Extra Small ~= 3.571px */
+	border-radius : var( --rad-bor-xsm );                                                                                               /* Radius Border Extra Small ~= 3.572px */
 	display       : block;
 	height        : var( --bor-wid-lar );                                                                                               /* Border Width Large ~= 2.035px */
 	transition    : transform var( --dur-tra-p02 ) var( --mot-dec-eas ), opacity var( --dur-tra-p02 ), background var( --dur-tra-bas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Transition Base ~= 157.8ms */
@@ -737,7 +739,7 @@
 .draLinAnc:hover { /* What: Hovered Drawer Link Anchor. Why: Hovering the current page's row should still respond. How: This nudges the row about 4px right, as a stacked menu's rows do. */
 
 
-	transform : translateX( var( --spa-hor-m05 ) ); /* Spacing Horizontal Base Minus 5 ~= 3.571px */
+	transform : translateX( var( --spa-hor-m05 ) ); /* Spacing Horizontal Base Minus 5 ~= 3.572px */
 
 
 }
@@ -769,7 +771,7 @@
 
 
 	background      : var( --acc-mai-col );                      /* Accent Main Color = #F26419 */
-	border-radius   : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	border-radius   : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.572px */
 	color           : var( --tex-acc-col );                      /* Text Accent Color = #1A1A2E */
 	display         : inline-flex;
 	font-family     : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */

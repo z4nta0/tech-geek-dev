@@ -97,11 +97,11 @@ const SKI_GRO_ARR = [ // What: Skill Group Array. Why: The skills grid shows the
 const TIM_MIL_ARR = [ // What: Timeline Milestone Array. Why: The timeline shows the same milestones every visit. How: Each row holds one milestone.
 
 
-	{ orgStr : 'Freelance', titStr : 'Web Veteran',          yeaStr : '2026', desStr : 'With the rise of AI it is no longer a constraint to design websites and I can focus on just coding, rapidly increasing the rate at which I could deliver solutions.' }, // What: Web Veteran Row. Why: This is the latest milestone. How: This is the 2026 entry.
+	{ orgStr : 'Freelance', titStr : 'Web Veteran',          yeaStr : '2026', desStr : 'With the rise of AI, design is no longer a constraint, so I can focus on coding and deliver solutions far faster.' }, // What: Web Veteran Row. Why: This is the latest milestone. How: This is the 2026 entry.
 
 	{ orgStr : 'Self',      titStr : 'Web App Developer',    yeaStr : '2018', desStr : 'A personal web app that creates a todo list using randomly generated tasks with a Node.js, Express.js and MongoDB backend.' }, // What: Web App Developer Row. Why: This marks the first web app. How: This is the 2018 entry.
 
-	{ orgStr : 'Freelance', titStr : 'Full Stack Developer', yeaStr : '2015', desStr : 'My first real website, it was for a local church with some simple social features that taught me all about backend architecture using Apache, PHP and MySQL.' }, // What: Full Stack Developer Row. Why: This marks the first website for someone else. How: This is the 2015 entry.
+	{ orgStr : 'Freelance', titStr : 'Full Stack Developer', yeaStr : '2015', desStr : 'My first real website, built for a local church. Its simple social features taught me all about backend architecture using Apache, PHP, and MySQL.' }, // What: Full Stack Developer Row. Why: This marks the first website for someone else. How: This is the 2015 entry.
 
 	{ orgStr : 'Self',      titStr : 'Tech Veteran',         yeaStr : '2014', desStr : 'My first fully custom built computer, allowing me to explore advanced hardware configurations and performance optimizations.' }, // What: Tech Veteran Row. Why: This marks the first custom computer. How: This is the 2014 entry.
 
@@ -216,9 +216,9 @@ function AboPagCom () : JSX.Element {
 
 
 					<GeoBacCom
-						patOpaNum={ 0.2 }
+						patOpaStr='var( --cdn-pow-006-rec )' // Core-Design-Number to the Power of 6 Reciprocal ~= 0.185
 						patVarStr='dots'
-					/>{ /* What: Geometric Background Component. Why: A faint field of dots sits behind the hero. How: This draws it at 20% strength. */ }
+					/>{ /* What: Geometric Background Component. Why: A faint field of dots sits behind the hero. How: This draws it at about 19% strength. */ }
 
 
 
@@ -294,11 +294,12 @@ function AboPagCom () : JSX.Element {
 										/>{ /* What: Outer Frame Polygon Element. Why: The frame's outer hexagon is orange. How: This traces it at half strength. */ }
 
 										<polygon
-											opacity='0.35'
+											style={{ opacity : 'var( --cdn-pow-004-rec )' }} // Core-Design-Number to the Power of 4 Reciprocal ~= 0.325
+
 											points='160,30 290,100 290,260 160,330 30,260 30,100'
 											stroke='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
 											strokeWidth='1'
-										/>{ /* What: Inner Frame Polygon Element. Why: A thinner blue hexagon nests inside the first. How: This traces it at 35% strength. */ }
+										/>{ /* What: Inner Frame Polygon Element. Why: A thinner blue hexagon nests inside the first. How: This traces it at about 33% strength. */ }
 
 
 									</svg>
@@ -401,8 +402,7 @@ function AboPagCom () : JSX.Element {
 
 												labTexStr={ skiNamStr }
 												tagSizStr='md'
-												tagVarStr='blue'
-											/> // What: Tag Label Component. Why: The pill names one technology. How: This shows the name in the medium blue variant.
+											/> // What: Tag Label Component. Why: The pill names one technology. How: This shows the name at the medium size.
 
 
 										))}
@@ -431,7 +431,7 @@ function AboPagCom () : JSX.Element {
 
 
 					<GeoBacCom
-						patOpaNum={ 0.12 }
+						patOpaStr='0.12'
 						patVarStr='grid'
 					/>{ /* What: Geometric Background Component. Why: A faint grid sits behind the timeline. How: This draws it at 12% strength. */ }
 
