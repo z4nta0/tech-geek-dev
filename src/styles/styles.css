@@ -129,7 +129,7 @@
 
 	--bor-wid-sma : calc( var( --ver-rhy-m12 ) * 1rem ); /* What: Border Width Small ~= 0.499px. Why: This is the scale's hairline step, which nothing on this site draws yet. How: This multiplies the m12 rhythm step by 1rem, which browsers snap to whole pixels. */
 	--bor-wid-bas : calc( var( --ver-rhy-m09 ) * 1rem ); /* What: Border Width Base ~= 1.160px. Why: Card, field, tag, and divider outlines and the short label rules draw at about 1px. How: This multiplies the m09 rhythm step by 1rem, which browsers snap to 1px. */
-	--bor-wid-lar : calc( var( --ver-rhy-m07 ) * 1rem ); /* What: Border Width Large ~= 2.035px. Why: The focus ring, the toggle's bars, the timeline line, and the outlined shapes draw at 2px. How: This multiplies the m07 rhythm step by 1rem, which browsers snap to 2px. */
+	--bor-wid-lar : calc( var( --ver-rhy-m07 ) * 1rem ); /* What: Border Width Large ~= 2.035px. Why: The focus ring, the bar links' underline, the toggle's bars, the timeline line, and the outlined shapes draw at 2px. How: This multiplies the m07 rhythm step by 1rem, which browsers snap to 2px. */
 	--bor-wid-xla : calc( var( --ver-rhy-m05 ) * 1rem ); /* What: Border Width Extra Large ~= 3.571px. Why: The hero ring, the stat underlines, the fields' focus glow, and the focus ring's offset need 3px. How: This multiplies the m05 rhythm step by 1rem, which browsers snap to 3px. */
 
 	/* #endregion Border Width Tokens */
@@ -225,7 +225,7 @@
 
 	/* #region Easing Tokens */
 
-	--mot-acc-eas : cubic-bezier( .4, 0, 1, 1 );      /* What: Motion Accelerate Easing. Why: Things leaving should speed up as they go. How: The phone menu's scrim reads it as it fades out. */
+	--mot-acc-eas : cubic-bezier( .4, 0, 1, 1 );      /* What: Motion Accelerate Easing. Why: Things leaving should speed up as they go. How: The phone menu's scrim and drawer read it as they fade and slide away. */
 	--mot-bou-eas : cubic-bezier( .34, 1.56, .5, 1 ); /* What: Motion Bounce Easing. Why: A rare celebration can spring past its mark. How: Nothing on this site uses it yet. */
 	--mot-dec-eas : cubic-bezier( .2, .7, .3, 1 );    /* What: Motion Decelerate Easing. Why: Things arriving should slow as they land. How: The focus rings growing in, the page entrances, the bar's look, the card lifts, the overlay, the drawer, and the underline read it, replacing the hand-tuned ease-out the site used before. */
 	--mot-ove-eas : cubic-bezier( .34, 1.2, .5, 1 );  /* What: Motion Overshoot Easing. Why: A touch of flair can overshoot gently. How: Nothing on this site uses it yet. */
@@ -653,7 +653,7 @@ ul { /* What: Lists. Why: Lists are only used for layout, never bullets. How: Th
 
 /* #region Shared Keyframes */
 
-@keyframes contentEnterFadeUp { /* What: Content Enter Fade Up. Why: Every page and the Home hero fade up into view. How: This moves from transparent and about 26px low to fully shown in place. */
+@keyframes contentEnterFadeUp { /* What: Content Enter Fade Up. Why: Every page, the Home hero, and Contact's thank-you and error fade up into view. How: This moves from transparent and about 26px low to fully shown in place. */
 
 
 	from {

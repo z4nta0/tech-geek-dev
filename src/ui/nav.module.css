@@ -545,7 +545,7 @@
 	right          : 0;
 	top            : var( --nav-bar-hei );                            /* Navigation Bar Height ~= 78.751px */
 	transform      : translateY( -100% );
-	transition     : transform var( --dur-tra-p02 ) var( --mot-dec-eas ), opacity var( --dur-tra-p02 ), visibility 0s linear var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Delayed Visibility. Why: The drawer has to stay visible while it slides away. How: Visibility flips to hidden only once the slide, about 277ms, has finished. */
+	transition     : transform var( --dur-tra-p02 ) var( --mot-acc-eas ), opacity var( --dur-tra-p02 ) var( --mot-acc-eas ), visibility 0s linear var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */ /* What: Delayed Visibility. Why: The drawer has to stay visible while it slides away. How: Visibility flips to hidden only once the slide, about 277ms, has finished. */
 	visibility     : hidden;
 	z-index        : -1;                                              /* What: Drawer Layer. Why: The drawer slides down from behind the bar's row rather than across it. How: Inside the bar's own stacking context, this draws it above the bar's background but under the logo, links, and toggle. */
 

@@ -77,7 +77,7 @@
 	padding               : 0 var( --gut-sid-pad );                                                                                      /* Gutter Side Padding, about 19.304px - 44.876px */
 	position              : relative;
 	width                 : 100%;
-	z-index               : 1;                                                                                                           /* What: Pattern Clearing Layer. Why: The introduction and the portrait have to sit above the hero's dot pattern, which is positioned at 0. How: This lifts the column one layer above the pattern. */
+	z-index               : 1; /* What: Pattern Clearing Layer. Why: The introduction and the portrait have to sit above the hero's dot pattern, which is positioned at 0. How: This lifts the column one layer above the pattern. */
 
 
 }
@@ -319,7 +319,7 @@
 @media ( max-width : 1024px ) { /* What: Tablet Hero Visual Div. Why: The portrait and facts still fit on a tablet, beside the paragraphs rather than the heading. How: This applies at 1,024px and below. */
 
 
-	.herVisDiv { /* What: Beside Paragraphs Hero Visual Div. Why: The portrait sits to the right of the paragraphs and button, below the full-width heading. How: This places it in the second column across the paragraphs' three rows. */
+	.herVisDiv { /* What: Beside Paragraphs Hero Visual Div. Why: The portrait sits to the right of the paragraphs and button, below the full-width heading. How: This places it in the second column across the three rows holding the paragraphs and the button. */
 
 
 		grid-column : 2;

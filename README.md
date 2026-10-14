@@ -110,6 +110,6 @@ design/                Source artwork and the scripts that render it, not served
 
 ## Search and the contact form
 
-Home, Work, About, and Contact are indexed, each with its own title, description, and canonical link, and the 404 page carries `noindex`. The structured data describes z4nta0 as a person and the site as theirs. `index.html` carries the home page's title and description, since link checkers and many crawlers read it without running the site's script; the other pages set their own, and every page shares one social preview card, since link previews only ever read `index.html`.
+Home, Work, About, and Contact are indexed, each with its own title, description, and canonical link, and the 404 page carries `noindex`. The structured data describes z4nta0 as a person and the site as theirs. `index.html` carries the home page's title and description, since link checkers and many crawlers read it without running the site's script; Work, About, and Contact set their own, and the 404 page its own title, and every page shares one social preview card, since link previews only ever read `index.html`.
 
 The contact form posts to Netlify Forms: a hidden copy of the form in `index.html` registers its fields, and Netlify emails each submission to the address set in its dashboard, with the visitor's email as the reply-to.
