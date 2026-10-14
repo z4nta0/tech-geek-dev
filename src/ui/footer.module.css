@@ -70,7 +70,7 @@
 
 /* #region fooBraDiv */
 
-.fooBraDiv { /* What: Footer Brand Div. Why: The mark and the tagline read as one block. How: This stacks them with a gap. */
+.fooBraDiv { /* What: Footer Brand Div. Why: The mark, the tagline, and the sister sites read as one block. How: This stacks them with a gap. */
 
 
 	display        : flex;
@@ -82,7 +82,7 @@
 @media ( max-width : 768px ) { /* What: Phone Footer Brand Div. Why: The stacked footer is centered. How: This applies at 768px and below. */
 
 
-	.fooBraDiv { /* What: Centered Footer Brand Div. Why: The brand sits in the middle of the stacked footer. How: This centers its mark and tagline. */
+	.fooBraDiv { /* What: Centered Footer Brand Div. Why: The brand sits in the middle of the stacked footer. How: This centers its mark, tagline, and sister sites. */
 
 
 		align-items : center;
@@ -103,6 +103,86 @@
 
 
 }
+
+
+/* #region fooSisPar */
+
+.fooSisPar { /* What: Footer Sister Paragraph. Why: The sister sites read as a quiet line under the tagline. How: This sets it small in the mono font and the muted ink, like the tagline. */
+
+
+	color          : var( --tex-inm-col );                   /* Text Inverse-Muted Color = #8181a1 */
+	font-family    : var( --fon-fam-sec );                   /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                   /* Font Size Base = 11px */
+	letter-spacing : calc( var( --cdn-pow-014-rec ) * 1em ); /* Core-Design-Number to the Power of 14 Reciprocal ~= 0.020em */
+
+
+}
+@media ( max-width : 768px ) { /* What: Phone Footer Sister Paragraph. Why: The stacked footer is centered. How: This applies at 768px and below. */
+
+
+	.fooSisPar { /* What: Centered Footer Sister Paragraph. Why: A line that wraps should stay centered under the tagline. How: This centers its text. */
+
+
+		text-align : center;
+
+
+	}
+
+
+}
+
+
+/* #region fooSisSpa */
+
+.fooSisSpa { /* What: Footer Sister Span. Why: The two sister sites read as one pair, so a narrow screen should break before them rather than between them. How: This keeps the links and their dot on one line. */
+
+
+	white-space : nowrap;
+
+
+}
+
+.fooSisAnc { /* What: Footer Sister Anchor. Why: Each sister site's name has to read as a link inside the line. How: This sets it in the ivory with an underline, easing its color, press, and focus. */
+
+
+	color                 : var( --bac-pag-col );                   /* Background Page Color = #F5F0E8 */
+	text-decoration       : underline;
+	text-underline-offset : calc( var( --cdn-pow-006-rec ) * 1em ); /* Core-Design-Number to the Power of 6 Reciprocal ~= 0.185em */
+	transition            : color var( --dur-tra-bas ), opacity var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.fooSisAnc:hover { /* What: Hovered Footer Sister Anchor. Why: A link should respond to the pointer. How: This turns it orange. */
+
+
+	color : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
+
+
+}
+.fooSisAnc:active { /* What: Pressed Footer Sister Anchor. Why: A press should register before the sister site opens. How: This dims the link slightly while it's held, as every text link does on press. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Footer Sister Anchor. Why: Someone who asked for less motion should see the link's looks switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.fooSisAnc { /* What: Motionless Footer Sister Anchor. Why: The hover, press, and focus looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion fooSisSpa */
+
+/* #endregion fooSisPar */
 
 /* #endregion fooBraDiv */
 

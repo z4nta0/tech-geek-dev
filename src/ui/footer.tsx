@@ -21,8 +21,9 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * footer.tsx = Footer
  *
  * @summary
- * The site's footer: the hexagon mark with the tagline, a link to each page,
- * and the copyright line beside links to z4nta0's GitHub and LinkedIn. It
+ * The site's footer: the hexagon mark with the tagline and links to the
+ * sister sites, a link to each page, and the copyright line beside links to
+ * z4nta0's GitHub and LinkedIn. It
  * reads the current year each time it renders, so the copyright never goes
  * stale. Every page renders it below its content.
  *
@@ -45,7 +46,8 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  *
  * @summary
  * Renders the footer: the hexagon mark, hidden from screen readers as
- * decoration, beside the tagline; a link to each page in a navigation
+ * decoration, above the tagline and a line linking the sister sites,
+ * TechGeek.support and TechGeek.cards; a link to each page in a navigation
  * landmark labelled Footer navigation, so screen readers can tell it from the
  * bar's; and the copyright with the current year beside the GitHub and
  * LinkedIn links, each named by its aria-label and opening in a new tab.
@@ -79,7 +81,7 @@ function SitFooCom () : JSX.Element {
 			<div className={ cssModObj.fooInnDiv }>{ /* What: Footer Inner Div Element. Why: The footer's content sits in the page's centered column. How: This lays out the brand, the links, and the copyright. */ }
 
 
-				<div className={ cssModObj.fooBraDiv }>{ /* What: Footer Brand Div Element. Why: The mark and the tagline read as one block. How: This sets them side by side. */ }
+				<div className={ cssModObj.fooBraDiv }>{ /* What: Footer Brand Div Element. Why: The mark, the tagline, and the sister sites read as one block. How: This stacks them. */ }
 
 
 					<svg
@@ -116,6 +118,8 @@ function SitFooCom () : JSX.Element {
 					</svg>
 
 					<span className={ cssModObj.fooTagSpa }>Building the web, one commit at a time.</span>{ /* What: Footer Tagline Span Element. Why: The tagline sums up the site in a line. How: This shows it beside the mark. */ }
+
+					<p className={ cssModObj.fooSisPar }>More from TechGeek: <span className={ cssModObj.fooSisSpa }><a className={ cssModObj.fooSisAnc } href='https://techgeek.support/'>TechGeek.support</a> <span aria-hidden='true'>·</span> <a className={ cssModObj.fooSisAnc } href='https://techgeek.cards/'>TechGeek.cards</a></span></p>{ /* What: Footer Sister Paragraph Element. Why: TechGeek.dev is one of three sister sites, and a visitor here may want tech support or a greeting card. How: This links to TechGeek.support and TechGeek.cards in the same tab, kept together on one line so a narrow screen breaks after the colon, their dot hidden from screen readers as decoration. */ }
 
 
 				</div>
