@@ -281,7 +281,7 @@
 
 }
 
-.filOptBut { /* What: Filter Option Button. Why: Each technology is a pill the visitor can choose. How: This sets an outlined pill in mono capitals that never wraps, easing every change. */
+.filOptBut { /* What: Filter Option Button. Why: Each technology is a pill the visitor can choose. How: This sets an outlined pill in mono capitals that never wraps, easing its colors, press, and focus. */
 
 
 	background     : transparent;
@@ -293,7 +293,7 @@
 	letter-spacing : 0.04em;
 	padding        : var( --spa-ver-m03 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 3 ~= 6.268px, Spacing Horizontal Base ~= 14.572px */
 	text-transform : uppercase;
-	transition     : all var( --dur-tra-bas );                        /* Duration Transition Base ~= 157.8ms */
+	transition     : background var( --dur-tra-bas ), border-color var( --dur-tra-bas ), color var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 	white-space    : nowrap;
 
 
@@ -306,7 +306,7 @@
 
 
 }
-.filOptBut[data-filter-button-active] { /* What: Active Filter Option Button. Why: The chosen technology stands out. How: This fills the pill dark blue with white text. */
+.filOptBut[data-filter-button-active] { /* What: Active Filter Option Button. Why: The chosen technology stands out. How: This fills the pill blue with ink text. */
 
 
 	background   : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
@@ -315,10 +315,25 @@
 
 
 }
+.filOptBut[data-filter-button-active]:hover { /* What: Hovered Active Filter Option Button. Why: The chosen pill should respond to the pointer too. How: This lightens its fill and border to the bright blue. */
+
+
+	background   : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
+	border-color : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
+
+
+}
+.filOptBut:active { /* What: Pressed Filter Option Button. Why: A press should register before anything else happens. How: This presses the pill in slightly. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
+
+
+}
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Filter Option Button. Why: Someone who asked for less motion shouldn't see the pills fade. How: This applies only when the reduced-motion preference is set. */
 
 
-	.filOptBut { /* What: Motionless Filter Option Button. Why: The hover and active looks should simply switch. How: This turns the transition off. */
+	.filOptBut { /* What: Motionless Filter Option Button. Why: The hover, chosen, press, and focus looks should simply switch, the press still applying at once. How: This turns the transition off. */
 
 
 		transition : none;

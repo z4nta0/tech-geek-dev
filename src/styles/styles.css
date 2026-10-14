@@ -9,9 +9,9 @@
  * single component: the design tokens every module reads, the reset and
  * base element styles, and the keyframes several modules play through
  * global(). Everything else lives in each component's own CSS module. The
- * tokens are still the original geometric palette, type, spacing, radius,
- * shadow, and motion values, which the design token step replaces with the
- * shared role-based set.
+ * tokens are the shared role-based set the support and cards sites will copy,
+ * with this site's own colors, and the base styles include the focus ring
+ * every link and button grows in on keyboard focus.
  *
  * Sections:
  *  - Tokens
@@ -573,6 +573,31 @@ button { /* What: Button. Why: Buttons start from a blank slate that modules sty
 
 }
 
+a,
+button { /* What: Focus Ring Controls. Why: Keyboard focus should ease in rather than snap. How: This gives every link and button a zero-width outline in the focus ring color, held a little farther off, which the focused rule below grows to full width and draws in close; every control with its own transition lists the two outline properties so the ease survives. */
+
+
+	outline        : 0 solid var( --foc-rin-col );                                                                                      /* Focus Ring Color ~= #bd3000 */ /* What: Zero Width Outline. Why: A zero width stays invisible, even in forced colors mode, until something is focused. How: The focus visible rule grows it. */
+	outline-offset : calc( var( --ver-rhy-m03 ) * 1rem );                                                                               /* Vertical Rhythm Base Minus 3 ~= 6.268px */
+	transition     : outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Focus Ring Controls. Why: Someone who asked for less motion should see the ring appear at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	a,
+	button { /* What: Motionless Focus Ring Controls. Why: The ring should simply appear. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
 ol,
 ul { /* What: Lists. Why: Lists are only used for layout, never bullets. How: This removes the markers. */
 
@@ -614,10 +639,9 @@ ul { /* What: Lists. Why: Lists are only used for layout, never bullets. How: Th
 
 }
 
-:focus-visible { /* What: Focus Visible. Why: A keyboard user has to see where focus is. How: This draws a 2px orange ring held 3px off the element, with the small rounding. */
+:focus-visible { /* What: Focus Visible. Why: A keyboard user has to see where focus is. How: This draws a 2px ring in the focus ring color, held 3px off the element, which links and buttons grow into from the zero-width ring below. */
 
 
-	border-radius  : var( --rad-bor-xsm );                            /* Radius Border Extra Small ~= 3.571px */
 	outline        : var( --bor-wid-lar ) solid var( --foc-rin-col ); /* Border Width Large ~= 2.035px, Focus Ring Color ~= #bd3000 */
 	outline-offset : var( --bor-wid-xla );                            /* Border Width Extra Large ~= 3.571px */
 

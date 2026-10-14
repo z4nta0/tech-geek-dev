@@ -734,19 +734,21 @@ function HomPagCom () : JSX.Element {
 								className={ cssModObj.vieAllAnc }
 
 								to='/work'
-							>{ /* What: View All Anchor Element. Why: Home shows only three projects, so the rest are a click away. How: This routes to the Work page with an arrow. */ }
+							>{ /* What: View All Anchor Element. Why: Home shows only four projects, so the rest are a click away. How: This routes to the Work page with an arrow. */ }
 
 
 								View all projects
 
 								<svg
+									className={ cssModObj.vieArrSvg }
+
 									fill='none'
 									height='14'
 									stroke='currentColor'
 									strokeWidth='2.5'
 									viewBox='0 0 24 24'
 									width='14'
-								>{ /* What: Arrow SVG Element. Why: An arrow invites the click. How: This draws it after the label. */ }
+								>{ /* What: View Arrow SVG Element. Why: An arrow invites the click and nudges toward the Work page on hover. How: This draws it after the label. */ }
 
 
 									<path d='M5 12h14M12 5l7 7-7 7' />{ /* What: Arrow Path Element. Why: The arrow is a shaft and a head. How: This traces both in one stroke. */ }

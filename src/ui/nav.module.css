@@ -101,7 +101,7 @@
 
 /* #region braLogAnc */
 
-.braLogAnc { /* What: Brand Logo Anchor. Why: The mark and wordmark read as one link home. How: This sets them side by side, never shrinking. */
+.braLogAnc { /* What: Brand Logo Anchor. Why: The mark and wordmark read as one link home. How: This sets them side by side, never shrinking, easing its press and focus. */
 
 
 	align-items     : center;
@@ -109,6 +109,27 @@
 	flex-shrink     : 0;
 	gap             : var( --spa-hor-m02 ); /* Spacing Horizontal Base Minus 2 ~= 8.304px */
 	text-decoration : none;
+	transition      : opacity var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.braLogAnc:active { /* What: Pressed Brand Logo Anchor. Why: A press should register before the page changes. How: This dims the link slightly while it's held, as every text link does on press. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Brand Logo Anchor. Why: Someone who asked for less motion should see the press and focus switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.braLogAnc { /* What: Motionless Brand Logo Anchor. Why: The press and focus looks should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
 
 
 }
@@ -127,10 +148,31 @@
 
 }
 
-.worFirSpa { /* What: Wordmark First Span. Why: The brand reads in the main text color. How: This sets TechGeek in the ink. */
+.worFirSpa { /* What: Wordmark First Span. Why: The brand reads in the main text color. How: This sets TechGeek in the ink, easing its hover color. */
 
 
-	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+	color      : var( --tex-mai-col );       /* Text Main Color = #1A1A2E */
+	transition : color var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+
+
+}
+.braLogAnc:hover .worFirSpa { /* What: Hovered Brand Wordmark First Span. Why: The brand link should respond to the pointer, and its name is what shows it. How: This turns TechGeek the dark orange, so the whole name reads in the accent. */
+
+
+	color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Wordmark First Span. Why: Someone who asked for less motion should see the color switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.worFirSpa { /* What: Motionless Wordmark First Span. Why: The hover color should simply switch. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
 
 
 }
@@ -174,19 +216,19 @@
 
 }
 
-.barLinAnc { /* What: Bar Link Anchor. Why: Each page link reads in small mono capitals with room for its underline. How: This sets the link muted and padded, easing its color and background. */
+.barLinAnc { /* What: Bar Link Anchor. Why: Each page link reads in small mono capitals with room for its underline. How: This sets the link muted and padded, easing its color, background, press, and focus. */
 
 
-	border-radius  : var( --rad-bor-xsm );                                        /* Radius Border Extra Small ~= 3.571px */
-	color          : var( --tex-sec-col );                                        /* Text Secondary Color = #3D3D5C */
-	font-family    : var( --fon-fam-sec );                                        /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : var( --fon-siz-p01 );                                        /* Font Size Base Plus 1 ~= 14.572px */
+	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --tex-sec-col );                      /* Text Secondary Color = #3D3D5C */
+	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight    : 400;
 	letter-spacing : 0.04em;
-	padding        : var( --spa-ver-m02 ) var( --spa-hor-m01 );                   /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base Minus 1 = 11px */
+	padding        : var( --spa-ver-m02 ) var( --spa-hor-m01 ); /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base Minus 1 = 11px */
 	position       : relative;
 	text-transform : uppercase;
-	transition     : color var( --dur-tra-bas ), background var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+	transition     : color var( --dur-tra-bas ), background var( --dur-tra-bas ), opacity var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -222,11 +264,25 @@
 
 
 }
+.barLinAnc:hover { /* What: Hovered Bar Link Anchor. Why: Hovering the current page's link should still respond. How: This tints the link the sunken ivory. */
+
+
+	background : var( --bac-sun-col ); /* Background Sunken Color = #EDE6D8 */
+
+
+}
+.barLinAnc:active { /* What: Pressed Bar Link Anchor. Why: A press should register before the page changes. How: This dims the link slightly while it's held, as every text link does on press. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Bar Link Anchor. Why: Someone who asked for less motion shouldn't see the links fade or their underline grow. How: This applies only when the reduced-motion preference is set. */
 
 
 	.barLinAnc,
-	.barLinAnc::after { /* What: Motionless Bar Link Anchor. Why: The color and the underline should simply switch. How: This turns both transitions off. */
+	.barLinAnc::after { /* What: Motionless Bar Link Anchor. Why: The color, the underline, and the press and focus looks should simply switch. How: This turns both transitions off. */
 
 
 		transition : none;
@@ -240,20 +296,20 @@
 /* #endregion priNavNav */
 
 
-.barHirAnc { /* What: Bar Hire Anchor. Why: The bar's one call to action stands out from the links. How: This sets it as an orange button in mono capitals that never shrinks, easing its color and lift. */
+.barHirAnc { /* What: Bar Hire Anchor. Why: The bar's one call to action stands out from the links. How: This sets it as an orange button in mono capitals that never shrinks, easing its color, lift, press, and focus. */
 
 
-	background     : var( --acc-mai-col );                                            /* Accent Main Color = #F26419 */
-	border-radius  : var( --rad-bor-xsm );                                            /* Radius Border Extra Small ~= 3.571px */
-	color          : var( --tex-acc-col );                                            /* Text Accent Color = #1A1A2E */
+	background     : var( --acc-mai-col );                      /* Accent Main Color = #F26419 */
+	border-radius  : var( --rad-bor-xsm );                      /* Radius Border Extra Small ~= 3.571px */
+	color          : var( --tex-acc-col );                      /* Text Accent Color = #1A1A2E */
 	flex-shrink    : 0;
-	font-family    : var( --fon-fam-sec );                                            /* Font Family Secondary = 'DM Mono', monospace */
-	font-size      : var( --fon-siz-bas );                                            /* Font Size Base = 11px */
+	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
+	font-size      : var( --fon-siz-bas );                      /* Font Size Base = 11px */
 	font-weight    : 500;
-	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );                          /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
-	padding        : var( --spa-ver-m01 ) var( --spa-hor-p02 );                       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );    /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
+	padding        : var( --spa-ver-m01 ) var( --spa-hor-p02 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	text-transform : uppercase;
-	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -262,6 +318,13 @@
 
 	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
 	transform  : translateY( -1px );
+
+
+}
+.barHirAnc:active { /* What: Pressed Bar Hire Anchor. Why: A press should register before anything else happens. How: This presses it in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
 
 
 }
@@ -281,7 +344,7 @@
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Bar Hire Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.barHirAnc { /* What: Motionless Bar Hire Anchor. Why: The hover color and lift should simply switch. How: This turns the transition off. */
+	.barHirAnc { /* What: Motionless Bar Hire Anchor. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
 
 
 		transition : none;
@@ -295,7 +358,7 @@
 
 /* #region menTogBut */
 
-.menTogBut { /* What: Menu Toggle Button. Why: On a phone the toggle opens the drawer. How: This stacks its three bars, hidden above the phone breakpoint and pushed right. */
+.menTogBut { /* What: Menu Toggle Button. Why: On a phone the toggle opens the drawer. How: This stacks its three bars, hidden above the phone breakpoint and pushed right, easing its press and focus. */
 
 
 	display        : none;
@@ -303,6 +366,27 @@
 	gap            : var( --spa-ver-m04 );                      /* Spacing Vertical Base Minus 4 ~= 4.732px */
 	margin-left    : auto;
 	padding        : var( --spa-ver-m02 ) var( --spa-hor-m02 ); /* Spacing Vertical Base Minus 2 ~= 8.304px, Spacing Horizontal Base Minus 2 ~= 8.304px */
+	transition     : transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.menTogBut:active { /* What: Pressed Menu Toggle Button. Why: A press should register before anything else happens. How: This presses the button in slightly. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Menu Toggle Button. Why: Someone who asked for less motion should see the press and focus switch at once. How: This applies only when the reduced-motion preference is set. */
+
+
+	.menTogBut { /* What: Motionless Menu Toggle Button. Why: The press and focus looks should simply switch, the press still applying at once. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
 
 
 }
@@ -320,15 +404,22 @@
 
 }
 
-.togBarSpa { /* What: Toggle Bar Span. Why: Three bars draw the menu icon. How: This draws one 19px rounded ink bar, easing its turn and fade. */
+.togBarSpa { /* What: Toggle Bar Span. Why: Three bars draw the menu icon. How: This draws one 19px rounded ink bar, easing its turn, fade, and hover color. */
 
 
-	background    : var( --bac-inv-col );                                                              /* Background Inverse Color = #1A1A2E */
-	border-radius : var( --rad-bor-xsm );                                                              /* Radius Border Extra Small ~= 3.571px */
+	background    : var( --bac-inv-col );                                                                                               /* Background Inverse Color = #1A1A2E */
+	border-radius : var( --rad-bor-xsm );                                                                                               /* Radius Border Extra Small ~= 3.571px */
 	display       : block;
-	height        : var( --bor-wid-lar );                                                              /* Border Width Large ~= 2.035px */
-	transition    : transform var( --dur-tra-p02 ) var( --mot-dec-eas ), opacity var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
-	width         : calc( var( --ver-rhy-p01 ) * 1rem );                                               /* Vertical Rhythm Base Plus 1 ~= 19.304px */
+	height        : var( --bor-wid-lar );                                                                                               /* Border Width Large ~= 2.035px */
+	transition    : transform var( --dur-tra-p02 ) var( --mot-dec-eas ), opacity var( --dur-tra-p02 ), background var( --dur-tra-bas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Transition Base ~= 157.8ms */
+	width         : calc( var( --ver-rhy-p01 ) * 1rem );                                                                                /* Vertical Rhythm Base Plus 1 ~= 19.304px */
+
+
+}
+.menTogBut:hover .togBarSpa { /* What: Hovered Toggle Bar Span. Why: The toggle should respond to the pointer, and its bars are what shows it. How: This turns every bar the dark orange. */
+
+
+	background : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
 
 
 }
@@ -422,7 +513,7 @@
 
 }
 
-.draLinAnc { /* What: Drawer Link Anchor. Why: Each page link in the drawer is a full-width row. How: This sets it in muted mono capitals with a divider under it, easing its color. */
+.draLinAnc { /* What: Drawer Link Anchor. Why: Each page link in the drawer is a full-width row. How: This sets it in muted mono capitals with a divider under it, easing its color, nudge, press, and focus. */
 
 
 	border-bottom  : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
@@ -432,7 +523,7 @@
 	letter-spacing : 0.04em;
 	padding        : var( --spa-ver-m01 ) 0;                          /* Spacing Vertical Base Minus 1 = 11px */
 	text-transform : uppercase;
-	transition     : color var( --dur-tra-bas );                      /* Duration Transition Base ~= 157.8ms */
+	transition     : color var( --dur-tra-bas ), opacity var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -451,10 +542,24 @@
 
 
 }
+.draLinAnc:hover { /* What: Hovered Drawer Link Anchor. Why: Hovering the current page's row should still respond. How: This nudges the row about 4px right, as a stacked menu's rows do. */
+
+
+	transform : translateX( var( --spa-hor-m05 ) ); /* Spacing Horizontal Base Minus 5 ~= 3.572px */
+
+
+}
+.draLinAnc:active { /* What: Pressed Drawer Link Anchor. Why: A press should register before the page changes. How: This dims the link slightly while it's held, as every text link does on press. */
+
+
+	opacity : var( --cdn-pow-001-rec ); /* Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
+
+
+}
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Drawer Link Anchor. Why: Someone who asked for less motion shouldn't see the links fade. How: This applies only when the reduced-motion preference is set. */
 
 
-	.draLinAnc { /* What: Motionless Drawer Link Anchor. Why: The hover color should simply switch. How: This turns the transition off. */
+	.draLinAnc { /* What: Motionless Drawer Link Anchor. Why: The hover, press, and focus looks should simply switch, the nudge still applying at once. How: This turns the transition off. */
 
 
 		transition : none;
@@ -465,7 +570,7 @@
 
 }
 
-.draHirAnc { /* What: Drawer Hire Anchor. Why: The drawer repeats the bar's call to action. How: This sets it as a full-width orange button in mono capitals under the links. */
+.draHirAnc { /* What: Drawer Hire Anchor. Why: The drawer repeats the bar's call to action. How: This sets it as a full-width orange button in mono capitals under the links, easing its color, lift, press, and focus. */
 
 
 	background      : var( --acc-mai-col );                      /* Accent Main Color = #F26419 */
@@ -480,6 +585,35 @@
 	margin-top      : var( --spa-ver-m01 );                      /* Spacing Vertical Base Minus 1 = 11px */
 	padding         : var( --spa-ver-m01 ) var( --spa-hor-m01 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Minus 1 = 11px */
 	text-transform  : uppercase;
+	transition      : background var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+.draHirAnc:hover { /* What: Hovered Drawer Hire Anchor. Why: A button should respond to the pointer. How: This darkens its orange and lifts it 1px. */
+
+
+	background : var( --acc-hov-col ); /* Accent Hover Color ~= #e45700 */
+	transform  : translateY( -1px );
+
+
+}
+.draHirAnc:active { /* What: Pressed Drawer Hire Anchor. Why: A press should register before anything else happens. How: This presses it in slightly, which also undoes its hover lift. */
+
+
+	transform : scale( 0.97 ); /* What: Press Scale. Why: A press should register before anything else happens. How: This shrinks the control by 3%, a literal since no scale step lands within 10%. */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Drawer Hire Anchor. Why: Someone who asked for less motion shouldn't see the button glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.draHirAnc { /* What: Motionless Drawer Hire Anchor. Why: The hover, press, and focus looks should simply switch, the lift and press still applying at once. How: This turns the transition off. */
+
+
+		transition : none;
+
+
+	}
 
 
 }

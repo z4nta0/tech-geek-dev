@@ -458,6 +458,12 @@ ticker, and the status dots) when waiting for the page to settle.
   page at its top, the current page's own bar link and a phone menu link do
   the same, back returns near the earlier position, and the bar's Hire Me
   switches to Contact without reloading the site.
+  `feedback.spec.ts` (from the-bernie-bears) checks the interaction feedback
+  rule on every state: each reachable link and button looks different
+  hovered than at rest and pressed than hovered, lists its focus ring's
+  outline in its transition, the first Tab stop grows its ring to full width,
+  and under reduced motion every control still changes but transitions
+  nothing. Real clicks are blocked while it probes.
 - `npm run test:rendering`: compares a full-page screenshot of every state
   with its baseline in `tests/rendering/baselines/`, with zero tolerance,
   under reduced motion, with the page's clock fixed to one date, since the
@@ -470,6 +476,13 @@ ticker, and the status dots) when waiting for the page to settle.
   breakpoints and the pixel past each included), failing on sideways
   scrolling, an unclipped element past either edge, text spilling its box,
   or two reachable controls overlapping.
+- `npm run test:seo`: checks each page's head as the-bernie-bears' suite
+  does (`head.spec.ts`): every page's own title, description, and canonical
+  link, the 404 page's noindex, the tags swapping as a visitor moves between
+  pages, the raw page carrying the home title and description for crawlers
+  that run no script, the Person and WebSite structured data against the
+  footer's profiles and Contact's email, `robots.txt`, the sitemap, the
+  social preview tags and card, and every icon the head links to.
 - `npm test` runs every suite.
 - **Flakes**: before step 8 the infinite animations kept moving while the
   suite captured, so a few states failed now and then. With every animation
