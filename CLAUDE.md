@@ -456,7 +456,8 @@ ticker, and the status dots) when waiting for the page to settle.
   behaves. `navigation.spec.ts` (from the-bernie-bears, added in step 11)
   checks that a footer link clicked at the bottom of each page opens the next
   page at its top, the current page's own bar link and a phone menu link do
-  the same, and back returns near the earlier position.
+  the same, back returns near the earlier position, and the bar's Hire Me
+  switches to Contact without reloading the site.
 - `npm run test:rendering`: compares a full-page screenshot of every state
   with its baseline in `tests/rendering/baselines/`, with zero tolerance,
   under reduced motion, with the page's clock fixed to one date, since the
@@ -477,9 +478,6 @@ ticker, and the status dots) when waiting for the page to settle.
   baselines.
 
 ## Found for later
-- **The Hire Me buttons reload the whole site** (step 11): the bar's and the
-  drawer's Hire Me are plain `<a href='/contact'>` links rather than router
-  links, so they load the page from scratch instead of switching routes.
 
 ## Deferred items
 Decided 2026-10-12 to leave these until the cleanup plan is finished.

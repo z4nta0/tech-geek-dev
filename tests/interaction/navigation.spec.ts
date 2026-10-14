@@ -22,8 +22,9 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helpers dr
  * position when it swaps pages, so the useScrTopFun hook the app root calls
  * puts every link-driven navigation back at the top. Footer links clicked at
  * the bottom of each page open the next page at its top, the current page's
- * own bar link scrolls back to the top, a phone menu link does the same, and
- * back returns the visitor to where they were rather than to the top.
+ * own bar link scrolls back to the top, a phone menu link does the same,
+ * back returns the visitor to where they were rather than to the top, and the
+ * Hire Me button switches to Contact without reloading the site.
  *
  * Sections:
  *  - Constants
@@ -210,6 +211,24 @@ test( 'back returns to where the visitor was, not the top', async ( { page : cur
 	await expect( curPagObj ).toHaveURL( '/' ); // What: Return Assertion. Why: The offset is read on Home again. How: This waits for the address to change back.
 
 	await expect.poll( () => curPagObj.evaluate( () => window.scrollY ) ).toBeGreaterThan( botOffNum / 2 ); // What: Restored Offset Assertion. Why: Back should land near the earlier position, not the top. How: This polls until the offset is past half the earlier one, leaving room for the few pixels engines differ by.
+
+
+} );
+
+test( 'the Hire Me button opens Contact without reloading the site', async ( { page : curPagObj } ) => { // What: Hire Me Link Test. Why: A plain link would reload the whole site instead of switching pages. How: This marks the document, clicks the bar's Hire Me, and checks the mark survived, which only happens without a reload.
+
+
+	await curPagObj.setViewportSize( { height : 900, width : 1440 } ); // What: Desktop Viewport Call. Why: The bar shows its Hire Me button at desktop width. How: This sizes the page before it loads.
+
+	await curPagObj.goto( '/' ); // What: Home Page Navigation. Why: The check starts away from Contact. How: This loads Home.
+
+	await curPagObj.evaluate( () => document.documentElement.setAttribute( 'data-test-reload-marker', '' ) ); // What: Reload Marker Call. Why: A reload would build a fresh document without the mark. How: This sets a presence-only attribute on the root element.
+
+	await curPagObj.getByRole( 'banner' ).getByRole( 'link', { exact : true, name : 'Hire Me' } ).click(); // What: Hire Me Click. Why: This is the link that used to reload the site. How: This clicks the bar's Hire Me.
+
+	await expect( curPagObj ).toHaveURL( '/contact' ); // What: Destination Assertion. Why: The button has to reach Contact. How: This waits for the address to change.
+
+	expect( await curPagObj.evaluate( () => document.documentElement.hasAttribute( 'data-test-reload-marker' ) ) ).toBe( true ); // What: No Reload Assertion. Why: The router should switch pages within the same document. How: This checks the mark is still on the root element.
 
 
 } );

@@ -6,6 +6,7 @@
 import cssModObj from './nav.module.css'; // What: CSS Module Object. Why: The bar's own layout, link, toggle, and drawer styles live in its own module. How: This maps each class name in nav.module.css to its hashed module class.
 
 
+import { Link        } from 'react-router';    // What: Link. Why: The Hire Me buttons move to the Contact page without a full page load. How: This renders each one as a router link.
 import { NavLink     } from 'react-router';    // What: Nav Link. Why: The bar's links mark the page that's showing. How: This renders each link and reports whether its route is active.
 import { PAG_LIN_ARR } from './page-links.ts'; // What: Page Link Array. Why: The bar and the phone menu link to the same pages as the footer. How: This is the shared list they render.
 import { useEffect   } from 'react';           // What: Use Effect. Why: The bar listens for scrolling and for page changes. How: This runs both listeners.
@@ -202,11 +203,11 @@ function NavBarCom () : JSX.Element {
 				</nav>
 
 
-				<a
+				<Link
 					className={ cssModObj.barHirAnc }
 
-					href='/contact'
-				>Hire Me</a>{ /* What: Bar Hire Anchor Element. Why: The bar's one call to action leads to the Contact page. How: This links there as a button. */ }
+					to='/contact'
+				>Hire Me</Link>{ /* What: Bar Hire Anchor Element. Why: The bar's one call to action leads to the Contact page. How: This routes there as a button without reloading the site. */ }
 
 				<button
 					className={ cssModObj.menTogBut }
@@ -250,11 +251,11 @@ function NavBarCom () : JSX.Element {
 
 
 
-				<a
+				<Link
 					className={ cssModObj.draHirAnc }
 
-					href='/contact'
-				>Hire Me</a>{ /* What: Drawer Hire Anchor Element. Why: The drawer repeats the bar's call to action. How: This links to the Contact page as a button. */ }
+					to='/contact'
+				>Hire Me</Link>{ /* What: Drawer Hire Anchor Element. Why: The drawer repeats the bar's call to action. How: This routes to the Contact page as a button without reloading the site, and the menu closes as the page changes. */ }
 
 
 			</div>
