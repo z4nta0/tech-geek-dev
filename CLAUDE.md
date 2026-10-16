@@ -646,7 +646,7 @@ The user's own sites use Cloudflare; the client sites don't.
 - **Records**: `@` and `www` are proxied CNAMEs to `tech-geek-dev.netlify.app`
   (Cloudflare flattens the one on the bare domain), never fixed A addresses,
   which go stale when Netlify changes them (ease-my-life's had). Titan's two
-  MX records (both priority 10), SPF, the `titan1._domainkey` DKIM key, the
+  MX records (priorities 10 and 20), SPF, the `titan1._domainkey` DKIM key, the
   Google Search Console verification, and DMARC (`p=none`, reports to
   contact@techgeek.dev) are DNS only.
 - **Settings**: SSL/TLS Full (strict), Automatic HTTPS Rewrites on, Always Use
@@ -657,10 +657,18 @@ The user's own sites use Cloudflare; the client sites don't.
 - **Checked through Cloudflare** on the day: the pages, the redirects, every
   security header, the head tags, the crawler files and icons, the mail and
   verification records, and that TLS 1.0 and 1.1 are refused.
-- **Left to do**: delete Netlify's DNS zone for techgeek.dev (the team's
-  Domains page, Delete DNS zone) once cached answers have expired, a day or
-  two after the switch, then confirm the site's HTTPS certificate still shows
-  as active.
+- **Netlify's DNS zone** was deleted 2026-10-16. Netlify still issues the
+  site's own certificate, which Full (strict) requires, and renews it without
+  the zone. The current one runs to January 11, 2027, so check the project's
+  Domain management, HTTPS section after its renewal (about mid-December
+  2026). If renewal fails, set `@` and `www` to DNS only for a few minutes,
+  renew, and proxy them again.
+- **DNSSEC** (turned on with the user 2026-10-16, with techgeek.cards and
+  easemylife.app): Cloudflare signs the zone, and its DS record (key tag
+  2371, algorithm 13, digest type 2) is entered at name.com, with Max Sig
+  Life left blank. Before ever moving the domain off Cloudflare, turn DNSSEC
+  off there and remove the DS record at name.com, then wait a day before
+  changing nameservers.
 
 ### Putting a new TechGeek domain behind Cloudflare
 The steps techgeek.dev followed, for TechGeek.cards and TechGeek.support:
@@ -688,6 +696,15 @@ The steps techgeek.dev followed, for TechGeek.cards and TechGeek.support:
    old nameservers keep answering the old way for a while, so query Google's
    resolver (dns.google) and send requests to the address it gives.
 7. **Delete the old DNS zone** a day or two later.
+8. **Turn on DNSSEC**, only once the old zone is deleted, since the old
+   nameservers keep answering unsigned for resolvers that still remember them
+   (techgeek.cards briefly did): in Cloudflare, DNS, Settings, Enable DNSSEC,
+   then enter its Key Tag, Algorithm, Digest Type, and Digest at name.com's
+   DNSSEC Management, leaving Max Sig Life blank. name.com refuses a second
+   copy of the same record with "Parameter value policy error". Once
+   Cloudflare shows Success, purge the domain at
+   https://one.one.one.one/purge-cache/ and https://dns.google/cache, then
+   check that answers come back verified.
 
 ## Found for later
 Raised by the close-out's audit (2026-10-14) and left for the user to decide,
