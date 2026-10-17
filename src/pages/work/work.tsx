@@ -123,7 +123,7 @@ const TAG_FIL_ARR = [ 'All', ...Array.from( new Set( PRO_REC_ARR.flatMap( ( proR
 function WorPagCom () : JSX.Element {
 
 
-	usePagDesFun( 'Websites and web apps z4nta0 has designed, built, and shipped, from sites for local businesses to personal projects.' ); // What: Page Description Call. Why: Search listings should describe this page, not repeat the home page. How: This swaps the one description tag's text for the page's own while it shows.
+	usePagDesFun( 'Websites and web apps z4nta0 has designed, built, and shipped, from sites for local businesses to personal side projects.' ); // What: Page Description Call. Why: Search listings should describe this page, not repeat the home page. How: This swaps the one description tag's text for the page's own while it shows.
 
 
 

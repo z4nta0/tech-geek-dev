@@ -190,7 +190,7 @@ const VAL_CAR_ARR = [ // What: Value Card Array. Why: The values section shows t
 function AboPagCom () : JSX.Element {
 
 
-	usePagDesFun( 'Meet z4nta0, a full stack web developer since 2013 who cares about performance, accessibility, and clean code.' ); // What: Page Description Call. Why: Search listings should describe this page, not repeat the home page. How: This swaps the one description tag's text for the page's own while it shows.
+	usePagDesFun( 'Meet z4nta0, a full stack web developer since 2013 who cares about performance, accessibility, and clean, readable code.' ); // What: Page Description Call. Why: Search listings should describe this page, not repeat the home page. How: This swaps the one description tag's text for the page's own while it shows.
 
 
 
