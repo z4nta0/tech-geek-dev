@@ -549,8 +549,9 @@ on `close-out`.
       the package's artwork, copies it into `public/`, and draws the rest of
       the set from it.
     - **Installing it**: `package.json` names `github:z4nta0/techgeek-design#
-      v0.3.0` (moved from `v0.1.0` on 2026-10-17, bringing the bar's
-      clearance for scrolled-to links and its menu up to 1,024px). npm records the address over SSH, but falls back to HTTPS for
+      v0.4.0` (moved from `v0.1.0` on 2026-10-17, bringing the bar's
+      clearance for scrolled-to links, top and bottom, and its menu up to
+      1,024px). npm records the address over SSH, but falls back to HTTPS for
       a public GitHub repository, which a clean install with SSH turned off
       and an empty cache confirmed, so Netlify fetches it without a key. While
       the package and this site change together, `npm install --install-links
