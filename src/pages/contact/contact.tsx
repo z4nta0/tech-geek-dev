@@ -210,7 +210,7 @@ const EMP_FOR_OBJ = { 'bot-field' : '', budget : '', email : '', message : '', n
 function ConPagCom () : JSX.Element {
 
 
-	usePagDesFun( 'Have a project in mind? Send z4nta0 a message about your website or web app and expect a reply within 24 hours.' ); // What: Page Description Call. Why: Search listings should describe this page, not repeat the home page. How: This swaps the one description tag's text for the page's own while it shows.
+	usePagDesFun( 'Have a project in mind? Send z4nta0 a message about your website or web app, and expect a friendly reply within 24 hours.' ); // What: Page Description Call. Why: Search listings should describe this page, not repeat the home page. How: This swaps the one description tag's text for the page's own while it shows.
 
 
 

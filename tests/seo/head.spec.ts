@@ -19,7 +19,7 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
  * @summary
  * Checks the site's SEO setup in whichever engine the project runs. Home,
  * Work, About, and Contact are all indexed: each has its own title, a
- * description of 100 to 125 characters, and one canonical address on this
+ * description of 120 to 125 characters, and one canonical address on this
  * domain, while the 404 page carries noindex and no canonical link. Every page
  * has exactly one description, index.html's, which Work, About, and Contact
  * swap for their own, names z4nta0 as its author, and has one h1, and moving
@@ -48,7 +48,7 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
 
 // #region Constants
 
-const HOM_DES_STR = 'Portfolio of z4nta0, a full stack web developer building fast, accessible websites and web apps for small businesses.'; // What: Home Description String. Why: The raw page and the social tags carry the home page's description. How: This is the exact text they should hold.
+const HOM_DES_STR = 'Portfolio of z4nta0, a full stack web developer building fast, accessible websites and web apps for small local businesses.'; // What: Home Description String. Why: The raw page and the social tags carry the home page's description. How: This is the exact text they should hold.
 const LIV_URL_STR = 'https://techgeek.dev/';                                                                                                 // What: Live URL String. Why: The canonical links, structured data, social tags, and sitemap all name the live site. How: This is its address.
 
 
@@ -191,7 +191,7 @@ async function heaCheFun ( curPagObj : Page, heaRowObj : typeof PAG_HEA_ARR[ num
 		const desConStr = await curPagObj.locator( 'meta[name="description"]' ).getAttribute( 'content' ) ?? ''; // What: Description Content String. Why: The description's length is checked against what listings show. How: This reads the one description's text.
 
 
-		expect( desConStr.length ).toBeGreaterThanOrEqual( 100 ); // What: Description Minimum Assertion. Why: A summary that's too short wastes the space a listing gives it. How: This checks it runs at least 100 characters.
+		expect( desConStr.length ).toBeGreaterThanOrEqual( 120 ); // What: Description Minimum Assertion. Why: A summary that's too short wastes the space a listing gives it, and link preview checkers flag one under 120 characters. How: This checks it runs at least 120 characters.
 
 		expect( desConStr.length ).toBeLessThanOrEqual( 125 ); // What: Description Maximum Assertion. Why: Phones cut a summary off around 125 characters. How: This checks it stays within that.
 
