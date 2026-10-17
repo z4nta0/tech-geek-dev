@@ -549,7 +549,8 @@ on `close-out`.
       the package's artwork, copies it into `public/`, and draws the rest of
       the set from it.
     - **Installing it**: `package.json` names `github:z4nta0/techgeek-design#
-      v0.1.0`. npm records the address over SSH, but falls back to HTTPS for
+      v0.3.0` (moved from `v0.1.0` on 2026-10-17, bringing the bar's
+      clearance for scrolled-to links and its menu up to 1,024px). npm records the address over SSH, but falls back to HTTPS for
       a public GitHub repository, which a clean install with SSH turned off
       and an empty cache confirmed, so Netlify fetches it without a key. While
       the package and this site change together, `npm install --install-links
@@ -615,8 +616,10 @@ ticker, and the status dots) when waiting for the page to settle.
 - `npm run test:responsive`: measures every route, the 404 page, and the
   open menu at 14 widths from 320 to 1,920px (the 640px, 768px, and 1,024px
   breakpoints and the pixel past each included), failing on sideways
-  scrolling, an unclipped element past either edge, text spilling its box,
-  or two reachable controls overlapping. `measure.spec.ts` (added in the close-out)
+  scrolling, an element partly past either edge with no clipping container
+  below the body (the body hides sideways overflow, so it excuses nothing),
+  a reachable control cut off at an edge, text spilling its box, or two
+  reachable controls overlapping. `measure.spec.ts` (added in the close-out)
   walks every visible paragraph one character at a time at the same widths
   and fails a rendered line past 75 characters, or 60 for text below the body
   size, the upper limits of the text measure rule. Its first run found the
@@ -759,5 +762,6 @@ decided by the user on 2026-10-13 (step 12, on the `deferred-items` branch).
   which each site's Vite compiles. Breakpoints can't be custom properties, so
   the package lists them as commented-out tokens in a region of their own,
   each with its value and what it switches (decided by the user 2026-10-13),
-  and every site keeps the same ones, since the bar and footer switch at
-  768px.
+  and every site keeps the same ones, since the bar switches to its menu at
+  1,024px (from `v0.3.0`, since TechGeek.support's and TechGeek.cards' bars
+  ran out of room on tablets) and the footer stacks at 768px.
