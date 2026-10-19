@@ -13,7 +13,7 @@
  * slanted white edge leads into the stats strip. Below come the featured
  * projects, the services in white cards that lift on hover, and an orange
  * closing card. On a tablet the code window keeps its natural width beside
- * the pitch, and on a phone it stacks under it, while the grids step down,
+ * the pitch, and on a phone it stacks above it, while the grids step down,
  * the projects and services reaching one column on a phone and the stats
  * staying in pairs. The shapes, the entrances, and the dot play the shared
  * shapeLoopSpin, contentEnterFadeUp, and statusLoopPulse keyframes from the
@@ -552,16 +552,18 @@
 
 
 }
-@media ( max-width : 768px ) { /* What: Phone Hero Visual Div. Why: On a phone the code window stacks under the pitch rather than beside it. How: This applies at 768px and below. */
+@media ( max-width : 768px ) { /* What: Phone Hero Visual Div. Why: On a phone the code window leads the stacked hero, above the pitch rather than beside it. How: This applies at 768px and below. */
 
 
-	.herVisDiv { /* What: Stacked Hero Visual Div. Why: The window should fill a phone's column without stretching too wide on a large phone, sit centered under the pitch, and never push the page sideways. How: This centers it at the column's full width, capped at the p12 rhythm step, and lets it shrink below its code's width. */
+	.herVisDiv { /* What: Stacked Hero Visual Div. Why: The window should fill a phone's column without stretching too wide or tall on a large phone, sit centered above the pitch so the page opens on it, as every other site's stacked hero opens on its image, and never push the page sideways. How: This centers it at the column's full width, capped at the p11 rhythm step, the size the other sites' stacked hero images take, moves it ahead of the pitch in the grid's order, and lets it shrink below its code's width. */
 
 
-		margin    : 0 auto;
-		max-width : calc( var( --ver-rhy-p12 ) * 1rem ); /* Vertical Rhythm Base Plus 12 ~= 425.592px */
-		min-width : 0;
-		width     : 100%;                                /* What: Full Width. Why: The auto margins would otherwise shrink the window to its content. How: This keeps it at the column's width up to its cap. */
+		margin        : 0 auto;
+		margin-bottom : var( --spa-ver-p01 );                /* Spacing Vertical Base Plus 1 ~= 19.304px */ /* What: Badge Clearance. Why: The badge hangs about 54px below the window, nearly the whole gap to the availability pill. How: This adds a step below the window, so about 25px stays between the badge and the pill. */
+		max-width     : calc( var( --ver-rhy-p11 ) * 1rem ); /* Vertical Rhythm Base Plus 11 ~= 321.273px */
+		min-width     : 0;
+		order         : -1;
+		width         : 100%;                                /* What: Full Width. Why: The auto margins would otherwise shrink the window to its content. How: This keeps it at the column's width up to its cap. */
 
 
 	}
@@ -688,6 +690,20 @@
 
 
 }
+@media ( max-width : 768px ) { /* What: Phone Code Block Pre. Why: Leading the stacked hero, the window shouldn't fill a phone's first screen. How: This applies at 768px and below. */
+
+
+	.codBloPre { /* What: Tight Code Block Pre. Why: The code's height sets the window's, and the code can't get smaller than the base size. How: This sets its lines at the base rhythm step, about 14.6px apart, and trims its padding a step. */
+
+
+		line-height : var( --ver-rhy-bas );                      /* Vertical Rhythm Base ~= 1.325 */
+		padding     : var( --spa-ver-p01 ) var( --spa-hor-p01 ); /* Spacing Vertical Base Plus 1 ~= 19.304px, Spacing Horizontal Base Plus 1 ~= 19.304px */
+
+
+	}
+
+
+}
 
 .codTexCod { /* What: Code Text Code. Why: The code element takes the block's light color. How: This inherits the color. */
 
@@ -719,7 +735,7 @@
 
 /* #region floBadDiv */
 
-.floBadDiv { /* What: Floating Badge Div. Why: The open source badge sits off the window's bottom left corner, arriving last. How: This sets a white rounded card with a soft shadow just past that corner and plays the shared contentEnterFadeUp after the window. */
+.floBadDiv { /* What: Floating Badge Div. Why: The open source badge sits off the window's bottom left corner, arriving last, covering no more of the code than the lower part of its closing brace. How: This sets a white rounded card with a soft shadow just past that corner, its top a step above the code's bottom padding so it overlaps only the brace's lower edge, and plays the shared contentEnterFadeUp after the window. */
 
 
 	align-items   : center;
@@ -727,23 +743,37 @@
 	background    : var( --bac-sur-col );                                                                             /* Background Surface Color = #FFFFFF */
 	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );                                                  /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
 	border-radius : var( --rad-bor-med );                                                                             /* Radius Border Medium = 11px */
-	bottom        : calc( var( --spa-ver-p03 ) * -1 );                                                                /* Spacing Vertical Base Plus 3 ~= -33.876px */
 	box-shadow    : var( --ele-med-sha );                                                                             /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
 	display       : flex;
 	gap           : var( --spa-hor-m01 );                                                                             /* Spacing Horizontal Base Minus 1 = 11px */
 	left          : calc( var( --spa-hor-p02 ) * -1 );                                                                /* Spacing Horizontal Base Plus 2 ~= -25.572px */
 	padding       : var( --spa-ver-bas ) var( --spa-hor-p02 );                                                        /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	position      : absolute;
+	top           : calc( 100% - var( --spa-ver-p03 ) - var( --spa-ver-m01 ) );                                       /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Vertical Base Minus 1 = 11px */ /* What: Brace Anchored Top. Why: The badge should overlap only the lower part of the code's closing brace, whatever the window's height. How: The top sits the code's bottom padding and one m01 step above the window's bottom, inside the brace's line. */
+
+
+}
+@media ( max-width : 1024px ) { /* What: Tablet Floating Badge Div. Why: Below a desktop the code's bottom padding shrinks a step, which would leave the badge higher on the code. How: This applies at 1,024px and below. */
+
+
+	.floBadDiv { /* What: Lowered Floating Badge Div. Why: The badge should still cover only the lower part of the closing brace. How: This anchors its top to the code's tablet padding instead. */
+
+
+		top : calc( 100% - var( --spa-ver-p02 ) - var( --spa-ver-m01 ) ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Vertical Base Minus 1 = 11px */
+
+
+	}
 
 
 }
 @media ( max-width : 768px ) { /* What: Phone Floating Badge Div. Why: Once the window stacks and centers, the room beside it shrinks with the screen, and the badge's full overhang would cross the gutter on a narrow phone. How: This applies at 768px and below. */
 
 
-	.floBadDiv { /* What: Fitted Floating Badge Div. Why: The badge should stick out past the window as far as the screen allows, like on a desktop, and tuck in on a narrow phone. How: The overhang is the room left beside the centered window, less the gutter, held between the m02 and p02 steps, so it reaches the full p02 from about 525px wide and eases down to m02 below about 490px. */
+	.floBadDiv { /* What: Fitted Floating Badge Div. Why: The badge should stick out past the window as far as the screen allows, like on a desktop, and tuck in on a narrow phone, and still cover only the lower part of the closing brace once the code's padding shrinks again. How: The overhang is the room left beside the centered window, less the gutter, held between the m02 and p02 steps, so it reaches the full p02 from about 412px wide and eases down to m02 below about 376px, and the top anchors to the code's phone padding. */
 
 
-		left : calc( clamp( var( --spa-hor-m02 ), calc( ( 100vw - var( --ver-rhy-p12 ) * 1rem ) / 2 - var( --gut-sid-pad ) ), var( --spa-hor-p02 ) ) * -1 ); /* Spacing Horizontal Base Minus 2 ~= -8.304px, Vertical Rhythm Base Plus 12 ~= 425.592px, Gutter Side Padding, about 19.304px - 44.876px, Spacing Horizontal Base Plus 2 ~= -25.572px */
+		left : calc( clamp( var( --spa-hor-m02 ), calc( ( 100vw - var( --ver-rhy-p11 ) * 1rem ) / 2 - var( --gut-sid-pad ) ), var( --spa-hor-p02 ) ) * -1 ); /* Spacing Horizontal Base Minus 2 ~= -8.304px, Vertical Rhythm Base Plus 11 ~= 321.273px, Gutter Side Padding, about 19.304px - 44.876px, Spacing Horizontal Base Plus 2 ~= -25.572px */
+		top  : calc( 100% - var( --spa-ver-p01 ) - var( --spa-ver-m01 ) );                                                                                   /* Spacing Vertical Base Plus 1 ~= 19.304px, Spacing Vertical Base Minus 1 = 11px */
 
 
 	}

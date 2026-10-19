@@ -394,9 +394,17 @@ on `close-out`.
    - **Home** (reviewed with the user): a fourth service, Hosting &
      Maintenance; the closing banner as an orange card on the ivory (see
      "## Content"); and the code window kept below desktop widths in its own
-     revertible commit (`df46c7c`), beside the pitch at its natural width
-     from 769px to 1,024px and centered under it on phones, its code at the
-     base size and its badge's overhang following the room beside it.
+     revertible commit (`df46c7c`), beside the pitch at its natural width from
+     769px to 1,024px and centered above it on phones (moved from under it on
+     2026-10-18, so the stacked hero opens on its image the way the user's
+     other sites do, and shrunk the same day to the p11 step's width with its
+     code lines a step tighter, from about 346px tall to 285px, since it
+     filled the first screen), its code at the base size and its badge's
+     overhang following the room beside it. Its badge's top anchors to the
+     code's bottom padding at each layout (decided 2026-10-18), so at every
+     width it covers only the lower part of the closing brace, rather than
+     more of the code as the padding shrank, which on phones had covered the
+     line above.
    - **Work** (reviewed with the user): the process steps share one height
      in a row, form a two-by-two grid on tablets, and stack full width with
      down arrows on phones; the filter row takes its own line on phones and
@@ -404,11 +412,22 @@ on `close-out`.
      edge-fade helper (`pages/work/edge-fade.ts`); and a short last row of
      projects sits centered (see "## Card Grids exception").
    - **About** (reviewed with the user): the timeline alternates its
-     milestones either side of a center line above 768px, interlocking by
-     the p03 step, and centers its single column below that, under a centered
+     milestones either side of a center line above 768px, interlocking by the
+     p03 step, and centers its single column below that, under a centered
      heading; the portrait sits beside the paragraphs from 769px to 1,024px,
-     the text column's children joining the hero's grid through
-     `display : contents`, and stacks centered and wider on phones.
+     the text column's children joining the hero's grid through `display :
+     contents`, and stacks centered above the introduction on phones (moved
+     from under it on 2026-10-18, as on Home, and one rhythm step smaller
+     there, about 183 by 243px, so it doesn't fill a phone's first screen,
+     with a small geometric drawing of hexagons and linked nodes, `porFloSvg`,
+     filling the room either side of it). The same day the two fact cards
+     moved off the photo, since the top one covered z4nta0's face at every
+     width: each sits at its corner as before, sticking out sideways the same
+     26px, but lifted above or dropped below the portrait so only about 17px
+     of it overlaps the photo, with the column padded above and below to make
+     room. On a tablet the portrait sits at the bottom of its rows with its
+     bottom padding cancelled, so the top card's room comes out of the space
+     the taller text column leaves rather than out of the heading.
    - **Contact**: reviewed by the user and left as it was.
    - **Card grids**: Home shows four random featured projects two by two (see
      "## Content"), Work's grid is the user's exception (see "## Card Grids

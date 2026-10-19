@@ -222,7 +222,7 @@ function AboPagCom () : JSX.Element {
 
 
 
-					<div className={ cssModObj.herGriDiv }>{ /* What: Hero Grid Div Element. Why: The introduction and the portrait sit side by side in the page's centered column. How: This lays out the two columns. */ }
+					<div className={ cssModObj.herGriDiv }>{ /* What: Hero Grid Div Element. Why: The introduction and the portrait sit side by side in the page's centered column. How: This lays out the two columns, the portrait beside the paragraphs below a full-width heading at 1,024px and below, and stacks them at 768px and below with the portrait first. */ }
 
 
 						<div className={ cssModObj.herTexDiv }>{ /* What: Hero Text Div Element. Why: The introduction reads as one column. How: This stacks the label, heading, paragraphs, and button. */ }
@@ -269,10 +269,134 @@ function AboPagCom () : JSX.Element {
 
 
 
-						<div className={ cssModObj.herVisDiv }>{ /* What: Hero Visual Div Element. Why: The portrait and the facts illustrate the introduction. How: This holds the framed portrait and the two floating facts. */ }
+						<div className={ cssModObj.herVisDiv }>{ /* What: Hero Visual Div Element. Why: The portrait and the facts illustrate the introduction. How: This holds the framed portrait, with room above and below it for the two floating facts, and on a phone the flourishes either side of it. */ }
 
 
-							<div className={ cssModObj.porWraDiv }>{ /* What: Portrait Wrap Div Element. Why: The portrait sits inside its hexagon frame. How: This layers the frame and the photo. */ }
+							<svg
+								className={` ${ cssModObj.porFloSvg }   ${ cssModObj.porFloSvgLeft } `}
+
+								viewBox='0 0 60 240'
+
+								aria-hidden='true'
+							>{ /* What: Portrait Flourish SVG Element. Why: A phone's single column leaves empty room beside the smaller portrait, which a little of the site's geometric style fills. How: This draws a hexagon, linked nodes, and a small filled hexagon down the portrait's left side, shown only once the hero stacks, hidden from screen readers as decoration. */ }
+
+
+								<polygon
+									style={{ opacity : 'var( --cdn-pow-002-rec )' }} // Core-Design-Number to the Power of 2 Reciprocal ~= 0.570
+
+									fill='none'
+									points='30,8 50,20 50,44 30,56 10,44 10,20'
+									stroke='var( --acc-mai-col )' // Accent Main Color = #F26419
+									strokeWidth='1.5'
+								/>{ /* What: Flourish Hexagon Polygon Element. Why: An outlined hexagon echoes the portrait's frame. How: This traces it in orange at about 57% strength at the drawing's top. */ }
+
+								<line
+									style={{ opacity : 'var( --cdn-pow-002-rec )' }} // Core-Design-Number to the Power of 2 Reciprocal ~= 0.570
+
+									stroke='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
+									strokeWidth='1'
+									x1='30'
+									x2='30'
+									y1='56'
+									y2='128'
+								/>{ /* What: Flourish Link Line Element. Why: Lines join the drawing's shapes the way Home's code window links its nodes. How: This drops a thin blue line from the hexagon to a node. */ }
+
+								<circle
+									cx='30'
+									cy='132'
+									fill='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
+									r='4'
+								/>{ /* What: Flourish Node Circle Element. Why: A node marks where the lines meet. How: This draws a blue dot. */ }
+
+								<line
+									style={{ opacity : 'var( --cdn-pow-002-rec )' }} // Core-Design-Number to the Power of 2 Reciprocal ~= 0.570
+
+									stroke='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
+									strokeWidth='1'
+									x1='30'
+									x2='16'
+									y1='132'
+									y2='180'
+								/>{ /* What: Flourish Link Line Element. Why: Lines join the drawing's shapes the way Home's code window links its nodes. How: This angles a thin blue line down to a second node. */ }
+
+								<circle
+									style={{ opacity : 'var( --cdn-pow-001-rec )' }} // Core-Design-Number to the Power of 1 Reciprocal ~= 0.755
+
+									cx='16'
+									cy='184'
+									fill='var( --acc-mai-col )' // Accent Main Color = #F26419
+									r='3'
+								/>{ /* What: Flourish Node Circle Element. Why: A node marks where the lines meet. How: This draws a smaller orange dot at about 75% strength. */ }
+
+								<polygon
+									style={{ opacity : 'var( --cdn-pow-004-rec )' }} // Core-Design-Number to the Power of 4 Reciprocal ~= 0.325
+
+									fill='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
+									points='40,200 52,207 52,221 40,228 28,221 28,207'
+								/>{ /* What: Flourish Hexagon Polygon Element. Why: A small filled hexagon closes the drawing. How: This fills it in blue at about 33% strength at the drawing's bottom. */ }
+
+
+							</svg>
+
+
+							<svg
+								className={` ${ cssModObj.porFloSvg }   ${ cssModObj.porFloSvgRight } `}
+
+								viewBox='0 0 60 240'
+
+								aria-hidden='true'
+							>{ /* What: Portrait Flourish SVG Element. Why: A phone's single column leaves empty room beside the smaller portrait, which a little of the site's geometric style fills. How: This draws linked nodes, a small filled hexagon, and an outlined hexagon down the portrait's right side, mirroring the left drawing, shown only once the hero stacks, hidden from screen readers as decoration. */ }
+
+
+								<circle
+									style={{ opacity : 'var( --cdn-pow-001-rec )' }} // Core-Design-Number to the Power of 1 Reciprocal ~= 0.755
+
+									cx='40'
+									cy='20'
+									fill='var( --acc-mai-col )' // Accent Main Color = #F26419
+									r='3'
+								/>{ /* What: Flourish Node Circle Element. Why: A node starts the drawing's chain. How: This draws a small orange dot at about 75% strength at the drawing's top. */ }
+
+								<line
+									style={{ opacity : 'var( --cdn-pow-002-rec )' }} // Core-Design-Number to the Power of 2 Reciprocal ~= 0.570
+
+									stroke='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
+									strokeWidth='1'
+									x1='40'
+									x2='22'
+									y1='20'
+									y2='70'
+								/>{ /* What: Flourish Link Line Element. Why: Lines join the drawing's shapes the way Home's code window links its nodes. How: This angles a thin blue line down to a second node. */ }
+
+								<circle
+									cx='22'
+									cy='74'
+									fill='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
+									r='4'
+								/>{ /* What: Flourish Node Circle Element. Why: A node marks where the lines meet. How: This draws a blue dot. */ }
+
+								<polygon
+									style={{ opacity : 'var( --cdn-pow-004-rec )' }} // Core-Design-Number to the Power of 4 Reciprocal ~= 0.325
+
+									fill='var( --acc-mai-col )' // Accent Main Color = #F26419
+									points='30,106 42,113 42,127 30,134 18,127 18,113'
+								/>{ /* What: Flourish Hexagon Polygon Element. Why: A small filled hexagon sits mid-drawing. How: This fills it in orange at about 33% strength. */ }
+
+								<polygon
+									style={{ opacity : 'var( --cdn-pow-002-rec )' }} // Core-Design-Number to the Power of 2 Reciprocal ~= 0.570
+
+									fill='none'
+									points='30,174 49,185 49,207 30,218 11,207 11,185'
+									stroke='var( --acc-sec-col )' // Accent Secondary Color = #7DB9D8
+									strokeWidth='1.5'
+								/>{ /* What: Flourish Hexagon Polygon Element. Why: An outlined hexagon echoes the portrait's frame. How: This traces it in blue at about 57% strength at the drawing's bottom. */ }
+
+
+							</svg>
+
+
+
+							<div className={ cssModObj.porWraDiv }>{ /* What: Portrait Wrap Div Element. Why: The portrait sits inside its hexagon frame, with a fact card off its top and bottom corners. How: This layers the frame, the photo, and the two facts, which are placed against the portrait itself. */ }
 
 
 								<div aria-hidden='true'>{ /* What: Portrait Frame Div Element. Why: Hexagons frame the portrait in the site's geometric style. How: This holds the frame drawing, hidden from screen readers as decoration. */ }
@@ -318,27 +442,25 @@ function AboPagCom () : JSX.Element {
 									alt='Portrait of z4nta0'
 								/>{ /* What: Portrait Photo Image Element. Why: A visitor sees who they'd be working with. How: This shows the portrait inside the frame. */ }
 
-
-							</div>
-
+								<div className={` ${ cssModObj.floFacDiv }   ${ cssModObj.floFacDivTop } `}>{ /* What: Floating Fact Div Element. Why: A floating fact highlights the years of experience. How: This shows the figure over its label above the portrait's top right corner. */ }
 
 
-							<div className={` ${ cssModObj.floFacDiv }   ${ cssModObj.floFacDivTop } `}>{ /* What: Floating Fact Div Element. Why: A floating fact highlights the years of experience. How: This shows the figure over its label at the portrait's top corner. */ }
+									<span className={ cssModObj.facFigSpa }>10+</span>{ /* What: Fact Figure Span Element. Why: z4nta0 has been a developer since 2013. How: This shows ten plus. */ }
+
+									<span className={ cssModObj.facLabSpa }>Years Experience</span>{ /* What: Fact Label Span Element. Why: The label says what the figure counts. How: This shows Years Experience. */ }
 
 
-								<span className={ cssModObj.facFigSpa }>10+</span>{ /* What: Fact Figure Span Element. Why: z4nta0 has been a developer since 2013. How: This shows ten plus. */ }
+								</div>
 
-								<span className={ cssModObj.facLabSpa }>Years Experience</span>{ /* What: Fact Label Span Element. Why: The label says what the figure counts. How: This shows Years Experience. */ }
-
-
-							</div>
-
-							<div className={` ${ cssModObj.floFacDiv }   ${ cssModObj.floFacDivBottom } `}>{ /* What: Floating Fact Div Element. Why: A floating fact highlights the projects shipped. How: This shows the figure over its label at the portrait's bottom corner. */ }
+								<div className={` ${ cssModObj.floFacDiv }   ${ cssModObj.floFacDivBottom } `}>{ /* What: Floating Fact Div Element. Why: A floating fact highlights the projects shipped. How: This shows the figure over its label below the portrait's bottom left corner. */ }
 
 
-								<span className={ cssModObj.facFigSpa }>{ SHI_COU_NUM }+</span>{ /* What: Fact Figure Span Element. Why: The count should grow as projects are added, and older projects that are no longer online still count. How: This shows the project list's count with a plus. */ }
+									<span className={ cssModObj.facFigSpa }>{ SHI_COU_NUM }+</span>{ /* What: Fact Figure Span Element. Why: The count should grow as projects are added, and older projects that are no longer online still count. How: This shows the project list's count with a plus. */ }
 
-								<span className={ cssModObj.facLabSpa }>Projects Shipped</span>{ /* What: Fact Label Span Element. Why: The label says what the figure counts. How: This shows Projects Shipped. */ }
+									<span className={ cssModObj.facLabSpa }>Projects Shipped</span>{ /* What: Fact Label Span Element. Why: The label says what the figure counts. How: This shows Projects Shipped. */ }
+
+
+								</div>
 
 
 							</div>
