@@ -443,7 +443,7 @@ function HomPagCom () : JSX.Element {
 
 
 
-					<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The pitch and the code window sit side by side in the page's centered column. How: This lays out the two columns, stacking them on a phone. */ }
+					<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The pitch and the code window sit side by side in the page's centered column. How: This lays out the two columns, stacking them on a phone with the code window first. */ }
 
 
 						<div className={ cssModObj.herConDiv }>{ /* What: Hero Content Div Element. Why: The pitch reads as one column. How: This stacks the label, heading, line, buttons, and ticker. */ }
