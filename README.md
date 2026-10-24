@@ -58,13 +58,14 @@ npm run preview
 
 ## Images
 
-The project screenshots, the portrait, the social preview card, and the icons are all rendered by scripts, so they can be rebuilt whenever something changes:
+The project screenshots, the portrait, the social preview card, the icons, and the Ko-fi page's pictures are all rendered by scripts, so they can be rebuilt whenever something changes:
 
 ```bash
 npm run screenshots  # photographs each project's live site, then runs npm run images
 npm run images       # encodes the originals in design/images/originals/ as WebP where the site imports them
 npm run og-image     # captures design/og-image/card.html as public/og-image.png
 npm run icons        # copies the design package's favicon.svg into public/ and renders favicon.ico, the PNG icons, and the Apple touch icon from it
+npm run ko-fi        # captures design/ko-fi/cover.html and profile.html as the PNGs uploaded to TechGeek's Ko-fi page
 ```
 
 The originals in `design/images/originals/` are kept out of git, so a fresh checkout needs `npm run screenshots` (or the original files) before `npm run images` can run. To add a project, give it a record in `src/ui/projects.ts` and a row in `SIT_REC_ARR` in `design/images/capture.mts`, add its name to the project list in `IMA_REC_ARR` in `design/images/render.mts`, then run `npm run screenshots`. Apps cache a link's preview card for days, so a changed card should get a new file name (`og-image-2.png`), with every tag in `index.html` that points at it updated.
@@ -98,6 +99,7 @@ design/                Source artwork and the scripts that render it, not served
 ├── business-cards/    The business card front and back
 ├── icons/             render.mts, which builds the icon set in public/ (npm run icons)
 ├── images/            capture.mts and render.mts, which build the screenshots and the portrait (npm run screenshots, npm run images)
+├── ko-fi/             cover.html, profile.html, and render.mts, which build the Ko-fi cover and profile picture beside them (npm run ko-fi)
 └── og-image/          card.html and render.mts, which build public/og-image.png (npm run og-image)
 ```
 
