@@ -1,0 +1,470 @@
+<!doctype html><!-- What: Document Type Declaration. Why: Browsers render the page in standards mode only with a doctype. How: This declares HTML5. -->
+
+
+
+<html lang='en'><!-- What: Root HTML Element. Why: The cover is set in English text. How: This marks the document as English. -->
+
+
+	<head><!-- What: Document Head Element. Why: The cover's fonts and layout load before it's captured. How: This holds them in the sections below. -->
+
+
+		<!-- #region Document -->
+
+		<meta charset='UTF-8' />                     <!-- What: Character Set Meta. Why: The cover's text has to decode as UTF-8. How: This sits first in the head. -->
+		<title>TechGeek Ko-fi Cover Image</title> <!-- What: Page Title Element. Why: The file should say what it is when opened in a browser. How: This names the cover. -->
+
+		<!-- #endregion Document -->
+
+
+		<!-- #region Cover Styles -->
+
+		<style>/* What: Cover Style Element. Why: The cover is one fixed-size image, styled here from the site's own fonts and tokens. How: This imports the shared package's font faces, tokens, and base styles and the site's global stylesheet, then lays out the cover. */
+
+
+			@import url( '../../node_modules/techgeek-design/src/styles/fonts.css' );  /* What: Package Fonts Import. Why: The cover should be set in the family's own typefaces. How: This loads the shared package's font faces, whose file paths resolve from that stylesheet's own folder. */
+			@import url( '../../node_modules/techgeek-design/src/styles/tokens.css' ); /* What: Package Tokens Import. Why: The cover should read the family's colors and scale rather than copies of them. How: This loads the shared tokens. */
+			@import url( '../../node_modules/techgeek-design/src/styles/base.css' );   /* What: Package Base Import. Why: The rem steps assume the family's 11px root. How: This loads the shared base styles, which set it. */
+			@import url( '../../src/styles/styles.css' );                              /* What: Site Styles Import. Why: The cover should match the site's own overrides. How: This loads the site's global stylesheet last, as the site does. */
+
+
+
+			/* #region covBodBod */
+
+			.covBodBod { /* What: Cover Body Body. Why: The cover fills the whole 1,200x400 capture, Ko-fi's 3:1 size, on the site's ivory page color. How: This sizes it in literal pixels, the image's own fixed size, and centers its row both ways. */
+
+
+				align-items     : center;
+				background      : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
+				display         : flex;
+				height          : 400px;
+				justify-content : center;
+				margin          : 0;
+				overflow        : hidden;
+				position        : relative;
+				width           : 1200px;
+
+
+			}
+
+
+			/* #region hexDecSvg */
+
+			.hexDecSvg { /* What: Hexagon Decoration SVG. Why: Outlined hexagons at the cover's ends echo the site's geometric background, where Ko-fi crops on phones, so nothing that matters is lost. How: This lays the drawing over the whole cover behind the row. */
+
+
+				inset    : 0;
+				position : absolute;
+
+
+			}
+
+			.hexOutPol { /* What: Hexagon Outline Polygon. Why: The end hexagons stay quiet so the wordmark and code lead. How: This outlines each in the border color. */
+
+
+				fill         : none;
+				stroke       : var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
+				stroke-width : 2;
+
+
+			}
+
+			.hexAccPol { /* What: Hexagon Accent Polygon. Why: One orange hexagon at each end ties the decoration to the brand. How: This outlines it in the main accent. */
+
+
+				fill         : none;
+				stroke       : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
+				stroke-width : 3;
+
+
+			}
+
+			/* #endregion hexDecSvg */
+
+
+
+			/* #region covRowDiv */
+
+			.covRowDiv { /* What: Cover Row Div. Why: The brand and the code window sit side by side in the cover's middle, clear of the ends a phone crops and lifted a little above the bottom, where Ko-fi's page can overlap it. How: This lays them out in one row with a wide gap and nudges the row up. */
+
+
+				align-items : center;
+				display     : flex;
+				gap         : var( --spa-hor-p05 );              /* Spacing Horizontal Base Plus 5 ~= 59.447px */
+				margin-top  : calc( var( --spa-ver-p03 ) * -1 ); /* Spacing Vertical Base Plus 3 ~= -33.876px */
+				position    : relative;
+
+
+			}
+
+
+			/* #region braColDiv */
+
+			.braColDiv { /* What: Brand Column Div. Why: The brand reads first, the way Ko-fi visitors meet the page. How: This stacks the wordmark row, the tagline, and the owner line. */
+
+
+				display        : flex;
+				flex-direction : column;
+
+
+			}
+
+
+			/* #region braRowDiv */
+
+			.braRowDiv { /* What: Brand Row Div. Why: The mark sits beside the wordmark, as in the site's bar. How: This lines them up on their centers with a small gap. */
+
+
+				align-items : center;
+				display     : flex;
+				gap         : var( --spa-hor-p01 ); /* Spacing Horizontal Base Plus 1 ~= 19.304px */
+
+
+			}
+
+			.hexMarSvg { /* What: Hexagon Mark SVG. Why: The site's mark leads the wordmark. How: This sizes the bar's mark at the p05 rhythm step, a little taller than the wordmark's letters. */
+
+
+				display : block;
+				height  : calc( var( --ver-rhy-p05 ) * 1rem ); /* Vertical Rhythm Base Plus 5 ~= 59.447px */
+				width   : calc( var( --ver-rhy-p05 ) * 1rem ); /* Vertical Rhythm Base Plus 5 ~= 59.447px */
+
+
+			}
+
+
+			/* #region braWorPar */
+
+			.braWorPar { /* What: Brand Wordmark Paragraph. Why: The site's name is the cover's headline, set as the bar sets it. How: This sets it bold in the display font, a little tight, at the p05 step, small enough to keep the row clear of the ends a phone crops. */
+
+
+				font-family    : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
+				font-size      : var( --fon-siz-p05 ); /* Font Size Base Plus 5 ~= 44.876px */
+				font-weight    : 800;
+				letter-spacing : -0.03em;
+				line-height    : var( --ver-rhy-m01 ); /* Vertical Rhythm Base Minus 1 = 1 */
+				margin         : 0;
+
+
+			}
+
+			.worFirSpa { /* What: Wordmark First Span. Why: The brand reads in the main text color, as in the bar. How: This sets TechGeek in the ink. */
+
+
+				color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
+
+
+			}
+
+			.worLasSpa { /* What: Wordmark Last Span. Why: The domain ending carries the accent, as in the bar. How: This sets .dev in the dark orange. */
+
+
+				color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
+
+
+			}
+
+			/* #endregion braWorPar */
+
+			/* #endregion braRowDiv */
+
+
+			.tagLinPar { /* What: Tag Line Paragraph. Why: The family's tagline says what a supporter's coffee goes toward. How: This sets it in the accent serif's italic in the secondary text color under the wordmark. */
+
+
+				color       : var( --tex-sec-col );     /* Text Secondary Color = #3D3D5C */
+				font-family : var( --fon-fam-acc );     /* Font Family Accent = 'Lora', serif */
+				font-size   : var( --fon-siz-p02 );     /* Font Size Base Plus 2 ~= 19.304px */
+				font-style  : italic;
+				line-height : var( --ver-rhy-m01 );     /* Vertical Rhythm Base Minus 1 = 1 */
+				margin      : var( --spa-ver-p02 ) 0 0; /* Spacing Vertical Base Plus 2 ~= 25.572px */
+
+
+			}
+
+			.ownNamPar { /* What: Owner Name Paragraph. Why: The cover names who's behind the projects and what they do. How: This sets z4nta0 and the role in the mono font in the dark orange, the way the site sets its labels. */
+
+
+				color       : var( --acc-dar-col );     /* Accent Dark Color ~= #bd3000 */
+				font-family : var( --fon-fam-sec );     /* Font Family Secondary = 'DM Mono', monospace */
+				font-size   : var( --fon-siz-p01 );     /* Font Size Base Plus 1 ~= 14.572px */
+				line-height : var( --ver-rhy-m01 );     /* Vertical Rhythm Base Minus 1 = 1 */
+				margin      : var( --spa-ver-p02 ) 0 0; /* Spacing Vertical Base Plus 2 ~= 25.572px */
+
+
+			}
+
+			/* #endregion braColDiv */
+
+
+
+			/* #region codWinDiv */
+
+			.codWinDiv { /* What: Code Window Div. Why: A small editor window, like the home page's, says what the coffee fuels. How: This draws a dark rounded window with the site's large elevation shadow and a faint blue ring. */
+
+
+				background    : var( --bac-inv-col );                                                                                                 /* Background Inverse Color = #1A1A2E */
+				border-radius : var( --rad-bor-lar );                                                                                                 /* Radius Border Large ~= 14.572px */
+				box-shadow    : var( --ele-lar-sha ), 0 0 0 var( --bor-wid-bas ) oklch( from var( --acc-sec-col ) l c h / var( --cdn-pow-007-rec ) ); /* Elevation Large Shadow ~= 0 11px 44.876px plus 0 3.572px 11px -2.696px, Border Width Base ~= 1.160px, Accent Secondary Color = #7DB9D8 @ 0.140 opacity */
+				overflow      : hidden;
+
+
+			}
+
+
+			/* #region winBarDiv */
+
+			.winBarDiv { /* What: Window Bar Div. Why: The window's title bar holds its three dots and file name, as an editor's does. How: This lines them up on a faintly lighter strip with a hairline under it. */
+
+
+				align-items   : center;
+				background    : oklch( from var( --bac-sur-col ) l c h / 0.04 );                                                /* Background Surface Color = #FFFFFF @ 0.04 opacity */
+				border-bottom : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-010-rec ) ); /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.060 opacity */
+				display       : flex;
+				gap           : var( --spa-hor-m01 );                                                                           /* Spacing Horizontal Base Minus 1 = 11px */
+				padding       : var( --spa-ver-bas ) var( --spa-hor-p01 );                                                      /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 1 ~= 19.304px */
+
+
+			}
+
+			.winDotSpa { /* What: Window Dot Span. Why: Editor windows have three colored dots. How: This draws each as a small circle. */
+
+
+				border-radius : 50%;
+				height        : calc( var( --ver-rhy-m01 ) * 1rem ); /* Vertical Rhythm Base Minus 1 = 11px */
+				width         : calc( var( --ver-rhy-m01 ) * 1rem ); /* Vertical Rhythm Base Minus 1 = 11px */
+
+
+			}
+
+			.winDotSpa--first { /* What: Window Dot Span First. Why: The first dot is the editor's red. How: This fills it with the fixed editor red, the same whatever the theme. */
+
+
+				background : #ff5f56;
+
+
+			}
+
+			.winDotSpa--second { /* What: Window Dot Span Second. Why: The second dot is the editor's yellow. How: This fills it with the fixed editor yellow. */
+
+
+				background : #ffbd2e;
+
+
+			}
+
+			.winDotSpa--third { /* What: Window Dot Span Third. Why: The third dot is the editor's green. How: This fills it with the fixed editor green. */
+
+
+				background : #27c93f;
+
+
+			}
+
+			.winTitSpa { /* What: Window Title Span. Why: The window names its file, as on the home page. How: This sets it small in the mono font in a faint white. */
+
+
+				color       : oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-004-rec ) ); /* Background Surface Color = #FFFFFF @ 0.325 opacity */
+				font-family : var( --fon-fam-sec );                                                /* Font Family Secondary = 'DM Mono', monospace */
+				font-size   : var( --fon-siz-p01 );                                                /* Font Size Base Plus 1 ~= 14.572px */
+				margin-left : var( --spa-hor-bas );                                                /* Spacing Horizontal Base ~= 14.572px */
+
+
+			}
+
+			/* #endregion winBarDiv */
+
+
+
+			/* #region codBloPre */
+
+			.codBloPre { /* What: Code Block Pre. Why: The code keeps its indentation and reads light on the dark window. How: This pads it and sets it in the mono font in the home page's pale code color. */
+
+
+				color       : #e2e8f0;
+				font-family : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
+				font-size   : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
+				line-height : var( --ver-rhy-p01 );                      /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+				margin      : 0;
+				padding     : var( --spa-ver-p02 ) var( --spa-hor-p03 ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+				tab-size    : 4;
+
+
+			}
+
+			.codKeySpa { /* What: Code Keyword Span. Why: The loop's keyword stands out the way an editor colors it. How: This sets it in the bright orange. */
+
+
+				color : var( --acc-mai-col ); /* Accent Main Color = #F26419 */
+
+
+			}
+
+			.codFunSpa { /* What: Code Function Span. Why: Each call reads in its own color, as in an editor. How: This sets it in the soft blue. */
+
+
+				color : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
+
+
+			}
+
+			/* #endregion codBloPre */
+
+			/* #endregion codWinDiv */
+
+			/* #endregion covRowDiv */
+
+			/* #endregion covBodBod */
+
+
+		</style>
+
+		<!-- #endregion Cover Styles -->
+
+
+	</head>
+
+
+
+	<body class='covBodBod'><!-- What: Cover Body Body Element. Why: This is the cover itself. How: It holds the end decoration and the centered row. -->
+
+
+		<svg
+			class='hexDecSvg'
+
+			viewBox='0 0 1200 400'
+
+			aria-hidden='true'
+		><!-- What: Hexagon Decoration SVG Element. Why: The ends echo the site's geometric look. How: This draws outlined hexagons at the left and right ends, hidden from screen readers since it's decoration. -->
+
+
+			<polygon
+				class='hexOutPol'
+
+				points='40,20 80,43 80,89 40,112 0,89 0,43'
+			/><!-- What: Hexagon Outline Polygon Element. Why: The left end carries a quiet hexagon. How: This draws it near the top left. -->
+
+			<polygon
+				class='hexAccPol'
+
+				points='90,150 116,165 116,195 90,210 64,195 64,165'
+			/><!-- What: Hexagon Accent Polygon Element. Why: The left end carries one orange hexagon. How: This draws it below the first. -->
+
+			<polygon
+				class='hexOutPol'
+
+				points='40,300 70,317 70,351 40,368 10,351 10,317'
+			/><!-- What: Hexagon Outline Polygon Element. Why: The left end carries a small quiet hexagon. How: This draws it near the bottom left. -->
+
+			<polygon
+				class='hexOutPol'
+
+				points='1160,288 1200,311 1200,357 1160,380 1120,357 1120,311'
+			/><!-- What: Hexagon Outline Polygon Element. Why: The right end mirrors the left. How: This draws a quiet hexagon near the bottom right. -->
+
+			<polygon
+				class='hexAccPol'
+
+				points='1110,190 1136,205 1136,235 1110,250 1084,235 1084,205'
+			/><!-- What: Hexagon Accent Polygon Element. Why: The right end carries one orange hexagon. How: This draws it above the large one. -->
+
+			<polygon
+				class='hexOutPol'
+
+				points='1160,32 1190,49 1190,83 1160,100 1130,83 1130,49'
+			/><!-- What: Hexagon Outline Polygon Element. Why: The right end carries a small quiet hexagon. How: This draws it near the top right. -->
+
+
+		</svg>
+
+
+		<div class='covRowDiv'><!-- What: Cover Row Div Element. Why: The brand and the code window sit side by side. How: This holds the brand column and the window. -->
+
+
+			<div class='braColDiv'><!-- What: Brand Column Div Element. Why: The brand reads first. How: This stacks the wordmark row, the tagline, and the owner line. -->
+
+
+				<div class='braRowDiv'><!-- What: Brand Row Div Element. Why: The mark sits beside the wordmark. How: This holds the two in one row. -->
+
+
+					<svg
+						class='hexMarSvg'
+
+						fill='none'
+						viewBox='0 0 32 32'
+
+						aria-hidden='true'
+					><!-- What: Hexagon Mark SVG Element. Why: The site's mark leads the wordmark. How: This draws the favicon's mark, hidden from screen readers since the wordmark names it. -->
+
+
+						<polygon
+							fill='none'
+							points='16,2 30,9 30,23 16,30 2,23 2,9'
+							stroke='var( --acc-mai-col )'
+							stroke-width='2'
+						/><!-- What: Outer Hexagon Polygon Element. Why: The mark's outline is an orange hexagon. How: This traces it in the main accent. --><!-- Accent Main Color = #F26419 -->
+
+						<polygon
+							style='opacity : var( --cdn-pow-002-rec )'
+
+							fill='var( --acc-sec-col )'
+							points='16,8 24,12.5 24,19.5 16,24 8,19.5 8,12.5'
+						/><!-- What: Inner Hexagon Polygon Element. Why: A softer blue hexagon fills the mark's center. How: This draws it in the secondary accent. --><!-- Accent Secondary Color = #7DB9D8, Core-Design-Number to the Power of 2 Reciprocal ~= 0.570 -->
+
+						<circle
+							cx='16'
+							cy='16'
+							fill='var( --acc-mai-col )'
+							r='4'
+						/><!-- What: Center Dot Circle Element. Why: An orange dot finishes the mark. How: This draws it in the main accent at the center. --><!-- Accent Main Color = #F26419 -->
+
+
+					</svg>
+
+					<p class='braWorPar'><span class='worFirSpa'>TechGeek</span><span class='worLasSpa'>.dev</span></p><!-- What: Brand Wordmark Paragraph Element. Why: The site's name is the headline. How: This sets its two parts in their own colors. -->
+
+
+				</div>
+
+				<p class='tagLinPar'>Building the web, one commit at a time.</p><!-- What: Tag Line Paragraph Element. Why: The tagline says what the coffee fuels. How: This shows the family's tagline. -->
+
+				<p class='ownNamPar'>z4nta0 · Full Stack Web Developer</p><!-- What: Owner Name Paragraph Element. Why: The cover names who's behind the projects. How: This shows the name and role. -->
+
+
+			</div>
+
+
+			<div class='codWinDiv'><!-- What: Code Window Div Element. Why: A small editor window says what the coffee fuels. How: This holds the title bar and the code. -->
+
+
+				<div class='winBarDiv'><!-- What: Window Bar Div Element. Why: The window has an editor's title bar. How: This holds the three dots and the file name. -->
+
+
+					<span class='winDotSpa winDotSpa--first'></span><!-- What: Window Dot Span First Element. Why: Editor windows have three colored dots. How: This draws the red one. -->
+
+					<span class='winDotSpa winDotSpa--second'></span><!-- What: Window Dot Span Second Element. Why: Editor windows have three colored dots. How: This draws the yellow one. -->
+
+					<span class='winDotSpa winDotSpa--third'></span><!-- What: Window Dot Span Third Element. Why: Editor windows have three colored dots. How: This draws the green one. -->
+
+					<span class='winTitSpa'>techgeek.dev.ts</span><!-- What: Window Title Span Element. Why: The window names its file after the site. How: This shows techgeek.dev.ts. -->
+
+
+				</div>
+
+				<pre class='codBloPre'><span class='codKeySpa'>while</span> ( coffee ) {
+	code.<span class='codFunSpa'>write</span>();
+	web.<span class='codFunSpa'>ship</span>();
+}</pre><!-- What: Code Block Pre Element. Why: The loop says the coffee keeps the work going. How: This shows four lines of code, their keyword and calls colored like an editor's, kept exactly as written since a pre shows its whitespace. -->
+
+
+			</div>
+
+
+		</div>
+
+
+	</body>
+
+
+</html>
+
+

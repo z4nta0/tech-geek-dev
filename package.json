@@ -1,6 +1,6 @@
 {
 	"name": "tech-geek-dev",
-	"version": "2.5.0",
+	"version": "2.6.0",
 	"private": true,
 	"type": "module",
 	"scripts": {
@@ -8,6 +8,7 @@
 		"dev": "vite",
 		"icons": "node design/icons/render.mts",
 		"images": "node design/images/render.mts",
+		"ko-fi": "node design/ko-fi/render.mts",
 		"lint": "eslint .",
 		"og-image": "node design/og-image/render.mts",
 		"preview": "vite preview",

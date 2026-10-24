@@ -1,0 +1,136 @@
+<!doctype html><!-- What: Document Type Declaration. Why: Browsers render the page in standards mode only with a doctype. How: This declares HTML5. -->
+
+
+
+<html lang='en'><!-- What: Root HTML Element. Why: The picture is drawn as an English page. How: This marks the document as English. -->
+
+
+	<head><!-- What: Document Head Element. Why: The picture's fonts and layout load before it's captured. How: This holds them in the sections below. -->
+
+
+		<!-- #region Document -->
+
+		<meta charset='UTF-8' />                         <!-- What: Character Set Meta. Why: The page has to decode as UTF-8. How: This sits first in the head. -->
+		<title>TechGeek Ko-fi Profile Picture</title> <!-- What: Page Title Element. Why: The file should say what it is when opened in a browser. How: This names the picture. -->
+
+		<!-- #endregion Document -->
+
+
+		<!-- #region Profile Styles -->
+
+		<style>/* What: Profile Style Element. Why: The picture is one fixed-size image, styled here from the family's tokens. How: This imports the shared package's tokens and base styles and the site's global stylesheet, then lays out the picture. */
+
+
+			@import url( '../../node_modules/techgeek-design/src/styles/tokens.css' ); /* What: Package Tokens Import. Why: The picture should read the family's colors and scale rather than copies of them. How: This loads the shared tokens. */
+			@import url( '../../node_modules/techgeek-design/src/styles/base.css' );   /* What: Package Base Import. Why: The rem steps assume the family's 11px root. How: This loads the shared base styles, which set it. */
+			@import url( '../../src/styles/styles.css' );                              /* What: Site Styles Import. Why: The picture should match the site's own overrides. How: This loads the site's global stylesheet last, as the site does. */
+
+
+
+			/* #region proBodBod */
+
+			.proBodBod { /* What: Profile Body Body. Why: The picture fills the whole 400x400 capture, which the renderer doubles, on the ink, so the bright mark stands out on Ko-fi's white page. How: This sizes it in literal pixels, the image's own fixed size, and hides anything past its edges. */
+
+
+				background : var( --bac-inv-col ); /* Background Inverse Color = #1A1A2E */
+				height     : 400px;
+				margin     : 0;
+				overflow   : hidden;
+				width      : 400px;
+
+
+			}
+
+			.proArtSvg { /* What: Profile Artwork SVG. Why: The mark and its steam are one drawing, laid out in its own 400-unit square. How: This fills the whole picture. */
+
+
+				display : block;
+				height  : 100%;
+				width   : 100%;
+
+
+			}
+
+			.steWisPat { /* What: Steam Wisp Path. Why: Steam rising from the mark says coffee without drawing a cup, so it stays the brand's own mark. How: This strokes each wisp in the pale blue with round ends and no fill. */
+
+
+				fill           : none;
+				stroke         : var( --acs-tin-col ); /* Accent-Secondary Tint Color = #B8D9EC */
+				stroke-linecap : round;
+				stroke-width   : 9;
+
+
+			}
+
+			/* #endregion proBodBod */
+
+
+		</style>
+
+		<!-- #endregion Profile Styles -->
+
+
+	</head>
+
+
+
+	<body class='proBodBod'><!-- What: Profile Body Body Element. Why: This is the picture itself. How: It holds the one drawing. -->
+
+
+		<svg
+			class='proArtSvg'
+
+			viewBox='0 -22 400 400'
+
+			aria-hidden='true'
+		><!-- What: Profile Artwork SVG Element. Why: The picture is the mark with steam rising from it. How: This draws both inside the circle Ko-fi crops the square to, its view shifted up 22 units so the steam and mark together sit centered, hidden from screen readers since it's artwork. -->
+
+
+			<path
+				class='steWisPat'
+
+				d='M 160 118 C 146 100, 174 86, 160 66 C 148 50, 168 40, 160 28'
+			/><!-- What: Steam Wisp Path Element. Why: The left wisp rises from the mark. How: This draws an S curve above its left side. -->
+
+			<path
+				class='steWisPat'
+
+				d='M 200 108 C 186 88, 214 72, 200 50 C 188 34, 208 22, 200 10'
+			/><!-- What: Steam Wisp Path Element. Why: The middle wisp rises highest. How: This draws an S curve above the mark's top. -->
+
+			<path
+				class='steWisPat'
+
+				d='M 240 118 C 226 100, 254 86, 240 66 C 228 50, 248 40, 240 28'
+			/><!-- What: Steam Wisp Path Element. Why: The right wisp mirrors the left. How: This draws an S curve above the mark's right side. -->
+
+			<polygon
+				fill='none'
+				points='200,130 304,182 304,286 200,338 96,286 96,182'
+				stroke='var( --acc-mai-col )'
+				stroke-linejoin='round'
+				stroke-width='15'
+			/><!-- What: Outer Hexagon Polygon Element. Why: The mark's outline is an orange hexagon. How: This traces the favicon's outer hexagon, scaled to sit below the steam. --><!-- Accent Main Color = #F26419 -->
+
+			<polygon
+				fill='var( --acc-sec-col )'
+				points='200,175 259,208 259,260 200,293 141,260 141,208'
+			/><!-- What: Inner Hexagon Polygon Element. Why: A softer blue hexagon fills the mark's center. How: This draws the favicon's inner hexagon in the secondary accent at full strength, since the favicon's softened blue turns slate on the ink. --><!-- Accent Secondary Color = #7DB9D8 -->
+
+			<circle
+				cx='200'
+				cy='234'
+				fill='var( --acc-mai-col )'
+				r='30'
+			/><!-- What: Center Dot Circle Element. Why: An orange dot finishes the mark. How: This draws it in the main accent at the mark's center. --><!-- Accent Main Color = #F26419 -->
+
+
+		</svg>
+
+
+	</body>
+
+
+</html>
+
+
