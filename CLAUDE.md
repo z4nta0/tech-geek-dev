@@ -57,7 +57,8 @@ Decided 2026-10-12 by the user, in the step 7 content review.
   the listed projects, minus Tailwind, GraphQL, PostgreSQL, Redis, Prisma,
   Elasticsearch, AWS, and Nginx, which were removed.
 - **Confirmed as accurate**: Home's hero (the availability label, the code
-  window, and the 100% Open Source badge), About's values and timeline,
+  window, and the badge, 100% Open Source until 2026-11-01, when it became
+  100% Source Available with the license below), About's values and timeline,
   Work's process steps, and Contact's budget ranges, availability, and
   response time.
 - **Removed**: About's Download CV button, which linked to a file that
@@ -80,6 +81,12 @@ Decided 2026-10-12 by the user, in the step 7 content review.
   every build. About was chosen over the shared footer, which would ask on
   every page of all three sites, and over Contact, which is for paid work.
   `tests/interaction/ko-fi.spec.ts` checks the link.
+- **License** (decided by the user 2026-11-01, per the user-level Licenses
+  rule): the code is source available under the PolyForm Noncommercial
+  License 1.0.0 in `LICENSE.md`, whose note keeps the written content,
+  images, and TechGeek name and marks all rights reserved. The site never
+  calls the code open source, so About's Support paragraph says its source is
+  available to read and learn from.
 - **Closing banner** (decided 2026-10-13): Home's "Let's Work Together"
   banner is a rounded orange card on the ivory, with ink text and an ink
   button, so it reads apart from the dark footer below it. Focus rings

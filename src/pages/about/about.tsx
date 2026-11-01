@@ -708,7 +708,7 @@ function AboPagCom () : JSX.Element {
 						<SecHeaCom
 							aliPosStr='center'
 							labTexStr='Support My Work'
-							subTexStr="The projects I build for myself, like Ease My Life, TechGeek.support, and TechGeek.cards, are open source and free to use. If something I've made helped you, you can support my work with a tip on Ko-fi. It's never expected, and always appreciated."
+							subTexStr="The projects I build for myself, like Ease My Life, TechGeek.support, and TechGeek.cards, are free to use, and their source code is available for anyone to read and learn from. If something I've made helped you, you can support my work with a tip on Ko-fi. It's never expected, and always appreciated."
 							titTexStr='Buy Me a Coffee'
 						/>{ /* What: Section Header Component. Why: The section opens with its heading and the invitation itself. How: This centers its label, title, and subtitle. */ }
 

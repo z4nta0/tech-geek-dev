@@ -638,7 +638,7 @@ function HomPagCom () : JSX.Element {
 							</div>
 
 
-							<div className={ cssModObj.floBadDiv }>{ /* What: Floating Badge Div Element. Why: A badge highlights that z4nta0's work is open source. How: This shows a small mark beside its figure and label. */ }
+							<div className={ cssModObj.floBadDiv }>{ /* What: Floating Badge Div Element. Why: A badge highlights that z4nta0's code is source available. How: This shows a small mark beside its figure and label. */ }
 
 
 								<svg
@@ -671,7 +671,7 @@ function HomPagCom () : JSX.Element {
 
 									<div className={ cssModObj.badValDiv }>100%</div>{ /* What: Badge Value Div Element. Why: The figure is the badge's point. How: This shows one hundred percent. */ }
 
-									<div className={ cssModObj.badLabDiv }>Open Source</div>{ /* What: Badge Label Div Element. Why: The label says what the figure counts. How: This shows Open Source. */ }
+									<div className={ cssModObj.badLabDiv }>Source Available</div>{ /* What: Badge Label Div Element. Why: The label says what the figure counts. How: This shows Source Available. */ }
 
 
 								</div>

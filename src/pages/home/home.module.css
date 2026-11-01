@@ -735,7 +735,7 @@
 
 /* #region floBadDiv */
 
-.floBadDiv { /* What: Floating Badge Div. Why: The open source badge sits off the window's bottom left corner, arriving last, covering no more of the code than the lower part of its closing brace. How: This sets a white rounded card with a soft shadow just past that corner, its top a step above the code's bottom padding so it overlaps only the brace's lower edge, and plays the shared contentEnterFadeUp after the window. */
+.floBadDiv { /* What: Floating Badge Div. Why: The source available badge sits off the window's bottom left corner, arriving last, covering no more of the code than the lower part of its closing brace. How: This sets a white rounded card with a soft shadow just past that corner, its top a step above the code's bottom padding so it overlaps only the brace's lower edge, and plays the shared contentEnterFadeUp after the window. */
 
 
 	align-items   : center;
