@@ -317,6 +317,7 @@ function WorPagCom () : JSX.Element {
 									data-filter-button-active={ actTagStr === tagNamStr || undefined }
 
 									onClick={ () => setActTagStr( tagNamStr ) }
+									onFocus={ ( focEveObj ) => focEveObj.currentTarget.scrollIntoView( { block : 'nearest', inline : 'nearest' } ) } // What: Focus Scroll Handler. Why: A pill tabbed to past the row's edge would stay half hidden, since focusing it doesn't scroll the row. How: This scrolls the pill fully into the row, clear of the edge fades the row's scroll padding leaves room for.
 								>{ tagNamStr }</button> // What: Filter Option Button Element. Why: Each button narrows the grid to its technology. How: This sets the active tag, marked with data-filter-button-active while chosen, which its module styles.
 
 

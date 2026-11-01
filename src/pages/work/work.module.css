@@ -236,13 +236,14 @@
 	--fad-lef-off : var( --fad-edg-off );                /* Fade Edge Offset ~= 25.572px */ /* What: Fade Left Offset. Why: The left edge fades until the row reaches its start. How: The mask reads this, and edge-fade.ts zeroes it through data-scroll-start-active. */
 	--fad-rig-off : var( --fad-edg-off );                /* Fade Edge Offset ~= 25.572px */ /* What: Fade Right Offset. Why: The right edge fades until the row reaches its end. How: The mask reads this, and edge-fade.ts zeroes it through data-scroll-end-active. */
 
-	-webkit-mask-image : linear-gradient( to right, transparent 0, #000 var( --fad-lef-off ), #000 calc( 100% - var( --fad-rig-off ) ), transparent 100% ); /* Fade Left Offset ~= 25.572px, Fade Right Offset ~= 25.572px */
-	display            : flex;
-	flex               : 1;
-	gap                : var( --spa-hor-m02 ); /* Spacing Horizontal Base Minus 2 ~= 8.304px */
-	mask-image         : linear-gradient( to right, transparent 0, #000 var( --fad-lef-off ), #000 calc( 100% - var( --fad-rig-off ) ), transparent 100% ); /* Fade Left Offset ~= 25.572px, Fade Right Offset ~= 25.572px */
-	overflow-x         : auto;
-	scrollbar-width    : none;
+	-webkit-mask-image    : linear-gradient( to right, transparent 0, #000 var( --fad-lef-off ), #000 calc( 100% - var( --fad-rig-off ) ), transparent 100% ); /* Fade Left Offset ~= 25.572px, Fade Right Offset ~= 25.572px */
+	display               : flex;
+	flex                  : 1;
+	gap                   : var( --spa-hor-m02 ); /* Spacing Horizontal Base Minus 2 ~= 8.304px */
+	mask-image            : linear-gradient( to right, transparent 0, #000 var( --fad-lef-off ), #000 calc( 100% - var( --fad-rig-off ) ), transparent 100% ); /* Fade Left Offset ~= 25.572px, Fade Right Offset ~= 25.572px */
+	overflow-x            : auto;
+	scroll-padding-inline : var( --fad-edg-off ); /* Fade Edge Offset ~= 25.572px */ /* What: Fade Clearance Padding. Why: A pill scrolled into view on focus should land clear of the edge fades. How: This keeps scrolling into view one fade's width in from each end. */
+	scrollbar-width       : none;
 
 
 }
