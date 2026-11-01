@@ -198,7 +198,7 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : false,
-		desStr : 'Free, friendly tech help for everyday people, with plain-spoken articles and questions answered by email.',
+		desStr : 'A sister site to TechGeek.dev with free, friendly tech help for everyday people, through plain-spoken articles and questions answered by email.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/tech-geek-support',
 		ideStr : 'proj-07',
@@ -215,7 +215,7 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : false,
-		desStr : 'Animated digital greeting cards, each one hand-coded to play in the browser and sent as a link.',
+		desStr : 'A sister site to TechGeek.dev with animated digital greeting cards, each one hand-coded to play in the browser and sent as a link.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/tech-geek-cards',
 		ideStr : 'proj-08',
