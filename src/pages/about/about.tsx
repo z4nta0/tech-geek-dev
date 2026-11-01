@@ -28,8 +28,9 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * The About page: a hero introducing z4nta0 beside a portrait framed by
  * hexagons, with two floating facts; the skills grouped by area; the
  * journey from a first computer in 2004 to today, as a timeline; and the
- * four values behind the work. The projects shipped fact is counted from the
- * project list, so it grows as projects are added.
+ * four values behind the work; and a closing invitation to support the work
+ * with a tip on Ko-fi. The projects shipped fact is counted from the project
+ * list, so it grows as projects are added.
  *
  * Sections:
  *  - Constants
@@ -115,6 +116,10 @@ const TIM_MIL_ARR = [ // What: Timeline Milestone Array. Why: The timeline shows
 ];
 
 // #endregion TIM_MIL_ARR
+
+
+
+const TIP_URL_STR = 'https://ko-fi.com/techgeekdev'; // What: Tip URL String. Why: The Support section's button opens z4nta0's Ko-fi page, the same address every README links. How: This is the page's public address, written here since it never changes between builds.
 
 
 
@@ -685,6 +690,37 @@ function AboPagCom () : JSX.Element {
 
 
 						</div>
+
+
+					</div>
+
+
+				</section>
+
+
+
+				<section className={ cssModObj.aboSupSec }>{ /* What: About Support Section Element. Why: The page closes with a low-key invitation to tip, apart from the hero's invitation to hire. How: This holds the heading block and the Ko-fi button. */ }
+
+
+					<div className={ cssModObj.supInnDiv }>{ /* What: Support Inner Div Element. Why: The section sits centered in the page's column. How: This stacks the heading block over the button. */ }
+
+
+						<SecHeaCom
+							aliPosStr='center'
+							labTexStr='Support My Work'
+							subTexStr="The projects I build for myself, like Ease My Life, TechGeek.support, and TechGeek.cards, are free to use, and their source code is available for anyone to read and learn from. If something I've made helped you, you can support my work with a tip on Ko-fi. It's never expected, and always appreciated."
+							titTexStr='Buy Me a Coffee'
+						/>{ /* What: Section Header Component. Why: The section opens with its heading and the invitation itself. How: This centers its label, title, and subtitle. */ }
+
+
+
+						<a
+							className={ cssModObj.butPriAnc }
+
+							href={ TIP_URL_STR }
+							rel='noopener noreferrer'
+							target='_blank'
+						>Buy Me a Coffee<span className={ cssModObj.visHidSpa }> (opens Ko-fi in a new tab)</span></a>{ /* What: Button Primary Anchor Element. Why: The invitation ends with its one action. How: This opens the Ko-fi page in a new tab, cut off from this page, telling screen reader users where it goes through a visually hidden note. */ }
 
 
 					</div>

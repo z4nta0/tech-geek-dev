@@ -49,7 +49,7 @@ Decided 2026-10-12 by the user, in the step 7 content review.
   projects are added, and always end in a plus, since older projects that
   are no longer online still count. The client sites are Hair Designs, The
   Bernie Bears, Tony's Toppers, Seal and Shield, and Reese Roofing; Ease My
-  Life and Tech Geek are z4nta0's own.
+  Life, TechGeek.support, and TechGeek.cards are z4nta0's own.
 - **Reese Roofing is a mockup**, not a real business (see its own
   CLAUDE.md), so its project description says so.
 - **Skills**: Home's ticker lists TypeScript, React, Node.js, Next.js, and
@@ -57,7 +57,8 @@ Decided 2026-10-12 by the user, in the step 7 content review.
   the listed projects, minus Tailwind, GraphQL, PostgreSQL, Redis, Prisma,
   Elasticsearch, AWS, and Nginx, which were removed.
 - **Confirmed as accurate**: Home's hero (the availability label, the code
-  window, and the 100% Open Source badge), About's values and timeline,
+  window, and the badge, 100% Open Source until 2026-11-01, when it became
+  100% Source Available with the license below), About's values and timeline,
   Work's process steps, and Contact's budget ranges, availability, and
   response time.
 - **Removed**: About's Download CV button, which linked to a file that
@@ -71,6 +72,21 @@ Decided 2026-10-12 by the user, in the step 7 content review.
   Development, Backend Development, and Hosting & Maintenance, the fourth
   added after the greeting cards service was cut, so the four-column grid
   keeps even rows and the section covers a site from build to upkeep.
+- **Ko-fi** (decided by the user 2026-11-01): the README ends with the
+  shared Support section, and About closes with a white Support My Work band
+  inviting a tip, its "Buy Me a Coffee" button opening
+  https://ko-fi.com/techgeekdev in a new tab. The address is written into
+  `pages/about/about.tsx` (`TIP_URL_STR`) rather than read from a Netlify
+  environment variable as in ease-my-life, since it's public and the same in
+  every build. About was chosen over the shared footer, which would ask on
+  every page of all three sites, and over Contact, which is for paid work.
+  `tests/interaction/ko-fi.spec.ts` checks the link.
+- **License** (decided by the user 2026-11-01, per the user-level Licenses
+  rule): the code is source available under the PolyForm Noncommercial
+  License 1.0.0 in `LICENSE.md`, whose note keeps the written content,
+  images, and TechGeek name and marks all rights reserved. The site never
+  calls the code open source, so About's Support paragraph says its source is
+  available to read and learn from.
 - **Closing banner** (decided 2026-10-13): Home's "Let's Work Together"
   banner is a rounded orange card on the ivory, with ink text and an ink
   button, so it reads apart from the dark footer below it. Focus rings
@@ -621,6 +637,9 @@ ticker, and the status dots) when waiting for the page to settle.
   stay put and send nothing, while a filled-in form posts as form contact
   and shows the thank-you. It came from the audit finding that the form had
   turned the browser's validation off without checking anything itself.
+  `ko-fi.spec.ts` (added 2026-11-01) checks that About's Ko-fi button points
+  at the Ko-fi page with `noopener` and `noreferrer` and opens it in a new
+  tab, answering Ko-fi's address itself so the test never leaves the site.
 - `npm run test:rendering`: compares a full-page screenshot of every state
   with its baseline in `tests/rendering/baselines/`, with zero tolerance,
   under reduced motion, with the page's clock fixed to one date, since the
@@ -750,7 +769,10 @@ decided by the user on 2026-10-13 (step 12, on the `deferred-items` branch).
 - **Tech Geek project entry** (Work and Home, decided 2026-10-13): stays live
   with its current screenshot until `../tech-geek-support` is finished (under
   a week), then its screenshot, description, and GitHub link are updated and
-  a TechGeek.cards entry is added.
+  a TechGeek.cards entry is added. Done 2026-11-01: the entry became
+  TechGeek.support, described as the tech help site it now is, and
+  TechGeek.cards joined after it with its own GSAP tag, both with fresh
+  screenshots from `npm run screenshots`.
 - **Business card SVGs** (`design/business-cards/`, decided 2026-10-13): no
   redesign, only the details changed to techgeek.dev and the text enlarged,
   since the printed cards' text was too small (the 11-unit text printed at

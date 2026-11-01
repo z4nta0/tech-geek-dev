@@ -14,7 +14,8 @@
  * skills grid steps from four groups across to two to one, the timeline
  * alternates its milestones either side of a center line on a tablet or wider
  * and runs each one's year, dot, and line, and text in three columns on a
- * phone, and the values grid steps like the skills and lifts a card on hover.
+ * phone, the values grid steps like the skills and lifts a card on hover, and
+ * a white band closes the page with the Ko-fi invitation and its button.
  * The page's centered columns take the shared container values, and its
  * sections the shared section padding, merged into their own rules. Everything
  * that moves holds still under reduced motion.
@@ -251,7 +252,7 @@
 
 }
 
-.butPriAnc { /* What: Button Primary Anchor. Why: The way to get in touch stands out. How: This sets an orange button in mono capitals, easing its color, lift, press, and focus. */
+.butPriAnc { /* What: Button Primary Anchor. Why: The page's actions, getting in touch and buying a coffee, stand out. How: This sets an orange button in mono capitals, easing its color, lift, press, and focus. */
 
 
 	align-items    : center;
@@ -1099,6 +1100,64 @@
 /* #endregion valInnDiv */
 
 /* #endregion aboValSec */
+
+
+
+/* #region aboSupSec */
+
+.aboSupSec { /* What: About Support Section. Why: The page closes its run of bands on white with the section spacing, set apart from the warm values band above it. How: This sets the background and the shared section padding. */
+
+
+	background : var( --bac-sur-col );   /* Background Surface Color = #FFFFFF */
+	padding    : var( --spa-ver-p08 ) 0; /* Spacing Vertical Base Plus 8 ~= 138.199px */
+
+
+}
+
+
+/* #region supInnDiv */
+
+.supInnDiv { /* What: Support Inner Div. Why: The invitation sits centered in the page's column, its button under the heading block. How: This caps and centers the column with its side padding and stacks its children centered with a gap. */
+
+
+	align-items    : center;
+	display        : flex;
+	flex-direction : column;
+	gap            : var( --spa-ver-p04 );   /* Spacing Vertical Base Plus 4 ~= 44.876px */
+	margin         : 0 auto;
+	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */
+	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
+	width          : 100%;
+
+
+}
+
+
+/* #region butPriAnc */
+
+/* What: Button Primary Anchor Pointer. Why: The Ko-fi button shares the hero's orange button. How: Its rule sits in the herActDiv region. */
+
+.visHidSpa { /* What: Visually Hidden Span. Why: Screen reader users should hear that the button opens Ko-fi in a new tab, which sighted visitors learn from the text above it. How: This shrinks the note to a clipped 1px box out of the layout, the standard technique that keeps it in the accessibility tree. */
+
+
+	border      : 0;
+	clip-path   : inset( 50% );
+	height      : 1px;
+	margin      : -1px;
+	overflow    : hidden;
+	padding     : 0;
+	position    : absolute;
+	white-space : nowrap;
+	width       : 1px;
+
+
+}
+
+/* #endregion butPriAnc */
+
+/* #endregion supInnDiv */
+
+/* #endregion aboSupSec */
 
 /* #endregion pagEntDiv */
 

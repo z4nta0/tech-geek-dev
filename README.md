@@ -41,7 +41,7 @@ npm run typecheck  # TypeScript across src/, the configs, tests/, and the design
 ```bash
 npm test                    # every suite
 npm run test:accessibility  # axe-core plus scripted keyboard, naming, reflow, and motion checks
-npm run test:interaction    # page navigation, the phone menu, the contact form, and every link and button's hover, press, and focus feedback
+npm run test:interaction    # page navigation, the phone menu, the contact form, the Ko-fi button, and every link and button's hover, press, and focus feedback
 npm run test:rendering      # full-page screenshots of each page state against approved baselines
 npm run test:responsive     # every page and the phone menu from 320 to 1,920px: no sideways scroll, spill, or overlap, and every paragraph within its measure
 npm run test:seo            # titles, descriptions, canonical links, robots, social tags, structured data, the preview card, icons, robots.txt, and the sitemap
@@ -116,3 +116,17 @@ design/                Source artwork and the scripts that render it, not served
 Home, Work, About, and Contact are indexed, each with its own title, description, and canonical link, and the 404 page carries `noindex`. The structured data describes z4nta0 as a person and the site as theirs. `index.html` carries the home page's title and description, since link checkers and many crawlers read it without running the site's script; Work, About, and Contact set their own, and the 404 page its own title, and every page shares one social preview card, since link previews only ever read `index.html`.
 
 The contact form posts to Netlify Forms: a hidden copy of the form in `index.html` registers its fields, and Netlify emails each submission to the address set in its dashboard, with the visitor's email as the reply-to.
+
+## Support
+
+If this project is useful to you, you can support its development with a tip
+on Ko-fi. It's never required, and always appreciated.
+
+[![Support me on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/techgeekdev)
+
+## License
+
+Source available under the [PolyForm Noncommercial License 1.0.0](LICENSE.md):
+free to use, copy, and change for any noncommercial purpose. The written
+content, images, and TechGeek name and marks aren't covered, and remain all
+rights reserved.
