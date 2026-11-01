@@ -3,13 +3,14 @@
 
 // #region Imports
 
-import emlScrUrl from '../assets/images/ease-my-life-website.webp';     // What: Ease-My-Life Screenshot URL. Why: The Ease My Life project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
-import hadScrUrl from '../assets/images/hair-designs-website.webp';     // What: Hair-Designs Screenshot URL. Why: The Hair Designs project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
-import rerScrUrl from '../assets/images/reese-roofing-website.webp';    // What: Reese-Roofing Screenshot URL. Why: The Reese Roofing project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
-import sasScrUrl from '../assets/images/seal-and-shield-website.webp';  // What: Seal-And-Shield Screenshot URL. Why: The Seal and Shield project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
-import tbbScrUrl from '../assets/images/the-bernie-bears-website.webp'; // What: The-Bernie-Bears Screenshot URL. Why: The Bernie Bears project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
-import tegScrUrl from '../assets/images/tech-geek-website.webp';        // What: Tech-Geek Screenshot URL. Why: The Tech Geek project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
-import totScrUrl from '../assets/images/tonys-toppers-website.webp';    // What: Tonys-Toppers Screenshot URL. Why: The Tony's Toppers project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
+import emlScrUrl from '../assets/images/ease-my-life-website.webp';      // What: Ease-My-Life Screenshot URL. Why: The Ease My Life project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
+import hadScrUrl from '../assets/images/hair-designs-website.webp';      // What: Hair-Designs Screenshot URL. Why: The Hair Designs project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
+import rerScrUrl from '../assets/images/reese-roofing-website.webp';     // What: Reese-Roofing Screenshot URL. Why: The Reese Roofing project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
+import sasScrUrl from '../assets/images/seal-and-shield-website.webp';   // What: Seal-And-Shield Screenshot URL. Why: The Seal and Shield project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
+import tbbScrUrl from '../assets/images/the-bernie-bears-website.webp';  // What: The-Bernie-Bears Screenshot URL. Why: The Bernie Bears project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
+import tgcScrUrl from '../assets/images/tech-geek-cards-website.webp';   // What: Tech-Geek-Cards Screenshot URL. Why: The TechGeek.cards project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
+import tgsScrUrl from '../assets/images/tech-geek-support-website.webp'; // What: Tech-Geek-Support Screenshot URL. Why: The TechGeek.support project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
+import totScrUrl from '../assets/images/tonys-toppers-website.webp';     // What: Tonys-Toppers Screenshot URL. Why: The Tony's Toppers project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
 
 // #endregion Imports
 
@@ -193,18 +194,35 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 	},
 
-	{ // What: Tech Geek Project Record. Why: Tech Geek is one of the projects the site showcases. How: This holds its card's text, links, screenshot, and tags.
+	{ // What: TechGeek.support Project Record. Why: TechGeek.support is one of the projects the site showcases. How: This holds its card's text, links, screenshot, and tags.
 
 
 		cliBoo : false,
-		desStr : 'A website for helping local businesses get online in order to reach larger audiences and grow their reach.',
+		desStr : 'Free, friendly tech help for everyday people, with plain-spoken articles and questions answered by email.',
 		feaBoo : true,
-		gitStr : 'https://github.com/z4nta0/techgeek',
+		gitStr : 'https://github.com/z4nta0/tech-geek-support',
 		ideStr : 'proj-07',
-		imaStr : tegScrUrl,
+		imaStr : tgsScrUrl,
 		livStr : 'https://techgeek.support/',
 		tagArr : [ 'React', 'TypeScript', 'Node.js', 'React Router', 'Vite' ],
-		titStr : 'Tech Geek',
+		titStr : 'TechGeek.support',
+		yeaNum : 2026
+
+
+	},
+
+	{ // What: TechGeek.cards Project Record. Why: TechGeek.cards is one of the projects the site showcases. How: This holds its card's text, links, screenshot, and tags.
+
+
+		cliBoo : false,
+		desStr : 'Animated digital greeting cards, each one hand-coded to play in the browser and sent as a link.',
+		feaBoo : true,
+		gitStr : 'https://github.com/z4nta0/tech-geek-cards',
+		ideStr : 'proj-08',
+		imaStr : tgcScrUrl,
+		livStr : 'https://techgeek.cards/',
+		tagArr : [ 'React', 'TypeScript', 'GSAP', 'React Router', 'Vite' ],
+		titStr : 'TechGeek.cards',
 		yeaNum : 2026
 
 

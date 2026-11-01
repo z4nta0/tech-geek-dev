@@ -49,7 +49,7 @@ Decided 2026-10-12 by the user, in the step 7 content review.
   projects are added, and always end in a plus, since older projects that
   are no longer online still count. The client sites are Hair Designs, The
   Bernie Bears, Tony's Toppers, Seal and Shield, and Reese Roofing; Ease My
-  Life and Tech Geek are z4nta0's own.
+  Life, TechGeek.support, and TechGeek.cards are z4nta0's own.
 - **Reese Roofing is a mockup**, not a real business (see its own
   CLAUDE.md), so its project description says so.
 - **Skills**: Home's ticker lists TypeScript, React, Node.js, Next.js, and
@@ -750,7 +750,10 @@ decided by the user on 2026-10-13 (step 12, on the `deferred-items` branch).
 - **Tech Geek project entry** (Work and Home, decided 2026-10-13): stays live
   with its current screenshot until `../tech-geek-support` is finished (under
   a week), then its screenshot, description, and GitHub link are updated and
-  a TechGeek.cards entry is added.
+  a TechGeek.cards entry is added. Done 2026-11-01: the entry became
+  TechGeek.support, described as the tech help site it now is, and
+  TechGeek.cards joined after it with its own GSAP tag, both with fresh
+  screenshots from `npm run screenshots`.
 - **Business card SVGs** (`design/business-cards/`, decided 2026-10-13): no
   redesign, only the details changed to techgeek.dev and the text enlarged,
   since the printed cards' text was too small (the 11-unit text printed at
