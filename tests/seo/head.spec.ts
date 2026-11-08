@@ -28,9 +28,10 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
  * way link checkers read it, carries the home page's full title and
  * description. The structured data describes z4nta0 as a Person, with the
  * GitHub and LinkedIn profiles the footer links to and the email the Contact
- * page offers, and this domain as a WebSite z4nta0 wrote. The social preview
- * tags are complete, use absolute addresses, and match the home page's title
- * and description, and the theme color tag carries the brand orange; the card
+ * page offers, and this domain as a WebSite z4nta0 wrote. The raw page's
+ * social preview tags all carry content, name a website and the large image
+ * card, use absolute addresses, and match the home page's title and
+ * description, and the theme color tag carries the brand orange; the card
  * they point at is a 1,200x630 PNG under 300 KB; and every icon the head links
  * to is served, the PNGs at the size their links promise. robots.txt lets
  * every crawler in and names the sitemap, which lists the four indexed pages.
@@ -395,17 +396,19 @@ test( 'the sitemap lists the four indexed pages', async ( { request : reqConObj 
 
 
 
-test( 'the social preview tags are complete', async ( { page : curPagObj } ) => { // What: Social Tags Test. Why: A link shared anywhere should show a full card that matches the page. How: This loads the home page and checks every social tag, its absolute URLs, and its copy against the page's own title and description, then the theme color.
+test( 'the social preview tags are complete in the raw page', async ( { page : curPagObj, request : reqConObj } ) => { // What: Social Tags Test. Why: A link shared anywhere should show a full card that matches the page, and link scrapers read the raw page without running the site's script. How: This fetches the root as raw HTML and checks every social tag carries content, its card kinds, its absolute URLs, and its copy against the loaded home page's title and description, then the theme color.
 
 
-	await curPagObj.goto( '/' ); // What: Home Load Call. Why: Link scrapers read the page every route shares. How: This opens the home page.
+	await curPagObj.goto( '/' ); // What: Home Load Call. Why: The cards' copy is compared with the title and description the home page shows. How: This opens the home page.
 
 
-	const socTagArr = await curPagObj.locator( 'meta[property^="og:"], meta[name^="twitter:"]' ).evaluateAll( ( tagEleArr ) => tagEleArr.map( ( tagCurEle ) => [ tagCurEle.getAttribute( 'property' ) || tagCurEle.getAttribute( 'name' ) || '', tagCurEle.getAttribute( 'content' ) || '' ] ) ); // What: Social Tag Array. Why: The social tags are read by key and value. How: This reads each Open Graph and Twitter tag as a key and content pair.
-	const socTagObj = Object.fromEntries( socTagArr ); // What: Social Tag Object. Why: Tags are easier to check by key. How: This turns the pairs into an object.
+	const rawHtmStr = await ( await reqConObj.get( '/' ) ).text(); // What: Raw HTML String. Why: The tags are read the way a link scraper reads them. How: This fetches the root's HTML without a browser.
+	const socTagArr = [ ...rawHtmStr.matchAll( /<meta\s+(?:property|name)=(['"])((?:og|twitter):[^'"]+)\1\s+content=(['"])(.*?)\3/g ) ].map( ( tagMatArr ) => [ tagMatArr[ 2 ], tagMatArr[ 4 ] ] ); // What: Social Tag Array. Why: The social tags are read by key and value. How: This reads each raw Open Graph and Twitter meta tag as a key and content pair, whichever quotes its attributes use.
+	const socTagObj = Object.fromEntries( socTagArr );             // What: Social Tag Object. Why: Tags are easier to check by key. How: This turns the pairs into an object.
 
 
-	expect( Object.keys( socTagObj ) ).toEqual( expect.arrayContaining( SOC_KEY_ARR ) ); // What: Complete Tags Assertion. Why: A missing tag leaves part of the card blank. How: This checks every required key is present, allowing optional extras.
+	expect( SOC_KEY_ARR.filter( ( socKeyStr ) => !socTagObj[ socKeyStr ] ) ).toEqual( [] ); // What: Complete Tags Assertion. Why: A missing or empty tag leaves part of the card blank. How: This lists every required key that's absent or has empty content, allowing optional extras, so a failure names each one.
+	expect( [ socTagObj[ 'og:type' ], socTagObj[ 'twitter:card' ] ] ).toEqual( [ 'website', 'summary_large_image' ] );                                                                             // What: Card Kinds Assertion. Why: The social preview rule names a website and the large image card. How: This checks og:type and twitter:card carry those values.
 	expect( [ socTagObj[ 'og:image' ], socTagObj[ 'og:url' ], socTagObj[ 'twitter:image' ] ] ).toEqual( [ `${ LIV_URL_STR }og-image.png`, LIV_URL_STR, `${ LIV_URL_STR }og-image.png` ] );         // What: Absolute URLs Assertion. Why: Scrapers can't resolve a relative address. How: This checks each URL tag names the live https address.
 	expect( [ socTagObj[ 'og:image:type' ], socTagObj[ 'og:image:width' ], socTagObj[ 'og:image:height' ] ] ).toEqual( [ 'image/png', '1200', '630' ] );                                           // What: Image Facts Assertion. Why: The tags have to describe the file they point at. How: This checks the type and size they give.
 	expect( [ socTagObj[ 'og:title' ], socTagObj[ 'twitter:title' ] ] ).toEqual( [ await curPagObj.title(), await curPagObj.title() ] );                                                           // What: Title Match Assertion. Why: A card should name the page the way its tab does. How: This checks both card titles match the page title.
