@@ -44,10 +44,11 @@ npm run test:accessibility  # axe-core plus scripted keyboard, naming, reflow, a
 npm run test:interaction    # page navigation, the phone menu, the contact form, the Ko-fi button, and every link and button's hover, press, and focus feedback
 npm run test:rendering      # full-page screenshots of each page state against approved baselines
 npm run test:responsive     # every page and the phone menu from 320 to 1,920px: no sideways scroll, spill, or overlap, and every paragraph within its measure
+npm run test:security       # the _headers policy, a search of the build for secrets, npm audit, and no policy violations on any page of the production build
 npm run test:seo            # titles, descriptions, canonical links, robots, social tags, structured data, the preview card, icons, robots.txt, and the sitemap
 ```
 
-Each suite runs in Chromium, Firefox, and WebKit against its own dev server on port 5194, so a dev server already running on 5173 is left alone. Reports land in `tests/output/` (git-ignored); `npx playwright show-report tests/output/report` opens the HTML report. The rendering suite's approved screenshots live in `tests/rendering/baselines/` and match to the pixel, so after a change meant to alter how a page looks, review the diff in the report, then run `npm run test:rendering -- --update-snapshots` and commit the new baselines with the change. Chromium and WebKit capture with the faint background patterns hidden, since they draw them slightly differently from run to run; Firefox still checks them. The baselines were captured on Linux, and font rendering differs between systems, so on macOS or Windows refresh them locally before relying on the comparison. If a browser is missing, `npx playwright install chromium firefox webkit` installs all three.
+Each suite runs in Chromium, Firefox, and WebKit against its own dev server on port 5194, or for the security suite a production build served on 5204, so a dev server already running on 5173 is left alone. Reports land in `tests/output/` (git-ignored); `npx playwright show-report tests/output/report` opens the HTML report. The rendering suite's approved screenshots live in `tests/rendering/baselines/` and match to the pixel, so after a change meant to alter how a page looks, review the diff in the report, then run `npm run test:rendering -- --update-snapshots` and commit the new baselines with the change. Chromium and WebKit capture with the faint background patterns hidden, since they draw them slightly differently from run to run; Firefox still checks them. The baselines were captured on Linux, and font rendering differs between systems, so on macOS or Windows refresh them locally before relying on the comparison. If a browser is missing, `npx playwright install chromium firefox webkit` installs all three.
 
 ## Build
 
@@ -91,8 +92,9 @@ tests/
 ├── interaction/       navigation, phone menu, contact form, and hover, press, and focus feedback checks
 ├── rendering/         screenshot comparisons, their baselines/, and the stylesheet that hides the background patterns
 ├── responsive/        layout checks across screen widths
+├── security/          the headers policy, build secret, dependency audit, and browser policy checks
 ├── seo/               head tags, structured data, preview card, icon, and crawler file checks
-├── support/           the page states the suites visit
+├── support/           shared helpers: the page states the suites visit, the feedback probe, and the headers reader
 └── playwright.config.ts
 
 design/                Source artwork and the scripts that render it, not served
@@ -105,7 +107,7 @@ design/                Source artwork and the scripts that render it, not served
 
 ## Design notes
 
-- **Type pairing:** Syne, a wide display face, for headings, body text, and the wordmark; DM Mono for labels, buttons, and code; and Lora's italic for the occasional pull quote (About's lead and the phone menu's tagline). All three are self-hosted (`src/assets/fonts/`, declared in `src/styles/fonts.css`), so a visit makes no third-party requests.
+- **Type pairing:** Syne, a wide display face, for headings, body text, and the wordmark; DM Mono for labels, buttons, and code; and Lora's italic for the occasional pull quote (About's lead and the phone menu's tagline). All three are self-hosted, their files and `fonts.css` coming from the techgeek-design package, so a visit makes no third-party requests.
 - **Palette:** A warm ivory page (`#F5F0E8`) and a deep ink (`#1A1A2E`) for text and the footer, with a bright orange (`#F26419`) and a soft blue (`#7DB9D8`) as the accents. Text in those hues reads darker shades of each so it meets contrast.
 - **Scale:** Every size, from type to spacing to motion, is a step on one scale built from the plastic ratio (about 1.32) on an 11px base, and layout widths grow with the screen between fixed bounds.
 - **Theme:** A geometric, technical motif runs through the site: hexagons, grid and dot patterns, circuit lines, and a code window on Home.
