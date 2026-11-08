@@ -267,7 +267,7 @@
 	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );    /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	padding        : var( --spa-ver-m01 ) var( --spa-hor-p03 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	text-transform : uppercase;
-	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition     : background var( --dur-tra-bas ) var( --mot-sta-eas ), transform var( --dur-tra-bas ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Transition Base Plus 1 ~= 209.1ms */
 
 
 }
@@ -1028,7 +1028,7 @@
 
 /* #region valCarDiv */
 
-.valCarDiv { /* What: Value Card Div. Why: Each value is one white card. How: This sets the bordered card, stacks its symbol, title, and description, and eases its border color, lift, and shadow. */
+.valCarDiv { /* What: Value Card Div. Why: Each value is one white card. How: This sets the bordered card, stacks its symbol, title, and description, and eases its border color, lift, and shadow, the shadow leaving on the accelerating curve. */
 
 
 	background     : var( --bac-sur-col );                                                                               /* Background Surface Color = #FFFFFF */
@@ -1038,23 +1038,25 @@
 	flex-direction : column;
 	gap            : var( --spa-ver-m01 );                                                                               /* Spacing Vertical Base Minus 1 = 11px */
 	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );                                                          /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
-	transition     : border-color var( --dur-tra-p02 ) var( --mot-dec-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-dec-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Shadow Transition. Why: A box-shadow animates on paint rather than the compositor, but a compositor version would need a second shadow layer faded through opacity, and only the one hovered card repaints. How: This eases the shadow alongside the lift. */
+	transition     : border-color var( --dur-tra-p02 ) var( --mot-dec-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-acc-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */ /* What: Shadow Transition. Why: A box-shadow animates on paint rather than the compositor, but a compositor version would need a second shadow layer faded through opacity, and only the one hovered card repaints. How: This eases the shadow alongside the lift. */
 
 
 }
-.valCarDiv:hover { /* What: Hovered Value Card Div. Why: A card should respond to the pointer. How: This lifts it 3px, turns its border the strong blue, and casts the medium shadow. */
+.valCarDiv:hover { /* What: Hovered Value Card Div. Why: A card should respond to the pointer. How: This lifts it 3px, turns its border the strong blue, and casts the medium shadow, easing them in on the decelerating curve. */
 
 
 	border-color : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
 	box-shadow   : var( --ele-med-sha ); /* Elevation Medium Shadow ~= 0 4.732px 14.572px plus 0 1.536px 3.572px -1.160px */
 	transform    : translateY( -3px );
+	transition   : border-color var( --dur-tra-p02 ) var( --mot-dec-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-dec-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Value Card Div. Why: Someone who asked for less motion shouldn't see the cards glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.valCarDiv { /* What: Motionless Value Card Div. Why: The lift and shadow should simply switch. How: This turns the transition off. */
+	.valCarDiv,
+	.valCarDiv:hover { /* What: Motionless Value Card Div. Why: The lift and shadow should simply switch. How: This turns the transition off on both the resting and the hovered rule, since the hovered rule outranks the base. */
 
 
 		transition : none;
