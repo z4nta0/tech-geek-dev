@@ -603,8 +603,6 @@ link to `<main id='main'>` in `app.tsx`, which holds whichever page shows,
 between the bar and the footer. The skip link and the bar live in
 techgeek-design (from `v0.5.0`), and the main element here.
 
-
-
 ## Test suites
 Added 2026-10-12, adapted from the-bernie-bears'. Playwright suites live in
 `tests/`, one project per suite and engine in `tests/playwright.config.ts`,
@@ -631,8 +629,8 @@ ticker, and the status dots) when waiting for the page to settle.
   behaves. `navigation.spec.ts` (from the-bernie-bears, added in step 11)
   checks that a footer link clicked at the bottom of each page opens the next
   page at its top, the current page's own bar link and a phone menu link do
-  the same, and the bar's Hire Me switches to Contact without reloading the
-  site. Since the 2026-11-07 audit, when the shared package's scroll hook
+  the same, and the bar's "Hire Me" link switches to Contact without
+  reloading the site. Since the 2026-11-07 audit, when the shared package's scroll hook
   took over restoring positions, it also checks that back, forward, and a
   reload return to the exact earlier position, a fresh load opens at the top,
   a hash wins over a saved position, malformed saved positions raise no
@@ -660,8 +658,9 @@ ticker, and the status dots) when waiting for the page to settle.
   checks it lists the page links, both profiles, and the email over a scrim
   with the page inert, and that tapping the scrim, Escape (which returns focus
   to the toggle), tapping the brand, and widening the screen each close it,
-  as does a Ctrl or Cmd click and a middle click on a page link, Hire Me, and
-  a profile, and a plain tap on a profile, each opening a new tab.
+  as does a Ctrl or Cmd click and a middle click on a page link, the
+  "Hire Me" link, and a profile, and a plain tap on a profile, each opening
+  a new tab.
   `form.spec.ts` (added in the close-out) answers the root's POST the way
   Netlify Forms does and checks that an empty form and a malformed email
   stay put and send nothing, while a filled-in form posts as form contact
