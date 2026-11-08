@@ -31,12 +31,13 @@ import type { Page          } from '@playwright/test'; // What: Page. Why: The h
  * Checks the interaction feedback rule on every page state, in whichever
  * engine the project runs. Every reachable link and button has to look
  * different hovered than at rest, pressed than hovered, and focused than
- * unfocused, and every property each of those changes, on it or anything
- * inside it, its shadow layers included, has to be eased by a transition, its
- * focus ring included. Each kind of element with a state that switches on and
- * off, such as the phone menu's toggle or the current page's bar link, is
- * flipped off, on, and off again by its attribute, and has to look different
- * and ease each change both ways. On the Home, Work, and About states, the
+ * unfocused, and every form field focused than unfocused, and every property
+ * each of those changes, on it or anything inside it, its shadow layers
+ * included, has to be eased by a transition, its focus ring included. Each
+ * kind of element with a state that switches on and off, such as the phone
+ * menu's toggle or the current page's bar link, is flipped off, on, and off
+ * again by its attribute, and has to look different and ease each change both
+ * ways. On the Home, Work, and About states, the
  * cards that lift on hover without being links have to show and ease their
  * hover. The first keyboard stop, the skip link, has to draw its ring at full
  * width. Under reduced motion every change stays but switches at once. Real
@@ -76,6 +77,8 @@ type TogTarTyp = { // What: Toggle Target Type. Why: Each kind of element with a
 
 // #region Constants
 
+const CON_SEL_STR = 'a, button, input:not([type="hidden"]), select, textarea';          // What: Control Selector String. Why: Focusing or filling a form field is an interaction too, so Contact's fields are probed beside every link and button, while a hidden input never shows. How: This matches the links, the buttons, and every form field but a hidden input, and the reachable check drops the honeypot, which is taken out of the tab order.
+const FIE_SEL_STR = 'input, select, textarea';                                          // What: Field Selector String. Why: A form field has no hover or press look of its own, since pressing one only focuses it. How: This matches the fields, which the probe reads for focus alone.
 const HOV_TAR_STR = '[class*="proCarArt"], [class*="serCarDiv"], [class*="valCarDiv"]'; // What: Hover Target String. Why: The project cards on Home and Work, Home's service cards, and About's value cards respond to hover without being controls, so the control probe never reaches them. How: This matches each by its CSS module class, whose name Vite keeps inside the hashed class.
 
 
@@ -373,25 +376,31 @@ async function conLisFun ( curPagObj : Page, conSelStr : string ) : Promise< Ele
  * feeProFun = Feedback Problems Function
  *
  * @summary
- * Probes every reachable link and button and returns a problem for each one
- * that gives no feedback, or a single problem when it finds none at all. Each
- * control is scrolled into view, and one that still waits above the screen
- * until it's focused, the skip link, is focused so it slides in before it's
- * hovered. Each is read at rest with the pointer away, again while hovered,
- * and again while the mouse button is held on it, then blurred with the
- * pointer away and read once more while focused the way a keyboard focuses it,
- * every look read once its transition has settled. A control that looks the
- * same at rest and hovered, hovered and pressed, or unfocused and focused is a
- * problem. Normally every probed property that changes on hover, press, or
- * focus, on the control or anything inside it, has to be eased by a transition
- * ({@link snaProFun}), the focus ring's outline included; under reduced motion
- * none of them may ease ({@link movProFun}), and the control's own transition
- * durations, read while it is pressed, must all be zero. It expects real
+ * Probes every reachable link, button, and form field and returns a problem
+ * for each one that gives no feedback, or a single problem when it finds no
+ * control at all, or no field on the Contact states, where the form shows.
+ * Each control is scrolled into view, and one that still waits above the
+ * screen until it's focused, the skip link, is focused so it slides in before
+ * it's hovered. Each is read at rest with the pointer away, again while
+ * hovered, and again while the mouse button is held on it, a field skipping
+ * the press, since pressing one only focuses it, then blurred with the pointer
+ * away and read once more while focused the way a keyboard focuses it, every
+ * look read once its transition has settled. A control that looks the same
+ * unfocused and focused is a problem, and so is a link or button that looks
+ * the same at rest and hovered or hovered and pressed, while a field, which
+ * has no hover or press look, isn't held to those two. Normally every probed
+ * property that changes on hover, press, or focus, on the control or anything
+ * inside it, has to be eased by a transition ({@link snaProFun}), the focus
+ * ring's outline included; under reduced motion none of them may ease
+ * ({@link movProFun}), and the control's own transition durations, read while
+ * it is pressed, or hovered for a field, must all be zero. It expects real
  * clicks already blocked, so releasing the mouse does nothing.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
  * @param curPagObj - Current Page Object: The page to probe.
+ * @param staIdeStr - State Identifier String: The page state's name, which
+ *                    says whether the form's fields have to be found.
  * @param redMotBoo - Reduced Motion Boolean: Whether the page is emulating
  *                    reduced motion.
  *
@@ -400,15 +409,15 @@ async function conLisFun ( curPagObj : Page, conSelStr : string ) : Promise< Ele
  *
  * @example
  * ```ts
- * feeProFun(page, false) // => [] when every control responds
+ * feeProFun(page, 'contact-phone', false) // => [] when every control responds
  * ```
  *
 */
 
-async function feeProFun ( curPagObj : Page, redMotBoo : boolean ) : Promise< string[] > {
+async function feeProFun ( curPagObj : Page, staIdeStr : string, redMotBoo : boolean ) : Promise< string[] > {
 
 
-	const conHanArr = await conLisFun( curPagObj, 'a, button' ); // What: Control Handle Array. Why: Every reachable link and button is probed. How: This collects their handles.
+	const conHanArr = await conLisFun( curPagObj, CON_SEL_STR ); // What: Control Handle Array. Why: Every reachable link, button, and form field is probed. How: This collects their handles.
 
 	const proLisArr : string[] = []; // What: Problem List Array. Why: Every problem should be reported, not just the first. How: This collects them.
 
@@ -417,10 +426,18 @@ async function feeProFun ( curPagObj : Page, redMotBoo : boolean ) : Promise< st
 
 
 
-	for ( const conCurObj of conHanArr ) { // What: Control Probe Loop. Why: Every reachable control has to respond. How: This reads each one at rest, hovered, pressed, unfocused, and focused.
+	const fieFouArr = await Promise.all( conHanArr.map( ( conCurObj ) => conCurObj.evaluate( ( conCurEle, fieSelStr ) => conCurEle.matches( fieSelStr ), FIE_SEL_STR ) ) ); // What: Field Found Array. Why: Each control is probed for the looks it has, a field for focus alone. How: This marks, in the controls' order, each one that's a form field.
 
 
-		const conDesStr = await conCurObj.evaluate( ( conCurEle ) => `${ conCurEle.tagName.toLowerCase() } "${ ( conCurEle.getAttribute( 'aria-label' ) || conCurEle.textContent || '' ).trim().slice( 0, 30 ) }"` ); // What: Control Description String. Why: A problem should name the control a person would recognize. How: This joins its tag with its label or text.
+	if ( /^contact-/.test( staIdeStr ) && !fieFouArr.includes( true ) ) proLisArr.push( 'no form field to probe' ); // What: Empty Field Check. Why: A selector that stopped matching the fields would let their focus snap without failing. How: On the Contact states, where the form shows, this records a problem when no field is found.
+
+
+
+	for ( const [ conIndNum, conCurObj ] of conHanArr.entries() ) { // What: Control Probe Loop. Why: Every reachable control has to respond. How: This reads each one at rest, hovered, pressed, unfocused, and focused, a field skipping the press.
+
+
+		const conDesStr = await conCurObj.evaluate( ( conCurEle ) => `${ conCurEle.tagName.toLowerCase() } "${ ( conCurEle.getAttribute( 'aria-label' ) || ( conCurEle.matches( 'input, select, textarea' ) ? conCurEle.getAttribute( 'name' ) : conCurEle.textContent ) || '' ).trim().slice( 0, 30 ) }"` ); // What: Control Description String. Why: A problem should name the control a person would recognize. How: This joins its tag with its label, its text, or for a form field its name, since a select's text runs through every option.
+		const conFieBoo = fieFouArr[ conIndNum ]; // What: Control Field Boolean. Why: A field has no hover or press look to require. How: This is true when the control is a form field.
 
 
 		await conCurObj.scrollIntoViewIfNeeded(); // What: Control Scroll Call. Why: A control has to be on screen to hover or press. How: This scrolls it into view.
@@ -453,7 +470,7 @@ async function feeProFun ( curPagObj : Page, redMotBoo : boolean ) : Promise< st
 		const hovSnaArr = await conCurObj.evaluate( snaEleFun, CON_PRO_ARR ); // What: Hover Snapshot Array. Why: The hovered look is compared with rest and with pressed. How: This records it.
 
 
-		await curPagObj.mouse.down(); // What: Mouse Down Call. Why: A press shows while the button is held. How: This holds the mouse button down on the control.
+		if ( !conFieBoo ) await curPagObj.mouse.down(); // What: Mouse Down Call. Why: A press shows while the button is held, while pressing a field only focuses it, which the focus read below covers. How: This holds the mouse button down on a link or button.
 
 		await curPagObj.waitForTimeout( SET_WAI_NUM ); // What: Press Settle Wait. Why: The pressed look is read once it has eased in. How: This pauses for the settle time.
 
@@ -464,7 +481,7 @@ async function feeProFun ( curPagObj : Page, redMotBoo : boolean ) : Promise< st
 		const traDurStr = await conCurObj.evaluate( ( conCurEle ) => getComputedStyle( conCurEle ).transitionDuration ); // What: Transition Duration String. Why: Reduced motion should leave nothing moving. How: This reads the control's transition durations.
 
 
-		await curPagObj.mouse.up(); // What: Mouse Up Call. Why: The press has to end before the focus is read. How: This releases the button, which does nothing further since clicks are blocked.
+		if ( !conFieBoo ) await curPagObj.mouse.up(); // What: Mouse Up Call. Why: The press has to end before the focus is read. How: This releases the button, which does nothing further since clicks are blocked.
 
 		await curPagObj.mouse.move( 0, 0 ); // What: Pointer Away Call. Why: The focus look is compared with no hover on it. How: This moves the pointer to the corner of the bar.
 
@@ -492,11 +509,11 @@ async function feeProFun ( curPagObj : Page, redMotBoo : boolean ) : Promise< st
 
 
 
-		if ( valSigFun( resSnaArr ) === valSigFun( hovSnaArr ) ) proLisArr.push( `${ conDesStr } looks the same hovered` ); // What: Hover Check. Why: A hovered control has to respond. How: This records one that doesn't change.
+		if ( !conFieBoo && valSigFun( resSnaArr ) === valSigFun( hovSnaArr ) ) proLisArr.push( `${ conDesStr } looks the same hovered` ); // What: Hover Check. Why: A hovered link or button has to respond. How: This records one that doesn't change, leaving out a field, which has no hover look.
 
 
 
-		if ( valSigFun( hovSnaArr ) === valSigFun( preSnaArr ) ) proLisArr.push( `${ conDesStr } looks the same pressed` ); // What: Press Check. Why: A press has to register before anything happens. How: This records one that doesn't change.
+		if ( !conFieBoo && valSigFun( hovSnaArr ) === valSigFun( preSnaArr ) ) proLisArr.push( `${ conDesStr } looks the same pressed` ); // What: Press Check. Why: A press has to register before anything happens. How: This records a link or button that doesn't change, leaving out a field, which isn't pressed.
 
 
 
@@ -758,7 +775,7 @@ async function togProFun ( curPagObj : Page, staIdeStr : string, redMotBoo : boo
 for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every page state is checked. How: This declares each check once per state.
 
 
-	test( `${ staRecObj.ideStr } gives every reachable link and button hover, press, and focus feedback, and every toggle its switch`, async ( { page : curPagObj } ) => { // What: Feedback Test. Why: Every interaction should visibly register. How: This opens the state, blocks clicks, probes every reachable link and button and each reachable element of the toggle kinds listed for the state, and on the Home, Work, and About states every card, and checks it finds no problems.
+	test( `${ staRecObj.ideStr } gives every reachable link and button hover, press, and focus feedback, every form field its focus, and every toggle its switch`, async ( { page : curPagObj } ) => { // What: Feedback Test. Why: Every interaction should visibly register. How: This opens the state, blocks clicks, probes every reachable link, button, and form field and each reachable element of the toggle kinds listed for the state, and on the Home, Work, and About states every card, and checks it finds no problems.
 
 
 		test.setTimeout( 600000 ); // What: Test Timeout Call. Why: Probing every control's hover, press, and focus takes about two seconds per control, and the Work page's dozens of project links and filters ran WebKit past 90 seconds even before the toggles and cards joined. How: This gives the test ten minutes.
@@ -768,7 +785,7 @@ for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every pa
 		await curPagObj.evaluate( cliBloFun ); // What: Click Block Call. Why: Pressing a control shouldn't navigate or close anything. How: This cancels every click from here on.
 
 
-		const proLisArr = [ ...await feeProFun( curPagObj, false ), ...await togProFun( curPagObj, staRecObj.ideStr, false ) ]; // What: Problem List Array. Why: The state passes only when every reachable link and button responds and every switched state shows and eases. How: This gathers both probes' problems, so a failure prints each one, the toggles' included when a control fails.
+		const proLisArr = [ ...await feeProFun( curPagObj, staRecObj.ideStr, false ), ...await togProFun( curPagObj, staRecObj.ideStr, false ) ]; // What: Problem List Array. Why: The state passes only when every reachable link, button, and form field responds and every switched state shows and eases. How: This gathers both probes' problems, so a failure prints each one, the toggles' included when a control fails.
 
 
 		if ( /^(home|work|about)-/.test( staRecObj.ideStr ) ) proLisArr.push( ...await hovProFun( curPagObj, false ) ); // What: Card Probe Call. Why: The cards show, with nothing covering them, only on the Home, Work, and About states. How: On those pages' desktop and phone states, this adds the cards' problems.
@@ -802,7 +819,7 @@ for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every pa
 
 
 
-	test( `${ staRecObj.ideStr } keeps feedback without motion under reduced motion`, async ( { page : curPagObj } ) => { // What: Reduced Motion Feedback Test. Why: Visitors who ask for less motion still need to see their actions register. How: This probes every reachable link and button, each reachable element of the toggle kinds listed for the state, and on the Home, Work, and About states every card, with reduced motion on, and checks it finds no problems.
+	test( `${ staRecObj.ideStr } keeps feedback without motion under reduced motion`, async ( { page : curPagObj } ) => { // What: Reduced Motion Feedback Test. Why: Visitors who ask for less motion still need to see their actions register. How: This probes every reachable link, button, and form field, each reachable element of the toggle kinds listed for the state, and on the Home, Work, and About states every card, with reduced motion on, and checks it finds no problems.
 
 
 		test.setTimeout( 600000 ); // What: Test Timeout Call. Why: Probing every control's hover, press, and focus takes about two seconds per control, and the Work page's dozens of project links and filters ran WebKit past 90 seconds even before the toggles and cards joined. How: This gives the test ten minutes.
@@ -814,7 +831,7 @@ for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every pa
 		await curPagObj.evaluate( cliBloFun ); // What: Click Block Call. Why: Pressing a control shouldn't navigate or close anything. How: This cancels every click from here on.
 
 
-		const proLisArr = [ ...await feeProFun( curPagObj, true ), ...await togProFun( curPagObj, staRecObj.ideStr, true ) ]; // What: Problem List Array. Why: Every reachable link and button has to respond, and every switched state show, without moving. How: This gathers both probes' problems, so a failure prints each one, the toggles' included when a control fails.
+		const proLisArr = [ ...await feeProFun( curPagObj, staRecObj.ideStr, true ), ...await togProFun( curPagObj, staRecObj.ideStr, true ) ]; // What: Problem List Array. Why: Every reachable link, button, and form field has to respond, and every switched state show, without moving. How: This gathers both probes' problems, so a failure prints each one, the toggles' included when a control fails.
 
 
 		if ( /^(home|work|about)-/.test( staRecObj.ideStr ) ) proLisArr.push( ...await hovProFun( curPagObj, true ) ); // What: Card Probe Call. Why: The cards show, with nothing covering them, only on the Home, Work, and About states. How: On those pages' desktop and phone states, this adds the cards' problems.
