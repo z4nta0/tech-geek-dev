@@ -144,7 +144,6 @@ for ( const sitRecObj of SIT_REC_ARR ) { // What: Site Record Loop. Why: Each pr
 
 	await capPagObj.close(); // What: Page Close Call. Why: Each site gets a fresh page. How: This closes the finished one.
 
-
 	console.log( `Captured ${ sitRecObj.urlStr }` ); // What: Progress Log Call. Why: A slow site shouldn't look like a hang. How: This prints each site as it finishes.
 
 

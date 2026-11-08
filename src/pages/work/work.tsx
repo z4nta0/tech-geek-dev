@@ -67,13 +67,10 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
 const PRC_STE_ARR = [ // What: Process Step Array. Why: The process section shows the same four steps every visit. How: Each row holds one step's number, title, and description.
 
 
-	{ numStr : '01', titStr : 'Discover', desStr : 'Deep-dive into your goals, users, and constraints. No assumptions.' }, // What: Discover Step Row. Why: Every project starts by learning what it needs. How: This is the first step.
-
-	{ numStr : '02', titStr : 'Design',   desStr : 'Architecture diagrams, wireframes, and API contracts before a line of code.' }, // What: Design Step Row. Why: The plan comes before the code. How: This is the second step.
-
-	{ numStr : '03', titStr : 'Build',    desStr : 'Iterative development with regular demos. Fully tested and documented.' }, // What: Build Step Row. Why: The site is built in steps the client can see. How: This is the third step.
-
-	{ numStr : '04', titStr : 'Ship',     desStr : 'CI/CD deployment, monitoring, and handover documentation included.' } // What: Ship Step Row. Why: Every project ends deployed and handed over. How: This is the last step.
+	{ desStr : 'Deep-dive into your goals, users, and constraints. No assumptions.',          numStr : '01', titStr : 'Discover' }, // What: Discover Step Row. Why: Every project starts by learning what it needs. How: This is the first step.
+	{ desStr : 'Architecture diagrams, wireframes, and API contracts before a line of code.', numStr : '02', titStr : 'Design'   }, // What: Design Step Row. Why: The plan comes before the code. How: This is the second step.
+	{ desStr : 'Iterative development with regular demos. Fully tested and documented.',      numStr : '03', titStr : 'Build'    }, // What: Build Step Row. Why: The site is built in steps the client can see. How: This is the third step.
+	{ desStr : 'CI/CD deployment, monitoring, and handover documentation included.',          numStr : '04', titStr : 'Ship'     }  // What: Ship Step Row. Why: Every project ends deployed and handed over. How: This is the last step.
 
 
 ];
@@ -210,9 +207,13 @@ function WorPagCom () : JSX.Element {
 
 
 						<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows "My Work" after a short rule. */ }
+
+
 							<span className={ cssModObj.herLinSpa } />{ /* What: Hero Line Span Element. Why: A short rule leads into the label. How: This draws the rule. */ }
 
 							My Work
+
+
 						</span>
 
 						<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading names what it shows. How: This sets "Projects &" and "Case Studies" over two lines, the second in the accent. */ }
@@ -345,6 +346,8 @@ function WorPagCom () : JSX.Element {
 
 
 						<h2 className={ cssModObj.visHidHea }>Projects</h2>{ /* What: Visually Hidden Heading Element. Why: The cards' h3 titles need an h2 between them and the page's h1, and the hero already introduces the grid visually. How: This names the section for screen readers while staying out of sight. */ }
+
+
 
 						{ filProArr.length > 0 ? ( // What: Grid Or Empty Check. Why: A filter can leave nothing to show. How: This renders the grid when projects remain, or the empty message otherwise.
 

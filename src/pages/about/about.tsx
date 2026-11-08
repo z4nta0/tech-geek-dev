@@ -65,10 +65,41 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
 const SKI_GRO_ARR = [ // What: Skill Group Array. Why: The skills grid shows the same groups every visit. How: Each row names a group and its technologies.
 
 
-	{ labStr : 'Frontend', skiArr : [ 'React', 'TypeScript', 'Next.js', 'Vite', 'CSS / Sass', 'GreenSock', 'React Router' ] }, // What: Frontend Group Row. Why: The interface side of the work gets its own group. How: This lists its technologies.
-	{ labStr : 'Backend',  skiArr : [ 'Node.js', 'Express', 'REST APIs', 'PHP' ]                                            }, // What: Backend Group Row. Why: The server side of the work gets its own group. How: This lists its technologies.
-	{ labStr : 'Data',     skiArr : [ 'MongoDB', 'MySQL' ]                                                                  }, // What: Data Group Row. Why: The work's data stores get their own group. How: This lists its databases.
-	{ labStr : 'DevOps',   skiArr : [ 'Apache', 'Netlify', 'GitHub Actions' ]                                               }  // What: DevOps Group Row. Why: The tools that serve and deploy the work get their own group. How: This lists its tools.
+	{ // What: Frontend Group Row. Why: The interface side of the work gets its own group. How: This lists its technologies.
+
+
+		labStr : 'Frontend',
+		skiArr : [ 'React', 'TypeScript', 'Next.js', 'Vite', 'CSS / Sass', 'GreenSock', 'React Router' ]
+
+
+	},
+
+	{ // What: Backend Group Row. Why: The server side of the work gets its own group. How: This lists its technologies.
+
+
+		labStr : 'Backend',
+		skiArr : [ 'Node.js', 'Express', 'REST APIs', 'PHP' ]
+
+
+	},
+
+	{ // What: Data Group Row. Why: The work's data stores get their own group. How: This lists its databases.
+
+
+		labStr : 'Data',
+		skiArr : [ 'MongoDB', 'MySQL' ]
+
+
+	},
+
+	{ // What: DevOps Group Row. Why: The tools that serve and deploy the work get their own group. How: This lists its tools.
+
+
+		labStr : 'DevOps',
+		skiArr : [ 'Apache', 'Netlify', 'GitHub Actions' ]
+
+
+	}
 
 
 ];
@@ -98,19 +129,87 @@ const SKI_GRO_ARR = [ // What: Skill Group Array. Why: The skills grid shows the
 const TIM_MIL_ARR = [ // What: Timeline Milestone Array. Why: The timeline shows the same milestones every visit. How: Each row holds one milestone.
 
 
-	{ orgStr : 'Freelance', titStr : 'Web Veteran',          yeaStr : '2026', desStr : 'With the rise of AI, design is no longer a constraint, so I can focus on coding and deliver solutions far faster.' }, // What: Web Veteran Row. Why: This is the latest milestone. How: This is the 2026 entry.
+	{ // What: Web Veteran Row. Why: This is the latest milestone. How: This is the 2026 entry.
 
-	{ orgStr : 'Self',      titStr : 'Web App Developer',    yeaStr : '2018', desStr : 'A personal web app that creates a todo list using randomly generated tasks with a Node.js, Express.js and MongoDB backend.' }, // What: Web App Developer Row. Why: This marks the first web app. How: This is the 2018 entry.
 
-	{ orgStr : 'Freelance', titStr : 'Full Stack Developer', yeaStr : '2015', desStr : 'My first real website, built for a local church. Its simple social features taught me all about backend architecture using Apache, PHP, and MySQL.' }, // What: Full Stack Developer Row. Why: This marks the first website for someone else. How: This is the 2015 entry.
+		orgStr : 'Freelance',
+		titStr : 'Web Veteran',
+		yeaStr : '2026',
 
-	{ orgStr : 'Self',      titStr : 'Tech Veteran',         yeaStr : '2014', desStr : 'My first fully custom built computer, allowing me to explore advanced hardware configurations and performance optimizations.' }, // What: Tech Veteran Row. Why: This marks the first custom computer. How: This is the 2014 entry.
+		desStr : 'With the rise of AI, design is no longer a constraint, so I can focus on coding and deliver solutions far faster.'
 
-	{ orgStr : 'Self',      titStr : 'Web Newbie',           yeaStr : '2013', desStr : 'My first foray into coding, starting with developing websites using simple HTML and CSS.' }, // What: Web Newbie Row. Why: This marks the start of coding. How: This is the 2013 entry.
 
-	{ orgStr : 'Self',      titStr : 'Tech Tinkerer',        yeaStr : '2007', desStr : 'My first experiments with changing and upgrading my computer hardware, setting the stage for building my own custom computers.' }, // What: Tech Tinkerer Row. Why: This marks the first hardware upgrades. How: This is the 2007 entry.
+	},
 
-	{ orgStr : 'Self',      titStr : 'Tech Newbie',          yeaStr : '2004', desStr : 'I purchased my first personally owned computer, sparking my passion for technology.' } // What: Tech Newbie Row. Why: This is where it all began. How: This is the 2004 entry.
+	{ // What: Web App Developer Row. Why: This marks the first web app. How: This is the 2018 entry.
+
+
+		orgStr : 'Self',
+		titStr : 'Web App Developer',
+		yeaStr : '2018',
+
+		desStr : 'A personal web app that creates a todo list using randomly generated tasks with a Node.js, Express.js and MongoDB backend.'
+
+
+	},
+
+	{ // What: Full Stack Developer Row. Why: This marks the first website for someone else. How: This is the 2015 entry.
+
+
+		orgStr : 'Freelance',
+		titStr : 'Full Stack Developer',
+		yeaStr : '2015',
+
+		desStr : 'My first real website, built for a local church. Its simple social features taught me all about backend architecture using Apache, PHP, and MySQL.'
+
+
+	},
+
+	{ // What: Tech Veteran Row. Why: This marks the first custom computer. How: This is the 2014 entry.
+
+
+		orgStr : 'Self',
+		titStr : 'Tech Veteran',
+		yeaStr : '2014',
+
+		desStr : 'My first fully custom built computer, allowing me to explore advanced hardware configurations and performance optimizations.'
+
+
+	},
+
+	{ // What: Web Newbie Row. Why: This marks the start of coding. How: This is the 2013 entry.
+
+
+		desStr : 'My first foray into coding, starting with developing websites using simple HTML and CSS.',
+		orgStr : 'Self',
+		titStr : 'Web Newbie',
+		yeaStr : '2013'
+
+
+	},
+
+	{ // What: Tech Tinkerer Row. Why: This marks the first hardware upgrades. How: This is the 2007 entry.
+
+
+		orgStr : 'Self',
+		titStr : 'Tech Tinkerer',
+		yeaStr : '2007',
+
+		desStr : 'My first experiments with changing and upgrading my computer hardware, setting the stage for building my own custom computers.'
+
+
+	},
+
+	{ // What: Tech Newbie Row. Why: This is where it all began. How: This is the 2004 entry.
+
+
+		desStr : 'I purchased my first personally owned computer, sparking my passion for technology.',
+		orgStr : 'Self',
+		titStr : 'Tech Newbie',
+		yeaStr : '2004'
+
+
+	}
 
 
 ];
@@ -142,13 +241,10 @@ const TIP_URL_STR = 'https://ko-fi.com/techgeekdev'; // What: Tip URL String. Wh
 const VAL_CAR_ARR = [ // What: Value Card Array. Why: The values section shows the same four cards every visit. How: Each row holds one value.
 
 
-	{ icoStr : '⬡', titStr : 'Craft Over Speed',     desStr : 'I take time to do it right. Technical debt has compounding interest.' }, // What: Craft Over Speed Row. Why: Doing it right comes first. How: This is the first value.
-
-	{ icoStr : '◎', titStr : 'Accessibility First',  desStr : 'The web is for everyone. I build with WCAG compliance as a baseline, not an afterthought.' }, // What: Accessibility First Row. Why: The work serves everyone. How: This is the second value.
-
-	{ icoStr : '△', titStr : 'Honest Communication', desStr : "I'd rather tell you something takes three weeks than promise one and deliver late." }, // What: Honest Communication Row. Why: Clients hear the truth. How: This is the third value.
-
-	{ icoStr : '◇', titStr : 'Continuous Learning',  desStr : 'The best developers I know are the most curious. I read, I experiment, I teach.' } // What: Continuous Learning Row. Why: The craft keeps moving. How: This is the last value.
+	{ desStr : 'I take time to do it right. Technical debt has compounding interest.',                      icoStr : '⬡', titStr : 'Craft Over Speed'     }, // What: Craft Over Speed Row. Why: Doing it right comes first. How: This is the first value.
+	{ desStr : 'The web is for everyone. I build with WCAG compliance as a baseline, not an afterthought.', icoStr : '◎', titStr : 'Accessibility First'  }, // What: Accessibility First Row. Why: The work serves everyone. How: This is the second value.
+	{ desStr : "I'd rather tell you something takes three weeks than promise one and deliver late.",        icoStr : '△', titStr : 'Honest Communication' }, // What: Honest Communication Row. Why: Clients hear the truth. How: This is the third value.
+	{ desStr : 'The best developers I know are the most curious. I read, I experiment, I teach.',           icoStr : '◇', titStr : 'Continuous Learning'  }  // What: Continuous Learning Row. Why: The craft keeps moving. How: This is the last value.
 
 
 ];
@@ -235,9 +331,13 @@ function AboPagCom () : JSX.Element {
 
 
 							<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows "About Me" after a short rule. */ }
+
+
 								<span className={ cssModObj.herLinSpa } />{ /* What: Hero Line Span Element. Why: A short rule leads into the label. How: This draws the rule. */ }
 
 								About Me
+
+
 							</span>
 
 							<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up z4nta0 in three phrases. How: This sets "Dev. Creator." over "Problem Solver.", the second line in the accent. */ }
@@ -257,6 +357,8 @@ function AboPagCom () : JSX.Element {
 								that's a side project for myself, fun websites for friends and family, or
 								websites for local businesses, I bring the same level of care to all of it.
 							</p>
+
+
 
 							<div className={ cssModObj.herActDiv }>{ /* What: Hero Actions Div Element. Why: The introduction ends with its next step. How: This holds the button. */ }
 
@@ -343,7 +445,6 @@ function AboPagCom () : JSX.Element {
 
 
 							</svg>
-
 
 							<svg
 								className={` ${ cssModObj.porFloSvg }   ${ cssModObj.porFloSvgRight } `}
@@ -518,6 +619,8 @@ function AboPagCom () : JSX.Element {
 
 
 									</div>
+
+
 
 									<div className={ cssModObj.skiTagDiv }>{ /* What: Skill Tags Div Element. Why: The group's technologies read as one cluster of pills. How: This wraps the tags. */ }
 

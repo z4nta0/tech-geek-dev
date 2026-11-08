@@ -73,6 +73,8 @@ function SecHeaCom ( { aliPosStr = 'left', labTexStr, subTexStr, titTexStr } : S
 
 
 			<span className={ cssModObj.secLabSpa }>{ /* What: Section Label Span Element. Why: A small label names the section before its heading. How: This shows the label after its decorative rule when left-aligned. */ }
+
+
 				<span
 					className={ cssModObj.labLinSpa }
 
@@ -80,6 +82,8 @@ function SecHeaCom ( { aliPosStr = 'left', labTexStr, subTexStr, titTexStr } : S
 				/>{ /* What: Label Line Span Element. Why: A short rule leads into the label in the left-aligned header. How: This draws the rule, hidden from screen readers as decoration, and the centered header hides it. */ }
 
 				{ labTexStr }
+
+
 			</span>
 
 			<h2 className={ cssModObj.secTitHea }>{ titTexStr }</h2>{ /* What: Section Title Heading Element. Why: Every section is introduced by its heading. How: This shows the title as an h2. */ }

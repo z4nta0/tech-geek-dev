@@ -56,7 +56,6 @@ const WOR_END_STR = '.dev';                                    // What: Wordmark
 
 const CTA_LIN_OBJ : PagLinTyp = { labStr : 'Hire Me', patStr : '/contact' }; // What: Call-To-Action Link Object. Why: The bar's one button asks a visitor to hire z4nta0. How: The bar and the drawer both route it to the Contact page. // What: Label String. Why: The button needs its words. How: This reads "Hire Me". // What: Path String. Why: The button needs a destination. How: This routes to the Contact page.
 
-
 const SIS_LIN_ARR : SisLinTyp[] = [ // What: Sister Link Array. Why: TechGeek.dev is one of three sister sites, and a visitor here may want tech support or a greeting card. How: The footer links to each row in the same tab.
 
 

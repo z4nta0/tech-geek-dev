@@ -233,7 +233,7 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 const CLI_COU_NUM = PRO_REC_ARR.filter( ( proRecObj ) => proRecObj.cliBoo ).length; // What: Client Count Number. Why: The count should grow as client projects are added. How: This counts the records built for a client.
-const SHI_COU_NUM = PRO_REC_ARR.length;                                                 // What: Shipped Count Number. Why: The count should grow as projects are added. How: This counts every record.
+const SHI_COU_NUM = PRO_REC_ARR.length;                                             // What: Shipped Count Number. Why: The count should grow as projects are added. How: This counts every record.
 
 // #endregion Constants
 

@@ -86,9 +86,8 @@ const SER_CAR_ARR = [ // What: Service Card Array. Why: The services section sho
 	{ // What: Local SEO Service Row. Why: Local businesses need to be found nearby. How: This describes the local search service.
 
 
-		titStr : 'Local SEO Optimized',
-
 		desStr : 'Optimized for local search visibility, helping businesses attract nearby customers.',
+		titStr : 'Local SEO Optimized',
 
 		icoEle : ( // What: Magnifier Icon. Why: A magnifying glass over lines stands for search. How: This draws it at the card's icon size.
 
@@ -149,9 +148,8 @@ const SER_CAR_ARR = [ // What: Service Card Array. Why: The services section sho
 	{ // What: Frontend Service Row. Why: The interface is what visitors use. How: This describes the frontend service.
 
 
-		titStr : 'Frontend Development',
-
 		desStr : 'Pixel-perfect UIs built with React, TypeScript, and modern CSS. Performant, accessible, and a joy to use.',
+		titStr : 'Frontend Development',
 
 		icoEle : ( // What: Monitor Icon. Why: A screen stands for the interface. How: This draws it at the card's icon size.
 
@@ -188,9 +186,8 @@ const SER_CAR_ARR = [ // What: Service Card Array. Why: The services section sho
 	{ // What: Backend Service Row. Why: Data and services run behind the interface. How: This describes the backend service.
 
 
-		titStr : 'Backend Development',
-
 		desStr : 'Scalable Node.js services, Next.js and React Router APIs, with dependable database design.',
+		titStr : 'Backend Development',
 
 		icoEle : ( // What: Database Icon. Why: A stack of disks stands for stored data. How: This draws it at the card's icon size.
 
@@ -228,9 +225,8 @@ const SER_CAR_ARR = [ // What: Service Card Array. Why: The services section sho
 	{ // What: Hosting Service Row. Why: A site has to launch and keep running after it's built, which completes the end-to-end story. How: This describes the hosting and maintenance service.
 
 
-		titStr : 'Hosting & Maintenance',
-
 		desStr : 'Fast, secure launches on modern hosting, with updates, backups, and fixes so your site keeps running smoothly.',
+		titStr : 'Hosting & Maintenance',
 
 		icoEle : ( // What: Cloud Check Icon. Why: A cloud with a check stands for a site hosted and looked after. How: This draws it at the card's icon size.
 
@@ -293,9 +289,6 @@ const STA_REC_ARR = [ // What: Stat Record Array. Why: The stats strip shows the
 
 
 const TIC_COP_NUM = 4; // What: Ticker Copy Number. Why: The strip has to stay full while it slides one set's width, and one set is about 415px to 428px, depending on the browser, against a pitch column of up to about 927px, so it needs the column plus one set, a little over three sets. How: This repeats the skill list four times, and the strip's keyframe slides it by a quarter of its width, so the two have to change together.
-
-
-
 const TIC_ITE_ARR = Array.from( Array( TIC_COP_NUM ).keys() ).flatMap( ( copIndNum ) => SKI_TIC_ARR.map( ( skiNamStr ) => ( { copIndNum, skiNamStr } ) ) ); // What: Ticker Item Array. Why: The strip shows the skill list several times over so its loop has no seam. How: This lists every skill once per copy, each with its copy's index, which the strip uses to key the items and hide the repeats from screen readers.
 
 // #endregion Constants
@@ -476,6 +469,8 @@ function HomPagCom () : JSX.Element {
 								pixel-perfect frontends.
 							</p>
 
+
+
 							<div className={ cssModObj.herActDiv }>{ /* What: Hero Actions Div Element. Why: The pitch ends with the two next steps. How: This sets the buttons side by side, wrapping onto two lines at about 490px wide and below, and from about 769px to 820px, where the pitch sits beside the code window. */ }
 
 
@@ -516,6 +511,7 @@ function HomPagCom () : JSX.Element {
 
 
 							</div>
+
 
 
 							<div className={ cssModObj.skiTicDiv }>{ /* What: Skills Ticker Div Element. Why: The main technologies scroll past under the pitch. How: This clips the scrolling row. */ }
@@ -783,6 +779,8 @@ function HomPagCom () : JSX.Element {
 
 						</div>
 
+
+
 						<div className={ cssModObj.proGriDiv }>{ /* What: Projects Grid Div Element. Why: The featured cards line up in columns. How: This lays out one card per featured project. */ }
 
 
@@ -883,6 +881,8 @@ function HomPagCom () : JSX.Element {
 
 
 						</div>
+
+
 
 						<div className={ cssModObj.ctaActDiv }>{ /* What: Call-To-Action Actions Div Element. Why: The banner's button sits apart from its text. How: This holds the button. */ }
 

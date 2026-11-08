@@ -120,6 +120,7 @@ function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 
 					</defs>
 
+
 					<rect
 						fill='url(#geoGriPat)'
 						height='100%'
@@ -131,6 +132,8 @@ function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 
 
 			) }
+
+
 
 			{ patVarStr === 'dots' && ( // What: Dots Variant Check. Why: Only the chosen pattern draws. How: This renders the dots when the section asks for it.
 
@@ -169,6 +172,7 @@ function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 
 					</defs>
 
+
 					<rect
 						fill='url(#geoDotPat)'
 						height='100%'
@@ -180,6 +184,8 @@ function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 
 
 			) }
+
+
 
 			{ patVarStr === 'circuit' && ( // What: Circuit Variant Check. Why: Only the chosen pattern draws. How: This renders the circuit when the section asks for it.
 
@@ -278,6 +284,7 @@ function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 
 
 					</defs>
+
 
 					<rect
 						fill='url(#geoCirPat)'

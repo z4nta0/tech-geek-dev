@@ -402,9 +402,13 @@ function ConPagCom () : JSX.Element {
 
 
 						<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows "Get In Touch" after a short rule. */ }
+
+
 							<span className={ cssModObj.herLinSpa } />{ /* What: Hero Line Span Element. Why: A short rule leads into the label. How: This draws the rule. */ }
 
 							Get In Touch
+
+
 						</span>
 
 						<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading makes the invitation. How: This sets "Let's Build" over "Something Together", with "Something" in the accent. */ }
@@ -482,6 +486,7 @@ function ConPagCom () : JSX.Element {
 
 
 									<h2 className={ cssModObj.forTitHea }>Send a Message</h2>{ /* What: Form Title Heading Element. Why: The form's heading names it. How: This shows "Send a Message" as an h2. */ }
+
 
 									<p
 										className={ cssModObj.forHonPar }
@@ -614,6 +619,7 @@ function ConPagCom () : JSX.Element {
 
 									</div>
 
+
 									{ errMesStr && ( // What: Error Presence Check. Why: An error shows only after a failed send. How: This renders the message when there is one.
 
 
@@ -709,6 +715,8 @@ function ConPagCom () : JSX.Element {
 
 
 								<h3 className={ cssModObj.sidTitHea }>Contact Details</h3>{ /* What: Sidebar Title Heading Element. Why: The card is named. How: This shows its title. */ }
+
+
 
 								<div className={ cssModObj.conIteDiv }>{ /* What: Contact Items Div Element. Why: The items stack in a list. How: This holds one link per item. */ }
 

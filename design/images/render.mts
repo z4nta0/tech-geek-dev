@@ -49,7 +49,7 @@ const BOX_REC_OBJ : Record< string, BoxRecTyp > = { // What: Box Record Object. 
 
 
 	'portrait' : { cutBoo : true,  heiNum : 964,  widNum : 728  }, // What: Portrait Box. Why: The About portrait fills a frame up to about 243 by 321, which crops it the same way. How: This cuts it to three times that, centered, so no hidden pixels ship.
-	'project'  : { cutBoo : true,  heiNum : 1128, widNum : 2004 } // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 668 by 376, in Home's two-by-two grid. How: This cuts it to exactly three times that, centered, since covering the box alone came out a pixel wider than the size the cards declare.
+	'project'  : { cutBoo : true,  heiNum : 1128, widNum : 2004 }  // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 668 by 376, in Home's two-by-two grid. How: This cuts it to exactly three times that, centered, since covering the box alone came out a pixel wider than the size the cards declare.
 
 
 };
@@ -102,7 +102,6 @@ const broInsObj = await chromium.launch();   // What: Browser Instance Object. W
 const encPagObj = await broInsObj.newPage(); // What: Encode Page Object. Why: The canvas work runs in a page. How: This opens a blank one.
 
 
-
 for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each original is rebuilt the same way. How: This scales, encodes, and writes one image per pass.
 
 
@@ -129,6 +128,7 @@ for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each o
 
 		souImaEle.src = souUrlStr; // What: Source Address Assignment. Why: The image loads the original's data. How: This sets its source.
 
+
 		await souImaEle.decode(); // What: Source Decode Wait. Why: Drawing an undecoded image draws nothing. How: This waits until it's ready.
 
 
@@ -150,6 +150,7 @@ for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each o
 
 
 		outConObj.imageSmoothingQuality = 'high'; // What: Smoothing Quality Assignment. Why: A large downscale should stay sharp without jagged edges. How: This asks for the browser's best resampling.
+
 
 		outConObj.drawImage( souImaEle, ( outWidNum - draWidNum ) / 2, ( outHeiNum - draHeiNum ) / 2, draWidNum, draHeiNum ); // What: Image Draw Call. Why: A cut image keeps its center, the way object-fit cover crops it. How: This draws the scaled original centered on the canvas, which crops nothing unless the box is cut.
 

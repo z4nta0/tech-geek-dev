@@ -101,6 +101,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 				/>{ /* What: Project Screenshot Image Element. Why: A screenshot shows what the project looks like. How: This loads the record's screenshot lazily, named by the project's title. */ }
 
 
+
 				<div className={ cssModObj.imaOveDiv }>{ /* What: Image Overlay Div Element. Why: The project's links appear over the screenshot on hover. How: This covers the frame and holds the links. */ }
 
 
@@ -196,6 +197,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 				</div>
 
 
+
 				<div className={ cssModObj.yeaBadDiv }>{ proRecObj.yeaNum }</div>{ /* What: Year Badge Div Element. Why: The badge shows when the project was built. How: This prints the record's year over the screenshot's corner. */ }
 
 
@@ -209,6 +211,8 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 				<h3 className={ cssModObj.proTitHea }>{ proRecObj.titStr }</h3>{ /* What: Project Title Heading Element. Why: The card names its project. How: This shows the record's title as an h3. */ }
 
 				<p className={ cssModObj.proDesPar }>{ proRecObj.desStr }</p>{ /* What: Project Description Paragraph Element. Why: The card says what the project is. How: This shows the record's description. */ }
+
+
 
 				<div className={ cssModObj.proTagDiv }>{ /* What: Project Tags Div Element. Why: The project's technologies read as one row of pills. How: This wraps the tags. */ }
 
@@ -230,6 +234,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 
 
 			</div>
+
 
 
 			<svg
