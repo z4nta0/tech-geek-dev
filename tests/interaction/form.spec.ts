@@ -42,9 +42,9 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helper dri
  * forOpeFun = Form Open Function
  *
  * @summary
- * Loads the Contact page with the root's POST answered by the test, the way
- * Netlify Forms would answer it, and returns the bodies the form sent there,
- * so each test can check whether anything was sent and what.
+ * Loads the Contact page with the root's POST answered by the test with an
+ * empty success, and returns the bodies the form sent there, so each test can
+ * check whether anything was sent and what.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -76,7 +76,7 @@ async function forOpeFun ( curPagObj : Page ) : Promise< string[] > {
 
 		senBodArr.push( rouCurObj.request().postData() ?? '' ); // What: Sent Body Record. Why: The test checks what the form sent. How: This keeps the POST's body.
 
-		await rouCurObj.fulfill( { body : '', status : 200 } ); // What: Success Answer Call. Why: The form shows its thank-you only on an ok reply. How: This answers with an empty 200, as Netlify does.
+		await rouCurObj.fulfill( { body : '', status : 200 } ); // What: Success Answer Call. Why: The form shows its thank-you only on an ok reply. How: This answers with an empty 200, a successful send.
 
 
 	} );

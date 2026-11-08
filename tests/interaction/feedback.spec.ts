@@ -672,7 +672,7 @@ async function togProFun ( curPagObj : Page, staIdeStr : string, redMotBoo : boo
 	const togHanArr : [ TogTarTyp, ElementHandle< Element > ][] = [];        // What: Toggle Handle Array. Why: Each reachable element of each kind is flipped. How: This pairs each element's handle with its kind's row.
 
 
-	for ( const togTarObj of TOG_TAR_ARR.filter( ( togFilObj ) => togFilObj.staArr.includes( staIdeStr ) ) ) for ( const togCurObj of await conLisFun( curPagObj, togTarObj.selStr ) ) togHanArr.push( [ togTarObj, togCurObj ] ); // What: Toggle Collect Loop. Why: Only elements a visitor can see and reach are flipped, and only in the states where their kind shows, since the toggle and the drawer exist only in the phone layout and the bar's links only in the wide one. How: This collects the reachable elements of each kind whose row names this state, in the table's order.
+	for ( const togTarObj of TOG_TAR_ARR.filter( ( togFilObj ) => togFilObj.staArr.includes( staIdeStr ) ) ) for ( const togCurObj of await conLisFun( curPagObj, togTarObj.selStr ) ) togHanArr.push( [ togTarObj, togCurObj ] ); // What: Toggle Collect Loop. Why: Only elements a visitor can see and reach are flipped, and only in the states where their kind shows, since the toggle and the drawer replace the bar's links at 1,024px and narrower, and the bar's links show only above that. How: This collects the reachable elements of each kind whose row names this state, in the table's order.
 
 
 

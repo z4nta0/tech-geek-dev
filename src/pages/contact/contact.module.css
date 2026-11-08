@@ -643,7 +643,7 @@
 
 }
 
-.sidTitHea { /* What: Sidebar Title Heading. Why: Each card is named. How: This sets the title small and bold with room below. */
+.sidTitHea { /* What: Sidebar Title Heading. Why: Each card is named. How: This sets the title at the body size, bold, with room below. */
 
 
 	color         : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -826,7 +826,7 @@
 
 /* #region resTexPar */
 
-.resTexPar { /* What: Response Text Paragraph. Why: The response promise reads as small body text. How: This sets it in the secondary text color with roomy lines, no wider than the paragraph measure, which the full-width card on tablets would otherwise pass. */
+.resTexPar { /* What: Response Text Paragraph. Why: The response promise reads as body text. How: This sets it in the secondary text color with roomy lines, no wider than the paragraph measure, which the full-width card on tablets would otherwise pass. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */

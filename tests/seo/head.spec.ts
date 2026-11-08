@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import { expect } from '@playwright/test'; // What: Expect. Why: Each check passes only when the page says what it should. How: This asserts on the page's head, its links, and the crawler files.
+import { expect } from '@playwright/test'; // What: Expect. Why: Each check passes only when the page says what it should. How: This asserts on what each check reads, such as the page's head.
 import { test   } from '@playwright/test'; // What: Test. Why: Each page and each file is its own test. How: This declares them.
 
 
@@ -49,7 +49,7 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
 // #region Constants
 
 const HOM_DES_STR = 'Portfolio of z4nta0, a full stack web developer building fast, accessible websites and web apps for small local businesses.'; // What: Home Description String. Why: The raw page and the social tags carry the home page's description. How: This is the exact text they should hold.
-const LIV_URL_STR = 'https://techgeek.dev/';                                                                                                 // What: Live URL String. Why: The canonical links, structured data, social tags, and sitemap all name the live site. How: This is its address.
+const LIV_URL_STR = 'https://techgeek.dev/';                                                                                                 // What: Live URL String. Why: The pages' tags and files name the live site, such as the sitemap's addresses. How: This is its address.
 
 
 

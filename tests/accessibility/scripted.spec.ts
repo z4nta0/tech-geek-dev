@@ -9,7 +9,7 @@ import { STA_REC_ARR } from '../support/states.ts'; // What: State Record Array.
 import { test        } from '@playwright/test';     // What: Test. Why: Each check of each state is its own test. How: This declares them.
 
 
-import type { Page } from '@playwright/test'; // What: Page. Why: Every helper drives a Playwright page. How: This types their page parameters.
+import type { Page } from '@playwright/test'; // What: Page. Why: The helpers that drive the page take a Playwright page, while those that run inside it take none. How: This types the driving helpers' page parameters.
 
 // #endregion Imports
 
@@ -432,7 +432,7 @@ for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every ch
 	test( `${ staRecObj.ideStr } walks cleanly with the keyboard`, async ( { browserName : engNamStr, page : curPagObj } ) => { // What: Keyboard Test. Why: Everything has to be usable without a mouse. How: This opens the state under reduced motion and walks it with Tab.
 
 
-		test.slow(); // What: Slow Test Mark. Why: A full walk measures every stop and can run past the default 30 second timeout, as it did in Firefox in tonys-toppers when every suite shared the machine. How: This triples this test's timeout.
+		test.slow(); // What: Slow Test Mark. Why: A full walk measures every stop and can run past the default 30 second timeout when the machine is busy. How: This triples this test's timeout.
 
 		await curPagObj.emulateMedia( { reducedMotion : 'reduce' } ); // What: Reduced Motion Emulation. Why: A smooth scroll or a focus transition still running would be measured halfway. How: This makes the page match prefers-reduced-motion, which turns both off.
 
