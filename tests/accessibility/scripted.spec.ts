@@ -139,7 +139,7 @@ async function motRecFun ( curPagObj : Page ) : Promise< void > {
 			entRecFun( aniTarEle, aniEveObj.pseudoElement, aniEveObj.animationName, lisMilFun( styCurObj.animationDuration, namIndNum ), lisMilFun( styCurObj.animationDelay, namIndNum ) ); // What: Animation Record Call. Why: The animation is recorded when it lasts. How: This passes its element, name, duration, and delay.
 
 
-		}, true );
+		}, true ); // What: Capture Phase Flag. Why: The recorder has to see an animation's start ahead of any handler that could stop the event. How: This registers the animation listener for the capture phase.
 
 
 
@@ -154,7 +154,7 @@ async function motRecFun ( curPagObj : Page ) : Promise< void > {
 			entRecFun( traTarEle, traEveObj.pseudoElement, traEveObj.propertyName, lisMilFun( styCurObj.transitionDuration, proIndNum ), lisMilFun( styCurObj.transitionDelay, proIndNum ) ); // What: Transition Record Call. Why: The transition is recorded when it lasts. How: This passes its element, property, duration, and delay.
 
 
-		}, true );
+		}, true ); // What: Capture Phase Flag. Why: The recorder has to see a transition's run ahead of any handler that could stop the event. How: This registers the transition listener for the capture phase.
 
 
 
