@@ -832,7 +832,7 @@ function HomPagCom () : JSX.Element {
 
 
 
-						<div className={ cssModObj.serGriDiv }>{ /* What: Service Grid Div Element. Why: The service cards line up in columns. How: This lays out one card per service. */ }
+						<div className={ cssModObj.serGriDiv }>{ /* What: Services Grid Div Element. Why: The service cards line up in columns. How: This lays out one card per service. */ }
 
 
 							{ SER_CAR_ARR.map( ( serCarObj ) => ( // What: Service Card Map Call. Why: Every service gets a card. How: This renders one per row.

@@ -710,7 +710,7 @@ function ConPagCom () : JSX.Element {
 
 								<h3 className={ cssModObj.sidTitHea }>Contact Details</h3>{ /* What: Sidebar Title Heading Element. Why: The card is named. How: This shows its title. */ }
 
-								<div className={ cssModObj.conIteDiv }>{ /* What: Contact Item Div Element. Why: The items stack in a list. How: This holds one link per item. */ }
+								<div className={ cssModObj.conIteDiv }>{ /* What: Contact Items Div Element. Why: The items stack in a list. How: This holds one link per item. */ }
 
 
 									{ CON_ITE_ARR.map( ( conIteObj ) => ( // What: Contact Item Map Call. Why: Every contact item shows. How: This renders one link per row.

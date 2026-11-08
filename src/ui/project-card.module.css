@@ -118,7 +118,7 @@
 
 	align-items     : center;
 	backdrop-filter : blur( calc( var( --ver-rhy-m05 ) * 1rem ) );                         /* Vertical Rhythm Base Minus 5 ~= 3.572px */
-	background      : oklch( from var( --bac-inv-col ) l c h / var( --cdn-pow-001-rec ) ); /* Background Inverse Color = #1A1A2E @ 0.755 opacity */
+	background      : oklch( from var( --bac-inv-col ) l c h / var( --cdn-pow-001-rec ) ); /* Background Inverse Color = #1A1A2E, Core-Design-Number to the Power of 1 Reciprocal ~= 0.755 */
 	display         : flex;
 	inset           : 0;
 	justify-content : center;

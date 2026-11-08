@@ -85,7 +85,7 @@
 @media ( max-width : 1024px ) { /* What: Tablet Hero Grid Div. Why: The portrait column crowds a tablet's row beside the heading. How: This applies at 1,024px and below. */
 
 
-	.herGriDiv { /* What: Tablet Hero Grid Div Layout. Why: The heading takes the full width, with the portrait beside the paragraphs below it. How: This sets a flexible text column and a column sized to the portrait, with the text's own row gap. */
+	.herGriDiv { /* What: Two Column Hero Grid Div. Why: The heading takes the full width, with the portrait beside the paragraphs below it. How: This sets a flexible text column and a column sized to the portrait, with the text's own row gap. */
 
 
 		gap                   : var( --spa-ver-p02 ) clamp( var( --spa-hor-p05 ), var( --hor-rhy-018 ), var( --spa-hor-p08 ) ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 5 ~= 59.447px, Horizontal Rhythm 18 ~= 152.824px @ 1,920px width, Spacing Horizontal Base Plus 8 ~= 138.199px */

@@ -658,7 +658,7 @@
 
 /* #region conIteDiv */
 
-.conIteDiv { /* What: Contact Item Div. Why: The contact details stack in a list. How: This stacks them with gaps. */
+.conIteDiv { /* What: Contact Items Div. Why: The contact details stack in a list. How: This stacks them with gaps. */
 
 
 	display        : flex;

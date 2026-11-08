@@ -170,7 +170,7 @@
 @media ( max-width : 1024px ) { /* What: Tablet Hero Inner Div. Why: On a tablet the code window would squeeze the pitch in a quarter of the row. How: This applies at 1,024px and below. */
 
 
-	.herInnDiv { /* What: Tablet Hero Inner Div Columns. Why: The window keeps its natural width beside the pitch, which takes the rest. How: This sets a flexible pitch column and a column sized to the window. */
+	.herInnDiv { /* What: Two Column Hero Inner Div. Why: The window keeps its natural width beside the pitch, which takes the rest. How: This sets a flexible pitch column and a column sized to the window. */
 
 
 		grid-template-columns : minmax( 0, 1fr ) auto;
@@ -592,9 +592,9 @@
 
 
 	background    : var( --bac-inv-col );                                                                                                 /* Background Inverse Color = #1A1A2E */
-	border        : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-009-rec ) );                       /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.080 opacity */
+	border        : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-009-rec ) );                       /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF, Core-Design-Number to the Power of 9 Reciprocal ~= 0.080 */
 	border-radius : var( --rad-bor-med );                                                                                                 /* Radius Border Medium = 11px */
-	box-shadow    : var( --ele-lar-sha ), 0 0 0 var( --bor-wid-bas ) oklch( from var( --acc-sec-col ) l c h / var( --cdn-pow-007-rec ) ); /* Elevation Large Shadow, about 0 11px 44.9px plus 0 3.6px 11px -2.7px, Border Width Base ~= 1.160px, Accent Secondary Color = #7DB9D8 @ 0.140 opacity */
+	box-shadow    : var( --ele-lar-sha ), 0 0 0 var( --bor-wid-bas ) oklch( from var( --acc-sec-col ) l c h / var( --cdn-pow-007-rec ) ); /* Elevation Large Shadow, about 0 11px 44.9px plus 0 3.6px 11px -2.7px, Border Width Base ~= 1.160px, Accent Secondary Color = #7DB9D8, Core-Design-Number to the Power of 7 Reciprocal ~= 0.140 */
 	overflow      : hidden;
 	position      : relative;
 
@@ -609,7 +609,7 @@
 
 	align-items   : center;
 	background    : oklch( from var( --bac-sur-col ) l c h / 0.04 );                                                /* Background Surface Color = #FFFFFF @ 0.04 opacity */
-	border-bottom : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-010-rec ) ); /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.060 opacity */
+	border-bottom : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-010-rec ) ); /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF, Core-Design-Number to the Power of 10 Reciprocal ~= 0.060 */
 	display       : flex;
 	gap           : var( --spa-hor-m02 );                                                                           /* Spacing Horizontal Base Minus 2 ~= 8.304px */
 	padding       : var( --spa-ver-m01 ) var( --spa-hor-p02 );                                                      /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */
@@ -651,7 +651,7 @@
 .winTitSpa { /* What: Window Title Span. Why: The file name sits quietly after the dots. How: This sets it small in faint mono, spaced from the dots. */
 
 
-	color       : oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-004-rec ) ); /* Background Surface Color = #FFFFFF @ 0.325 opacity */
+	color       : oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-004-rec ) ); /* Background Surface Color = #FFFFFF, Core-Design-Number to the Power of 4 Reciprocal ~= 0.325 */
 	font-family : var( --fon-fam-sec );                                                /* Font Family Secondary = 'DM Mono', monospace */
 	font-size   : var( --fon-siz-bas );                                                /* Font Size Base = 11px */
 	margin-left : var( --spa-hor-m01 );                                                /* Spacing Horizontal Base Minus 1 = 11px */
@@ -1198,7 +1198,7 @@
 
 /* #region serGriDiv */
 
-.serGriDiv { /* What: Service Grid Div. Why: The service cards line up in even columns. How: This sets four full-width columns with gaps. */
+.serGriDiv { /* What: Services Grid Div. Why: The service cards line up in even columns. How: This sets four full-width columns with gaps. */
 
 
 	display               : grid;
@@ -1208,10 +1208,10 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Service Grid Div. Why: Four cards crowd a tablet. How: This applies at 1,024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Services Grid Div. Why: Four cards crowd a tablet. How: This applies at 1,024px and below. */
 
 
-	.serGriDiv { /* What: Two Column Service Grid Div. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
+	.serGriDiv { /* What: Two Column Services Grid Div. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
 
 
 		grid-template-columns : repeat( 2, 1fr );
@@ -1221,10 +1221,10 @@
 
 
 }
-@media ( max-width : 640px ) { /* What: Phone Service Grid Div. Why: Two cards crowd a phone. How: This applies at 640px and below. */
+@media ( max-width : 640px ) { /* What: Phone Services Grid Div. Why: Two cards crowd a phone. How: This applies at 640px and below. */
 
 
-	.serGriDiv { /* What: One Column Service Grid Div. Why: One card fits across a phone. How: This sets one column. */
+	.serGriDiv { /* What: One Column Services Grid Div. Why: One card fits across a phone. How: This sets one column. */
 
 
 		grid-template-columns : 1fr;
