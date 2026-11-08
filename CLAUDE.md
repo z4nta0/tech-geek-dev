@@ -585,9 +585,11 @@ on `close-out`.
       the package's artwork, copies it into `public/`, and draws the rest of
       the set from it.
     - **Installing it**: `package.json` names `github:z4nta0/techgeek-design#
-      v0.4.0` (moved from `v0.1.0` on 2026-10-17, bringing the bar's
+      v0.6.0` (moved from `v0.1.0` on 2026-10-17, bringing the bar's
       clearance for scrolled-to links, top and bottom, and its menu up to
-      1,024px). npm records the address over SSH, but falls back to HTTPS for
+      1,024px, then to `v0.6.0` on 2026-11-08, bringing the skip link, the
+      hook's own scroll restoration, and the menu closing on any link
+      click). npm records the address over SSH, but falls back to HTTPS for
       a public GitHub repository, which a clean install with SSH turned off
       and an empty cache confirmed, so Netlify fetches it without a key. While
       the package and this site change together, `npm install --install-links
@@ -602,7 +604,7 @@ on `close-out`.
 Decided 2026-11-07, in the audit. The shared bar opens every page with a skip
 link to `<main id='main'>` in `app.tsx`, which holds whichever page shows,
 between the bar and the footer. The skip link and the bar live in
-techgeek-design (from `v0.5.0`), and the main element here.
+techgeek-design (from `v0.6.0`), and the main element here.
 
 ## Test suites
 Added 2026-10-12, adapted from the-bernie-bears'. Playwright suites live in
