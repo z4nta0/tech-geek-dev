@@ -175,7 +175,7 @@ const TOG_TAR_ARR : TogTarTyp[] = [ // What: Toggle Target Array. Why: A switche
 
 	},
 
-	{ // What: Scrolled Bar Row. Why: Once the page moves under the bar, the bar firms up its background, shows its bottom border, and casts its shadow. How: This flips its data-nav-bar-scrolled, on every state, since the bar shows on each.
+	{ // What: Scrolled Bar Row. Why: Once the page moves under the bar, the bar firms up its background, shows its bottom border, and casts its shadow. How: This flips its data-nav-bar-scrolled, on every shared state, since the bar shows on each.
 
 
 		actStr : '',

@@ -658,7 +658,7 @@ test.describe( 'with smooth scrolling on', () => { // What: Smooth Scroll Group.
 					const newHeaEle = document.querySelector( 'h1' ); // What: New Heading Element. Why: The next page's heading marks the moment it exists. How: This reads the page's heading now.
 
 
-					if ( !newHeaEle || newHeaEle === oldHeaEle ) return; // What: New Heading Guard. Why: Changes before the next page renders, such as Home's own animations, don't count. How: This stops while there's no heading or it's still Home's.
+					if ( !newHeaEle || newHeaEle === oldHeaEle ) return; // What: New Heading Guard. Why: Changes before the next page renders don't count. How: This stops while there's no heading or it's still Home's.
 
 
 
