@@ -77,14 +77,14 @@ const SIS_LIN_ARR : SisLinTyp[] = [ // What: Sister Link Array. Why: TechGeek.de
  * AppRooCom = App Root Component
  *
  * @summary
- * The top of the component tree: renders the bar, the page the address
- * matches inside the main landmark, and the footer, so every page shares the
- * same frame. The routes take the current location and use its path as their
- * key, so moving to another page replaces the old page's tree rather than
- * updating it, which restarts the new page's entrance animation. It calls
- * useScrTopFun so every link opens its page at the top, as a real page load
- * would, while back and forward return the visitor to where they were, as
- * the hook restores it.
+ * The top of the component tree: renders the bar, the page the address matches
+ * inside the main landmark, and the footer, so every page shares the same
+ * frame. The routes take the current location and use its path as their key,
+ * so moving to another page replaces the old page's tree rather than updating
+ * it, which restarts the new page's entrance animation. It calls useScrTopFun
+ * so a link to another page opens it at the top, as a real page load would, or
+ * at its section when the link carries a hash, while back and forward return
+ * the visitor to where they were, as the hook restores it.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
