@@ -3,11 +3,11 @@
 
 // #region Imports
 
-import cssModObj from './about.module.css';   // What: CSS Module Object. Why: The About page's own hero, skills, timeline, and values styles live in its own module. How: This maps each class name in about.module.css to its hashed module class.
+import cssModObj from './about.module.css';   // What: CSS Module Object. Why: The About page's own styles live in its own module. How: This maps each class name in about.module.css to its hashed module class.
 import selPorUrl from './self-portrait.webp'; // What: Self Portrait URL. Why: The hero shows z4nta0's portrait. How: Vite resolves this to the image's fingerprinted URL.
 
 
-import { GeoBacCom    } from '../../ui/geo-bg.tsx';                    // What: Geometric Background Component. Why: The hero and the timeline sit over faint patterns. How: This draws the dots and the grid.
+import { GeoBacCom    } from '../../ui/geo-bg.tsx';                    // What: Geometric Background Component. Why: Some sections, such as the hero, sit over faint patterns. How: This draws each section's pattern.
 import { Link         } from 'react-router';                           // What: Link. Why: The hero's button moves to the Contact page without a full page load. How: This renders it as a router link.
 import { SecHeaCom    } from '../../ui/section-header.tsx';            // What: Section Header Component. Why: Several of the page's sections, such as the timeline, open with a heading block. How: This renders each label, title, and subtitle.
 import { SHI_COU_NUM  } from '../../ui/projects.ts';                   // What: Shipped Count Number. Why: The hero's floating fact counts the projects shipped. How: This is the count taken from the project list.
@@ -749,7 +749,7 @@ function AboPagCom () : JSX.Element {
 
 // #region Exports
 
-export { AboPagCom }; // What: Named Exports. Why: The router's About route renders this page. How: This exports AboPagCom.
+export { AboPagCom }; // What: Named Export. Why: The router's About route renders this page. How: This exports AboPagCom.
 
 // #endregion Exports
 

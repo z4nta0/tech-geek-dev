@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './project-card.module.css'; // What: CSS Module Object. Why: The card's own layout, overlay, and badge styles live in its own module. How: This maps each class name in project-card.module.css to its hashed module class.
+import cssModObj from './project-card.module.css'; // What: CSS Module Object. Why: The card's own styles live in its own module. How: This maps each class name in project-card.module.css to its hashed module class.
 
 
 import { TagLabCom } from './tag.tsx'; // What: Tag Label Component. Why: The card lists the project's technologies as tags. How: This renders one pill per technology.

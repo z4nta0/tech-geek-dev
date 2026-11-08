@@ -3,11 +3,11 @@
 
 // #region Imports
 
-import cssModObj from './work.module.css'; // What: CSS Module Object. Why: The Work page's own layout, filter, and process styles live in its own module. How: This maps each class name in work.module.css to its hashed module class.
+import cssModObj from './work.module.css'; // What: CSS Module Object. Why: The Work page's own styles live in its own module. How: This maps each class name in work.module.css to its hashed module class.
 
 
 import { Fragment     } from 'react';                                  // What: Fragment. Why: Each process step and the arrow after it render as one keyed pair with no wrapper. How: This groups them under one key.
-import { GeoBacCom    } from '../../ui/geo-bg.tsx';                    // What: Geometric Background Component. Why: The hero and the process section sit over faint patterns. How: This draws the grid and the dots.
+import { GeoBacCom    } from '../../ui/geo-bg.tsx';                    // What: Geometric Background Component. Why: Some sections, such as the hero, sit over faint patterns. How: This draws each section's pattern.
 import { PRO_REC_ARR  } from '../../ui/projects.ts';                   // What: Project Record Array. Why: The page shows every project. How: This is the list it filters and renders.
 import { ProCarCom    } from '../../ui/project-card.tsx';              // What: Project Card Component. Why: Each project shows as a card. How: This renders one card per project.
 import { SecHeaCom    } from '../../ui/section-header.tsx';            // What: Section Header Component. Why: The process section opens with a heading block. How: This renders its label, title, and subtitle.
@@ -500,7 +500,7 @@ function WorPagCom () : JSX.Element {
 
 // #region Exports
 
-export { WorPagCom }; // What: Named Exports. Why: The router's Work route renders this page. How: This exports WorPagCom.
+export { WorPagCom }; // What: Named Export. Why: The router's Work route renders this page. How: This exports WorPagCom.
 
 // #endregion Exports
 

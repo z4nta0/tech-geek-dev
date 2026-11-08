@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './tag.module.css'; // What: CSS Module Object. Why: The tag's own pill styles live in its own module. How: This maps each class name in tag.module.css to its hashed module class.
+import cssModObj from './tag.module.css'; // What: CSS Module Object. Why: The tag's own styles live in its own module. How: This maps each class name in tag.module.css to its hashed module class.
 
 
 import type { JSX } from 'react'; // What: JSX. Why: The component declares the element it returns. How: This types its return as a JSX element.

@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './section-header.module.css'; // What: CSS Module Object. Why: The header's own label, heading, and subtitle styles live in its own module. How: This maps each class name in section-header.module.css to its hashed module class.
+import cssModObj from './section-header.module.css'; // What: CSS Module Object. Why: The header's own styles live in its own module. How: This maps each class name in section-header.module.css to its hashed module class.
 
 
 import type { JSX } from 'react'; // What: JSX. Why: The component declares the element it returns. How: This types its return as a JSX element.
@@ -109,7 +109,7 @@ function SecHeaCom ( { aliPosStr = 'left', labTexStr, subTexStr, titTexStr } : S
 
 // #region Exports
 
-export { SecHeaCom }; // What: Named Exports. Why: Most pages open their sections with this header. How: This exports SecHeaCom.
+export { SecHeaCom }; // What: Named Export. Why: Most pages open their sections with this header. How: This exports SecHeaCom.
 
 // #endregion Exports
 

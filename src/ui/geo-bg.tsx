@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './geo-bg.module.css'; // What: CSS Module Object. Why: The pattern's own positioning styles live in its own module. How: This maps each class name in geo-bg.module.css to its hashed module class.
+import cssModObj from './geo-bg.module.css'; // What: CSS Module Object. Why: The pattern's own styles live in its own module. How: This maps each class name in geo-bg.module.css to its hashed module class.
 
 
 import type { JSX } from 'react'; // What: JSX. Why: The component declares the element it returns. How: This types its return as a JSX element.
@@ -308,7 +308,7 @@ function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 
 // #region Exports
 
-export { GeoBacCom }; // What: Named Exports. Why: Several pages draw a pattern behind their sections. How: This exports GeoBacCom.
+export { GeoBacCom }; // What: Named Export. Why: Several pages draw a pattern behind their sections. How: This exports GeoBacCom.
 
 // #endregion Exports
 

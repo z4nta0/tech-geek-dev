@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './contact.module.css'; // What: CSS Module Object. Why: The Contact page's own hero, form, and sidebar styles live in its own module. How: This maps each class name in contact.module.css to its hashed module class.
+import cssModObj from './contact.module.css'; // What: CSS Module Object. Why: The Contact page's own styles live in its own module. How: This maps each class name in contact.module.css to its hashed module class.
 
 
 import { GeoBacCom    } from '../../ui/geo-bg.tsx';                    // What: Geometric Background Component. Why: The hero sits over a faint pattern. How: This draws the circuit.

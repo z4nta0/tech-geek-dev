@@ -9,9 +9,9 @@ import { createRoot    } from 'react-dom/client'; // What: Create Root. Why: Thi
 import { StrictMode    } from 'react';            // What: Strict Mode. Why: Development builds should flag unsafe patterns early. How: This wraps the whole tree below.
 
 
-import 'techgeek-design/styles/fonts.css';  // What: Package Fonts Stylesheet Import. Why: Every stylesheet after it assumes the family's self-hosted font faces are already registered. How: This is imported first, purely for its side effect, so the shared package's @font-face rules register before anything sets the fonts.
-import 'techgeek-design/styles/tokens.css'; // What: Package Tokens Stylesheet Import. Why: Every module and the base styles read the family's shared tokens. How: This is imported purely for its side effect, before the base styles and the site's own overrides.
-import 'techgeek-design/styles/base.css';   // What: Package Base Stylesheet Import. Why: Every page relies on the family's reset, base element styles, focus ring, and shared keyframes. How: This is imported purely for its side effect, after the tokens it reads.
+import 'techgeek-design/styles/fonts.css';  // What: Package Fonts Stylesheet Import. Why: The stylesheets after it assume the family's self-hosted font faces are already registered. How: This is imported first, purely for its side effect, so the shared package's @font-face rules register before anything sets the fonts.
+import 'techgeek-design/styles/tokens.css'; // What: Package Tokens Stylesheet Import. Why: The modules and the base styles read the family's shared tokens. How: This is imported purely for its side effect, before the base styles and the site's own overrides.
+import 'techgeek-design/styles/base.css';   // What: Package Base Stylesheet Import. Why: The pages rely on the family's reset, base element styles, focus ring, and shared keyframes. How: This is imported purely for its side effect, after the tokens it reads.
 import './styles/styles.css';               // What: Styles Stylesheet Import. Why: This is the site's own global stylesheet, setting its layout values and holding its own keyframe. How: This is imported last, purely for its side effect, so its values override the package's defaults.
 
 // #endregion Imports

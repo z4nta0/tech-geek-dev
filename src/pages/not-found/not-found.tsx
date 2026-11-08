@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './not-found.module.css'; // What: CSS Module Object. Why: The 404 page's own layout and button styles live in its own module. How: This maps each class name in not-found.module.css to its hashed module class.
+import cssModObj from './not-found.module.css'; // What: CSS Module Object. Why: The 404 page's own styles live in its own module. How: This maps each class name in not-found.module.css to its hashed module class.
 
 
 import { Link } from 'react-router'; // What: Link. Why: The page's buttons move to the home and Contact pages without a full page load. How: This renders them as router links.
@@ -182,7 +182,7 @@ function NotFouCom () : JSX.Element {
 
 // #region Exports
 
-export { NotFouCom }; // What: Named Exports. Why: The router's catch-all route renders the 404 page. How: This exports NotFouCom.
+export { NotFouCom }; // What: Named Export. Why: The router's catch-all route renders the 404 page. How: This exports NotFouCom.
 
 // #endregion Exports
 

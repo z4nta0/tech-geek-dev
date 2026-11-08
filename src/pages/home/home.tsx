@@ -3,15 +3,15 @@
 
 // #region Imports
 
-import cssModObj from './home.module.css'; // What: CSS Module Object. Why: The home page's own hero, stats, featured projects, services, and banner styles live in its own module. How: This maps each class name in home.module.css to its hashed module class.
+import cssModObj from './home.module.css'; // What: CSS Module Object. Why: The home page's own styles live in its own module. How: This maps each class name in home.module.css to its hashed module class.
 
 
 import { CLI_COU_NUM } from '../../ui/projects.ts';        // What: Client Count Number. Why: The stats count the clients served. How: This is the count taken from the project list.
-import { GeoBacCom   } from '../../ui/geo-bg.tsx';         // What: Geometric Background Component. Why: The hero and the services sit over faint patterns. How: This draws the circuit and the dots.
+import { GeoBacCom   } from '../../ui/geo-bg.tsx';         // What: Geometric Background Component. Why: Some sections, such as the hero, sit over faint patterns. How: This draws each section's pattern.
 import { Link        } from 'react-router';                // What: Link. Why: The page's buttons move between routes without a full page load. How: This renders each one as a router link.
 import { PRO_REC_ARR } from '../../ui/projects.ts';        // What: Project Record Array. Why: The featured section picks its projects from the featured ones. How: This is the list it filters.
 import { ProCarCom   } from '../../ui/project-card.tsx';   // What: Project Card Component. Why: Each featured project shows as a card. How: This renders one card per project.
-import { SecHeaCom   } from '../../ui/section-header.tsx'; // What: Section Header Component. Why: The featured and services sections open with a heading block. How: This renders each label, title, and subtitle.
+import { SecHeaCom   } from '../../ui/section-header.tsx'; // What: Section Header Component. Why: Several of the page's sections, such as the services, open with a heading block. How: This renders each label, title, and subtitle.
 import { SHI_COU_NUM } from '../../ui/projects.ts';        // What: Shipped Count Number. Why: The stats count the projects shipped. How: This is the count taken from the project list.
 import { useState    } from 'react';                       // What: Use State. Why: The featured projects picked on arrival have to stay put while the page is open. How: This holds the pick made when the page mounts.
 
@@ -922,7 +922,7 @@ function HomPagCom () : JSX.Element {
 
 // #region Exports
 
-export { HomPagCom }; // What: Named Exports. Why: The router's home route renders this page. How: This exports HomPagCom.
+export { HomPagCom }; // What: Named Export. Why: The router's home route renders this page. How: This exports HomPagCom.
 
 // #endregion Exports
 
