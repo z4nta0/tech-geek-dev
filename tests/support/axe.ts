@@ -104,8 +104,8 @@ async function scaStaFun ( curPagObj : Page ) : Promise< AxeResTyp > {
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
- * @param resLisArr - Result List Array: Either the violations or the
- *                    incomplete results of one scan.
+ * @param resLisArr - Result List Array: The violations, the incomplete
+ *                    results, or both of one scan.
  *
  * @returns One line per rule.
  *
