@@ -11,7 +11,7 @@
 
 
 
-# What: Log Files Block. Why: Logs are local run output, not source. How: This ignores every log file and folder the package managers write.
+# What: Log Files Block. Why: Logs are local run output, not source. How: This ignores the log files and folders the package managers write.
 *.log
 lerna-debug.log*
 logs

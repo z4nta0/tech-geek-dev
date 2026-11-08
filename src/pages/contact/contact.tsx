@@ -179,16 +179,16 @@ const EMP_FOR_OBJ = { 'bot-field' : '', budget : '', email : '', message : '', n
  * ConPagCom = Contact Page Component
  *
  * @summary
- * Renders the Contact page. The form keeps its fields in state, keyed by
- * each field's name attribute, and the browser checks the required fields
- * and the email format before letting it send. Sending it posts the fields to
- * Netlify Forms, disabling the button and showing "Sending…" while it waits; a
- * reply Netlify doesn't answer with ok counts as an error, just like a
- * network failure, so either one leaves the form in place with an error above
- * the message field, while a sent message swaps the form for a thank-you with
- * a button that empties the form for another. The sidebar lists CON_ITE_ARR's
- * contact details, the profiles opening in a new tab, beside the availability
- * and response time.
+ * Renders the Contact page. The form keeps its fields in state, keyed by each
+ * field's name attribute, and the browser checks the required fields and the
+ * email format before letting it send. Sending it posts the fields to Netlify
+ * Forms, disabling the button and showing "Sending…" while it waits; a reply
+ * Netlify doesn't answer with ok counts as an error, just like a network
+ * failure, so either one leaves the form in place with an error above the
+ * message field, while a sent message swaps the form for a thank-you with a
+ * button that empties the form for another. The sidebar lists CON_ITE_ARR's
+ * contact details, the profiles opening in a new tab, above the availability
+ * and response time cards.
  *
  * It also sets the page's title and canonical address, which React moves
  * into the document head, and swaps the search description for its own

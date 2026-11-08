@@ -26,12 +26,12 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * home.tsx = Home
  *
  * @summary
- * The home page: a hero introducing z4nta0 beside a code window, with a
- * ticker of the main technologies; a strip of stats; four featured projects
- * picked at random on each visit; the services offered; and a closing
- * banner inviting a visitor to start a project. The projects shipped and
- * clients served stats are counted from the project list, so they grow as
- * projects are added.
+ * The home page: a hero introducing z4nta0 beside a code window, which stacks
+ * above it at 768px and below, with a ticker of the main technologies; a strip
+ * of stats; four featured projects picked at random on each visit; the
+ * services offered; and a closing banner inviting a visitor to start a
+ * project. The projects shipped and clients served stats are counted from the
+ * project list, so they grow as projects are added.
  *
  * Sections:
  *  - Constants
