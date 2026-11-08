@@ -67,10 +67,10 @@ async function forOpeFun ( curPagObj : Page ) : Promise< string[] > {
 	const senBodArr : string[] = []; // What: Sent Body Array. Why: Each test checks whether the form sent anything, and what. How: This collects every body posted to the root.
 
 
-	await curPagObj.route( ( urlCurObj ) => urlCurObj.pathname === '/', async ( rouCurObj ) => { // What: Root Route Handler. Why: Netlify Forms answers the root's POST on the live site, but not in testing. How: This answers a POST with an empty success and records its body, letting the page's own load through.
+	await curPagObj.route( ( urlCurObj ) => urlCurObj.pathname === '/', async ( rouCurObj ) => { // What: Root Route Handler. Why: Netlify Forms answers the root's POST on the live site, but not in testing. How: This answers a POST with an empty success and records its body, and lets any other request to the root through.
 
 
-		if ( rouCurObj.request().method() !== 'POST' ) return rouCurObj.continue(); // What: Page Load Guard. Why: Loading the page also requests the root. How: This lets any request but a POST through untouched.
+		if ( rouCurObj.request().method() !== 'POST' ) return rouCurObj.continue(); // What: Other Request Guard. Why: Only the form's POST needs answering. How: This lets any other request to the root through untouched.
 
 
 

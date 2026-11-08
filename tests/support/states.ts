@@ -13,14 +13,14 @@ import type { Page } from '@playwright/test'; // What: Page. Why: Opening a stat
  * states.ts = States
  *
  * @summary
- * The page states the accessibility, interaction, and rendering suites visit,
- * and the helper that opens one; the responsive suite opens its own widths
- * through the same helper. A state is a page at a width, sometimes with
- * something opened on it: every route and the 404 page at phone and desktop
- * widths, and the mobile menu open on a phone. opeStaFun sizes the viewport,
- * loads the page, waits for the fonts, scrolls through the page so any lazily
- * loaded image loads, runs the state's own action, such as opening the menu,
- * and then waits for the page to stay still so nothing is measured mid-fade.
+ * The page states the page suites visit, and the helper that opens one; the
+ * responsive suite opens its own widths through the same helper. A state is a
+ * page at a width, sometimes with something opened on it: every route and the
+ * 404 page at phone and desktop widths, and the mobile menu open on a phone.
+ * opeStaFun sizes the viewport, loads the page, waits for the fonts, scrolls
+ * through the page so any lazily loaded image loads, runs the state's own
+ * action, such as opening the menu, and then waits for the page to stay still
+ * so nothing is measured mid-fade.
  *
  * Sections:
  *  - Types
