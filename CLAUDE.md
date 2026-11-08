@@ -640,12 +640,22 @@ ticker, and the status dots) when waiting for the page to settle.
   focus to the main element without changing the address. Its pages fix
   `Math.random`, since Home picks new featured projects each time it opens,
   which changed its height on the way back.
-  `feedback.spec.ts` (from the-bernie-bears) checks the interaction feedback
-  rule on every state: each reachable link and button looks different
-  hovered than at rest and pressed than hovered, lists its focus ring's
-  outline in its transition, the first Tab stop grows its ring to full width,
-  and under reduced motion every control still changes but transitions
-  nothing. Real clicks are blocked while it probes.
+  `feedback.spec.ts` (from the-bernie-bears, its probe replaced in the
+  2026-11-07 audit, with its helpers in `tests/support/feedback.ts`) checks
+  the interaction feedback rule on every state: each reachable link and
+  button looks different hovered than at rest, pressed than hovered, and
+  focused (through `focus( { focusVisible : true } )`) than unfocused, and
+  every property each of those changes, on it or anything inside it, has to
+  ease. The project, service, and value cards, which lift without being
+  links, have to show and ease their hover, and each toggled state (the menu
+  toggle's cross, the current bar and drawer links, the open drawer and
+  scrim, the scrolled bar, and Work's chosen filter) is flipped off, on, and
+  off by its attribute and has to ease both ways. The first Tab stop, now the
+  skip link, grows its ring to full width, and under reduced motion every
+  change stays but switches at once. Real clicks are blocked while it probes,
+  and each look is read once the element's animations have finished, since
+  WebKit's clock lags on Work's heavy cards. A full run takes about half an
+  hour across the three engines.
   `menu.spec.ts` (from the-bernie-bears) opens the phone menu on About and
   checks it lists the page links, both profiles, and the email over a scrim
   with the page inert, and that tapping the scrim, Escape (which returns focus
