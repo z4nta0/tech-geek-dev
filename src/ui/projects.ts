@@ -42,7 +42,7 @@ import totScrUrl from '../assets/images/tonys-toppers-website.webp';     // What
 type ProRecTyp = { // What: Project Record Type. Why: The project card, Home, and the Work page all read the same fields. How: This names every field a project record carries.
 
 
-	cliBoo  : boolean,  // What: Client Boolean. Why: Home and About count the client projects apart from z4nta0's own. How: This is true for a site built for a client.
+	cliBoo  : boolean,  // What: Client Boolean. Why: Home counts the client projects apart from z4nta0's own. How: This is true for a site built for a client.
 	desStr  : string,   // What: Description String. Why: The card says what the project is. How: This is a sentence shown under the title.
 	feaBoo? : boolean,  // What: Featured Boolean. Why: Home shows only featured projects. How: This marks a project as one of them.
 	gitStr? : string,   // What: GitHub String. Why: A visitor can read the project's source. How: This is its repository's URL.

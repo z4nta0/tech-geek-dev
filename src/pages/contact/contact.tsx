@@ -316,7 +316,7 @@ function ConPagCom () : JSX.Element {
 			const senResObj = await fetch( '/', { // What: Send Response Object. Why: Netlify Forms takes a form-encoded POST on any path of the site, matches it to a detected form by its form-name field, and emails it on. How: This posts the fields to the site's root.
 
 
-				headers : { 'Content-Type' : 'application/x-www-form-urlencoded' }, // What: Headers. Why: Netlify only parses a form-encoded body. How: This sets the matching content type.
+				headers : { 'Content-Type' : 'application/x-www-form-urlencoded' }, // What: Headers. Why: Netlify Forms reads a form-encoded body. How: This sets the matching content type.
 				method  : 'POST',                                                   // What: Method. Why: A form submission is a POST. How: This sets it.
 
 				body : new URLSearchParams({ // What: Body. Why: Netlify reads a standard form-encoded body whose field names match the hidden form in index.html. How: This encodes the form's name, the honeypot, and the four real fields.
@@ -655,7 +655,7 @@ function ConPagCom () : JSX.Element {
 
 										disabled={ isaLoaBoo }
 										type='submit'
-									>{ /* What: Send Message Button Element. Why: The visitor sends the message. How: This submits the form, disabled and reading Sending while it's on its way. */ }
+									>{ /* What: Send Message Button Element. Why: The visitor sends the message. How: This submits the form, disabled and reading "Sending…" while it's on its way. */ }
 
 
 										{ isaLoaBoo ? 'Sending…' : 'Send Message' }{ /* What: Submit Label Text. Why: The button says what's happening. How: This reads "Sending…" while sending, or "Send Message" otherwise. */ }

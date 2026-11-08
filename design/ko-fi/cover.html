@@ -52,7 +52,7 @@
 
 			/* #region hexDecSvg */
 
-			.hexDecSvg { /* What: Hexagon Decoration SVG. Why: Outlined hexagons at the cover's ends echo the site's geometric background toward the edges a phone can crop, so nothing that matters is lost. How: This lays the drawing over the whole cover behind the row. */
+			.hexDecSvg { /* What: Hexagon Decoration SVG. Why: Outlined hexagons at the cover's ends echo the site's geometric background toward the edges, where nothing that matters sits, in case the cover is cropped. How: This lays the drawing over the whole cover behind the row. */
 
 
 				inset    : 0;
@@ -87,7 +87,7 @@
 
 			/* #region covRowDiv */
 
-			.covRowDiv { /* What: Cover Row Div. Why: The brand and the code window sit side by side in the cover's middle, clear of the edges a phone can crop and lifted a little above the bottom, which the page's own content may overlap. How: This lays them out in one row with a wide gap and nudges the row up. */
+			.covRowDiv { /* What: Cover Row Div. Why: The brand and the code window sit side by side in the cover's middle, clear of the edges in case the cover is cropped, and lifted a little above the bottom. How: This lays them out in one row with a wide gap and nudges the row up. */
 
 
 				align-items : center;
@@ -137,7 +137,7 @@
 
 			/* #region braWorPar */
 
-			.braWorPar { /* What: Brand Wordmark Paragraph. Why: The site's name is the cover's headline, set as the bar sets it. How: This sets it bold in the display font, a little tight, at the p05 step, small enough to keep the row clear of the edges a phone can crop. */
+			.braWorPar { /* What: Brand Wordmark Paragraph. Why: The site's name is the cover's headline, set as the bar sets it. How: This sets it bold in the display font, a little tight, at the p05 step, small enough to keep the row clear of the edges in case the cover is cropped. */
 
 
 				font-family    : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
@@ -263,7 +263,7 @@
 
 			}
 
-			.winTitSpa { /* What: Window Title Span. Why: The window names its file, as on the home page. How: This sets it small in the mono font in a faint white. */
+			.winTitSpa { /* What: Window Title Span. Why: The window names its file, as on the home page. How: This sets it in the mono font in a faint white. */
 
 
 				color       : oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-004-rec ) ); /* Background Surface Color = #FFFFFF @ 0.325 opacity */
@@ -448,7 +448,7 @@
 
 					<span class='winDotSpa winDotSpa--third'></span><!-- What: Window Dot Span Third Element. Why: Editor windows have three colored dots. How: This draws the green one. -->
 
-					<span class='winTitSpa'>techgeek.dev.ts</span><!-- What: Window Title Span Element. Why: The window names its file after the site. How: This shows techgeek.dev.ts. -->
+					<span class='winTitSpa'>techgeek.dev.ts</span><!-- What: Window Title Span Element. Why: The window names its file after the site. How: This shows "techgeek.dev.ts". -->
 
 
 				</div>

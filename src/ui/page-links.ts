@@ -29,7 +29,7 @@ import type { PagLinTyp } from 'techgeek-design/ui/link-types.ts'; // What: Page
 
 // #region Constants
 
-const PAG_LIN_ARR : PagLinTyp[] = [ // What: Page Link Array. Why: The bar, the phone menu, and the footer all link to the same pages in the same order. How: Each row names a page's label and route.
+const PAG_LIN_ARR : PagLinTyp[] = [ // What: Page Link Array. Why: The site's navigation links to the same pages in the same order wherever it shows them. How: Each row names a page's label and route.
 
 
 	{ labStr : 'Home',    patStr : '/'        }, // What: Home Link Row. Why: Every page links back to the home page. How: This routes to the root path.

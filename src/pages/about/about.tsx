@@ -239,7 +239,7 @@ function AboPagCom () : JSX.Element {
 								About Me
 							</span>
 
-							<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up z4nta0 in three words. How: This sets "Dev. Creator." over "Problem Solver.", the second line in the accent. */ }
+							<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up z4nta0 in three phrases. How: This sets "Dev. Creator." over "Problem Solver.", the second line in the accent. */ }
 								Dev. Creator.<br />
 								<span className={ cssModObj.titAccSpa }>Problem Solver.</span>{ /* What: Title Accent Span Element. Why: The heading's second line carries the accent. How: This sets "Problem Solver." in the dark blue. */ }
 							</h1>
