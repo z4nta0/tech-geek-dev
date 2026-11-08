@@ -25,10 +25,10 @@ import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why:
  * stays sharp on the densest phones, never scaled up, and encoded at 0.85
  * quality, the lowest that showed no difference from the original at 3x zoom.
  * Everything is written as WebP where the site imports it (the project
- * screenshots into src/assets/images, the portrait beside the About page),
- * though a box can cut an image to exactly its size instead, and an output
- * named .jpg is written as a JPEG. Run it with npm run images whenever an
- * image is added or replaced, or a display size changes.
+ * screenshots into src/assets/images, the portrait beside the About page), and
+ * an output named .jpg is written as a JPEG, while a box can cut an image to
+ * exactly its size instead of only covering it. Run it with npm run images
+ * whenever an image is added or replaced, or a display size changes.
  *
  * Sections:
  *  - Constants

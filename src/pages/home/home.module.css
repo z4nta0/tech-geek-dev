@@ -306,7 +306,7 @@
 
 
 }
-.titAccSpa::after { /* What: Title Accent Span Stroke. Why: A soft orange stroke underlines the accent word. How: This draws a 4px rounded orange bar along its bottom, partly faded. */
+.titAccSpa::after { /* What: Title Accent Span Stroke. Why: A soft orange stroke underlines the accent word. How: This draws a rounded orange bar about 3.6px thick along its bottom, partly faded. */
 
 
 	background    : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
