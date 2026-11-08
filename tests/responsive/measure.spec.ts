@@ -48,9 +48,9 @@ type MeaCasTyp = { ideStr : string, menBoo : boolean, patStr : string }; // What
 const MEA_CAS_ARR : MeaCasTyp[] = [ // What: Measure Case Array. Why: Every page and the open menu hold paragraphs. How: Each row names a case, whether it opens the menu, and its path.
 
 
-	{ ideStr : 'home',      menBoo : false, patStr : '/'        }, // What: Home Case. Why: The home page holds the hero pitch, the service cards, and the closing banner. How: This measures it as loaded.
+	{ ideStr : 'home',      menBoo : false, patStr : '/'        }, // What: Home Case. Why: The home page holds paragraphs in several sections, such as the service cards. How: This measures it as loaded.
 	{ ideStr : 'work',      menBoo : false, patStr : '/work'    }, // What: Work Case. Why: The Work page holds the project descriptions and the process steps. How: This measures it as loaded.
-	{ ideStr : 'about',     menBoo : false, patStr : '/about'   }, // What: About Case. Why: The About page holds the bio, the timeline, and the values. How: This measures it as loaded.
+	{ ideStr : 'about',     menBoo : false, patStr : '/about'   }, // What: About Case. Why: The About page holds paragraphs in several sections, such as the timeline. How: This measures it as loaded.
 	{ ideStr : 'contact',   menBoo : false, patStr : '/contact' }, // What: Contact Case. Why: The Contact page holds its intro and the detail cards. How: This measures it as loaded.
 	{ ideStr : 'not-found', menBoo : false, patStr : '/missing' }, // What: Not Found Case. Why: Every unknown address lands on the 404 page. How: This measures an address the site doesn't have.
 	{ ideStr : 'menu',      menBoo : true,  patStr : '/'        }  // What: Menu Case. Why: The open menu ends on its tagline. How: This measures the home page with the menu open.

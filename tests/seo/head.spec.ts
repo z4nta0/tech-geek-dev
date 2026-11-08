@@ -73,11 +73,11 @@ const LIV_URL_STR = 'https://techgeek.dev/';                                    
 const PAG_HEA_ARR = [ // What: Page Head Array. Why: Every page's head is checked against what it should say. How: Each row names one page, its title, and its canonical address or null.
 
 
-	{ canStr : LIV_URL_STR,               patStr : '/',             titStr : 'z4nta0, Full Stack Web Developer Portfolio | TechGeek.dev' },
-	{ canStr : `${ LIV_URL_STR }work`,    patStr : '/work',         titStr : 'Projects & Case Studies | TechGeek.dev'                    },
-	{ canStr : `${ LIV_URL_STR }about`,   patStr : '/about',        titStr : 'About z4nta0, Full Stack Web Developer | TechGeek.dev'     },
-	{ canStr : `${ LIV_URL_STR }contact`, patStr : '/contact',      titStr : 'Contact z4nta0 About Your Project | TechGeek.dev'          },
-	{ canStr : null,                      patStr : '/no-such-page', titStr : 'Page Not Found | TechGeek.dev'                             }
+	{ canStr : LIV_URL_STR,               patStr : '/',             titStr : 'z4nta0, Full Stack Web Developer Portfolio | TechGeek.dev' }, // What: Home Head Row. Why: Home is the indexed entry page. How: This pairs its path with its title and canonical address.
+	{ canStr : `${ LIV_URL_STR }work`,    patStr : '/work',         titStr : 'Projects & Case Studies | TechGeek.dev'                    }, // What: Work Head Row. Why: The Work page is indexed on its own. How: This pairs its path with its title and canonical address.
+	{ canStr : `${ LIV_URL_STR }about`,   patStr : '/about',        titStr : 'About z4nta0, Full Stack Web Developer | TechGeek.dev'     }, // What: About Head Row. Why: The About page is indexed on its own. How: This pairs its path with its title and canonical address.
+	{ canStr : `${ LIV_URL_STR }contact`, patStr : '/contact',      titStr : 'Contact z4nta0 About Your Project | TechGeek.dev'          }, // What: Contact Head Row. Why: The Contact page is indexed on its own. How: This pairs its path with its title and canonical address.
+	{ canStr : null,                      patStr : '/no-such-page', titStr : 'Page Not Found | TechGeek.dev'                             }  // What: Not Found Head Row. Why: Every unknown address shows the 404 page, which stays out of search. How: This pairs a missing path with its title and no canonical address.
 
 
 ];
@@ -306,7 +306,7 @@ test( 'the raw page carries the home title and description for script-free reade
 
 	expect( titTexStr ).toBe( PAG_HEA_ARR[ 0 ].titStr ); // What: Raw Title Assertion. Why: The raw page should name the home page in full, not the bare site name. How: This checks it matches the home page's title.
 
-	expect( titTexStr.length ).toBeGreaterThanOrEqual( 50 ); // What: Raw Title Length Assertion. Why: Checkers flag a title that leaves most of a listing's room unused. How: This checks it runs at least 50 characters.
+	expect( titTexStr.length ).toBeGreaterThanOrEqual( 50 ); // What: Raw Title Length Assertion. Why: The raw page should carry a full title, not a short fragment such as the bare site name. How: This checks it runs at least 50 characters.
 
 	expect( rawHtmStr ).toContain( `<meta name='description' content='${ HOM_DES_STR }' />` ); // What: Raw Description Assertion. Why: Checkers and crawlers without the script need a description to show. How: This checks the raw page carries the home page's.
 
@@ -377,7 +377,7 @@ test( 'the social preview image is a 1,200x630 PNG under 300 KB', async ( { requ
 
 	expect( imaResObj.headers()[ 'content-type' ] ).toBe( 'image/png' ); // What: PNG Type Assertion. Why: The tags promise a PNG. How: This checks the served type.
 
-	expect( pngBufObj.length ).toBeLessThan( 300 * 1024 ); // What: PNG Bytes Assertion. Why: WhatsApp drops a preview image of 300 KB or more. How: This checks the file's byte count.
+	expect( pngBufObj.length ).toBeLessThan( 300 * 1024 ); // What: PNG Bytes Assertion. Why: Site owners widely report WhatsApp dropping a preview image of 300 KB or more, so the social preview rule keeps it under that. How: This checks the file's byte count.
 
 	expect( [ pngBufObj.readUInt32BE( 16 ), pngBufObj.readUInt32BE( 20 ) ] ).toEqual( [ 1200, 630 ] ); // What: PNG Size Assertion. Why: The tags promise 1,200 by 630 pixels. How: This reads the width and height the PNG's header chunk stores.
 

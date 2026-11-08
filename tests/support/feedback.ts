@@ -10,8 +10,7 @@
  * wait a look is read with, the helpers that snapshot an element's look and
  * turn two snapshots into problems, and the click block that keeps a press
  * from acting mid-check. A spec collects and drives its own elements.
- * Adapted from the-bernie-bears' own, whose snapshot also reads what a
- * control draws in its ::before and ::after, such as a bar link's underline.
+ * Adapted from the-bernie-bears' own.
  *
  * Sections:
  *  - Types
