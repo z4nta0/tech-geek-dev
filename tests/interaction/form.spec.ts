@@ -103,13 +103,13 @@ test.use( { reducedMotion : 'reduce' } ); // What: Reduced Motion Use. Why: The 
 
 
 
-test( 'an empty form stays put and sends nothing', async ( { page : curPagObj } ) => { // What: Empty Form Test. Why: A blank message shouldn't reach Netlify or show a thank-you. How: This presses Send on the empty form and checks that nothing was sent and the form is still there.
+test( 'an empty form stays put and sends nothing', async ( { page : curPagObj } ) => { // What: Empty Form Test. Why: A blank message shouldn't reach Netlify or show a thank-you. How: This presses "Send Message" on the empty form and checks that nothing was sent and the form is still there.
 
 
 	const senBodArr = await forOpeFun( curPagObj ); // What: Sent Body Array. Why: The check needs to know whether anything was sent. How: This opens the form with the root's POST answered and counted.
 
 
-	await curPagObj.getByRole( 'button', { name : 'Send Message' } ).click(); // What: Send Click Call. Why: The empty form is submitted. How: This presses Send.
+	await curPagObj.getByRole( 'button', { name : 'Send Message' } ).click(); // What: Send Click Call. Why: The empty form is submitted. How: This presses "Send Message".
 
 	await expect( curPagObj.getByPlaceholder( 'Your name' ) ).toBeFocused();                       // What: First Invalid Field Assertion. Why: The browser stops a form with an empty required field and points to it. How: This checks focus moved to the empty name field.
 	await expect( curPagObj.getByRole( 'heading', { name : 'Message Sent!' } ) ).toHaveCount( 0 ); // What: No Thank-You Assertion. Why: The visitor shouldn't be told an empty form was sent. How: This checks the thank-you never appeared.
@@ -121,7 +121,7 @@ test( 'an empty form stays put and sends nothing', async ( { page : curPagObj } 
 
 
 
-test( 'a malformed email stays put and sends nothing', async ( { page : curPagObj } ) => { // What: Malformed Email Test. Why: A message with an unreachable reply address shouldn't be sent. How: This fills in the name, a bad email, and a message, presses Send, and checks that nothing was sent.
+test( 'a malformed email stays put and sends nothing', async ( { page : curPagObj } ) => { // What: Malformed Email Test. Why: A message with an unreachable reply address shouldn't be sent. How: This fills in the name, a bad email, and a message, presses "Send Message", and checks that nothing was sent.
 
 
 	const senBodArr = await forOpeFun( curPagObj ); // What: Sent Body Array. Why: The check needs to know whether anything was sent. How: This opens the form with the root's POST answered and counted.
@@ -131,7 +131,7 @@ test( 'a malformed email stays put and sends nothing', async ( { page : curPagOb
 	await curPagObj.getByPlaceholder( 'you@example.com' ).fill( 'not-an-email' );       // What: Bad Email Fill Call. Why: The address has no @, so it isn't an email. How: This fills it in.
 	await curPagObj.getByPlaceholder( 'Tell me about your project…' ).fill( 'Hello.' ); // What: Message Fill Call. Why: Only the email should be wrong. How: This fills in a message.
 
-	await curPagObj.getByRole( 'button', { name : 'Send Message' } ).click(); // What: Send Click Call. Why: The form with the bad email is submitted. How: This presses Send.
+	await curPagObj.getByRole( 'button', { name : 'Send Message' } ).click(); // What: Send Click Call. Why: The form with the bad email is submitted. How: This presses "Send Message".
 
 	await expect( curPagObj.getByPlaceholder( 'you@example.com' ) ).toBeFocused(); // What: Bad Email Focus Assertion. Why: The browser stops the form at the malformed address. How: This checks focus moved to the email field.
 
@@ -142,7 +142,7 @@ test( 'a malformed email stays put and sends nothing', async ( { page : curPagOb
 
 
 
-test( 'a filled-in form sends to Netlify and shows the thank-you', async ( { page : curPagObj } ) => { // What: Sent Form Test. Why: A valid message has to reach Netlify as form contact and thank the visitor. How: This fills the form, presses Send, and checks the thank-you and the posted fields.
+test( 'a filled-in form sends to Netlify and shows the thank-you', async ( { page : curPagObj } ) => { // What: Sent Form Test. Why: A valid message has to reach Netlify as form contact and thank the visitor. How: This fills the form, presses "Send Message", and checks the thank-you and the posted fields.
 
 
 	const senBodArr = await forOpeFun( curPagObj ); // What: Sent Body Array. Why: The check reads what was sent. How: This opens the form with the root's POST answered and counted.
@@ -152,7 +152,7 @@ test( 'a filled-in form sends to Netlify and shows the thank-you', async ( { pag
 	await curPagObj.getByPlaceholder( 'you@example.com' ).fill( 'visitor@example.com' ); // What: Email Fill Call. Why: Every required field is filled. How: This fills in a reserved example address.
 	await curPagObj.getByPlaceholder( 'Tell me about your project…' ).fill( 'Hello.' );  // What: Message Fill Call. Why: Every required field is filled. How: This fills in a message.
 
-	await curPagObj.getByRole( 'button', { name : 'Send Message' } ).click(); // What: Send Click Call. Why: The valid form is submitted. How: This presses Send.
+	await curPagObj.getByRole( 'button', { name : 'Send Message' } ).click(); // What: Send Click Call. Why: The valid form is submitted. How: This presses "Send Message".
 
 	await expect( curPagObj.getByRole( 'heading', { name : 'Message Sent!' } ) ).toBeVisible(); // What: Thank-You Assertion. Why: The visitor should learn the message went out. How: This checks the thank-you's heading shows.
 

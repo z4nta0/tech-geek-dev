@@ -318,7 +318,7 @@ test( 'the structured data describes z4nta0 and matches the pages', async ( { pa
 
 
 	expect( [ perNodObj.name, perNodObj.url, webNodObj.name, webNodObj.url ] ).toEqual( [ 'z4nta0', LIV_URL_STR, 'TechGeek.dev', LIV_URL_STR ] ); // What: Person And Site Assertion. Why: The site is z4nta0's portfolio, never a business's. How: This checks both nodes' names and addresses.
-	expect( webNodObj.author?.[ '@id' ] ).toBe( perNodObj[ '@id' ] );                                                                             // What: Author Link Assertion. Why: Search engines join the nodes by their ids. How: This checks the site names z4nta0 as its author.
+	expect( webNodObj.author?.[ '@id' ] ).toBe( perNodObj[ '@id' ] );                                                                             // What: Author Link Assertion. Why: Search engines join the nodes by their IDs. How: This checks the site names z4nta0 as its author.
 	expect( [ ...( perNodObj.sameAs ?? [] ) ].sort() ).toEqual( [ ...socHreArr ].sort() );                                                        // What: Profiles Assertion. Why: Every profile in the data has to be one the site links to. How: This compares the data's profiles with the footer's outside links.
 
 	await curPagObj.goto( '/contact' ); // What: Contact Open Call. Why: The data's email has to be the one the Contact page offers. How: This loads it.

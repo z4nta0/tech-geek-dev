@@ -521,16 +521,16 @@ test( 'malformed saved entries are dropped while a well-formed saved position is
 
 
 
-test( 'the Hire Me button opens Contact without reloading the site', async ( { page : curPagObj } ) => { // What: Hire Me Link Test. Why: A plain link would reload the whole site instead of switching pages. How: This marks the document, clicks the bar's Hire Me, and checks the mark survived, which only happens without a reload.
+test( 'the "Hire Me" link opens Contact without reloading the site', async ( { page : curPagObj } ) => { // What: Hire Me Link Test. Why: A plain link would reload the whole site instead of switching pages. How: This marks the document, clicks the bar's "Hire Me" link, and checks the mark survived, which only happens without a reload.
 
 
-	await curPagObj.setViewportSize( { height : 900, width : 1440 } ); // What: Desktop Viewport Call. Why: The bar shows its Hire Me button at desktop width. How: This sizes the page before it loads.
+	await curPagObj.setViewportSize( { height : 900, width : 1440 } ); // What: Desktop Viewport Call. Why: The bar shows its "Hire Me" link at desktop width. How: This sizes the page before it loads.
 
 	await curPagObj.goto( '/' ); // What: Home Page Navigation. Why: The check starts away from Contact. How: This loads Home.
 
 	await curPagObj.evaluate( () => document.documentElement.setAttribute( 'data-test-reload-marker', '' ) ); // What: Reload Marker Call. Why: A reload would build a fresh document without the mark. How: This sets a presence-only attribute on the root element.
 
-	await curPagObj.getByRole( 'banner' ).getByRole( 'link', { exact : true, name : 'Hire Me' } ).click(); // What: Hire Me Click. Why: This is the link that used to reload the site. How: This clicks the bar's Hire Me.
+	await curPagObj.getByRole( 'banner' ).getByRole( 'link', { exact : true, name : 'Hire Me' } ).click(); // What: Hire Me Click. Why: This is the link that used to reload the site. How: This clicks the bar's "Hire Me" link.
 
 	await expect( curPagObj ).toHaveURL( '/contact' ); // What: Destination Assertion. Why: The button has to reach Contact. How: This waits for the address to change.
 
