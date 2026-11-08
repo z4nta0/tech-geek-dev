@@ -405,7 +405,7 @@ test( 'every icon the head links to is served at its size', async ( { page : cur
 		const icoBufObj = await icoResObj.body();           // What: Icon Buffer Object. Why: A PNG's size is written in its header. How: This reads the bytes.
 
 
-		expect( icoResObj.ok() ).toBe( true ); // What: Icon Served Assertion. Why: A missing icon falls through to the app's HTML. How: This checks the file is served.
+		expect( icoResObj.ok() ).toBe( true ); // What: Icon Served Assertion. Why: An icon link has to answer without an error. How: This checks the response is ok, while the type and size checks below catch the app's HTML standing in for a missing file.
 
 
 
