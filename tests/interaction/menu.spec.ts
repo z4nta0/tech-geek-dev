@@ -7,7 +7,8 @@ import { expect } from '@playwright/test'; // What: Expect. Why: Each check pass
 import { test   } from '@playwright/test'; // What: Test. Why: Each way of using the menu is its own test. How: This declares them.
 
 
-import type { Page } from '@playwright/test'; // What: Page. Why: The helper drives a Playwright page. How: This types its page parameter.
+import type { Locator } from '@playwright/test'; // What: Locator. Why: The click kinds pass Playwright's own click options. How: This types the options each row holds.
+import type { Page    } from '@playwright/test'; // What: Page. Why: The helpers drive a Playwright page. How: This types their page parameters.
 
 // #endregion Imports
 
@@ -24,15 +25,36 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helper dri
  * usual ways out each close it and give the page back: tapping the scrim,
  * pressing Escape, which also returns focus to the toggle, tapping the brand,
  * which also goes home, and widening the screen past the phone layout, which
- * hides the toggle.
+ * hides the toggle. Choosing any of its links closes it too, whether the link
+ * opens in place or in a new tab, through a Ctrl or Cmd click, a middle
+ * click, or a plain tap on a profile that opens another site.
  *
  * Sections:
+ *  - Constants
  *  - Helpers
  *  - Module Init
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
 */
+
+
+
+// #region Constants
+
+const CLI_KIN_ARR : Array< [ string, Parameters< Locator[ 'click' ] >[ 0 ] ] > = [ [ 'Ctrl or Cmd', { modifiers : [ 'ControlOrMeta' ] } ], [ 'middle', { button : 'middle' } ] ]; // What: Click Kind Array. Why: Both ways of asking for a new tab have to close the menu. How: Each row pairs a name for the test title with the click options that make that kind of click.
+
+const MEN_LIN_ARR = [ // What: Menu Link Array. Why: Every kind of link in the open menu has to close it. How: Each entry is a link's accessible name: a page link, the call to action, and a profile icon.
+
+
+	'About',   // What: Page Link Name. Why: The menu's page links route inside the site. How: This names the "About" link.
+	'Hire Me', // What: Call-To-Action Link Name. Why: The menu's button routes inside the site too. How: This names the "Hire Me" link.
+	'GitHub'   // What: Profile Link Name. Why: The profile icons open another site in a new tab. How: This names the "GitHub" icon.
+
+
+];
+
+// #endregion Constants
 
 
 
@@ -79,6 +101,59 @@ async function menOpeFun ( curPagObj : Page ) : Promise< void > {
 }
 
 // #endregion menOpeFun
+
+
+
+// #region newTabFun
+
+/**
+ * newTabFun = New Tab Function
+ *
+ * @summary
+ * Opens the menu, clicks one of its links with the given click options while
+ * waiting for the new tab the click opens, and checks the menu closed while
+ * the page clicked from stayed on About. Requests to other sites are refused
+ * first, so a profile never loads for real.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+ * @param curPagObj - Current Page Object: The page to click from.
+ * @param linNamStr - Link Name String: The link's accessible name.
+ * @param cliOptObj - Click Options Object: How the link is clicked.
+ *
+ * @returns A promise that settles once the menu has been checked closed, with
+ *          no value.
+ *
+ * @example
+ * ```ts
+ * newTabFun(page, 'About', { button : 'middle' }) // => Promise<void>
+ * ```
+ *
+*/
+
+async function newTabFun ( curPagObj : Page, linNamStr : string, cliOptObj : Parameters< Locator[ 'click' ] >[ 0 ] ) : Promise< void > {
+
+
+	await curPagObj.context().route( /^https:\/\//, ( rouCurObj ) => rouCurObj.abort() ); // What: Outside Request Block. Why: A test shouldn't reach GitHub or any other site. How: This refuses every HTTPS request, which only other sites use here.
+
+	await menOpeFun( curPagObj ); // What: Menu Open Call. Why: The link is clicked from the open menu. How: This opens and checks it on About.
+
+
+	const newTabPro = curPagObj.context().waitForEvent( 'page' ); // What: New Tab Promise. Why: The click opens its page in a new tab. How: This waits for the browser context to report a new page, set up before the click so it can't be missed.
+
+
+	await curPagObj.getByRole( 'banner' ).getByRole( 'link', { exact : true, name : linNamStr } ).click( cliOptObj ); // What: Link Click Call. Why: This is the action under test. How: This clicks the link the given way.
+
+	await newTabPro; // What: New Tab Wait. Why: The click should open a new tab. How: This waits for the browser to report it.
+
+	await expect( curPagObj.getByRole( 'button', { name : 'Toggle menu' } ) ).toHaveAttribute( 'aria-expanded', 'false' ); // What: Closed State Assertion. Why: The menu should close whichever way the link opens. How: This waits until the toggle reports it closed.
+	await expect( curPagObj ).toHaveURL( '/about' );                                                                       // What: Original Address Assertion. Why: The page clicked from shouldn't navigate. How: This checks it's still on About.
+	await expect( curPagObj.locator( '[inert]' ) ).toHaveCount( 0 );                                                       // What: Page Restored Assertion. Why: The page clicked from has to be usable again. How: This checks nothing is left inert.
+
+
+}
+
+// #endregion newTabFun
 
 // #endregion Helpers
 
@@ -173,6 +248,44 @@ test( 'widening the screen closes the menu', async ( { page : curPagObj } ) => {
 
 
 } );
+
+
+
+for ( const [ cliKinStr, cliOptObj ] of CLI_KIN_ARR ) { // What: Click Kind Loop. Why: Each way of asking for a new tab gets its own checks. How: This declares one test per menu link for each row of CLI_KIN_ARR.
+
+
+	for ( const linNamStr of MEN_LIN_ARR ) { // What: Menu Link Loop. Why: Every kind of link in the menu has to close it. How: This declares one test per link.
+
+
+		test( `a ${ cliKinStr } click on the menu's "${ linNamStr }" link opens a new tab and closes the menu`, async ( { page : curPagObj } ) => { // What: Menu New Tab Test. Why: The menu should close once any link is chosen, even one opening in a new tab. How: This clicks the link the loop's way and checks a new tab opened, the menu closed, and the page stayed put.
+
+
+			await newTabFun( curPagObj, linNamStr, cliOptObj ); // What: New Tab Check Call. Why: The steps are shared by every link and click kind. How: This clicks the link and checks the result.
+
+
+		} );
+
+
+	}
+
+
+}
+
+
+
+for ( const linNamStr of MEN_LIN_ARR.slice( 2 ) ) { // What: Outside Link Loop. Why: A profile icon opens a new tab even on a plain tap, which leaves the page behind. How: This declares one test per link that opens another site.
+
+
+	test( `a plain tap on the menu's "${ linNamStr }" link opens a new tab and closes the menu`, async ( { page : curPagObj } ) => { // What: Outside Link Test. Why: A visitor coming back from the other site should find the page usable, not inert behind a menu still open. How: This taps the link and checks a new tab opened, the menu closed, and the page stayed put.
+
+
+		await newTabFun( curPagObj, linNamStr, {} ); // What: New Tab Check Call. Why: The steps are shared with the modified clicks. How: This taps the link plainly and checks the result.
+
+
+	} );
+
+
+}
 
 // #endregion Module Init
 

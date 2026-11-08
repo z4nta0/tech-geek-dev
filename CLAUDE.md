@@ -597,12 +597,23 @@ on `close-out`.
       baseline unchanged, and the favicon set and social preview card
       re-rendered byte-identical.
 
+## Main content and skip link
+Decided 2026-11-07, in the audit. The shared bar opens every page with a skip
+link to `<main id='main'>` in `app.tsx`, which holds whichever page shows,
+between the bar and the footer. The skip link and the bar live in
+techgeek-design (from `v0.5.0`), and the main element here.
+
+
+
 ## Test suites
 Added 2026-10-12, adapted from the-bernie-bears'. Playwright suites live in
 `tests/`, one project per suite and engine in `tests/playwright.config.ts`,
-which starts its own dev server on port 5194 (never the usual 5173, nor the
-sibling projects' 5190 through 5193) and stops it afterwards. Every suite
-runs in Chromium, Firefox, and WebKit. Results, screenshots, and traces go to
+which starts its own dev server on port 5194 (never the usual 5173, nor a
+sibling project's own port) and a production build served by `vite preview`
+on 5204 for the security suite, and stops both afterwards. Every suite runs
+in Chromium, Firefox, and WebKit, Chromium as full headless Chrome
+(`channel : 'chromium'`, added in the 2026-11-07 audit), per the user-level
+rule. Results, screenshots, and traces go to
 `tests/output/` (git-ignored); `npx playwright show-report
 tests/output/report` opens the HTML report. The states the suites visit
 (every route and the 404 page at 390px and 1,440px, plus the phone menu open
@@ -620,8 +631,15 @@ ticker, and the status dots) when waiting for the page to settle.
   behaves. `navigation.spec.ts` (from the-bernie-bears, added in step 11)
   checks that a footer link clicked at the bottom of each page opens the next
   page at its top, the current page's own bar link and a phone menu link do
-  the same, back returns near the earlier position, and the bar's Hire Me
-  switches to Contact without reloading the site.
+  the same, and the bar's Hire Me switches to Contact without reloading the
+  site. Since the 2026-11-07 audit, when the shared package's scroll hook
+  took over restoring positions, it also checks that back, forward, and a
+  reload return to the exact earlier position, a fresh load opens at the top,
+  a hash wins over a saved position, malformed saved positions raise no
+  error, and the first Tab on every page reaches the skip link, which moves
+  focus to the main element without changing the address. Its pages fix
+  `Math.random`, since Home picks new featured projects each time it opens,
+  which changed its height on the way back.
   `feedback.spec.ts` (from the-bernie-bears) checks the interaction feedback
   rule on every state: each reachable link and button looks different
   hovered than at rest and pressed than hovered, lists its focus ring's
@@ -631,7 +649,9 @@ ticker, and the status dots) when waiting for the page to settle.
   `menu.spec.ts` (from the-bernie-bears) opens the phone menu on About and
   checks it lists the page links, both profiles, and the email over a scrim
   with the page inert, and that tapping the scrim, Escape (which returns focus
-  to the toggle), tapping the brand, and widening the screen each close it.
+  to the toggle), tapping the brand, and widening the screen each close it,
+  as does a Ctrl or Cmd click and a middle click on a page link, Hire Me, and
+  a profile, and a plain tap on a profile, each opening a new tab.
   `form.spec.ts` (added in the close-out) answers the root's POST the way
   Netlify Forms does and checks that an empty form and a malformed email
   stay put and send nothing, while a filled-in form posts as form contact
@@ -671,6 +691,16 @@ ticker, and the status dots) when waiting for the page to settle.
   that run no script, the Person and WebSite structured data against the
   footer's profiles and Contact's email, `robots.txt`, the sitemap, the
   social preview tags and card, and every icon the head links to.
+- `npm run test:security` (added in the 2026-11-07 audit, from
+  the-bernie-bears): the baseline security suite. `headers.spec.ts` reads
+  `public/_headers` for the policy (only the site's own origin, data images
+  on `img-src` for the select arrow, forms posting to itself) and the
+  hardening headers, searches the build for secrets, and runs `npm audit` on
+  the shipped dependencies (Chromium only, since files read the same in
+  every engine, skipping with a message when offline). `browser.spec.ts`
+  loads every state from the production build with the headers applied and
+  fails on any policy violation, or a new tab link without both `noopener`
+  and `noreferrer`. No browser key ships, so none is allowed.
 - `npm test` runs every suite.
 - **Flakes**: before step 8 the infinite animations kept moving while the
   suite captured, so a few states failed now and then. With every animation

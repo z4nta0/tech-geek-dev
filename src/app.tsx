@@ -106,7 +106,7 @@ function AppRooCom () : JSX.Element {
 
 
 
-	useScrTopFun(); // What: Scroll Top Call. Why: Every link to another page should open it at its top, and a link with a hash at its section. How: This runs the hook once from the root, which stays mounted across every route.
+	useScrTopFun(); // What: Scroll Top Call. Why: Every link to another page should open it at its top, a link with a hash at its section, and back, forward, and a reload where the visitor was. How: This runs the hook once from the root, which stays mounted across every route.
 
 
 
@@ -127,7 +127,11 @@ function AppRooCom () : JSX.Element {
 
 
 
-			<main>{ /* What: App Main Element. Why: Each page's content is the main landmark. How: This holds whichever page the address matches. */ }
+			<main
+				id='main'
+
+				tabIndex={ -1 } // What: Main Focus Target. Why: The bar's skip link moves focus here, and a main element can't take focus on its own. How: This makes it focusable without adding it to the Tab order.
+			>{ /* What: App Main Element. Why: Each page's content is the main landmark, and the skip link jumps here. How: This holds whichever page the address matches; its ID stays the plain word `main`, since the skip link's #main address names it as a navigation target. */ }
 
 
 				<Routes
