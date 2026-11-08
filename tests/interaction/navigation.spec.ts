@@ -24,8 +24,9 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helpers dr
  * forward, and a reload to the position each history entry was left at. Links
  * clicked far down a page open the next page at its top, while history and
  * reloads return to the exact earlier position, and a fresh load, a hash, and
- * malformed saved positions are each handled. Every page also opens with a
- * skip link that moves focus to the main content.
+ * malformed saved positions are each handled. With smooth scrolling on, a page
+ * change still jumps to the new page's top before it's drawn. Every page also
+ * opens with a skip link that moves focus to the main content.
  *
  * Sections:
  *  - Constants
@@ -217,7 +218,7 @@ async function scrDowFun ( curPagObj : Page ) : Promise< number > {
 
 // #region Module Init
 
-test.use( { reducedMotion : 'reduce' } ); // What: Reduced Motion Use. Why: The page's entrance and any smooth scroll would otherwise still be moving when the offset is read. How: This makes every page in this file match prefers-reduced-motion: reduce.
+test.use( { reducedMotion : 'reduce' } ); // What: Reduced Motion Use. Why: The page's entrance and any smooth scroll would otherwise still be moving when the offset is read. How: This makes every page in this file match prefers-reduced-motion: reduce, except in the smooth scrolling group, which sets its own.
 
 
 
@@ -575,6 +576,89 @@ for ( const { labStr : pagLabStr, patStr : rouPatStr } of [ ...PAG_LIN_ARR, { la
 
 
 }
+
+
+test.describe( 'with smooth scrolling on', () => { // What: Smooth Scroll Group. Why: Reduced motion turns the stylesheet's smooth scroll-behavior off, so the tests above would pass even if the jump to the top glided or came a frame late. How: This groups the check that runs with smooth scrolling left on.
+
+
+	test.use( { reducedMotion : 'no-preference' } ); // What: Full Motion Use. Why: The stylesheet only scrolls smoothly when no reduced motion is asked for. How: This makes the group's pages match prefers-reduced-motion: no-preference.
+
+
+
+	test( 'a footer link opens the next page at its top before the new page is drawn', async ( { page : curPagObj } ) => { // What: Instant Top Test. Why: A smooth glide or a late jump would show the old position on the new page first. How: This scrolls Home to the bottom, records the offset the moment Work's heading appears and again in the frame after, follows the footer's "Work" link, and checks both readings are 0.
+
+
+		await curPagObj.setViewportSize( { height : 900, width : 1440 } ); // What: Desktop Viewport Call. Why: The footer shows every page link side by side at desktop width. How: This sizes the page before it loads.
+
+		await curPagObj.goto( '/' ); // What: Home Page Navigation. Why: Home is long enough to scroll well down. How: This loads it.
+
+		expect( await curPagObj.evaluate( () => getComputedStyle( document.documentElement ).scrollBehavior ) ).toBe( 'smooth' ); // What: Smooth Premise Assertion. Why: The check only proves an instant jump when the stylesheet would otherwise glide. How: This reads the root element's scroll-behavior and checks it's smooth.
+
+
+		const botTopNum = await botScrFun( curPagObj ); // What: Bottom Top Number. Why: The click happens where the footer is. How: This scrolls to the end of the page and reads how far down it sits.
+
+
+		expect( botTopNum ).toBeGreaterThan( 0 ); // What: Scrolled Assertion. Why: A page that can't scroll would let the check pass with nothing to reset. How: This checks the page sits below its top.
+
+
+
+		await curPagObj.evaluate( () => { // What: Top Recorder Script. Why: A retrying check would pass a glide that only reaches the top later. How: This watches for the next page's heading and records the offset once as it appears and once in the frame after, before that frame is drawn.
+
+
+			const oldHeaEle = document.querySelector( 'h1' );                                                               // What: Old Heading Element. Why: Home's own heading is already on the page. How: This holds it, so only a new heading counts.
+			const winRecObj = window as unknown as { __topRecPro : Promise< { fraTopNum : number, heaTopNum : number } > }; // What: Window Record Object. Why: The readings have to outlive this script for the test to read them. How: This views the window as holding them. // What: Type Assertion Note. Why: The window has no such field in its type. How: The script adds it here and the test reads it below.
+
+
+			winRecObj.__topRecPro = new Promise( ( resProFun ) => { // What: Top Record Promise. Why: The test waits for both readings. How: This resolves with them once the next page's heading has appeared and a frame has passed.
+
+
+				const mutObsObj = new MutationObserver( () => { // What: Mutation Observer Object. Why: The router swaps the page in without a load event, and React's layout effects, the scroll hook's among them, run in the same commit, before the observer's callback. How: On each change to the page, this checks for a new heading and records the offset once it's there.
+
+
+					const newHeaEle = document.querySelector( 'h1' ); // What: New Heading Element. Why: The next page's heading marks the moment it exists. How: This reads the page's heading now.
+
+
+					if ( !newHeaEle || newHeaEle === oldHeaEle ) return; // What: New Heading Guard. Why: Changes before the next page renders, such as Home's own animations, don't count. How: This stops while there's no heading or it's still Home's.
+
+
+
+					const heaTopNum = window.scrollY; // What: Heading Top Number. Why: The new page has to be at its top the moment it exists. How: This reads the offset once, without waiting.
+
+
+					mutObsObj.disconnect(); // What: Observer Disconnect Call. Why: Only the first appearance is recorded. How: This stops watching the page.
+
+					requestAnimationFrame( () => resProFun( { fraTopNum : window.scrollY, heaTopNum } ) ); // What: Frame Top Record Call. Why: The first frame drawn with the new page shouldn't show the old position, as it would mid-glide. How: This reads the offset again in the next animation frame, before it's painted, and resolves with both readings.
+
+
+				} );
+
+
+				mutObsObj.observe( document.body, { childList : true, subtree : true } ); // What: Page Observe Call. Why: The next page is added somewhere under the body. How: This watches every added or removed element there.
+
+
+			} );
+
+
+		} );
+
+
+
+		await curPagObj.getByRole( 'navigation', { name : 'Footer navigation' } ).getByRole( 'link', { exact : true, name : 'Work' } ).click(); // What: Footer Link Click. Why: This is the navigation under test. How: This clicks the footer's "Work" link from the bottom of Home.
+
+		await expect( curPagObj ).toHaveURL( '/work' ); // What: Destination Assertion. Why: The readings only mean something on the new page. How: This waits for the address to change.
+
+
+		const { fraTopNum, heaTopNum } = await curPagObj.evaluate( () => ( window as unknown as { __topRecPro : Promise< { fraTopNum : number, heaTopNum : number } > } ).__topRecPro ); // What: Frame Top Number. Why: The first drawn frame should be at the top. How: This holds the offset read in the frame after the heading appeared. // What: Heading Top Number. Why: The new page should be at its top as it appears. How: This holds the offset read the moment the heading appeared. // What: Type Assertion Note. Why: The window has no such field in its type. How: The recorder script set it.
+
+
+		expect( heaTopNum ).toBe( 0 ); // What: Heading Top Assertion. Why: The jump has to happen before the new page is drawn, never as a glide. How: This checks the offset read once as the heading appeared is 0.
+		expect( fraTopNum ).toBe( 0 ); // What: Frame Top Assertion. Why: The first frame drawn with the new page shouldn't show the old position. How: This checks the offset read in that frame is 0.
+
+
+	} );
+
+
+} );
 
 // #endregion Module Init
 
