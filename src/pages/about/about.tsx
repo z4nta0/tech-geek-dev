@@ -119,7 +119,7 @@ const TIM_MIL_ARR = [ // What: Timeline Milestone Array. Why: The timeline shows
 
 
 
-const TIP_URL_STR = 'https://ko-fi.com/techgeekdev'; // What: Tip URL String. Why: The Support section's button opens z4nta0's Ko-fi page, the same address every README links. How: This is the page's public address, written here since it never changes between builds.
+const TIP_URL_STR = 'https://ko-fi.com/techgeekdev'; // What: Tip URL String. Why: The Support section's button opens z4nta0's Ko-fi page. How: This is the page's public address, written here since it never changes between builds.
 
 
 
@@ -233,15 +233,15 @@ function AboPagCom () : JSX.Element {
 						<div className={ cssModObj.herTexDiv }>{ /* What: Hero Text Div Element. Why: The introduction reads as one column. How: This stacks the label, heading, paragraphs, and button. */ }
 
 
-							<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows About Me after a short rule. */ }
+							<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows "About Me" after a short rule. */ }
 								<span className={ cssModObj.herLinSpa } />{ /* What: Hero Line Span Element. Why: A short rule leads into the label. How: This draws the rule. */ }
 
 								About Me
 							</span>
 
-							<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up z4nta0 in three words. How: This sets Dev and Creator over Problem Solver, the second line in the accent. */ }
+							<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up z4nta0 in three words. How: This sets "Dev. Creator." over "Problem Solver.", the second line in the accent. */ }
 								Dev. Creator.<br />
-								<span className={ cssModObj.titAccSpa }>Problem Solver.</span>{ /* What: Title Accent Span Element. Why: The heading's second line carries the accent. How: This sets Problem Solver in the dark blue. */ }
+								<span className={ cssModObj.titAccSpa }>Problem Solver.</span>{ /* What: Title Accent Span Element. Why: The heading's second line carries the accent. How: This sets "Problem Solver." in the dark blue. */ }
 							</h1>
 
 							<p className={ cssModObj.herLeaPar }>{ /* What: Hero Lead Paragraph Element. Why: The opening line says who z4nta0 is. How: This shows it in the larger lead style. */ }
@@ -274,7 +274,7 @@ function AboPagCom () : JSX.Element {
 
 
 
-						<div className={ cssModObj.herVisDiv }>{ /* What: Hero Visual Div Element. Why: The portrait and the facts illustrate the introduction. How: This holds the framed portrait, with room above and below it for the two floating facts, and on a phone the flourishes either side of it. */ }
+						<div className={ cssModObj.herVisDiv }>{ /* What: Hero Visual Div Element. Why: The portrait and the facts illustrate the introduction. How: This holds the framed portrait, with room above and below it for the two floating facts, and at 768px and below the flourishes either side of it. */ }
 
 
 							<svg
@@ -452,7 +452,7 @@ function AboPagCom () : JSX.Element {
 
 									<span className={ cssModObj.facFigSpa }>10+</span>{ /* What: Fact Figure Span Element. Why: z4nta0 has been a developer since 2013. How: This shows ten plus. */ }
 
-									<span className={ cssModObj.facLabSpa }>Years Experience</span>{ /* What: Fact Label Span Element. Why: The label says what the figure counts. How: This shows Years Experience. */ }
+									<span className={ cssModObj.facLabSpa }>Years Experience</span>{ /* What: Fact Label Span Element. Why: The label says what the figure counts. How: This shows "Years Experience". */ }
 
 
 								</div>
@@ -462,7 +462,7 @@ function AboPagCom () : JSX.Element {
 
 									<span className={ cssModObj.facFigSpa }>{ SHI_COU_NUM }+</span>{ /* What: Fact Figure Span Element. Why: The count should grow as projects are added, and older projects that are no longer online still count. How: This shows the project list's count with a plus. */ }
 
-									<span className={ cssModObj.facLabSpa }>Projects Shipped</span>{ /* What: Fact Label Span Element. Why: The label says what the figure counts. How: This shows Projects Shipped. */ }
+									<span className={ cssModObj.facLabSpa }>Projects Shipped</span>{ /* What: Fact Label Span Element. Why: The label says what the figure counts. How: This shows "Projects Shipped". */ }
 
 
 								</div>
@@ -571,7 +571,7 @@ function AboPagCom () : JSX.Element {
 							aliPosStr='center'
 							labTexStr='Experience'
 							titTexStr='My Journey'
-						/>{ /* What: Section Header Component. Why: The section opens with its heading, centered over the timeline's center line on a tablet or wider. How: This shows its label and title centered. */ }
+						/>{ /* What: Section Header Component. Why: The section opens with its heading, centered over the timeline's center line above 768px. How: This shows its label and title centered. */ }
 
 
 
@@ -645,7 +645,7 @@ function AboPagCom () : JSX.Element {
 
 
 
-				<section className={ cssModObj.aboValSec }>{ /* What: About Values Section Element. Why: The page closes with what drives the work. How: This holds the heading block and the value cards. */ }
+				<section className={ cssModObj.aboValSec }>{ /* What: About Values Section Element. Why: The values show what drives the work. How: This holds the heading block and the value cards. */ }
 
 
 					<div className={ cssModObj.valInnDiv }>{ /* What: Values Inner Div Element. Why: The section sits in the page's centered column. How: This stacks the heading block and the grid. */ }

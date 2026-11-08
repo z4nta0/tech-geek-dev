@@ -20,14 +20,11 @@ import totScrUrl from '../assets/images/tonys-toppers-website.webp';     // What
  * projects.ts = Projects
  *
  * @summary
- * The list of projects the site showcases, in the order the Work page shows
- * them, with the type every record follows. Home shows four featured ones,
- * picked at random on each visit, and the Work page shows them all behind its
- * tag filter. Home and About also show two counts taken from the list, the
- * projects shipped and the clients served, so both grow as projects are added;
- * the pages add a plus to each, since z4nta0's older projects that are no
- * longer online still count. Each record's screenshot comes from
- * src/assets/images, rendered there by npm run images.
+ * The list of projects the site showcases, with the type every record
+ * follows, which holds fields such as a project's name, links, and
+ * screenshot. Two counts are taken from the list, the projects shipped and
+ * the clients served, so both grow as projects are added. Each record's
+ * screenshot comes from src/assets/images, rendered there by npm run images.
  *
  * Sections:
  *  - Types
@@ -49,7 +46,7 @@ type ProRecTyp = { // What: Project Record Type. Why: The project card, Home, an
 	desStr  : string,   // What: Description String. Why: The card says what the project is. How: This is a sentence shown under the title.
 	feaBoo? : boolean,  // What: Featured Boolean. Why: Home shows only featured projects. How: This marks a project as one of them.
 	gitStr? : string,   // What: GitHub String. Why: A visitor can read the project's source. How: This is its repository's URL.
-	ideStr  : string,   // What: Identifier String. Why: React needs a stable key for each card. How: This is a unique id per project.
+	ideStr  : string,   // What: Identifier String. Why: React needs a stable key for each card. How: This is a unique ID per project.
 	imaStr  : string,   // What: Image String. Why: The card shows a screenshot of the site. How: This is the screenshot's resolved URL.
 	livStr? : string,   // What: Live String. Why: A visitor can open the finished site. How: This is the live site's URL.
 	tagArr  : string[], // What: Tag Array. Why: The card lists the project's technologies, and the Work page filters by them. How: This holds each technology's name.
@@ -235,8 +232,8 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 
-const CLI_COU_NUM = PRO_REC_ARR.filter( ( proRecObj ) => proRecObj.cliBoo ).length; // What: Client Count Number. Why: Home and About count the clients served, and the count should grow as client projects are added. How: This counts the records built for a client.
-const SHI_COU_NUM = PRO_REC_ARR.length;                                                 // What: Shipped Count Number. Why: Home and About count the projects shipped, and the count should grow as projects are added. How: This counts every record.
+const CLI_COU_NUM = PRO_REC_ARR.filter( ( proRecObj ) => proRecObj.cliBoo ).length; // What: Client Count Number. Why: The count should grow as client projects are added. How: This counts the records built for a client.
+const SHI_COU_NUM = PRO_REC_ARR.length;                                                 // What: Shipped Count Number. Why: The count should grow as projects are added. How: This counts every record.
 
 // #endregion Constants
 
@@ -244,7 +241,7 @@ const SHI_COU_NUM = PRO_REC_ARR.length;                                         
 
 // #region Exports
 
-export { CLI_COU_NUM, PRO_REC_ARR, type ProRecTyp, SHI_COU_NUM }; // What: Named Exports. Why: The project card reads the record type, Home and the Work page read the list, and Home and About show the counts. How: This exports the list, its type, and both counts.
+export { CLI_COU_NUM, PRO_REC_ARR, type ProRecTyp, SHI_COU_NUM }; // What: Named Exports. Why: Other files read the project list, its record type, and the two counts. How: This exports the list, its type, and both counts.
 
 // #endregion Exports
 

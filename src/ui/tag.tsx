@@ -82,7 +82,7 @@ function TagLabCom ( { labTexStr, tagSizStr = 'sm' } : TlcProTyp ) : JSX.Element
 
 // #region Exports
 
-export { TagLabCom }; // What: Named Exports. Why: Project cards and the About page's skills grid show technologies as tags. How: This exports TagLabCom.
+export { TagLabCom }; // What: Named Export. Why: Pages show technologies as tags. How: This exports TagLabCom.
 
 // #endregion Exports
 

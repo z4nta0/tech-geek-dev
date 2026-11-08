@@ -32,7 +32,7 @@
 
 			/* #region proBodBod */
 
-			.proBodBod { /* What: Profile Body Body. Why: The picture fills the whole 400x400 capture, which the renderer doubles, on the ink, so the bright mark stands out on Ko-fi's white page. How: This sizes it in literal pixels, the image's own fixed size, and hides anything past its edges. */
+			.proBodBod { /* What: Profile Body Body. Why: The picture fills the whole 400x400 capture, which the renderer doubles, on the ink, so the bright mark stands out on a white page. How: This sizes it in literal pixels, the image's own fixed size, and hides anything past its edges. */
 
 
 				background : var( --bac-inv-col ); /* Background Inverse Color = #1A1A2E */
@@ -86,7 +86,7 @@
 			viewBox='0 -22 400 400'
 
 			aria-hidden='true'
-		><!-- What: Profile Artwork SVG Element. Why: The picture is the mark with steam rising from it. How: This draws both inside the circle Ko-fi crops the square to, its view shifted up 22 units so the steam and mark together sit centered, hidden from screen readers since it's artwork. -->
+		><!-- What: Profile Artwork SVG Element. Why: The picture is the mark with steam rising from it. How: This draws both inside a centered circle, the shape a round crop leaves, its view shifted up 22 units so the steam and mark together sit centered, hidden from screen readers since it's artwork. -->
 
 
 			<path

@@ -58,7 +58,7 @@ const BOX_REC_OBJ : Record< string, BoxRecTyp > = { // What: Box Record Object. 
 
 type ImaRecTyp = { boxStr : string, outStr : string, souStr : string }; // What: Image Record Type. Why: Every image has a box, an output, and an original. How: This names its box key and its output and original paths, each relative to its own root.
 
-const IMA_REC_ARR : ImaRecTyp[] = [ // What: Image Record Array. Why: Every image the site shows is rebuilt from this one list. How: Each row names the original, where it's written, and which box it fits.
+const IMA_REC_ARR : ImaRecTyp[] = [ // What: Image Record Array. Why: The project screenshots and the portrait are rebuilt from this one list. How: Each row names the original, where it's written, and which box it fits.
 
 
 	...[ 'ease-my-life', 'hair-designs', 'reese-roofing', 'seal-and-shield', 'tech-geek-cards', 'tech-geek-support', 'the-bernie-bears', 'tonys-toppers' ].map( ( proNamStr ) => ({ // What: Project Screenshot Rows. Why: Every project card shows a screenshot of its site. How: This builds one row per project name.
@@ -183,7 +183,7 @@ await broInsObj.close(); // What: Browser Close Call. Why: The script should exi
 
 
 
-console.log( `Wrote ${ wriCouNum } images, ${ Math.round( befBytNum / 1024 ).toLocaleString() } KB down to ${ Math.round( aftBytNum / 1024 ).toLocaleString() } KB.` ); // What: Result Log Call. Why: The run should say what it wrote. How: This prints the count and the sizes before and after.
+console.log( `Wrote ${ wriCouNum } images, ${ Math.round( befBytNum / 1024 ).toLocaleString( 'en-US' ) } KB down to ${ Math.round( aftBytNum / 1024 ).toLocaleString( 'en-US' ) } KB.` ); // What: Result Log Call. Why: The run should say what it wrote. How: This prints the count and the sizes before and after.
 
 // #endregion Module Init
 

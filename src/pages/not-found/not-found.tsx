@@ -46,9 +46,9 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * Renders the 404 page's title and its noindex robots tag, which React moves
  * into the document head, and the page itself. The large 404 and the
  * hexagon drawing behind it are hidden from screen readers as decoration,
- * since the heading already says the page wasn't found. Go Home routes to
- * the root path, and Get In Touch to the Contact page, the site's main
- * action.
+ * since the heading already says the page wasn't found. "Go Home" routes
+ * to the root path, and "Get In Touch" to the Contact page, the site's
+ * main action.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -139,7 +139,7 @@ function NotFouCom () : JSX.Element {
 						The page you're looking for doesn't exist or has been moved.
 					</p>
 
-					<div className={ cssModObj.nofActDiv }>{ /* What: Not-Found Actions Div Element. Why: A visitor who lands here gets two ways onward side by side. How: This sets the buttons in a row that wraps. */ }
+					<div className={ cssModObj.nofActDiv }>{ /* What: Not-Found Actions Div Element. Why: A visitor who lands here gets two ways onward side by side. How: This sets the buttons in a row, wrapping onto two lines at about 375px wide and below. */ }
 
 
 						<Link

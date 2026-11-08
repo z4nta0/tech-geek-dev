@@ -13,9 +13,9 @@ import type { PagLinTyp } from 'techgeek-design/ui/link-types.ts'; // What: Page
  * page-links.ts = Page Links
  *
  * @summary
- * The site's pages in the order the bar, the phone menu, and the footer link
- * to them, so a page added or renamed changes in one place. The app root
- * hands the list to the design package's bar and footer.
+ * The site's pages in the order the site's navigation links to them, each
+ * with its path and its link's words, so a page added or renamed changes in
+ * one place. The app root hands the list to the bar and footer.
  *
  * Sections:
  *  - Constants
@@ -46,7 +46,7 @@ const PAG_LIN_ARR : PagLinTyp[] = [ // What: Page Link Array. Why: The bar, the 
 
 // #region Exports
 
-export { PAG_LIN_ARR }; // What: Named Exports. Why: The bar, the phone menu, and the footer render their links from this list. How: This exports the list.
+export { PAG_LIN_ARR }; // What: Named Export. Why: The site's navigation renders its links from this list. How: This exports the list.
 
 // #endregion Exports
 

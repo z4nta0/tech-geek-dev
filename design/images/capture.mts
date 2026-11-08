@@ -55,7 +55,7 @@ type SitRecTyp = { disStr? : string, namStr : string, urlStr : string }; // What
  * shares the SitRecTyp shape, so its fields carry no comments of their own:
  * - `disStr` (String, optional): Dismiss String, the name of a button the
  *   site's first visit shows over its content, clicked before the capture:
- *   Ease My Life's welcome dialog, dismissed with I’ll explore myself.
+ *   Ease My Life's welcome dialog, dismissed with "I’ll explore myself".
  * - `namStr` (String): Name String, the project's file name, saved as
  *   originals/<name>-website.png, the original render.mts reads.
  * - `urlStr` (String): URL String, the project's live site.
@@ -115,7 +115,7 @@ for ( const sitRecObj of SIT_REC_ARR ) { // What: Site Record Loop. Why: Each pr
 
 	await capPagObj.goto( sitRecObj.urlStr, { waitUntil : 'networkidle' } ); // What: Site Navigation Call. Why: The screenshot should show the site fully loaded. How: This opens it and waits until its network goes quiet.
 
-	await capPagObj.evaluate( () => document.fonts.ready ); // What: Fonts Ready Wait. Why: A screenshot taken before the fonts arrive shows fallback text. How: This waits for every font to load.
+	await capPagObj.evaluate( () => document.fonts.ready ); // What: Fonts Ready Wait. Why: A screenshot taken before the fonts arrive shows fallback text. How: This waits for the fonts the page uses to load.
 
 	await capPagObj.waitForTimeout( SET_WAI_NUM ); // What: Settle Wait Call. Why: Late images and layout should land first. How: This waits a little longer.
 

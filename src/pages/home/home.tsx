@@ -443,7 +443,7 @@ function HomPagCom () : JSX.Element {
 
 
 
-					<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The pitch and the code window sit side by side in the page's centered column. How: This lays out the two columns, stacking them on a phone with the code window first. */ }
+					<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The pitch and the code window sit side by side in the page's centered column. How: This lays out the two columns, stacking them at 768px and below with the code window first. */ }
 
 
 						<div className={ cssModObj.herConDiv }>{ /* What: Hero Content Div Element. Why: The pitch reads as one column. How: This stacks the label, heading, line, buttons, and ticker. */ }
@@ -463,9 +463,9 @@ function HomPagCom () : JSX.Element {
 
 							</div>
 
-							<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up what z4nta0 does. How: This sets I Build Digital Experiences over two lines, with Digital in the accent and a closing dot. */ }
+							<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up what z4nta0 does. How: This sets "I Build Digital Experiences" over two lines, with "Digital" in the accent and a closing dot. */ }
 								I Build <span className={ cssModObj.titAccSpa }>Digital</span>
-								<br />{ /* What: Title Break Element. Why: The heading sets Experiences on a line of its own. How: This breaks the line after Digital. */ }
+								<br />{ /* What: Title Break Element. Why: The heading sets "Experiences" on a line of its own. How: This breaks the line after "Digital". */ }
 								Experiences
 								<span className={ cssModObj.titDotSpa }>.</span>{ /* What: Title Dot Span Element. Why: The heading ends on an orange full stop. How: This shows the dot in the dark accent. */ }
 							</h1>
@@ -476,7 +476,7 @@ function HomPagCom () : JSX.Element {
 								pixel-perfect frontends.
 							</p>
 
-							<div className={ cssModObj.herActDiv }>{ /* What: Hero Actions Div Element. Why: The pitch ends with the two next steps. How: This sets the buttons side by side. */ }
+							<div className={ cssModObj.herActDiv }>{ /* What: Hero Actions Div Element. Why: The pitch ends with the two next steps. How: This sets the buttons side by side, wrapping onto two lines at about 490px wide and below, and from about 769px to 820px, where the pitch sits beside the code window. */ }
 
 
 								<Link
@@ -568,7 +568,7 @@ function HomPagCom () : JSX.Element {
 
 									<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaThird } `} />{ /* What: Window Dot Span Third Element. Why: Editor windows have three colored dots. How: This draws the third. */ }
 
-									<span className={ cssModObj.winTitSpa }>techgeek.dev.ts</span>{ /* What: Window Title Span Element. Why: The window names its file after the site. How: This shows techgeek.dev.ts. */ }
+									<span className={ cssModObj.winTitSpa }>techgeek.dev.ts</span>{ /* What: Window Title Span Element. Why: The window names its file after the site. How: This shows "techgeek.dev.ts". */ }
 
 
 								</div>
@@ -671,7 +671,7 @@ function HomPagCom () : JSX.Element {
 
 									<div className={ cssModObj.badValDiv }>100%</div>{ /* What: Badge Value Div Element. Why: The figure is the badge's point. How: This shows one hundred percent. */ }
 
-									<div className={ cssModObj.badLabDiv }>Source Available</div>{ /* What: Badge Label Div Element. Why: The label says what the figure counts. How: This shows Source Available. */ }
+									<div className={ cssModObj.badLabDiv }>Source Available</div>{ /* What: Badge Label Div Element. Why: The label says what the figure counts. How: This shows "Source Available". */ }
 
 
 								</div>
@@ -740,7 +740,7 @@ function HomPagCom () : JSX.Element {
 					<div className={ cssModObj.feaInnDiv }>{ /* What: Featured Inner Div Element. Why: The section sits in the page's centered column. How: This stacks the heading row and the grid. */ }
 
 
-						<div className={ cssModObj.feaHeaDiv }>{ /* What: Featured Header Div Element. Why: The heading and the link to every project share a row. How: This sets them side by side. */ }
+						<div className={ cssModObj.feaHeaDiv }>{ /* What: Featured Header Div Element. Why: The heading and the link to every project share a row. How: This sets them side by side, stacking the link under the heading at 640px and below. */ }
 
 
 							<SecHeaCom

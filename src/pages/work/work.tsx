@@ -82,7 +82,7 @@ const PRC_STE_ARR = [ // What: Process Step Array. Why: The process section show
 
 
 
-const TAG_FIL_ARR = [ 'All', ...Array.from( new Set( PRO_REC_ARR.flatMap( ( proRecObj ) => proRecObj.tagArr ) ) ).sort() ]; // What: Tag Filter Array. Why: The filter bar offers every technology the projects use, plus All. How: This gathers each project's tags, drops repeats, sorts them, and puts All first.
+const TAG_FIL_ARR = [ 'All', ...Array.from( new Set( PRO_REC_ARR.flatMap( ( proRecObj ) => proRecObj.tagArr ) ) ).sort() ]; // What: Tag Filter Array. Why: The filter bar offers every technology the projects use, plus "All". How: This gathers each project's tags, drops repeats, sorts them, and puts "All" first.
 
 // #endregion Constants
 
@@ -97,7 +97,7 @@ const TAG_FIL_ARR = [ 'All', ...Array.from( new Set( PRO_REC_ARR.flatMap( ( proR
  *
  * @summary
  * Renders the Work page. The filter bar's buttons set the active tag, which
- * narrows the grid to the projects using that technology (All shows every
+ * narrows the grid to the projects using that technology ("All" shows every
  * one) and updates the count beside them; an empty grid says no projects
  * match. A visually hidden h2 heads the grid, so the cards' h3 titles follow
  * the page's h1 in order. The process section lists PRC_STE_ARR's steps
@@ -127,7 +127,7 @@ function WorPagCom () : JSX.Element {
 
 
 
-	const [ actTagStr, setActTagStr ] = useState( 'All' ); // What: Active Tag String And Setter. Why: The grid shows only the projects using the chosen technology. How: This starts on All, showing every project.
+	const [ actTagStr, setActTagStr ] = useState( 'All' ); // What: Active Tag String And Setter. Why: The grid shows only the projects using the chosen technology. How: This starts on "All", showing every project.
 
 	const filScrRef = useRef< HTMLDivElement | null >( null ); // What: Filter Scroll Reference. Why: The fade effect below measures the filter row. How: This is attached to the row's ref prop.
 
@@ -172,8 +172,8 @@ function WorPagCom () : JSX.Element {
 
 
 
-	const filProArr = actTagStr === 'All' // What: Filtered Project Array. Why: The grid and the count show only what the filter allows. How: This keeps every project for All, or only those tagged with the active technology.
-		? PRO_REC_ARR                                                                    // What: All Projects Branch. Why: All means no filter. How: This keeps the whole list.
+	const filProArr = actTagStr === 'All' // What: Filtered Project Array. Why: The grid and the count show only what the filter allows. How: This keeps every project for "All", or only those tagged with the active technology.
+		? PRO_REC_ARR                                                                    // What: All Projects Branch. Why: The "All" filter means no filter. How: This keeps the whole list.
 		: PRO_REC_ARR.filter( ( proRecObj ) => proRecObj.tagArr.includes( actTagStr ) ); // What: Tagged Projects Branch. Why: A technology narrows the list. How: This keeps the projects whose tags include it.
 
 
@@ -209,15 +209,15 @@ function WorPagCom () : JSX.Element {
 					<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The hero's text sits in the page's centered column. How: This stacks the label, heading, and line. */ }
 
 
-						<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows My Work after a short rule. */ }
+						<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows "My Work" after a short rule. */ }
 							<span className={ cssModObj.herLinSpa } />{ /* What: Hero Line Span Element. Why: A short rule leads into the label. How: This draws the rule. */ }
 
 							My Work
 						</span>
 
-						<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading names what it shows. How: This sets Projects and Case Studies over two lines, the second in the accent. */ }
+						<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading names what it shows. How: This sets "Projects &" and "Case Studies" over two lines, the second in the accent. */ }
 							Projects &<br />
-							<span className={ cssModObj.titAccSpa }>Case Studies</span>{ /* What: Title Accent Span Element. Why: The heading's second line carries the accent. How: This sets Case Studies in the dark blue. */ }
+							<span className={ cssModObj.titAccSpa }>Case Studies</span>{ /* What: Title Accent Span Element. Why: The heading's second line carries the accent. How: This sets "Case Studies" in the dark blue. */ }
 						</h1>
 
 						<p className={ cssModObj.herSubPar }>{ /* What: Hero Subtitle Paragraph Element. Why: A line under the heading says what the catalog holds. How: This describes the range of work. */ }
@@ -269,10 +269,10 @@ function WorPagCom () : JSX.Element {
 				<section className={ cssModObj.filBarSec }>{ /* What: Filter Bar Section Element. Why: A visitor can narrow the projects to one technology. How: This holds the label, the buttons, and the count. */ }
 
 
-					<div className={ cssModObj.filInnDiv }>{ /* What: Filter Inner Div Element. Why: The filter sits in the page's centered column. How: This lines up the label, the buttons, and the count. */ }
+					<div className={ cssModObj.filInnDiv }>{ /* What: Filter Inner Div Element. Why: The filter sits in the page's centered column. How: This lines up the label, the buttons, and the count, the buttons taking a line of their own under the label and the count at 640px and below. */ }
 
 
-						<span className={ cssModObj.filLabSpa }>{ /* What: Filter Label Span Element. Why: The row says what its buttons do. How: This shows Filter by tech after a funnel icon. */ }
+						<span className={ cssModObj.filLabSpa }>{ /* What: Filter Label Span Element. Why: The row says what its buttons do. How: This shows "Filter by tech" after a funnel icon. */ }
 
 
 							<svg
@@ -314,7 +314,7 @@ function WorPagCom () : JSX.Element {
 
 									className={ cssModObj.filOptBut }
 
-									data-filter-button-active={ actTagStr === tagNamStr || undefined }
+									data-filter-button-active={ actTagStr === tagNamStr || undefined } // What: Active Filter Attribute. Why: The chosen pill needs a state its module can style. How: This sets the presence-only attribute while this pill's tag is the active one, and leaves it off otherwise.
 
 									onClick={ () => setActTagStr( tagNamStr ) }
 									onFocus={ ( focEveObj ) => focEveObj.currentTarget.scrollIntoView( { block : 'nearest', inline : 'nearest' } ) } // What: Focus Scroll Handler. Why: A pill tabbed to past the row's edge would stay half hidden, since focusing it doesn't scroll the row. How: This scrolls the pill fully into the row, clear of the edge fades the row's scroll padding leaves room for.
@@ -412,7 +412,7 @@ function WorPagCom () : JSX.Element {
 
 
 
-						<div className={ cssModObj.prcSteDiv }>{ /* What: Process Steps Div Element. Why: The four steps read in order, with arrows between them where the layout runs in a line. How: This lays out each step and arrow in a row, a two-by-two grid without arrows on tablets, or a column with downward arrows on phones. */ }
+						<div className={ cssModObj.prcSteDiv }>{ /* What: Process Steps Div Element. Why: The four steps read in order, with arrows between them where the layout runs in a line. How: This lays out each step and arrow in a row, a two-by-two grid without arrows at 1,024px and below, or a column with downward arrows at 768px and below. */ }
 
 
 							{ PRC_STE_ARR.map( ( prcSteObj, steIndNum ) => ( // What: Process Step Map Call. Why: Every step shows in order. How: This renders each step, followed by an arrow unless it's the last.

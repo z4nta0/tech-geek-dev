@@ -182,7 +182,7 @@ const EMP_FOR_OBJ = { 'bot-field' : '', budget : '', email : '', message : '', n
  * Renders the Contact page. The form keeps its fields in state, keyed by
  * each field's name attribute, and the browser checks the required fields
  * and the email format before letting it send. Sending it posts the fields to
- * Netlify Forms, disabling the button and showing Sending while it waits; a
+ * Netlify Forms, disabling the button and showing "Sending…" while it waits; a
  * reply Netlify doesn't answer with ok counts as an error, just like a
  * network failure, so either one leaves the form in place with an error above
  * the message field, while a sent message swaps the form for a thank-you with
@@ -218,7 +218,7 @@ function ConPagCom () : JSX.Element {
 
 	const [ errMesStr, setErrMesStr ] = useState< string | null >( null ); // What: Error Message String And Setter. Why: A failed send has to say so above the message field. How: This starts with no error.
 	const [ forDatObj, setForDatObj ] = useState( EMP_FOR_OBJ );           // What: Form Data Object And Setter. Why: The fields are controlled, so their values live here. How: This starts with every field blank.
-	const [ isaLoaBoo, setIsaLoaBoo ] = useState( false );                 // What: Is-A Loading Boolean And Setter. Why: The button shows Sending while the message is on its way. How: This starts false.
+	const [ isaLoaBoo, setIsaLoaBoo ] = useState( false );                 // What: Is-A Loading Boolean And Setter. Why: The button shows "Sending…" while the message is on its way. How: This starts false.
 	const [ isaSenBoo, setIsaSenBoo ] = useState( false );                 // What: Is-A Sent Boolean And Setter. Why: A sent message swaps the form for a thank-you. How: This starts false.
 
 
@@ -279,7 +279,7 @@ function ConPagCom () : JSX.Element {
 	 * own submission, marks the form as sending, and clears any earlier error,
 	 * then posts the fields form-encoded to the site's root under the contact
 	 * form's name, which Netlify matches to the hidden copy of the form in
-	 * index.html, with the budget or Not specified when none was chosen and
+	 * index.html, with the budget or "Not specified" when none was chosen and
 	 * the honeypot as it stands. Netlify then emails the submission to the
 	 * address set in its dashboard. Only an ok reply counts as success; a
 	 * failed reply or a network failure is logged and shown as an error above
@@ -304,7 +304,7 @@ function ConPagCom () : JSX.Element {
 
 		subEveObj.preventDefault(); // What: Default Submission Prevention Call. Why: The browser would otherwise reload the page to submit the form. How: This stops it, so the message is sent in the background.
 
-		setIsaLoaBoo( true ); // What: Loading Flag Set Call. Why: The button shows Sending while the message is on its way. How: This sets the loading flag.
+		setIsaLoaBoo( true ); // What: Loading Flag Set Call. Why: The button shows "Sending…" while the message is on its way. How: This sets the loading flag.
 
 		setErrMesStr( null ); // What: Error Clear Call. Why: A new attempt shouldn't show the last one's error. How: This clears it.
 
@@ -323,7 +323,7 @@ function ConPagCom () : JSX.Element {
 
 
 					'bot-field' : forDatObj[ 'bot-field' ],            // What: Bot Field. Why: Netlify drops a submission whose honeypot is filled, which a person never does. How: This posts the hidden field as it stands.
-					budget      : forDatObj.budget || 'Not specified', // What: Budget. Why: The email shows the visitor's budget range. How: This sends the choice, or Not specified when none was made.
+					budget      : forDatObj.budget || 'Not specified', // What: Budget. Why: The email shows the visitor's budget range. How: This sends the choice, or "Not specified" when none was made.
 					email       : forDatObj.email,                     // What: Email. Why: Netlify sets a field named email as the notification's reply-to, so a reply goes straight back to the visitor. How: This sends the address they entered.
 					'form-name' : 'contact',                           // What: Form Name. Why: Netlify matches the POST to its detected form by this field. How: This names the contact form.
 					message     : forDatObj.message,                   // What: Message. Why: The message is the point of the email. How: This sends what they wrote.
@@ -401,13 +401,13 @@ function ConPagCom () : JSX.Element {
 					<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The hero's text sits in the page's centered column. How: This stacks the label, heading, and line. */ }
 
 
-						<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows Get In Touch after a short rule. */ }
+						<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows "Get In Touch" after a short rule. */ }
 							<span className={ cssModObj.herLinSpa } />{ /* What: Hero Line Span Element. Why: A short rule leads into the label. How: This draws the rule. */ }
 
 							Get In Touch
 						</span>
 
-						<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading makes the invitation. How: This sets Let's Build over Something Together, with Something in the accent. */ }
+						<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading makes the invitation. How: This sets "Let's Build" over "Something Together", with "Something" in the accent. */ }
 							Let's Build<br />
 							<span className={ cssModObj.titAccSpa }>Something</span> Together
 						</h1>
@@ -428,7 +428,7 @@ function ConPagCom () : JSX.Element {
 				<section className={ cssModObj.conBodSec }>{ /* What: Contact Body Section Element. Why: The form and the details sit together. How: This holds the two columns. */ }
 
 
-					<div className={ cssModObj.conGriDiv }>{ /* What: Contact Grid Div Element. Why: The form and the sidebar sit side by side in the page's centered column. How: This lays out the two columns. */ }
+					<div className={ cssModObj.conGriDiv }>{ /* What: Contact Grid Div Element. Why: The form and the sidebar sit side by side in the page's centered column, the sidebar stacking under the form at 1,024px and below. How: This lays out the two columns. */ }
 
 
 						<div className={ cssModObj.forWraDiv }>{ /* What: Form Wrap Div Element. Why: The form and its thank-you share one place. How: This holds whichever one shows. */ }
@@ -457,7 +457,7 @@ function ConPagCom () : JSX.Element {
 
 									</svg>
 
-									<h2 className={ cssModObj.sucTitHea }>Message Sent!</h2>{ /* What: Success Title Heading Element. Why: The thank-you's heading says what happened. How: This shows Message Sent. */ }
+									<h2 className={ cssModObj.sucTitHea }>Message Sent!</h2>{ /* What: Success Title Heading Element. Why: The thank-you's heading says what happened. How: This shows "Message Sent!". */ }
 
 									<p className={ cssModObj.sucTexPar }>Thanks for reaching out. I'll be in touch within 24 hours.</p>{ /* What: Success Text Paragraph Element. Why: A visitor learns when to expect a reply. How: This thanks them and promises a reply within a day. */ }
 
@@ -481,7 +481,7 @@ function ConPagCom () : JSX.Element {
 								>{ /* What: Contact Form Form Element. Why: A visitor writes their message here. How: The browser first checks the required fields and the email format, then this sends the fields through subForFun. */ }
 
 
-									<h2 className={ cssModObj.forTitHea }>Send a Message</h2>{ /* What: Form Title Heading Element. Why: The form's heading names it. How: This shows Send a Message as an h2. */ }
+									<h2 className={ cssModObj.forTitHea }>Send a Message</h2>{ /* What: Form Title Heading Element. Why: The form's heading names it. How: This shows "Send a Message" as an h2. */ }
 
 									<p
 										className={ cssModObj.forHonPar }
@@ -513,7 +513,7 @@ function ConPagCom () : JSX.Element {
 									</p>
 
 
-									<div className={ cssModObj.forRowDiv }>{ /* What: Form Row Div Element. Why: The name and email fields share a row on wide screens. How: This sets them side by side. */ }
+									<div className={ cssModObj.forRowDiv }>{ /* What: Form Row Div Element. Why: The name and email fields share a row above 640px. How: This sets them side by side, stacking them at 640px and below. */ }
 
 
 										<div className={ cssModObj.forFieDiv }>{ /* What: Form Field Div Element. Why: The name's label and input read as one field. How: This stacks them. */ }
@@ -523,7 +523,7 @@ function ConPagCom () : JSX.Element {
 												className={ cssModObj.fieLabLab }
 
 												htmlFor='forNamInp'
-											>Full Name</label>{ /* What: Field Label Label Element. Why: The input needs a visible name. How: This labels it Full Name. */ }
+											>Full Name</label>{ /* What: Field Label Label Element. Why: The input needs a visible name. How: This labels it "Full Name". */ }
 
 											<input
 												id='forNamInp'
@@ -550,7 +550,7 @@ function ConPagCom () : JSX.Element {
 												className={ cssModObj.fieLabLab }
 
 												htmlFor='forEmaInp'
-											>Email</label>{ /* What: Field Label Label Element. Why: The input needs a visible name. How: This labels it Email. */ }
+											>Email</label>{ /* What: Field Label Label Element. Why: The input needs a visible name. How: This labels it "Email". */ }
 
 											<input
 												id='forEmaInp'
@@ -581,7 +581,7 @@ function ConPagCom () : JSX.Element {
 											className={ cssModObj.fieLabLab }
 
 											htmlFor='forBudSel'
-										>Project Budget</label>{ /* What: Field Label Label Element. Why: The menu needs a visible name. How: This labels it Project Budget. */ }
+										>Project Budget</label>{ /* What: Field Label Label Element. Why: The menu needs a visible name. How: This labels it "Project Budget". */ }
 
 										<select
 											id='forBudSel'
@@ -629,7 +629,7 @@ function ConPagCom () : JSX.Element {
 											className={ cssModObj.fieLabLab }
 
 											htmlFor='forMesTex'
-										>Message</label>{ /* What: Field Label Label Element. Why: The box needs a visible name. How: This labels it Message. */ }
+										>Message</label>{ /* What: Field Label Label Element. Why: The box needs a visible name. How: This labels it "Message". */ }
 
 										<textarea
 											id='forMesTex'
@@ -658,7 +658,7 @@ function ConPagCom () : JSX.Element {
 									>{ /* What: Send Message Button Element. Why: The visitor sends the message. How: This submits the form, disabled and reading Sending while it's on its way. */ }
 
 
-										{ isaLoaBoo ? 'Sending…' : 'Send Message' }{ /* What: Submit Label Text. Why: The button says what's happening. How: This reads Sending while sending, or Send Message otherwise. */ }
+										{ isaLoaBoo ? 'Sending…' : 'Send Message' }{ /* What: Submit Label Text. Why: The button says what's happening. How: This reads "Sending…" while sending, or "Send Message" otherwise. */ }
 
 										{ !isaLoaBoo && ( // What: Send Icon Check. Why: The paper plane only shows while the button is ready. How: This renders it unless sending.
 

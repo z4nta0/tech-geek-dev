@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import { chromium      } from '@playwright/test'; // What: Chromium. Why: The icons are drawn in a real browser's canvas, the one image tool every machine running the tests already has. How: This launches Playwright's Chromium.
+import { chromium      } from '@playwright/test'; // What: Chromium. Why: The icons are drawn in a browser canvas, which needs no image library. How: This launches Playwright's Chromium.
 import { copyFileSync  } from 'node:fs';          // What: Copy File Sync. Why: Browsers that read SVG favicons fetch favicon.svg from the site's root. How: This copies the package's artwork into public/.
 import { fileURLToPath } from 'node:url';         // What: File URL To Path. Why: The source and output paths are resolved from this script's own location. How: This turns a file URL into a path.
 import { readFileSync  } from 'node:fs';          // What: Read File Sync. Why: The mark is handed to the browser as data. How: This reads it from the design package.
@@ -60,8 +60,8 @@ const ICO_REC_ARR : IcoRecTyp[] = [ // What: Icon Record Array. Why: The PNG ico
 
 
 	{ filStr : 'favicon-16x16.png',    opaBoo : false, sizNum : 16  }, // What: Small Icon Row. Why: Tabs draw small icons crisper at their own size. How: This renders the 16px icon.
-	{ filStr : 'favicon-32x32.png',    opaBoo : false, sizNum : 32  }, // What: Medium Icon Row. Why: Most browsers pick a 32px tab icon. How: This renders the 32px icon.
-	{ filStr : 'favicon-192x192.png',  opaBoo : false, sizNum : 192 }, // What: Large Icon Row. Why: Android and some browsers use a large icon for shortcuts. How: This renders the 192px icon.
+	{ filStr : 'favicon-32x32.png',    opaBoo : false, sizNum : 32  }, // What: Medium Icon Row. Why: The set offers each size a tab, shortcut, or home screen may ask for. How: This renders the 32px icon.
+	{ filStr : 'favicon-192x192.png',  opaBoo : false, sizNum : 192 }, // What: Large Icon Row. Why: The set offers each size a tab, shortcut, or home screen may ask for. How: This renders the 192px icon.
 	{ filStr : 'favicon-512x512.png',  opaBoo : false, sizNum : 512 }, // What: Extra Large Icon Row. Why: High-density screens and launchers can ask for a bigger icon still. How: This renders the 512px icon.
 	{ filStr : 'apple-touch-icon.png', opaBoo : true,  sizNum : 180 }  // What: Apple Touch Icon Row. Why: iOS draws the home screen icon at 180px and fills transparency with black. How: This renders it on solid ivory.
 
@@ -117,7 +117,7 @@ const draPagObj = await broInsObj.newPage(); // What: Draw Page Object. Why: The
  *
  * @example
  * ```ts
- * renPngFun(32, false) // => Promise<Buffer>
+ * renPngFun(32, false) // => the 32px PNG's bytes
  * ```
  *
 */

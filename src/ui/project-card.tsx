@@ -270,7 +270,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 
 // #region Exports
 
-export { ProCarCom }; // What: Named Exports. Why: Home and the Work page show projects as cards. How: This exports ProCarCom.
+export { ProCarCom }; // What: Named Export. Why: Pages that list projects show each as a card. How: This exports ProCarCom.
 
 // #endregion Exports
 

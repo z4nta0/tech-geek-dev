@@ -5,12 +5,11 @@
  * edge-fade.ts = Edge Fade
  *
  * @summary
- * The edge fades on the Work page's filter row, copied from ease-my-life:
- * CSS fades the row's left and right edges unless its own
- * data-scroll-start-active and data-scroll-end-active attributes say that
- * edge is already reached. togFadFun computes both attributes from the row's
- * current scroll position, and the page wires it to the row's scroll and
- * resize events.
+ * The edge fade helper for a row that scrolls sideways, copied from
+ * ease-my-life. togFadFun sets the row's data-scroll-start-active and
+ * data-scroll-end-active attributes from its current scroll position, marking
+ * each edge that is already reached, so the row's own styles can stop fading
+ * that edge. The Work page's filter row uses it.
  *
  * Sections:
  *  - Helpers

@@ -20,7 +20,7 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * field of dots, or a circuit board trace, drawn as a repeating SVG pattern in
  * the wrapper's blue and faded to the opacity each section asks for. It fills
  * its section behind the content and is hidden from screen readers, since it's
- * decoration only. Each variant's pattern has its own id, so two different
+ * decoration only. Each variant's pattern has its own ID, so two different
  * variants on one page never clash.
  *
  * Sections:

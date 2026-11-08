@@ -5,7 +5,7 @@
 
 import { chromium      } from '@playwright/test'; // What: Chromium. Why: The images are captured in a real browser so they use the family's own fonts and tokens. How: This launches Playwright's Chromium.
 import { fileURLToPath } from 'node:url';         // What: File URL To Path. Why: The output paths are resolved from this script's own location. How: This turns a file URL into a path.
-import { statSync      } from 'node:fs';          // What: Stat Sync. Why: Each finished image has to stay under the size Ko-fi accepts. How: This reads its size in bytes.
+import { statSync      } from 'node:fs';          // What: Stat Sync. Why: Each finished image is checked against the size guard. How: This reads its size in bytes.
 
 // #endregion Imports
 
@@ -16,13 +16,14 @@ import { statSync      } from 'node:fs';          // What: Stat Sync. Why: Each 
  *
  * @summary
  * Rebuilds the two images TechGeek's Ko-fi page shows from the pages beside
- * this script: cover.png, the 3:1 banner across the top of the page, with the
+ * this script: cover.png, a 3:1 banner for the top of the page, with the
  * TechGeek.dev wordmark and tagline beside a small code window, and
- * profile.png, the square picture Ko-fi crops to a circle, the hexagon mark
- * with steam rising from it on the ink. Each page is opened in Chromium at
- * its own size, Ko-fi's recommended 1,200x400 for the cover and 400x400 for
- * the picture, captured at twice that for sharp screens once the family's
- * fonts load, and checked against Ko-fi's 8 MB upload limit. The images are
+ * profile.png, a square picture drawn to read inside a circle, the hexagon
+ * mark with steam rising from it on the ink. Each page is opened in Chromium
+ * at its own size, 1,200x400 for the cover and 400x400 for the picture,
+ * captured at twice that for sharp screens once the family's fonts load, and
+ * checked against an 8 MB guard, far below the 20 MB upload cap Ko-fi's help
+ * center gives for free accounts. The images are
  * PNGs because they're flat artwork, which a PNG keeps exact. Nothing serves
  * them: they're uploaded to Ko-fi by hand, so they stay here beside their
  * pages. Run it with npm run ko-fi whenever the pages or the family's look
@@ -43,13 +44,13 @@ import { statSync      } from 'node:fs';          // What: Stat Sync. Why: Each 
 const IMA_REC_ARR = [ // What: Image Record Array. Why: The cover and the picture are rendered the same way at their own sizes. How: Each row names a page, its capture size, and the file it writes.
 
 
-	{ heiNum : 400, namStr : 'cover',   widNum : 1200 }, // What: Cover Image Record. Why: Ko-fi's banner is 3:1, ideally 1,200x400. How: This renders cover.html at that size.
-	{ heiNum : 400, namStr : 'profile', widNum : 400  }  // What: Profile Image Record. Why: Ko-fi's picture is square and cropped to a circle. How: This renders profile.html at 400x400.
+	{ heiNum : 400, namStr : 'cover',   widNum : 1200 }, // What: Cover Image Record. Why: The cover is a 3:1 banner, 1,200 by 400. How: This renders cover.html at that size.
+	{ heiNum : 400, namStr : 'profile', widNum : 400  }  // What: Profile Image Record. Why: The picture is square, drawn to read inside a circle. How: This renders profile.html at 400x400.
 
 
 ];
 
-const MAX_BYT_NUM = 8 * 1024 * 1024; // What: Maximum Bytes Number. Why: Ko-fi refuses an upload of 8 MB or more. How: This is the limit each finished file is checked against.
+const MAX_BYT_NUM = 8 * 1024 * 1024; // What: Maximum Bytes Number. Why: The images should stay far below the 20 MB upload cap Ko-fi's help center gives for free accounts. How: This is the limit each finished file is checked against.
 const SCA_FAC_NUM = 2;               // What: Scale Factor Number. Why: The images should stay sharp on high-density screens. How: This captures each page at twice its size.
 
 // #endregion Constants
@@ -71,19 +72,19 @@ for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Render Loop. Why: Each i
 
 	await imaPagObj.goto( pagUrlStr ); // What: Page Load Call. Why: The image has to be on screen before it's captured. How: This opens its page.
 
-	await imaPagObj.evaluate( () => document.fonts.ready ); // What: Fonts Ready Wait. Why: Text captured before its web font loads would be set in a fallback. How: This waits for every font face.
+	await imaPagObj.evaluate( () => document.fonts.ready ); // What: Fonts Ready Wait. Why: Text captured before its web font loads would be set in a fallback. How: This waits for the fonts the page uses to load.
 
 	await imaPagObj.screenshot( { path : outPatStr, type : 'png' } ); // What: Image Capture Call. Why: This writes the finished image. How: This saves the page as a PNG beside it.
 
 
-	const outBytNum = statSync( outPatStr ).size; // What: Output Bytes Number. Why: Each image has to stay under Ko-fi's limit. How: This reads the saved file's size.
+	const outBytNum = statSync( outPatStr ).size; // What: Output Bytes Number. Why: Each image has to stay under the guard. How: This reads the saved file's size.
 
 
-	if ( outBytNum >= MAX_BYT_NUM ) throw new Error( `${ imaRecObj.namStr }.png is ${ outBytNum } bytes, at or over the ${ MAX_BYT_NUM } byte limit.` ); // What: Size Guard. Why: Ko-fi would refuse an image over the limit. How: This fails the run with the file's size.
+	if ( outBytNum >= MAX_BYT_NUM ) throw new Error( `${ imaRecObj.namStr }.png is ${ outBytNum.toLocaleString( 'en-US' ) } bytes, at or over the ${ MAX_BYT_NUM.toLocaleString( 'en-US' ) } byte limit.` ); // What: Size Guard. Why: An image over the guard could come near Ko-fi's upload cap. How: This fails the run with the file's size.
 
 
 
-	console.log( `Wrote ${ outPatStr } (${ outBytNum } bytes).` ); // What: Result Log Call. Why: The run should say what it wrote. How: This prints the path and size.
+	console.log( `Wrote ${ outPatStr } (${ outBytNum.toLocaleString( 'en-US' ) } bytes).` ); // What: Result Log Call. Why: The run should say what it wrote. How: This prints the path and size.
 
 
 }
