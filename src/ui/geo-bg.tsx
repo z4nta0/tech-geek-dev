@@ -225,7 +225,7 @@ function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 								r='2.5'
 								stroke='currentColor'
 								strokeWidth='0.8'
-							/>{ /* What: Circuit Pad Circle Element. Why: Each trace ends at a pad like a circuit board's. How: This draws one ring at a trace's bend. */ }
+							/>{ /* What: Circuit Pad Circle Element. Why: Each trace turns at a pad like a circuit board's. How: This draws one ring at a trace's bend. */ }
 
 							<path
 								d='M 40 0 L 40 40 L 80 40'
@@ -241,7 +241,7 @@ function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 								r='2.5'
 								stroke='currentColor'
 								strokeWidth='0.8'
-							/>{ /* What: Circuit Pad Circle Element. Why: Each trace ends at a pad like a circuit board's. How: This draws one ring at a trace's bend. */ }
+							/>{ /* What: Circuit Pad Circle Element. Why: Each trace turns at a pad like a circuit board's. How: This draws one ring at a trace's bend. */ }
 
 							<path
 								d='M 60 80 L 60 60 L 80 60'
@@ -257,7 +257,7 @@ function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 								r='2.5'
 								stroke='currentColor'
 								strokeWidth='0.8'
-							/>{ /* What: Circuit Pad Circle Element. Why: Each trace ends at a pad like a circuit board's. How: This draws one ring at a trace's bend. */ }
+							/>{ /* What: Circuit Pad Circle Element. Why: Each trace turns at a pad like a circuit board's. How: This draws one ring at a trace's bend. */ }
 
 							<rect
 								fill='none'

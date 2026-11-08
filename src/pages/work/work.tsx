@@ -14,7 +14,7 @@ import { SecHeaCom    } from '../../ui/section-header.tsx';            // What: 
 import { togFadFun    } from './edge-fade.ts';                         // What: Toggle Fade Function. Why: The filter row fades whichever edge still hides buttons. How: This sets the row's edge attributes from its scroll position.
 import { useEffect    } from 'react';                                  // What: Use Effect. Why: The filter row's fades have to follow its scrolling and resizing. How: This wires and tears down those listeners with the page.
 import { usePagDesFun } from 'techgeek-design/ui/page-description.ts'; // What: Use Page Description Function. Why: The page's search description differs from the home page's. How: The page calls it to swap the one description tag's text while it shows.
-import { useRef       } from 'react';                                  // What: Use Ref. Why: The fade effect needs the filter row's element. How: This holds it.
+import { useRef       } from 'react';                                  // What: Use Reference. Why: The fade effect needs the filter row's element. How: This holds it.
 import { useState     } from 'react';                                  // What: Use State. Why: The page remembers which technology the visitor filtered by. How: This holds the active tag.
 
 

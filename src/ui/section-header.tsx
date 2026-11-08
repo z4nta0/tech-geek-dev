@@ -86,7 +86,7 @@ function SecHeaCom ( { aliPosStr = 'left', labTexStr, subTexStr, titTexStr } : S
 
 			</span>
 
-			<h2 className={ cssModObj.secTitHea }>{ titTexStr }</h2>{ /* What: Section Title Heading Element. Why: Every section is introduced by its heading. How: This shows the title as an h2. */ }
+			<h2 className={ cssModObj.secTitHea }>{ titTexStr }</h2>{ /* What: Section Title Heading Element. Why: A section opened by this header is introduced by its heading. How: This shows the title as an h2. */ }
 
 			{ subTexStr && ( // What: Subtitle Presence Check. Why: Not every section has a subtitle. How: This renders the subtitle only when one is given.
 

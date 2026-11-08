@@ -167,7 +167,7 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Inner Div. Why: On a tablet the code window would squeeze the pitch in a quarter of the row. How: This applies at 1,024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Inner Div. Why: On a tablet the code window would be squeezed into a quarter of the row. How: This applies at 1,024px and below. */
 
 
 	.herInnDiv { /* What: Two Column Hero Inner Div. Why: The window keeps its natural width beside the pitch, which takes the rest. How: This sets a flexible pitch column and a column sized to the window. */

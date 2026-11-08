@@ -338,7 +338,7 @@ function AboPagCom () : JSX.Element {
 					<div className={ cssModObj.herGriDiv }>{ /* What: Hero Grid Div Element. Why: The introduction and the portrait sit side by side in the page's centered column. How: This lays out the two columns, the portrait beside the paragraphs below a full-width heading at 1,024px and below, and stacks them at 768px and below with the portrait first. */ }
 
 
-						<div className={ cssModObj.herTexDiv }>{ /* What: Hero Text Div Element. Why: The introduction reads as one column. How: This stacks the label, heading, paragraphs, and button. */ }
+						<div className={ cssModObj.herTexDiv }>{ /* What: Hero Text Div Element. Why: The introduction reads as one column above 1,024px. How: This stacks the label, heading, paragraphs, and button, and at 1,024px and below dissolves so each takes its own place in the hero grid. */ }
 
 
 							<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows "About Me" after a short rule. */ }
