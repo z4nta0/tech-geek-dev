@@ -627,7 +627,8 @@ ticker, and the status dots) when waiting for the page to settle.
   button names, a Tab walk (order, traps, focus on screen, uncovered, and
   visible), reflow at 320px, and motion under reduced motion. axe's "needs
   review" results are printed and attached to the report rather than failing
-  the run.
+  the run, except `bypass`, which fails, since every page opens with a skip
+  link.
 - `npm run test:interaction`: how moving between pages and using controls
   behaves. `navigation.spec.ts` (from the-bernie-bears, added in step 11)
   checks that a footer link clicked at the bottom of each page opens the next

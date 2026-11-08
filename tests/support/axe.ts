@@ -22,7 +22,8 @@ import type { TestInfo } from '@playwright/test'; // What: Test Info. Why: Resul
  * one readable line naming its rule, its impact, and the elements it found.
  * Anything axe can't decide on its own (its "incomplete" results, such as
  * text over an image) is printed and attached to the test as needing review
- * by hand, while the violations come back for the spec to fail on.
+ * by hand, while the violations come back for the spec to fail on, along with
+ * any incomplete bypass result, since every page opens with a skip link.
  *
  * Sections:
  *  - Types
@@ -134,9 +135,10 @@ function sumResFun ( resLisArr : AxeResTyp[ 'violations' ] ) : string[] {
  * @summary
  * Scans the page with {@link scaStaFun}, attaches each result axe couldn't
  * decide to the test as a "needs review" annotation and prints them under the
- * project's and the state's names, then returns the violations as summary
- * lines, empty when the page passes. It expects the state already open and
- * settled.
+ * project's and the state's names, then returns the violations and any
+ * incomplete bypass result as summary lines, empty when the page passes. A
+ * bypass result means axe found no way past the bar, which the skip link on
+ * every page should give it. It expects the state already open and settled.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -146,7 +148,8 @@ function sumResFun ( resLisArr : AxeResTyp[ 'violations' ] ) : string[] {
  * @param staIdeStr - State Identifier String: The state's name, printed
  *                    beside its review lines.
  *
- * @returns A promise that resolves with one line per violation.
+ * @returns A promise that resolves with one line per violation or bypass
+ *          result.
  *
  * @example
  * ```ts
@@ -170,7 +173,7 @@ async function cheAxeFun ( curPagObj : Page, tesInfObj : TestInfo, staIdeStr : s
 
 
 
-	return sumResFun( axeResObj.violations ); // What: Violation Lines Return. Why: The spec fails on any violation, and a failure should print each one. How: This summarizes the violations.
+	return sumResFun( [ ...axeResObj.violations, ...axeResObj.incomplete.filter( ( resCurObj ) => resCurObj.id === 'bypass' ) ] ); // What: Failure Lines Return. Why: The spec fails on any violation, and with a skip link on every page a bypass result left for review is a real problem rather than one to look at by hand. How: This summarizes the violations together with any incomplete bypass result.
 
 
 }
