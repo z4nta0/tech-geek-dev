@@ -41,7 +41,7 @@
 
 /* #region secLabSpa */
 
-.secLabSpa { /* What: Section Label Span. Why: A small label names the section before its heading. How: This sets it in the orange mono capitals, spaced out, after its rule. */
+.secLabSpa { /* What: Section Label Span. Why: A small label names the section before its heading. How: This sets it in the orange mono capitals, spaced out, after its rule when left-aligned. */
 
 
 	align-items    : center;

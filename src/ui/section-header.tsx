@@ -72,7 +72,7 @@ function SecHeaCom ( { aliPosStr = 'left', labTexStr, subTexStr, titTexStr } : S
 		<div className={` ${ cssModObj.secHeaDiv }   ${ aliPosStr === 'center' ? cssModObj.secHeaDivCenter : '' } `}>{ /* What: Section Header Div Element. Why: The label, heading, and subtitle read as one block. How: This stacks them, centered when the section asks. */ }
 
 
-			<span className={ cssModObj.secLabSpa }>{ /* What: Section Label Span Element. Why: A small label names the section before its heading. How: This shows the label after its decorative rule. */ }
+			<span className={ cssModObj.secLabSpa }>{ /* What: Section Label Span Element. Why: A small label names the section before its heading. How: This shows the label after its decorative rule when left-aligned. */ }
 				<span
 					className={ cssModObj.labLinSpa }
 

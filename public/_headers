@@ -26,10 +26,10 @@
 # Strict-Transport-Security keeps browsers on HTTPS for two years across
 # every subdomain, leaving out preload, which commits the domain to the
 # browsers' built-in HTTPS list and is slow to undo. Referrer-Policy is
-# strict-origin-when-cross-origin, as on the-bernie-bears: the project sites
-# this portfolio links to see that a visit came from techgeek.dev, never a
-# page's full address. Permissions-Policy turns off powerful browser features
-# the site never uses.
+# strict-origin-when-cross-origin: a site reached through a link without
+# noreferrer sees that a visit came from techgeek.dev, never a page's full
+# address. Permissions-Policy turns off powerful browser features the site
+# never uses.
 #
 # @author z4nta0 <https://github.com/z4nta0>
 
