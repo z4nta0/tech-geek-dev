@@ -22,10 +22,10 @@ import './styles/styles.css';               // What: Styles Stylesheet Import. W
  * main.tsx = Main
  *
  * @summary
- * The site's entry point, loaded by index.html's module script and imported
- * nowhere else. It creates the single React root on index.html's appMouDiv
- * element and renders AppRooCom into it, wrapped in StrictMode for development
- * checks and BrowserRouter for the URL-based routing between the pages.
+ * The site's entry point, loaded by index.html's module script. It creates the
+ * single React root on index.html's appMouDiv element and renders AppRooCom
+ * into it, wrapped in StrictMode for development checks and BrowserRouter for
+ * the URL-based routing between the pages.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
