@@ -18,12 +18,12 @@ import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why:
  * render.mts = Image Renderer
  *
  * @summary
- * Rebuilds every raster image the site shows from the originals in
- * originals/, a folder kept out of git so the large source files never bloat
- * the repository again. Each image is scaled so it covers its box, which is no
- * more than three times the largest size the site shows it at, so it stays
- * sharp on the densest phones, never scaled up, and encoded at 0.85 quality,
- * the lowest that showed no difference from the original at 3x zoom.
+ * Rebuilds the project screenshots and the About portrait from the originals
+ * in originals/, a folder kept out of git so the large source files never
+ * bloat the repository again. Each image is scaled so it covers its box, which
+ * is no more than three times the largest size the site shows it at, so it
+ * stays sharp on the densest phones, never scaled up, and encoded at 0.85
+ * quality, the lowest that showed no difference from the original at 3x zoom.
  * Everything is written as WebP where the site imports it (the project
  * screenshots into src/assets/images, the portrait beside the About page),
  * though a box can cut an image to exactly its size instead, and an output

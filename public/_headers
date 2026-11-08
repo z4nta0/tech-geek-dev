@@ -28,8 +28,8 @@
 # browsers' built-in HTTPS list and is slow to undo. Referrer-Policy is
 # strict-origin-when-cross-origin, as on the-bernie-bears: the project sites
 # this portfolio links to see that a visit came from techgeek.dev, never a
-# page's full address. Permissions-Policy turns off every powerful browser
-# feature the site never uses.
+# page's full address. Permissions-Policy turns off powerful browser features
+# the site never uses.
 #
 # @author z4nta0 <https://github.com/z4nta0>
 
