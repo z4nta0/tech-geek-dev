@@ -114,7 +114,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 								className={ cssModObj.oveButAnc }
 
 								href={ proRecObj.livStr }
-								rel='noreferrer'
+								rel='noopener noreferrer'
 								target='_blank'
 							>{ /* What: Overlay Button Anchor Element. Why: A visitor can open the finished site. How: This links to the live site in a new tab. */ }
 
@@ -161,7 +161,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 								className={` ${ cssModObj.oveButAnc }   ${ cssModObj.oveButAncGhost } `}
 
 								href={ proRecObj.gitStr }
-								rel='noreferrer'
+								rel='noopener noreferrer'
 								target='_blank'
 							>{ /* What: Overlay Button Anchor Element. Why: A visitor can read the project's source. How: This links to its repository in a new tab, styled as the lighter ghost button. */ }
 

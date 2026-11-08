@@ -722,7 +722,7 @@ function ConPagCom () : JSX.Element {
 											className={ cssModObj.conIteAnc }
 
 											href={ conIteObj.hreStr }
-											rel={ conIteObj.extBoo ? 'noreferrer' : undefined } // What: Relationship Ternary. Why: A profile on another site shouldn't learn which page sent the visitor. How: This sets noreferrer on the external rows and leaves the email row without one.
+											rel={ conIteObj.extBoo ? 'noopener noreferrer' : undefined } // What: Relationship Ternary. Why: A profile on another site shouldn't reach back to this page or learn which page sent the visitor. How: This sets noopener and noreferrer on the external rows and leaves the email row without them.
 											target={ conIteObj.extBoo ? '_blank' : undefined } // What: Target Ternary. Why: A profile opens beside the site, while a mailto link in a new tab would leave an empty tab behind. How: This opens only the external rows in a new tab.
 										>{ /* What: Contact Item Anchor Element. Why: Each item links to its address. How: This opens a profile in a new tab, or the email address in the visitor's mail app, showing the icon beside the name and address. */ }
 
