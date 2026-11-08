@@ -52,7 +52,7 @@ import type { JSX         } from 'react'; // What: JSX. Why: The component decla
  * shape, so its fields carry no comments of their own:
  * - `extBoo` (Boolean): External Boolean, true for a profile on another site,
  *   which opens in a new tab, and false for the email address.
- * - `hreStr` (String): Hypertext Reference String, where the item links.
+ * - `hreStr` (String): Hypertext-Reference String, where the item links.
  * - `icoEle` (Element): Icon Element, the item's small icon.
  * - `labStr` (String): Label String, the item's name, also its React key.
  * - `valStr` (String): Value String, the address shown under the name.
