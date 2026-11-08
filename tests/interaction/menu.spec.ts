@@ -29,8 +29,8 @@ import type { Page    } from '@playwright/test'; // What: Page. Why: The helpers
  * opens in place or in a new tab, through a plain tap, a Ctrl or Cmd click, a
  * middle click, or a plain tap on a profile that opens another site. The email
  * link hands its address to the visitor's mail app rather than a tab, so its
- * modified clicks are checked only for closing the menu and leaving the page
- * where it was.
+ * plain tap and modified clicks are checked only for closing the menu and
+ * leaving the page where it was.
  *
  * Sections:
  *  - Constants
@@ -303,6 +303,22 @@ for ( const [ cliKinStr, cliOptObj ] of CLI_KIN_ARR ) { // What: Email Click Kin
 
 
 }
+
+
+
+test( "a plain tap on the menu's email link closes the menu and leaves the page in place", async ( { page : curPagObj } ) => { // What: Email Link Tap Test. Why: A mailto link hands its address to a mail app rather than opening a page, so the menu has to close and the page stay put on a plain tap too. How: This taps the email link and checks the menu closed and the page stayed on About.
+
+
+	await menOpeFun( curPagObj ); // What: Menu Open Call. Why: The link is tapped from the open menu. How: This opens and checks it on About.
+
+	await curPagObj.getByRole( 'banner' ).getByRole( 'link', { exact : true, name : 'contact@techgeek.dev' } ).click(); // What: Email Link Tap Call. Why: This is the action under test. How: This taps the email link plainly.
+
+	await expect( curPagObj.getByRole( 'button', { name : 'Toggle menu' } ) ).toHaveAttribute( 'aria-expanded', 'false' ); // What: Closed State Assertion. Why: The menu should close once a link is chosen. How: This waits until the toggle reports it closed.
+	await expect( curPagObj ).toHaveURL( '/about' );                                                                       // What: Original Address Assertion. Why: The page tapped from shouldn't navigate. How: This checks it's still on About.
+	await expect( curPagObj.locator( '[inert]' ) ).toHaveCount( 0 );                                                       // What: Page Restored Assertion. Why: The page tapped from has to be usable again. How: This checks nothing is left inert.
+
+
+} );
 
 
 
