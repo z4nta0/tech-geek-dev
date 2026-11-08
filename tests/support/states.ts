@@ -60,11 +60,11 @@ type StaRecTyp = { // What: State Record Type. Why: Every check reads the same d
  * STA_REC_ARR = State Record Array
  *
  * @summary
- * Every state the checks visit: each route (Home, Work, About, and Contact)
- * and the 404 page at a phone width (390px) and a desktop width (1,440px),
- * plus the mobile menu open at the phone width, since the menu replaces the
- * bar's links there. Every row shares the {@link StaRecTyp} shape, so its
- * fields carry no comments of their own:
+ * The states the page suites visit from the shared list: each route (Home,
+ * Work, About, and Contact) and the 404 page at a phone width (390px) and a
+ * desktop width (1,440px), plus the mobile menu open at the phone width, since
+ * the menu replaces the bar's links there. Every row shares the {@link
+ * StaRecTyp} shape, so its fields carry no comments of their own:
  *
  * - `actFun` (Function): Action Function, run after the page loads to open
  *   something on it, such as the menu. Only the menu row has one.
@@ -81,7 +81,7 @@ type StaRecTyp = { // What: State Record Type. Why: Every check reads the same d
  *
 */
 
-const STA_REC_ARR : StaRecTyp[] = [ // What: State Record Array. Why: Every check walks the same list of states, so a new state is added in one place. How: Each row names a state, its path, and its viewport, and the menu row adds the action that opens it.
+const STA_REC_ARR : StaRecTyp[] = [ // What: State Record Array. Why: The page suites walk the same list of states, so a new state is added in one place. How: Each row names a state, its path, and its viewport, and the menu row adds the action that opens it.
 
 
 	{ heiNum : 900, ideStr : 'home-desktop',      patStr : '/',        widNum : 1440 }, // What: Home Desktop State. Why: The home page is the site's entry point. How: This loads the home page at 1,440px.

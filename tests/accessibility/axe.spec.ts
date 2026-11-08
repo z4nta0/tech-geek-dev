@@ -19,10 +19,11 @@ import { test        } from '@playwright/test';     // What: Test. Why: Each sta
  * @summary
  * Scans every page state with axe-core against WCAG 2.2 A and AA plus axe's
  * best-practice rules, in whichever engine the project runs. A state passes
- * only with zero violations, and each failure names its rule, its impact,
- * and the elements it found. Anything axe can't decide on its own (its
- * "incomplete" results, such as text over an image) can't fail the run, so
- * it's printed and attached to the test as needing review by hand.
+ * only with zero violations, and each failure names its rule, its impact, and
+ * the elements it found. Anything axe can't decide on its own (its
+ * "incomplete" results, such as text over an image), apart from a bypass
+ * result, can't fail the run, so it's printed and attached to the test as
+ * needing review by hand.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
