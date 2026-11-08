@@ -231,7 +231,7 @@
 .oveIcoSvg { /* What: Overlay Icon SVG. Why: A press anywhere on the button should register as a press on the link. How: This keeps the icon from catching the pointer. */
 
 
-	pointer-events : none; /* What: Pass-Through Pointer. Why: WebKit doesn't mark a link pressed when the press lands on an SVG shape inside it, as the-bernie-bears found. How: This lets every press fall through the icon to the link itself. */
+	pointer-events : none; /* What: Pass-Through Pointer. Why: WebKit doesn't mark a link pressed when the press lands on an SVG shape inside it. How: This lets every press fall through the icon to the link itself. */
 
 
 }
@@ -289,7 +289,7 @@
 
 }
 
-.proDesPar { /* What: Project Description Paragraph. Why: Every card's text should end at the same height. How: This sets the description in the secondary text color, no wider than the paragraph measure, and clamps it to three lines. */
+.proDesPar { /* What: Project Description Paragraph. Why: A long description shouldn't make one card taller than its neighbors. How: This sets the description in the secondary text color, no wider than the paragraph measure, and clamps it to three lines. */
 
 
 	-webkit-box-orient : vertical;

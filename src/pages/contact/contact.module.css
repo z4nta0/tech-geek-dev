@@ -250,7 +250,7 @@
 
 }
 
-.sucTitHea { /* What: Success Title Heading. Why: The thank-you's heading says the message went out. How: This sets it in the main text color, a little smaller than the global h2. */
+.sucTitHea { /* What: Success Title Heading. Why: The thank-you's heading says the message went out. How: This sets it in the main text color at the p03 size, the smallest the global h2 scales to. */
 
 
 	color     : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -268,7 +268,7 @@
 
 }
 
-.resForBut { /* What: Reset Form Button. Why: A visitor may want to send another message. How: This sets an orange outlined button in mono capitals, easing its fill, lift, press, and focus. */
+.resForBut { /* What: Reset Form Button. Why: A visitor may want to send another message. How: This sets an orange outlined button in mono capitals, easing its fill and text color, lift, press, and focus. */
 
 
 	border         : var( --bor-wid-bas ) solid var( --acc-mai-col ); /* Border Width Base ~= 1.160px, Accent Main Color = #F26419 */
