@@ -21,10 +21,12 @@ import { test        } from '@playwright/test';      // What: Test. Why: Each ch
  * @summary
  * Checks that the Contact form tells screen reader users what happened once
  * it's sent, in whichever engine the project runs. The error's alert region is
- * in the page and empty on load and holds the error after a failed send, a
- * sent message moves focus to the thank-you that replaces the form, and its
- * "Send Another Message" button moves focus back to the name field. Each
- * result is also scanned with axe at phone and desktop widths.
+ * in the page and empty on load and holds the error after a failed send, which
+ * also leaves focus on the submit button, a sent message moves focus to the
+ * thank-you that replaces the form, and its "Send Another Message" button
+ * moves focus back to the name field. The form fades up into view on that
+ * return, though not on a first visit, and simply appears under reduced
+ * motion. Each result is also scanned with axe at phone and desktop widths.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -77,6 +79,47 @@ test( 'a sent message moves focus to the thank-you, and sending another moves it
 	await curPagObj.getByRole( 'button', { name : 'Send Another Message' } ).click(); // What: Send Another Click Call. Why: The form comes back for another message. How: This presses "Send Another Message".
 
 	await expect( curPagObj.getByPlaceholder( 'Your name' ) ).toBeFocused(); // What: Name Field Focus Assertion. Why: The visitor starts the next message at the first field. How: This checks the name field is focused.
+
+
+} );
+
+
+
+test( 'the form fades up into view on its return from the thank-you, but not on a first visit', async ( { page : curPagObj } ) => { // What: Returning Form Fade Test. Why: The thank-you fades in as it replaces the form, so the form coming back should be seen too, while a first visit arrives with the page's own entrance. How: This allows motion, checks the form plays no entrance of its own on load, sends the form against a 200, presses "Send Another Message", and checks the form plays the shared entrance.
+
+
+	await curPagObj.emulateMedia( { reducedMotion : 'no-preference' } ); // What: Motion Allowed Call. Why: The fade plays only when motion is allowed, and this file asks for reduced motion. How: This lifts the preference for this page.
+
+	await curPagObj.goto( '/contact' ); // What: Contact Page Navigation. Why: The form lives on the Contact page. How: This loads it.
+
+
+	const forLocObj = curPagObj.locator( 'form' ).filter( { has : curPagObj.getByPlaceholder( 'Your name' ) } ); // What: Form Locator Object. Why: The checks read the visible form, not the hidden copy Netlify detects. How: This finds the form holding the name field.
+
+
+	await expect( forLocObj ).toHaveCSS( 'animation-name', 'none' ); // What: No First Fade Assertion. Why: A first visit's form arrives with the page's entrance, not one of its own. How: This checks the form plays no animation on load.
+
+	await senForFun( curPagObj, 200 ); // What: Sent Send Call. Why: The form returns only from the thank-you. How: This sends the form with the root's POST answered by a 200.
+
+	await curPagObj.getByRole( 'button', { name : 'Send Another Message' } ).click(); // What: Send Another Click Call. Why: The form comes back for another message. How: This presses "Send Another Message".
+
+	await expect( forLocObj ).toHaveCSS( 'animation-name', 'contentEnterFadeUp' ); // What: Return Fade Assertion. Why: The form coming back should fade up the way the thank-you did. How: This checks the returning form plays the shared entrance keyframe.
+
+
+} );
+
+
+
+test( 'the returning form simply appears under reduced motion', async ( { page : curPagObj } ) => { // What: Motionless Returning Form Test. Why: Someone who asked for less motion shouldn't see the form slide back in. How: This sends the form against a 200 under this file's reduced motion, presses "Send Another Message", and checks the form plays no animation.
+
+
+	await curPagObj.goto( '/contact' ); // What: Contact Page Navigation. Why: The form lives on the Contact page. How: This loads it.
+
+	await senForFun( curPagObj, 200 ); // What: Sent Send Call. Why: The form returns only from the thank-you. How: This sends the form with the root's POST answered by a 200.
+
+	await curPagObj.getByRole( 'button', { name : 'Send Another Message' } ).click(); // What: Send Another Click Call. Why: The form comes back for another message. How: This presses "Send Another Message".
+
+	await expect( curPagObj.getByPlaceholder( 'Your name' ) ).toBeFocused();                                                                         // What: Return Shown Assertion. Why: The check should read the form once it's back. How: This waits until the name field takes focus.
+	await expect( curPagObj.locator( 'form' ).filter( { has : curPagObj.getByPlaceholder( 'Your name' ) } ) ).toHaveCSS( 'animation-name', 'none' ); // What: No Return Fade Assertion. Why: The returning form should simply appear. How: This checks the form holding the name field plays no animation.
 
 
 } );
