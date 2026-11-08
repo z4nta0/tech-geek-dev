@@ -37,6 +37,12 @@ import { mkdirSync     } from 'node:fs';          // What: Make Directory Sync. 
 
 // #region Constants
 
+const ORI_DIR_STR = fileURLToPath( new URL( './originals/', import.meta.url ) ); // What: Originals Directory String. Why: The screenshots are the originals render.mts encodes, kept outside git. How: This resolves the originals folder beside this script.
+const SCA_FAC_NUM = 2;                                                           // What: Scale Factor Number. Why: Each card's screenshot is written at three times its shown size, which a 1,440px capture is too small for. How: This captures every site at twice its pixel density.
+const SET_WAI_NUM = 1500;                                                        // What: Settle Wait Number. Why: A site may still be laying out or loading images just after its network goes quiet. How: Each capture waits this many milliseconds more.
+
+
+
 type SitRecTyp = { disStr? : string, namStr : string, urlStr : string }; // What: Site Record Type. Why: Every capture needs the same two facts, and a site that greets a first visit with a dialog needs a third. How: This names the project's file name, its live address, and any button to dismiss first.
 
 // #region SIT_REC_ARR
@@ -77,11 +83,8 @@ const SIT_REC_ARR : SitRecTyp[] = [ // What: Site Record Array. Why: The script 
 
 
 
-const ORI_DIR_STR = fileURLToPath( new URL( './originals/', import.meta.url ) ); // What: Originals Directory String. Why: The screenshots are the originals render.mts encodes, kept outside git. How: This resolves the originals folder beside this script.
-const SCA_FAC_NUM = 2;                                                           // What: Scale Factor Number. Why: Each card's screenshot is written at three times its shown size, which a 1,440px capture is too small for. How: This captures every site at twice its pixel density.
-const SET_WAI_NUM = 1500;                                                        // What: Settle Wait Number. Why: A site may still be laying out or loading images just after its network goes quiet. How: Each capture waits this many milliseconds more.
-const VIE_HEI_NUM = 810;                                                         // What: Viewport Height Number. Why: The cards show a 16:9 frame. How: This is 1,440 times nine sixteenths.
-const VIE_WID_NUM = 1440;                                                        // What: Viewport Width Number. Why: A common laptop width shows each site's desktop layout. How: Every site opens this wide.
+const VIE_HEI_NUM = 810;  // What: Viewport Height Number. Why: The cards show a 16:9 frame. How: This is 1,440 times nine sixteenths.
+const VIE_WID_NUM = 1440; // What: Viewport Width Number. Why: A common laptop width shows each site's desktop layout. How: Every site opens this wide.
 
 // #endregion Constants
 
