@@ -180,10 +180,11 @@ const TIM_MIL_ARR = [ // What: Timeline Milestone Array. Why: The timeline shows
 	{ // What: Web Newbie Row. Why: This marks the start of coding. How: This is the 2013 entry.
 
 
-		desStr : 'My first foray into coding, starting with developing websites using simple HTML and CSS.',
 		orgStr : 'Self',
 		titStr : 'Web Newbie',
-		yeaStr : '2013'
+		yeaStr : '2013',
+
+		desStr : 'My first foray into coding, starting with developing websites using simple HTML and CSS.'
 
 
 	},
@@ -203,10 +204,11 @@ const TIM_MIL_ARR = [ // What: Timeline Milestone Array. Why: The timeline shows
 	{ // What: Tech Newbie Row. Why: This is where it all began. How: This is the 2004 entry.
 
 
-		desStr : 'I purchased my first personally owned computer, sparking my passion for technology.',
 		orgStr : 'Self',
 		titStr : 'Tech Newbie',
-		yeaStr : '2004'
+		yeaStr : '2004',
+
+		desStr : 'I purchased my first personally owned computer, sparking my passion for technology.'
 
 
 	}

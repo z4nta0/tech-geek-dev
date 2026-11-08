@@ -86,8 +86,9 @@ const SER_CAR_ARR = [ // What: Service Card Array. Why: The services section sho
 	{ // What: Local SEO Service Row. Why: Local businesses need to be found nearby. How: This describes the local search service.
 
 
-		desStr : 'Optimized for local search visibility, helping businesses attract nearby customers.',
 		titStr : 'Local SEO Optimized',
+
+		desStr : 'Optimized for local search visibility, helping businesses attract nearby customers.',
 
 		icoEle : ( // What: Magnifier Icon. Why: A magnifying glass over lines stands for search. How: This draws it at the card's icon size.
 
@@ -148,8 +149,9 @@ const SER_CAR_ARR = [ // What: Service Card Array. Why: The services section sho
 	{ // What: Frontend Service Row. Why: The interface is what visitors use. How: This describes the frontend service.
 
 
-		desStr : 'Pixel-perfect UIs built with React, TypeScript, and modern CSS. Performant, accessible, and a joy to use.',
 		titStr : 'Frontend Development',
+
+		desStr : 'Pixel-perfect UIs built with React, TypeScript, and modern CSS. Performant, accessible, and a joy to use.',
 
 		icoEle : ( // What: Monitor Icon. Why: A screen stands for the interface. How: This draws it at the card's icon size.
 
@@ -186,8 +188,9 @@ const SER_CAR_ARR = [ // What: Service Card Array. Why: The services section sho
 	{ // What: Backend Service Row. Why: Data and services run behind the interface. How: This describes the backend service.
 
 
-		desStr : 'Scalable Node.js services, Next.js and React Router APIs, with dependable database design.',
 		titStr : 'Backend Development',
+
+		desStr : 'Scalable Node.js services, Next.js and React Router APIs, with dependable database design.',
 
 		icoEle : ( // What: Database Icon. Why: A stack of disks stands for stored data. How: This draws it at the card's icon size.
 
@@ -225,8 +228,9 @@ const SER_CAR_ARR = [ // What: Service Card Array. Why: The services section sho
 	{ // What: Hosting Service Row. Why: A site has to launch and keep running after it's built, which completes the end-to-end story. How: This describes the hosting and maintenance service.
 
 
-		desStr : 'Fast, secure launches on modern hosting, with updates, backups, and fixes so your site keeps running smoothly.',
 		titStr : 'Hosting & Maintenance',
+
+		desStr : 'Fast, secure launches on modern hosting, with updates, backups, and fixes so your site keeps running smoothly.',
 
 		icoEle : ( // What: Cloud Check Icon. Why: A cloud with a check stands for a site hosted and looked after. How: This draws it at the card's icon size.
 

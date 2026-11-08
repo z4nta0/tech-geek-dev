@@ -93,7 +93,6 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : false,
-		desStr : "A progressive web app todo list application that decides what to do, so that you don't have to.",
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/ease-my-life',
 		ideStr : 'proj-01',
@@ -101,7 +100,9 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 		livStr : 'https://easemylife.app/',
 		tagArr : [ 'React', 'TypeScript', 'Node.js', 'React Router', 'Vite' ],
 		titStr : 'Ease My Life',
-		yeaNum : 2026
+		yeaNum : 2026,
+
+		desStr : "A progressive web app todo list application that decides what to do, so that you don't have to."
 
 
 	},
@@ -110,7 +111,6 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : true,
-		desStr : 'A website for a local business of hair designers and licensed cosmetologists.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/hair-designs',
 		ideStr : 'proj-02',
@@ -118,7 +118,9 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 		livStr : 'https://hairdesigns.hair/',
 		tagArr : [ 'React', 'TypeScript', 'Node.js', 'React Router', 'Vite' ],
 		titStr : 'Hair Designs',
-		yeaNum : 2026
+		yeaNum : 2026,
+
+		desStr : 'A website for a local business of hair designers and licensed cosmetologists.'
 
 
 	},
@@ -127,7 +129,6 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : true,
-		desStr : 'A website for a social media influencer about two adorable Bernese Mountain Dogs.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/the-bernie-bears',
 		ideStr : 'proj-03',
@@ -135,7 +136,9 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 		livStr : 'https://theberniebears.dog/',
 		tagArr : [ 'React', 'TypeScript', 'Node.js', 'React Router', 'Vite' ],
 		titStr : 'The Bernie Bears',
-		yeaNum : 2026
+		yeaNum : 2026,
+
+		desStr : 'A website for a social media influencer about two adorable Bernese Mountain Dogs.'
 
 
 	},
@@ -144,7 +147,6 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : true,
-		desStr : 'A website for a young man with Down syndrome who sells handmade crafts.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/tonys-toppers',
 		ideStr : 'proj-04',
@@ -152,7 +154,9 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 		livStr : 'https://tonystoppers.com/',
 		tagArr : [ 'React', 'TypeScript', 'Node.js', 'React Router', 'Vite' ],
 		titStr : "Tony's Toppers",
-		yeaNum : 2026
+		yeaNum : 2026,
+
+		desStr : 'A website for a young man with Down syndrome who sells handmade crafts.'
 
 
 	},
@@ -161,7 +165,6 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : true,
-		desStr : 'A website for Seal and Shield, a commercial roofing contractor based in Lawrence, Kansas.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/seal-and-shield',
 		ideStr : 'proj-05',
@@ -169,7 +172,9 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 		livStr : 'https://sealandshieldroof.com/',
 		tagArr : [ 'React', 'TypeScript', 'Node.js', 'React Router', 'Vite' ],
 		titStr : 'Seal and Shield',
-		yeaNum : 2026
+		yeaNum : 2026,
+
+		desStr : 'A website for Seal and Shield, a commercial roofing contractor based in Lawrence, Kansas.'
 
 
 	},
@@ -178,7 +183,6 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : true,
-		desStr : 'A mockup website for a fictional roofing company, designed as a concept for a Lawrence, Kansas client.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/reese-roofing',
 		ideStr : 'proj-06',
@@ -186,7 +190,9 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 		livStr : 'https://reese-roofing.netlify.app/',
 		tagArr : [ 'React', 'TypeScript', 'Node.js', 'React Router', 'Vite' ],
 		titStr : 'Reese Roofing',
-		yeaNum : 2026
+		yeaNum : 2026,
+
+		desStr : 'A mockup website for a fictional roofing company, designed as a concept for a Lawrence, Kansas client.'
 
 
 	},
@@ -195,7 +201,6 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : false,
-		desStr : 'A sister site to TechGeek.dev with free, friendly tech help for everyday people, through plain-spoken articles and questions answered by email.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/tech-geek-support',
 		ideStr : 'proj-07',
@@ -203,7 +208,9 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 		livStr : 'https://techgeek.support/',
 		tagArr : [ 'React', 'TypeScript', 'Node.js', 'React Router', 'Vite' ],
 		titStr : 'TechGeek.support',
-		yeaNum : 2026
+		yeaNum : 2026,
+
+		desStr : 'A sister site to TechGeek.dev with free, friendly tech help for everyday people, through plain-spoken articles and questions answered by email.'
 
 
 	},
@@ -212,7 +219,6 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : false,
-		desStr : 'A sister site to TechGeek.dev with animated digital greeting cards, each one hand-coded to play in the browser and sent as a link.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/tech-geek-cards',
 		ideStr : 'proj-08',
@@ -220,7 +226,9 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 		livStr : 'https://techgeek.cards/',
 		tagArr : [ 'React', 'TypeScript', 'GSAP', 'React Router', 'Vite' ],
 		titStr : 'TechGeek.cards',
-		yeaNum : 2026
+		yeaNum : 2026,
+
+		desStr : 'A sister site to TechGeek.dev with animated digital greeting cards, each one hand-coded to play in the browser and sent as a link.'
 
 
 	}
