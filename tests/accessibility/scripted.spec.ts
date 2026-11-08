@@ -27,9 +27,10 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helpers th
  * document, and lands only on stops that are on screen, not covered by
  * anything else, and visibly changed by focus. Reflow: at 320px wide, WCAG's
  * narrowest reflow width, nothing scrolls sideways. Motion: with reduced
- * motion requested, no animation or transition is left running once the state
- * has opened. A failing names, keyboard, or motion check lists every problem
- * it found, the names and keyboard ones by element.
+ * motion requested, nothing animates or transitions for longer than 1ms from
+ * the moment the page starts loading, and nothing is left running or waiting
+ * once the state has opened. A failing check lists every problem it found,
+ * the names, keyboard, and motion ones by element.
  *
  * Sections:
  *  - Constants
@@ -53,6 +54,137 @@ const TAB_MAX_NUM = 80;                                    // What: Tab Maximum 
 
 
 // #region Helpers
+
+// #region motRecFun
+
+/**
+ * motRecFun = Motion Recorder Function
+ *
+ * @summary
+ * Readies a page to record its motion, before any of its own script runs, on
+ * the window's __motRecArr, where a check reads it back. Every CSS animation
+ * that starts, every CSS transition that begins, and every animation a script
+ * starts through Element.animate is recorded as one line naming the element
+ * by its tag and first class, what moves, and how long it lasts after its
+ * delay, but only when the duration and delay together pass 1ms. Under
+ * reduced motion every variant turns its motion off, which fires no event at
+ * all, or shortens it to .01ms for a handler that waits on its end, so the
+ * list should stay empty. A CSS duration or delay is read from the element's
+ * computed lists at the animation name's or transition property's place in
+ * them, and a script's from its timing options.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+ * @param curPagObj - Current Page Object: The page to ready.
+ *
+ * @returns A promise that settles once the recorder is in place, with no
+ *          value.
+ *
+ * @example
+ * ```ts
+ * motRecFun(page) // => Promise<void>
+ * ```
+ *
+*/
+
+async function motRecFun ( curPagObj : Page ) : Promise< void > {
+
+
+	await curPagObj.addInitScript( () => { // What: Motion Recorder Script. Why: A finite entrance has ended by the time the state settles, so the motion has to be caught as it starts. How: This listens for every animation and transition from before the page's own script runs, and records each one that lasts longer than 1ms.
+
+
+		const winRecObj = window as unknown as { __motRecArr : string[] }; // What: Window Record Object. Why: The record is kept where the test can read it back. How: This views the window with its motion list. // What: Type Assertion Note. Why: The window has no such field in its type. How: The as names the one this script adds.
+
+
+		winRecObj.__motRecArr = []; // What: Motion List Assignment. Why: Each page starts with nothing recorded. How: This sets an empty list.
+
+
+		const entRecFun = ( tarCurEle : Element, pseEleStr : string, namValStr : string, durMilNum : number, delMilNum : number ) => { // What: Entry Record Function. Why: Each kind of motion is recorded the same way. How: This adds a line naming the element, what moves, its duration, and its delay, when the two together pass 1ms.
+
+
+			if ( durMilNum + delMilNum > 1 ) winRecObj.__motRecArr.push( `${ tarCurEle.tagName.toLowerCase() }${ tarCurEle.classList.length ? `.${ tarCurEle.classList[ 0 ] }` : '' }${ pseEleStr } plays ${ namValStr } for ${ durMilNum.toLocaleString( 'en-US' ) }ms after a ${ delMilNum.toLocaleString( 'en-US' ) }ms delay` ); // What: Lasting Motion Check. Why: A .01ms variant only exists so an end event fires, and isn't motion anyone sees. How: This records the motion only when its duration and delay together pass 1ms.
+
+
+		};
+
+
+
+		const timMilFun = ( timValStr : string ) => ( timValStr.trim().endsWith( 'ms' ) ? parseFloat( timValStr ) : parseFloat( timValStr ) * 1000 ) || 0; // What: Time Milliseconds Function. Why: A computed duration or delay reads in seconds or milliseconds. How: This turns one into milliseconds, or 0 when it can't be read.
+
+
+
+		const lisMilFun = ( lisValStr : string, indValNum : number ) => { // What: List Milliseconds Function. Why: An element running several animations or transitions lists their timings in matching comma lists. How: This reads the time at one place in the list, repeating the list when it's shorter, as CSS does.
+
+
+			const lisValArr = lisValStr.split( ',' ); // What: List Value Array. Why: Each animation or transition has its own entry. How: This splits the computed list at its commas.
+
+
+
+			return timMilFun( lisValArr[ indValNum % lisValArr.length ] ); // What: List Time Return. Why: The caller needs the entry at the motion's place. How: This converts that entry, wrapping around a shorter list.
+
+
+		};
+
+
+
+		document.addEventListener( 'animationstart', ( aniEveObj ) => { // What: Animation Start Listener. Why: A CSS animation that ignores reduced motion fires this as it begins. How: This listens on the document in the capture phase, so every element's animation reaches it, and records the animation with its computed timing.
+
+
+			const aniTarEle = aniEveObj.target as Element;                                                             // What: Animation Target Element. Why: The record names the element that moves. How: This reads the event's target. // What: Type Assertion Note. Why: An event's target is typed as a plain event target. How: An animation event always fires on an element.
+			const styCurObj = getComputedStyle( aniTarEle, aniEveObj.pseudoElement || null );                          // What: Style Current Object. Why: The animation's timing is in the element's computed style. How: This reads it, from the pseudo-element when the animation runs on one.
+			const namIndNum = Math.max( styCurObj.animationName.split( ', ' ).indexOf( aniEveObj.animationName ), 0 ); // What: Name Index Number. Why: The duration and delay lists follow the order of the names. How: This finds the animation's place in the name list, or the first place when it isn't there.
+
+
+			entRecFun( aniTarEle, aniEveObj.pseudoElement, aniEveObj.animationName, lisMilFun( styCurObj.animationDuration, namIndNum ), lisMilFun( styCurObj.animationDelay, namIndNum ) ); // What: Animation Record Call. Why: The animation is recorded when it lasts. How: This passes its element, name, duration, and delay.
+
+
+		}, true );
+
+
+
+		document.addEventListener( 'transitionrun', ( traEveObj ) => { // What: Transition Run Listener. Why: A CSS transition that ignores reduced motion fires this as soon as it's created, before any delay. How: This listens on the document in the capture phase and records the transition with its computed timing.
+
+
+			const traTarEle = traEveObj.target as Element; // What: Transition Target Element. Why: The record names the element that moves. How: This reads the event's target. // What: Type Assertion Note. Why: An event's target is typed as a plain event target. How: A transition event always fires on an element.
+			const styCurObj = getComputedStyle( traTarEle, traEveObj.pseudoElement || null );                                                                                                // What: Style Current Object. Why: The transition's timing is in the element's computed style. How: This reads it, from the pseudo-element when the transition runs on one.
+			const proIndNum = Math.max( styCurObj.transitionProperty.split( ', ' ).findIndex( ( proValStr ) => proValStr === 'all' || traEveObj.propertyName.startsWith( proValStr ) ), 0 ); // What: Property Index Number. Why: The duration and delay lists follow the order of the properties. How: This finds the first listed property that is all, the property itself, or a shorthand it starts with, or the first place when none is.
+
+
+			entRecFun( traTarEle, traEveObj.pseudoElement, traEveObj.propertyName, lisMilFun( styCurObj.transitionDuration, proIndNum ), lisMilFun( styCurObj.transitionDelay, proIndNum ) ); // What: Transition Record Call. Why: The transition is recorded when it lasts. How: This passes its element, property, duration, and delay.
+
+
+		}, true );
+
+
+
+		const oriAniFun = Element.prototype.animate; // What: Original Animate Function. Why: A script's own animations fire no CSS event, so the browser's animate is wrapped. How: This keeps the real one to call through to.
+
+
+		Element.prototype.animate = function ( keyFraObj, timOptObj ) { // What: Animate Wrapper Function. Why: Motion a script drives has to honor reduced motion too. How: This records each script animation with its timing options, then starts it as normal.
+
+
+			const aniDelNum = typeof timOptObj === 'number' ? 0 : Number( timOptObj?.delay ) || 0;            // What: Animation Delay Number. Why: A delay alone still holds a change back. How: This reads the options' delay, which a bare number never sets, or 0.
+			const aniDurNum = typeof timOptObj === 'number' ? timOptObj : Number( timOptObj?.duration ) || 0; // What: Animation Duration Number. Why: The duration is the motion's length. How: This reads a bare number as the duration, otherwise the options' duration, or 0 for none or auto.
+
+
+			entRecFun( this, '', 'a script animation', aniDurNum, aniDelNum ); // What: Script Animation Record Call. Why: The animation is recorded when it lasts. How: This passes the element animated, a generic label, its duration, and its delay.
+
+
+
+			return oriAniFun.call( this, keyFraObj, timOptObj ); // What: Animation Start Return. Why: The page's own animation still has to run and hand back its animation. How: This calls the real animate with the same arguments.
+
+
+		};
+
+
+	} );
+
+
+}
+
+// #endregion motRecFun
+
+
 
 // #region namProFun
 
@@ -457,14 +589,17 @@ for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every ch
 
 
 
-	test( `${ staRecObj.ideStr } plays no motion under reduced motion`, async ( { page : curPagObj } ) => { // What: Reduced Motion Test. Why: Visitors who ask for less motion shouldn't see the page animate. How: This requests reduced motion, opens the state, and lists anything that played.
+	test( `${ staRecObj.ideStr } plays no motion under reduced motion`, async ( { page : curPagObj } ) => { // What: Reduced Motion Test. Why: Visitors who ask for less motion shouldn't see the page animate. How: This requests reduced motion, records every animation and transition from the start of the load, opens the state, and lists anything that played or is still waiting to.
 
 
 		await curPagObj.emulateMedia( { reducedMotion : 'reduce' } ); // What: Reduced Motion Emulation. Why: The preference has to be set before the page loads. How: This makes the page match prefers-reduced-motion: reduce.
 
+		await motRecFun( curPagObj ); // What: Motion Recorder Call. Why: An entrance or the state's own action, such as the menu's slide, ends before the state settles, so it has to be caught as it starts. How: This records every lasting animation and transition from before the page's own script runs.
+
 		await opeStaFun( curPagObj, staRecObj ); // What: State Open Call. Why: Entrance animations and the state's own action are the motion being checked. How: This loads the state and runs its action.
 
-		expect( await curPagObj.evaluate( () => document.getAnimations().filter( ( aniCurObj ) => ( Number( aniCurObj.effect?.getTiming().duration ) || 0 ) > 1 ).map( ( aniCurObj ) => ( aniCurObj as CSSAnimation ).animationName || ( aniCurObj as CSSTransition ).transitionProperty || 'script animation' ) ) ).toEqual( [] ); // What: No Motion Assertion. Why: The state passes only when nothing is left animating once it has opened. How: This lists every animation or transition the page still holds that lasts longer than 1ms, which should be none. // What: Type Assertion Note. Why: getAnimations returns plain Animation objects, which don't type their CSS names. How: Each one is read as a CSS animation, then a CSS transition, falling back to a generic label when neither name exists.
+		expect( await curPagObj.evaluate( () => ( window as unknown as { __motRecArr : string[] } ).__motRecArr ) ).toEqual( [] ); // What: No Motion Played Assertion. Why: The state passes only when nothing animated or transitioned for longer than 1ms while it opened. How: This compares the recorded motion with an empty list, so a failure prints each one. // What: Type Assertion Note. Why: The window has no such field in its type. How: motRecFun's script set it.
+		expect( await curPagObj.evaluate( () => document.getAnimations().filter( ( aniCurObj ) => ( Number( aniCurObj.effect?.getTiming().duration ) || 0 ) > 1 ).map( ( aniCurObj ) => ( aniCurObj as CSSAnimation ).animationName || ( aniCurObj as CSSTransition ).transitionProperty || 'script animation' ) ) ).toEqual( [] ); // What: No Motion Left Assertion. Why: A CSS animation whose delay hasn't run out fires no start event yet, so the recorder can't see it. How: This lists every animation or transition the page still holds that lasts longer than 1ms, which should be none. // What: Type Assertion Note. Why: getAnimations returns plain Animation objects, which don't type their CSS names. How: Each one is read as a CSS animation, then a CSS transition, falling back to a generic label when neither name exists.
 
 
 	} );
