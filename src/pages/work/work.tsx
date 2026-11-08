@@ -55,9 +55,12 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * The four steps the process section walks through, in order, with an arrow
  * drawn between each pair. Every row shares one shape, so its fields carry no
  * comments of their own:
+ *
  * - `desStr` (String): Description String, the sentence under the step's
  *   title.
+ *
  * - `numStr` (String): Number String, the step's two-digit number.
+ *
  * - `titStr` (String): Title String, the step's one-word name.
  *
  * @author z4nta0 <https://github.com/z4nta0>

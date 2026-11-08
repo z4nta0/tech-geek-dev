@@ -53,11 +53,14 @@ type SitRecTyp = { disStr? : string, namStr : string, urlStr : string }; // What
  * @summary
  * Every project the cards show, matching src/ui/projects.ts. Every row
  * shares the SitRecTyp shape, so its fields carry no comments of their own:
+ *
  * - `disStr` (String, optional): Dismiss String, the name of a button the
  *   site's first visit shows over its content, clicked before the capture:
  *   Ease My Life's welcome dialog, dismissed with "I’ll explore myself".
+ *
  * - `namStr` (String): Name String, the project's file name, saved as
  *   originals/<name>-website.png, the original render.mts reads.
+ *
  * - `urlStr` (String): URL String, the project's live site.
  *
  * @author z4nta0 <https://github.com/z4nta0>

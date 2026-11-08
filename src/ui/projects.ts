@@ -71,15 +71,25 @@ type ProRecTyp = { // What: Project Record Type. Why: Every project record share
  * Every project the site showcases, in the order the Work page shows them.
  * Every record shares the {@link ProRecTyp} shape, so its fields carry no
  * comments of their own:
+ *
  * - `cliBoo` (Boolean): Client Boolean, true for a site built for a client.
+ *
  * - `desStr` (String): Description String, the sentence under the title.
+ *
  * - `feaBoo` (Boolean): Featured Boolean, true for a project Home can show.
+ *
  * - `gitStr` (String): GitHub String, the repository's URL.
+ *
  * - `ideStr` (String): Identifier String, the card's unique React key.
+ *
  * - `imaStr` (String): Image String, the screenshot's resolved URL.
+ *
  * - `livStr` (String): Live String, the live site's URL.
+ *
  * - `tagArr` (Array): Tag Array, the technologies the card lists.
+ *
  * - `titStr` (String): Title String, the project's name.
+ *
  * - `yeaNum` (Number): Year Number, the year the badge shows.
  *
  * @author z4nta0 <https://github.com/z4nta0>

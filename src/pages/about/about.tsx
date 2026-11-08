@@ -53,8 +53,10 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * @summary
  * The skills grid's groups, in the order they show. Every row shares one
  * shape, so its fields carry no comments of their own:
+ *
  * - `labStr` (String): Label String, the group's heading, also its React
  *   key.
+ *
  * - `skiArr` (Array): Skill Array, the technologies in the group, each shown
  *   as a tag.
  *
@@ -116,9 +118,13 @@ const SKI_GRO_ARR = [ // What: Skill Group Array. Why: The skills grid shows the
  * @summary
  * The journey the timeline shows, newest first. Every row shares one shape,
  * so its fields carry no comments of their own:
+ *
  * - `desStr` (String): Description String, what happened that year.
+ *
  * - `orgStr` (String): Organization String, who the work was for.
+ *
  * - `titStr` (String): Title String, the milestone's name.
+ *
  * - `yeaStr` (String): Year String, the milestone's year, also its React
  *   key.
  *
@@ -232,8 +238,11 @@ const TIP_URL_STR = 'https://ko-fi.com/techgeekdev'; // What: Tip URL String. Wh
  * @summary
  * The values section's cards, in the order they show. Every row shares one
  * shape, so its fields carry no comments of their own:
+ *
  * - `desStr` (String): Description String, the sentence under the title.
+ *
  * - `icoStr` (String): Icon String, the geometric symbol above the title.
+ *
  * - `titStr` (String): Title String, the value's name, also its React key.
  *
  * @author z4nta0 <https://github.com/z4nta0>

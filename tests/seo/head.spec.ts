@@ -62,9 +62,12 @@ const LIV_URL_STR = 'https://techgeek.dev/'; // What: Live URL String. Why: The 
  * @summary
  * What each page's head should say. Every row shares one shape, so its fields
  * carry no comments of their own:
+ *
  * - `canStr` (String or null): Canonical String, the page's canonical
  *   address, or null for a page that carries noindex and no canonical link.
+ *
  * - `patStr` (String): Path String, the address the page is loaded from.
+ *
  * - `titStr` (String): Title String, the page's exact title.
  *
  * @author z4nta0 <https://github.com/z4nta0>

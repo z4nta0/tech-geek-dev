@@ -71,8 +71,11 @@ const COD_WIN_STR = `const developer = {
  * @summary
  * The services the services section offers, in the order they show. Every
  * row shares one shape, so its fields carry no comments of their own:
+ *
  * - `desStr` (String): Description String, the sentence under the title.
+ *
  * - `icoEle` (Element): Icon Element, the service's line icon.
+ *
  * - `titStr` (String): Title String, the service's name, also the card's
  *   React key.
  *
