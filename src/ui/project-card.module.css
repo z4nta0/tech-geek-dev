@@ -6,11 +6,10 @@
  *
  * @summary
  * Styles for ProCarCom: a white card that lifts on hover, with a 16:9
- * screenshot that zooms slightly, a dark overlay that fades in over it
- * holding the Live Site and GitHub buttons, a year badge in its corner, then
- * the title, a description clamped to three lines, and the tags, finished
- * with an orange corner accent. A featured card takes a blue border.
- * Everything that moves holds still under reduced motion.
+ * screenshot that zooms slightly, a dark overlay that fades in over it holding
+ * the "Live Site" and "GitHub" buttons, a year badge in its corner, then the
+ * title, a description clamped to three lines, and the tags, finished with an
+ * orange corner accent. A featured card takes a blue border.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -191,7 +190,7 @@
 
 
 }
-.oveButAnc--ghost { /* What: Overlay Button Anchor Ghost. Why: The GitHub button sits back behind the Live Site one. How: This clears its fill and outlines it in translucent white. */
+.oveButAnc--ghost { /* What: Overlay Button Anchor Ghost. Why: The "GitHub" button sits back behind the "Live Site" one. How: This clears its fill and outlines it in translucent white. */
 
 
 	background : transparent;

@@ -15,10 +15,9 @@
  * alternates its milestones either side of a center line on a tablet or wider
  * and runs each one's year, dot, and line, and text in three columns on a
  * phone, the values grid steps like the skills and lifts a card on hover, and
- * a white band closes the page with the Ko-fi invitation and its button.
- * The page's centered columns take the shared container values, and its
- * sections the shared section padding, merged into their own rules. Everything
- * that moves holds still under reduced motion.
+ * a white band closes the page with the Ko-fi invitation and its button. The
+ * page's centered columns take the shared container values, and its sections
+ * the shared section padding, merged into their own rules.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -962,7 +961,7 @@
 
 /* #region aboValSec */
 
-.aboValSec { /* What: About Values Section. Why: The page closes on a warmer band with the section spacing. How: This sets the warm ivory and the shared section padding. */
+.aboValSec { /* What: About Values Section. Why: The values sit on a warmer band with the section spacing. How: This sets the warm ivory and the shared section padding. */
 
 
 	background : var( --bac-sun-col );   /* Background Sunken Color = #EDE6D8 */
@@ -1140,7 +1139,7 @@
 
 /* What: Button Primary Anchor Pointer. Why: The Ko-fi button shares the hero's orange button. How: Its rule sits in the herActDiv region. */
 
-.visHidSpa { /* What: Visually Hidden Span. Why: Screen reader users should hear that the button opens Ko-fi in a new tab, which sighted visitors learn from the text above it. How: This shrinks the note to a clipped 1px box out of the layout, the standard technique that keeps it in the accessibility tree. */
+.visHidSpa { /* What: Visually Hidden Span. Why: Screen reader users should hear that the button opens Ko-fi in a new tab. How: This shrinks the note to a clipped 1px box out of the layout while it stays readable to screen readers. */
 
 
 	border      : 0;

@@ -5,22 +5,21 @@
  * home.module.css = Home Page Module
  *
  * @summary
- * Styles for HomPagCom. The page fades up into view like every page. Its
- * ivory hero clears the fixed bar by a gap that grows with the screen, with
- * three faint shapes turning slowly behind it, the pitch fading up beside a
- * dark code window and a white badge that follow it in, a pulsing
- * availability dot, and a ticker of skills scrolling under the buttons; a
- * slanted white edge leads into the stats strip. Below come the featured
- * projects, the services in white cards that lift on hover, and an orange
- * closing card. On a tablet the code window keeps its natural width beside
- * the pitch, and on a phone it stacks above it, while the grids step down,
- * the projects and services reaching one column on a phone and the stats
- * staying in pairs. The shapes, the entrances, and the dot play the shared
- * shapeLoopSpin, contentEnterFadeUp, and statusLoopPulse keyframes from the
- * global sheet; the ticker plays its own. The page's centered
- * columns take the shared container values, and its sections the shared
- * section padding, merged into their own rules. Everything that moves holds
- * still under reduced motion.
+ * Styles for HomPagCom. The page fades up into view like every page. Its ivory
+ * hero clears the fixed bar by a gap that grows with the screen, with three
+ * faint shapes turning slowly behind it, the pitch fading up beside a dark
+ * code window and a white badge that follow it in, a pulsing availability dot,
+ * and a ticker of skills scrolling under the buttons; a slanted white edge
+ * leads into the stats strip. Below come the featured projects, the services
+ * in white cards that lift on hover, and an orange closing card. On a tablet
+ * the code window keeps its natural width beside the pitch, and on a phone it
+ * stacks above it, while the grids step down, the projects and services
+ * reaching one column on a phone and the stats staying in pairs. The shapes,
+ * the entrances, and the dot play the shared shapeLoopSpin,
+ * contentEnterFadeUp, and statusLoopPulse keyframes from the global sheet; the
+ * ticker plays its own. The page's centered columns take the shared container
+ * values, and its sections the shared section padding, merged into their own
+ * rules.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -291,13 +290,13 @@
 
 
 	color       : var( --tex-mai-col );                                        /* Text Main Color = #1A1A2E */
-	font-size   : clamp( var( --fon-siz-p02 ), 9.6cqi, var( --fon-siz-p07 ) ); /* Font Size Base Plus 2 ~= 19.304px, Font Size Base Plus 7 ~= 78.751px */ /* What: Column-Sized Heading. Why: Experiences is about 10em wide, so at the global h1 size it ran past its column on phones and under the code window on a desktop. How: The size is 9.6% of the column's width, which keeps the word inside it, within the p02 and p07 steps. */
+	font-size   : clamp( var( --fon-siz-p02 ), 9.6cqi, var( --fon-siz-p07 ) ); /* Font Size Base Plus 2 ~= 19.304px, Font Size Base Plus 7 ~= 78.751px */ /* What: Column-Sized Heading. Why: "Experiences" is about 10em wide, so at the global h1 size it ran past its column on phones and under the code window on a desktop. How: The size is 9.6% of the column's width, which keeps the word inside it, within the p02 and p07 steps. */
 	line-height : var( --ver-rhy-m01 );                                        /* Vertical Rhythm Base Minus 1 = 1 */
 
 
 }
 
-.titAccSpa { /* What: Title Accent Span. Why: Digital carries the accent with an underline stroke. How: This sets it dark blue and positions its stroke. */
+.titAccSpa { /* What: Title Accent Span. Why: "Digital" carries the accent with an underline stroke. How: This sets it dark blue and positions its stroke. */
 
 
 	color    : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
@@ -955,7 +954,7 @@
 
 	color          : var( --tex-mai-col );                                       /* Text Main Color = #1A1A2E */
 	font-family    : var( --fon-fam-mai );                                       /* Font Family Main = 'Syne', sans-serif */
-	font-size      : clamp( var( --fon-siz-p02 ), 26cqi, var( --fon-siz-p05 ) ); /* Font Size Base Plus 2 ~= 19.304px, Font Size Base Plus 5 ~= 44.876px */ /* What: Item-Sized Figure. Why: 100% is about 3.8em wide, too wide for half a phone's width at the full size. How: The figure is 26% of its item's width, held between the p02 and p05 steps, so desktop keeps the full size. */
+	font-size      : clamp( var( --fon-siz-p02 ), 26cqi, var( --fon-siz-p05 ) ); /* Font Size Base Plus 2 ~= 19.304px, Font Size Base Plus 5 ~= 44.876px */ /* What: Item-Sized Figure. Why: "100%" is about 3.8em wide, too wide for half a phone's width at the full size. How: The figure is 26% of its item's width, held between the p02 and p05 steps, so desktop keeps the full size. */
 	font-weight    : 800;
 	letter-spacing : -0.04em;
 	line-height    : var( --ver-rhy-m01 );                                       /* Vertical Rhythm Base Minus 1 = 1 */

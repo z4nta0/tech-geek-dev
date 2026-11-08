@@ -16,8 +16,7 @@
  * between them, forming a two-by-two grid without arrows at 1,024px and below
  * and stacking with turned arrows at 768px and below. The page's centered
  * columns take the shared container values, and its sections the shared
- * section padding, merged into their own rules. Everything that moves holds
- * still under reduced motion.
+ * section padding, merged into their own rules.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -392,7 +391,7 @@
 
 }
 
-.visHidHea { /* What: Visually Hidden Heading. Why: The projects grid's h2 keeps the headings in order for screen readers, while the hero already introduces the grid on screen. How: This shrinks the heading to a clipped 1px box out of the layout, the standard technique that keeps it in the accessibility tree. */
+.visHidHea { /* What: Visually Hidden Heading. Why: The projects grid's h2 keeps the headings in order for screen readers, while the hero already introduces the grid on screen. How: This shrinks the heading to a clipped 1px box out of the layout while it stays readable to screen readers. */
 
 
 	border      : 0;

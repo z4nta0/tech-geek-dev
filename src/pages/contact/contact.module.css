@@ -14,10 +14,9 @@
  * arrow, and the thank-you replaces the form once a message is sent. The
  * thank-you and the error each fade up into view with the shared
  * contentEnterFadeUp keyframe, and the sidebar's availability dot pulses with
- * the shared statusLoopPulse keyframe.
- * The page's centered column takes the shared container values, and its
- * section the shared section padding, merged into their own rules. Everything
- * that moves holds still under reduced motion.
+ * the shared statusLoopPulse keyframe. The page's centered column takes the
+ * shared container values, and its section the shared section padding, merged
+ * into their own rules.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -837,7 +836,7 @@
 
 }
 
-.resTimStr { /* What: Response Time Strong. Why: The 24 hours is the promise's point. How: This sets it in the main text color. */
+.resTimStr { /* What: Response Time Strong. Why: The "24 hours" is the promise's point. How: This sets it in the main text color. */
 
 
 	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
