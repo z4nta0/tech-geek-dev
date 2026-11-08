@@ -28,7 +28,7 @@
 
 
 }
-.secHeaDiv--center { /* What: Section Header Div Centered. Why: Some sections center their heading. How: This centers the block and its text within the section. */
+.secHeaDiv--center { /* What: Section Header Div Center. Why: Some sections center their heading. How: This centers the block and its text within the section. */
 
 
 	align-items : center;
