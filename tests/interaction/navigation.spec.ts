@@ -26,7 +26,9 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helpers dr
  * reloads return to the exact earlier position, and a fresh load, a hash, and
  * malformed saved positions are each handled. With smooth scrolling on, a page
  * change still jumps to the new page's top before it's drawn. Every page also
- * opens with a skip link that moves focus to the main content.
+ * opens with a skip link that moves focus to the main content. The 404 page's
+ * two buttons move on without reloading the site, and a nested unknown path
+ * shows the 404 page too.
  *
  * Sections:
  *  - Constants
@@ -536,6 +538,43 @@ test( 'the "Hire Me" link opens Contact without reloading the site', async ( { p
 	await expect( curPagObj ).toHaveURL( '/contact' ); // What: Destination Assertion. Why: The button has to reach Contact. How: This waits for the address to change.
 
 	expect( await curPagObj.evaluate( () => document.documentElement.hasAttribute( 'data-test-reload-marker' ) ) ).toBe( true ); // What: No Reload Assertion. Why: The router should switch pages within the same document. How: This checks the mark is still on the root element.
+
+
+} );
+
+
+
+for ( const [ butNamStr, butPatStr ] of [ [ 'Go Home', '/' ], [ 'Get In Touch', '/contact' ] ] ) { // What: Not Found Button Loop. Why: Both of the 404 page's ways onward have to work. How: This declares one test per button, pairing its words with the path it should reach.
+
+
+	test( `the 404 page's "${ butNamStr }" link opens ${ butPatStr } without reloading the site`, async ( { page : curPagObj } ) => { // What: Not Found Link Test. Why: A visitor who lands on a missing address should be able to move on, and a plain link would reload the whole site. How: This marks the document on an unknown path, clicks the button, and checks the address and that the mark survived.
+
+
+		await curPagObj.goto( '/missing' ); // What: Unknown Path Navigation. Why: The buttons live on the 404 page. How: This loads an address the site doesn't have.
+
+		await curPagObj.evaluate( () => document.documentElement.setAttribute( 'data-test-reload-marker', '' ) ); // What: Reload Marker Call. Why: A reload would build a fresh document without the mark. How: This sets a presence-only attribute on the root element.
+
+		await curPagObj.getByRole( 'main' ).getByRole( 'link', { exact : true, name : butNamStr } ).click(); // What: Not Found Button Click. Why: This is the navigation under test. How: This clicks the button in the 404 page's content.
+
+		await expect( curPagObj ).toHaveURL( butPatStr ); // What: Destination Assertion. Why: The button has to reach its page. How: This waits for the address to change.
+
+		expect( await curPagObj.evaluate( () => document.documentElement.hasAttribute( 'data-test-reload-marker' ) ) ).toBe( true ); // What: No Reload Assertion. Why: The router should switch pages within the same document. How: This checks the mark is still on the root element.
+
+
+	} );
+
+
+}
+
+
+
+test( 'a nested unknown path shows the 404 page', async ( { page : curPagObj } ) => { // What: Nested Unknown Path Test. Why: A mistyped address under a real page, such as one below Work, should land on the 404 page rather than a blank screen. How: This loads a path under Work and checks the 404 page's heading and its noindex tag.
+
+
+	await curPagObj.goto( '/work/nope' ); // What: Nested Path Navigation. Why: This is the address under test. How: This loads a path below the Work page that the site doesn't have.
+
+	await expect( curPagObj.getByRole( 'heading', { level : 1 } ) ).toHaveText( 'Page Not Found' );     // What: Not Found Heading Assertion. Why: The visitor should see the 404 page. How: This checks the page's h1 is the 404 page's.
+	await expect( curPagObj.locator( 'meta[name="robots"]' ) ).toHaveAttribute( 'content', 'noindex' ); // What: Noindex Assertion. Why: Netlify answers every unknown path with a 200, so the page itself has to keep the address out of search. How: This checks the robots tag says noindex.
 
 
 } );
