@@ -36,7 +36,7 @@ import type { Page          } from '@playwright/test'; // What: Page. Why: The h
  * each of those changes, on it or anything inside it, its shadow layers
  * included, has to be eased by a transition, its focus ring included. Each
  * kind of element with a state that switches on and off, such as the phone
- * menu's toggle or the current page's bar link, is flipped off, on, and off
+ * menu's toggle or Contact's sending button, is flipped off, on, and off
  * again by its attribute, and has to look different and ease each change both
  * ways. On the Home, Work, and About states, the
  * cards that lift on hover without being links have to show and ease their
@@ -105,8 +105,8 @@ const HOV_TAR_STR = '[class*="proCarArt"], [class*="serCarDiv"], [class*="valCar
  *   by the class name Vite keeps inside each hashed module class.
  *
  * - `staArr` (Array): State Array, the page states, by their names in
- *   `STA_REC_ARR`, where the kind is flipped, and where at least one element
- *   of it has to be found and flipped.
+ *   `STA_REC_ARR` or `RES_STA_ARR`, where the kind is flipped, and where at
+ *   least one element of it has to be found and flipped.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -196,6 +196,18 @@ const TOG_TAR_ARR : TogTarTyp[] = [ // What: Toggle Target Array. Why: A switche
 		inaStr : null,
 		selStr : '[class*="filOptBut"]',
 		staArr : [ 'work-desktop', 'work-phone' ]
+
+
+	},
+
+	{ // What: Sending Button Row. Why: Contact's "Send Message" button fades while a message sends. How: This flips its disabled attribute, on the Contact states where the form shows, a failed send's included.
+
+
+		actStr : '',
+		attStr : 'disabled',
+		inaStr : null,
+		selStr : '[class*="senMesBut"]',
+		staArr : [ 'contact-desktop', 'contact-phone', 'contact-desktop-failed', 'contact-phone-failed' ]
 
 
 	}
