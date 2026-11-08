@@ -178,6 +178,7 @@ const TOG_TAR_ARR : TogTarTyp[] = [ // What: Toggle Target Array. Why: A switche
 		attStr : 'data-nav-bar-scrolled',
 		inaStr : null,
 		selStr : '[class*="navBarHed"]',
+
 		staArr : [ 'home-desktop', 'work-desktop', 'about-desktop', 'contact-desktop', 'not-found-desktop', 'home-phone', 'work-phone', 'about-phone', 'contact-phone', 'not-found-phone', 'menu-phone' ]
 
 

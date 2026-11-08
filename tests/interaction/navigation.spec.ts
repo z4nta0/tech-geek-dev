@@ -324,7 +324,7 @@ test( 'back and forward return to the exact position, from a page scrolled furth
 
 	await curPagObj.getByRole( 'navigation', { name : 'Footer navigation' } ).getByRole( 'link', { exact : true, name : 'Contact' } ).click(); // What: Footer Link Click. Why: Back needs a shorter page to come back from. How: This follows the footer's "Contact" link.
 
-	await expect( curPagObj ).toHaveURL( '/contact' );                                               // What: Destination Assertion. Why: The page between has to be showing before it's measured. How: This waits for the address to change.
+	await expect( curPagObj ).toHaveURL( '/contact' );                                            // What: Destination Assertion. Why: The page between has to be showing before it's measured. How: This waits for the address to change.
 	await expect( curPagObj.getByRole( 'heading', { level : 1 } ) ).toContainText( 'Something' ); // What: Contact Heading Assertion. Why: The address changes a moment before Contact renders, so measuring then would read Home's height. How: This waits for Contact's own heading.
 
 

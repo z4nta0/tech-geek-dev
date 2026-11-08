@@ -97,7 +97,6 @@ const PLA_CON_OBJ = defineConfig({ // What: Playwright Config Object. Why: Playw
 		}
 
 
-
 	}) ) ),
 
 	reporter : [ // What: Reporter. Why: A run needs a live summary in the terminal and a browsable report afterwards. How: This prints a line per test and writes an HTML report to tests/output/report.

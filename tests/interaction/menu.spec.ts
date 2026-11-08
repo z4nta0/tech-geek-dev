@@ -94,8 +94,7 @@ async function menOpeFun ( curPagObj : Page ) : Promise< void > {
 	await curPagObj.getByRole( 'button', { name : 'Toggle menu' } ).click(); // What: Menu Toggle Click. Why: Every check starts with the menu open. How: This opens it.
 
 	await expect( curPagObj.getByRole( 'button', { name : 'Toggle menu' } ) ).toHaveAttribute( 'aria-expanded', 'true' ); // What: Open State Assertion. Why: The toggle has to report the menu open. How: This checks its aria-expanded.
-
-	await expect( curPagObj.locator( 'main[inert], footer[inert]' ) ).toHaveCount( 2 ); // What: Inert Page Assertion. Why: Content under the scrim shouldn't take focus or be read. How: This checks the main content and the footer are both inert.
+	await expect( curPagObj.locator( 'main[inert], footer[inert]' ) ).toHaveCount( 2 );                                   // What: Inert Page Assertion. Why: Content under the scrim shouldn't take focus or be read. How: This checks the main content and the footer are both inert.
 
 
 }
@@ -171,10 +170,8 @@ test( 'the open menu offers the pages, profiles, and email over a dimmed page', 
 	await menOpeFun( curPagObj ); // What: Menu Open Call. Why: The checks need the menu open. How: This opens and checks it.
 
 	await expect( curPagObj.getByRole( 'navigation', { name : 'Menu navigation' } ).getByRole( 'link' ) ).toHaveCount( 4 ); // What: Page Links Assertion. Why: Every page should be one tap away. How: This counts the links in the menu's navigation landmark.
-
-	await expect( curPagObj.getByRole( 'banner' ).locator( 'a[target="_blank"][aria-label]' ) ).toHaveCount( 2 ); // What: Profile Links Assertion. Why: Both of z4nta0's profiles should be one tap away. How: This counts the menu's named links that open in a new tab.
-
-	await expect( curPagObj.getByRole( 'banner' ).getByRole( 'link', { name : 'contact@techgeek.dev' } ) ).toBeVisible(); // What: Email Link Assertion. Why: The contact email should be one tap away. How: This checks the menu shows the mailto link.
+	await expect( curPagObj.getByRole( 'banner' ).locator( 'a[target="_blank"][aria-label]' ) ).toHaveCount( 2 );           // What: Profile Links Assertion. Why: Both of z4nta0's profiles should be one tap away. How: This counts the menu's named links that open in a new tab.
+	await expect( curPagObj.getByRole( 'banner' ).getByRole( 'link', { name : 'contact@techgeek.dev' } ) ).toBeVisible();   // What: Email Link Assertion. Why: The contact email should be one tap away. How: This checks the menu shows the mailto link.
 
 	expect( await curPagObj.evaluate( () => document.elementFromPoint( 200, 800 )?.getAttribute( 'aria-hidden' ) ) ).toBe( 'true' ); // What: Scrim On Top Assertion. Why: A tap on the page below the menu has to land on the scrim, not the page. How: This checks the element at a point below the panel is the scrim, the one element there hidden from screen readers.
 
@@ -191,8 +188,7 @@ test( 'tapping the scrim closes the menu', async ( { page : curPagObj } ) => { /
 	await curPagObj.mouse.click( 200, 800 ); // What: Scrim Tap Call. Why: The scrim covers the page below the panel. How: This taps it.
 
 	await expect( curPagObj.getByRole( 'button', { name : 'Toggle menu' } ) ).toHaveAttribute( 'aria-expanded', 'false' ); // What: Closed State Assertion. Why: The tap should close the menu. How: This checks the toggle reports it closed.
-
-	await expect( curPagObj.locator( '[inert]' ) ).toHaveCount( 0 ); // What: Page Restored Assertion. Why: The page has to be usable again. How: This checks nothing is left inert.
+	await expect( curPagObj.locator( '[inert]' ) ).toHaveCount( 0 );                                                       // What: Page Restored Assertion. Why: The page has to be usable again. How: This checks nothing is left inert.
 
 
 } );
@@ -207,10 +203,8 @@ test( 'Escape closes the menu and returns focus to the toggle', async ( { page :
 	await curPagObj.keyboard.press( 'Escape' ); // What: Escape Press Call. Why: The keyboard way out is checked. How: This presses Escape.
 
 	await expect( curPagObj.getByRole( 'button', { name : 'Toggle menu' } ) ).toHaveAttribute( 'aria-expanded', 'false' ); // What: Closed State Assertion. Why: Escape should close the menu. How: This checks the toggle reports it closed.
-
-	await expect( curPagObj.getByRole( 'button', { name : 'Toggle menu' } ) ).toBeFocused(); // What: Focus Return Assertion. Why: The visitor should be back where they opened the menu. How: This checks the toggle has focus.
-
-	await expect( curPagObj.locator( '[inert]' ) ).toHaveCount( 0 ); // What: Page Restored Assertion. Why: The page has to be usable again. How: This checks nothing is left inert.
+	await expect( curPagObj.getByRole( 'button', { name : 'Toggle menu' } ) ).toBeFocused();                               // What: Focus Return Assertion. Why: The visitor should be back where they opened the menu. How: This checks the toggle has focus.
+	await expect( curPagObj.locator( '[inert]' ) ).toHaveCount( 0 );                                                       // What: Page Restored Assertion. Why: The page has to be usable again. How: This checks nothing is left inert.
 
 
 } );
@@ -224,11 +218,9 @@ test( 'tapping the brand goes home and closes the menu', async ( { page : curPag
 
 	await curPagObj.getByRole( 'banner' ).getByRole( 'link', { exact : true, name : 'TechGeek.dev' } ).click(); // What: Brand Tap Call. Why: The brand is the way home from the open menu. How: This taps the bar's brand link.
 
-	await expect( curPagObj ).toHaveURL( '/' ); // What: Home Assertion. Why: The brand links to the home page. How: This waits for the address to change.
-
+	await expect( curPagObj ).toHaveURL( '/' );                                                                            // What: Home Assertion. Why: The brand links to the home page. How: This waits for the address to change.
 	await expect( curPagObj.getByRole( 'button', { name : 'Toggle menu' } ) ).toHaveAttribute( 'aria-expanded', 'false' ); // What: Closed State Assertion. Why: The tap should close the menu. How: This checks the toggle reports it closed.
-
-	await expect( curPagObj.locator( 'main[inert]' ) ).toHaveCount( 0 ); // What: Main Restored Assertion. Why: The home page's content has to be usable. How: This checks the main content is no longer inert.
+	await expect( curPagObj.locator( 'main[inert]' ) ).toHaveCount( 0 );                                                   // What: Main Restored Assertion. Why: The home page's content has to be usable. How: This checks the main content is no longer inert.
 
 
 } );
@@ -243,8 +235,7 @@ test( 'widening the screen closes the menu', async ( { page : curPagObj } ) => {
 	await curPagObj.setViewportSize( { height : 900, width : 1280 } ); // What: Wide Viewport Call. Why: A laptop screen, or a widened window, passes the menu layout. How: This resizes the page past the bar's 1,024px breakpoint.
 
 	await expect( curPagObj.getByRole( 'button', { includeHidden : true, name : 'Toggle menu' } ) ).toHaveAttribute( 'aria-expanded', 'false' ); // What: Closed State Assertion. Why: Widening the screen should close the menu, not just hide its toggle. How: This checks the toggle, hidden at this width, reports the menu closed.
-
-	await expect( curPagObj.locator( '[inert]' ) ).toHaveCount( 0 ); // What: Page Restored Assertion. Why: The wide page has to be usable. How: This checks nothing is left inert.
+	await expect( curPagObj.locator( '[inert]' ) ).toHaveCount( 0 );                                                                             // What: Page Restored Assertion. Why: The wide page has to be usable. How: This checks nothing is left inert.
 
 
 } );
