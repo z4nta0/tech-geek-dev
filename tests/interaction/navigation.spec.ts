@@ -276,7 +276,7 @@ test( "the current page's own bar link scrolls back to the top", async ( { page 
 
 	expect( botTopNum ).toBeGreaterThan( 0 ); // What: Scrolled Assertion. Why: A page that can't scroll would let the check pass with nothing to reset. How: This checks the page sits below its top.
 
-	await curPagObj.getByRole( 'navigation', { name : 'Primary navigation' } ).getByRole( 'link', { exact : true, name : 'About' } ).click(); // What: Bar Link Click. Why: The bar stays in view at every scroll position. How: This clicks the link for the page already showing.
+	await curPagObj.getByRole( 'navigation', { name : 'Primary navigation' } ).getByRole( 'link', { exact : true, name : 'About' } ).click(); // What: Bar Link Click. Why: The bar stays in view when the page is scrolled to the bottom. How: This clicks the link for the page already showing.
 
 	await expect.poll( () => curPagObj.evaluate( () => window.scrollY ) ).toBe( 0 ); // What: Top Offset Assertion. Why: The page has to return to its top. How: This polls the scroll offset until it reads 0.
 
@@ -288,7 +288,7 @@ test( "the current page's own bar link scrolls back to the top", async ( { page 
 test( 'a phone menu link opens its page at the top', async ( { page : curPagObj } ) => { // What: Phone Menu Link Test. Why: Phone visitors move between pages through the menu. How: This scrolls down Home, opens the menu, clicks the "Contact" link, and checks the offset.
 
 
-	await curPagObj.setViewportSize( { height : 844, width : 390 } ); // What: Phone Viewport Call. Why: The menu only replaces the bar's links on a phone. How: This sizes the page before it loads.
+	await curPagObj.setViewportSize( { height : 844, width : 390 } ); // What: Phone Viewport Call. Why: The menu replaces the bar's links only at 1,024px and narrower. How: This sizes the page before it loads.
 
 	await curPagObj.goto( '/' ); // What: Home Page Navigation. Why: Home is long enough to scroll well down. How: This loads it.
 

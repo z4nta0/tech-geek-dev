@@ -107,7 +107,7 @@ function meaProFun ( limSetObj : { bodNum : number, sizNum : number, smaNum : nu
 	const proLisArr : string[] = []; // What: Problem List Array. Why: Every paragraph past its limit should be reported. How: This collects them.
 
 
-	for ( const parCurEle of Array.from( document.querySelectorAll( 'p' ) ) ) { // What: Paragraph Loop. Why: Every paragraph is held to the measure. How: This measures each one in turn.
+	for ( const parCurEle of Array.from( document.querySelectorAll( 'p' ) ) ) { // What: Paragraph Loop. Why: Every visible paragraph is held to the measure. How: This measures each one in turn.
 
 
 		const parBoxObj = parCurEle.getBoundingClientRect(); // What: Paragraph Box Object. Why: A hidden paragraph has no lines to count. How: This reads its box.
@@ -240,7 +240,7 @@ for ( const meaCasObj of MEA_CAS_ARR ) { // What: Case Test Loop. Why: Every pag
 			} );
 
 
-			const proWidArr = await curPagObj.evaluate( meaProFun, { bodNum : BOD_MAX_NUM, sizNum : SMA_SIZ_NUM, smaNum : SMA_MAX_NUM } ); // What: Problem Width Array. Why: This width's problems are collected. How: This measures every paragraph in the page.
+			const proWidArr = await curPagObj.evaluate( meaProFun, { bodNum : BOD_MAX_NUM, sizNum : SMA_SIZ_NUM, smaNum : SMA_MAX_NUM } ); // What: Problem Width Array. Why: This width's problems are collected. How: This measures each visible paragraph in the page.
 
 
 			proAllArr.push( ...proWidArr.map( ( proCurStr ) => `${ widValNum }px ${ proCurStr }` ) ); // What: Problem Record Call. Why: A problem should say the width it appeared at. How: This prefixes each with the width.

@@ -139,10 +139,10 @@ const SOC_KEY_ARR = [ // What: Social Key Array. Why: The social preview rule li
  *
  * @summary
  * Checks that the page showing now has the head its row describes: its exact
- * title, exactly one description, z4nta0 as author, and one h1. A page
- * with a canonical address has that one canonical link, a description of 100
- * to 125 characters, and no robots tag; a page without one has a noindex
- * robots tag and no canonical link. Counting the tags also catches a
+ * title, exactly one description, z4nta0 as author, and one h1. A page with a
+ * canonical address has that one canonical link, a description of 120 to 125
+ * characters, and no robots tag; a page without one has a noindex robots tag
+ * and no canonical link. Counting the tags also catches a
  * navigation that left the previous page's tags behind.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -263,7 +263,7 @@ test( 'moving between pages swaps their head tags', async ( { page : curPagObj }
 
 
 
-test( 'the structured data describes z4nta0 and matches the pages', async ( { page : curPagObj } ) => { // What: Structured Data Test. Why: Search engines may show z4nta0's details from the JSON-LD, so every claim has to match what the pages show. How: This reads the data and checks the person, the site, the profiles, and the email against the pages.
+test( 'the structured data describes z4nta0 and matches the pages', async ( { page : curPagObj } ) => { // What: Structured Data Test. Why: Search engines may show z4nta0's details from the JSON-LD, so its name, address, profiles, and email have to match what the pages show. How: This reads the data and checks the person, the site, the profiles, and the email against the pages.
 
 
 	await curPagObj.goto( '/' ); // What: Home Open Call. Why: The profiles in the data have to be the ones the footer links to. How: This loads the home page.
@@ -349,7 +349,7 @@ test( 'the social preview tags are complete', async ( { page : curPagObj } ) => 
 	await curPagObj.goto( '/' ); // What: Home Load Call. Why: Link scrapers read the page every route shares. How: This opens the home page.
 
 
-	const socTagArr = await curPagObj.locator( 'meta[property^="og:"], meta[name^="twitter:"]' ).evaluateAll( ( tagEleArr ) => tagEleArr.map( ( tagCurEle ) => [ tagCurEle.getAttribute( 'property' ) || tagCurEle.getAttribute( 'name' ) || '', tagCurEle.getAttribute( 'content' ) || '' ] ) ); // What: Social Tag Array. Why: Every social tag is checked by its key and value. How: This reads each Open Graph and Twitter tag as a key and content pair.
+	const socTagArr = await curPagObj.locator( 'meta[property^="og:"], meta[name^="twitter:"]' ).evaluateAll( ( tagEleArr ) => tagEleArr.map( ( tagCurEle ) => [ tagCurEle.getAttribute( 'property' ) || tagCurEle.getAttribute( 'name' ) || '', tagCurEle.getAttribute( 'content' ) || '' ] ) ); // What: Social Tag Array. Why: The social tags are read by key and value. How: This reads each Open Graph and Twitter tag as a key and content pair.
 	const socTagObj = Object.fromEntries( socTagArr ); // What: Social Tag Object. Why: Tags are easier to check by key. How: This turns the pairs into an object.
 
 

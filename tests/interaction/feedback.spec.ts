@@ -531,9 +531,10 @@ async function feeProFun ( curPagObj : Page, redMotBoo : boolean ) : Promise< st
  * hovProFun = Hover Problems Function
  *
  * @summary
- * Probes every reachable card that responds to hover without being a link,
- * and returns a problem for each one that gives no hover feedback, or a
- * single problem when it finds none. Only hover is checked: each card is
+ * Probes the reachable project, service, and value cards, the ones that
+ * respond to hover without being links, and returns a problem for each one
+ * that gives no hover feedback, or a single problem when it finds none. Only
+ * hover is checked: each card is
  * scrolled into view, read at rest with the pointer away and again while
  * hovered, every look read once its transition has settled, and one that
  * looks the same both ways is a problem. Normally every probed property that

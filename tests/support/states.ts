@@ -61,9 +61,9 @@ type StaRecTyp = { // What: State Record Type. Why: Every check reads the same d
  *
  * @summary
  * Every state the checks visit: each route (Home, Work, About, and Contact)
- * and the 404 page at a phone width (390px) and a desktop width
- * (1,440px), plus the mobile menu open at the phone width, since the menu is
- * only reachable there. Every row shares the {@link StaRecTyp} shape, so its
+ * and the 404 page at a phone width (390px) and a desktop width (1,440px),
+ * plus the mobile menu open at the phone width, since the menu replaces the
+ * bar's links there. Every row shares the {@link StaRecTyp} shape, so its
  * fields carry no comments of their own:
  * - `actFun` (Function): Action Function, run after the page loads to open
  *   something on it, such as the menu. Only the menu row has one.
@@ -276,7 +276,7 @@ async function opeStaFun ( curPagObj : Page, staRecObj : StaRecTyp ) : Promise< 
 
 	await curPagObj.goto( staRecObj.patStr ); // What: Page Load Call. Why: Each state starts from a fresh load of its route. How: This opens the path on the suite's dev server.
 
-	await curPagObj.evaluate( () => document.fonts.ready ); // What: Fonts Ready Wait. Why: Text measured before its web font loads would have the wrong size and wrapping. How: This waits until every font face has loaded.
+	await curPagObj.evaluate( () => document.fonts.ready ); // What: Fonts Ready Wait. Why: Text measured before its web font loads would have the wrong size and wrapping. How: This waits until the fonts the page uses have loaded.
 
 	await revPagFun( curPagObj ); // What: Page Reveal Call. Why: Lazy images stay blank until scrolled near. How: This scrolls through the page and back to the top.
 

@@ -301,7 +301,7 @@ function snaEleFun ( eleCurEle : Element, proNamArr : string[] ) : SnaRecTyp[] {
 
 
 
-	return snaRecArr; // What: Snapshot Records Return. Why: The caller compares two moments' records. How: This hands back every record.
+	return snaRecArr; // What: Snapshot Records Return. Why: Two moments' records are compared. How: This hands back every record.
 
 
 }

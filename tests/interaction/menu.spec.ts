@@ -44,7 +44,7 @@ import type { Page    } from '@playwright/test'; // What: Page. Why: The helpers
 
 const CLI_KIN_ARR : Array< [ string, Parameters< Locator[ 'click' ] >[ 0 ] ] > = [ [ 'Ctrl or Cmd', { modifiers : [ 'ControlOrMeta' ] } ], [ 'middle', { button : 'middle' } ] ]; // What: Click Kind Array. Why: Both ways of asking for a new tab have to close the menu. How: Each row pairs a name for the test title with the click options that make that kind of click.
 
-const MEN_LIN_ARR = [ // What: Menu Link Array. Why: Every kind of link in the open menu has to close it. How: Each entry is a link's accessible name: a page link, the call to action, and a profile icon.
+const MEN_LIN_ARR = [ // What: Menu Link Array. Why: A page link, the call to action, and a profile icon each have to close the open menu. How: Each entry is a link's accessible name: a page link, the call to action, and a profile icon.
 
 
 	'About',   // What: Page Link Name. Why: The menu's page links route inside the site. How: This names the "About" link.
@@ -87,7 +87,7 @@ const MEN_LIN_ARR = [ // What: Menu Link Array. Why: Every kind of link in the o
 async function menOpeFun ( curPagObj : Page ) : Promise< void > {
 
 
-	await curPagObj.setViewportSize( { height : 844, width : 390 } ); // What: Phone Viewport Call. Why: The menu exists only at a phone's width. How: This sizes the page before it loads.
+	await curPagObj.setViewportSize( { height : 844, width : 390 } ); // What: Phone Viewport Call. Why: The menu replaces the bar's links only at 1,024px and narrower. How: This sizes the page before it loads.
 
 	await curPagObj.goto( '/about' ); // What: About Page Navigation. Why: About is long enough for the scrim to cover real content. How: This loads it.
 
@@ -254,7 +254,7 @@ test( 'widening the screen closes the menu', async ( { page : curPagObj } ) => {
 for ( const [ cliKinStr, cliOptObj ] of CLI_KIN_ARR ) { // What: Click Kind Loop. Why: Each way of asking for a new tab gets its own checks. How: This declares one test per menu link for each row of CLI_KIN_ARR.
 
 
-	for ( const linNamStr of MEN_LIN_ARR ) { // What: Menu Link Loop. Why: Every kind of link in the menu has to close it. How: This declares one test per link.
+	for ( const linNamStr of MEN_LIN_ARR ) { // What: Menu Link Loop. Why: Each link in MEN_LIN_ARR has to close the menu. How: This declares one test per link.
 
 
 		test( `a ${ cliKinStr } click on the menu's "${ linNamStr }" link opens a new tab and closes the menu`, async ( { page : curPagObj } ) => { // What: Menu New Tab Test. Why: The menu should close once any link is chosen, even one opening in a new tab. How: This clicks the link the loop's way and checks a new tab opened, the menu closed, and the page stayed put.

@@ -27,8 +27,8 @@ import type { Page } from '@playwright/test'; // What: Page. Why: Every helper d
  * document, and lands only on stops that are on screen, not covered by
  * anything else, and visibly changed by focus. Reflow: at 320px wide, WCAG's
  * narrowest reflow width, nothing scrolls sideways. Motion: with reduced
- * motion requested, no animation or transition plays while the state opens.
- * Each failure lists every problem found, by element.
+ * motion requested, no animation or transition is left running once the state
+ * has opened. Each failure lists every problem found, by element.
  *
  * Sections:
  *  - Constants
@@ -241,7 +241,7 @@ function stoInfFun () : StoInfTyp | null {
 
 
 
-	const sigStyFun = () => { // What: Signature Style Function. Why: A focus indicator is any visible change between focused and unfocused. How: This reads the stop's styles as one string to compare.
+	const sigStyFun = () => { // What: Signature Style Function. Why: A focus indicator is a change in the outline, shadow, border, background, color, or underline between focused and unfocused. How: This reads the stop's styles as one string to compare.
 
 
 		const styCurObj = getComputedStyle( actCurEle ); // What: Style Current Object. Why: The stop's styles are compared as they're drawn now. How: This reads its computed styles.
@@ -321,11 +321,11 @@ function stoInfFun () : StoInfTyp | null {
  * focused and unfocused. The walk ends when focus leaves the page, comes
  * back to the first stop, or stays on the same stop after a press, which is
  * how Firefox leaves its last stop; one that hasn't ended within TAB_MAX_NUM
- * presses counts as a keyboard trap. WebKit only tabs to links with Alt
- * held, the way Safari does by default, so the walk presses Alt+Tab there.
- * The caller requests reduced motion first, so the page jumps to each stop
- * instead of gliding and focus styles appear at once, and each press waits
- * for scrolling to settle, so every stop is measured where and how it ends
+ * presses counts as a keyboard trap. WebKit only tabs to links with Alt held,
+ * the way Safari does by default, so the walk presses Alt+Tab there. It
+ * expects reduced motion already requested, so the page jumps to each stop
+ * instead of gliding and focus styles appear at once, and each press waits for
+ * scrolling to settle, so every stop is measured where and how it ends
  * up.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -367,7 +367,7 @@ async function keyProFun ( curPagObj : Page, engNamStr : string ) : Promise< str
 		const walEndBoo = !stoInfObj || stoInfObj.desStr === firStoStr || stoInfObj.ordNum === preOrdNum; // What: Walk Ended Boolean. Why: Focus leaving the page, coming back around, or staying put means every stop was visited. How: This checks each in turn, the later two only once a stop exists, so the chain stays inline. // What: Firefox Walk End Note. Why: Firefox moves focus out to its own interface after the last stop but still reports that stop as focused. How: Focus staying on the same stop after a press is read as the walk leaving the page.
 
 
-		if ( walEndBoo ) return proLisArr; // What: Walk End Guard. Why: A walk that reaches its end has found every problem there is. How: This returns them, ending the walk.
+		if ( walEndBoo ) return proLisArr; // What: Walk End Guard. Why: A walk that reaches its end has found every problem the checks look for. How: This returns them, ending the walk.
 
 
 
@@ -416,7 +416,7 @@ async function keyProFun ( curPagObj : Page, engNamStr : string ) : Promise< str
 for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every check runs on every page state. How: This declares each check once per state.
 
 
-	test( `${ staRecObj.ideStr } names every link and button cleanly`, async ( { page : curPagObj } ) => { // What: Names Test. Why: Every control must be announced by a clean name. How: This opens the state and checks its accessibility tree.
+	test( `${ staRecObj.ideStr } names every link and button cleanly`, async ( { page : curPagObj } ) => { // What: Names Test. Why: Every link and button must be announced by a clean name. How: This opens the state and checks its accessibility tree.
 
 
 		await opeStaFun( curPagObj, staRecObj ); // What: State Open Call. Why: The tree should be read with the state settled. How: This loads and settles it.
@@ -467,7 +467,7 @@ for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every ch
 		await opeStaFun( curPagObj, staRecObj ); // What: State Open Call. Why: Entrance animations and the state's own action are the motion being checked. How: This loads the state and runs its action.
 
 
-		expect( await curPagObj.evaluate( () => document.getAnimations().filter( ( aniCurObj ) => ( Number( aniCurObj.effect?.getTiming().duration ) || 0 ) > 1 ).map( ( aniCurObj ) => ( aniCurObj as CSSAnimation ).animationName || ( aniCurObj as CSSTransition ).transitionProperty || 'script animation' ) ) ).toEqual( [] ); // What: No Motion Assertion. Why: The state passes only when nothing animated as it opened. How: This lists every animation or transition the page still holds that lasts longer than 1ms, which should be none. // What: Type Assertion Note. Why: getAnimations returns plain Animation objects, which don't type their CSS names. How: Each one is read as a CSS animation, then a CSS transition, falling back to a generic label when neither name exists.
+		expect( await curPagObj.evaluate( () => document.getAnimations().filter( ( aniCurObj ) => ( Number( aniCurObj.effect?.getTiming().duration ) || 0 ) > 1 ).map( ( aniCurObj ) => ( aniCurObj as CSSAnimation ).animationName || ( aniCurObj as CSSTransition ).transitionProperty || 'script animation' ) ) ).toEqual( [] ); // What: No Motion Assertion. Why: The state passes only when nothing is left animating once it has opened. How: This lists every animation or transition the page still holds that lasts longer than 1ms, which should be none. // What: Type Assertion Note. Why: getAnimations returns plain Animation objects, which don't type their CSS names. How: Each one is read as a CSS animation, then a CSS transition, falling back to a generic label when neither name exists.
 
 
 	} );
