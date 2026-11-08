@@ -378,8 +378,6 @@
 
 }
 
-/* #endregion forRowDiv */
-
 
 
 /* #region forFieDiv */
@@ -451,6 +449,18 @@
 
 }
 
+/* #endregion forFieDiv */
+
+/* #endregion forRowDiv */
+
+
+
+/* #region forFieDiv */
+
+/* What: Form Field Div Pointer. Why: The budget field takes the same stacked look as the name and email fields. How: Its rule sits in the forFieDiv region inside the forRowDiv region above. */
+
+/* What: Field Label Label Pointer. Why: The budget field's label reads like the others. How: Its rule sits in the forFieDiv region inside the forRowDiv region above. */
+
 .forConSel { /* What: Form Control Select. Why: The select draws its own arrow in the site's style. How: This removes the native arrow and draws a muted chevron at the right, making room for it. */
 
 
@@ -460,16 +470,6 @@
 	background-repeat   : no-repeat;
 	cursor              : pointer;
 	padding-right       : var( --spa-hor-p04 );              /* Spacing Horizontal Base Plus 4 ~= 44.876px */
-
-
-}
-
-.forConTex { /* What: Form Control Textarea. Why: A message needs room and only grows downward. How: This sets a 138px minimum, roomy lines, and vertical resizing only. */
-
-
-	line-height : var( --ver-rhy-p01 );                /* Vertical Rhythm Base Plus 1 ~= 1.755 */
-	min-height  : calc( var( --ver-rhy-p08 ) * 1rem ); /* Vertical Rhythm Base Plus 8 ~= 138.199px */
-	resize      : vertical;
 
 
 }
@@ -503,6 +503,26 @@
 
 
 }
+
+
+/* #region forFieDiv */
+
+/* What: Form Field Div Pointer. Why: The message field takes the same stacked look as the name and email fields. How: Its rule sits in the forFieDiv region inside the forRowDiv region above. */
+
+/* What: Field Label Label Pointer. Why: The message field's label reads like the others. How: Its rule sits in the forFieDiv region inside the forRowDiv region above. */
+
+.forConTex { /* What: Form Control Textarea. Why: A message needs room and only grows downward. How: This sets a 138px minimum, roomy lines, and vertical resizing only. */
+
+
+	line-height : var( --ver-rhy-p01 );                /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	min-height  : calc( var( --ver-rhy-p08 ) * 1rem ); /* Vertical Rhythm Base Plus 8 ~= 138.199px */
+	resize      : vertical;
+
+
+}
+
+/* #endregion forFieDiv */
+
 
 .senMesBut { /* What: Send Message Button. Why: Sending is the form's main action. How: This sets an orange button in mono capitals at the form's left, easing its color, sending dim, lift, press, and focus. */
 
