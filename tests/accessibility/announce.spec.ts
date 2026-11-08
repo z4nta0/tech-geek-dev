@@ -203,7 +203,7 @@ for ( const resRecObj of RES_REC_ARR ) { // What: Result Loop. Why: The thank-yo
 			...staRecObj, // What: State Record Spread. Why: The result state keeps the Contact state's path and viewport. How: This copies the row.
 
 			actFun : ( curPagObj : Page ) => senForFun( curPagObj, resRecObj.staNum ), // What: Action Function. Why: The state shows the form's result. How: This sends the form with the root's POST answered at the result's status.
-			ideStr : `${ staRecObj.ideStr }-${ resRecObj.ideStr }`,                    // What: Identifier String. Why: Each test names its width and result. How: This joins the Contact state's name and the result's.
+			ideStr : `${ staRecObj.ideStr }-${ resRecObj.ideStr }`                     // What: Identifier String. Why: Each test names its width and result. How: This joins the Contact state's name and the result's.
 
 
 		};

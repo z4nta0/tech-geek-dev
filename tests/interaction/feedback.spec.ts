@@ -472,6 +472,8 @@ async function feeProFun ( curPagObj : Page, staIdeStr : string, redMotBoo : boo
 
 		if ( !conFieBoo ) await curPagObj.mouse.down(); // What: Mouse Down Call. Why: A press shows while the button is held, while pressing a field only focuses it, which the focus read below covers. How: This holds the mouse button down on a link or button.
 
+
+
 		await curPagObj.waitForTimeout( SET_WAI_NUM ); // What: Press Settle Wait. Why: The pressed look is read once it has eased in. How: This pauses for the settle time.
 
 		await conCurObj.evaluate( aniFinFun ); // What: Animation Finish Call. Why: WebKit can run a transition behind the clock on a heavy page, such as an overlay link's press over its blurred screenshot, leaving it partway at the settle wait. How: This waits for every finite animation on the element and inside it to end.
@@ -482,6 +484,8 @@ async function feeProFun ( curPagObj : Page, staIdeStr : string, redMotBoo : boo
 
 
 		if ( !conFieBoo ) await curPagObj.mouse.up(); // What: Mouse Up Call. Why: The press has to end before the focus is read. How: This releases the button, which does nothing further since clicks are blocked.
+
+
 
 		await curPagObj.mouse.move( 0, 0 ); // What: Pointer Away Call. Why: The focus look is compared with no hover on it. How: This moves the pointer to the corner of the bar.
 

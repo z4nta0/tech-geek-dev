@@ -578,6 +578,7 @@ for ( const { labStr : pagLabStr, patStr : rouPatStr } of [ ...PAG_LIN_ARR, { la
 }
 
 
+
 test.describe( 'with smooth scrolling on', () => { // What: Smooth Scroll Group. Why: Reduced motion turns the stylesheet's smooth scroll-behavior off, so the tests above would pass even if the jump to the top glided or came a frame late. How: This groups the check that runs with smooth scrolling left on.
 
 
