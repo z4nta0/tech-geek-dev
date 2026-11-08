@@ -17,9 +17,9 @@
  * below, the projects and services reaching one column at 640px and below and
  * the stats staying in pairs. The shapes, the entrances, and the dot play the
  * shared shapeLoopSpin, contentEnterFadeUp, and statusLoopPulse keyframes from
- * the global sheet; the ticker plays its own. The page's centered columns take
- * the shared container values, and its sections the shared section padding,
- * merged into their own rules.
+ * the global stylesheets; the ticker plays its own. The page's centered
+ * columns take the shared container values, and its sections the shared
+ * section padding, merged into their own rules.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
