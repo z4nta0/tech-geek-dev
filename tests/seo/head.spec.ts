@@ -73,11 +73,55 @@ const LIV_URL_STR = 'https://techgeek.dev/'; // What: Live URL String. Why: The 
 const PAG_HEA_ARR = [ // What: Page Head Array. Why: Every page's head is checked against what it should say. How: Each row names one page, its title, and its canonical address or null.
 
 
-	{ canStr : LIV_URL_STR,               patStr : '/',             titStr : 'z4nta0, Full Stack Web Developer Portfolio | TechGeek.dev' }, // What: Home Head Row. Why: Home is the indexed entry page. How: This pairs its path with its title and canonical address.
-	{ canStr : `${ LIV_URL_STR }work`,    patStr : '/work',         titStr : 'Projects & Case Studies | TechGeek.dev'                    }, // What: Work Head Row. Why: The Work page is indexed on its own. How: This pairs its path with its title and canonical address.
-	{ canStr : `${ LIV_URL_STR }about`,   patStr : '/about',        titStr : 'About z4nta0, Full Stack Web Developer | TechGeek.dev'     }, // What: About Head Row. Why: The About page is indexed on its own. How: This pairs its path with its title and canonical address.
-	{ canStr : `${ LIV_URL_STR }contact`, patStr : '/contact',      titStr : 'Contact z4nta0 About Your Project | TechGeek.dev'          }, // What: Contact Head Row. Why: The Contact page is indexed on its own. How: This pairs its path with its title and canonical address.
-	{ canStr : null,                      patStr : '/no-such-page', titStr : 'Page Not Found | TechGeek.dev'                             }  // What: Not Found Head Row. Why: Every unknown address shows the 404 page, which stays out of search. How: This pairs a missing path with its title and no canonical address.
+	{ // What: Home Head Row. Why: Home is the indexed entry page. How: This pairs its path with its title and canonical address.
+
+
+		canStr : LIV_URL_STR,
+		patStr : '/',
+		titStr : 'z4nta0, Full Stack Web Developer Portfolio | TechGeek.dev'
+
+
+	},
+
+	{ // What: Work Head Row. Why: The Work page is indexed on its own. How: This pairs its path with its title and canonical address.
+
+
+		canStr : `${ LIV_URL_STR }work`,
+		patStr : '/work',
+		titStr : 'Projects & Case Studies | TechGeek.dev'
+
+
+	},
+
+	{ // What: About Head Row. Why: The About page is indexed on its own. How: This pairs its path with its title and canonical address.
+
+
+		canStr : `${ LIV_URL_STR }about`,
+		patStr : '/about',
+		titStr : 'About z4nta0, Full Stack Web Developer | TechGeek.dev'
+
+
+	},
+
+	{ // What: Contact Head Row. Why: The Contact page is indexed on its own. How: This pairs its path with its title and canonical address.
+
+
+		canStr : `${ LIV_URL_STR }contact`,
+		patStr : '/contact',
+		titStr : 'Contact z4nta0 About Your Project | TechGeek.dev'
+
+
+	},
+
+	{ // What: Not Found Head Row. Why: Every unknown address shows the 404 page, which stays out of search. How: This pairs a missing path with its title and no canonical address.
+
+
+		canStr : null,
+		patStr : '/no-such-page',
+		titStr : 'Page Not Found | TechGeek.dev'
+
+
+	}
 
 
 ];
