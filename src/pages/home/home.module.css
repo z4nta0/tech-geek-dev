@@ -11,15 +11,15 @@
  * code window and a white badge that follow it in, a pulsing availability dot,
  * and a ticker of skills scrolling under the buttons; a slanted white edge
  * leads into the stats strip. Below come the featured projects, the services
- * in white cards that lift on hover, and an orange closing card. On a tablet
- * the code window keeps its natural width beside the pitch, and on a phone it
- * stacks above it, while the grids step down, the projects and services
- * reaching one column on a phone and the stats staying in pairs. The shapes,
- * the entrances, and the dot play the shared shapeLoopSpin,
- * contentEnterFadeUp, and statusLoopPulse keyframes from the global sheet; the
- * ticker plays its own. The page's centered columns take the shared container
- * values, and its sections the shared section padding, merged into their own
- * rules.
+ * in white cards that lift on hover, and an orange closing card. At 1,024px
+ * and below the code window keeps its natural width beside the pitch, and at
+ * 768px and below it stacks above it, while the grids step down at 1,024px and
+ * below, the projects and services reaching one column at 640px and below and
+ * the stats staying in pairs. The shapes, the entrances, and the dot play the
+ * shared shapeLoopSpin, contentEnterFadeUp, and statusLoopPulse keyframes from
+ * the global sheet; the ticker plays its own. The page's centered columns take
+ * the shared container values, and its sections the shared section padding,
+ * merged into their own rules.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -346,7 +346,7 @@
 
 /* #region herActDiv */
 
-.herActDiv { /* What: Hero Actions Div. Why: The two next steps sit side by side. How: This lines them up with a gap, wrapping when they don't fit. */
+.herActDiv { /* What: Hero Actions Div. Why: The two next steps sit side by side. How: This lines them up with a gap, wrapping onto two lines at about 490px wide and below, and from about 769px to 820px, where the pitch sits beside the code window. */
 
 
 	display   : flex;

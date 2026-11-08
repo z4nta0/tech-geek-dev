@@ -45,7 +45,7 @@
 
 /* #region Shared Keyframes */
 
-@keyframes shapeLoopSpin { /* What: Shape Loop Spin. Why: Home's shapes and the 404 drawing turn slowly. How: This turns the element once around. */
+@keyframes shapeLoopSpin { /* What: Shape Loop Spin. Why: Decorative shapes turn slowly. How: This turns the element once around. */
 
 
 	from {

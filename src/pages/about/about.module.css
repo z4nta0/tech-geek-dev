@@ -8,16 +8,17 @@
  * Styles for AboPagCom. The page fades up into view like every page. Its ivory
  * hero clears the fixed bar and sets the introduction beside the portrait in
  * its hexagon frame, with two white fact cards floating above and below the
- * portrait's corners; on a tablet the heading spans the row with the portrait
- * beside the paragraphs, and on a phone the portrait stacks centered above the
- * introduction, a step smaller, between two small geometric flourishes. The
- * skills grid steps from four groups across to two to one, the timeline
- * alternates its milestones either side of a center line on a tablet or wider
- * and runs each one's year, dot, and line, and text in three columns on a
- * phone, the values grid steps like the skills and lifts a card on hover, and
- * a white band closes the page with the Ko-fi invitation and its button. The
- * page's centered columns take the shared container values, and its sections
- * the shared section padding, merged into their own rules.
+ * portrait's corners; at 1,024px and below the heading spans the row with the
+ * portrait beside the paragraphs, and at 768px and below the portrait stacks
+ * centered above the introduction, a step smaller, between two small geometric
+ * flourishes. The skills grid steps from four groups across to two at 1,024px
+ * and below and to one at 640px and below, the timeline alternates its
+ * milestones either side of a center line above 768px and runs each one's
+ * year, dot, and line, and text in three columns at 768px and below, the
+ * values grid steps like the skills and lifts a card on hover, and a white
+ * band closes the page with the Ko-fi invitation and its button. The page's
+ * centered columns take the shared container values, and its sections the
+ * shared section padding, merged into their own rules.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *

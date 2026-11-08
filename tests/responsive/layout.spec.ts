@@ -19,13 +19,13 @@ import { test      } from '@playwright/test';     // What: Test. Why: Each page 
  * of screen widths, in whichever engine the project runs, and fails a width
  * whose layout breaks: the page scrolling sideways, a visible element reaching
  * past either edge of the screen (unless an ancestor clips it on purpose,
- * which never excuses a link or button cut off at the edge), text spilling
- * out of its own box, or two controls a visitor can reach overlapping each
- * other. The widths run from 320px, WCAG's narrowest reflow width, to
- * 1,920px, and include a pixel either side of each of the site's breakpoints,
- * where a layout switches and is most likely to crowd. Pages open under
- * reduced motion, which changes nothing about the layout but skips the wait
- * for entrance animations.
+ * which doesn't excuse a link or button cut off at the edge by a container
+ * that hides its overflow), text spilling out of its own box, or two controls
+ * a visitor can reach overlapping each other. The widths run from 320px,
+ * WCAG's narrowest reflow width, to 1,920px, and include a pixel either side
+ * of each of the site's breakpoints, where a layout switches and is most
+ * likely to crowd. Pages open under reduced motion, which changes nothing
+ * about the layout but skips the wait for entrance animations.
  *
  * Sections:
  *  - Constants
@@ -260,7 +260,7 @@ function layProFun () : string[] {
 
 
 
-		if ( ( conRecObj.right > vieWidNum + 1 && conRecObj.left < vieWidNum ) || ( conRecObj.left < -1 && conRecObj.right > 0 ) ) proLisArr.push( `${ desEleFun( conCurEle ) } is cut off at the ${ conRecObj.right > vieWidNum + 1 ? 'right' : 'left' } edge` ); // What: Cut Off Control Check. Why: Every reachable control has to sit fully on screen. How: This records one that runs past an edge.
+		if ( ( conRecObj.right > vieWidNum + 1 && conRecObj.left < vieWidNum ) || ( conRecObj.left < -1 && conRecObj.right > 0 ) ) proLisArr.push( `${ desEleFun( conCurEle ) } is cut off at the ${ conRecObj.right > vieWidNum + 1 ? 'right' : 'left' } edge` ); // What: Cut Off Control Check. Why: A reachable control inside a container that hides its overflow has to sit fully on screen. How: This records one that runs past an edge.
 
 
 	} );

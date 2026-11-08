@@ -132,7 +132,7 @@
 
 /* #region nofActDiv */
 
-.nofActDiv { /* What: Not-Found Actions Div. Why: The two ways onward sit side by side, one height, and wrap on a narrow phone. How: This lines up the buttons centered in a wrapping row with gaps, stretching them to the taller one, and lifts them over the drawing. */
+.nofActDiv { /* What: Not-Found Actions Div. Why: The two ways onward sit side by side, one height, wrapping onto two lines at about 375px wide and below. How: This lines up the buttons centered in a wrapping row with gaps, stretching them to the taller one, and lifts them over the drawing. */
 
 
 	display         : flex;
