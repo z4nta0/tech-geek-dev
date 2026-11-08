@@ -50,14 +50,15 @@ test( 'the alert region is in the page and empty on load, and focus stays put', 
 
 
 
-test( 'a failed send puts the error in the alert region', async ( { page : curPagObj } ) => { // What: Failed Send Test. Why: Screen reader users have to hear that the message didn't go out. How: This sends the form against a 500 and checks the alert region holds the error.
+test( 'a failed send puts the error in the alert region and keeps focus on the submit button', async ( { page : curPagObj } ) => { // What: Failed Send Test. Why: Screen reader users have to hear that the message didn't go out, and the button's disabled spell while sending mustn't drop focus to the page. How: This sends the form against a 500 and checks the alert region holds the error and the submit button is focused.
 
 
 	await curPagObj.goto( '/contact' ); // What: Contact Page Navigation. Why: The form lives on the Contact page. How: This loads it.
 
 	await senForFun( curPagObj, 500 ); // What: Failed Send Call. Why: The error shows only after a failed send. How: This sends the form with the root's POST answered by a 500.
 
-	await expect( curPagObj.getByRole( 'alert' ) ).toHaveText( ERR_MES_STR ); // What: Error Alert Assertion. Why: The alert region announces the error. How: This checks it holds the error message.
+	await expect( curPagObj.getByRole( 'alert' ) ).toHaveText( ERR_MES_STR );                 // What: Error Alert Assertion. Why: The alert region announces the error. How: This checks it holds the error message.
+	await expect( curPagObj.getByRole( 'button', { name : 'Send Message' } ) ).toBeFocused(); // What: Submit Focus Assertion. Why: Focus never falls to the page, so the visitor can try again from where they were. How: This checks the submit button is the focused element once sending ends.
 
 
 } );

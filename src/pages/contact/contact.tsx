@@ -9,7 +9,7 @@ import cssModObj from './contact.module.css'; // What: CSS Module Object. Why: T
 import { GeoBacCom    } from '../../ui/geo-bg.tsx';                    // What: Geometric Background Component. Why: The hero sits over a faint pattern. How: This draws the circuit.
 import { useEffect    } from 'react';                                  // What: Use Effect. Why: Focus has to follow the swap between the form and the thank-you. How: This runs the focus move once the swap has rendered.
 import { usePagDesFun } from 'techgeek-design/ui/page-description.ts'; // What: Use Page Description Function. Why: The page's search description differs from the home page's. How: The page calls it to swap the one description tag's text while it shows.
-import { useRef       } from 'react';                                  // What: Use Reference. Why: The focus move needs the thank-you, the name field, and whether the form is coming back. How: This holds each of those across renders.
+import { useRef       } from 'react';                                  // What: Use Reference. Why: The focus moves need the elements they land on and whether the form is coming back. How: This holds each of those across renders.
 import { useState     } from 'react';                                  // What: Use State. Why: The page remembers the form's fields and whether a message is sending, sent, or failed. How: This holds each of those.
 
 
@@ -200,8 +200,10 @@ const EMP_FOR_OBJ = { 'bot-field' : '', budget : '', email : '', message : '', n
  * Screen readers hear the result too. The error sits in an alert region that
  * is in the form, empty, from the first render, and the thank-you takes focus
  * as it replaces the form, which announces it, so focus never falls to the
- * page. Its button puts focus back on the name field as the form returns,
- * while a first visit leaves focus where it is.
+ * page. A failed send focuses the submit button again, since disabling it
+ * while sending can drop its focus. The thank-you's button puts focus back on
+ * the name field as the form returns, while a first visit leaves focus where
+ * it is.
  *
  * It also sets the page's title and canonical address, which React moves
  * into the document head, and swaps the search description for its own
@@ -269,11 +271,12 @@ function ConPagCom () : JSX.Element {
 
 
 
-	// #region Result Swap
+	// #region Result Focus
 
-	const forNamRef = useRef< HTMLInputElement >( null ); // What: Form Name Reference. Why: Focus returns to the first field when the form comes back. How: This holds the name input.
-	const retForRef = useRef( false );                    // What: Return Form Reference. Why: Only a return from the thank-you moves focus to the name field, never a first visit. How: This starts false, and resForFun sets it true.
-	const sucStaRef = useRef< HTMLDivElement >( null );   // What: Success State Reference. Why: The thank-you takes focus as it replaces the form. How: This holds the thank-you panel.
+	const forNamRef = useRef< HTMLInputElement >( null );  // What: Form Name Reference. Why: Focus returns to the first field when the form comes back. How: This holds the name input.
+	const retForRef = useRef( false );                     // What: Return Form Reference. Why: Only a return from the thank-you moves focus to the name field, never a first visit. How: This starts false, and resForFun sets it true.
+	const senMesRef = useRef< HTMLButtonElement >( null ); // What: Send Message Reference. Why: A failed send puts focus back on the submit button. How: This holds the button.
+	const sucStaRef = useRef< HTMLDivElement >( null );    // What: Success State Reference. Why: The thank-you takes focus as it replaces the form. How: This holds the thank-you panel.
 
 
 	const resForFun = () => { // What: Reset Form Function. Why: The thank-you's button lets a visitor send another message. How: This marks the form as returning, hides the thank-you, and empties the fields.
@@ -301,7 +304,17 @@ function ConPagCom () : JSX.Element {
 
 	}, [ isaSenBoo ] ); // What: Effect Dependency Array. Why: Focus moves only when the form and the thank-you swap. How: isaSenBoo changes whenever one replaces the other.
 
-	// #endregion Result Swap
+
+
+	useEffect( () => { // What: Error Focus Effect. Why: The submit button is disabled while the message sends, which can drop its focus to the page, and focus must never fall there. How: This focuses the button again once a failed send shows its error.
+
+
+		if ( errMesStr ) senMesRef.current?.focus(); // What: Submit Focus Call. Why: The visitor can try again from where they were, and focus never stays on the page. How: This focuses the button, enabled again by the same render that shows the error.
+
+
+	}, [ errMesStr ] ); // What: Effect Dependency Array. Why: Focus moves back only when a send fails. How: errMesStr gains its message when a send fails, and clears as the next one starts.
+
+	// #endregion Result Focus
 
 
 
@@ -712,6 +725,8 @@ function ConPagCom () : JSX.Element {
 
 
 									<button
+										ref={ senMesRef }
+
 										className={ cssModObj.senMesBut }
 
 										disabled={ isaLoaBoo }
