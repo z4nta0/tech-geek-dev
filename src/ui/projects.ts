@@ -39,7 +39,7 @@ import totScrUrl from '../assets/images/tonys-toppers-website.webp';     // What
 
 // #region Types
 
-type ProRecTyp = { // What: Project Record Type. Why: The project card, Home, and the Work page all read the same fields. How: This names every field a project record carries.
+type ProRecTyp = { // What: Project Record Type. Why: Every project record shares one shape. How: This names every field a project record carries.
 
 
 	cliBoo  : boolean,  // What: Client Boolean. Why: Home counts the client projects apart from z4nta0's own. How: This is true for a site built for a client.

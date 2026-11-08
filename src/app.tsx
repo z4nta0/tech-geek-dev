@@ -54,7 +54,7 @@ const SIT_EMA_STR = 'contact@techgeek.dev';                    // What: Site Ema
 const SIT_TAG_STR = 'Building the web, one commit at a time.'; // What: Site Tagline String. Why: The phone menu and the footer end on the site's tagline. How: The bar and the footer both show it.
 const WOR_END_STR = '.dev';                                    // What: Wordmark Ending String. Why: The family's wordmark ends in each site's own domain. How: The bar's wordmark and the footer's copyright both show it after TechGeek.
 
-const CTA_LIN_OBJ : PagLinTyp = { labStr : 'Hire Me', patStr : '/contact' }; // What: Call-To-Action Link Object. Why: The bar's one button asks a visitor to hire z4nta0. How: The bar and the drawer both route it to the Contact page.
+const CTA_LIN_OBJ : PagLinTyp = { labStr : 'Hire Me', patStr : '/contact' }; // What: Call-To-Action Link Object. Why: The bar's one button asks a visitor to hire z4nta0. How: The bar and the drawer both route it to the Contact page. // What: Label String. Why: The button needs its words. How: This reads "Hire Me". // What: Path String. Why: The button needs a destination. How: This routes to the Contact page.
 
 
 const SIS_LIN_ARR : SisLinTyp[] = [ // What: Sister Link Array. Why: TechGeek.dev is one of three sister sites, and a visitor here may want tech support or a greeting card. How: The footer links to each row in the same tab.

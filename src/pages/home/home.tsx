@@ -463,7 +463,7 @@ function HomPagCom () : JSX.Element {
 
 							</div>
 
-							<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up what z4nta0 does. How: This sets "I Build Digital Experiences" over two lines, with "Digital" in the accent and a closing dot. */ }
+							<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up what z4nta0 does. How: This sets "I Build Digital Experiences", breaking the line after "Digital", with "Digital" in the accent and a closing dot. */ }
 								I Build <span className={ cssModObj.titAccSpa }>Digital</span>
 								<br />{ /* What: Title Break Element. Why: The heading sets "Experiences" on a line of its own. How: This breaks the line after "Digital". */ }
 								Experiences

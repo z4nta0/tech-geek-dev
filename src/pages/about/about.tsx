@@ -169,11 +169,12 @@ const VAL_CAR_ARR = [ // What: Value Card Array. Why: The values section shows t
  * @summary
  * Renders the About page. The hero pairs the introduction and its button to
  * the Contact page with the portrait in its hexagon frame and two floating
- * facts, the second counted from the project list. The skills section shows
- * a card per group in SKI_GRO_ARR with a tag per skill; the timeline shows
+ * facts, the second counted from the project list. The skills section shows a
+ * card per group in SKI_GRO_ARR with a tag per skill; the timeline shows
  * TIM_MIL_ARR's milestones joined by a line that stops at the last one; and
- * the values section shows a card per value in VAL_CAR_ARR. Every
- * decorative frame, line, and symbol is hidden from screen readers.
+ * the values section shows a card per value in VAL_CAR_ARR. The portrait
+ * frame, the flourish drawings, the timeline connectors, and the value symbols
+ * are hidden from screen readers as decoration.
  *
  * It also sets the page's title and canonical address, which React moves
  * into the document head, and swaps the search description for its own

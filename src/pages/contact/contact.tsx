@@ -165,7 +165,7 @@ const CON_ITE_ARR = [ // What: Contact Item Array. Why: The sidebar lists the sa
 
 
 
-const EMP_FOR_OBJ = { 'bot-field' : '', budget : '', email : '', message : '', name : '' }; // What: Empty Form Object. Why: The form starts empty and empties again for another message. How: This holds a blank value for each field, keyed by the field's name attribute, which browsers read for autofill. // The bot-field key is the honeypot Netlify reads by that exact name, so it keeps Netlify's spelling.
+const EMP_FOR_OBJ = { 'bot-field' : '', budget : '', email : '', message : '', name : '' }; // What: Empty Form Object. Why: The form starts empty and empties again for another message. How: This holds a blank value for each field, keyed by the field's name attribute, which browsers read for autofill. // What: Bot Field String. Why: The honeypot starts blank. How: This is an empty string. // What: Budget String. Why: No range is chosen at first. How: This is an empty string. // What: Email String. Why: The address starts blank. How: This is an empty string. // What: Message String. Why: The message starts blank. How: This is an empty string. // What: Name String. Why: The name starts blank. How: This is an empty string. // The bot-field key is the honeypot Netlify reads by that exact name, so it keeps Netlify's spelling.
 
 // #endregion Constants
 
