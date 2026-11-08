@@ -72,15 +72,15 @@ Decided 2026-10-12 by the user, in the step 7 content review.
   Development, Backend Development, and Hosting & Maintenance, the fourth
   added after the greeting cards service was cut, so the four-column grid
   keeps even rows and the section covers a site from build to upkeep.
-- **Ko-fi** (decided by the user 2026-11-01): the README ends with the
-  shared Support section, and About closes with a white Support My Work band
-  inviting a tip, its "Buy Me a Coffee" button opening
-  https://ko-fi.com/techgeekdev in a new tab. The address is written into
-  `pages/about/about.tsx` (`TIP_URL_STR`) rather than read from a Netlify
-  environment variable as in ease-my-life, since it's public and the same in
-  every build. About was chosen over the shared footer, which would ask on
-  every page of all three sites, and over Contact, which is for paid work.
-  `tests/interaction/ko-fi.spec.ts` checks the link.
+- **Ko-fi** (decided by the user 2026-11-01): the README carries the shared
+  Support section directly above its License section, and About closes with a
+  white Support My Work band inviting a tip, its "Buy Me a Coffee" button
+  opening https://ko-fi.com/techgeekdev in a new tab. The address is written
+  into `pages/about/about.tsx` (`TIP_URL_STR`) rather than read from a
+  Netlify environment variable as in ease-my-life, since it's public and the
+  same in every build. About was chosen over the shared footer, which would
+  ask on every page of all three sites, and over Contact, which is for paid
+  work. `tests/interaction/ko-fi.spec.ts` checks the link.
 - **License** (decided by the user 2026-11-01, per the user-level Licenses
   rule): the code is source available under the PolyForm Noncommercial
   License 1.0.0 in `LICENSE.md`, whose note keeps the written content,
