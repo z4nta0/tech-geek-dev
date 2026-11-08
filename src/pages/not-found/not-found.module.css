@@ -7,10 +7,10 @@
  * @summary
  * Styles for NotFouCom: a full-screen ivory panel that fades up into view like
  * every page, centering a huge quiet 404 with a hexagon drawing slowly turning
- * behind it, the heading and line above the drawing, and two ways onward, an
- * orange "Go Home" button and an outlined "Get In Touch" button. The page's
- * entrance and the drawing's turn play the shared contentEnterFadeUp and
- * shapeLoopSpin keyframes from the global stylesheets.
+ * behind it, the heading and line layered over the drawing, and two ways
+ * onward, an orange "Go Home" button and an outlined "Get In Touch" button.
+ * The page's entrance and the drawing's turn play the shared
+ * contentEnterFadeUp and shapeLoopSpin keyframes from the global stylesheets.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -107,7 +107,7 @@
 
 }
 
-.nofTitHea { /* What: Not-Found Title Heading. Why: The heading sits above the turning drawing. How: This sets its size and color and lifts it over the drawing. */
+.nofTitHea { /* What: Not-Found Title Heading. Why: The heading sits over the turning drawing. How: This sets its size and color and lifts it over the drawing. */
 
 
 	color     : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */

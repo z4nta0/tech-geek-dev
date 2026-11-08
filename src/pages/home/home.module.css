@@ -13,13 +13,14 @@
  * leads into the stats strip. Below come the featured projects, the services
  * in white cards that lift on hover, and an orange closing card. At 1,024px
  * and below the code window keeps its natural width beside the pitch, and at
- * 768px and below it stacks above it, while the grids step down at 1,024px and
- * below, the projects and services reaching one column at 640px and below and
- * the stats staying in pairs. The shapes, the entrances, and the dot play the
- * shared shapeLoopSpin, contentEnterFadeUp, and statusLoopPulse keyframes from
- * the global stylesheets; the ticker plays its own. The page's centered
- * columns take the shared container values, and its sections the shared
- * section padding, merged into their own rules.
+ * 768px and below it stacks above it, while the services and stats grids step
+ * down to two columns at 1,024px and below, the projects and services reaching
+ * one column at 640px and below and the stats staying in pairs. The shapes,
+ * the entrances, and the dot play the shared shapeLoopSpin,
+ * contentEnterFadeUp, and statusLoopPulse keyframes from the global
+ * stylesheets; the ticker plays its own. The page's centered columns take the
+ * shared container values, and its sections the shared section padding, merged
+ * into their own rules.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
