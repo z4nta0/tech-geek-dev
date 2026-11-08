@@ -188,11 +188,11 @@ const SOC_KEY_ARR = [ // What: Social Key Array. Why: The social preview rule li
  *
  * @summary
  * Checks that the page showing now has the head its row describes: its exact
- * title, exactly one description, z4nta0 as author, and one h1. A page with a
- * canonical address has that one canonical link, a description of 120 to 125
- * characters, and no robots tag; a page without one has a noindex robots tag
- * and no canonical link. Counting the tags also catches a
- * navigation that left the previous page's tags behind.
+ * title, no longer than 60 characters, exactly one description, z4nta0 as
+ * author, and one h1. A page with a canonical address has that one canonical
+ * link, a description of 120 to 125 characters, and no robots tag; a page
+ * without one has a noindex robots tag and no canonical link. Counting the
+ * tags also catches a navigation that left the previous page's tags behind.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -396,7 +396,7 @@ test( 'the sitemap lists the four indexed pages', async ( { request : reqConObj 
 
 
 
-test( 'the social preview tags are complete in the raw page', async ( { page : curPagObj, request : reqConObj } ) => { // What: Social Tags Test. Why: A link shared anywhere should show a full card that matches the page, and link scrapers read the raw page without running the site's script. How: This fetches the root as raw HTML and checks every social tag carries content, its card kinds, its absolute URLs, and its copy against the loaded home page's title and description, then the theme color.
+test( 'the social preview tags are complete in the raw page', async ( { page : curPagObj, request : reqConObj } ) => { // What: Social Tags Test. Why: A link shared anywhere should show a full card that matches the page, and link scrapers read the raw page without running the site's script. How: This fetches the root as raw HTML and checks every social tag carries content, its card kinds, its absolute URLs, its image's type and size, and its copy against the loaded home page's title and description, then the theme color.
 
 
 	await curPagObj.goto( '/' ); // What: Home Load Call. Why: The cards' copy is compared with the title and description the home page shows. How: This opens the home page.
