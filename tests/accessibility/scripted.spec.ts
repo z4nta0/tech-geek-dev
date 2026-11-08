@@ -31,8 +31,8 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helpers th
  * sideways. Motion: with reduced motion requested, nothing animates or
  * transitions for longer than 1ms from the moment the page starts loading, and
  * nothing is left running or waiting once the state has opened. A failing
- * check lists every problem it found, the names, keyboard, and motion ones by
- * element.
+ * names, keyboard, or motion check lists the problems it found, most of them
+ * by element.
  *
  * Sections:
  *  - Constants
