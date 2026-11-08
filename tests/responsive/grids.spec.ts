@@ -127,7 +127,7 @@ type GriArgTyp = { casArr : GriCasTyp[], filStr : string, widStr : string }; // 
  *
  * @example
  * ```ts
- * page.evaluate(griProFun, griArgObj) // => [ 'services grid at 1,024px has rows of 3 and 1' ]
+ * page.evaluate(griProFun, griArgObj) // => [ 'services grid ...' ]
  * ```
  *
 */
