@@ -23,17 +23,18 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
  * domain, while the 404 page carries noindex and no canonical link. Every page
  * has exactly one description, index.html's, which Work, About, and Contact
  * swap for their own, names z4nta0 as its author, and has one h1, and moving
- * between pages swaps the tags rather than piling them up. The raw page, read
- * without running the site's script the way link checkers read it, carries the
- * home page's full title and description. The structured data describes z4nta0
- * as a Person, with the GitHub and LinkedIn profiles the footer links to and
- * the email the Contact page offers, and this domain as a WebSite z4nta0
- * wrote. The social preview tags are complete, use absolute addresses, and
- * match the home page's title and description; the card they point at is a
- * 1,200x630 PNG under 300 KB; and every icon the head links to is served, the
- * PNGs at the size their links promise. robots.txt lets every crawler in and
- * names the sitemap, which lists the four indexed pages. Adapted from
- * the-bernie-bears.
+ * between pages swaps the tags rather than piling them up, giving Home back
+ * index.html's own. The raw page, read without running the site's script the
+ * way link checkers read it, carries the home page's full title and
+ * description. The structured data describes z4nta0 as a Person, with the
+ * GitHub and LinkedIn profiles the footer links to and the email the Contact
+ * page offers, and this domain as a WebSite z4nta0 wrote. The social preview
+ * tags are complete, use absolute addresses, and match the home page's title
+ * and description, and the theme color tag carries the brand orange; the card
+ * they point at is a 1,200x630 PNG under 300 KB; and every icon the head links
+ * to is served, the PNGs at the size their links promise. robots.txt lets
+ * every crawler in and names the sitemap, which lists the four indexed pages.
+ * Adapted from the-bernie-bears.
  *
  * Sections:
  *  - Constants
@@ -270,12 +271,16 @@ for ( const heaRowObj of PAG_HEA_ARR ) { // What: Page Head Loop. Why: Every pag
 
 
 
-test( 'moving between pages swaps their head tags', async ( { page : curPagObj } ) => { // What: Navigation Head Test. Why: React adds and removes each page's tags as visitors move around, and a leftover description or canonical link would mislabel the next page. How: This walks from Home through Work and About to Contact by the footer's links, checking each head.
+test( 'moving between pages swaps their head tags', async ( { page : curPagObj } ) => { // What: Navigation Head Test. Why: React adds and removes each page's tags as visitors move around, and a leftover description or canonical link would mislabel the next page. How: This walks from Home through Work and About to Contact and back to Home by the footer's links, checking each head and that the three pages' descriptions differ.
 
 
 	await curPagObj.goto( '/' ); // What: Home Open Call. Why: The walk starts on the home page. How: This loads the root path.
 
 	await heaCheFun( curPagObj, PAG_HEA_ARR[ 0 ] ); // What: Home Head Check. Why: The walk starts from a known head. How: This checks Home's.
+
+
+
+	const desTexArr : string[] = []; // What: Description Text Array. Why: The pages' own descriptions are compared once the walk ends. How: This starts empty and gains each page's description.
 
 
 	for ( const heaRowObj of PAG_HEA_ARR.slice( 1, 4 ) ) { // What: Footer Walk Loop. Why: Each page should take over the head from the one before. How: This follows the footer's link to Work, About, and Contact in turn.
@@ -292,8 +297,22 @@ test( 'moving between pages swaps their head tags', async ( { page : curPagObj }
 
 		await expect( curPagObj.locator( 'meta[name="description"]' ) ).not.toHaveAttribute( 'content', HOM_DES_STR ); // What: Own Description Assertion. Why: Each page should describe itself, not repeat the home page. How: This checks the description changed.
 
+		desTexArr.push( await curPagObj.locator( 'meta[name="description"]' ).getAttribute( 'content' ) ?? '' ); // What: Description Text Push. Why: The pages' descriptions are compared once the walk ends. How: This records this page's description.
+
 
 	}
+
+
+
+	expect( new Set( desTexArr ).size ).toBe( 3 ); // What: Distinct Descriptions Assertion. Why: Two pages sharing a description would compete for the same search listing. How: This checks Work's, About's, and Contact's descriptions are all different.
+
+	await curPagObj.getByRole( 'navigation', { name : 'Footer navigation' } ).getByRole( 'link', { exact : true, name : 'Home' } ).click(); // What: Home Link Click. Why: Leaving a page with its own description has to put index.html's title and description back. How: This clicks the footer's "Home" link from Contact.
+
+	await expect( curPagObj ).toHaveURL( '/' ); // What: Home Destination Assertion. Why: The head is only checked once Home shows. How: This waits for the address to change.
+
+	await heaCheFun( curPagObj, PAG_HEA_ARR[ 0 ] ); // What: Home Return Head Check. Why: A page that failed to restore index.html's tags would leave Home labelled as Contact. How: This checks Home's head again.
+
+	await expect( curPagObj.locator( 'meta[name="description"]' ) ).toHaveAttribute( 'content', HOM_DES_STR ); // What: Home Description Assertion. Why: Home's description is index.html's own, which Contact's swap has to hand back. How: This checks the description is the home page's again.
 
 
 } );
@@ -373,7 +392,7 @@ test( 'the sitemap lists the four indexed pages', async ( { request : reqConObj 
 
 
 
-test( 'the social preview tags are complete', async ( { page : curPagObj } ) => { // What: Social Tags Test. Why: A link shared anywhere should show a full card that matches the page. How: This loads the home page and checks every social tag, its absolute URLs, and its copy against the page's own title and description.
+test( 'the social preview tags are complete', async ( { page : curPagObj } ) => { // What: Social Tags Test. Why: A link shared anywhere should show a full card that matches the page. How: This loads the home page and checks every social tag, its absolute URLs, and its copy against the page's own title and description, then the theme color.
 
 
 	await curPagObj.goto( '/' ); // What: Home Load Call. Why: Link scrapers read the page every route shares. How: This opens the home page.
@@ -388,6 +407,8 @@ test( 'the social preview tags are complete', async ( { page : curPagObj } ) => 
 	expect( [ socTagObj[ 'og:image:type' ], socTagObj[ 'og:image:width' ], socTagObj[ 'og:image:height' ] ] ).toEqual( [ 'image/png', '1200', '630' ] );                                           // What: Image Facts Assertion. Why: The tags have to describe the file they point at. How: This checks the type and size they give.
 	expect( [ socTagObj[ 'og:title' ], socTagObj[ 'twitter:title' ] ] ).toEqual( [ await curPagObj.title(), await curPagObj.title() ] );                                                           // What: Title Match Assertion. Why: A card should name the page the way its tab does. How: This checks both card titles match the page title.
 	expect( [ socTagObj[ 'og:description' ], socTagObj[ 'twitter:description' ] ] ).toEqual( Array( 2 ).fill( await curPagObj.locator( 'meta[name="description"]' ).getAttribute( 'content' ) ) ); // What: Description Match Assertion. Why: A card should sum the page up the way its search listing does. How: This checks both card descriptions match the page's description.
+
+	await expect( curPagObj.locator( 'meta[name="theme-color"]' ) ).toHaveAttribute( 'content', '#F26419' ); // What: Theme Color Assertion. Why: Discord edges its link previews in the theme color, and mobile browsers tint around the page with it. How: This checks the tag index.html sets carries the brand orange.
 
 
 } );
