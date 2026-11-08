@@ -28,7 +28,8 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helpers th
  * anything else, and visibly changed by focus. Reflow: at 320px wide, WCAG's
  * narrowest reflow width, nothing scrolls sideways. Motion: with reduced
  * motion requested, no animation or transition is left running once the state
- * has opened. Each failure lists every problem found, by element.
+ * has opened. A failing names, keyboard, or motion check lists every problem
+ * it found, the names and keyboard ones by element.
  *
  * Sections:
  *  - Constants

@@ -80,13 +80,13 @@ const STA_REC_ARR : StaRecTyp[] = [ // What: State Record Array. Why: Every chec
 
 
 	{ heiNum : 900, ideStr : 'home-desktop',      patStr : '/',        widNum : 1440 }, // What: Home Desktop State. Why: The home page is the site's entry point. How: This loads the home page at 1,440px.
-	{ heiNum : 844, ideStr : 'home-phone',        patStr : '/',        widNum : 390  }, // What: Home Phone State. Why: The phone layout stacks the page into one column and hides the bar's links behind the menu. How: This loads the home page at 390px.
+	{ heiNum : 844, ideStr : 'home-phone',        patStr : '/',        widNum : 390  }, // What: Home Phone State. Why: The phone layout narrows the page's columns and hides the bar's links behind the menu. How: This loads the home page at 390px.
 	{ heiNum : 900, ideStr : 'work-desktop',      patStr : '/work',    widNum : 1440 }, // What: Work Desktop State. Why: The Work page holds the filters and every project card. How: This loads the Work page at 1,440px.
-	{ heiNum : 844, ideStr : 'work-phone',        patStr : '/work',    widNum : 390  }, // What: Work Phone State. Why: The phone layout stacks the page into one column and hides the bar's links behind the menu. How: This loads the Work page at 390px.
+	{ heiNum : 844, ideStr : 'work-phone',        patStr : '/work',    widNum : 390  }, // What: Work Phone State. Why: The phone layout narrows the page's columns and hides the bar's links behind the menu. How: This loads the Work page at 390px.
 	{ heiNum : 900, ideStr : 'about-desktop',     patStr : '/about',   widNum : 1440 }, // What: About Desktop State. Why: The About page lays out several sections, such as the timeline. How: This loads the About page at 1,440px.
-	{ heiNum : 844, ideStr : 'about-phone',       patStr : '/about',   widNum : 390  }, // What: About Phone State. Why: The phone layout stacks the page into one column and hides the bar's links behind the menu. How: This loads the About page at 390px.
+	{ heiNum : 844, ideStr : 'about-phone',       patStr : '/about',   widNum : 390  }, // What: About Phone State. Why: The phone layout narrows the page's columns and hides the bar's links behind the menu. How: This loads the About page at 390px.
 	{ heiNum : 900, ideStr : 'contact-desktop',   patStr : '/contact', widNum : 1440 }, // What: Contact Desktop State. Why: The Contact page holds the form and the contact details. How: This loads the Contact page at 1,440px.
-	{ heiNum : 844, ideStr : 'contact-phone',     patStr : '/contact', widNum : 390  }, // What: Contact Phone State. Why: The phone layout stacks the page into one column and hides the bar's links behind the menu. How: This loads the Contact page at 390px.
+	{ heiNum : 844, ideStr : 'contact-phone',     patStr : '/contact', widNum : 390  }, // What: Contact Phone State. Why: The phone layout narrows the page's columns and hides the bar's links behind the menu. How: This loads the Contact page at 390px.
 	{ heiNum : 900, ideStr : 'not-found-desktop', patStr : '/missing', widNum : 1440 }, // What: Not Found Desktop State. Why: Every unknown address lands on the 404 page. How: This loads an address the site doesn't have at 1,440px.
 	{ heiNum : 844, ideStr : 'not-found-phone',   patStr : '/missing', widNum : 390  }, // What: Not Found Phone State. Why: The phone bar hides its links behind the menu on the 404 page too. How: This loads an address the site doesn't have at 390px.
 
