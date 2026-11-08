@@ -260,6 +260,7 @@ function layProFun () : string[] {
 		const conRecObj = conCurEle.getBoundingClientRect(); // What: Control Rect Object. Why: The control's edges are compared with the viewport's. How: This reads its box.
 
 
+
 		if ( !hidAncFun( conCurEle ) ) return; // What: Unhidden Control Guard. Why: An unclipped control past the edge is already recorded as a spill, and one inside a scrolling container, like a row of filters that scrolls sideways, can be scrolled to. How: This skips both, keeping only controls a hiding container cuts off for good.
 
 
