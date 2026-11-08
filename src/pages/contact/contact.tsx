@@ -702,7 +702,7 @@ function ConPagCom () : JSX.Element {
 
 
 
-						<aside className={ cssModObj.conSidAsi }>{ /* What: Contact Sidebar Aside Element. Why: The other ways to get in touch sit beside the form. How: This stacks the details, availability, and response time cards. */ }
+						<aside className={ cssModObj.conSidAsi }>{ /* What: Contact Sidebar Aside Element. Why: The other ways to get in touch sit beside the form, or under it at 1,024px and below. How: This stacks the details, availability, and response time cards. */ }
 
 
 							<div className={ cssModObj.sidCarDiv }>{ /* What: Sidebar Card Div Element. Why: A visitor may prefer email or a profile to the form. How: This lists each contact item. */ }
