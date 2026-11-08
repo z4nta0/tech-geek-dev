@@ -432,11 +432,11 @@ function HomPagCom () : JSX.Element {
 					>{ /* What: Shape Layer Div Element. Why: Slowly turning shapes give the hero motion. How: This holds them, hidden from screen readers as decoration. */ }
 
 
-						<div className={` ${ cssModObj.herShaDiv }   ${ cssModObj.herShaDivHexagon } `} />{ /* What: Hero Shape Div Element. Why: A hexagon echoes the site's mark. How: This draws it turning slowly. */ }
+						<div className={` ${ cssModObj.herShaDiv }   ${ cssModObj.herShaDivHexagon } `} />{ /* What: Hero Shape Div Hexagon Element. Why: A hexagon echoes the site's mark. How: This draws it turning slowly. */ }
 
-						<div className={` ${ cssModObj.herShaDiv }   ${ cssModObj.herShaDivCircle } `} />{ /* What: Hero Shape Div Element. Why: A circle varies the shapes. How: This draws it turning slowly. */ }
+						<div className={` ${ cssModObj.herShaDiv }   ${ cssModObj.herShaDivCircle } `} />{ /* What: Hero Shape Div Circle Element. Why: A circle varies the shapes. How: This draws it turning slowly. */ }
 
-						<div className={` ${ cssModObj.herShaDiv }   ${ cssModObj.herShaDivSquare } `} />{ /* What: Hero Shape Div Element. Why: A square varies the shapes. How: This draws it turning slowly. */ }
+						<div className={` ${ cssModObj.herShaDiv }   ${ cssModObj.herShaDivSquare } `} />{ /* What: Hero Shape Div Square Element. Why: A square varies the shapes. How: This draws it turning slowly. */ }
 
 
 					</div>
@@ -562,11 +562,11 @@ function HomPagCom () : JSX.Element {
 								<div className={ cssModObj.winBarDiv }>{ /* What: Window Bar Div Element. Why: A title bar makes the window read as an editor. How: This shows three dots and the file name. */ }
 
 
-									<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaFirst } `} />{ /* What: Window Dot Span Element. Why: Editor windows have three colored dots. How: This draws the first. */ }
+									<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaFirst } `} />{ /* What: Window Dot Span First Element. Why: Editor windows have three colored dots. How: This draws the first. */ }
 
-									<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaSecond } `} />{ /* What: Window Dot Span Element. Why: Editor windows have three colored dots. How: This draws the second. */ }
+									<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaSecond } `} />{ /* What: Window Dot Span Second Element. Why: Editor windows have three colored dots. How: This draws the second. */ }
 
-									<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaThird } `} />{ /* What: Window Dot Span Element. Why: Editor windows have three colored dots. How: This draws the third. */ }
+									<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaThird } `} />{ /* What: Window Dot Span Third Element. Why: Editor windows have three colored dots. How: This draws the third. */ }
 
 									<span className={ cssModObj.winTitSpa }>techgeek.dev.ts</span>{ /* What: Window Title Span Element. Why: The window names its file after the site. How: This shows techgeek.dev.ts. */ }
 

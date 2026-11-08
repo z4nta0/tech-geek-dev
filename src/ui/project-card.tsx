@@ -163,7 +163,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 								href={ proRecObj.gitStr }
 								rel='noopener noreferrer'
 								target='_blank'
-							>{ /* What: Overlay Button Anchor Element. Why: A visitor can read the project's source. How: This links to its repository in a new tab, styled as the lighter ghost button. */ }
+							>{ /* What: Overlay Button Anchor Ghost Element. Why: A visitor can read the project's source. How: This links to its repository in a new tab, styled as the lighter ghost button. */ }
 
 
 								<svg

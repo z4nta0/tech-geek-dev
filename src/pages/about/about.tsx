@@ -283,7 +283,7 @@ function AboPagCom () : JSX.Element {
 								viewBox='0 0 60 240'
 
 								aria-hidden='true'
-							>{ /* What: Portrait Flourish SVG Element. Why: A phone's single column leaves empty room beside the smaller portrait, which a little of the site's geometric style fills. How: This draws a hexagon, linked nodes, and a small filled hexagon down the portrait's left side, shown only once the hero stacks, hidden from screen readers as decoration. */ }
+							>{ /* What: Portrait Flourish SVG Left Element. Why: A phone's single column leaves empty room beside the smaller portrait, which a little of the site's geometric style fills. How: This draws a hexagon, linked nodes, and a small filled hexagon down the portrait's left side, shown only once the hero stacks, hidden from screen readers as decoration. */ }
 
 
 								<polygon
@@ -350,7 +350,7 @@ function AboPagCom () : JSX.Element {
 								viewBox='0 0 60 240'
 
 								aria-hidden='true'
-							>{ /* What: Portrait Flourish SVG Element. Why: A phone's single column leaves empty room beside the smaller portrait, which a little of the site's geometric style fills. How: This draws linked nodes, a small filled hexagon, and an outlined hexagon down the portrait's right side, mirroring the left drawing, shown only once the hero stacks, hidden from screen readers as decoration. */ }
+							>{ /* What: Portrait Flourish SVG Right Element. Why: A phone's single column leaves empty room beside the smaller portrait, which a little of the site's geometric style fills. How: This draws linked nodes, a small filled hexagon, and an outlined hexagon down the portrait's right side, mirroring the left drawing, shown only once the hero stacks, hidden from screen readers as decoration. */ }
 
 
 								<circle
@@ -447,7 +447,7 @@ function AboPagCom () : JSX.Element {
 									alt='Portrait of z4nta0'
 								/>{ /* What: Portrait Photo Image Element. Why: A visitor sees who they'd be working with. How: This shows the portrait inside the frame. */ }
 
-								<div className={` ${ cssModObj.floFacDiv }   ${ cssModObj.floFacDivTop } `}>{ /* What: Floating Fact Div Element. Why: A floating fact highlights the years of experience. How: This shows the figure over its label above the portrait's top right corner. */ }
+								<div className={` ${ cssModObj.floFacDiv }   ${ cssModObj.floFacDivTop } `}>{ /* What: Floating Fact Div Top Element. Why: A floating fact highlights the years of experience. How: This shows the figure over its label above the portrait's top right corner. */ }
 
 
 									<span className={ cssModObj.facFigSpa }>10+</span>{ /* What: Fact Figure Span Element. Why: z4nta0 has been a developer since 2013. How: This shows ten plus. */ }
@@ -457,7 +457,7 @@ function AboPagCom () : JSX.Element {
 
 								</div>
 
-								<div className={` ${ cssModObj.floFacDiv }   ${ cssModObj.floFacDivBottom } `}>{ /* What: Floating Fact Div Element. Why: A floating fact highlights the projects shipped. How: This shows the figure over its label below the portrait's bottom left corner. */ }
+								<div className={` ${ cssModObj.floFacDiv }   ${ cssModObj.floFacDivBottom } `}>{ /* What: Floating Fact Div Bottom Element. Why: A floating fact highlights the projects shipped. How: This shows the figure over its label below the portrait's bottom left corner. */ }
 
 
 									<span className={ cssModObj.facFigSpa }>{ SHI_COU_NUM }+</span>{ /* What: Fact Figure Span Element. Why: The count should grow as projects are added, and older projects that are no longer online still count. How: This shows the project list's count with a plus. */ }
