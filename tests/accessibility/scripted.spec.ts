@@ -23,15 +23,16 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helpers th
  * The accessibility checks axe-core can't make, run on every page state in
  * whichever engine the project runs. Names: every link and button in the
  * accessibility tree has a name, and no name carries a decorative glyph such
- * as an arrow or an emoji. Keyboard: a Tab walk from the top of the page
- * reaches its end without getting trapped, never moves backwards through the
- * document, and lands only on stops that are on screen, not covered by
- * anything else, and visibly changed by focus. Reflow: at 320px wide, WCAG's
- * narrowest reflow width, nothing scrolls sideways. Motion: with reduced
- * motion requested, nothing animates or transitions for longer than 1ms from
- * the moment the page starts loading, and nothing is left running or waiting
- * once the state has opened. A failing check lists every problem it found,
- * the names, keyboard, and motion ones by element.
+ * as an arrow or an emoji. Keyboard: no element uses a positive tabindex, and
+ * a Tab walk from the top of the page reaches its end without getting trapped,
+ * never moves backwards through the document, and lands only on stops that are
+ * on screen, not covered by anything else, and visibly changed by focus.
+ * Reflow: at 320px wide, WCAG's narrowest reflow width, nothing scrolls
+ * sideways. Motion: with reduced motion requested, nothing animates or
+ * transitions for longer than 1ms from the moment the page starts loading, and
+ * nothing is left running or waiting once the state has opened. A failing
+ * check lists every problem it found, the names, keyboard, and motion ones by
+ * element.
  *
  * Sections:
  *  - Constants

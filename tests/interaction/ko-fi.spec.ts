@@ -15,10 +15,10 @@ import { test   } from '@playwright/test'; // What: Test. Why: The Ko-fi link's 
  *
  * @summary
  * Checks the About page's Ko-fi button in whichever engine the project runs:
- * it points at z4nta0's Ko-fi page, keeps that page from reaching back to
- * this one, and opens it in a new tab while the About page stays put. Ko-fi
- * itself isn't loaded, since a test shouldn't depend on an outside site, so
- * its address is answered here instead.
+ * it points at z4nta0's Ko-fi page, keeps that page from reaching back to this
+ * one or learning where the visitor came from, and opens it in a new tab while
+ * the About page stays put. Ko-fi itself isn't loaded, since a test shouldn't
+ * depend on an outside site, so its address is answered here instead.
  *
  * Sections:
  *  - Constants

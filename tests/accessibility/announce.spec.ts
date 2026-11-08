@@ -5,7 +5,7 @@
 
 import { cheAxeFun   } from '../support/axe.ts';     // What: Check Axe Function. Why: Each result state is scanned with the shared axe check. How: This scans the page, reports anything needing review, and returns the violations.
 import { ERR_MES_STR } from '../support/contact.ts'; // What: Error Message String. Why: A failed send has to put this message in the alert region. How: This is the error the page shows.
-import { expect      } from '@playwright/test';      // What: Expect. Why: Each check passes only when the result is announced and focus lands where it should. How: This asserts on the alert region, the focused element, and the scan.
+import { expect      } from '@playwright/test';      // What: Expect. Why: Each check passes only when the result is announced and focus lands where it should. How: This asserts on what each check reads, such as the alert region.
 import { opeStaFun   } from '../support/states.ts';  // What: Open State Function. Why: Each result state has to be opened and settled before it's scanned. How: This loads the Contact page, sends the form through the state's action, and waits for the page to settle.
 import { RES_STA_ARR } from '../support/contact.ts'; // What: Result State Array. Why: Each result is scanned at the Contact page's phone and desktop widths. How: This lists the Contact states with the form sent, one per result and width.
 import { senForFun   } from '../support/contact.ts'; // What: Send Form Function. Why: The focus and alert checks send the form themselves. How: This answers the root's POST at a given status, fills in and sends the form, and waits for its result.

@@ -20,15 +20,15 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helpers dr
  * Checks that moving between pages behaves like a multi-page site, in
  * whichever engine the project runs. A client-side router keeps the scroll
  * position when it swaps pages, so the useScrTopFun hook the app root calls
- * puts a link-driven navigation back at the top, and returns back,
- * forward, and a reload to the position each history entry was left at. Links
- * clicked far down a page open the next page at its top, while history and
- * reloads return to the exact earlier position, and a fresh load, a hash, and
+ * puts a link-driven navigation back at the top, and returns back, forward,
+ * and a reload to the position each history entry was left at. Links clicked
+ * far down a page open the next page at its top, while history and reloads
+ * return to the exact earlier position, and a fresh load, a hash, and
  * malformed saved positions are each handled. With smooth scrolling on, a page
  * change still jumps to the new page's top before it's drawn. Every page also
- * opens with a skip link that moves focus to the main content. The 404 page's
- * two buttons move on without reloading the site, and a nested unknown path
- * shows the 404 page too.
+ * opens with a skip link that moves focus to the main content. The bar's "Hire
+ * Me" link and the 404 page's two buttons move on without reloading the site,
+ * and a nested unknown path shows the 404 page too.
  *
  * Sections:
  *  - Constants
