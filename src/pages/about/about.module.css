@@ -243,7 +243,7 @@
 
 /* #region herActDiv */
 
-.herActDiv { /* What: Hero Actions Div. Why: The introduction ends with its button. How: This lines the button up, wrapping if more join it. */
+.herActDiv { /* What: Hero Actions Div. Why: The introduction ends with its button. How: This lines the button up. */
 
 
 	display   : flex;
@@ -253,7 +253,7 @@
 
 }
 
-.butPriAnc { /* What: Button Primary Anchor. Why: The page's actions, getting in touch and buying a coffee, stand out. How: This sets an orange button in mono capitals, easing its color, lift, press, and focus. */
+.butPriAnc { /* What: Button Primary Anchor. Why: The page's actions, such as getting in touch, stand out. How: This sets an orange button in mono capitals, easing its color, lift, press, and focus. */
 
 
 	align-items    : center;

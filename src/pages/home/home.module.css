@@ -54,7 +54,7 @@
 
 /* #region homHerSec */
 
-.homHerSec { /* What: Home Hero Section. Why: The page opens on an introduction clear of the fixed bar, with the same breathing room on every screen shape. How: This sets the ivory background, centers the hero's row, clips the turning shapes, and pads it by the bar's height plus a gap that grows with the screen's width, so a tall window no longer opens a huge gap the way filling the window's height did. */
+.homHerSec { /* What: Home Hero Section. Why: The page opens on an introduction clear of the fixed bar, with the same breathing room on every screen shape. How: This sets the ivory background, centers the hero's row, clips the turning shapes, and pads it by the bar's height plus a gap that grows with the screen's width rather than the window's height. */
 
 
 	align-items : center;
@@ -1394,7 +1394,7 @@
 
 /* #region ctaActDiv */
 
-.ctaActDiv { /* What: Call-To-Action Actions Div. Why: The banner's button holds its size. How: This lines up the button, never shrinking, wrapping if more join it. */
+.ctaActDiv { /* What: Call-To-Action Actions Div. Why: The banner's button holds its size. How: This lines up the button, never shrinking. */
 
 
 	display     : flex;

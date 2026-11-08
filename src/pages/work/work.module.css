@@ -72,7 +72,7 @@
 	flex-direction : column;
 	gap            : var( --spa-ver-p02 );   /* Spacing Vertical Base Plus 2 ~= 25.572px */
 	margin         : 0 auto;
-	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */ /* What: Container Cap. Why: The global container rule loaded after this module, so its cap always beat the 640px this rule once asked for. How: This keeps the cap that has always applied. */
+	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */ /* What: Container Cap. Why: The hero's column takes the same cap as the page's other centered columns. How: This reads the container maximum width token. */
 	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position       : relative;
 	width          : 100%;
@@ -230,7 +230,7 @@
 
 /* #region filScrDiv */
 
-.filScrDiv { /* What: Filter Scroll Div. Why: The buttons can outgrow the row, and a faded edge tells a visitor there's more to scroll to. How: This lays them in a row that fills the space and scrolls sideways with its scrollbar hidden, with a gradient mask fading each end, the same as ease-my-life's filter rails. */
+.filScrDiv { /* What: Filter Scroll Div. Why: The buttons can outgrow the row, and a faded edge tells a visitor there's more to scroll to. How: This lays them in a row that fills the space and scrolls sideways with its scrollbar hidden, with a gradient mask fading each end. */
 
 
 	--fad-edg-off : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */ /* What: Fade Edge Offset. Why: This is how far each edge fade reaches into the row. How: --fad-lef-off and --fad-rig-off start from it. */
