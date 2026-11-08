@@ -26,11 +26,11 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  *
  * @summary
  * The About page: a hero introducing z4nta0 beside a portrait framed by
- * hexagons, with two floating facts; the skills grouped by area; the
- * journey from a first computer in 2004 to today, as a timeline; and the
- * four values behind the work; and a closing invitation to support the work
- * with a tip on Ko-fi. The projects shipped fact is counted from the project
- * list, so it grows as projects are added.
+ * hexagons, with two floating facts; the skills grouped by area; the journey
+ * from a first computer in 2004 to today, as a timeline; the four values
+ * behind the work; and a closing invitation to support the work with a tip on
+ * Ko-fi. The projects shipped fact is counted from the project list, so it
+ * grows as projects are added.
  *
  * Sections:
  *  - Constants
