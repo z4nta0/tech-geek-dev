@@ -16,8 +16,10 @@ import { mkdirSync     } from 'node:fs';          // What: Make Directory Sync. 
  *
  * @summary
  * Takes a fresh screenshot of every project's live site for the project
- * cards. Each site opens at a 1,440 by 810 window, the cards' 16:9 shape, with
- * reduced motion so no entrance is caught partway, and is photographed once
+ * cards. Each site opens at a 1,440 by 810 window, the cards' 16:9 shape, at
+ * twice the pixel density, so render.mts has enough pixels to write each card
+ * at three times its shown size, with reduced motion so no entrance is caught
+ * partway, and is photographed once
  * its fonts and network have settled. The screenshots land in originals/,
  * which git ignores, under the names render.mts reads, so npm run
  * screenshots runs this and then render.mts, which scales and encodes them
@@ -76,6 +78,7 @@ const SIT_REC_ARR : SitRecTyp[] = [ // What: Site Record Array. Why: The script 
 
 
 const ORI_DIR_STR = fileURLToPath( new URL( './originals/', import.meta.url ) ); // What: Originals Directory String. Why: The screenshots are the originals render.mts encodes, kept outside git. How: This resolves the originals folder beside this script.
+const SCA_FAC_NUM = 2;                                                           // What: Scale Factor Number. Why: Each card's screenshot is written at three times its shown size, which a 1,440px capture is too small for. How: This captures every site at twice its pixel density.
 const SET_WAI_NUM = 1500;                                                        // What: Settle Wait Number. Why: A site may still be laying out or loading images just after its network goes quiet. How: Each capture waits this many milliseconds more.
 const VIE_HEI_NUM = 810;                                                         // What: Viewport Height Number. Why: The cards show a 16:9 frame. How: This is 1,440 times nine sixteenths.
 const VIE_WID_NUM = 1440;                                                        // What: Viewport Width Number. Why: A common laptop width shows each site's desktop layout. How: Every site opens this wide.
@@ -96,11 +99,12 @@ const broInsObj = await chromium.launch(); // What: Browser Instance Object. Why
 for ( const sitRecObj of SIT_REC_ARR ) { // What: Site Record Loop. Why: Each project is captured the same way. How: This opens, settles, photographs, and closes one site per pass.
 
 
-	const capPagObj = await broInsObj.newPage({ // What: Capture Page Object. Why: Each site needs a fresh page at the cards' shape, with its entrances finished. How: This opens one at 1,440 by 810 with reduced motion.
+	const capPagObj = await broInsObj.newPage({ // What: Capture Page Object. Why: Each site needs a fresh page at the cards' shape, with its entrances finished. How: This opens one at 1,440 by 810, at twice the pixel density, with reduced motion.
 
 
-		reducedMotion : 'reduce',                                     // What: Reduced Motion. Why: An entrance caught partway would spoil the screenshot. How: This asks the site to skip its motion.
-		viewport      : { height : VIE_HEI_NUM, width : VIE_WID_NUM } // What: Viewport. Why: The cards show a 16:9 frame. How: This opens the page at 1,440 by 810.
+		deviceScaleFactor : SCA_FAC_NUM,                                  // What: Device Scale Factor. Why: A card's screenshot is written at three times its shown size, more pixels than a 1,440px capture holds. How: This draws the page at twice the pixel density, a 2,880 by 1,620 capture.
+		reducedMotion     : 'reduce',                                     // What: Reduced Motion. Why: An entrance caught partway would spoil the screenshot. How: This asks the site to skip its motion.
+		viewport          : { height : VIE_HEI_NUM, width : VIE_WID_NUM } // What: Viewport. Why: The cards show a 16:9 frame. How: This opens the page at 1,440 by 810.
 
 
 	});

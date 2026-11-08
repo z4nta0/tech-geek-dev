@@ -20,14 +20,15 @@ import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why:
  * @summary
  * Rebuilds every raster image the site shows from the originals in
  * originals/, a folder kept out of git so the large source files never bloat
- * the repository again. Each image is scaled so it covers its box, which is
- * twice the largest size the site shows it at, never scaled up, and encoded
- * at 0.85 quality, the lowest that showed no difference from the original at
- * 3x zoom. Everything is written as WebP where the site imports it (the
- * project screenshots into src/assets/images, the portrait beside the About
- * page), though a box can cut an image to exactly its size instead, and an
- * output named .jpg is written as a JPEG. Run it with npm run images whenever
- * an image is added or replaced, or a display size changes.
+ * the repository again. Each image is scaled so it covers its box, which is no
+ * more than three times the largest size the site shows it at, so it stays
+ * sharp on the densest phones, never scaled up, and encoded at 0.85 quality,
+ * the lowest that showed no difference from the original at 3x zoom.
+ * Everything is written as WebP where the site imports it (the project
+ * screenshots into src/assets/images, the portrait beside the About page),
+ * though a box can cut an image to exactly its size instead, and an output
+ * named .jpg is written as a JPEG. Run it with npm run images whenever an
+ * image is added or replaced, or a display size changes.
  *
  * Sections:
  *  - Constants
@@ -43,11 +44,11 @@ import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why:
 
 type BoxRecTyp = { cutBoo : boolean, heiNum : number, widNum : number }; // What: Box Record Type. Why: A kind of image is either fitted to cover its box or cut to exactly its size. How: This names whether it's cut, and the box's height and width in pixels.
 
-const BOX_REC_OBJ : Record< string, BoxRecTyp > = { // What: Box Record Object. Why: Each kind of image is shown at a different largest size, and its file should be no more than twice that. How: This maps each kind to its box.
+const BOX_REC_OBJ : Record< string, BoxRecTyp > = { // What: Box Record Object. Why: Each kind of image is shown at a different largest size, and its file should be no more than three times that. How: This maps each kind to its box.
 
 
-	'portrait' : { cutBoo : true,  heiNum : 850, widNum : 642  }, // What: Portrait Box. Why: The About portrait fills a frame up to about 321 by 425 on a phone, which crops it the same way. How: This cuts it to twice that, centered, so no hidden pixels ship.
-	'project'  : { cutBoo : true,  heiNum : 752, widNum : 1336 }  // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 667px wide, in Home's two-by-two grid. How: This cuts it to exactly twice that, centered, since covering the box alone came out a pixel wider than the size the cards declare.
+	'portrait' : { cutBoo : true,  heiNum : 964,  widNum : 728  }, // What: Portrait Box. Why: The About portrait fills a frame up to about 243 by 321, which crops it the same way. How: This cuts it to three times that, centered, so no hidden pixels ship.
+	'project'  : { cutBoo : true,  heiNum : 1128, widNum : 2004 } // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 668 by 376, in Home's two-by-two grid. How: This cuts it to exactly three times that, centered, since covering the box alone came out a pixel wider than the size the cards declare.
 
 
 };

@@ -39,8 +39,8 @@ import type { ProRecTyp } from './projects.ts'; // What: Project Record Type. Wh
 
 // #region Constants
 
-const SCR_HEI_NUM = 752;  // What: Screenshot Height Number. Why: The screenshot's img needs its intrinsic size so the card doesn't shift while it loads. How: This is the height every screenshot is written at, the project box in design/images/render.mts.
-const SCR_WID_NUM = 1336; // What: Screenshot Width Number. Why: The screenshot's img needs its intrinsic size so the card doesn't shift while it loads. How: This is the width every screenshot is written at, the project box in design/images/render.mts.
+const SCR_HEI_NUM = 1128; // What: Screenshot Height Number. Why: The screenshot's img needs its intrinsic size so the card doesn't shift while it loads. How: This is the height every screenshot is written at, the project box in design/images/render.mts.
+const SCR_WID_NUM = 2004; // What: Screenshot Width Number. Why: The screenshot's img needs its intrinsic size so the card doesn't shift while it loads. How: This is the width every screenshot is written at, the project box in design/images/render.mts.
 
 // #endregion Constants
 
