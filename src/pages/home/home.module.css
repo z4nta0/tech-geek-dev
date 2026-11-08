@@ -556,7 +556,7 @@
 @media ( max-width : 768px ) { /* What: Phone Hero Visual Div. Why: On a phone the code window leads the stacked hero, above the pitch rather than beside it. How: This applies at 768px and below. */
 
 
-	.herVisDiv { /* What: Stacked Hero Visual Div. Why: The window should fill a phone's column without stretching too wide or tall on a large phone, sit centered above the pitch so the page opens on it, as every other site's stacked hero opens on its image, and never push the page sideways. How: This centers it at the column's full width, capped at the p11 rhythm step, the size the other sites' stacked hero images take, moves it ahead of the pitch in the grid's order, and lets it shrink below its code's width. */
+	.herVisDiv { /* What: Stacked Hero Visual Div. Why: The window should fill a phone's column without stretching too wide or tall on a large phone, sit centered above the pitch so the page opens on it, and never push the page sideways. How: This centers it at the column's full width, capped at the p11 rhythm step, moves it ahead of the pitch in the grid's order, and lets it shrink below its code's width. */
 
 
 		margin        : 0 auto;

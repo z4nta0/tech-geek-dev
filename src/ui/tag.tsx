@@ -16,9 +16,9 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * tag.tsx = Tag
  *
  * @summary
- * The small pill that names a technology, used on every project card and in
- * the About page's skills grid. It's drawn in the site's blue, in two sizes
- * (small and medium), each a class in its own module.
+ * The small pill that names a technology, such as on a project card. It's
+ * drawn in the site's blue, in two sizes (small and medium), each a class in
+ * its own module.
  *
  * Sections:
  *  - Components

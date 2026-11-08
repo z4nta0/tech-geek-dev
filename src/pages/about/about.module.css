@@ -338,7 +338,7 @@
 @media ( max-width : 768px ) { /* What: Phone Hero Visual Div. Why: On a phone the portrait leads the stacked hero, above the introduction. How: This applies at 768px and below. */
 
 
-	.herVisDiv { /* What: Stacked Hero Visual Div. Why: The portrait should sit centered above the label so the page opens on it, as every other site's stacked hero opens on its image, small enough that it doesn't take over a phone's first screen, with the flourishes filling the room beside it. How: This returns it to the single column ahead of the introduction in the grid's order with its tablet alignment and margin dropped, and spans the column so the flourishes can reach its edges while the portrait stays centered. */
+	.herVisDiv { /* What: Stacked Hero Visual Div. Why: The portrait should sit centered above the label so the page opens on it, small enough that it doesn't take over a phone's first screen, with the flourishes filling the room beside it. How: This returns it to the single column ahead of the introduction in the grid's order with its tablet alignment and margin dropped, and spans the column so the flourishes can reach its edges while the portrait stays centered. */
 
 
 		align-self    : auto;
