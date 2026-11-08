@@ -371,10 +371,10 @@ function ranPicFun< T > ( souRecArr : readonly T[], picCouNum : number ) : T[] {
  * @summary
  * Renders the home page. The hero pairs the pitch, its two buttons, and a
  * ticker that scrolls SKI_TIC_ARR four times over, so the loop has no seam,
- * with a code window and a floating badge, all decoration hidden from screen
- * readers. Below it come the stats from STA_REC_ARR, four featured projects
- * picked at random with a link to the rest, a card per service in
- * SER_CAR_ARR, and a banner leading to the Contact page.
+ * with a code window and a floating badge, both hidden from screen readers as
+ * decoration. Below it come the stats from STA_REC_ARR, four featured projects
+ * picked at random with a link to the rest, a card per service in SER_CAR_ARR,
+ * and a banner leading to the Contact page.
  *
  * It also sets the page's canonical address, which React moves into the
  * document head.

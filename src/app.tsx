@@ -10,7 +10,7 @@ import { NavBarCom    } from 'techgeek-design/ui/nav.tsx';       // What: Naviga
 import { NotFouCom    } from './pages/not-found/not-found.tsx';  // What: Not Found Component. Why: Every unknown address shows the 404 page. How: The catch-all route renders it.
 import { PAG_LIN_ARR  } from './ui/page-links.ts';               // What: Page Link Array. Why: The bar and the footer link to the site's pages. How: This is the list the root hands them.
 import { Route        } from 'react-router';                     // What: Route. Why: Each page is matched to its path. How: This declares one route per page.
-import { Routes       } from 'react-router';                     // What: Routes. Why: Only one page should render for any path. How: This renders the first route whose path matches.
+import { Routes       } from 'react-router';                     // What: Routes. Why: Only one page should render for any path. How: This renders the route that best matches the current path.
 import { SitFooCom    } from 'techgeek-design/ui/footer.tsx';    // What: Site Footer Component. Why: Every page ends with the TechGeek family's shared footer. How: This renders below the routes.
 import { useLocation  } from 'react-router';                     // What: Use Location. Why: Each page change remounts the page, replaying its entrance. How: This reads the current path for the routes' key.
 import { useScrTopFun } from 'techgeek-design/ui/scroll-top.ts'; // What: Use Scroll Top Function. Why: A new page should open at its top rather than where the last one was scrolled. How: The app root calls it once inside the router.
@@ -138,7 +138,7 @@ function AppRooCom () : JSX.Element {
 					key={ curLocObj.pathname } // What: Routes Key. Why: A new key makes React mount the new page fresh instead of reusing the old one, so its entrance fade replays. How: The path changes on every change of page.
 
 					location={ curLocObj }
-				>{ /* What: Page Routes. Why: Only one page should render for any path. How: This renders the first route below whose path matches the current location. */ }
+				>{ /* What: Page Routes. Why: Only one page should render for any path. How: This renders the route below that best matches the current location. */ }
 
 
 					<Route
