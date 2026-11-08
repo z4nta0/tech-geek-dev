@@ -67,7 +67,7 @@
 
 
 }
-.secHeaDiv--center .labLinSpa { /* What: Label Line Span In Centered Section Header Div. Why: In a centered header the rule would sit lopsided to one side. How: This hides it. */
+.secHeaDiv--center .labLinSpa { /* What: Label Line Span In Section Header Div Center. Why: In a centered header the rule would sit lopsided to one side. How: This hides it. */
 
 
 	display : none;
