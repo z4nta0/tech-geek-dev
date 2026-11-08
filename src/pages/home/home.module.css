@@ -163,7 +163,7 @@
 	padding               : 0 var( --gut-sid-pad );                                                                         /* Gutter Side Padding, about 19.304px - 44.876px */ /* What: Container Padding. Why: The hero section already pads above and below this column, so the column only needs the page's side gutters. How: This pads its sides by the gutter and leaves its top and bottom at zero. */
 	position              : relative;
 	width                 : 100%;
-	z-index               : 1;
+	z-index               : 1;                                                                                              /* What: Shape Clearing Layer. Why: The pitch and the code window have to sit above the hero's pattern and turning shapes, which paint at layer 0. How: This lifts the row one layer above them. */
 
 
 }
@@ -594,7 +594,7 @@
 	background    : var( --bac-inv-col );                                                                                                 /* Background Inverse Color = #1A1A2E */
 	border        : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-009-rec ) );                       /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF, Core-Design-Number to the Power of 9 Reciprocal ~= 0.080 */
 	border-radius : var( --rad-bor-med );                                                                                                 /* Radius Border Medium = 11px */
-	box-shadow    : var( --ele-lar-sha ), 0 0 0 var( --bor-wid-bas ) oklch( from var( --acc-sec-col ) l c h / var( --cdn-pow-007-rec ) ); /* Elevation Large Shadow, about 0 11px 44.9px plus 0 3.6px 11px -2.7px, Border Width Base ~= 1.160px, Accent Secondary Color = #7DB9D8, Core-Design-Number to the Power of 7 Reciprocal ~= 0.140 */
+	box-shadow    : var( --ele-lar-sha ), 0 0 0 var( --bor-wid-bas ) oklch( from var( --acc-sec-col ) l c h / var( --cdn-pow-007-rec ) ); /* Elevation Large Shadow ~= 0 11px 44.876px plus 0 3.572px 11px -2.696px, Border Width Base ~= 1.160px, Accent Secondary Color = #7DB9D8, Core-Design-Number to the Power of 7 Reciprocal ~= 0.140 */
 	overflow      : hidden;
 	position      : relative;
 
@@ -745,7 +745,7 @@
 	background    : var( --bac-sur-col );                                                                             /* Background Surface Color = #FFFFFF */
 	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );                                                  /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
 	border-radius : var( --rad-bor-med );                                                                             /* Radius Border Medium = 11px */
-	box-shadow    : var( --ele-med-sha );                                                                             /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
+	box-shadow    : var( --ele-med-sha );                                                                             /* Elevation Medium Shadow ~= 0 4.732px 14.572px plus 0 1.536px 3.572px -1.160px */
 	display       : flex;
 	gap           : var( --spa-hor-m01 );                                                                             /* Spacing Horizontal Base Minus 1 = 11px */
 	left          : calc( var( --spa-hor-p02 ) * -1 );                                                                /* Spacing Horizontal Base Plus 2 ~= -25.572px */
@@ -774,7 +774,7 @@
 	.floBadDiv { /* What: Fitted Floating Badge Div. Why: The badge should stick out past the window as far as the screen allows, like on a desktop, and tuck in on a narrow phone, and still cover only the lower part of the closing brace once the code's padding shrinks again. How: The overhang is the room left beside the centered window, less the gutter, held between the m02 and p02 steps, so it reaches the full p02 from about 412px wide and eases down to m02 below about 376px, and the top anchors to the code's phone padding. */
 
 
-		left : calc( clamp( var( --spa-hor-m02 ), calc( ( 100vw - var( --ver-rhy-p11 ) * 1rem ) / 2 - var( --gut-sid-pad ) ), var( --spa-hor-p02 ) ) * -1 ); /* Spacing Horizontal Base Minus 2 ~= -8.304px, Vertical Rhythm Base Plus 11 ~= 321.273px, Gutter Side Padding, about 19.304px - 44.876px, Spacing Horizontal Base Plus 2 ~= -25.572px */
+		left : calc( clamp( var( --spa-hor-m02 ), calc( ( 100vw - var( --ver-rhy-p11 ) * 1rem ) / 2 - var( --gut-sid-pad ) ), var( --spa-hor-p02 ) ) * -1 ); /* Spacing Horizontal Base Minus 2 ~= 8.304px, Vertical Rhythm Base Plus 11 ~= 321.273px, Gutter Side Padding, about 19.304px - 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 		top  : calc( 100% - var( --spa-ver-p01 ) - var( --spa-ver-m01 ) );                                                                                   /* Spacing Vertical Base Plus 1 ~= 19.304px, Spacing Vertical Base Minus 1 = 11px */
 
 
@@ -1103,7 +1103,7 @@
 .vieArrSvg { /* What: View Arrow SVG. Why: The arrow nudges toward where the link goes. How: This eases its slide on hover, on the compositor rather than through the gap beside it. */
 
 
-	transition : transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+	transition : transform var( --dur-tra-bas ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -1190,7 +1190,7 @@
 	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position       : relative;
 	width          : 100%;
-	z-index        : 1;
+	z-index        : 1;                      /* What: Pattern Clearing Layer. Why: The services heading and cards have to sit above the section's pattern, which is positioned at 0. How: This lifts the column one layer above the pattern. */
 
 
 }
@@ -1248,7 +1248,7 @@
 	flex-direction : column;
 	gap            : var( --spa-ver-bas );                                                                               /* Spacing Vertical Base ~= 14.572px */
 	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );                                                          /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
-	transition     : border-color var( --dur-tra-p02 ), box-shadow var( --dur-tra-p02 ), transform var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms */ /* What: Shadow Transition. Why: A box-shadow animates on paint rather than the compositor, but a compositor version would need a second shadow layer faded through opacity, and only the one hovered card repaints. How: This eases the shadow alongside the lift. */
+	transition     : border-color var( --dur-tra-p02 ) var( --mot-dec-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-dec-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Shadow Transition. Why: A box-shadow animates on paint rather than the compositor, but a compositor version would need a second shadow layer faded through opacity, and only the one hovered card repaints. How: This eases the shadow alongside the lift. */
 
 
 }
@@ -1256,7 +1256,7 @@
 
 
 	border-color : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
-	box-shadow   : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
+	box-shadow   : var( --ele-med-sha ); /* Elevation Medium Shadow ~= 0 4.732px 14.572px plus 0 1.536px 3.572px -1.160px */
 	transform    : translateY( -3px );
 
 

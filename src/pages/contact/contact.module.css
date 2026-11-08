@@ -75,7 +75,7 @@
 	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position       : relative;
 	width          : 100%;
-	z-index        : 1;
+	z-index        : 1;                      /* What: Pattern Clearing Layer. Why: The hero's label, heading, and line have to sit above the hero's pattern, which is positioned at 0. How: This lifts the column one layer above the pattern. */
 
 
 }
@@ -406,7 +406,7 @@
 
 .forConInp,
 .forConSel,
-.forConTex { /* What: Form Control Fields. Why: The inputs, the select, and the textarea share one look. How: This sets them full width on the ivory with a pale border and rounded corners, easing their focus border and glow. */
+.forConTex { /* What: Form Control Fields. Why: The inputs, the select, and the textarea share one look. How: This sets them full width on the ivory with a pale border and rounded corners, easing their focus border and glow, which leave on the accelerating curve. */
 
 
 	background    : var( --bac-pag-col );                                               /* Background Page Color = #F5F0E8 */
@@ -416,19 +416,20 @@
 	font-family   : var( --fon-fam-mai );                                               /* Font Family Main = 'Syne', sans-serif */
 	font-size     : var( --fon-siz-p01 );                                               /* Font Size Base Plus 1 ~= 14.572px */
 	padding       : var( --spa-ver-m01 ) var( --spa-hor-bas );                          /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
-	transition    : border-color var( --dur-tra-bas ), box-shadow var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */ /* What: Focus Glow Transition. Why: The glow is a spread around the field's rounded edge, which no transform or opacity change can draw, so its box-shadow animates instead. How: The border color and the glow ease in together on focus. */
+	transition    : border-color var( --dur-tra-bas ) var( --mot-acc-eas ), box-shadow var( --dur-tra-bas ) var( --mot-acc-eas ); /* Duration Transition Base ~= 157.8ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */ /* What: Focus Glow Transition. Why: The glow is a spread around the field's rounded edge, which no transform or opacity change can draw, so its box-shadow animates instead. How: The border color and the glow ease in together on focus. */
 	width         : 100%;
 
 
 }
 .forConInp:focus,
 .forConSel:focus,
-.forConTex:focus { /* What: Focused Form Control Fields. Why: A visitor has to see which field they're typing in. How: This draws an orange border and a pale orange glow, over a transparent outline. */
+.forConTex:focus { /* What: Focused Form Control Fields. Why: A visitor has to see which field they're typing in. How: This draws an orange border and a pale orange glow, over a transparent outline, easing them in on the decelerating curve. */
 
 
 	border-color : var( --foc-rin-col );                            /* Focus Ring Color ~= #bd3000 */
 	box-shadow   : 0 0 0 var( --bor-wid-xla ) var( --acc-tin-col ); /* Border Width Extra Large ~= 3.572px, Accent Tint Color = #FDDCC8 */
 	outline      : var( --bor-wid-bas ) solid transparent;          /* Border Width Base ~= 1.160px */ /* What: Transparent Outline. Why: Forced colors mode drops the glow and recolors the border, which would leave a focused field unmarked. How: Forced colors mode turns this transparent outline visible, while the border and glow carry the look otherwise. */
+	transition   : border-color var( --dur-tra-bas ) var( --mot-dec-eas ), box-shadow var( --dur-tra-bas ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -437,7 +438,10 @@
 
 	.forConInp,
 	.forConSel,
-	.forConTex { /* What: Motionless Form Control Fields. Why: The focus border and glow should simply switch. How: This turns the transition off. */
+	.forConTex,
+	.forConInp:focus,
+	.forConSel:focus,
+	.forConTex:focus { /* What: Motionless Form Control Fields. Why: The focus border and glow should simply switch. How: This turns the transition off on both the resting and the focused rule, since the focused rule outranks the base. */
 
 
 		transition : none;
