@@ -308,8 +308,9 @@ on `close-out`.
      (2026-10-13) they now play through `global()`, with the 404 drawing
      centered and Home's tipped square tilted through the `translate` and
      `rotate` properties so the turning transform can't undo them.
-   - **Reduced motion**: every animation and transition has a variant, html
-     stops smooth scrolling, and the reduced-motion check passes everywhere.
+   - **Reduced motion**: every animation and transition has a variant, the
+     `html` element stops smooth scrolling, and the reduced-motion check
+     passes everywhere.
      It also cleared Contact's "no visible focus indicator" failures: the
      check read the fields mid-transition.
    - **Global sheet**: `styles.css` holds only the tokens, the base element
@@ -484,7 +485,7 @@ on `close-out`.
       link in it has focus.
     - **Phone menu**: a scrim with the page inert, the four ways to close it,
       and the extras the user approved, arriving one after another: Home's
-      availability pill, the links in a labelled nav, Hire Me, the profile
+      availability pill, the links in a labeled nav, Hire Me, the profile
       tiles (from `ui/profile-links.ts`, which the footer shares), the email,
       and the tagline.
     - **Phone menu extras** (asked for by the user 2026-10-13, after the
