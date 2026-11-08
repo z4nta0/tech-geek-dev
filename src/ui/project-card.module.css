@@ -42,7 +42,7 @@
 
 
 }
-.proCarArt--featured { /* What: Featured Project Card Article. Why: Featured projects stand apart from the rest. How: This turns the card's border blue. */
+.proCarArt--featured { /* What: Project Card Article Featured. Why: Featured projects stand apart from the rest. How: This turns the card's border blue. */
 
 
 	border-color : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
@@ -86,7 +86,7 @@
 
 
 }
-.proCarArt:hover .proScrIma { /* What: Hovered Card Project Screenshot Image. Why: The screenshot leans in as the card lifts. How: This zooms it 4%. */
+.proCarArt:hover .proScrIma { /* What: Hovered Project Screenshot Image In Card. Why: The screenshot leans in as the card lifts. How: This zooms it 4%. */
 
 
 	transform : scale( 1.04 );
@@ -129,7 +129,7 @@
 
 }
 .proCarArt:hover .imaOveDiv,
-.imaOveDiv:focus-within { /* What: Hovered Or Focused Card Image Overlay Div. Why: Hovering the card reveals its links, and a keyboard user tabbing onto one has to see it too. How: This fades the overlay in while the card is hovered or either link has focus. */
+.imaOveDiv:focus-within { /* What: Hovered Or Focused Image Overlay Div In Card. Why: Hovering the card reveals its links, and a keyboard user tabbing onto one has to see it too. How: This fades the overlay in while the card is hovered or either link has focus. */
 
 
 	opacity : 1;
@@ -191,7 +191,7 @@
 
 
 }
-.oveButAnc--ghost { /* What: Ghost Overlay Button Anchor. Why: The GitHub button sits back behind the Live Site one. How: This clears its fill and outlines it in translucent white. */
+.oveButAnc--ghost { /* What: Overlay Button Anchor Ghost. Why: The GitHub button sits back behind the Live Site one. How: This clears its fill and outlines it in translucent white. */
 
 
 	background : transparent;
@@ -200,7 +200,7 @@
 
 
 }
-.oveButAnc--ghost:hover { /* What: Hovered Ghost Overlay Button Anchor. Why: The ghost button should respond to the pointer too. How: This gives it a faint white fill. */
+.oveButAnc--ghost:hover { /* What: Hovered Overlay Button Anchor Ghost. Why: The ghost button should respond to the pointer too. How: This gives it a faint white fill. */
 
 
 	background : oklch( from var( --bac-sur-col ) l c h / 0.12 ); /* Background Surface Color = #FFFFFF @ 0.12 opacity */

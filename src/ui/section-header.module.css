@@ -28,7 +28,7 @@
 
 
 }
-.secHeaDiv--center { /* What: Centered Section Header Div. Why: Some sections center their heading. How: This centers the block and its text within the section. */
+.secHeaDiv--center { /* What: Section Header Div Centered. Why: Some sections center their heading. How: This centers the block and its text within the section. */
 
 
 	align-items : center;
@@ -67,7 +67,7 @@
 
 
 }
-.secHeaDiv--center .labLinSpa { /* What: Centered Label Line Span. Why: In a centered header the rule would sit lopsided to one side. How: This hides it. */
+.secHeaDiv--center .labLinSpa { /* What: Label Line Span In Centered Section Header Div. Why: In a centered header the rule would sit lopsided to one side. How: This hides it. */
 
 
 	display : none;

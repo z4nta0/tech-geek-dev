@@ -86,7 +86,7 @@
 
 
 }
-.herShaDiv--hexagon { /* What: Hexagon Hero Shape Div. Why: A large blue hexagon echoes the site's mark at the hero's right. How: This clips a 321px blue square to a hexagon past the right edge and turns it once every 33 seconds. */
+.herShaDiv--hexagon { /* What: Hero Shape Div Hexagon. Why: A large blue hexagon echoes the site's mark at the hero's right. How: This clips a 321px blue square to a hexagon past the right edge and turns it once every 33 seconds. */
 
 
 	animation  : global( shapeLoopSpin ) var( --dur-ani-p19 ) linear infinite; /* Duration Animation Base Plus 19 ~= 33,004.0ms */
@@ -99,7 +99,7 @@
 
 
 }
-.herShaDiv--circle { /* What: Circle Hero Shape Div. Why: An orange ring varies the shapes at the hero's lower left. How: This draws a 183px ring a little stronger than the others and turns it backward every 25 seconds. */
+.herShaDiv--circle { /* What: Hero Shape Div Circle. Why: An orange ring varies the shapes at the hero's lower left. How: This draws a 183px ring a little stronger than the others and turns it backward every 25 seconds. */
 
 
 	animation     : global( shapeLoopSpin ) var( --dur-ani-p18 ) linear infinite reverse; /* Duration Animation Base Plus 18 ~= 24,914.0ms */
@@ -114,7 +114,7 @@
 
 
 }
-.herShaDiv--square { /* What: Square Hero Shape Div. Why: A tilted outlined square varies the shapes near the hero's top. How: This draws a 104px strong blue square tipped 45 degrees through rotate, which the turning transform adds to, and turns it every 19 seconds. */
+.herShaDiv--square { /* What: Hero Shape Div Square. Why: A tilted outlined square varies the shapes near the hero's top. How: This draws a 104px strong blue square tipped 45 degrees through rotate, which the turning transform adds to, and turns it every 19 seconds. */
 
 
 	animation  : global( shapeLoopSpin ) var( --dur-ani-p17 ) linear infinite; /* Duration Animation Base Plus 17 ~= 18,807.0ms */
@@ -626,21 +626,21 @@
 
 
 }
-.winDotSpa--first { /* What: First Window Dot Span. Why: The first dot is red. How: This sets its color. */
+.winDotSpa--first { /* What: Window Dot Span First. Why: The first dot is red. How: This sets its color. */
 
 
 	background : #ff5f56;
 
 
 }
-.winDotSpa--second { /* What: Second Window Dot Span. Why: The second dot is yellow. How: This sets its color. */
+.winDotSpa--second { /* What: Window Dot Span Second. Why: The second dot is yellow. How: This sets its color. */
 
 
 	background : #ffbd2e;
 
 
 }
-.winDotSpa--third { /* What: Third Window Dot Span. Why: The third dot is green. How: This sets its color. */
+.winDotSpa--third { /* What: Window Dot Span Third. Why: The third dot is green. How: This sets its color. */
 
 
 	background : #27c93f;
@@ -914,7 +914,7 @@
 
 
 }
-.staIteDiv:last-child { /* What: Last Stat Item Div. Why: The last figure ends the row, so it needs no divider after it. How: This removes its right rule. */
+.staIteDiv:last-child { /* What: Stat Item Div Last. Why: The last figure ends the row, so it needs no divider after it. How: This removes its right rule. */
 
 
 	border-right : none;
@@ -924,7 +924,7 @@
 @media ( max-width : 1024px ) { /* What: Tablet Stat Item Div. Why: In two columns the second figure ends its row too, and its divider would sit against the grid's right edge. How: This applies at 1,024px and below. */
 
 
-	.staIteDiv:nth-child( 2n ) { /* What: Row End Stat Item Div. Why: Every figure in the right column ends its row. How: This removes the right rule from every second item. */
+	.staIteDiv:nth-child( 2n ) { /* What: Stat Item Div Row End. Why: Every figure in the right column ends its row. How: This removes the right rule from every second item. */
 
 
 		border-right : none;

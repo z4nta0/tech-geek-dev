@@ -461,7 +461,7 @@
 
 
 }
-.floFacDiv--top { /* What: Top Floating Fact Div. Why: The first fact sits off the portrait's top right corner, mostly above the photo, so it never covers the face. How: This places it a little past the portrait's right edge and lifts it so only its bottom edge, about 17px, overlaps the photo's top. */
+.floFacDiv--top { /* What: Floating Fact Div Top. Why: The first fact sits off the portrait's top right corner, mostly above the photo, so it never covers the face. How: This places it a little past the portrait's right edge and lifts it so only its bottom edge, about 17px, overlaps the photo's top. */
 
 
 	right : calc( var( --spa-hor-p02 ) * -1 ); /* Spacing Horizontal Base Plus 2 ~= -25.572px */
@@ -469,7 +469,7 @@
 
 
 }
-.floFacDiv--bottom { /* What: Bottom Floating Fact Div. Why: The second fact sits off the portrait's bottom left corner, mostly below the photo, matching the first. How: This places it a little past the portrait's left edge and drops it so only its top edge, about 17px, overlaps the photo's bottom. */
+.floFacDiv--bottom { /* What: Floating Fact Div Bottom. Why: The second fact sits off the portrait's bottom left corner, mostly below the photo, matching the first. How: This places it a little past the portrait's left edge and drops it so only its top edge, about 17px, overlaps the photo's bottom. */
 
 
 	bottom : calc( var( --spa-ver-p05 ) * -1 ); /* Spacing Vertical Base Plus 5 ~= -59.447px */
@@ -781,7 +781,7 @@
 
 
 	}
-	.timIteDiv:nth-child( odd ) .timLefDiv { /* What: Right Timeline Left Div. Why: A milestone on the left puts its year on the right of the line. How: This moves the year to the right column, aligned to the line. */
+	.timIteDiv:nth-child( odd ) .timLefDiv { /* What: Timeline Left Div In Odd Item. Why: A milestone on the left puts its year on the right of the line. How: This moves the year to the right column, aligned to the line. */
 
 
 		grid-column     : 3;
@@ -789,7 +789,7 @@
 
 
 	}
-	.timIteDiv:nth-child( even ) .timLefDiv { /* What: Left Timeline Left Div. Why: A milestone on the right puts its year on the left of the line. How: This places the year in the left column, still aligned to the line. */
+	.timIteDiv:nth-child( even ) .timLefDiv { /* What: Timeline Left Div In Even Item. Why: A milestone on the right puts its year on the left of the line. How: This places the year in the left column, still aligned to the line. */
 
 
 		grid-column : 1;
@@ -894,7 +894,7 @@
 
 
 	}
-	.timIteDiv:nth-child( odd ) .timCotDiv { /* What: Left Timeline Content Div. Why: Odd milestones sit left of the line and read toward it. How: This places them in the left column, aligned right. */
+	.timIteDiv:nth-child( odd ) .timCotDiv { /* What: Timeline Content Div In Odd Item. Why: Odd milestones sit left of the line and read toward it. How: This places them in the left column, aligned right. */
 
 
 		align-items : flex-end;
@@ -903,7 +903,7 @@
 
 
 	}
-	.timIteDiv:nth-child( even ) .timCotDiv { /* What: Right Timeline Content Div. Why: Even milestones sit right of the line. How: This places them in the right column. */
+	.timIteDiv:nth-child( even ) .timCotDiv { /* What: Timeline Content Div In Even Item. Why: Even milestones sit right of the line. How: This places them in the right column. */
 
 
 		grid-column : 3;
