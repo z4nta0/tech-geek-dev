@@ -274,7 +274,7 @@ function ConPagCom () : JSX.Element {
 	// #region Result Focus
 
 	const forNamRef = useRef< HTMLInputElement >( null );  // What: Form Name Reference. Why: Focus returns to the first field when the form comes back. How: This holds the name input.
-	const retForRef = useRef( false );                     // What: Return Form Reference. Why: Only a return from the thank-you moves focus to the name field, never a first visit. How: This starts false, and resForFun sets it true.
+	const retForRef = useRef( false );                     // What: Return Form Reference. Why: Only a return from the thank-you moves focus to the name field and fades the form in, never a first visit. How: This starts false, and resForFun sets it true.
 	const senMesRef = useRef< HTMLButtonElement >( null ); // What: Send Message Reference. Why: A failed send puts focus back on the submit button. How: This holds the button.
 	const sucStaRef = useRef< HTMLDivElement >( null );    // What: Success State Reference. Why: The thank-you takes focus as it replaces the form. How: This holds the thank-you panel.
 
@@ -282,7 +282,7 @@ function ConPagCom () : JSX.Element {
 	const resForFun = () => { // What: Reset Form Function. Why: The thank-you's button lets a visitor send another message. How: This marks the form as returning, hides the thank-you, and empties the fields.
 
 
-		retForRef.current = true; // What: Return Flag Set. Why: The focus effect moves focus to the name field only when the form comes back from the thank-you. How: This marks the return before the swap renders.
+		retForRef.current = true; // What: Return Flag Set. Why: The focus effect moves focus to the name field, and the form fades in, only when the form comes back from the thank-you. How: This marks the return before the swap renders, so the render that brings the form back already reads it.
 
 
 		setIsaSenBoo( false ); // What: Sent Flag Reset Call. Why: The form shows again in place of the thank-you. How: This clears the sent flag.
@@ -535,10 +535,10 @@ function ConPagCom () : JSX.Element {
 
 
 								<form
-									className={ cssModObj.conForFor }
+									className={` ${ cssModObj.conForFor }   ${ retForRef.current ? cssModObj.conForForReturning : '' } `}
 
 									onSubmit={ subForFun }
-								>{ /* What: Contact Form Form Element. Why: A visitor writes their message here. How: The browser first checks the required fields and the email format, then this sends the fields through subForFun. */ }
+								>{ /* What: Contact Form Form Element. Why: A visitor writes their message here. How: The browser first checks the required fields and the email format, then this sends the fields through subForFun, and on a return from the thank-you the form fades up into view. */ }
 
 
 									<h2 className={ cssModObj.forTitHea }>Send a Message</h2>{ /* What: Form Title Heading Element. Why: The form's heading names it. How: This shows "Send a Message" as an h2. */ }
