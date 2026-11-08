@@ -9,6 +9,7 @@ import { expect      } from '@playwright/test';       // What: Expect. Why: Each
 import { FOC_PRO_ARR } from '../support/feedback.ts'; // What: Focus Property Array. Why: A focus look is compared over the control properties and the ring's outline. How: This lists them.
 import { movProFun   } from '../support/feedback.ts'; // What: Moving Problems Function. Why: Under reduced motion a change has to switch rather than ease. How: This turns two snapshots into a problem for each eased change.
 import { opeStaFun   } from '../support/states.ts';   // What: Open State Function. Why: Each check opens and settles its state first. How: This loads it and waits for it.
+import { RES_STA_ARR } from '../support/contact.ts';  // What: Result State Array. Why: The Contact form's result states hold controls the plain states don't, such as the thank-you's "Send Another Message" button. How: This lists the Contact states with the form sent, one per result and width.
 import { SET_WAI_NUM } from '../support/feedback.ts'; // What: Settle Wait Number. Why: Each look is read once its transition has finished. How: This is the pause before each read.
 import { snaEleFun   } from '../support/feedback.ts'; // What: Snapshot Element Function. Why: Each look is recorded with whether each part of it would ease. How: This runs inside the page to read it.
 import { snaProFun   } from '../support/feedback.ts'; // What: Snap Problems Function. Why: A change has to ease rather than snap. How: This turns two snapshots into a problem for each snapped change.
@@ -378,7 +379,7 @@ async function conLisFun ( curPagObj : Page, conSelStr : string ) : Promise< Ele
  * @summary
  * Probes every reachable link, button, and form field and returns a problem
  * for each one that gives no feedback, or a single problem when it finds no
- * control at all, or no field on the Contact states, where the form shows.
+ * control at all, or no field on the Contact states that show the form.
  * Each control is scrolled into view, and one that still waits above the
  * screen until it's focused, the skip link, is focused so it slides in before
  * it's hovered. Each is read at rest with the pointer away, again while
@@ -429,7 +430,7 @@ async function feeProFun ( curPagObj : Page, staIdeStr : string, redMotBoo : boo
 	const fieFouArr = await Promise.all( conHanArr.map( ( conCurObj ) => conCurObj.evaluate( ( conCurEle, fieSelStr ) => conCurEle.matches( fieSelStr ), FIE_SEL_STR ) ) ); // What: Field Found Array. Why: Each control is probed for the looks it has, a field for focus alone. How: This marks, in the controls' order, each one that's a form field.
 
 
-	if ( /^contact-/.test( staIdeStr ) && !fieFouArr.includes( true ) ) proLisArr.push( 'no form field to probe' ); // What: Empty Field Check. Why: A selector that stopped matching the fields would let their focus snap without failing. How: On the Contact states, where the form shows, this records a problem when no field is found.
+	if ( /^contact-(desktop|phone)(-failed)?$/.test( staIdeStr ) && !fieFouArr.includes( true ) ) proLisArr.push( 'no form field to probe' ); // What: Empty Field Check. Why: A selector that stopped matching the fields would let their focus snap without failing. How: On the Contact states where the form shows, the plain and failed ones, since the thank-you replaces it in the sent ones, this records a problem when no field is found.
 
 
 
@@ -776,7 +777,7 @@ async function togProFun ( curPagObj : Page, staIdeStr : string, redMotBoo : boo
 
 // #region Module Init
 
-for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every page state is checked. How: This declares each check once per state.
+for ( const staRecObj of [ ...STA_REC_ARR, ...RES_STA_ARR ] ) { // What: State Test Loop. Why: Every page state is checked, the Contact form's thank-you and error included, since the thank-you holds a button no other state shows. How: This declares each check once per state, the shared states first, then the result states.
 
 
 	test( `${ staRecObj.ideStr } gives every reachable link and button hover, press, and focus feedback, every form field its focus, and every toggle its switch`, async ( { page : curPagObj } ) => { // What: Feedback Test. Why: Every interaction should visibly register. How: This opens the state, blocks clicks, probes every reachable link, button, and form field and each reachable element of the toggle kinds listed for the state, and on the Home, Work, and About states every card, and checks it finds no problems.

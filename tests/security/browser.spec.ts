@@ -6,6 +6,7 @@
 import { expect      } from '@playwright/test';      // What: Expect. Why: Each check passes only when the policy is enforced and the page breaks none of its rules. How: This asserts on what each check collects from the page.
 import { heaAllFun   } from '../support/headers.ts'; // What: Headers All Function. Why: The pages are loaded under the policy Netlify really sends. How: This reads the /* block of public/_headers.
 import { opeStaFun   } from '../support/states.ts';  // What: Open State Function. Why: Each state is opened the way the other page suites open it. How: This loads the state and waits until it's settled.
+import { RES_STA_ARR } from '../support/contact.ts'; // What: Result State Array. Why: Sending the form posts to the site and swaps in the thank-you or the error, which the policy has to allow too. How: This lists the Contact states with the form sent, one per result and width, its POST answered in the page.
 import { STA_REC_ARR } from '../support/states.ts';  // What: State Record Array. Why: The policy has to hold in every state the suites visit. How: This is the list of states to load.
 import { test        } from '@playwright/test';      // What: Test. Why: Each state is its own test. How: This declares them.
 
@@ -26,9 +27,10 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The policy set
  * policy would block. Neither server reads public/_headers, so every response
  * is given its headers here. First a check proves the policy is live, by
  * injecting an inline script and seeing it refused and reported. Then every
- * state the suites visit is checked for policy violations, apart from the
- * one WebKit reports for every select element, and checked to close off
- * every new tab link, with neither an opener nor a referrer.
+ * state the suites visit, the Contact form's sent and failed results
+ * included, is checked for policy violations, apart from the one WebKit
+ * reports for every select element, and checked to close off every new tab
+ * link, with neither an opener nor a referrer.
  *
  * Sections:
  *  - Helpers
@@ -184,7 +186,7 @@ test( 'the policy refuses an injected inline script', async ( { page : curPagObj
 
 
 
-for ( const staRecObj of STA_REC_ARR ) { // What: State Loop. Why: Every state the suites visit has to work under the policy. How: This declares one test per state.
+for ( const staRecObj of [ ...STA_REC_ARR, ...RES_STA_ARR ] ) { // What: State Loop. Why: Every state the suites visit has to work under the policy, the Contact form's thank-you and error included, since reaching them posts the form. How: This declares one test per state, the shared states first, then the result states.
 
 
 	test( `${ staRecObj.ideStr } breaks no rule of the security policy and closes off every new tab link`, async ( { browserName : broNamStr, page : curPagObj } ) => { // What: State Policy Test. Why: A blocked resource, such as a font, would break the page once deployed, and the policy can't be loosened to hide it. How: This opens the state under the policy and checks nothing was refused and every new tab link is closed off.
