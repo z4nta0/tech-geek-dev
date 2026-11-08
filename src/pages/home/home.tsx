@@ -483,7 +483,7 @@ function HomPagCom () : JSX.Element {
 									className={ cssModObj.butPriAnc }
 
 									to='/work'
-								>{ /* What: View My Work Link. Why: Most visitors want to see the work first. How: This routes to the Work page with an arrow. */ }
+								>{ /* What: Button Primary Anchor Link. Why: Most visitors want to see the work first. How: This routes to the Work page with an arrow. */ }
 
 
 									View My Work
@@ -512,7 +512,7 @@ function HomPagCom () : JSX.Element {
 									className={ cssModObj.butSecAnc }
 
 									to='/contact'
-								>Get In Touch</Link>{ /* What: Get In Touch Link. Why: A visitor ready to talk can go straight to Contact. How: This routes there as the secondary button. */ }
+								>Get In Touch</Link>{ /* What: Button Secondary Anchor Link. Why: A visitor ready to talk can go straight to Contact. How: This routes there as the secondary button. */ }
 
 
 							</div>
@@ -755,7 +755,7 @@ function HomPagCom () : JSX.Element {
 								className={ cssModObj.vieAllAnc }
 
 								to='/work'
-							>{ /* What: View All Link. Why: Home shows only four projects, so the rest are a click away. How: This routes to the Work page with an arrow. */ }
+							>{ /* What: View All Anchor Link. Why: Home shows only four projects, so the rest are a click away. How: This routes to the Work page with an arrow. */ }
 
 
 								View all projects
@@ -891,7 +891,7 @@ function HomPagCom () : JSX.Element {
 								className={ cssModObj.ctaStaAnc }
 
 								to='/contact'
-							>Start a Project</Link>{ /* What: Start A Project Link. Why: A visitor ready to start goes straight to Contact. How: This routes there as the banner's button. */ }
+							>Start a Project</Link>{ /* What: Call-To-Action Start Anchor Link. Why: A visitor ready to start goes straight to Contact. How: This routes there as the banner's button. */ }
 
 
 						</div>

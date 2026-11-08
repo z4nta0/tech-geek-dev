@@ -264,7 +264,7 @@ function AboPagCom () : JSX.Element {
 									className={ cssModObj.butPriAnc }
 
 									to='/contact'
-								>Work With Me</Link>{ /* What: Work With Me Link. Why: A visitor who likes what they read can get in touch. How: This routes to the Contact page as a button. */ }
+								>Work With Me</Link>{ /* What: Button Primary Anchor Link. Why: A visitor who likes what they read can get in touch. How: This routes to the Contact page as a button. */ }
 
 
 							</div>

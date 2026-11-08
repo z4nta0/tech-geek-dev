@@ -146,7 +146,7 @@ function NotFouCom () : JSX.Element {
 							className={ cssModObj.butPriAnc }
 
 							to='/'
-						>Go Home</Link>{ /* What: Go Home Link. Why: Home is the natural place to start over. How: This routes to the home page as a button. */ }
+						>Go Home</Link>{ /* What: Button Primary Anchor Link. Why: Home is the natural place to start over. How: This routes to the home page as a button. */ }
 
 
 
@@ -154,7 +154,7 @@ function NotFouCom () : JSX.Element {
 							className={ cssModObj.butSecAnc }
 
 							to='/contact'
-						>Get In Touch</Link>{ /* What: Get In Touch Link. Why: Getting in touch is the site's main action. How: This routes to the Contact page as an outlined button. */ }
+						>Get In Touch</Link>{ /* What: Button Secondary Anchor Link. Why: Getting in touch is the site's main action. How: This routes to the Contact page as an outlined button. */ }
 
 
 					</div>
