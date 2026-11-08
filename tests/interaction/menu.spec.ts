@@ -26,8 +26,11 @@ import type { Page    } from '@playwright/test'; // What: Page. Why: The helpers
  * pressing Escape, which also returns focus to the toggle, tapping the brand,
  * which also goes home, and widening the screen past the phone layout, which
  * hides the toggle. Choosing any of its links closes it too, whether the link
- * opens in place or in a new tab, through a Ctrl or Cmd click, a middle
- * click, or a plain tap on a profile that opens another site.
+ * opens in place or in a new tab, through a plain tap, a Ctrl or Cmd click, a
+ * middle click, or a plain tap on a profile that opens another site. The email
+ * link hands its address to the visitor's mail app rather than a tab, so its
+ * modified clicks are checked only for closing the menu and leaving the page
+ * where it was.
  *
  * Sections:
  *  - Constants
@@ -44,12 +47,13 @@ import type { Page    } from '@playwright/test'; // What: Page. Why: The helpers
 
 const CLI_KIN_ARR : Array< [ string, Parameters< Locator[ 'click' ] >[ 0 ] ] > = [ [ 'Ctrl or Cmd', { modifiers : [ 'ControlOrMeta' ] } ], [ 'middle', { button : 'middle' } ] ]; // What: Click Kind Array. Why: Both ways of asking for a new tab have to close the menu. How: Each row pairs a name for the test title with the click options that make that kind of click.
 
-const MEN_LIN_ARR = [ // What: Menu Link Array. Why: A page link, the call to action, and a profile icon each have to close the open menu. How: Each entry is a link's accessible name: a page link, the call to action, and a profile icon.
+const MEN_LIN_ARR = [ // What: Menu Link Array. Why: A page link, the call to action, and each profile icon have to close the open menu. How: Each entry is a link's accessible name: a page link, the call to action, then the profile icons.
 
 
 	'About',   // What: Page Link Name. Why: The menu's page links route inside the site. How: This names the "About" link.
 	'Hire Me', // What: Call-To-Action Link Name. Why: The menu's button routes inside the site too. How: This names the "Hire Me" link.
-	'GitHub'   // What: Profile Link Name. Why: The profile icons open another site in a new tab. How: This names the "GitHub" icon.
+	'GitHub',  // What: Profile Link Name. Why: The profile icons open another site in a new tab. How: This names the "GitHub" icon.
+	'LinkedIn' // What: Profile Link Name. Why: The profile icons open another site in a new tab. How: This names the "LinkedIn" icon.
 
 
 ];
@@ -264,7 +268,45 @@ for ( const [ cliKinStr, cliOptObj ] of CLI_KIN_ARR ) { // What: Click Kind Loop
 
 
 
-for ( const linNamStr of MEN_LIN_ARR.slice( 2 ) ) { // What: Outside Link Loop. Why: A profile icon opens a new tab even on a plain tap, which leaves the page behind. How: This declares one test per link that opens another site.
+test( 'a plain tap on the "Work" link in the menu opens Work and closes the menu', async ( { page : curPagObj } ) => { // What: Page Link Close Test. Why: Choosing a page from the menu should leave the menu closed on the page it opens. How: This taps the menu's "Work" link and checks the address, the toggle, and the page.
+
+
+	await menOpeFun( curPagObj ); // What: Menu Open Call. Why: The link is tapped from the open menu. How: This opens and checks it on About.
+
+	await curPagObj.getByRole( 'navigation', { name : 'Menu navigation' } ).getByRole( 'link', { exact : true, name : 'Work' } ).click(); // What: Work Link Tap Call. Why: This is the action under test. How: This taps the menu's "Work" link.
+
+	await expect( curPagObj ).toHaveURL( '/work' );                                                                        // What: Work Address Assertion. Why: The link routes to the Work page. How: This waits for the address to change.
+	await expect( curPagObj.getByRole( 'button', { name : 'Toggle menu' } ) ).toHaveAttribute( 'aria-expanded', 'false' ); // What: Closed State Assertion. Why: The menu should close once a link is chosen. How: This checks the toggle reports it closed.
+	await expect( curPagObj.locator( '[inert]' ) ).toHaveCount( 0 );                                                       // What: Page Restored Assertion. Why: The page it opens has to be usable. How: This checks nothing is left inert.
+
+
+} );
+
+
+
+for ( const [ cliKinStr, cliOptObj ] of CLI_KIN_ARR ) { // What: Email Click Kind Loop. Why: Each way of asking for a new tab has to close the menu on the email link too. How: This declares one test per row of CLI_KIN_ARR.
+
+
+	test( `a ${ cliKinStr } click on the menu's email link closes the menu and leaves the page in place`, async ( { page : curPagObj } ) => { // What: Email Link Close Test. Why: A mailto link hands its address to a mail app rather than opening a page, so no new tab is waited for, but the menu still has to close. How: This clicks the email link the loop's way and checks the menu closed and the page stayed on About.
+
+
+		await menOpeFun( curPagObj ); // What: Menu Open Call. Why: The link is clicked from the open menu. How: This opens and checks it on About.
+
+		await curPagObj.getByRole( 'banner' ).getByRole( 'link', { exact : true, name : 'contact@techgeek.dev' } ).click( cliOptObj ); // What: Email Link Click Call. Why: This is the action under test. How: This clicks the email link the given way.
+
+		await expect( curPagObj.getByRole( 'button', { name : 'Toggle menu' } ) ).toHaveAttribute( 'aria-expanded', 'false' ); // What: Closed State Assertion. Why: The menu should close whichever way the link is clicked. How: This waits until the toggle reports it closed.
+		await expect( curPagObj ).toHaveURL( '/about' );                                                                       // What: Original Address Assertion. Why: The page clicked from shouldn't navigate. How: This checks it's still on About.
+		await expect( curPagObj.locator( '[inert]' ) ).toHaveCount( 0 );                                                       // What: Page Restored Assertion. Why: The page clicked from has to be usable again. How: This checks nothing is left inert.
+
+
+	} );
+
+
+}
+
+
+
+for ( const linNamStr of MEN_LIN_ARR.slice( 2 ) ) { // What: Outside Link Loop. Why: A profile icon opens a new tab even on a plain tap, which leaves the page behind. How: This declares one test per profile link, each of which opens another site.
 
 
 	test( `a plain tap on the menu's "${ linNamStr }" link opens a new tab and closes the menu`, async ( { page : curPagObj } ) => { // What: Outside Link Test. Why: A visitor coming back from the other site should find the page usable, not inert behind a menu still open. How: This taps the link and checks a new tab opened, the menu closed, and the page stayed put.
