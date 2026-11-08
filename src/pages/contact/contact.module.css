@@ -235,6 +235,13 @@
 
 
 }
+.sucStaDiv:focus { /* What: Focused Success State Div. Why: The thank-you takes focus by script so screen readers announce it, which is where the result lands rather than a control, so the shared focus ring around the whole card would only confuse. How: This removes its outline, outranking the shared focus visible rule. */
+
+
+	outline : none;
+
+
+}
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Success State Div. Why: Someone who asked for less motion shouldn't see the thank-you slide in. How: This applies only when the reduced-motion preference is set. */
 
 
@@ -479,6 +486,17 @@
 /* #endregion forFieDiv */
 
 
+
+/* #region errAleDiv */
+
+.errAleDiv:empty { /* What: Empty Error Alert Div. Why: The alert region stays in the form from the first render so a failed send is announced, but as an empty flex item it would still add the form's gap above the message field. How: This takes it out of the form's flow while it holds no message, so it takes no space and adds no gap. */
+
+
+	position : absolute;
+
+
+}
+
 .errMesPar { /* What: Error Message Paragraph. Why: A failed send has to stand out, and its arrival should be seen. How: This fades the message up into view with the shared entrance on a pale red panel with a red border and text. */
 
 
@@ -505,6 +523,9 @@
 
 
 }
+
+/* #endregion errAleDiv */
+
 
 
 /* #region forFieDiv */

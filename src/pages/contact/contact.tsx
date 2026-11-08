@@ -7,7 +7,9 @@ import cssModObj from './contact.module.css'; // What: CSS Module Object. Why: T
 
 
 import { GeoBacCom    } from '../../ui/geo-bg.tsx';                    // What: Geometric Background Component. Why: The hero sits over a faint pattern. How: This draws the circuit.
+import { useEffect    } from 'react';                                  // What: Use Effect. Why: Focus has to follow the swap between the form and the thank-you. How: This runs the focus move once the swap has rendered.
 import { usePagDesFun } from 'techgeek-design/ui/page-description.ts'; // What: Use Page Description Function. Why: The page's search description differs from the home page's. How: The page calls it to swap the one description tag's text while it shows.
+import { useRef       } from 'react';                                  // What: Use Reference. Why: The focus move needs the thank-you, the name field, and whether the form is coming back. How: This holds each of those across renders.
 import { useState     } from 'react';                                  // What: Use State. Why: The page remembers the form's fields and whether a message is sending, sent, or failed. How: This holds each of those.
 
 
@@ -190,6 +192,12 @@ const EMP_FOR_OBJ = { 'bot-field' : '', budget : '', email : '', message : '', n
  * contact details, the profiles opening in a new tab, above the availability
  * and response time cards.
  *
+ * Screen readers hear the result too. The error sits in an alert region that
+ * is in the form, empty, from the first render, and the thank-you takes focus
+ * as it replaces the form, which announces it, so focus never falls to the
+ * page. Its button puts focus back on the name field as the form returns,
+ * while a first visit leaves focus where it is.
+ *
  * It also sets the page's title and canonical address, which React moves
  * into the document head, and swaps the search description for its own
  * through usePagDesFun until the page leaves.
@@ -252,9 +260,21 @@ function ConPagCom () : JSX.Element {
 
 	// #endregion chaFieFun
 
+	// #endregion Form State
 
 
-	const resForFun = () => { // What: Reset Form Function. Why: The thank-you's button lets a visitor send another message. How: This hides the thank-you and empties the fields.
+
+	// #region Result Swap
+
+	const forNamRef = useRef< HTMLInputElement >( null ); // What: Form Name Reference. Why: Focus returns to the first field when the form comes back. How: This holds the name input.
+	const retForRef = useRef( false );                    // What: Return Form Reference. Why: Only a return from the thank-you moves focus to the name field, never a first visit. How: This starts false, and resForFun sets it true.
+	const sucStaRef = useRef< HTMLDivElement >( null );   // What: Success State Reference. Why: The thank-you takes focus as it replaces the form. How: This holds the thank-you panel.
+
+
+	const resForFun = () => { // What: Reset Form Function. Why: The thank-you's button lets a visitor send another message. How: This marks the form as returning, hides the thank-you, and empties the fields.
+
+
+		retForRef.current = true; // What: Return Flag Set. Why: The focus effect moves focus to the name field only when the form comes back from the thank-you. How: This marks the return before the swap renders.
 
 
 		setIsaSenBoo( false ); // What: Sent Flag Reset Call. Why: The form shows again in place of the thank-you. How: This clears the sent flag.
@@ -264,7 +284,19 @@ function ConPagCom () : JSX.Element {
 
 	};
 
-	// #endregion Form State
+
+
+	useEffect( () => { // What: Result Focus Effect. Why: The swap removes the focused control, and focus must land on what replaces it rather than fall to the page. How: This focuses the thank-you once it shows, or the name field once the form returns from it.
+
+
+		if ( isaSenBoo ) sucStaRef.current?.focus(); // What: Thank-You Focus Call. Why: Focus on the panel announces it, standing in for a live region. How: This focuses the panel, which takes focus through its tabIndex of -1.
+
+		else if ( retForRef.current ) forNamRef.current?.focus(); // What: Name Field Focus Call. Why: A visitor writing another message starts at the first field, while a first visit shouldn't move focus at all. How: This focuses the name input only after resForFun has marked the return.
+
+
+	}, [ isaSenBoo ] ); // What: Effect Dependency Array. Why: Focus moves only when the form and the thank-you swap. How: isaSenBoo changes whenever one replaces the other.
+
+	// #endregion Result Swap
 
 
 
@@ -441,7 +473,13 @@ function ConPagCom () : JSX.Element {
 							{ isaSenBoo ? ( // What: Sent Or Form Check. Why: A sent message replaces the form with a thank-you. How: This renders the thank-you once sent, or the form otherwise.
 
 
-								<div className={ cssModObj.sucStaDiv }>{ /* What: Success State Div Element. Why: A visitor learns the message went out. How: This fades up into view with a check, a thank-you, and a button for another message. */ }
+								<div
+									ref={ sucStaRef }
+
+									className={ cssModObj.sucStaDiv }
+
+									tabIndex={ -1 }
+								>{ /* What: Success State Div Element. Why: A visitor learns the message went out, and screen reader users hear it as focus lands here. How: This fades up into view with a check, a thank-you, and a button for another message, taking focus by script though never by Tab. */ }
 
 
 									<svg
@@ -531,6 +569,8 @@ function ConPagCom () : JSX.Element {
 											>Full Name</label>{ /* What: Field Label Label Element. Why: The input needs a visible name. How: This labels it "Full Name". */ }
 
 											<input
+												ref={ forNamRef }
+
 												id='forNamInp'
 
 												className={ cssModObj.forConInp }
@@ -620,13 +660,23 @@ function ConPagCom () : JSX.Element {
 									</div>
 
 
-									{ errMesStr && ( // What: Error Presence Check. Why: An error shows only after a failed send. How: This renders the message when there is one.
+									<div
+										className={ cssModObj.errAleDiv }
+
+										role='alert'
+									>{ /* What: Error Alert Div Element. Why: Screen reader users have to hear a failed send, and a live region added at the moment it speaks is often missed. How: This alert region sits in the form, empty, from the first render, and gains the error when a send fails. */ }
 
 
-										<p className={ cssModObj.errMesPar }>{ errMesStr }</p> // What: Error Message Paragraph Element. Why: A visitor learns the message didn't go out. How: This fades the error up into view above the message field.
+										{ errMesStr && ( // What: Error Presence Check. Why: An error shows only after a failed send. How: This renders the message when there is one.
 
 
-									) }
+											<p className={ cssModObj.errMesPar }>{ errMesStr }</p> // What: Error Message Paragraph Element. Why: A visitor learns the message didn't go out. How: This fades the error up into view above the message field.
+
+
+										) }
+
+
+									</div>
 
 									<div className={ cssModObj.forFieDiv }>{ /* What: Form Field Div Element. Why: The message's label and box read as one field. How: This stacks them. */ }
 
