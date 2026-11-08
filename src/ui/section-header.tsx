@@ -58,7 +58,7 @@ type ShcProTyp = { aliPosStr? : 'center' | 'left', labTexStr : string, subTexStr
  *
  * @example
  * ```tsx
- * SecHeaCom({ aliPosStr, labTexStr, subTexStr, titTexStr }) // => <SecHeaCom />
+ * SecHeaCom({ aliPosStr, labTexStr, subTexStr, ... }) // => <SecHeaCom />
  * ```
  *
 */

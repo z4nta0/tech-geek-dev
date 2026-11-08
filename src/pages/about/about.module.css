@@ -181,6 +181,7 @@
 /* #endregion herLabSpa */
 
 
+
 /* #region herTitHea */
 
 .herTitHea { /* What: Hero Title Heading. Why: The heading reads in the main text color. How: This sets its color, the size coming from the global heading styles. */
@@ -814,6 +815,7 @@
 /* #endregion timLefDiv */
 
 
+
 /* #region timConDiv */
 
 .timConDiv { /* What: Timeline Connector Div. Why: The dot and its line stack in the middle column. How: This centers them in a column. */
@@ -867,6 +869,7 @@
 }
 
 /* #endregion timConDiv */
+
 
 
 /* #region timCotDiv */
