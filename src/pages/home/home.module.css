@@ -962,7 +962,7 @@
 
 
 }
-.staValSpa::after { /* What: Stat Value Span Underline. Why: A short orange stroke sits under each figure. How: This draws a 26px rounded orange bar centered below it. */
+.staValSpa::after { /* What: Stat Value Span Underline. Why: A short orange stroke sits under each figure. How: This draws a rounded orange bar about 26px long centered below it. */
 
 
 	background    : var( --acc-mai-col );                /* Accent Main Color = #F26419 */

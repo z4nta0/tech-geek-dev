@@ -82,7 +82,7 @@
 
 	height     : 100%;
 	object-fit : cover;
-	transition : transform var( --dur-tra-p04 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 4 ~= 486.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition : transform var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 	width      : 100%;
 
 

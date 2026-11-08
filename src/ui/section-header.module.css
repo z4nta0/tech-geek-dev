@@ -56,7 +56,7 @@
 
 }
 
-.labLinSpa { /* What: Label Line Span. Why: A short rule leads into the label. How: This draws a 26px orange stroke that never shrinks. */
+.labLinSpa { /* What: Label Line Span. Why: A short rule leads into the label. How: This draws an orange stroke about 26px long that never shrinks. */
 
 
 	background  : var( --acc-mai-col );                /* Accent Main Color = #F26419 */

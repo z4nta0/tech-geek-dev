@@ -99,7 +99,7 @@
 
 }
 
-.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws a 26px orange stroke. */
+.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws an orange stroke about 26px long. */
 
 
 	background : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
