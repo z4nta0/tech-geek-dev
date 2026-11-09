@@ -90,8 +90,8 @@ function corMasFun () : void {
 
 
 	const carCurEle = [ ...document.querySelectorAll( 'aside div' ) ].find( ( divCurEle ) => divCurEle.querySelector( ':scope > h3' )?.textContent === 'Response Time' )!; // What: Card Current Element. Why: Only this card's corners are unstable. How: This finds the sidebar card whose own heading reads "Response Time". // What: Non-Null Note. Why: The Contact desktop state always shows the card. How: The find returns the card, never undefined, there.
-	const carRecObj = carCurEle.getBoundingClientRect();                                  // What: Card Rect Object. Why: The squares sit on the card's corners. How: This reads its box in the viewport.
-	const radPixNum = parseFloat( getComputedStyle( carCurEle ).borderBottomLeftRadius ); // What: Radius Pixel Number. Why: Each square covers one corner's curve. How: This reads the card's corner radius in pixels.
+	const carRecObj = carCurEle.getBoundingClientRect(); // What: Card Rect Object. Why: The squares sit on the card's corners. How: This reads its box in the viewport.
+	const radPixNum = parseFloat( getComputedStyle( carCurEle ).borderBottomLeftRadius );                                                                                  // What: Radius Pixel Number. Why: Each square covers one corner's curve. How: This reads the card's corner radius in pixels.
 
 
 	for ( const lefPixNum of [ carRecObj.left, carRecObj.right - radPixNum ] ) { // What: Corner Square Loop. Why: Both bottom corners repaint. How: This lays one square at each, by its left edge.
