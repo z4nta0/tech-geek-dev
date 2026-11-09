@@ -15,7 +15,7 @@ import { statSync      } from 'node:fs';          // What: Stat Sync. Why: Site 
  * render.mts = Social Preview Card Renderer
  *
  * @summary
- * Rebuilds public/og-image-2.png, the 1,200x630 card shown when a link to the
+ * Rebuilds public/og-image-3.png, the 1,200x630 card shown when a link to the
  * site is shared, from card.html beside this script: the site's hexagon mark
  * and TechGeek.dev wordmark above "Full Stack Web Developer" and z4nta0, on
  * the ivory page color with outlined hexagons at its sides. It opens the card
@@ -41,7 +41,7 @@ import { statSync      } from 'node:fs';          // What: Stat Sync. Why: Site 
 
 const CAR_URL_STR = new URL( './card.html', import.meta.url ).href;                             // What: Card URL String. Why: The card loads its fonts and styles by paths relative to itself. How: This is card.html's own file URL.
 const MAX_BYT_NUM = 300 * 1024;                                                                 // What: Maximum Bytes Number. Why: Site owners report WhatsApp previews going missing above 300 KB, so the card stays under it. How: This is the limit the finished file is checked against.
-const OUT_PAT_STR = fileURLToPath( new URL( '../../public/og-image-2.png', import.meta.url ) ); // What: Output Path String. Why: The tags point at the card in public/. How: This resolves that path from this script's folder.
+const OUT_PAT_STR = fileURLToPath( new URL( '../../public/og-image-3.png', import.meta.url ) ); // What: Output Path String. Why: The tags point at the card in public/. How: This resolves that path from this script's folder.
 
 // #endregion Constants
 
@@ -65,7 +65,7 @@ await broInsObj.close(); // What: Browser Close Call. Why: The script should exi
 const outBytNum = statSync( OUT_PAT_STR ).size; // What: Output Bytes Number. Why: The card has to stay under the 300 KB limit. How: This reads the saved file's size.
 
 
-if ( outBytNum >= MAX_BYT_NUM ) throw new Error( `og-image-2.png is ${ outBytNum.toLocaleString( 'en-US' ) } bytes, at or over the ${ MAX_BYT_NUM.toLocaleString( 'en-US' ) } byte limit.` ); // What: Size Guard. Why: Site owners report WhatsApp previews going missing above the limit. How: This fails the run with the file's size.
+if ( outBytNum >= MAX_BYT_NUM ) throw new Error( `og-image-3.png is ${ outBytNum.toLocaleString( 'en-US' ) } bytes, at or over the ${ MAX_BYT_NUM.toLocaleString( 'en-US' ) } byte limit.` ); // What: Size Guard. Why: Site owners report WhatsApp previews going missing above the limit. How: This fails the run with the file's size.
 
 
 
