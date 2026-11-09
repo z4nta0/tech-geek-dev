@@ -323,7 +323,7 @@ test( 'moving between pages swaps their head tags', async ( { page : curPagObj }
 
 
 
-test( 'the structured data describes z4nta0 and matches the pages', async ( { page : curPagObj } ) => { // What: Structured Data Test. Why: Search engines may show z4nta0's details from the JSON-LD, so its name, address, profiles, and email have to match what the pages show. How: This reads the data and checks the person, the site, the profiles, and the email against the pages.
+test( 'the structured data describes z4nta0 and matches the pages', async ( { page : curPagObj } ) => { // What: Structured Data Test. Why: Search engines may show z4nta0's details from the JSON-LD, so its name, URL, profiles, and email have to match what the pages show. How: This reads the data and checks the person, the site, the profiles, and the email against the pages.
 
 
 	await curPagObj.goto( '/' ); // What: Home Open Call. Why: The profiles in the data have to be the ones the footer links to. How: This loads the home page.

@@ -5,12 +5,10 @@
  * hide-patterns.css = Hide Patterns Stylesheet
  *
  * @summary
- * Applied by the rendering suite during its Chromium and WebKit captures
- * only. The pages' faint geometric backgrounds are SVG pattern fills, which
- * those two engines tile a few color levels differently from one run to the
- * next, so their screenshots failed now and then with nothing on the page
- * changed. Hiding the patterns keeps those engines' baselines steady while
- * Firefox, which draws them the same every time, still checks them.
+ * Hides the pages' faint geometric backgrounds, which are SVG pattern fills.
+ * Chromium and WebKit tile those a few color levels differently from one run
+ * to the next, so their screenshots failed now and then with nothing on the
+ * page changed, and hiding the patterns keeps those captures steady.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
