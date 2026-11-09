@@ -24,9 +24,10 @@ import { test        } from '@playwright/test';      // What: Test. Why: Each ch
  * in the page and empty on load and holds the error after a failed send, which
  * also leaves focus on the submit button, a sent message moves focus to the
  * thank-you that replaces the form, and its "Send Another Message" button
- * moves focus back to the name field. The form fades up into view on that
- * return, though not on a first visit, and simply appears under reduced
- * motion. Each result is also scanned with axe at phone and desktop widths.
+ * moves focus back to the name field. The error and the thank-you each fade up
+ * into view, and the form fades up on its return, though not on a first visit,
+ * and simply appears under reduced motion. Each result is also scanned with
+ * axe at phone and desktop widths.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -103,6 +104,26 @@ test( 'the form fades up into view on its return from the thank-you, but not on 
 	await curPagObj.getByRole( 'button', { name : 'Send Another Message' } ).click(); // What: Send Another Click Call. Why: The form comes back for another message. How: This presses "Send Another Message".
 
 	await expect( forLocObj ).toHaveCSS( 'animation-name', 'contentEnterFadeUp' ); // What: Return Fade Assertion. Why: The form coming back should fade up the way the thank-you did. How: This checks the returning form plays the shared entrance keyframe.
+
+
+} );
+
+
+
+test( 'the thank-you and the error each fade up into view', async ( { page : curPagObj } ) => { // What: Result Fade Test. Why: Each result replaces or joins the form, and the change should be seen arriving. How: This allows motion, sends the form against a 500 and checks the error plays the shared entrance, then sends it against a 200 and checks the thank-you does.
+
+
+	await curPagObj.emulateMedia( { reducedMotion : 'no-preference' } ); // What: Motion Allowed Call. Why: The fades play only when motion is allowed, and this file asks for reduced motion. How: This lifts the preference for this page.
+
+	await curPagObj.goto( '/contact' ); // What: Contact Page Navigation. Why: The form lives on the Contact page. How: This loads it.
+
+	await senForFun( curPagObj, 500 ); // What: Failed Send Call. Why: The error shows only after a failed send. How: This sends the form with the root's POST answered by a 500.
+
+	await expect( curPagObj.locator( '[class*="errMesPar"]' ) ).toHaveCSS( 'animation-name', 'contentEnterFadeUp' ); // What: Error Fade Assertion. Why: The error should fade up above the button rather than appear at once. How: This checks the error paragraph, found by the class name Vite keeps inside its hashed class, plays the shared entrance keyframe.
+
+	await senForFun( curPagObj, 200 ); // What: Sent Send Call. Why: The thank-you shows only after a send succeeds. How: This sends the form again with the root's POST answered by a 200.
+
+	await expect( curPagObj.locator( '[class*="sucStaDiv"]' ) ).toHaveCSS( 'animation-name', 'contentEnterFadeUp' ); // What: Thank-You Fade Assertion. Why: The thank-you replaces the form, and the swap should be seen. How: This checks the thank-you panel plays the shared entrance keyframe.
 
 
 } );
