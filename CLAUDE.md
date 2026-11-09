@@ -669,7 +669,9 @@ ticker, and the status dots) when waiting for the page to settle.
   focused (through `focus( { focusVisible : true } )`) than unfocused, and
   every property each of those changes, on it or anything inside it, has to
   ease. The project, service, process step, and value cards, which lift
-  without being links, have to show and ease their hover, and each toggled
+  without being links, have to show and ease their hover, a project card's
+  overlay has to show and ease in when its first link takes keyboard focus,
+  and each toggled
   state (the menu toggle's cross, the current bar and drawer links, the open
   drawer and scrim, the scrolled bar, Work's chosen filter, and its filter
   row's two edge fades) is flipped off, on, and

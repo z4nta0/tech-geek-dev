@@ -36,15 +36,17 @@ import type { Page          } from '@playwright/test'; // What: Page. Why: The h
  * each of those changes, on it or anything inside it, its shadow layers
  * included, has to be eased by a transition, its focus ring included. Each
  * kind of element with a state that switches on and off, such as the phone
- * menu's toggle or Contact's sending button, is flipped off, on, and off
- * again by its attribute, and has to look different and ease each change both
- * ways. On the Home, Work, and About states, the
- * cards that lift on hover without being links have to show and ease their
- * hover. The first keyboard stop, the skip link, has to draw its ring at full
- * width. Under reduced motion every change stays but switches at once. Real
- * clicks are blocked during the checks, so pressing a control never navigates
- * or closes anything mid-check. The snapshot and comparison helpers live in
- * tests/support/feedback.ts. Adapted from the-bernie-bears' own feedback spec.
+ * menu's toggle or Contact's sending button, is flipped off, on, and off again
+ * by its attribute, and has to look different and ease each change both ways.
+ * On the Home, Work, and About states, the cards that lift on hover without
+ * being links have to show and ease their hover, and on the Home and Work
+ * states a project card's overlay has to show and ease in when its first link
+ * takes keyboard focus. The first keyboard stop, the skip link, has to draw
+ * its ring at full width. Under reduced motion every change stays but switches
+ * at once. Real clicks are blocked during the checks, so pressing a control
+ * never navigates or closes anything mid-check. The snapshot and comparison
+ * helpers live in tests/support/feedback.ts. Adapted from the-bernie-bears'
+ * own feedback spec.
  *
  * Sections:
  *  - Types
@@ -590,18 +592,17 @@ async function feeProFun ( curPagObj : Page, staIdeStr : string, redMotBoo : boo
  * hovProFun = Hover Problems Function
  *
  * @summary
- * Probes the reachable project, service, and value cards, the ones that
- * respond to hover without being links, and returns a problem for each one
- * that gives no hover feedback, or a single problem when it finds none. Only
- * hover is checked: each card is
- * scrolled into view, read at rest with the pointer away and again while
- * hovered, every look read once its transition has settled, and one that
- * looks the same both ways is a problem. Normally every probed property that
- * changes, on the card or anything inside it, its shadow layers included, has
- * to be eased by a transition ({@link snaProFun}); under reduced motion none
- * of them may ease ({@link movProFun}), and every one of the card's own
- * transition durations must be zero, while the hover look still has to
- * change.
+ * Probes the reachable project, service, process step, and value cards, the
+ * ones that respond to hover without being links, and returns a problem for
+ * each one that gives no hover feedback, or a single problem when it finds
+ * none. Only hover is checked: each card is scrolled into view, read at rest
+ * with the pointer away and again while hovered, every look read once its
+ * transition has settled, and one that looks the same both ways is a problem.
+ * Normally every probed property that changes, on the card or anything inside
+ * it, its shadow layers included, has to be eased by a transition ({@link
+ * snaProFun}); under reduced motion none of them may ease ({@link movProFun}),
+ * and every one of the card's own transition durations must be zero, while the
+ * hover look still has to change.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -683,6 +684,104 @@ async function hovProFun ( curPagObj : Page, redMotBoo : boolean ) : Promise< st
 }
 
 // #endregion hovProFun
+
+
+
+// #region oveProFun
+
+/**
+ * oveProFun = Overlay Problems Function
+ *
+ * @summary
+ * Probes the reachable project card overlays, the dark washes holding a card's
+ * links over its screenshot, and returns a problem for each one that a
+ * keyboard focus on its first link doesn't reveal, or a single problem when it
+ * finds none. Each overlay is scrolled into view with the pointer away and
+ * read with nothing focused, then read again once its first link is focused
+ * the way a keyboard focuses it, every look read once its transitions have
+ * finished. An overlay that isn't fully opaque once focused is a problem.
+ * Normally every probed property that changes, on the overlay or anything
+ * inside it, the link's ring included, has to be eased ({@link snaProFun});
+ * under reduced motion none of them may ease ({@link movProFun}).
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+ * @param curPagObj - Current Page Object: The page to probe.
+ * @param redMotBoo - Reduced Motion Boolean: Whether the page is emulating
+ *                    reduced motion.
+ *
+ * @returns A promise that resolves with every overlay focus problem found.
+ * @see {@link proLisArr}
+ *
+ * @example
+ * ```ts
+ * oveProFun(page, false) // => [] when every overlay shows for the keyboard
+ * ```
+ *
+*/
+
+async function oveProFun ( curPagObj : Page, redMotBoo : boolean ) : Promise< string[] > {
+
+
+	const oveHanArr = await conLisFun( curPagObj, '[class*="imaOveDiv"]' ); // What: Overlay Handle Array. Why: Every reachable card's overlay is probed. How: This collects them the way the controls are collected.
+
+	const proLisArr : string[] = []; // What: Problem List Array. Why: Every problem should be reported, not just the first. How: This collects them.
+
+
+	if ( !oveHanArr.length ) proLisArr.push( 'no overlay to probe' ); // What: Empty Probe Check. Why: A probe that finds nothing would pass without checking anything. How: This records a problem when no overlay is found.
+
+
+
+	for ( const oveCurObj of oveHanArr ) { // What: Overlay Probe Loop. Why: Every overlay has to show for a keyboard user. How: This reads each one unfocused and with its first link focused.
+
+
+		const oveDesStr = await oveCurObj.evaluate( ( oveCurEle ) => `the overlay of "${ ( oveCurEle.closest( 'article' )?.querySelector( 'h3' )?.textContent || '' ).trim() }"` ); // What: Overlay Description String. Why: A problem should name the card a person would recognize. How: This names the overlay by its card's title.
+
+
+		await oveCurObj.scrollIntoViewIfNeeded(); // What: Overlay Scroll Call. Why: The overlay has to be on screen to be read as it shows. How: This scrolls it into view.
+
+		await curPagObj.mouse.move( 0, 0 ); // What: Pointer Away Call. Why: A hovered card would reveal its overlay without the focus. How: This moves the pointer to the corner of the bar.
+
+		await curPagObj.evaluate( () => ( document.activeElement as HTMLElement | null )?.blur() ); // What: Focus Clear Call. Why: The unfocused look is read with nothing focused. How: This blurs whatever holds focus. // What: Type Assertion Note. Why: activeElement types as a plain Element, which has no blur. How: Whatever holds focus on this page is an HTML element or nothing.
+
+		await curPagObj.waitForTimeout( SET_WAI_NUM ); // What: Rest Settle Wait. Why: Any earlier reveal has to finish fading. How: This pauses for the settle time.
+
+		await oveCurObj.evaluate( aniFinFun ); // What: Animation Finish Call. Why: WebKit can run a transition behind the clock on a heavy page, leaving it partway at the settle wait. How: This waits for every finite animation on the overlay and inside it to end.
+
+
+		const bluSnaArr = await oveCurObj.evaluate( snaEleFun, FOC_PRO_ARR ); // What: Blurred Snapshot Array. Why: The unfocused look is what the focus is compared with. How: This records the overlay and everything inside it.
+
+
+		await oveCurObj.evaluate( ( oveCurEle ) => oveCurEle.querySelector( 'a' )?.focus( { focusVisible : true } ) ); // What: Keyboard Focus Call. Why: The overlay has to show when a keyboard user reaches one of its links. How: This focuses its first link with focusVisible set, as a Tab would.
+
+		await curPagObj.waitForTimeout( SET_WAI_NUM ); // What: Focus Settle Wait. Why: The revealed look is read once it has eased in. How: This pauses for the settle time.
+
+		await oveCurObj.evaluate( aniFinFun ); // What: Animation Finish Call. Why: WebKit can run a transition behind the clock on a heavy page, leaving it partway at the settle wait. How: This waits for every finite animation on the overlay and inside it to end.
+
+
+		const focSnaArr = await oveCurObj.evaluate( snaEleFun, FOC_PRO_ARR );                         // What: Focused Snapshot Array. Why: The revealed look is compared with the unfocused one. How: This records it.
+		const opaValStr = await oveCurObj.evaluate( ( oveCurEle ) => getComputedStyle( oveCurEle ).opacity ); // What: Opacity Value String. Why: The link's own ring changes even inside a hidden overlay, so a change alone doesn't prove the overlay shows. How: This reads the overlay's opacity once focused.
+
+
+		if ( opaValStr !== '1' ) proLisArr.push( `${ oveDesStr } stays hidden with a link focused (opacity ${ opaValStr })` ); // What: Reveal Check. Why: A keyboard user has to see the link they reached. How: This records an overlay that isn't fully shown.
+
+
+
+		if ( redMotBoo ) proLisArr.push( ...movProFun( bluSnaArr, focSnaArr, FOC_PRO_ARR, oveDesStr, 'when a link is focused' ) ); // What: Reduced Motion Change Check. Why: Under reduced motion the reveal should switch at once. How: This records each property that changes while a transition still eases it.
+
+		else proLisArr.push( ...snaProFun( bluSnaArr, focSnaArr, FOC_PRO_ARR, oveDesStr, 'when a link is focused' ) ); // What: Snapped Change Check. Why: The reveal and the link's ring should ease rather than snap. How: This records each property that changes without a transition, on the overlay or anything inside it.
+
+
+	}
+
+
+
+	return proLisArr; // What: Problem List Return. Why: The test prints whatever was found. How: This hands back every problem collected.
+
+
+}
+
+// #endregion oveProFun
 
 
 
@@ -816,7 +915,7 @@ async function togProFun ( curPagObj : Page, staIdeStr : string, redMotBoo : boo
 for ( const staRecObj of [ ...STA_REC_ARR, ...RES_STA_ARR ] ) { // What: State Test Loop. Why: Every page state is checked, the Contact form's thank-you and error included, since the thank-you holds a button no other state shows. How: This declares each check once per state, the shared states first, then the result states.
 
 
-	test( `${ staRecObj.ideStr } gives every reachable link and button hover, press, and focus feedback, every form field its focus, and every toggle its switch`, async ( { page : curPagObj } ) => { // What: Feedback Test. Why: Every interaction should visibly register. How: This opens the state, blocks clicks, probes every reachable link, button, and form field and each reachable element of the toggle kinds listed for the state, and on the Home, Work, and About states every card, and checks it finds no problems.
+	test( `${ staRecObj.ideStr } gives every reachable link and button hover, press, and focus feedback, every form field its focus, and every toggle its switch`, async ( { page : curPagObj } ) => { // What: Feedback Test. Why: Every interaction should visibly register. How: This opens the state, blocks clicks, probes every reachable link, button, and form field and each reachable element of the toggle kinds listed for the state, on the Home, Work, and About states every card, and on Home and Work every project card overlay, and checks it finds no problems.
 
 
 		test.setTimeout( 600000 ); // What: Test Timeout Call. Why: Probing every control's hover, press, and focus takes about two seconds per control, and the Work page's dozens of project links and filters ran WebKit past 90 seconds even before the toggles and cards joined. How: This gives the test ten minutes.
@@ -830,6 +929,10 @@ for ( const staRecObj of [ ...STA_REC_ARR, ...RES_STA_ARR ] ) { // What: State T
 
 
 		if ( /^(home|work|about)-/.test( staRecObj.ideStr ) ) proLisArr.push( ...await hovProFun( curPagObj, false ) ); // What: Card Probe Call. Why: The cards show, with nothing covering them, only on the Home, Work, and About states. How: On those pages' desktop and phone states, this adds the cards' problems.
+
+
+
+		if ( /^(home|work)-/.test( staRecObj.ideStr ) ) proLisArr.push( ...await oveProFun( curPagObj, false ) ); // What: Overlay Probe Call. Why: The project cards, and the overlays holding their links, show only on the Home and Work states. How: On those pages' desktop and phone states, this adds the overlays' problems.
 
 
 
@@ -860,7 +963,7 @@ for ( const staRecObj of [ ...STA_REC_ARR, ...RES_STA_ARR ] ) { // What: State T
 
 
 
-	test( `${ staRecObj.ideStr } keeps feedback without motion under reduced motion`, async ( { page : curPagObj } ) => { // What: Reduced Motion Feedback Test. Why: Visitors who ask for less motion still need to see their actions register. How: This probes every reachable link, button, and form field, each reachable element of the toggle kinds listed for the state, and on the Home, Work, and About states every card, with reduced motion on, and checks it finds no problems.
+	test( `${ staRecObj.ideStr } keeps feedback without motion under reduced motion`, async ( { page : curPagObj } ) => { // What: Reduced Motion Feedback Test. Why: Visitors who ask for less motion still need to see their actions register. How: This probes every reachable link, button, and form field, each reachable element of the toggle kinds listed for the state, on the Home, Work, and About states every card, and on Home and Work every project card overlay, with reduced motion on, and checks it finds no problems.
 
 
 		test.setTimeout( 600000 ); // What: Test Timeout Call. Why: Probing every control's hover, press, and focus takes about two seconds per control, and the Work page's dozens of project links and filters ran WebKit past 90 seconds even before the toggles and cards joined. How: This gives the test ten minutes.
@@ -876,6 +979,10 @@ for ( const staRecObj of [ ...STA_REC_ARR, ...RES_STA_ARR ] ) { // What: State T
 
 
 		if ( /^(home|work|about)-/.test( staRecObj.ideStr ) ) proLisArr.push( ...await hovProFun( curPagObj, true ) ); // What: Card Probe Call. Why: The cards show, with nothing covering them, only on the Home, Work, and About states. How: On those pages' desktop and phone states, this adds the cards' problems.
+
+
+
+		if ( /^(home|work)-/.test( staRecObj.ideStr ) ) proLisArr.push( ...await oveProFun( curPagObj, true ) ); // What: Overlay Probe Call. Why: The project cards, and the overlays holding their links, show only on the Home and Work states. How: On those pages' desktop and phone states, this adds the overlays' problems.
 
 
 
