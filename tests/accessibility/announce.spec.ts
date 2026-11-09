@@ -35,7 +35,7 @@ import { test        } from '@playwright/test';      // What: Test. Why: Each ch
 
 
 
-test.use( { reducedMotion : 'reduce' } ); // What: Reduced Motion Use. Why: The thank-you's and the error's fades would otherwise still be running when the checks read them. How: This makes every page in this file match prefers-reduced-motion: reduce.
+test.use( { reducedMotion : 'reduce' } ); // What: Reduced Motion Use. Why: The thank-you's and the error's fades would otherwise still be running when the checks read them. How: This makes each page in this file start out matching prefers-reduced-motion: reduce.
 
 
 

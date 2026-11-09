@@ -140,7 +140,7 @@ async function motRecFun ( curPagObj : Page ) : Promise< void > {
 			entRecFun( aniTarEle, aniEveObj.pseudoElement, aniEveObj.animationName, lisMilFun( styCurObj.animationDuration, namIndNum ), lisMilFun( styCurObj.animationDelay, namIndNum ) ); // What: Animation Record Call. Why: The animation is recorded when it lasts. How: This passes its element, name, duration, and delay.
 
 
-		}, true ); // What: Capture Phase Flag. Why: The recorder has to see an animation's start ahead of any handler that could stop the event. How: This registers the animation listener for the capture phase.
+		}, true ); // What: Capture Phase Flag. Why: The recorder has to see an animation's start ahead of the handlers on the page's elements that could stop the event. How: This registers the animation listener for the capture phase.
 
 
 
@@ -155,7 +155,7 @@ async function motRecFun ( curPagObj : Page ) : Promise< void > {
 			entRecFun( traTarEle, traEveObj.pseudoElement, traEveObj.propertyName, lisMilFun( styCurObj.transitionDuration, proIndNum ), lisMilFun( styCurObj.transitionDelay, proIndNum ) ); // What: Transition Record Call. Why: The transition is recorded when it lasts. How: This passes its element, property, duration, and delay.
 
 
-		}, true ); // What: Capture Phase Flag. Why: The recorder has to see a transition's run ahead of any handler that could stop the event. How: This registers the transition listener for the capture phase.
+		}, true ); // What: Capture Phase Flag. Why: The recorder has to see a transition's run ahead of the handlers on the page's elements that could stop the event. How: This registers the transition listener for the capture phase.
 
 
 
@@ -597,7 +597,7 @@ for ( const staRecObj of [ ...STA_REC_ARR, ...RES_STA_ARR ] ) { // What: State T
 
 
 
-	test( `${ staRecObj.ideStr } plays no motion under reduced motion`, async ( { page : curPagObj } ) => { // What: Reduced Motion Test. Why: Visitors who ask for less motion shouldn't see the page animate. How: This requests reduced motion, records every animation and transition from the start of the load, opens the state, and lists anything that played or is still waiting to.
+	test( `${ staRecObj.ideStr } plays no motion under reduced motion`, async ( { page : curPagObj } ) => { // What: Reduced Motion Test. Why: Visitors who ask for less motion shouldn't see the page animate. How: This requests reduced motion, records every lasting animation and transition from the start of the load, opens the state, and lists anything that played or is still waiting to.
 
 
 		await curPagObj.emulateMedia( { reducedMotion : 'reduce' } ); // What: Reduced Motion Emulation. Why: The preference has to be set before the page loads. How: This makes the page match prefers-reduced-motion: reduce.

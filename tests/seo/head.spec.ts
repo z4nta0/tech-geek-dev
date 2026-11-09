@@ -29,12 +29,12 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
  * description. The structured data describes z4nta0 as a Person, with the
  * GitHub and LinkedIn profiles the footer links to and the email the Contact
  * page offers, and this domain as a WebSite z4nta0 wrote. The raw page's
- * social preview tags all carry content, name a website and the large image
- * card, use absolute addresses, and match the home page's title and
- * description, and the theme color tag carries the brand orange; the card
- * they point at is a 1,200x630 PNG under 300 KB; and every icon the head links
- * to is served, the PNGs at the size their links promise. robots.txt lets
- * every crawler in and names the sitemap, which lists the four indexed pages.
+ * required social preview tags all carry content, name a website and the large
+ * image card, use absolute addresses, and match the home page's title and
+ * description, and the theme color tag carries the brand orange; the card they
+ * point at is a 1,200x630 PNG under 300 KB; and every icon the head links to
+ * is served, the PNGs at the size their links promise. robots.txt lets every
+ * crawler in and names the sitemap, which lists the four indexed pages.
  * Adapted from the-bernie-bears.
  *
  * Sections:
@@ -396,7 +396,7 @@ test( 'the sitemap lists the four indexed pages', async ( { request : reqConObj 
 
 
 
-test( 'the social preview tags are complete in the raw page', async ( { page : curPagObj, request : reqConObj } ) => { // What: Social Tags Test. Why: A link shared anywhere should show a full card that matches the page, and link scrapers read the raw page without running the site's script. How: This fetches the root as raw HTML and checks every social tag carries content, its card kinds, its absolute URLs, its image's type and size, and its copy against the loaded home page's title and description, then the theme color.
+test( 'the social preview tags are complete in the raw page', async ( { page : curPagObj, request : reqConObj } ) => { // What: Social Tags Test. Why: A link shared anywhere should show a full card that matches the page, and link scrapers read the raw page without running the site's script. How: This fetches the root as raw HTML and checks every required social tag carries content, its card kinds, its absolute URLs, its image's type and size, and its copy against the loaded home page's title and description, then the theme color.
 
 
 	await curPagObj.goto( '/' ); // What: Home Load Call. Why: The cards' copy is compared with the title and description the home page shows. How: This opens the home page.
