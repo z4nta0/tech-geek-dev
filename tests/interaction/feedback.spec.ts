@@ -41,12 +41,12 @@ import type { Page          } from '@playwright/test'; // What: Page. Why: The h
  * On the Home, Work, and About states, the cards that lift on hover without
  * being links have to show and ease their hover, and on the Home and Work
  * states a project card's overlay has to show and ease in when its first link
- * takes keyboard focus. The first keyboard stop, the skip link, has to draw
- * its ring at full width. Under reduced motion every change stays but switches
- * at once. Real clicks are blocked during the checks, so pressing a control
- * never navigates or closes anything mid-check. The snapshot and comparison
- * helpers live in tests/support/feedback.ts. Adapted from the-bernie-bears'
- * own feedback spec.
+ * takes keyboard focus. The first keyboard stop has to draw its ring at full
+ * width, and on a state with nothing opened it has to be the skip link. Under
+ * reduced motion every change stays but switches at once. Real clicks are
+ * blocked during the checks, so pressing a control never navigates or closes
+ * anything mid-check. The snapshot and comparison helpers live in
+ * tests/support/feedback.ts. Adapted from the-bernie-bears' own feedback spec.
  *
  * Sections:
  *  - Types
@@ -419,23 +419,24 @@ async function conLisFun ( curPagObj : Page, conSelStr : string ) : Promise< Ele
  * @summary
  * Probes every reachable link, button, and form field and returns a problem
  * for each one that gives no feedback, or a single problem when it finds no
- * control at all, or no field on the Contact states that show the form.
- * Each control is scrolled into view, and one that still waits above the
- * screen until it's focused, the skip link, is focused so it slides in before
- * it's hovered. Each is read at rest with the pointer away, again while
- * hovered, and again while the mouse button is held on it, a field skipping
- * the press, since pressing one only focuses it, then blurred with the pointer
- * away and read once more while focused the way a keyboard focuses it, every
- * look read once its transition has settled. A control that looks the same
- * unfocused and focused is a problem, and so is a link or button that looks
- * the same at rest and hovered or hovered and pressed, while a field, which
- * has no hover or press look, isn't held to those two. Normally every probed
- * property that changes on hover, press, or focus, on the control or anything
- * inside it, has to be eased by a transition ({@link snaProFun}), the focus
- * ring's outline included; under reduced motion none of them may ease
- * ({@link movProFun}), and the control's own transition durations, read while
- * it is pressed, or hovered for a field, must all be zero. It expects real
- * clicks already blocked, so releasing the mouse does nothing.
+ * control at all, no field on the Contact states that show the form, or no
+ * skip link waiting above the screen outside the open menu. Each control is
+ * scrolled into view, and one that still waits above the screen until it's
+ * focused, the skip link, is focused so it slides in before it's hovered. Each
+ * is read at rest with the pointer away, again while hovered, and again while
+ * the mouse button is held on it, a field skipping the press, since pressing
+ * one only focuses it, then blurred with the pointer away and read once more
+ * while focused the way a keyboard focuses it, every look read once its
+ * transition has settled. A control that looks the same unfocused and focused
+ * is a problem, and so is a link or button that looks the same at rest and
+ * hovered or hovered and pressed, while a field, which has no hover or press
+ * look, isn't held to those two. Normally every probed property that changes
+ * on hover, press, or focus, on the control or anything inside it, has to be
+ * eased by a transition ({@link snaProFun}), the focus ring's outline
+ * included; under reduced motion none of them may ease ({@link movProFun}),
+ * and the control's own transition durations, read while it is pressed, or
+ * hovered for a field, must all be zero. It expects real clicks already
+ * blocked, so releasing the mouse does nothing.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -471,6 +472,13 @@ async function feeProFun ( curPagObj : Page, staIdeStr : string, redMotBoo : boo
 
 
 	if ( /^contact-(desktop|phone)(-failed)?$/.test( staIdeStr ) && !fieFouArr.includes( true ) ) proLisArr.push( 'no form field to probe' ); // What: Empty Field Check. Why: A selector that stopped matching the fields would let their focus snap without failing. How: On the Contact states where the form shows, the plain and failed ones, since the thank-you replaces it in the sent ones, this records a problem when no field is found.
+
+
+
+	const skiFouArr = await Promise.all( conHanArr.map( ( conCurObj ) => conCurObj.evaluate( ( conCurEle ) => conCurEle.textContent?.trim() === 'Skip to main content' && conCurEle.getBoundingClientRect().bottom <= 0 ) ) ); // What: Skip Found Array. Why: The skip link is the control that waits above the screen until it's focused, so the probe's focus-first branch has to reach it. How: This marks each control that is the skip link resting above the screen.
+
+
+	if ( staIdeStr !== 'menu-phone' && !skiFouArr.includes( true ) ) proLisArr.push( "the skip link isn't probed waiting above the screen" ); // What: Missing Skip Link Check. Why: A skip link that stopped waiting above the screen, or went missing, would let the focus-first branch drop out without failing. How: This records a problem when no probed control is the skip link resting above the screen, on every state but the open menu, which makes the page behind it inert, the skip link included.
 
 
 
@@ -965,6 +973,11 @@ for ( const staRecObj of [ ...STA_REC_ARR, ...RES_STA_ARR ] ) { // What: State T
 		await curPagObj.waitForTimeout( SET_WAI_NUM ); // What: Ring Settle Wait. Why: The ring is read once it has had time to grow in. How: This pauses for the settle time.
 
 		await curPagObj.evaluateHandle( () => document.activeElement as Element ).then( ( actHanObj ) => actHanObj.evaluate( aniFinFun ) ); // What: Ring Finish Wait. Why: WebKit's clock can lag on a heavy page, leaving the ring partway grown after the settle time. How: This waits for the focused stop's transitions to finish. // What: Type Assertion Note. Why: activeElement types as possibly null. How: The Tab press just put focus on a stop.
+
+
+		if ( !staRecObj.actFun ) expect( await curPagObj.evaluate( () => document.activeElement?.textContent?.trim() ) ).toBe( 'Skip to main content' ); // What: First Stop Check. Why: The ring checked should be the skip link's, the page's first stop. How: On a state with nothing opened, where focus starts at the top of the page, this reads the focused element's text, while a state whose action moves focus, such as the open menu or a sent form, starts the walk from there.
+
+
 
 		expect( await curPagObj.evaluate( () => getComputedStyle( document.activeElement as Element ).outlineWidth ) ).toBe( '2px' ); // What: Full Ring Assertion. Why: The ring has to reach its full width. How: This reads the focused stop's outline width, which the large border width token snaps to 2px. // What: Type Assertion Note. Why: activeElement types as possibly null. How: The Tab press just put focus on a stop.
 
