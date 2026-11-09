@@ -600,8 +600,8 @@ for ( const { labStr : pagLabStr, patStr : rouPatStr } of [ ...PAG_LIN_ARR, { la
 
 		await curPagObj.keyboard.press( broNamStr === 'webkit' ? 'Alt+Tab' : 'Tab' ); // What: First Tab Call. Why: The skip link should be the page's first stop. How: This presses Tab, or Alt+Tab in WebKit, whose plain Tab skips links.
 
-		await expect( skiLinLoc ).toBeFocused();    // What: Skip Focus Assertion. Why: The skip link has to be the page's first stop. How: This checks it holds focus after the first Tab.
-		await expect( skiLinLoc ).toBeInViewport(); // What: Skip Shown Assertion. Why: A focused link waiting above the screen would leave a keyboard user lost. How: This checks it has slid into view.
+		await expect( skiLinLoc ).toBeFocused();                   // What: Skip Focus Assertion. Why: The skip link has to be the page's first stop. How: This checks it holds focus after the first Tab.
+		await expect( skiLinLoc ).toBeInViewport( { ratio : 1 } ); // What: Skip Shown Assertion. Why: A focused link waiting above the screen, or only partly down, would leave a keyboard user lost. How: This checks it has slid fully into view, retrying while it slides.
 
 		await skiLinLoc.click(); // What: Skip Click Call. Why: This is the action under test. How: This clicks the focused skip link.
 
