@@ -588,11 +588,13 @@ on `close-out`.
       the package's artwork, copies it into `public/`, and draws the rest of
       the set from it.
     - **Installing it**: `package.json` names `github:z4nta0/techgeek-design#
-      v0.6.0` (moved from `v0.1.0` on 2026-10-17, bringing the bar's
+      v0.7.0` (moved from `v0.1.0` on 2026-10-17, bringing the bar's
       clearance for scrolled-to links, top and bottom, and its menu up to
       1,024px, then to `v0.6.0` on 2026-11-08, bringing the skip link, the
       hook's own scroll restoration, and the menu closing on any link
-      click). npm records the address over SSH, but falls back to HTTPS for
+      click, and to `v0.7.0` the same day, bringing the bar link
+      underline's leaving curve and a named easing token on every
+      transition). npm records the address over SSH, but falls back to HTTPS for
       a public GitHub repository, which a clean install with SSH turned off
       and an empty cache confirmed, so Netlify fetches it without a key. While
       the package and this site change together, `npm install --install-links
