@@ -84,6 +84,8 @@ const CON_SEL_STR = 'a, button, input:not([type="hidden"]), select, textarea';  
 const FIE_SEL_STR = 'input, select, textarea';                                                                // What: Field Selector String. Why: A form field has no hover or press look of its own, since pressing one only focuses it. How: This matches the fields, which the probe reads for focus alone.
 const HOV_TAR_STR = '[class*="proCarArt"], [class*="serCarDiv"], [class*="steCarDiv"], [class*="valCarDiv"]'; // What: Hover Target String. Why: The project cards on Home and Work, Home's service cards, Work's process step cards, and About's value cards respond to hover without being controls, so the control probe never reaches them. How: This matches each by its CSS module class, whose name Vite keeps inside the hashed class.
 
+const HOV_KIN_OBJ : Record< string, string[] > = { about : [ 'valCarDiv' ], home : [ 'proCarArt', 'serCarDiv' ], work : [ 'proCarArt', 'steCarDiv' ] }; // What: Hover Kind Object. Why: A kind of card that stopped matching, such as after a class rename, would drop out without failing while another kind still filled the list. How: This lists, by page, the classes of the cards the hover probe has to find there.
+
 
 
 // #region TOG_TAR_ARR
@@ -594,19 +596,22 @@ async function feeProFun ( curPagObj : Page, staIdeStr : string, redMotBoo : boo
  * @summary
  * Probes the reachable project, service, process step, and value cards, the
  * ones that respond to hover without being links, and returns a problem for
- * each one that gives no hover feedback, or a single problem when it finds
- * none. Only hover is checked: each card is scrolled into view, read at rest
- * with the pointer away and again while hovered, every look read once its
- * transition has settled, and one that looks the same both ways is a problem.
- * Normally every probed property that changes, on the card or anything inside
- * it, its shadow layers included, has to be eased by a transition ({@link
- * snaProFun}); under reduced motion none of them may ease ({@link movProFun}),
- * and every one of the card's own transition durations must be zero, while the
- * hover look still has to change.
+ * each one that gives no hover feedback, a single problem when it finds none,
+ * and one for each kind of card {@link HOV_KIN_OBJ} names for the page that it
+ * doesn't find. Only hover is checked: each card is scrolled into view, read
+ * at rest with the pointer away and again while hovered, every look read once
+ * its transition has settled, and one that looks the same both ways is a
+ * problem. Normally every probed property that changes, on the card or
+ * anything inside it, its shadow layers included, has to be eased by a
+ * transition ({@link snaProFun}); under reduced motion none of them may ease
+ * ({@link movProFun}), and every one of the card's own transition durations
+ * must be zero, while the hover look still has to change.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
  * @param curPagObj - Current Page Object: The page to probe.
+ * @param staIdeStr - State Identifier String: The page state's name, whose
+ *                    page part picks the card kinds it has to find.
  * @param redMotBoo - Reduced Motion Boolean: Whether the page is emulating
  *                    reduced motion.
  *
@@ -615,20 +620,25 @@ async function feeProFun ( curPagObj : Page, staIdeStr : string, redMotBoo : boo
  *
  * @example
  * ```ts
- * hovProFun(page, false) // => [] when every card responds
+ * hovProFun(page, 'work-desktop', false) // => [] when every card responds
  * ```
  *
 */
 
-async function hovProFun ( curPagObj : Page, redMotBoo : boolean ) : Promise< string[] > {
+async function hovProFun ( curPagObj : Page, staIdeStr : string, redMotBoo : boolean ) : Promise< string[] > {
 
 
-	const tarHanArr = await conLisFun( curPagObj, HOV_TAR_STR ); // What: Target Handle Array. Why: Every reachable card is probed. How: This collects them the way the controls are collected.
+	const tarHanArr = await conLisFun( curPagObj, HOV_TAR_STR );                                                                         // What: Target Handle Array. Why: Every reachable card is probed. How: This collects them the way the controls are collected.
+	const tarClaArr = await Promise.all( tarHanArr.map( ( tarHanObj ) => tarHanObj.evaluate( ( tarCurEle ) => tarCurEle.className ) ) ); // What: Target Class Array. Why: The kind check reads which classes the reachable cards carry. How: This reads each collected card's class list as one string.
 
 	const proLisArr : string[] = []; // What: Problem List Array. Why: Every problem should be reported, not just the first. How: This collects them.
 
 
 	if ( !tarHanArr.length ) proLisArr.push( 'no card to probe' ); // What: Empty Probe Check. Why: A probe that finds nothing would pass without checking anything. How: This records a problem when no card is found.
+
+
+
+	for ( const kinClaStr of HOV_KIN_OBJ[ staIdeStr.split( '-' )[ 0 ] ] || [] ) if ( !tarClaArr.some( ( tarClaStr ) => tarClaStr.includes( kinClaStr ) ) ) proLisArr.push( `no reachable card matches ${ kinClaStr }` ); // What: Missing Kind Loop. Why: One kind of card dropping out would otherwise pass while the others still filled the list. How: This records each class the page's row in the kind table names that no reachable card carries.
 
 
 
@@ -928,7 +938,7 @@ for ( const staRecObj of [ ...STA_REC_ARR, ...RES_STA_ARR ] ) { // What: State T
 		const proLisArr = [ ...await feeProFun( curPagObj, staRecObj.ideStr, false ), ...await togProFun( curPagObj, staRecObj.ideStr, false ) ]; // What: Problem List Array. Why: The state passes only when every reachable link, button, and form field responds and every switched state shows and eases. How: This gathers both probes' problems, so a failure prints each one, the toggles' included when a control fails.
 
 
-		if ( /^(home|work|about)-/.test( staRecObj.ideStr ) ) proLisArr.push( ...await hovProFun( curPagObj, false ) ); // What: Card Probe Call. Why: The cards show, with nothing covering them, only on the Home, Work, and About states. How: On those pages' desktop and phone states, this adds the cards' problems.
+		if ( /^(home|work|about)-/.test( staRecObj.ideStr ) ) proLisArr.push( ...await hovProFun( curPagObj, staRecObj.ideStr, false ) ); // What: Card Probe Call. Why: The cards show, with nothing covering them, only on the Home, Work, and About states. How: On those pages' desktop and phone states, this adds the cards' problems.
 
 
 
@@ -978,7 +988,7 @@ for ( const staRecObj of [ ...STA_REC_ARR, ...RES_STA_ARR ] ) { // What: State T
 		const proLisArr = [ ...await feeProFun( curPagObj, staRecObj.ideStr, true ), ...await togProFun( curPagObj, staRecObj.ideStr, true ) ]; // What: Problem List Array. Why: Every reachable link, button, and form field has to respond, and every switched state show, without moving. How: This gathers both probes' problems, so a failure prints each one, the toggles' included when a control fails.
 
 
-		if ( /^(home|work|about)-/.test( staRecObj.ideStr ) ) proLisArr.push( ...await hovProFun( curPagObj, true ) ); // What: Card Probe Call. Why: The cards show, with nothing covering them, only on the Home, Work, and About states. How: On those pages' desktop and phone states, this adds the cards' problems.
+		if ( /^(home|work|about)-/.test( staRecObj.ideStr ) ) proLisArr.push( ...await hovProFun( curPagObj, staRecObj.ideStr, true ) ); // What: Card Probe Call. Why: The cards show, with nothing covering them, only on the Home, Work, and About states. How: On those pages' desktop and phone states, this adds the cards' problems.
 
 
 
