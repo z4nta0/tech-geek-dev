@@ -26,7 +26,9 @@ import { test          } from '@playwright/test';     // What: Test. Why: Each s
  * otherwise fail the baselines every January, and with Math.random fixed,
  * since Home picks its featured projects at random. Chromium and WebKit
  * capture with hide-patterns.css, which hides the faint background patterns
- * they tile slightly differently from run to run. Baselines live in
+ * they tile slightly differently from run to run, and Chromium's Contact
+ * desktop capture masks the bottom corners of one sidebar card, which it
+ * repaints a color level apart between captures. Baselines live in
  * tests/rendering/baselines, one per state and engine, captured on Linux;
  * another system's font rendering would differ, so baselines are refreshed on
  * the machine that runs the suite. When a change is meant to alter how a page
@@ -36,6 +38,7 @@ import { test          } from '@playwright/test';     // What: Test. Why: Each s
  *
  * Sections:
  *  - Constants
+ *  - Helpers
  *  - Module Init
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -55,6 +58,65 @@ const PIX_THR_NUM = 0;                                                          
 
 
 
+// #region Helpers
+
+// #region corMasFun
+
+/**
+ * corMasFun = Corner Mask Function
+ *
+ * @summary
+ * Runs inside the page and lays a small marked square over each bottom corner
+ * of Contact's "Response Time" card, so the screenshot can mask them. Chromium
+ * repaints those rounded corners a color level apart from one capture to the
+ * next, so a capture never settles while they're compared. Each square is
+ * placed absolutely in page coordinates, which adds nothing to the layout,
+ * and covers one radius of the corner, leaving every other pixel checked.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+ * @param void - This function takes no parameters.
+ *
+ * @returns This function does not return anything.
+ *
+ * @example
+ * ```ts
+ * curPagObj.evaluate(corMasFun) // => void
+ * ```
+ *
+*/
+
+function corMasFun () : void {
+
+
+	const carCurEle = [ ...document.querySelectorAll( 'aside div' ) ].find( ( divCurEle ) => divCurEle.querySelector( ':scope > h3' )?.textContent === 'Response Time' )!; // What: Card Current Element. Why: Only this card's corners are unstable. How: This finds the sidebar card whose own heading reads "Response Time". // What: Non-Null Note. Why: The Contact desktop state always shows the card. How: The find returns the card, never undefined, there.
+	const carRecObj = carCurEle.getBoundingClientRect();                                  // What: Card Rect Object. Why: The squares sit on the card's corners. How: This reads its box in the viewport.
+	const radPixNum = parseFloat( getComputedStyle( carCurEle ).borderBottomLeftRadius ); // What: Radius Pixel Number. Why: Each square covers one corner's curve. How: This reads the card's corner radius in pixels.
+
+
+	for ( const lefPixNum of [ carRecObj.left, carRecObj.right - radPixNum ] ) { // What: Corner Square Loop. Why: Both bottom corners repaint. How: This lays one square at each, by its left edge.
+
+
+		const masCurEle = document.createElement( 'div' ); // What: Mask Current Element. Why: The screenshot masks by element. How: This creates the square.
+
+
+		masCurEle.setAttribute( 'data-render-mask', '' ); // What: Mask Attribute Call. Why: The screenshot finds the squares by it. How: This marks the square.
+		masCurEle.setAttribute( 'style', `height : ${ radPixNum }px; left : ${ lefPixNum + scrollX }px; pointer-events : none; position : absolute; top : ${ carRecObj.bottom + scrollY - radPixNum }px; width : ${ radPixNum }px;` ); // What: Square Style Call. Why: The square has to sit over the corner in page coordinates. How: This sizes it to the radius and places it at the corner, offset by the scroll.
+
+		document.body.append( masCurEle ); // What: Square Append Call. Why: The square only takes part once it's in the page. How: This adds it to the body.
+
+
+	}
+
+
+}
+
+// #endregion corMasFun
+
+// #endregion Helpers
+
+
+
 // #region Module Init
 
 for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every page state has a baseline. How: This declares one comparison per state.
@@ -71,14 +133,24 @@ for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every pa
 
 		await opeStaFun( curPagObj, staRecObj ); // What: State Open Call. Why: The state is captured settled. How: This loads and settles it.
 
+
+
+		const corMasBoo = engNamStr === 'chromium' && staRecObj.ideStr === 'contact-desktop'; // What: Corner Mask Boolean. Why: Only Chromium's Contact desktop capture repaints a card's corners from run to run. How: This is true for that one capture.
+
+
+		if ( corMasBoo ) await curPagObj.evaluate( corMasFun ); // What: Corner Mask Call. Why: The unstable corners have to be covered before the capture. How: This lays the marked squares over them.
+
+
+
 		await expect( curPagObj ).toHaveScreenshot( `${ staRecObj.ideStr }.png`, { // What: Baseline Comparison Assertion. Why: The state should look exactly as approved. How: This captures the whole page with animations stopped and compares it with the state's baseline pixel for pixel, color for color.
 
 
-			animations        : 'disabled',                                 // What: Animations. Why: A looping animation would never hold still for the capture. How: This fast-forwards every finite animation and transition to its end, and resets each looping one to its start, for the capture.
-			fullPage          : true,                                       // What: Full Page. Why: The whole state has to match, not just the first screen. How: This captures the page's full height.
-			maxDiffPixelRatio : MAX_DIF_NUM,                                // What: Maximum Diff Pixel Ratio. Why: No pixel may differ from the baseline. How: This reads the suite's zero tolerance.
-			stylePath         : engNamStr === 'firefox' ? [] : HID_PAT_STR, // What: Style Path. Why: Chromium and WebKit don't draw the background patterns the same every run, while Firefox does. How: This hides the patterns for those two engines' captures and leaves Firefox's untouched.
-			threshold         : PIX_THR_NUM                                 // What: Threshold. Why: Even a slight color change should fail. How: This reads the suite's zero per-pixel threshold.
+			animations        : 'disabled',                                                     // What: Animations. Why: A looping animation would never hold still for the capture. How: This fast-forwards every finite animation and transition to its end, and resets each looping one to its start, for the capture.
+			fullPage          : true,                                                           // What: Full Page. Why: The whole state has to match, not just the first screen. How: This captures the page's full height.
+			mask              : corMasBoo ? [ curPagObj.locator( '[data-render-mask]' ) ] : [], // What: Mask. Why: The two unstable corners shouldn't fail the comparison. How: This paints over the marked squares in Chromium's Contact desktop capture and masks nothing elsewhere.
+			maxDiffPixelRatio : MAX_DIF_NUM,                                                    // What: Maximum Diff Pixel Ratio. Why: No pixel may differ from the baseline. How: This reads the suite's zero tolerance.
+			stylePath         : engNamStr === 'firefox' ? [] : HID_PAT_STR,                     // What: Style Path. Why: Chromium and WebKit don't draw the background patterns the same every run, while Firefox does. How: This hides the patterns for those two engines' captures and leaves Firefox's untouched.
+			threshold         : PIX_THR_NUM                                                     // What: Threshold. Why: Even a slight color change should fail. How: This reads the suite's zero per-pixel threshold.
 
 
 		} );
