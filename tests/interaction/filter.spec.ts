@@ -42,12 +42,12 @@ test( 'the count and the grid fade up as a new filter result arrives, but not on
 	await expect( couLocObj ).toHaveCSS( 'animation-name', 'none' ); // What: No Load Count Fade Assertion. Why: The count arrives with the page's entrance on load. How: This checks it plays no animation of its own.
 	await expect( griLocObj ).toHaveCSS( 'animation-name', 'none' ); // What: No Load Fade Assertion. Why: The grid arrives with the page's entrance on load. How: This checks it plays no animation of its own.
 
-	await curPagObj.getByRole( 'button', { name : 'All', exact : true } ).click(); // What: Chosen Pill Click Call. Why: Pressing the pill that's already chosen shouldn't replay anything. How: This presses "All", the starting filter.
+	await curPagObj.getByRole( 'button', { exact : true, name : 'All' } ).click(); // What: Chosen Pill Click Call. Why: Pressing the pill that's already chosen shouldn't replay anything. How: This presses "All", the starting filter.
 
 	await expect( couLocObj ).toHaveCSS( 'animation-name', 'none' ); // What: No Repeat Count Fade Assertion. Why: Nothing changed, so nothing should move. How: This checks the count still plays no animation.
 	await expect( griLocObj ).toHaveCSS( 'animation-name', 'none' ); // What: No Repeat Fade Assertion. Why: Nothing changed, so nothing should move. How: This checks the grid still plays no animation.
 
-	await curPagObj.getByRole( 'button', { name : 'GSAP', exact : true } ).click(); // What: New Filter Click Call. Why: A different technology changes the result. How: This presses "GSAP", which only one project uses.
+	await curPagObj.getByRole( 'button', { exact : true, name : 'GSAP' } ).click(); // What: New Filter Click Call. Why: A different technology changes the result. How: This presses "GSAP", which only one project uses.
 
 	await expect( couLocObj ).toHaveText( '1 project' );                           // What: Narrowed Count Assertion. Why: The count follows the result. How: This checks it reads "1 project".
 	await expect( couLocObj ).toHaveCSS( 'animation-name', /resultArriveFadeUp/ ); // What: Count Arrival Fade Assertion. Why: The new count should fade up into view with its result. How: This checks the count plays the result's arriving keyframe, whose name Vite keeps inside the hashed one.
@@ -65,7 +65,7 @@ test( 'a new filter result simply appears under reduced motion', async ( { page 
 
 	await curPagObj.goto( '/work' ); // What: Work Page Navigation. Why: The filter lives on the Work page. How: This loads it.
 
-	await curPagObj.getByRole( 'button', { name : 'GSAP', exact : true } ).click(); // What: New Filter Click Call. Why: A different technology changes the result. How: This presses "GSAP", which only one project uses.
+	await curPagObj.getByRole( 'button', { exact : true, name : 'GSAP' } ).click(); // What: New Filter Click Call. Why: A different technology changes the result. How: This presses "GSAP", which only one project uses.
 
 	await expect( curPagObj.getByText( '1 project', { exact : true } ) ).toBeVisible();                // What: Narrowed Count Assertion. Why: The check should read the grid once the result is in. How: This waits until the count reads "1 project".
 	await expect( curPagObj.locator( '[class*="filCouSpa"]' ) ).toHaveCSS( 'animation-name', 'none' ); // What: No Count Fade Assertion. Why: The new count should simply appear. How: This checks the count plays no animation.
