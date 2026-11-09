@@ -88,7 +88,8 @@ const PAG_LIN_ARR = [ // What: Page Link Array. Why: Every page is checked as a 
  *
  * @summary
  * Waits for the page's heading, then jumps the window to the end of the page,
- * instantly whatever the stylesheet's scroll-behavior says, and returns how
+ * instantly whatever the stylesheet's scroll-behavior says, waits two
+ * animation frames so the scroll hook records the position, and returns how
  * far down that is, so a check starts from a page scrolled as far as a visitor
  * reaching the footer would be.
  *
@@ -111,7 +112,8 @@ async function botScrFun ( curPagObj : Page ) : Promise< number > {
 
 	await curPagObj.getByRole( 'heading', { level : 1 } ).waitFor(); // What: Heading Wait Call. Why: The page's load event can fire before React has drawn it, while the page is still too short to scroll. How: This waits for the page's heading to appear.
 
-	await curPagObj.evaluate( () => window.scrollTo( { behavior : 'instant', top : document.documentElement.scrollHeight } ) ); // What: Bottom Scroll Call. Why: The footer's links are clicked from the end of the page. How: This jumps past the page's full height, which the browser clamps to the bottom.
+	await curPagObj.evaluate( () => window.scrollTo( { behavior : 'instant', top : document.documentElement.scrollHeight } ) );          // What: Bottom Scroll Call. Why: The footer's links are clicked from the end of the page. How: This jumps past the page's full height, which the browser clamps to the bottom.
+	await curPagObj.evaluate( () => new Promise( ( resProFun ) => requestAnimationFrame( () => requestAnimationFrame( resProFun ) ) ) ); // What: Two Frame Wait. Why: The scroll hook records a position from the scroll event, which the browser dispatches with its next frame, and a check that leaves the page right away would leave before it. How: This waits two animation frames, after which that frame's scroll event has run.
 
 
 
@@ -320,10 +322,8 @@ test( 'back and forward return to the exact position, from a page scrolled furth
 	await curPagObj.goto( '/' ); // What: Home Page Navigation. Why: Home is long enough to scroll well down. How: This loads it.
 
 
-	const botOffNum = await botScrFun( curPagObj ); // What: Bottom Offset Number. Why: Back should return to exactly this position. How: This scrolls to the end of the page and keeps how far down that is.
+	const botOffNum = await botScrFun( curPagObj ); // What: Bottom Offset Number. Why: Back should return to exactly this position. How: This scrolls to the end of the page, which also waits for the scroll hook to record it, and keeps how far down that is.
 
-
-	await curPagObj.evaluate( () => new Promise( ( resProFun ) => requestAnimationFrame( () => requestAnimationFrame( resProFun ) ) ) ); // What: Two Frame Wait. Why: The scroll hook records a position from the scroll event, which the browser dispatches with its next frame. How: This waits two animation frames, after which that frame's scroll event has run.
 
 	await curPagObj.getByRole( 'navigation', { name : 'Footer navigation' } ).getByRole( 'link', { exact : true, name : 'Contact' } ).click(); // What: Footer Link Click. Why: Back needs a shorter page to come back from. How: This follows the footer's "Contact" link.
 
