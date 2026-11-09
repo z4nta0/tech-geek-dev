@@ -185,7 +185,15 @@ function griProFun ( griArgObj : GriArgTyp ) : string[] {
 
 
 
-		if ( !griCasObj.cenBoo ) continue; // What: Even Grid Guard. Why: Only the centered grid's last row is checked for centering. How: This moves on from every grid that keeps even rows.
+		if ( !griCasObj.cenBoo ) continue; // What: Even Grid Guard. Why: Only the centered grid's column steps and last row are checked here. How: This moves on from every grid that keeps even rows.
+
+
+
+		const carCouNum = rowCouArr.reduce( ( sumCurNum, rowCouNum ) => sumCurNum + rowCouNum, 0 );                                                          // What: Card Count Number. Why: A filter leaving fewer cards than columns can't fill the first row. How: This adds up every row's cards.
+		const colExpNum = Math.min( matchMedia( '( max-width : 640px )' ).matches ? 1 : matchMedia( '( max-width : 1024px )' ).matches ? 2 : 3, carCouNum ); // What: Column Expected Number. Why: The project's Card Grids exception steps Work's grid through three, two, and one columns at 1,024px and 640px, and WebKit's Linux build measures its media queries without its 6px scrollbar, a few pixels narrower than the window. How: This asks the browser which of the grid's own breakpoints applies, and caps the count at the cards there are.
+
+
+		if ( maxCouNum !== colExpNum ) proLisArr.push( `${ labGriStr } has ${ maxCouNum } columns instead of ${ colExpNum }` ); // What: Column Step Check. Why: Rows that are merely even could hide a grid stuck at one column count. How: This records a fullest row holding a different number of cards from the width's column count.
 
 
 
