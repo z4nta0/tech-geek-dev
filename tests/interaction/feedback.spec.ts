@@ -78,9 +78,9 @@ type TogTarTyp = { // What: Toggle Target Type. Why: Each kind of element with a
 
 // #region Constants
 
-const CON_SEL_STR = 'a, button, input:not([type="hidden"]), select, textarea';          // What: Control Selector String. Why: Focusing or filling a form field is an interaction too, so Contact's fields are probed beside every link and button, while a hidden input never shows. How: This matches the links, the buttons, and every form field but a hidden input, and the reachable check drops the honeypot, which is taken out of the tab order.
-const FIE_SEL_STR = 'input, select, textarea';                                          // What: Field Selector String. Why: A form field has no hover or press look of its own, since pressing one only focuses it. How: This matches the fields, which the probe reads for focus alone.
-const HOV_TAR_STR = '[class*="proCarArt"], [class*="serCarDiv"], [class*="valCarDiv"]'; // What: Hover Target String. Why: The project cards on Home and Work, Home's service cards, and About's value cards respond to hover without being controls, so the control probe never reaches them. How: This matches each by its CSS module class, whose name Vite keeps inside the hashed class.
+const CON_SEL_STR = 'a, button, input:not([type="hidden"]), select, textarea';                                // What: Control Selector String. Why: Focusing or filling a form field is an interaction too, so Contact's fields are probed beside every link and button, while a hidden input never shows. How: This matches the links, the buttons, and every form field but a hidden input, and the reachable check drops the honeypot, which is taken out of the tab order.
+const FIE_SEL_STR = 'input, select, textarea';                                                                // What: Field Selector String. Why: A form field has no hover or press look of its own, since pressing one only focuses it. How: This matches the fields, which the probe reads for focus alone.
+const HOV_TAR_STR = '[class*="proCarArt"], [class*="serCarDiv"], [class*="steCarDiv"], [class*="valCarDiv"]'; // What: Hover Target String. Why: The project cards on Home and Work, Home's service cards, Work's process step cards, and About's value cards respond to hover without being controls, so the control probe never reaches them. How: This matches each by its CSS module class, whose name Vite keeps inside the hashed class.
 
 
 
@@ -195,6 +195,30 @@ const TOG_TAR_ARR : TogTarTyp[] = [ // What: Toggle Target Array. Why: A switche
 		attStr : 'data-filter-button-active',
 		inaStr : null,
 		selStr : '[class*="filOptBut"]',
+		staArr : [ 'work-desktop', 'work-phone' ]
+
+
+	},
+
+	{ // What: Start Edge Row. Why: Work's filter row fades its left edge while buttons hide past it, and the fade eases out once the row reaches its start. How: This flips the row's data-scroll-start-active, on the Work states, where the row shows.
+
+
+		actStr : '',
+		attStr : 'data-scroll-start-active',
+		inaStr : null,
+		selStr : '[class*="filScrDiv"]',
+		staArr : [ 'work-desktop', 'work-phone' ]
+
+
+	},
+
+	{ // What: End Edge Row. Why: Work's filter row fades its right edge while buttons hide past it, and the fade eases out once the row reaches its end. How: This flips the row's data-scroll-end-active, on the Work states, where the row shows.
+
+
+		actStr : '',
+		attStr : 'data-scroll-end-active',
+		inaStr : null,
+		selStr : '[class*="filScrDiv"]',
 		staArr : [ 'work-desktop', 'work-phone' ]
 
 

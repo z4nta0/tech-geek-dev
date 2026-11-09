@@ -476,9 +476,11 @@ on `close-out`.
       `robots.txt`, the sitemap, the Person and WebSite structured data, and
       the Open Graph and Twitter tags, checked by the SEO suite.
     - **Social preview card**: `npm run og-image` renders
-      `public/og-image.png` (52 KB) from `design/og-image/card.html`, the
+      `public/og-image-2.png` (52 KB) from `design/og-image/card.html`, the
       wordmark at the p05 size, since Syne is too wide to fit the center
-      square any larger.
+      square any larger. It was `og-image.png` until 2026-11-08, when its
+      mark's inner hexagon moved to the p02 reciprocal opacity, and the new
+      name keeps apps from showing their cached copy of the old card.
     - **Interaction feedback**: every control grows its focus ring in, presses
       in or dims, and has a hover; the footer and the project cards' overlay
       draw their rings in the bright orange, and the overlay also shows while a
@@ -606,6 +608,24 @@ link to `<main id='main'>` in `app.tsx`, which holds whichever page shows,
 between the bar and the footer. The skip link and the bar live in
 techgeek-design (from `v0.6.0`), and the main element here.
 
+## Audit interaction decisions
+Decided by the user 2026-11-08, in the audit.
+- **Card hover**: only card-like items lift (the user-level rule this
+  decision added). The project, service, value, and Work process step cards
+  are drawn surfaces and lift with the strong blue border; About's skill
+  groups and timeline entries sit straight on the page, and Home's stats are
+  cells of one band, so none of them take a hover look.
+- **Work's filter**: choosing a different technology fades the new grid up
+  about 6px over the p02 duration while the old cards go at once, and the
+  count changes with it. The page's load and the chosen pill pressed again
+  play nothing.
+- **Filter row edge fades**: each edge's fade offset is a registered length
+  (`@property`), so a fade eases in as the row scrolls away from that end and
+  eases out on reaching it.
+- **Contact's rendering baseline**: Chromium repaints the bottom corners of
+  one sidebar card a level apart between captures, so its desktop capture
+  masks those corners and checks every other pixel.
+
 ## Test suites
 Added 2026-10-12, adapted from the-bernie-bears'. Playwright suites live in
 `tests/`, one project per suite and engine in `tests/playwright.config.ts`,
@@ -648,10 +668,11 @@ ticker, and the status dots) when waiting for the page to settle.
   button looks different hovered than at rest, pressed than hovered, and
   focused (through `focus( { focusVisible : true } )`) than unfocused, and
   every property each of those changes, on it or anything inside it, has to
-  ease. The project, service, and value cards, which lift without being
-  links, have to show and ease their hover, and each toggled state (the menu
-  toggle's cross, the current bar and drawer links, the open drawer and
-  scrim, the scrolled bar, and Work's chosen filter) is flipped off, on, and
+  ease. The project, service, process step, and value cards, which lift
+  without being links, have to show and ease their hover, and each toggled
+  state (the menu toggle's cross, the current bar and drawer links, the open
+  drawer and scrim, the scrolled bar, Work's chosen filter, and its filter
+  row's two edge fades) is flipped off, on, and
   off by its attribute and has to ease both ways. The first Tab stop, now the
   skip link, grows its ring to full width, and under reduced motion every
   change stays but switches at once. Real clicks are blocked while it probes,
@@ -670,6 +691,10 @@ ticker, and the status dots) when waiting for the page to settle.
   stay put and send nothing, while a filled-in form posts as form contact
   and shows the thank-you. It came from the audit finding that the form had
   turned the browser's validation off without checking anything itself.
+  `filter.spec.ts` (added 2026-11-08) chooses a filter on Work and checks the
+  count narrows and the new result fades up, while the page's load and a
+  press of the chosen pill play nothing, and reduced motion shows the result
+  at once.
   `ko-fi.spec.ts` (added 2026-11-01) checks that About's Ko-fi button points
   at the Ko-fi page with `noopener` and `noreferrer` and opens it in a new
   tab, answering Ko-fi's address itself so the test never leaves the site.

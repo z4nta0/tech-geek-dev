@@ -230,7 +230,7 @@
 
 /* #region filScrDiv */
 
-.filScrDiv { /* What: Filter Scroll Div. Why: The buttons can outgrow the row, and a faded edge tells a visitor there's more to scroll to. How: This lays them in a row that fills the space and scrolls sideways with its scrollbar hidden, with a gradient mask fading each end. */
+.filScrDiv { /* What: Filter Scroll Div. Why: The buttons can outgrow the row, and a faded edge tells a visitor there's more to scroll to. How: This lays them in a row that fills the space and scrolls sideways with its scrollbar hidden, with a gradient mask fading each end, and eases each fade in as it returns. */
 
 
 	--fad-edg-off : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */ /* What: Fade Edge Offset. Why: This is how far each edge fade reaches into the row. How: --fad-lef-off and --fad-rig-off start from it. */
@@ -245,6 +245,7 @@
 	overflow-x            : auto;
 	scroll-padding-inline : var( --fad-edg-off ); /* Fade Edge Offset ~= 25.572px */ /* What: Fade Clearance Padding. Why: A pill scrolled into view on focus should land clear of the edge fades. How: This keeps scrolling into view one fade's width in from each end. */
 	scrollbar-width       : none;
+	transition            : --fad-lef-off var( --dur-tra-p01 ) var( --mot-dec-eas ), --fad-rig-off var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Edge Fade Transition. Why: An edge fade arriving as the row scrolls away from its end should ease in rather than snap, and the mask has no compositor version, since it fades the buttons themselves, so only this one row repaints. How: This eases both offsets, registered below so they can animate, on the decelerating curve. */
 
 
 }
@@ -269,17 +270,60 @@
 
 
 }
-.filScrDiv[data-scroll-start-active] { /* What: Start-Reached Filter Scroll Div. Why: No buttons hide past the left edge. How: This zeroes the left fade. */
+.filScrDiv[data-scroll-start-active] { /* What: Start-Reached Filter Scroll Div. Why: No buttons hide past the left edge. How: This zeroes the left fade, easing it out on the accelerating curve. */
 
 
 	--fad-lef-off : 0px;
 
+	transition-timing-function : var( --mot-acc-eas ), var( --mot-dec-eas ); /* Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ), Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
 
 }
-.filScrDiv[data-scroll-end-active] { /* What: End-Reached Filter Scroll Div. Why: No buttons hide past the right edge. How: This zeroes the right fade. */
+.filScrDiv[data-scroll-end-active] { /* What: End-Reached Filter Scroll Div. Why: No buttons hide past the right edge. How: This zeroes the right fade, easing it out on the accelerating curve. */
 
 
 	--fad-rig-off : 0px;
+
+	transition-timing-function : var( --mot-dec-eas ), var( --mot-acc-eas ); /* Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */
+
+
+}
+.filScrDiv[data-scroll-start-active][data-scroll-end-active] { /* What: Fully Shown Filter Scroll Div. Why: When every button fits, neither edge hides any. How: This eases both fades out on the accelerating curve, since the two edge rules above each pick one curve. */
+
+
+	transition-timing-function : var( --mot-acc-eas ); /* Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Filter Scroll Div. Why: Someone who asked for less motion shouldn't see the fades ease. How: This applies only when the reduced-motion preference is set. */
+
+
+	.filScrDiv { /* What: Motionless Filter Scroll Div. Why: Each fade should simply switch. How: This turns the transition off, which the edge rules can't turn back on, since they set only its curves. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+@property --fad-lef-off { /* What: Fade Left Offset Registration. Why: An unregistered custom property switches at once, so the left fade couldn't ease. How: This registers it as a length that doesn't inherit, starting at zero. */
+
+
+	inherits      : false;
+	initial-value : 0px;
+	syntax        : '<length>';
+
+
+}
+
+@property --fad-rig-off { /* What: Fade Right Offset Registration. Why: An unregistered custom property switches at once, so the right fade couldn't ease. How: This registers it as a length that doesn't inherit, starting at zero. */
+
+
+	inherits      : false;
+	initial-value : 0px;
+	syntax        : '<length>';
 
 
 }
@@ -446,6 +490,49 @@
 
 
 }
+.proGriDiv--arriving { /* What: Projects Grid Div Arriving. Why: Choosing a filter should show its result arriving rather than the cards just swapping. How: This plays the grid's short fade up on the decelerating curve each time a filter remounts it, while the cards it replaces leave at once. */
+
+
+	animation : proGriDivArriveFadeUp var( --dur-ani-p02 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Projects Grid Div Arriving. Why: Someone who asked for less motion shouldn't see the cards rise. How: This applies only when the reduced-motion preference is set. */
+
+
+	.proGriDiv--arriving { /* What: Motionless Projects Grid Div Arriving. Why: The filtered cards should simply appear. How: This turns the fade off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+@keyframes proGriDivArriveFadeUp { /* What: Projects Grid Div Arrive Fade Up. Why: A filter's result eases in. How: This moves the grid from transparent and about 6px low to fully shown in place. */
+
+
+	from {
+
+
+		opacity   : 0;
+		transform : translateY( var( --spa-ver-m03 ) ); /* Spacing Vertical Base Minus 3 ~= 6.268px */
+
+
+	}
+
+	to {
+
+
+		opacity   : 1;
+		transform : translateY( 0 );
+
+
+	}
+
+
+}
 
 
 /* #region empMesDiv */
@@ -557,7 +644,7 @@
 
 /* #region steCarDiv */
 
-.steCarDiv { /* What: Step Card Div. Why: Each step is one white card. How: This sets the card, sharing the row evenly, and stacks its number, title, and description. */
+.steCarDiv { /* What: Step Card Div. Why: Each step is one white card. How: This sets the card, sharing the row evenly, stacks its number, title, and description, and eases its border color, lift, and shadow, the shadow leaving on the accelerating curve. */
 
 
 	background     : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
@@ -568,6 +655,31 @@
 	flex-direction : column;
 	gap            : var( --spa-ver-m01 );                            /* Spacing Vertical Base Minus 1 = 11px */
 	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );       /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	transition     : border-color var( --dur-tra-p02 ) var( --mot-sta-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-acc-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ), Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Shadow Transition. Why: A box-shadow animates on paint rather than the compositor, but a compositor version would need a second shadow layer faded through opacity, and only the one hovered card repaints. How: This eases the shadow alongside the lift. */
+
+
+}
+.steCarDiv:hover { /* What: Hovered Step Card Div. Why: A card should respond to the pointer. How: This lifts it 3px, turns its border the strong blue on the standard curve, and casts the medium shadow, easing the lift and shadow in on the decelerating curve. */
+
+
+	border-color : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
+	box-shadow   : var( --ele-med-sha ); /* Elevation Medium Shadow ~= 0 4.732px 14.572px plus 0 1.536px 3.572px -1.160px */
+	transform    : translateY( -3px );
+	transition   : border-color var( --dur-tra-p02 ) var( --mot-sta-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-dec-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Step Card Div. Why: Someone who asked for less motion shouldn't see the cards glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.steCarDiv,
+	.steCarDiv:hover { /* What: Motionless Step Card Div. Why: The lift and shadow should simply switch. How: This turns the transition off on both the resting and the hovered rule, since the hovered rule outranks the base. */
+
+
+		transition : none;
+
+
+	}
 
 
 }

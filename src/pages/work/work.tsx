@@ -128,6 +128,7 @@ function WorPagCom () : JSX.Element {
 
 
 	const [ actTagStr, setActTagStr ] = useState( 'All' ); // What: Active Tag String And Setter. Why: The grid shows only the projects using the chosen technology. How: This starts on "All", showing every project.
+	const [ filChoBoo, setFilChoBoo ] = useState( false ); // What: Filter Chosen Boolean And Setter. Why: The grid's fade marks a filter's result, not the page's arrival. How: This starts false and turns true at the first filter click.
 
 	const filScrRef = useRef< HTMLDivElement | null >( null ); // What: Filter Scroll Reference. Why: The fade effect below measures the filter row. How: This is attached to the row's ref prop.
 
@@ -169,6 +170,22 @@ function WorPagCom () : JSX.Element {
 
 
 	}, [] ); // What: Effect Dependency Array. Why: The row and its buttons never change while the page is open, so the listeners are wired once. How: This empty list runs the effect only on mount and cleans it up on unmount.
+
+
+
+	const choFilFun = ( tagNamStr : string ) => { // What: Choose Filter Function. Why: A filter button should change the grid only when it picks a different technology, so the chosen pill pressed again doesn't replay the fade. How: This returns for the active tag, and otherwise sets the new tag and records that a filter has been chosen.
+
+
+		if ( tagNamStr === actTagStr ) return; // What: Same Filter Guard. Why: Pressing the chosen pill changes nothing. How: This stops before either setter runs.
+
+
+
+		setActTagStr( tagNamStr ); // What: Active Tag Setter Call. Why: The grid and the count follow the chosen technology. How: This stores the pill's tag, which remounts the grid under its new key.
+
+		setFilChoBoo( true ); // What: Filter Chosen Setter Call. Why: From now on each new result should fade in. How: This turns on the grid's arriving class.
+
+
+	};
 
 
 
@@ -320,7 +337,7 @@ function WorPagCom () : JSX.Element {
 
 									data-filter-button-active={ actTagStr === tagNamStr || undefined } // What: Active Filter Attribute. Why: The chosen pill needs a state its module can style. How: This sets the presence-only attribute while this pill's tag is the active one, and leaves it off otherwise.
 
-									onClick={ () => setActTagStr( tagNamStr ) }
+									onClick={ () => choFilFun( tagNamStr ) }
 									onFocus={ ( focEveObj ) => focEveObj.currentTarget.scrollIntoView( { block : 'nearest', inline : 'nearest' } ) } // What: Focus Scroll Handler. Why: A pill tabbed to past the row's edge would stay half hidden, since focusing it doesn't scroll the row. How: This scrolls the pill fully into the row, clear of the edge fades the row's scroll padding leaves room for.
 								>{ tagNamStr }</button> // What: Filter Option Button Element. Why: Each button narrows the grid to its technology. How: This sets the active tag, marked with data-filter-button-active while chosen, which its module styles.
 
@@ -355,7 +372,11 @@ function WorPagCom () : JSX.Element {
 						{ filProArr.length > 0 ? ( // What: Grid Or Empty Check. Why: A filter can leave nothing to show. How: This renders the grid when projects remain, or the empty message otherwise.
 
 
-							<div className={ cssModObj.proGriDiv }>{ /* What: Projects Grid Div Element. Why: The cards line up in columns. How: This lays out one card per filtered project. */ }
+							<div
+								key={ actTagStr }
+
+								className={` ${ cssModObj.proGriDiv }   ${ filChoBoo ? cssModObj.proGriDivArriving : '' } `}
+							>{ /* What: Projects Grid Div Element. Why: The cards line up in columns, and each filter's result should arrive as a whole. How: This lays out one card per filtered project, keyed by the active tag so a new filter remounts it and replays its fade. */ }
 
 
 								{ filProArr.map( ( proRecObj ) => ( // What: Project Card Map Call. Why: Every filtered project gets a card. How: This renders one per record.
