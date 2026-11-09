@@ -404,6 +404,49 @@
 
 
 }
+.filCouSpa--arriving { /* What: Filter Count Span Arriving. Why: The count changes with each filter's result, and the change should be seen. How: This plays the result's short fade up on the decelerating curve each time a filter remounts the count, while the old count goes at once. */
+
+
+	animation : resultArriveFadeUp var( --dur-ani-p02 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Filter Count Span Arriving. Why: Someone who asked for less motion shouldn't see the count rise. How: This applies only when the reduced-motion preference is set. */
+
+
+	.filCouSpa--arriving { /* What: Motionless Filter Count Span Arriving. Why: The new count should simply appear. How: This turns the fade off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+@keyframes resultArriveFadeUp { /* What: Result Arrive Fade Up. Why: A filter's result, its count and its grid, eases in. How: This moves an element from transparent and about 6px low to fully shown in place. */
+
+
+	from {
+
+
+		opacity   : 0;
+		transform : translateY( var( --spa-ver-m03 ) ); /* Spacing Vertical Base Minus 3 ~= 6.268px */
+
+
+	}
+
+	to {
+
+
+		opacity   : 1;
+		transform : translateY( 0 );
+
+
+	}
+
+
+}
 
 /* #endregion filInnDiv */
 
@@ -493,7 +536,7 @@
 .proGriDiv--arriving { /* What: Projects Grid Div Arriving. Why: Choosing a filter should show its result arriving rather than the cards just swapping. How: This plays the grid's short fade up on the decelerating curve each time a filter remounts it, while the cards it replaces leave at once. */
 
 
-	animation : proGriDivArriveFadeUp var( --dur-ani-p02 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	animation : resultArriveFadeUp var( --dur-ani-p02 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -504,29 +547,6 @@
 
 
 		animation : none;
-
-
-	}
-
-
-}
-@keyframes proGriDivArriveFadeUp { /* What: Projects Grid Div Arrive Fade Up. Why: A filter's result eases in. How: This moves the grid from transparent and about 6px low to fully shown in place. */
-
-
-	from {
-
-
-		opacity   : 0;
-		transform : translateY( var( --spa-ver-m03 ) ); /* Spacing Vertical Base Minus 3 ~= 6.268px */
-
-
-	}
-
-	to {
-
-
-		opacity   : 1;
-		transform : translateY( 0 );
 
 
 	}

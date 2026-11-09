@@ -128,7 +128,7 @@ function WorPagCom () : JSX.Element {
 
 
 	const [ actTagStr, setActTagStr ] = useState( 'All' ); // What: Active Tag String And Setter. Why: The grid shows only the projects using the chosen technology. How: This starts on "All", showing every project.
-	const [ filChoBoo, setFilChoBoo ] = useState( false ); // What: Filter Chosen Boolean And Setter. Why: The grid's fade marks a filter's result, not the page's arrival. How: This starts false and turns true once a different filter is chosen.
+	const [ filChoBoo, setFilChoBoo ] = useState( false ); // What: Filter Chosen Boolean And Setter. Why: The grid's fade marks a filter's result, not the page's arrival. How: This starts false and turns true once a different filter is chosen, turning on the count's and the grid's arriving classes.
 
 	const filScrRef = useRef< HTMLDivElement | null >( null ); // What: Filter Scroll Reference. Why: The fade effect below measures the filter row. How: This is attached to the row's ref prop.
 
@@ -182,7 +182,7 @@ function WorPagCom () : JSX.Element {
 
 		setActTagStr( tagNamStr ); // What: Active Tag Setter Call. Why: The grid and the count follow the chosen technology. How: This stores the pill's tag, which remounts the grid under its new key.
 
-		setFilChoBoo( true ); // What: Filter Chosen Setter Call. Why: From now on each new result should fade in. How: This turns on the grid's arriving class.
+		setFilChoBoo( true ); // What: Filter Chosen Setter Call. Why: From now on each new result should fade in. How: This turns on the count's and the grid's arriving classes.
 
 
 	};
@@ -347,7 +347,11 @@ function WorPagCom () : JSX.Element {
 
 						</div>
 
-						<span className={ cssModObj.filCouSpa }>{ /* What: Filter Count Span Element. Why: The row says how many projects the filter leaves. How: This shows the count with project or projects to match. */ }
+						<span
+							key={ actTagStr }
+
+							className={` ${ cssModObj.filCouSpa }   ${ filChoBoo ? cssModObj.filCouSpaArriving : '' } `}
+						>{ /* What: Filter Count Span Element. Why: The row says how many projects the filter leaves, and a new count should be seen arriving with its result. How: This shows the count with project or projects to match, keyed by the active tag so a new filter remounts it and replays its fade. */ }
 							{ filProArr.length } project{ filProArr.length !== 1 ? 's' : '' }{ /* What: Project Count Text. Why: The count reads as a phrase. How: This adds an s for any count but one. */ }
 						</span>
 
