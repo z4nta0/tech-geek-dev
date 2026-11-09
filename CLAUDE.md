@@ -476,11 +476,12 @@ on `close-out`.
       `robots.txt`, the sitemap, the Person and WebSite structured data, and
       the Open Graph and Twitter tags, checked by the SEO suite.
     - **Social preview card**: `npm run og-image` renders
-      `public/og-image-2.png` (52 KB) from `design/og-image/card.html`, the
+      `public/og-image-3.png` (52 KB) from `design/og-image/card.html`, the
       wordmark at the p05 size, since Syne is too wide to fit the center
       square any larger. It was `og-image.png` until 2026-11-08, when its
-      mark's inner hexagon moved to the p02 reciprocal opacity, and the new
-      name keeps apps from showing their cached copy of the old card.
+      mark's inner hexagon moved to the p02 reciprocal opacity and its side
+      hexagons' outline to the large border width, and each new name keeps
+      apps from showing their cached copy of the old card.
     - **Interaction feedback**: every control grows its focus ring in, presses
       in or dims, and has a hover; the footer and the project cards' overlay
       draw their rings in the bright orange, and the overlay also shows while a
@@ -615,10 +616,10 @@ Decided by the user 2026-11-08, in the audit.
   are drawn surfaces and lift with the strong blue border; About's skill
   groups and timeline entries sit straight on the page, and Home's stats are
   cells of one band, so none of them take a hover look.
-- **Work's filter**: choosing a different technology fades the new grid up
-  about 6px over the p02 duration while the old cards go at once, and the
-  count changes with it. The page's load and the chosen pill pressed again
-  play nothing.
+- **Work's filter**: choosing a different technology fades the new count and
+  grid up about 6px over the p02 duration while the old ones go at once (the
+  count added at the user's choice later the same day). The page's load and
+  the chosen pill pressed again play nothing.
 - **Filter row edge fades**: each edge's fade offset is a registered length
   (`@property`), so a fade eases in as the row scrolls away from that end and
   eases out on reaching it.
@@ -694,8 +695,8 @@ ticker, and the status dots) when waiting for the page to settle.
   and shows the thank-you. It came from the audit finding that the form had
   turned the browser's validation off without checking anything itself.
   `filter.spec.ts` (added 2026-11-08) chooses a filter on Work and checks the
-  count narrows and the new result fades up, while the page's load and a
-  press of the chosen pill play nothing, and reduced motion shows the result
+  count narrows and the new count and grid fade up, while the page's load and
+  a press of the chosen pill play nothing, and reduced motion shows the result
   at once.
   `ko-fi.spec.ts` (added 2026-11-01) checks that About's Ko-fi button points
   at the Ko-fi page with `noopener` and `noreferrer` and opens it in a new
@@ -740,7 +741,11 @@ ticker, and the status dots) when waiting for the page to settle.
   every engine, skipping with a message when offline). `browser.spec.ts`
   loads every state from the production build with the headers applied and
   fails on any policy violation, or a new tab link without both `noopener`
-  and `noreferrer`. No browser key ships, so none is allowed.
+  and `noreferrer`. One violation is filtered out, in WebKit only (decided by
+  the user 2026-11-08): "style-src-attr blocked inline on select", which
+  WebKit reports for every `<select>` from its own native control rather than
+  anything the site sets. The fallback rule in `public/_redirects` is checked
+  too, since the dev and preview servers fall back to the app on their own. No browser key ships, so none is allowed.
 - `npm test` runs every suite.
 - **Flakes**: before step 8 the infinite animations kept moving while the
   suite captured, so a few states failed now and then. With every animation
