@@ -198,7 +198,9 @@ async function motRecFun ( curPagObj : Page ) : Promise< void > {
  * and returns a problem for every link or button with no name, and for every
  * one whose name contains a decorative glyph that should have been hidden.
  * Elements hidden from assistive technology don't appear in the tree, so the
- * decorative elements hidden from it are never counted.
+ * decorative elements hidden from it are never counted. A tree with no link or
+ * button at all is a problem too, since every page shows at least the bar's
+ * brand link.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -221,6 +223,10 @@ async function namProFun ( curPagObj : Page ) : Promise< string[] > {
 	const conLinArr = ariSnaStr.match( /- (link|button)\b[^\n]*/g ) || []; // What: Control Line Array. Why: Only links and buttons are checked here. How: This keeps every tree line for one of those roles.
 
 	const proLisArr : string[] = []; // What: Problem List Array. Why: Every problem should be reported, not just the first. How: This collects them.
+
+
+	if ( !conLinArr.length ) proLisArr.push( 'the accessibility tree lists no link or button' ); // What: Empty Tree Check. Why: A snapshot that yields no controls, such as after a change to its format, would pass without checking any name, while every state shows at least the bar's brand link. How: This records a problem when no link or button line is found.
+
 
 
 	for ( const conLinStr of conLinArr ) { // What: Control Line Loop. Why: Each link and button is judged on its own. How: This reads each line's name and records what's wrong with it.
@@ -449,19 +455,19 @@ function stoInfFun () : StoInfTyp | null {
  * keyProFun = Keyboard Problems Function
  *
  * @summary
- * Walks the page with the Tab key from the top and returns every problem:
- * any element with a positive tabindex, which overrides the document order,
- * and every stop that comes earlier in the document than the stop before
- * it, sits off screen, is covered by something else, or looks the same
- * focused and unfocused. The walk ends when focus leaves the page, comes
- * back to the first stop, or stays on the same stop after a press, which is
- * how Firefox leaves its last stop; one that hasn't ended within TAB_MAX_NUM
- * presses counts as a keyboard trap. WebKit only tabs to links with Alt held,
- * the way Safari does by default, so the walk presses Alt+Tab there. It
- * expects reduced motion already requested, so the page jumps to each stop
- * instead of gliding and focus styles appear at once, and each press waits for
- * scrolling to settle, so every stop is measured where and how it ends
- * up.
+ * Walks the page with the Tab key from the top and returns every problem: any
+ * element with a positive tabindex, which overrides the document order, and
+ * every stop that comes earlier in the document than the stop before it, sits
+ * off screen, is covered by something else, or looks the same focused and
+ * unfocused. The walk ends when focus leaves the page, comes back to the first
+ * stop, or stays on the same stop after a press, which is how Firefox leaves
+ * its last stop; one that hasn't ended within TAB_MAX_NUM presses counts as a
+ * keyboard trap, and one that ends before reaching any stop is a problem too.
+ * WebKit only tabs to links with Alt held, the way Safari does by default, so
+ * the walk presses Alt+Tab there. It expects reduced motion already requested,
+ * so the page jumps to each stop instead of gliding and focus styles appear at
+ * once, and each press waits for scrolling to settle, so every stop is
+ * measured where and how it ends up.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -502,7 +508,7 @@ async function keyProFun ( curPagObj : Page, engNamStr : string ) : Promise< str
 		const walEndBoo = !stoInfObj || stoInfObj.desStr === firStoStr || stoInfObj.ordNum === preOrdNum; // What: Walk Ended Boolean. Why: Focus leaving the page, coming back around, or staying put means every stop was visited. How: This checks each in turn, the later two only once a stop exists, so the chain stays inline. // What: Firefox Walk End Note. Why: Firefox moves focus out to its own interface after the last stop but still reports that stop as focused. How: Focus staying on the same stop after a press is read as the walk leaving the page.
 
 
-		if ( walEndBoo ) return proLisArr; // What: Walk End Guard. Why: A walk that reaches its end has found every problem the checks look for. How: This returns them, ending the walk.
+		if ( walEndBoo ) return firStoStr ? proLisArr : [ ...proLisArr, 'the Tab walk reached no stop' ]; // What: Walk End Guard. Why: A walk that reaches its end has found every problem the checks look for, while one that ends before its first stop has checked nothing. How: This returns the problems, ending the walk, with one more when no stop was reached.
 
 
 
