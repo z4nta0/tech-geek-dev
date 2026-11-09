@@ -734,35 +734,53 @@ function ConPagCom () : JSX.Element {
 									>{ /* What: Send Message Button Element. Why: The visitor sends the message. How: This submits the form, disabled and reading "Sending…" while it's on its way. */ }
 
 
-										{ isaLoaBoo ? 'Sending…' : 'Send Message' }{ /* What: Submit Label Text. Why: The button says what's happening. How: This reads "Sending…" while sending, or "Send Message" otherwise. */ }
-
-										{ !isaLoaBoo && ( // What: Send Icon Check. Why: The paper plane only shows while the button is ready. How: This renders it unless sending.
+										<span className={ cssModObj.senLabSpa }>{ /* What: Send Label Span Element. Why: The button's label cross-fades between its ready and sending words without the button changing width. How: This stacks both labels in one cell, sized to the wider. */ }
 
 
-											<svg
-												fill='none'
-												height='16'
-												stroke='currentColor'
-												strokeWidth='2.5'
-												viewBox='0 0 24 24'
-												width='16'
-											>{ /* What: Paper Plane SVG Element. Why: A paper plane stands for sending. How: This draws it after the label. */ }
+											<span
+												className={ cssModObj.senReaSpa }
+
+												aria-hidden={ isaLoaBoo || undefined } // What: Hidden While Sending. Why: Only the label showing should be announced as the button's name. How: This hides the ready label from assistive technology while the message sends.
+											>{ /* What: Send Ready Span Element. Why: The ready button says what it does. How: This shows "Send Message" and the paper plane, fading out while the message sends. */ }
 
 
-												<line
-													x1='22'
-													x2='11'
-													y1='2'
-													y2='13'
-												/>{ /* What: Plane Fold Line Element. Why: The fold splits the plane's wings. How: This draws it. */ }
-
-												<polygon points='22 2 15 22 11 13 2 9 22 2' />{ /* What: Plane Body Polygon Element. Why: The plane's outline is one shape. How: This traces it. */ }
+												Send Message
 
 
-											</svg>
+												<svg
+													fill='none'
+													height='16'
+													stroke='currentColor'
+													strokeWidth='2.5'
+													viewBox='0 0 24 24'
+													width='16'
+												>{ /* What: Paper Plane SVG Element. Why: A paper plane stands for sending. How: This draws it after the label. */ }
 
 
-										) }
+													<line
+														x1='22'
+														x2='11'
+														y1='2'
+														y2='13'
+													/>{ /* What: Plane Fold Line Element. Why: The fold splits the plane's wings. How: This draws it. */ }
+
+													<polygon points='22 2 15 22 11 13 2 9 22 2' />{ /* What: Plane Body Polygon Element. Why: The plane's outline is one shape. How: This traces it. */ }
+
+
+												</svg>
+
+
+											</span>
+
+
+											<span
+												className={ cssModObj.senPenSpa }
+
+												aria-hidden={ !isaLoaBoo || undefined } // What: Hidden While Ready. Why: Only the label showing should be announced as the button's name. How: This hides the sending label from assistive technology until the message sends.
+											>Sending…</span>{ /* What: Send Pending Span Element. Why: A visitor sees the message is on its way. How: This shows "Sending…", fading in while the message sends. */ }
+
+
+										</span>
 
 
 									</button>

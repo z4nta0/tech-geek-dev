@@ -625,6 +625,11 @@ Decided by the user 2026-11-08, in the audit.
 - **Filter row edge fades**: each edge's fade offset is a registered length
   (`@property`), so a fade eases in as the row scrolls away from that end and
   eases out on reaching it.
+- **Contact's swaps arrive only**: the thank-you replacing the form, the form
+  coming back, and an error the next send clears each only arrive, the one
+  they replace going at once (the user-level rule this decision extended),
+  while the send button's label cross-fades between "Send Message" and
+  "Sending…" in one cell, keeping the button's width.
 - **The bar's scrolled look** is one state of the bar, so its background,
   border, and shadow keep the decelerating curve both ways, like a morph
   rather than indicators that arrive and leave.

@@ -567,7 +567,10 @@
 /* #endregion forFieDiv */
 
 
-.senMesBut { /* What: Send Message Button. Why: Sending is the form's main action. How: This sets an orange button in mono capitals at the form's left, easing its color, sending dim, lift, press, and focus. */
+
+/* #region senMesBut */
+
+.senMesBut { /* What: Send Message Button. Why: Sending is the form's main action. How: This sets an orange button in mono capitals at the form's left, centering its label, and eases its color, sending dim, lift, press, and focus. */
 
 
 	align-items    : center;
@@ -579,7 +582,6 @@
 	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight    : 500;
-	gap            : var( --spa-hor-m01 );                      /* Spacing Horizontal Base Minus 1 = 11px */
 	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );    /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	text-transform : uppercase;
@@ -638,6 +640,84 @@
 
 
 }
+
+
+/* #region senLabSpa */
+
+.senLabSpa { /* What: Send Label Span. Why: The ready and sending labels share one place, so the button keeps its width as they cross-fade. How: This sets a single grid cell, sized to the wider label, with both labels centered in it. */
+
+
+	display     : grid;
+	place-items : center;
+
+
+}
+
+.senReaSpa { /* What: Send Ready Span. Why: The ready label pairs its words with the paper plane. How: This sets them side by side in the shared cell, line placed since both labels overlap there, and eases its fade on the standard curve. */
+
+
+	align-items : center;
+	display     : inline-flex;
+	gap         : var( --spa-hor-m01 );                              /* Spacing Horizontal Base Minus 1 = 11px */
+	grid-area   : 1 / 1;
+	transition  : opacity var( --dur-tra-bas ) var( --mot-sta-eas ); /* Duration Transition Base ~= 157.8ms, Motion Standard Easing = ease */
+
+
+}
+.senMesBut:disabled .senReaSpa { /* What: Sending Send Ready Span. Why: The ready label gives way while the message sends. How: This fades it out. */
+
+
+	opacity : 0;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Send Ready Span. Why: Someone who asked for less motion shouldn't see the labels fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.senReaSpa { /* What: Motionless Send Ready Span. Why: The label should simply switch. How: This turns the fade off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.senPenSpa { /* What: Send Pending Span. Why: The sending label waits in the same cell, hidden until the message sends. How: This places it over the ready label, line placed since both labels overlap there, transparent, and eases its fade on the standard curve. */
+
+
+	grid-area  : 1 / 1;
+	opacity    : 0;
+	transition : opacity var( --dur-tra-bas ) var( --mot-sta-eas ); /* Duration Transition Base ~= 157.8ms, Motion Standard Easing = ease */
+
+
+}
+.senMesBut:disabled .senPenSpa { /* What: Sending Send Pending Span. Why: A visitor sees the message is on its way. How: This fades the sending label in. */
+
+
+	opacity : 1;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Send Pending Span. Why: Someone who asked for less motion shouldn't see the labels fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.senPenSpa { /* What: Motionless Send Pending Span. Why: The label should simply switch. How: This turns the fade off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion senLabSpa */
+
+/* #endregion senMesBut */
 
 /* #endregion conForFor */
 
