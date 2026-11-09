@@ -759,7 +759,7 @@ async function oveProFun ( curPagObj : Page, redMotBoo : boolean ) : Promise< st
 		await oveCurObj.evaluate( aniFinFun ); // What: Animation Finish Call. Why: WebKit can run a transition behind the clock on a heavy page, leaving it partway at the settle wait. How: This waits for every finite animation on the overlay and inside it to end.
 
 
-		const focSnaArr = await oveCurObj.evaluate( snaEleFun, FOC_PRO_ARR );                         // What: Focused Snapshot Array. Why: The revealed look is compared with the unfocused one. How: This records it.
+		const focSnaArr = await oveCurObj.evaluate( snaEleFun, FOC_PRO_ARR );                                 // What: Focused Snapshot Array. Why: The revealed look is compared with the unfocused one. How: This records it.
 		const opaValStr = await oveCurObj.evaluate( ( oveCurEle ) => getComputedStyle( oveCurEle ).opacity ); // What: Opacity Value String. Why: The link's own ring changes even inside a hidden overlay, so a change alone doesn't prove the overlay shows. How: This reads the overlay's opacity once focused.
 
 

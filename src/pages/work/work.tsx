@@ -128,7 +128,7 @@ function WorPagCom () : JSX.Element {
 
 
 	const [ actTagStr, setActTagStr ] = useState( 'All' ); // What: Active Tag String And Setter. Why: The grid shows only the projects using the chosen technology. How: This starts on "All", showing every project.
-	const [ filChoBoo, setFilChoBoo ] = useState( false ); // What: Filter Chosen Boolean And Setter. Why: The grid's fade marks a filter's result, not the page's arrival. How: This starts false and turns true at the first filter click.
+	const [ filChoBoo, setFilChoBoo ] = useState( false ); // What: Filter Chosen Boolean And Setter. Why: The grid's fade marks a filter's result, not the page's arrival. How: This starts false and turns true once a different filter is chosen.
 
 	const filScrRef = useRef< HTMLDivElement | null >( null ); // What: Filter Scroll Reference. Why: The fade effect below measures the filter row. How: This is attached to the row's ref prop.
 

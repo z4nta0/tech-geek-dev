@@ -39,8 +39,8 @@ import { statSync      } from 'node:fs';          // What: Stat Sync. Why: Site 
 
 // #region Constants
 
-const CAR_URL_STR = new URL( './card.html', import.meta.url ).href;                           // What: Card URL String. Why: The card loads its fonts and styles by paths relative to itself. How: This is card.html's own file URL.
-const MAX_BYT_NUM = 300 * 1024;                                                               // What: Maximum Bytes Number. Why: Site owners report WhatsApp previews going missing above 300 KB, so the card stays under it. How: This is the limit the finished file is checked against.
+const CAR_URL_STR = new URL( './card.html', import.meta.url ).href;                             // What: Card URL String. Why: The card loads its fonts and styles by paths relative to itself. How: This is card.html's own file URL.
+const MAX_BYT_NUM = 300 * 1024;                                                                 // What: Maximum Bytes Number. Why: Site owners report WhatsApp previews going missing above 300 KB, so the card stays under it. How: This is the limit the finished file is checked against.
 const OUT_PAT_STR = fileURLToPath( new URL( '../../public/og-image-2.png', import.meta.url ) ); // What: Output Path String. Why: The tags point at the card in public/. How: This resolves that path from this script's folder.
 
 // #endregion Constants
