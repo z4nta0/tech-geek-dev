@@ -623,6 +623,9 @@ Decided by the user 2026-11-08, in the audit.
 - **Filter row edge fades**: each edge's fade offset is a registered length
   (`@property`), so a fade eases in as the row scrolls away from that end and
   eases out on reaching it.
+- **The bar's scrolled look** is one state of the bar, so its background,
+  border, and shadow keep the decelerating curve both ways, like a morph
+  rather than indicators that arrive and leave.
 - **Contact's rendering baseline**: Chromium repaints the bottom corners of
   one sidebar card a level apart between captures, so its desktop capture
   masks those corners and checks every other pixel.
