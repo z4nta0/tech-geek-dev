@@ -10,14 +10,14 @@
  * blue accent, and a line in the secondary text color, with two faint
  * triangles in the corner. Below it a white filter bar sticks under the bar as
  * the page scrolls, holding the label, a sideways-scrolling row of pill
- * buttons (the active one marked with data-filter-button-active), and the
- * count. The projects grid steps from three columns to two at 1,024px and
- * below and to one at 640px and below, and the closing process section lays
- * its four step cards in a row with arrows between them, forming a two-by-two
- * grid without arrows at 1,024px and below and stacking with turned arrows at
- * 768px and below. The page's centered columns take the shared container
- * values, and its sections the shared section padding, merged into their own
- * rules.
+ * buttons (the chosen one marked with aria-pressed), and the count, read out
+ * to screen readers as it changes. The projects grid steps from three columns
+ * to two at 1,024px and below and to one at 640px and below, and the closing
+ * process section lays its four step cards in a row with arrows between them,
+ * forming a two-by-two grid without arrows at 1,024px and below and stacking
+ * with turned arrows at 768px and below. The page's centered columns take the
+ * shared container values, and its sections the shared section padding, merged
+ * into their own rules.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -353,7 +353,7 @@
 
 
 }
-.filOptBut[data-filter-button-active] { /* What: Active Filter Option Button. Why: The chosen technology stands out. How: This fills the pill blue with ink text. */
+.filOptBut[aria-pressed='true'] { /* What: Active Filter Option Button. Why: The chosen technology stands out. How: This fills the pill blue with ink text. */
 
 
 	background   : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
@@ -362,7 +362,7 @@
 
 
 }
-.filOptBut[data-filter-button-active]:hover { /* What: Hovered Active Filter Option Button. Why: The chosen pill should respond to the pointer too. How: This lightens its fill and border to the bright blue. */
+.filOptBut[aria-pressed='true']:hover { /* What: Hovered Active Filter Option Button. Why: The chosen pill should respond to the pointer too. How: This lightens its fill and border to the bright blue. */
 
 
 	background   : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
@@ -394,11 +394,22 @@
 /* #endregion filScrDiv */
 
 
-.filCouSpa { /* What: Filter Count Span. Why: The row says how many projects remain. How: This sets the count in muted mono, never shrinking. */
+
+/* #region filStaSpa */
+
+.filStaSpa { /* What: Filter Status Span. Why: A screen reader should hear the new count when a filter changes it, from a region already in the page, and the count's fade needs a box to move in. How: This holds the count in a one-cell grid that never shrinks. */
+
+
+	display     : grid;
+	flex-shrink : 0;
+
+
+}
+
+.filCouSpa { /* What: Filter Count Span. Why: The row says how many projects remain. How: This sets the count in muted mono. */
 
 
 	color       : var( --tex-mut-col ); /* Text Muted Color = #646482 */
-	flex-shrink : 0;
 	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size   : var( --fon-siz-bas ); /* Font Size Base = 11px */
 
@@ -447,6 +458,8 @@
 
 
 }
+
+/* #endregion filStaSpa */
 
 /* #endregion filInnDiv */
 

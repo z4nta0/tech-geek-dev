@@ -192,12 +192,12 @@ const TOG_TAR_ARR : TogTarTyp[] = [ // What: Toggle Target Array. Why: A switche
 
 	},
 
-	{ // What: Active Filter Row. Why: Work's chosen filter pill fills in blue. How: This flips each pill's data-filter-button-active, on the Work states, where the filters show.
+	{ // What: Active Filter Row. Why: Work's chosen filter pill fills in blue. How: This flips each pill's aria-pressed, on the Work states, where the filters show.
 
 
-		actStr : '',
-		attStr : 'data-filter-button-active',
-		inaStr : null,
+		actStr : 'true',
+		attStr : 'aria-pressed',
+		inaStr : 'false',
 		selStr : '[class*="filOptBut"]',
 		staArr : [ 'work-desktop', 'work-phone' ]
 

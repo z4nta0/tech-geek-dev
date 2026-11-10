@@ -21,6 +21,8 @@ import { test   } from '@playwright/test'; // What: Test. Why: Each check is its
  * that's already chosen changes nothing, and under reduced motion the result
  * simply appears. A card link reached backwards with Shift+Tab lands below the
  * sticky filter bar rather than behind it, at the desktop and phone widths.
+ * The chosen pill reads as pressed, and the count sits in a status region
+ * from the start, so a screen reader hears each new one.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -71,6 +73,38 @@ test( 'a new filter result simply appears under reduced motion', async ( { page 
 	await expect( curPagObj.getByText( '1 project', { exact : true } ) ).toBeVisible();                // What: Narrowed Count Assertion. Why: The check should read the grid once the result is in. How: This waits until the count reads "1 project".
 	await expect( curPagObj.locator( '[class*="filCouSpa"]' ) ).toHaveCSS( 'animation-name', 'none' ); // What: No Count Fade Assertion. Why: The new count should simply appear. How: This checks the count plays no animation.
 	await expect( curPagObj.locator( '[class*="proGriDiv"]' ) ).toHaveCSS( 'animation-name', 'none' ); // What: No Fade Assertion. Why: The result should simply appear. How: This checks the grid plays no animation.
+
+
+} );
+
+
+
+test( 'the chosen pill reads as pressed and the count stays in one status region', async ( { page : curPagObj } ) => { // What: Filter State Test. Why: A screen reader should hear which technology is chosen and the count each filter leaves, and a live region is heard only once it's already in the page. How: This opens Work, checks "All" reads as pressed and the count sits in a status region, chooses "GSAP", and checks the pressed state moved while the same region holds the new count.
+
+
+	await curPagObj.goto( '/work' ); // What: Work Page Navigation. Why: The filter lives on the Work page. How: This loads it.
+
+
+	const filBarObj = curPagObj.locator( '[class*="filBarSec"]' ); // What: Filter Bar Object. Why: The checks read only the filter's own buttons and region. How: This finds the bar by the class name Vite keeps inside its hashed module class.
+
+
+	const preLocObj = filBarObj.getByRole( 'button', { pressed : true } ); // What: Pressed Locator Object. Why: The chosen pill is the one the accessibility tree calls pressed. How: This finds the bar's pressed buttons.
+	const staLocObj = filBarObj.getByRole( 'status' );                     // What: Status Locator Object. Why: The count is read out through its status region. How: This finds the bar's status region.
+
+
+	await expect( preLocObj ).toHaveText( 'All' );                 // What: Starting Pressed Assertion. Why: "All" is chosen when the page opens. How: This checks it's the one pressed pill.
+	await expect( staLocObj ).toHaveText( /^[0-9]+ projects$/ ); // What: Starting Status Assertion. Why: The region holds the count from the start, so its first change is heard. How: This checks it reads the full count.
+
+
+	const staHanObj = await staLocObj.elementHandle(); // What: Status Handle Object. Why: The same region has to stay in the page as the count changes. How: This holds on to the region element found on load.
+
+
+	await filBarObj.getByRole( 'button', { exact : true, name : 'GSAP' } ).click(); // What: New Filter Click Call. Why: A different technology moves the pressed state and changes the count. How: This presses "GSAP", which only one project uses.
+
+	await expect( preLocObj ).toHaveText( 'GSAP' );      // What: Moved Pressed Assertion. Why: The chosen technology is the one read as pressed. How: This checks "GSAP" is now the one pressed pill.
+	await expect( staLocObj ).toHaveText( '1 project' ); // What: New Status Assertion. Why: The region should hold the new count. How: This checks it reads "1 project".
+
+	expect( await staHanObj!.evaluate( ( staEleObj ) => staEleObj.isConnected ) ).toBe( true ); // What: Same Region Assertion. Why: A region swapped out with the count would often go unheard. How: This checks the region found on load is still in the page. // What: Non-Null Note. Why: The region was found on load by the assertion above. How: This reads its handle without a null check.
 
 
 } );

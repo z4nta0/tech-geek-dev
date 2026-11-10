@@ -281,7 +281,7 @@ on `close-out`.
    2026-10-13 in fourteen commits.
    - **State and hooks**: the bar sets `data-nav-bar-scrolled`, the drawer
      `data-mobile-menu-open`, and Work's active filter pill
-     `data-filter-button-active`; the toggle's cross reads its own
+     `data-filter-button-active` (`aria-pressed` since 2026-11-10); the toggle's cross reads its own
      `aria-expanded` and the current link NavLink's `aria-current`. No
      JavaScript finds elements by class, so no hook attributes were needed.
      The closed drawer now turns invisible once its slide ends, which took
@@ -662,6 +662,10 @@ audit.
 - **The skip link's slide-in**: the reduced-motion Tab walk is enough beside
   the navigation spec's whole-link-in-view check and the feedback probe's
   hover with motion allowed.
+- **Work's filter state is announced** (R15): the chosen pill carries
+  `aria-pressed`, which its module styles, and the count sits in a
+  `role='status'` region that stays mounted while the count inside it
+  remounts for its fade, so each new count is read out.
 - **The reload test** also checks `history.scrollRestoration` reads `manual`,
   since Chromium and WebKit restore a reload on their own.
 

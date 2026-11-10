@@ -98,9 +98,10 @@ const TAG_FIL_ARR = [ 'All', ...Array.from( new Set( PRO_REC_ARR.flatMap( ( proR
  * @summary
  * Renders the Work page. The filter bar's buttons set the active tag, which
  * narrows the grid to the projects using that technology ("All" shows every
- * one) and updates the count beside them; an empty grid says no projects
- * match. A visually hidden h2 heads the grid, so the cards' h3 titles follow
- * the page's h1 in order. The process section lists PRC_STE_ARR's steps
+ * one) and updates the count beside them, which screen readers hear through
+ * the status region around it; an empty grid says no projects match. A
+ * visually hidden h2 heads the grid, so the cards' h3 titles follow the
+ * page's h1 in order. The process section lists PRC_STE_ARR's steps
  * with an arrow, hidden from screen readers, between each pair. The filter
  * bar's measured height becomes the cards' links' scroll margin, so a link
  * scrolled into view at the top lands clear of the bar.
@@ -374,11 +375,11 @@ function WorPagCom () : JSX.Element {
 
 									className={ cssModObj.filOptBut }
 
-									data-filter-button-active={ actTagStr === tagNamStr || undefined } // What: Active Filter Attribute. Why: The chosen pill needs a state its module can style. How: This sets the presence-only attribute while this pill's tag is the active one, and leaves it off otherwise.
+									aria-pressed={ actTagStr === tagNamStr } // What: Pressed State Attribute. Why: A screen reader should say which technology is chosen, and the module styles the chosen pill from the same state. How: This reads true while this pill's tag is the active one, and false otherwise.
 
 									onClick={ () => choFilFun( tagNamStr ) }
 									onFocus={ ( focEveObj ) => focEveObj.currentTarget.scrollIntoView( { block : 'nearest', inline : 'nearest' } ) } // What: Focus Scroll Handler. Why: A pill tabbed to past the row's edge would stay half hidden, since focusing it doesn't scroll the row. How: This scrolls the pill fully into the row, clear of the edge fades the row's scroll padding leaves room for.
-								>{ tagNamStr }</button> // What: Filter Option Button Element. Why: Each button narrows the grid to its technology. How: This sets the active tag, marked with data-filter-button-active while chosen, which its module styles.
+								>{ tagNamStr }</button> // What: Filter Option Button Element. Why: Each button narrows the grid to its technology. How: This sets the active tag, marked with aria-pressed while chosen, which its module styles.
 
 
 							))}
@@ -387,11 +388,21 @@ function WorPagCom () : JSX.Element {
 						</div>
 
 						<span
-							key={ actTagStr }
+							className={ cssModObj.filStaSpa }
 
-							className={` ${ cssModObj.filCouSpa }   ${ filChoBoo ? cssModObj.filCouSpaArriving : '' } `}
-						>{ /* What: Filter Count Span Element. Why: The row says how many projects the filter leaves, and a new count should be seen arriving with its result. How: This shows the count with project or projects to match, keyed by the active tag so a new filter remounts it and replays its fade. */ }
-							{ filProArr.length } project{ filProArr.length !== 1 ? 's' : '' }{ /* What: Project Count Text. Why: The count reads as a phrase. How: This adds an s for any count but one. */ }
+							role='status'
+						>{ /* What: Filter Status Span Element. Why: A screen reader should hear the new count when a filter changes it, and a live region is heard only once it's already in the page. How: This stays mounted around the count, so each new count replacing the old one is read out. */ }
+
+
+							<span
+								key={ actTagStr }
+
+								className={` ${ cssModObj.filCouSpa }   ${ filChoBoo ? cssModObj.filCouSpaArriving : '' } `}
+							>{ /* What: Filter Count Span Element. Why: The row says how many projects the filter leaves, and a new count should be seen arriving with its result. How: This shows the count with project or projects to match, keyed by the active tag so a new filter remounts it and replays its fade. */ }
+								{ filProArr.length } project{ filProArr.length !== 1 ? 's' : '' }{ /* What: Project Count Text. Why: The count reads as a phrase. How: This adds an s for any count but one. */ }
+							</span>
+
+
 						</span>
 
 
