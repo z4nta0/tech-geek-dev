@@ -553,9 +553,9 @@ function AboPagCom () : JSX.Element {
 								<img
 									className={ cssModObj.porPhoIma }
 
-									height='964' // What: Intrinsic Height. Why: The browser reserves the portrait's shape before it loads, so nothing moves. How: This is the encoded portrait's height in pixels.
+									height='963' // What: Intrinsic Height. Why: The browser reserves the portrait's shape before it loads, so nothing moves. How: This is the encoded portrait's height in pixels.
 									src={ selPorUrl }
-									width='728' // What: Intrinsic Width. Why: The browser reserves the portrait's shape before it loads, so nothing moves. How: This is the encoded portrait's width in pixels.
+									width='727' // What: Intrinsic Width. Why: The browser reserves the portrait's shape before it loads, so nothing moves. How: This is the encoded portrait's width in pixels.
 
 									alt='Portrait of z4nta0'
 								/>{ /* What: Portrait Photo Image Element. Why: A visitor sees who they'd be working with. How: This shows the portrait inside the frame. */ }

@@ -48,8 +48,8 @@ type BoxRecTyp = { cutBoo : boolean, heiNum : number, widNum : number }; // What
 const BOX_REC_OBJ : Record< string, BoxRecTyp > = { // What: Box Record Object. Why: Each kind of image is shown at a different largest size, and its file should be no more than three times that. How: This maps each kind to its box.
 
 
-	'portrait' : { cutBoo : true,  heiNum : 964,  widNum : 728  }, // What: Portrait Box. Why: The About portrait fills a frame up to about 243 by 321, which crops it the same way. How: This cuts it to three times that, centered, so no hidden pixels ship.
-	'project'  : { cutBoo : true,  heiNum : 1128, widNum : 2004 }  // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 668 by 376, in Home's two-by-two grid. How: This cuts it to exactly three times that, centered, since covering the box alone came out a pixel wider than the size the cards declare.
+	'portrait' : { cutBoo : true,  heiNum : 963,  widNum : 727  }, // What: Portrait Box. Why: The About portrait fills a frame up to about 242.5 by 321.3, measured in all three engines, which crops it the same way. How: This cuts it to three times that, rounded down, centered, so no hidden pixels ship.
+	'project'  : { cutBoo : true,  heiNum : 1122, widNum : 1995 }  // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 665.0 by 374.1, measured in all three engines at Home's widest two-by-two grid. How: This cuts it to three times that, rounded down, centered, since covering the box alone came out a pixel wider than the size the cards declare.
 
 
 };
