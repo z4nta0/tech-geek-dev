@@ -96,7 +96,8 @@ for ( const [ widNum, heiNum ] of [ [ 1440, 900 ], [ 390, 844 ] ] ) { // What: C
 
 		const proLisArr : string[] = []; // What: Problem List Array. Why: Every link that lands behind the bar should be reported, not just the first. How: This collects them during the walk.
 
-		let carLinNum = 0; // What: Card Link Number. Why: A walk that never reached a card link would pass without checking anything. How: This counts the card links measured.
+		let barReaBoo = false; // What: Bar Reached Boolean. Why: A walk that ran out of presses before the bar would leave the cards above it unmeasured. How: This turns true once focus reaches the filter bar.
+		let carLinNum = 0;     // What: Card Link Number. Why: A walk that never reached a card link would pass without checking anything. How: This counts the card links measured.
 
 
 		for ( let preCouNum = 0; preCouNum < 60; preCouNum++ ) { // What: Backward Walk Loop. Why: Every card link is reached on the way back up to the filter bar. How: This presses Shift+Tab once per pass, up to 60 presses.
@@ -127,7 +128,11 @@ for ( const [ widNum, heiNum ] of [ [ 1440, 900 ], [ 390, 844 ] ] ) { // What: C
 			} );
 
 
-			if ( stoPosObj.barReaBoo ) break; // What: Bar Reached Guard. Why: Past the filter bar there are no more card links. How: This ends the walk.
+			barReaBoo = stoPosObj.barReaBoo; // What: Bar Reached Update. Why: The walk has to show it got back to the bar. How: This stores whether focus is in it now.
+
+
+
+			if ( barReaBoo ) break; // What: Bar Reached Guard. Why: Past the filter bar there are no more card links. How: This ends the walk.
 
 
 
@@ -145,6 +150,7 @@ for ( const [ widNum, heiNum ] of [ [ 1440, 900 ], [ 390, 844 ] ] ) { // What: C
 
 
 
+		expect( barReaBoo ).toBe( true );         // What: Bar Reached Assertion. Why: Every card link lies between the footer and the bar, so the walk has to reach the bar to have measured them all. How: This checks the walk ended at the bar rather than running out of presses.
 		expect( carLinNum ).toBeGreaterThan( 0 ); // What: Links Measured Assertion. Why: A walk that skipped every card link would prove nothing. How: This checks at least one was measured.
 		expect( proLisArr ).toEqual( [] );        // What: No Hidden Links Assertion. Why: Every card link should land clear of the bar. How: This compares the problems with an empty list, so a failure prints each one.
 
