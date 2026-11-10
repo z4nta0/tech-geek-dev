@@ -4,6 +4,8 @@
 // #region Imports
 
 import { expect      } from '@playwright/test';      // What: Expect. Why: Each check passes only with no problems found. How: This asserts each problem list is empty.
+import { FIL_STA_ARR } from '../support/work.ts';    // What: Filtered State Array. Why: A chosen filter changes Work's grid and count, a state a visitor reaches. How: This lists the Work states with a filter chosen, one per width.
+import { INV_STA_ARR } from '../support/contact.ts'; // What: Invalid State Array. Why: The Contact form after a refused empty send is a state a visitor reaches. How: This lists the Contact states after that send, one per width.
 import { opeStaFun   } from '../support/states.ts';  // What: Open State Function. Why: Each check opens and settles its state first. How: This loads it and waits for it.
 import { RES_STA_ARR } from '../support/contact.ts'; // What: Result State Array. Why: The Contact form's thank-you and error are states a visitor reaches too. How: This lists the Contact states with the form sent, one per result and width.
 import { STA_REC_ARR } from '../support/states.ts';  // What: State Record Array. Why: Every page state is checked. How: This lists them.
@@ -606,7 +608,7 @@ async function keyProFun ( curPagObj : Page, engNamStr : string ) : Promise< str
 
 // #region Module Init
 
-for ( const staRecObj of [ ...STA_REC_ARR, ...RES_STA_ARR ] ) { // What: State Test Loop. Why: Every check runs on every page state, the Contact form's thank-you and error included. How: This declares each check once per state, the shared states first, then the result states.
+for ( const staRecObj of [ ...STA_REC_ARR, ...RES_STA_ARR, ...FIL_STA_ARR, ...INV_STA_ARR ] ) { // What: State Test Loop. Why: Every check runs on every page state, the Contact form's thank-you, error, and refused send and a chosen Work filter included. How: This declares each check once per state, the shared states first, then the result, filtered, and invalid states.
 
 
 	test( `${ staRecObj.ideStr } names every link and button cleanly`, async ( { page : curPagObj } ) => { // What: Names Test. Why: Every link and button must be announced by a clean name. How: This opens the state and checks its accessibility tree.

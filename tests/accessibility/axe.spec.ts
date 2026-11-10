@@ -3,11 +3,13 @@
 
 // #region Imports
 
-import { cheAxeFun   } from '../support/axe.ts';    // What: Check Axe Function. Why: Every state is scanned with the shared axe check. How: This scans the page, reports anything needing review, and returns the violations.
-import { expect      } from '@playwright/test';     // What: Expect. Why: A state passes only with no violations. How: This asserts the violation list is empty.
-import { opeStaFun   } from '../support/states.ts'; // What: Open State Function. Why: Each state has to be opened and settled before it's scanned. How: This loads it and waits for it.
-import { STA_REC_ARR } from '../support/states.ts'; // What: State Record Array. Why: Every page state is scanned. How: This lists them.
-import { test        } from '@playwright/test';     // What: Test. Why: Each state is its own test. How: This declares them.
+import { cheAxeFun   } from '../support/axe.ts';     // What: Check Axe Function. Why: Every state is scanned with the shared axe check. How: This scans the page, reports anything needing review, and returns the violations.
+import { expect      } from '@playwright/test';      // What: Expect. Why: A state passes only with no violations. How: This asserts the violation list is empty.
+import { FIL_STA_ARR } from '../support/work.ts';    // What: Filtered State Array. Why: A chosen filter changes Work's grid and count, a state a visitor reaches. How: This lists the Work states with a filter chosen, one per width.
+import { INV_STA_ARR } from '../support/contact.ts'; // What: Invalid State Array. Why: The Contact form after a refused empty send is a state a visitor reaches. How: This lists the Contact states after that send, one per width.
+import { opeStaFun   } from '../support/states.ts';  // What: Open State Function. Why: Each state has to be opened and settled before it's scanned. How: This loads it and waits for it.
+import { STA_REC_ARR } from '../support/states.ts';  // What: State Record Array. Why: Every page state is scanned. How: This lists them.
+import { test        } from '@playwright/test';      // What: Test. Why: Each state is its own test. How: This declares them.
 
 // #endregion Imports
 
@@ -17,8 +19,9 @@ import { test        } from '@playwright/test';     // What: Test. Why: Each sta
  * axe.spec.ts = Axe Spec
  *
  * @summary
- * Scans every page state with axe-core against WCAG 2.2 A and AA plus axe's
- * best-practice rules, in whichever engine the project runs. A state passes
+ * Scans every page state, a chosen Work filter and a refused Contact send
+ * included, with axe-core against WCAG 2.2 A and AA plus axe's best-practice
+ * rules, in whichever engine the project runs. A state passes
  * only with zero violations, and each failure names its rule, its impact, and
  * the elements it found. Anything axe can't decide on its own (its
  * "incomplete" results, such as text over an image), apart from a bypass
@@ -31,7 +34,7 @@ import { test        } from '@playwright/test';     // What: Test. Why: Each sta
 
 
 
-for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every page state must pass the scan. How: This declares one axe test per state.
+for ( const staRecObj of [ ...STA_REC_ARR, ...FIL_STA_ARR, ...INV_STA_ARR ] ) { // What: State Test Loop. Why: Every page state must pass the scan, a chosen filter and a refused send included. How: This declares one axe test per state, the shared states first, then the filtered and invalid states.
 
 
 	test( `${ staRecObj.ideStr } has no axe violations`, async ( { page : curPagObj }, tesInfObj ) => { // What: Axe Test. Why: A state passes only with zero axe violations. How: This opens the state, scans it, reports anything needing review, and fails on any violation.

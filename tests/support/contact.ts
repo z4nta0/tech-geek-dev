@@ -18,8 +18,9 @@ import type { StaRecTyp } from './states.ts';      // What: State Record Type. W
  * contact.ts = Contact
  *
  * @summary
- * The Contact form's result states, for the suites that check every state
- * a visitor can reach, and the helper that brings a result about. Netlify
+ * The Contact form's result states and the state after a refused empty send,
+ * for the suites that check every state a visitor can reach, and the helper
+ * that brings a result about. Netlify
  * isn't there in testing, so the root's POST is answered here instead, with a
  * 200 for a sent message, which swaps the form for its thank-you, and a 500
  * for a failed one, which shows the error. They're kept out of the shared
@@ -41,6 +42,26 @@ import type { StaRecTyp } from './states.ts';      // What: State Record Type. W
 
 const CON_STA_ARR = STA_REC_ARR.filter( ( staRecObj ) => staRecObj.patStr === '/contact' );           // What: Contact State Array. Why: Each result is opened at the Contact page's phone and desktop widths. How: This picks the Contact rows from the shared state list.
 const ERR_MES_STR = 'Something went wrong. Please try again or email contact@techgeek.dev directly.'; // What: Error Message String. Why: A failed send has to put this message in the alert region. How: This is the error the page shows.
+
+const INV_STA_ARR : StaRecTyp[] = CON_STA_ARR.map( ( staRecObj ) => ( { // What: Invalid State Array. Why: A send the browser stops for missing fields is a state a visitor reaches too. How: For each Contact state, this copies the state, presses "Send Message" with the form empty in its action, and names it after the state.
+
+
+	...staRecObj, // What: State Record Spread. Why: The invalid state keeps the Contact state's path and viewport. How: This copies the row.
+
+	ideStr : `${ staRecObj.ideStr }-invalid`, // What: Identifier String. Why: Each test names its width and the refused send. How: This adds invalid to the Contact state's name, such as contact-desktop-invalid.
+
+	actFun : async ( curPagObj : Page ) => { // What: Action Function. Why: The state shows the form after the browser refuses an empty send. How: This presses "Send Message" and waits until the browser moves focus to the empty name field.
+
+
+		await curPagObj.getByRole( 'button', { name : 'Send Message' } ).click(); // What: Send Click Call. Why: An empty send is what the browser refuses. How: This presses "Send Message" with every field blank.
+
+		await expect( curPagObj.getByPlaceholder( 'Your name' ) ).toBeFocused(); // What: Refused Send Assertion. Why: The checks read the page only once the browser has refused the send. How: This waits until focus lands on the first empty required field.
+
+
+	}
+
+
+} ) );
 
 
 
@@ -155,7 +176,7 @@ const RES_STA_ARR : StaRecTyp[] = RES_REC_ARR.flatMap( ( resRecObj ) => CON_STA_
 
 // #region Exports
 
-export { ERR_MES_STR, RES_STA_ARR, senForFun }; // What: Named Exports. Why: The suites that check every reachable state share the result states and their sender. How: This exports the error message, the result state list, and the send helper.
+export { ERR_MES_STR, INV_STA_ARR, RES_STA_ARR, senForFun }; // What: Named Exports. Why: The suites that check every reachable state share the result and invalid states and the result states' sender. How: This exports the error message, the invalid and result state lists, and the send helper.
 
 // #endregion Exports
 
