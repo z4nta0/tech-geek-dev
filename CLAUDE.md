@@ -637,6 +637,34 @@ Decided by the user 2026-11-08, in the audit.
   one sidebar card a level apart between captures, so its desktop capture
   masks those corners and checks every other pixel.
 
+## Second reset decisions
+Decided by the user 2026-11-10, answering the second reset's requirements
+audit.
+- **Contact's sidebar rows** (email, GitHub, LinkedIn) are tiles styled as
+  buttons, so they keep their 0.97 press scale.
+- **The project cards' overlay buttons** ("Live Site" and "GitHub") keep a
+  color-only hover, a decided exception to the button lift: during the
+  close-out WebKit stopped registering a press on a lifted one.
+- **Contact's sidebar cards and About's fact cards** are one-off information
+  panels, so they take no hover look.
+- **The footer's profile icons** hover by color only, with no lift, as links
+  in a row. The change is on techgeek-design's `audit-footer-icons` branch,
+  waiting for its release.
+- **Icons inside controls** all take the pointer pass-through, so a press on
+  one lands on its control. Measured that day, every engine registers a press
+  on an icon either way, so their comments give that plain reason rather than
+  the old WebKit claim.
+- **The 404 page** pads its top by the bar's height plus a spacing step, so
+  its number clears the bar on short screens.
+- **The images** are sized from frames measured in all three engines, three
+  times rounded down: the screenshots 1,995 by 1,122 and the portrait 727 by
+  963.
+- **The skip link's slide-in**: the reduced-motion Tab walk is enough beside
+  the navigation spec's whole-link-in-view check and the feedback probe's
+  hover with motion allowed.
+- **The reload test** also checks `history.scrollRestoration` reads `manual`,
+  since Chromium and WebKit restore a reload on their own.
+
 ## Test suites
 Added 2026-10-12, adapted from the-bernie-bears'. Playwright suites live in
 `tests/`, one project per suite and engine in `tests/playwright.config.ts`,
@@ -651,12 +679,19 @@ tests/output/report` opens the HTML report. The states the suites visit
 (every route and the 404 page at 390px and 1,440px, plus the phone menu open
 at 390px) are listed in `tests/support/states.ts`, whose `opeStaFun` skips
 animations that repeat forever (the hero's turning shapes, the skills
-ticker, and the status dots) when waiting for the page to settle.
+ticker, and the status dots) when waiting for the page to settle. Work with
+GSAP chosen (`tests/support/work.ts`) and Contact after a refused empty send
+(`INV_STA_ARR` in `tests/support/contact.ts`), at both widths, join the axe
+scan, the scripted checks, and the policy check (decided by the user
+2026-11-10). Work's empty-filter message is left out, since every filter comes
+from a project's own tags and none can empty the grid.
 - `npm run test:accessibility`: the pre-commit accessibility scan. axe-core
   checks each state against WCAG 2.2 A and AA plus best practices
   (`axe.spec.ts`), and scripted checks (`scripted.spec.ts`) cover link and
   button names, a Tab walk (order, traps, focus on screen, uncovered, and
-  visible), reflow at 320px, and motion under reduced motion. axe's "needs
+  visible, and, since 2026-11-10, every element from its first stop on that
+  Tab should reach, so a trap that cycles back or holds focus on one control
+  fails), reflow at 320px, and motion under reduced motion. axe's "needs
   review" results are printed and attached to the report rather than failing
   the run, except `bypass`, which fails, since every page opens with a skip
   link.
@@ -707,7 +742,10 @@ ticker, and the status dots) when waiting for the page to settle.
   `filter.spec.ts` (added 2026-11-08) chooses a filter on Work and checks the
   count narrows and the new count and grid fade up, while the page's load and
   a press of the chosen pill play nothing, and reduced motion shows the result
-  at once.
+  at once. Since 2026-11-10 it also walks back through the cards with
+  Shift+Tab and checks each card link lands below the sticky filter bar, which
+  WebKit's links didn't until Work handed the bar's measured height to them as
+  their scroll margin.
   `ko-fi.spec.ts` (added 2026-11-01) checks that About's Ko-fi button points
   at the Ko-fi page with `noopener` and `noreferrer` and opens it in a new
   tab, answering Ko-fi's address itself so the test never leaves the site.
@@ -739,7 +777,8 @@ ticker, and the status dots) when waiting for the page to settle.
   does (`head.spec.ts`): every page's own title, description, and canonical
   link, the 404 page's noindex, the tags swapping as a visitor moves between
   pages, the raw page carrying the home title and description for crawlers
-  that run no script, the Person and WebSite structured data against the
+  that run no script (read, with the social tags, from the production build
+  since 2026-11-10, since scrapers read the minified page), the Person and WebSite structured data against the
   footer's profiles and Contact's email, `robots.txt`, the sitemap, the
   social preview tags and card, and every icon the head links to.
 - `npm run test:security` (added in the 2026-11-07 audit, from
