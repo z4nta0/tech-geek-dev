@@ -241,6 +241,22 @@
 
 }
 
+.visHidSpa { /* What: Visually Hidden Span. Why: Screen reader users should hear that a button opens a new tab. How: This shrinks the note to a clipped 1px box out of the layout while it stays readable to screen readers. */
+
+
+	border      : 0;
+	clip-path   : inset( 50% );
+	height      : 1px;
+	margin      : -1px;
+	overflow    : hidden;
+	padding     : 0;
+	position    : absolute;
+	white-space : nowrap;
+	width       : 1px;
+
+
+}
+
 /* #endregion oveButAnc */
 
 /* #endregion oveLinDiv */

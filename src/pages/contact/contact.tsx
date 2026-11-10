@@ -822,7 +822,7 @@ function ConPagCom () : JSX.Element {
 											href={ conIteObj.hreStr }
 											rel={ conIteObj.extBoo ? 'noopener noreferrer' : undefined } // What: Relationship Ternary. Why: A profile on another site shouldn't reach back to this page or learn which page sent the visitor. How: This sets noopener and noreferrer on the external rows and leaves the email row without them.
 											target={ conIteObj.extBoo ? '_blank' : undefined } // What: Target Ternary. Why: A profile opens beside the site, while a mailto link in a new tab would leave an empty tab behind. How: This opens only the external rows in a new tab.
-										>{ /* What: Contact Item Anchor Element. Why: Each item links to its address. How: This opens a profile in a new tab, or the email address in the visitor's mail app, showing the icon beside the name and address. */ }
+										>{ /* What: Contact Item Anchor Element. Why: Each item links to its address. How: This opens a profile in a new tab, or the email address in the visitor's mail app, showing the icon beside the name and address, a profile's name ending in a hidden note that it opens a new tab. */ }
 
 
 											<span className={ cssModObj.conIcoSpa }>{ conIteObj.icoEle }</span>{ /* What: Contact Icon Span Element. Why: An icon marks each item at a glance. How: This frames the row's icon. */ }
@@ -836,6 +836,8 @@ function ConPagCom () : JSX.Element {
 
 
 											</div>
+
+											{ conIteObj.extBoo && <span className={ cssModObj.visHidSpa }> (opens in a new tab)</span> }{ /* What: New Tab Note Check. Why: Screen reader users should hear that a profile row opens a new tab, while the email row opens the mail app instead. How: This adds a visually hidden note to the external rows only. */ }
 
 
 										</a>

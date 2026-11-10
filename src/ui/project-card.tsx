@@ -117,7 +117,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 								href={ proRecObj.livStr }
 								rel='noopener noreferrer'
 								target='_blank'
-							>{ /* What: Overlay Button Anchor Element. Why: A visitor can open the finished site. How: This links to the live site in a new tab. */ }
+							>{ /* What: Overlay Button Anchor Element. Why: A visitor can open the finished site. How: This links to the live site in a new tab, telling screen reader users so through a visually hidden note. */ }
 
 
 								<svg
@@ -146,7 +146,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 
 								</svg>
 
-								Live Site
+								Live Site<span className={ cssModObj.visHidSpa }> (opens in a new tab)</span>
 
 
 							</a>
@@ -164,7 +164,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 								href={ proRecObj.gitStr }
 								rel='noopener noreferrer'
 								target='_blank'
-							>{ /* What: Overlay Button Anchor Ghost Element. Why: A visitor can read the project's source. How: This links to its repository in a new tab, styled as the lighter ghost button. */ }
+							>{ /* What: Overlay Button Anchor Ghost Element. Why: A visitor can read the project's source. How: This links to its repository in a new tab, telling screen reader users so through a visually hidden note, styled as the lighter ghost button. */ }
 
 
 								<svg
@@ -182,7 +182,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 
 								</svg>
 
-								GitHub
+								GitHub<span className={ cssModObj.visHidSpa }> (opens in a new tab)</span>
 
 
 							</a>

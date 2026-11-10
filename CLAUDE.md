@@ -666,6 +666,12 @@ audit.
   `aria-pressed`, which its module styles, and the count sits in a
   `role='status'` region that stays mounted while the count inside it
   remounts for its fade, so each new count is read out.
+- **New tab links say so** (the user-level rule this decision added): the
+  project cards' "Live Site" and "GitHub" buttons and Contact's profile rows
+  end their names in a hidden "(opens in a new tab)", About's Ko-fi button
+  keeps its "(opens Ko-fi in a new tab)", and the package's menu tiles and
+  footer icons add it to their labels, on its `audit-footer-icons` branch.
+  The names check fails until the site installs a release carrying it.
 - **The reload test** also checks `history.scrollRestoration` reads `manual`,
   since Chromium and WebKit restore a reload on their own.
 
@@ -692,13 +698,13 @@ from a project's own tags and none can empty the grid.
 - `npm run test:accessibility`: the pre-commit accessibility scan. axe-core
   checks each state against WCAG 2.2 A and AA plus best practices
   (`axe.spec.ts`), and scripted checks (`scripted.spec.ts`) cover link and
-  button names, a Tab walk (order, traps, focus on screen, uncovered, and
-  visible, and, since 2026-11-10, every element from its first stop on that
-  Tab should reach, so a trap that cycles back or holds focus on one control
-  fails), reflow at 320px, and motion under reduced motion. axe's "needs
-  review" results are printed and attached to the report rather than failing
-  the run, except `bypass`, which fails, since every page opens with a skip
-  link.
+  button names (with every shown link that opens a new tab saying so), a Tab
+  walk (order, traps, focus on screen, uncovered, and visible, and, since
+  2026-11-10, every element from its first stop on that Tab should reach, so a
+  trap that cycles back or holds focus on one control fails), reflow at 320px,
+  and motion under reduced motion. axe's "needs review" results are printed
+  and attached to the report rather than failing the run, except `bypass`,
+  which fails, since every page opens with a skip link.
 - `npm run test:interaction`: how moving between pages and using controls
   behaves. `navigation.spec.ts` (from the-bernie-bears, added in step 11)
   checks that a footer link clicked at the bottom of each page opens the next

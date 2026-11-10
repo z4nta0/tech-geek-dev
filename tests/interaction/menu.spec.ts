@@ -145,7 +145,7 @@ async function newTabFun ( curPagObj : Page, linNamStr : string, cliOptObj : Par
 	const newTabPro = curPagObj.context().waitForEvent( 'page' ); // What: New Tab Promise. Why: The click opens its page in a new tab. How: This waits for the browser context to report a new page, set up before the click so it can't be missed.
 
 
-	await curPagObj.getByRole( 'banner' ).getByRole( 'link', { exact : true, name : linNamStr } ).click( cliOptObj ); // What: Link Click Call. Why: This is the action under test. How: This clicks the link the given way.
+	await curPagObj.getByRole( 'banner' ).getByRole( 'link', { name : new RegExp( `^${ linNamStr }( \\(opens in a new tab\\))?$` ) } ).click( cliOptObj ); // What: Link Click Call. Why: This is the action under test. How: This clicks the link the given way, found by its name alone or followed by the note a profile adds that it opens a new tab.
 
 	await newTabPro; // What: New Tab Wait. Why: The click should open a new tab. How: This waits for the browser to report it.
 

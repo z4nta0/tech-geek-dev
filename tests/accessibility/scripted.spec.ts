@@ -25,16 +25,16 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helpers th
  * The accessibility checks axe-core can't make, run on every page state in
  * whichever engine the project runs. Names: every link and button in the
  * accessibility tree has a name, and no name carries a decorative glyph such
- * as an arrow or an emoji. Keyboard: no element uses a positive tabindex, and
- * a Tab walk from the top of the page reaches its end without getting trapped,
- * never moves backwards through the document, and lands only on stops that are
- * on screen, not covered by anything else, and visibly changed by focus.
- * Reflow: at 320px wide, WCAG's narrowest reflow width, nothing scrolls
- * sideways. Motion: with reduced motion requested, nothing animates or
- * transitions for longer than 1ms from the moment the page starts loading, and
- * nothing is left running or waiting once the state has opened. A failing
- * names, keyboard, or motion check lists the problems it found, most of them
- * by element.
+ * as an arrow or an emoji, and a link that opens a new tab says so. Keyboard:
+ * no element uses a positive tabindex, and a Tab walk from the top of the page
+ * reaches its end without getting trapped, never moves backwards through the
+ * document, and lands only on stops that are on screen, not covered by
+ * anything else, and visibly changed by focus. Reflow: at 320px wide, WCAG's
+ * narrowest reflow width, nothing scrolls sideways. Motion: with reduced
+ * motion requested, nothing animates or transitions for longer than 1ms from
+ * the moment the page starts loading, and nothing is left running or waiting
+ * once the state has opened. A failing names, keyboard, or motion check lists
+ * the problems it found, most of them by element.
  *
  * Sections:
  *  - Constants
@@ -51,6 +51,7 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The helpers th
 
 const GLY_DEC_REG = /[←↑→↓·•]|\p{Extended_Pictographic}/u; // What: Glyph Decorative Regular Expression. Why: A decorative glyph inside a name is read aloud as noise, such as right arrow. How: This matches the arrows and dots a decorative glyph would add to a name, plus any emoji or pictograph.
 const REF_WID_NUM = 320;                                   // What: Reflow Width Number. Why: WCAG's reflow criterion asks for no sideways scrolling at 320 CSS pixels, the width of 1,280px at 400% zoom. How: This is the viewport width the reflow check opens each state at.
+const TAB_HIN_REG = /in a new tab\)/;                     // What: Tab Hint Regular Expression. Why: A link that opens a new tab has to say so in its announced name. How: This matches the note's closing words, such as "(opens in a new tab)".
 const TAB_MAX_NUM = 80;                                    // What: Tab Maximum Number. Why: A keyboard trap would otherwise keep the walk going forever. How: This caps the walk at far more Tab presses than the site has stops.
 
 // #endregion Constants
@@ -197,8 +198,9 @@ async function motRecFun ( curPagObj : Page ) : Promise< void > {
  *
  * @summary
  * Reads the page's accessibility tree, the same tree a screen reader reads,
- * and returns a problem for every link or button with no name, and for every
- * one whose name contains a decorative glyph that should have been hidden.
+ * and returns a problem for every link or button with no name, for every one
+ * whose name contains a decorative glyph that should have been hidden, and
+ * for every shown link that opens a new tab without saying so in its name.
  * Elements hidden from assistive technology don't appear in the tree, so the
  * decorative elements hidden from it are never counted. A tree with no link or
  * button at all is a problem too, since every page shows at least the bar's
@@ -240,6 +242,26 @@ async function namProFun ( curPagObj : Page ) : Promise< string[] > {
 		if ( !conNamStr.trim() ) proLisArr.push( `${ conLinStr } has no name` ); // What: Missing Name Check. Why: A control with no name is announced as just its role. How: This records the line when its name is empty.
 
 		else if ( GLY_DEC_REG.test( conNamStr ) ) proLisArr.push( `${ conLinStr } has a decorative glyph in its name` ); // What: Glyph Name Check. Why: A decorative arrow in a name is read aloud. How: This records the line when its name contains one.
+
+
+	}
+
+
+
+	const tabLinArr = await curPagObj.locator( 'a[target="_blank"]' ).all(); // What: Tab Link Array. Why: A link that opens a new tab has to say so in its name. How: This lists every link with a blank target.
+
+
+	for ( const tabLinObj of tabLinArr ) { // What: Tab Link Loop. Why: Each new tab link is judged on its own. How: This reads each shown link's announced name and records one that doesn't mention the new tab.
+
+
+		if ( !await tabLinObj.isVisible() ) continue; // What: Hidden Link Guard. Why: A link out of sight, such as one in the closed phone menu, isn't announced. How: This skips it.
+
+
+
+		const tabSnaStr = ( await tabLinObj.ariaSnapshot() ).split( '\n' )[ 0 ]; // What: Tab Snapshot String. Why: The link's own tree line holds its role and announced name. How: This reads the link's tree and keeps its first line.
+
+
+		if ( tabSnaStr.startsWith( '- link' ) && !TAB_HIN_REG.test( tabSnaStr ) ) proLisArr.push( `${ tabSnaStr } opens a new tab without saying so` ); // What: Tab Hint Check. Why: A screen reader user should know before a new tab opens. How: This records a link whose tree line names it without the note.
 
 
 	}
