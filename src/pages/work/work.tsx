@@ -101,7 +101,9 @@ const TAG_FIL_ARR = [ 'All', ...Array.from( new Set( PRO_REC_ARR.flatMap( ( proR
  * one) and updates the count beside them; an empty grid says no projects
  * match. A visually hidden h2 heads the grid, so the cards' h3 titles follow
  * the page's h1 in order. The process section lists PRC_STE_ARR's steps
- * with an arrow, hidden from screen readers, between each pair.
+ * with an arrow, hidden from screen readers, between each pair. The filter
+ * bar's measured height becomes the cards' links' scroll margin, so a link
+ * scrolled into view at the top lands clear of the bar.
  *
  * It also sets the page's title and canonical address, which React moves
  * into the document head, and swaps the search description for its own
@@ -130,7 +132,9 @@ function WorPagCom () : JSX.Element {
 	const [ actTagStr, setActTagStr ] = useState( 'All' ); // What: Active Tag String And Setter. Why: The grid shows only the projects using the chosen technology. How: This starts on "All", showing every project.
 	const [ filChoBoo, setFilChoBoo ] = useState( false ); // What: Filter Chosen Boolean And Setter. Why: The grid's fade marks a filter's result, not the page's arrival. How: This starts false and turns true once a different filter is chosen, turning on the count's and the grid's arriving classes.
 
+	const filBarRef = useRef< HTMLElement | null >( null );    // What: Filter Bar Reference. Why: The clearance effect below measures the sticky filter bar. How: This is attached to the bar's ref prop.
 	const filScrRef = useRef< HTMLDivElement | null >( null ); // What: Filter Scroll Reference. Why: The fade effect below measures the filter row. How: This is attached to the row's ref prop.
+	const proLisRef = useRef< HTMLElement | null >( null );    // What: Projects List Reference. Why: The clearance effect below hands the bar's height to the cards. How: This is attached to the projects section's ref prop.
 
 
 	useEffect( () => { // What: Filter Row Fade Effect. Why: Once the filter buttons outgrow the row, its edges fade on whichever side still hides buttons, so a visitor can tell it scrolls. How: This measures the row now and on every scroll and resize, and removes the listeners when the page leaves.
@@ -170,6 +174,37 @@ function WorPagCom () : JSX.Element {
 
 
 	}, [] ); // What: Effect Dependency Array. Why: The row and its buttons never change while the page is open, so the listeners are wired once. How: This empty list runs the effect only on mount and cleans it up on unmount.
+
+
+
+	useEffect( () => { // What: Filter Bar Clearance Effect. Why: The filter bar sticks under the fixed bar, so a card's link scrolled into view at the top would land behind it, as WebKit's Shift+Tab showed. How: This hands the projects section the bar's measured height as the cards' links' scroll margin, now and whenever the bar resizes, and stops watching when the page leaves.
+
+
+		const filBarEle = filBarRef.current; // What: Filter Bar Element. Why: The bar's height is what the links have to clear. How: This reads it from its ref.
+		const proLisEle = proLisRef.current; // What: Projects List Element. Why: The cards read their links' margin from their section. How: This reads it from its ref.
+
+
+		if ( !filBarEle || !proLisEle ) return; // What: Missing Element Guard. Why: There's nothing to measure before both sections mount. How: This stops early when either ref is empty.
+
+
+
+		const setMarFun = () => proLisEle.style.setProperty( '--ove-but-mar', `${ filBarEle.offsetHeight }px` ); // What: Set Margin Function. Why: The bar's height comes from its content and grows where the filter row stacks on phones, so no token gives it. How: This writes the bar's height, borders included, as the cards' links' scroll margin.
+
+
+		setMarFun(); // What: Initial Margin Call. Why: The margin has to be right as soon as the page shows. How: This measures the bar once.
+
+
+		const resObsObj = new ResizeObserver( setMarFun ); // What: Resize Observer Object. Why: Resizing the window can change the bar's height. How: This re-measures whenever the bar's size changes.
+
+
+		resObsObj.observe( filBarEle ); // What: Resize Observer Start Call. Why: The observer does nothing until it's given an element. How: This starts watching the bar.
+
+
+
+		return () => resObsObj.disconnect(); // What: Clearance Cleanup Return. Why: The observer shouldn't outlive the page. How: This disconnects it.
+
+
+	}, [] ); // What: Effect Dependency Array. Why: The bar and the projects section never unmount while the page is open, so the observer is wired once. How: This empty list runs the effect only on mount and cleans it up on unmount.
 
 
 
@@ -287,7 +322,11 @@ function WorPagCom () : JSX.Element {
 
 
 
-				<section className={ cssModObj.filBarSec }>{ /* What: Filter Bar Section Element. Why: A visitor can narrow the projects to one technology. How: This holds the label, the buttons, and the count. */ }
+				<section
+					ref={ filBarRef }
+
+					className={ cssModObj.filBarSec }
+				>{ /* What: Filter Bar Section Element. Why: A visitor can narrow the projects to one technology. How: This holds the label, the buttons, and the count, its height measured for the cards' links to clear. */ }
 
 
 					<div className={ cssModObj.filInnDiv }>{ /* What: Filter Inner Div Element. Why: The filter sits in the page's centered column. How: This lines up the label, the buttons, and the count, the buttons taking a line of their own under the label and the count at 640px and below. */ }
@@ -363,7 +402,11 @@ function WorPagCom () : JSX.Element {
 
 
 
-				<section className={ cssModObj.proLisSec }>{ /* What: Projects List Section Element. Why: The grid of cards is the page's main content. How: This holds the grid or the empty message. */ }
+				<section
+					ref={ proLisRef }
+
+					className={ cssModObj.proLisSec }
+				>{ /* What: Projects List Section Element. Why: The grid of cards is the page's main content. How: This holds the grid or the empty message, handing the cards' links the filter bar's height as their scroll margin. */ }
 
 
 					<div className={ cssModObj.proInnDiv }>{ /* What: Projects Inner Div Element. Why: The grid sits in the page's centered column. How: This holds the hidden heading and the grid. */ }
