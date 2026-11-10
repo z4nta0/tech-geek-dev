@@ -710,7 +710,9 @@ from a project's own tags and none can empty the grid.
   which changed its height on the way back.
   `feedback.spec.ts` (from the-bernie-bears, its probe replaced in the
   2026-11-07 audit, with its helpers in `tests/support/feedback.ts`) checks
-  the interaction feedback rule on every state: each reachable link and
+  the interaction feedback rule on every shared state and form result (the
+  filtered and refused-send states add no look of their own, since the chosen
+  filter's look is a toggled state it flips): each reachable link and
   button looks different hovered than at rest, pressed than hovered, and
   focused (through `focus( { focusVisible : true } )`) than unfocused, and
   every property each of those changes, on it or anything inside it, has to
