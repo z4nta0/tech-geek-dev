@@ -748,13 +748,15 @@ function ConPagCom () : JSX.Element {
 
 
 												<svg
+													className={ cssModObj.senPlaSvg }
+
 													fill='none'
 													height='16'
 													stroke='currentColor'
 													strokeWidth='2.5'
 													viewBox='0 0 24 24'
 													width='16'
-												>{ /* What: Paper Plane SVG Element. Why: A paper plane stands for sending. How: This draws it after the label. */ }
+												>{ /* What: Send Plane SVG Element. Why: A paper plane stands for sending. How: This draws it after the label, passing a press through to the button. */ }
 
 
 													<line

@@ -491,13 +491,15 @@ function HomPagCom () : JSX.Element {
 									View My Work
 
 									<svg
+										className={ cssModObj.butArrSvg }
+
 										fill='none'
 										height='16'
 										stroke='currentColor'
 										strokeWidth='2.5'
 										viewBox='0 0 24 24'
 										width='16'
-									>{ /* What: Arrow SVG Element. Why: An arrow invites the click. How: This draws it after the label. */ }
+									>{ /* What: Button Arrow SVG Element. Why: An arrow invites the click. How: This draws it after the label, passing a press through to the link. */ }
 
 
 										<path d='M5 12h14M12 5l7 7-7 7' />{ /* What: Arrow Path Element. Why: The arrow is a shaft and a head. How: This traces both in one stroke. */ }

@@ -653,6 +653,9 @@
 
 }
 
+
+/* #region senReaSpa */
+
 .senReaSpa { /* What: Send Ready Span. Why: The ready label pairs its words with the paper plane. How: This sets them side by side in the shared cell, line placed since both labels overlap there, and eases its fade on the standard curve. */
 
 
@@ -684,6 +687,17 @@
 
 
 }
+
+.senPlaSvg { /* What: Send Plane SVG. Why: A press on the paper plane should land on its button. How: This lets every press fall through the plane to the button itself. */
+
+
+	pointer-events : none;
+
+
+}
+
+/* #endregion senReaSpa */
+
 
 .senPenSpa { /* What: Send Pending Span. Why: The sending label waits in the same cell, hidden until the message sends. How: This places it over the ready label, line placed since both labels overlap there, transparent, and eases its fade on the standard curve. */
 
@@ -835,7 +849,7 @@
 
 }
 
-.conIcoSpa { /* What: Contact Icon Span. Why: Each detail's icon sits on a pale blue tile. How: This draws a 34px rounded tile centering the icon in dark blue, never shrinking. */
+.conIcoSpa { /* What: Contact Icon Span. Why: Each detail's icon sits on a pale blue tile, and a press on it should land on its row. How: This draws a 34px rounded tile centering the icon in dark blue, never shrinking, and lets every press fall through the tile and its icon to the link itself. */
 
 
 	align-items     : center;
@@ -846,6 +860,7 @@
 	flex-shrink     : 0;
 	height          : calc( var( --ver-rhy-p03 ) * 1rem ); /* Vertical Rhythm Base Plus 3 ~= 33.876px */
 	justify-content : center;
+	pointer-events  : none;
 	width           : calc( var( --ver-rhy-p03 ) * 1rem ); /* Vertical Rhythm Base Plus 3 ~= 33.876px */
 
 
