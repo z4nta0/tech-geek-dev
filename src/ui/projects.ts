@@ -20,14 +20,11 @@ import totScrUrl from '../assets/images/tonys-toppers-website.webp';     // What
  * projects.ts = Projects
  *
  * @summary
- * The list of projects the site showcases, in the order the Work page shows
- * them, with the type every record follows. Home shows four featured ones,
- * picked at random on each visit, and the Work page shows them all behind its
- * tag filter. Home and About also show two counts taken from the list, the
- * projects shipped and the clients served, so both grow as projects are added;
- * the pages add a plus to each, since z4nta0's older projects that are no
- * longer online still count. Each record's screenshot comes from
- * src/assets/images, rendered there by npm run images.
+ * The list of projects the site showcases, with the type every record
+ * follows, which holds fields such as a project's name, links, and
+ * screenshot. Two counts are taken from the list, the projects shipped and
+ * the clients served, so both grow as projects are added. Each record's
+ * screenshot comes from src/assets/images, rendered there by npm run images.
  *
  * Sections:
  *  - Types
@@ -42,14 +39,14 @@ import totScrUrl from '../assets/images/tonys-toppers-website.webp';     // What
 
 // #region Types
 
-type ProRecTyp = { // What: Project Record Type. Why: The project card, Home, and the Work page all read the same fields. How: This names every field a project record carries.
+type ProRecTyp = { // What: Project Record Type. Why: Every project record shares one shape. How: This names every field a project record carries.
 
 
-	cliBoo  : boolean,  // What: Client Boolean. Why: Home and About count the client projects apart from z4nta0's own. How: This is true for a site built for a client.
+	cliBoo  : boolean,  // What: Client Boolean. Why: Home counts the client projects apart from z4nta0's own. How: This is true for a site built for a client.
 	desStr  : string,   // What: Description String. Why: The card says what the project is. How: This is a sentence shown under the title.
 	feaBoo? : boolean,  // What: Featured Boolean. Why: Home shows only featured projects. How: This marks a project as one of them.
 	gitStr? : string,   // What: GitHub String. Why: A visitor can read the project's source. How: This is its repository's URL.
-	ideStr  : string,   // What: Identifier String. Why: React needs a stable key for each card. How: This is a unique id per project.
+	ideStr  : string,   // What: Identifier String. Why: React needs a stable key for each card. How: This is a unique ID per project.
 	imaStr  : string,   // What: Image String. Why: The card shows a screenshot of the site. How: This is the screenshot's resolved URL.
 	livStr? : string,   // What: Live String. Why: A visitor can open the finished site. How: This is the live site's URL.
 	tagArr  : string[], // What: Tag Array. Why: The card lists the project's technologies, and the Work page filters by them. How: This holds each technology's name.
@@ -74,15 +71,25 @@ type ProRecTyp = { // What: Project Record Type. Why: The project card, Home, an
  * Every project the site showcases, in the order the Work page shows them.
  * Every record shares the {@link ProRecTyp} shape, so its fields carry no
  * comments of their own:
+ *
  * - `cliBoo` (Boolean): Client Boolean, true for a site built for a client.
+ *
  * - `desStr` (String): Description String, the sentence under the title.
+ *
  * - `feaBoo` (Boolean): Featured Boolean, true for a project Home can show.
+ *
  * - `gitStr` (String): GitHub String, the repository's URL.
+ *
  * - `ideStr` (String): Identifier String, the card's unique React key.
+ *
  * - `imaStr` (String): Image String, the screenshot's resolved URL.
+ *
  * - `livStr` (String): Live String, the live site's URL.
+ *
  * - `tagArr` (Array): Tag Array, the technologies the card lists.
+ *
  * - `titStr` (String): Title String, the project's name.
+ *
  * - `yeaNum` (Number): Year Number, the year the badge shows.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -96,7 +103,6 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : false,
-		desStr : "A progressive web app todo list application that decides what to do, so that you don't have to.",
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/ease-my-life',
 		ideStr : 'proj-01',
@@ -104,7 +110,9 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 		livStr : 'https://easemylife.app/',
 		tagArr : [ 'React', 'TypeScript', 'Node.js', 'React Router', 'Vite' ],
 		titStr : 'Ease My Life',
-		yeaNum : 2026
+		yeaNum : 2026,
+
+		desStr : "A progressive web app todo list application that decides what to do, so that you don't have to."
 
 
 	},
@@ -113,7 +121,6 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : true,
-		desStr : 'A website for a local business of hair designers and licensed cosmetologists.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/hair-designs',
 		ideStr : 'proj-02',
@@ -121,7 +128,9 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 		livStr : 'https://hairdesigns.hair/',
 		tagArr : [ 'React', 'TypeScript', 'Node.js', 'React Router', 'Vite' ],
 		titStr : 'Hair Designs',
-		yeaNum : 2026
+		yeaNum : 2026,
+
+		desStr : 'A website for a local business of hair designers and licensed cosmetologists.'
 
 
 	},
@@ -130,7 +139,6 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : true,
-		desStr : 'A website for a social media influencer about two adorable Bernese Mountain Dogs.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/the-bernie-bears',
 		ideStr : 'proj-03',
@@ -138,7 +146,9 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 		livStr : 'https://theberniebears.dog/',
 		tagArr : [ 'React', 'TypeScript', 'Node.js', 'React Router', 'Vite' ],
 		titStr : 'The Bernie Bears',
-		yeaNum : 2026
+		yeaNum : 2026,
+
+		desStr : 'A website for a social media influencer about two adorable Bernese Mountain Dogs.'
 
 
 	},
@@ -147,7 +157,6 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : true,
-		desStr : 'A website for a young man with Down syndrome who sells handmade crafts.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/tonys-toppers',
 		ideStr : 'proj-04',
@@ -155,7 +164,9 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 		livStr : 'https://tonystoppers.com/',
 		tagArr : [ 'React', 'TypeScript', 'Node.js', 'React Router', 'Vite' ],
 		titStr : "Tony's Toppers",
-		yeaNum : 2026
+		yeaNum : 2026,
+
+		desStr : 'A website for a young man with Down syndrome who sells handmade crafts.'
 
 
 	},
@@ -164,7 +175,6 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : true,
-		desStr : 'A website for Seal and Shield, a commercial roofing contractor based in Lawrence, Kansas.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/seal-and-shield',
 		ideStr : 'proj-05',
@@ -172,7 +182,9 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 		livStr : 'https://sealandshieldroof.com/',
 		tagArr : [ 'React', 'TypeScript', 'Node.js', 'React Router', 'Vite' ],
 		titStr : 'Seal and Shield',
-		yeaNum : 2026
+		yeaNum : 2026,
+
+		desStr : 'A website for Seal and Shield, a commercial roofing contractor based in Lawrence, Kansas.'
 
 
 	},
@@ -181,7 +193,6 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : true,
-		desStr : 'A mockup website for a fictional roofing company, designed as a concept for a Lawrence, Kansas client.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/reese-roofing',
 		ideStr : 'proj-06',
@@ -189,7 +200,9 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 		livStr : 'https://reese-roofing.netlify.app/',
 		tagArr : [ 'React', 'TypeScript', 'Node.js', 'React Router', 'Vite' ],
 		titStr : 'Reese Roofing',
-		yeaNum : 2026
+		yeaNum : 2026,
+
+		desStr : 'A mockup website for a fictional roofing company, designed as a concept for a Lawrence, Kansas client.'
 
 
 	},
@@ -198,7 +211,6 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : false,
-		desStr : 'A sister site to TechGeek.dev with free, friendly tech help for everyday people, through plain-spoken articles and questions answered by email.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/tech-geek-support',
 		ideStr : 'proj-07',
@@ -206,7 +218,9 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 		livStr : 'https://techgeek.support/',
 		tagArr : [ 'React', 'TypeScript', 'Node.js', 'React Router', 'Vite' ],
 		titStr : 'TechGeek.support',
-		yeaNum : 2026
+		yeaNum : 2026,
+
+		desStr : 'A sister site to TechGeek.dev with free, friendly tech help for everyday people, through plain-spoken articles and questions answered by email.'
 
 
 	},
@@ -215,7 +229,6 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 		cliBoo : false,
-		desStr : 'A sister site to TechGeek.dev with animated digital greeting cards, each one hand-coded to play in the browser and sent as a link.',
 		feaBoo : true,
 		gitStr : 'https://github.com/z4nta0/tech-geek-cards',
 		ideStr : 'proj-08',
@@ -223,7 +236,9 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 		livStr : 'https://techgeek.cards/',
 		tagArr : [ 'React', 'TypeScript', 'GSAP', 'React Router', 'Vite' ],
 		titStr : 'TechGeek.cards',
-		yeaNum : 2026
+		yeaNum : 2026,
+
+		desStr : 'A sister site to TechGeek.dev with animated digital greeting cards, each one hand-coded to play in the browser and sent as a link.'
 
 
 	}
@@ -235,8 +250,8 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 
-const CLI_COU_NUM = PRO_REC_ARR.filter( ( proRecObj ) => proRecObj.cliBoo ).length; // What: Client Count Number. Why: Home and About count the clients served, and the count should grow as client projects are added. How: This counts the records built for a client.
-const SHI_COU_NUM = PRO_REC_ARR.length;                                                 // What: Shipped Count Number. Why: Home and About count the projects shipped, and the count should grow as projects are added. How: This counts every record.
+const CLI_COU_NUM = PRO_REC_ARR.filter( ( proRecObj ) => proRecObj.cliBoo ).length; // What: Client Count Number. Why: The count should grow as client projects are added. How: This counts the records built for a client.
+const SHI_COU_NUM = PRO_REC_ARR.length;                                             // What: Shipped Count Number. Why: The count should grow as projects are added. How: This counts every record.
 
 // #endregion Constants
 
@@ -244,7 +259,7 @@ const SHI_COU_NUM = PRO_REC_ARR.length;                                         
 
 // #region Exports
 
-export { CLI_COU_NUM, PRO_REC_ARR, type ProRecTyp, SHI_COU_NUM }; // What: Named Exports. Why: The project card reads the record type, Home and the Work page read the list, and Home and About show the counts. How: This exports the list, its type, and both counts.
+export { CLI_COU_NUM, PRO_REC_ARR, type ProRecTyp, SHI_COU_NUM }; // What: Named Exports. Why: Other files read the project list, its record type, and the two counts. How: This exports the list, its type, and both counts.
 
 // #endregion Exports
 

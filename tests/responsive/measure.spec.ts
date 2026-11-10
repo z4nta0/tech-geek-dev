@@ -16,15 +16,15 @@ import { test      } from '@playwright/test';     // What: Test. Why: Each page 
  *
  * @summary
  * Checks the text measure rule on every route, the 404 page, and the open
- * phone menu, in whichever engine the project runs: no line of a paragraph
- * may run past 75 characters, or past 60 for small text (anything set below
- * the 14.572px body size, such as captions and labels). Each paragraph's text
- * is walked one character at a time and split into its rendered lines by
- * where each character lands, so the count is what a reader actually sees
- * at that width. The widths run from 320px to 1,920px, with the site's
- * breakpoints and the pixel past each, since a column is at its widest just
- * before a layout switches. Only the upper limits are checked, since narrow
- * screens make shorter lines unavoidable.
+ * phone menu, in whichever engine the project runs: no line of a paragraph may
+ * run past 75 characters, or past 60 for small text (anything set under 14px,
+ * just below the 14.572px body size, such as captions and labels). Each
+ * paragraph's text is walked one character at a time and split into its
+ * rendered lines by where each character lands, so the count is what a reader
+ * actually sees at that width. The widths run from 320px to 1,920px, with the
+ * site's breakpoints and the pixel past each, since a column is at its widest
+ * just before a layout switches. Only the upper limits are checked, since
+ * narrow screens make shorter lines unavoidable.
  *
  * Sections:
  *  - Constants
@@ -39,15 +39,19 @@ import { test      } from '@playwright/test';     // What: Test. Why: Each page 
 
 // #region Constants
 
+const BOD_MAX_NUM = 75; // What: Body Maximum Number. Why: Paragraph text has to land within 45 to 75 characters a line. How: This is the upper limit body text is held to.
+
+
+
 type MeaCasTyp = { ideStr : string, menBoo : boolean, patStr : string }; // What: Measure Case Type. Why: Each test measures one page in one state. How: This names the case, whether it opens the menu, and its path.
 
 const MEA_CAS_ARR : MeaCasTyp[] = [ // What: Measure Case Array. Why: Every page and the open menu hold paragraphs. How: Each row names a case, whether it opens the menu, and its path.
 
 
-	{ ideStr : 'home',      menBoo : false, patStr : '/'        }, // What: Home Case. Why: The home page holds the hero pitch, the service cards, and the closing banner. How: This measures it as loaded.
-	{ ideStr : 'work',      menBoo : false, patStr : '/work'    }, // What: Work Case. Why: The Work page holds the project descriptions and the process steps. How: This measures it as loaded.
-	{ ideStr : 'about',     menBoo : false, patStr : '/about'   }, // What: About Case. Why: The About page holds the bio, the timeline, and the values. How: This measures it as loaded.
-	{ ideStr : 'contact',   menBoo : false, patStr : '/contact' }, // What: Contact Case. Why: The Contact page holds its intro and the detail cards. How: This measures it as loaded.
+	{ ideStr : 'home',      menBoo : false, patStr : '/'        }, // What: Home Case. Why: The home page holds paragraphs in several sections, such as the service cards. How: This measures it as loaded.
+	{ ideStr : 'work',      menBoo : false, patStr : '/work'    }, // What: Work Case. Why: The Work page holds paragraphs in several sections, such as the process steps. How: This measures it as loaded.
+	{ ideStr : 'about',     menBoo : false, patStr : '/about'   }, // What: About Case. Why: The About page holds paragraphs in several sections, such as the timeline. How: This measures it as loaded.
+	{ ideStr : 'contact',   menBoo : false, patStr : '/contact' }, // What: Contact Case. Why: The Contact page holds paragraphs in several sections, such as the detail cards. How: This measures it as loaded.
 	{ ideStr : 'not-found', menBoo : false, patStr : '/missing' }, // What: Not Found Case. Why: Every unknown address lands on the 404 page. How: This measures an address the site doesn't have.
 	{ ideStr : 'menu',      menBoo : true,  patStr : '/'        }  // What: Menu Case. Why: The open menu ends on its tagline. How: This measures the home page with the menu open.
 
@@ -56,10 +60,9 @@ const MEA_CAS_ARR : MeaCasTyp[] = [ // What: Measure Case Array. Why: Every page
 
 
 
-const BOD_MAX_NUM = 75;                                                                            // What: Body Maximum Number. Why: Paragraph text has to land within 45 to 75 characters a line. How: This is the upper limit body text is held to.
 const MEN_MAX_NUM = 1024;                                                                          // What: Menu Maximum Number. Why: The phone menu exists only up to the bar's 1,024px breakpoint. How: The menu case is measured only at widths up to this.
 const SMA_MAX_NUM = 60;                                                                            // What: Small Maximum Number. Why: Small and secondary text has to land within 40 to 60 characters a line. How: This is the upper limit small text is held to.
-const SMA_SIZ_NUM = 14;                                                                            // What: Small Size Number. Why: Small text is anything set below the body size of about 14.572px. How: A paragraph whose font size is under this many pixels is held to the small limit.
+const SMA_SIZ_NUM = 14;                                                                            // What: Small Size Number. Why: Small text is anything set under 14px, just below the body size of about 14.572px. How: A paragraph whose font size is under this many pixels is held to the small limit.
 const WID_LIS_ARR = [ 320, 360, 390, 414, 480, 640, 641, 768, 769, 1024, 1025, 1280, 1440, 1920 ]; // What: Width List Array. Why: A column is at its widest just before a layout switches. How: This lists the responsive suite's widths, the site's breakpoints and the pixel past each included.
 
 // #endregion Constants
@@ -104,7 +107,7 @@ function meaProFun ( limSetObj : { bodNum : number, sizNum : number, smaNum : nu
 	const proLisArr : string[] = []; // What: Problem List Array. Why: Every paragraph past its limit should be reported. How: This collects them.
 
 
-	for ( const parCurEle of Array.from( document.querySelectorAll( 'p' ) ) ) { // What: Paragraph Loop. Why: Every paragraph is held to the measure. How: This measures each one in turn.
+	for ( const parCurEle of Array.from( document.querySelectorAll( 'p' ) ) ) { // What: Paragraph Loop. Why: Every visible paragraph is held to the measure. How: This measures each one in turn.
 
 
 		const parBoxObj = parCurEle.getBoundingClientRect(); // What: Paragraph Box Object. Why: A hidden paragraph has no lines to count. How: This reads its box.
@@ -237,10 +240,10 @@ for ( const meaCasObj of MEA_CAS_ARR ) { // What: Case Test Loop. Why: Every pag
 			} );
 
 
-			const proWidArr = await curPagObj.evaluate( meaProFun, { bodNum : BOD_MAX_NUM, sizNum : SMA_SIZ_NUM, smaNum : SMA_MAX_NUM } ); // What: Problem Width Array. Why: This width's problems are collected. How: This measures every paragraph in the page.
+			const proWidArr = await curPagObj.evaluate( meaProFun, { bodNum : BOD_MAX_NUM, sizNum : SMA_SIZ_NUM, smaNum : SMA_MAX_NUM } ); // What: Problem Width Array. Why: This width's problems are collected. How: This measures each visible paragraph in the page.
 
 
-			proAllArr.push( ...proWidArr.map( ( proCurStr ) => `${ widValNum }px ${ proCurStr }` ) ); // What: Problem Record Call. Why: A problem should say the width it appeared at. How: This prefixes each with the width.
+			proAllArr.push( ...proWidArr.map( ( proCurStr ) => `${ widValNum.toLocaleString( 'en-US' ) }px ${ proCurStr }` ) ); // What: Problem Record Call. Why: A problem should say the width it appeared at. How: This prefixes each with the width.
 
 
 		}

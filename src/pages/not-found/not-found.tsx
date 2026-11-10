@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './not-found.module.css'; // What: CSS Module Object. Why: The 404 page's own layout and button styles live in its own module. How: This maps each class name in not-found.module.css to its hashed module class.
+import cssModObj from './not-found.module.css'; // What: CSS Module Object. Why: The 404 page's own styles live in its own module. How: This maps each class name in not-found.module.css to its hashed module class.
 
 
 import { Link } from 'react-router'; // What: Link. Why: The page's buttons move to the home and Contact pages without a full page load. How: This renders them as router links.
@@ -46,9 +46,9 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * Renders the 404 page's title and its noindex robots tag, which React moves
  * into the document head, and the page itself. The large 404 and the
  * hexagon drawing behind it are hidden from screen readers as decoration,
- * since the heading already says the page wasn't found. Go Home routes to
- * the root path, and Get In Touch to the Contact page, the site's main
- * action.
+ * since the heading already says the page wasn't found. "Go Home" routes
+ * to the root path, and "Get In Touch" to the Contact page, the site's
+ * main action.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -82,7 +82,7 @@ function NotFouCom () : JSX.Element {
 
 
 
-			<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The 404 content sits centered in the page. How: This fills the screen above the footer, centering its content, and fades in like every page. */ }
+			<div className={ cssModObj.pagEntDiv }>{ /* What: Page Enter Div Element. Why: The 404 content sits centered in the page. How: This fills at least the screen's height, centering its content, and fades in like every page. */ }
 
 
 				<div className={ cssModObj.nofInnDiv }>{ /* What: Not-Found Inner Div Element. Why: The number, the drawing, the text, and the buttons read as one centered block. How: This stacks them. */ }
@@ -139,14 +139,16 @@ function NotFouCom () : JSX.Element {
 						The page you're looking for doesn't exist or has been moved.
 					</p>
 
-					<div className={ cssModObj.nofActDiv }>{ /* What: Not-Found Actions Div Element. Why: A visitor who lands here gets two ways onward side by side. How: This sets the buttons in a row that wraps. */ }
+
+
+					<div className={ cssModObj.nofActDiv }>{ /* What: Not-Found Actions Div Element. Why: A visitor who lands here gets two ways onward side by side. How: This sets the buttons in a row, wrapping onto two lines at about 375px wide and below. */ }
 
 
 						<Link
 							className={ cssModObj.butPriAnc }
 
 							to='/'
-						>Go Home</Link>{ /* What: Go Home Link. Why: Home is the natural place to start over. How: This routes to the home page as a button. */ }
+						>Go Home</Link>{ /* What: Button Primary Anchor Link. Why: Home is the natural place to start over. How: This routes to the home page as a button. */ }
 
 
 
@@ -154,7 +156,7 @@ function NotFouCom () : JSX.Element {
 							className={ cssModObj.butSecAnc }
 
 							to='/contact'
-						>Get In Touch</Link>{ /* What: Get In Touch Link. Why: Getting in touch is the site's main action. How: This routes to the Contact page as an outlined button. */ }
+						>Get In Touch</Link>{ /* What: Button Secondary Anchor Link. Why: Getting in touch is the site's main action. How: This routes to the Contact page as an outlined button. */ }
 
 
 					</div>
@@ -182,7 +184,7 @@ function NotFouCom () : JSX.Element {
 
 // #region Exports
 
-export { NotFouCom }; // What: Named Exports. Why: The router's catch-all route renders the 404 page. How: This exports NotFouCom.
+export { NotFouCom }; // What: Named Export. Why: The router's catch-all route renders the 404 page. How: This exports NotFouCom.
 
 // #endregion Exports
 

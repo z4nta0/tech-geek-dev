@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './tag.module.css'; // What: CSS Module Object. Why: The tag's own pill styles live in its own module. How: This maps each class name in tag.module.css to its hashed module class.
+import cssModObj from './tag.module.css'; // What: CSS Module Object. Why: The tag's own styles live in its own module. How: This maps each class name in tag.module.css to its hashed module class.
 
 
 import type { JSX } from 'react'; // What: JSX. Why: The component declares the element it returns. How: This types its return as a JSX element.
@@ -16,9 +16,9 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * tag.tsx = Tag
  *
  * @summary
- * The small pill that names a technology, used on every project card and in
- * the About page's skills grid. It's drawn in the site's blue, in two sizes
- * (small and medium), each a class in its own module.
+ * The small pill that names a technology, such as on a project card. It's
+ * drawn in the site's blue, in two sizes (small and medium), each a class in
+ * its own module.
  *
  * Sections:
  *  - Components
@@ -82,7 +82,7 @@ function TagLabCom ( { labTexStr, tagSizStr = 'sm' } : TlcProTyp ) : JSX.Element
 
 // #region Exports
 
-export { TagLabCom }; // What: Named Exports. Why: Project cards and the About page's skills grid show technologies as tags. How: This exports TagLabCom.
+export { TagLabCom }; // What: Named Export. Why: Pages show technologies as tags. How: This exports TagLabCom.
 
 // #endregion Exports
 

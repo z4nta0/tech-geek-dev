@@ -13,14 +13,14 @@ import type { Page } from '@playwright/test'; // What: Page. Why: Opening a stat
  * states.ts = States
  *
  * @summary
- * The page states the accessibility, interaction, and rendering suites visit,
- * and the helper that opens one; the responsive suite opens its own widths
- * through the same helper. A state is a page at a width, sometimes with
- * something opened on it: every route and the 404 page at phone and desktop
- * widths, and the mobile menu open on a phone. opeStaFun sizes the viewport,
- * loads the page, waits for the fonts, scrolls through the page so any lazily
- * loaded image loads, runs the state's own action, such as opening the menu,
- * and then waits for the page to stay still so nothing is measured mid-fade.
+ * The page states the page suites visit, and the helper that opens one. A
+ * state is a page at a width, sometimes with something opened on it: every
+ * route and the 404 page at phone and desktop widths, and the mobile menu open
+ * on a phone. opeStaFun sizes the viewport, loads the page, waits for the
+ * fonts, scrolls through the page so any lazily loaded image loads, waits for
+ * every image to decode, runs the state's own action, such as opening the
+ * menu, and then waits for the page to stay still so nothing is measured
+ * mid-fade.
  *
  * Sections:
  *  - Types
@@ -42,7 +42,7 @@ type StaRecTyp = { // What: State Record Type. Why: Every check reads the same d
 	actFun? : ( curPagObj : Page ) => Promise< void >, // What: Action Function. Why: Some states need something opened after the page loads. How: This runs against the loaded page, e.g. clicking the menu toggle.
 	heiNum  : number,                                  // What: Height Number. Why: The viewport's height decides what's on screen. How: This is the viewport height in CSS pixels.
 	ideStr  : string,                                  // What: Identifier String. Why: Each test names the state it checks. How: This becomes part of the test title.
-	patStr  : string,                                  // What: Path String. Why: Each state opens one route. How: This is the path loaded from the dev server.
+	patStr  : string,                                  // What: Path String. Why: Each state opens one route. How: This is the path loaded from the suite's server.
 	widNum  : number                                   // What: Width Number. Why: Layouts and menus change with width. How: This is the viewport width in CSS pixels.
 
 
@@ -60,37 +60,42 @@ type StaRecTyp = { // What: State Record Type. Why: Every check reads the same d
  * STA_REC_ARR = State Record Array
  *
  * @summary
- * Every state the checks visit: each route (Home, Work, About, and Contact)
- * and the 404 page at a phone width (390px) and a desktop width
- * (1,440px), plus the mobile menu open at the phone width, since the menu is
- * only reachable there. Every row shares the {@link StaRecTyp} shape, so its
- * fields carry no comments of their own:
+ * The states the page suites visit from the shared list: each route (Home,
+ * Work, About, and Contact) and the 404 page at a phone width (390px) and a
+ * desktop width (1,440px), plus the mobile menu open at the phone width, since
+ * the menu replaces the bar's links there. Every row shares the {@link
+ * StaRecTyp} shape, so its fields carry no comments of their own:
+ *
  * - `actFun` (Function): Action Function, run after the page loads to open
  *   something on it, such as the menu. Only the menu row has one.
+ *
  * - `heiNum` (Number): Height Number, the viewport height in CSS pixels.
+ *
  * - `ideStr` (String): Identifier String, the state's name in test titles.
- * - `patStr` (String): Path String, the route loaded from the dev server.
+ *
+ * - `patStr` (String): Path String, the route loaded from the suite's server.
+ *
  * - `widNum` (Number): Width Number, the viewport width in CSS pixels.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
 */
 
-const STA_REC_ARR : StaRecTyp[] = [ // What: State Record Array. Why: Every check walks the same list of states, so a new state is added in one place. How: Each row names a state, its path, and its viewport, and the menu row adds the action that opens it.
+const STA_REC_ARR : StaRecTyp[] = [ // What: State Record Array. Why: The page suites walk the same list of states, so a new state is added in one place. How: Each row names a state, its path, and its viewport, and the menu row adds the action that opens it.
 
 
-	{ heiNum : 900, ideStr : 'home-desktop',      patStr : '/',        widNum : 1440 }, // What: Home Desktop State. Why: Most visitors land here. How: This loads the home page at 1,440px.
-	{ heiNum : 844, ideStr : 'home-phone',        patStr : '/',        widNum : 390  }, // What: Home Phone State. Why: The phone layout stacks the page into one column and hides the bar's links behind the menu. How: This loads the home page at 390px.
-	{ heiNum : 900, ideStr : 'work-desktop',      patStr : '/work',    widNum : 1440 }, // What: Work Desktop State. Why: The Work page holds the filters and every project card. How: This loads the Work page at 1,440px.
-	{ heiNum : 844, ideStr : 'work-phone',        patStr : '/work',    widNum : 390  }, // What: Work Phone State. Why: The phone layout stacks the page into one column and hides the bar's links behind the menu. How: This loads the Work page at 390px.
-	{ heiNum : 900, ideStr : 'about-desktop',     patStr : '/about',   widNum : 1440 }, // What: About Desktop State. Why: The About page holds the bio, the skills, the timeline, and the values. How: This loads the About page at 1,440px.
-	{ heiNum : 844, ideStr : 'about-phone',       patStr : '/about',   widNum : 390  }, // What: About Phone State. Why: The phone layout stacks the page into one column and hides the bar's links behind the menu. How: This loads the About page at 390px.
-	{ heiNum : 900, ideStr : 'contact-desktop',   patStr : '/contact', widNum : 1440 }, // What: Contact Desktop State. Why: The Contact page holds the form and the contact details. How: This loads the Contact page at 1,440px.
-	{ heiNum : 844, ideStr : 'contact-phone',     patStr : '/contact', widNum : 390  }, // What: Contact Phone State. Why: The phone layout stacks the page into one column and hides the bar's links behind the menu. How: This loads the Contact page at 390px.
+	{ heiNum : 900, ideStr : 'home-desktop',      patStr : '/',        widNum : 1440 }, // What: Home Desktop State. Why: The home page is the site's entry point. How: This loads the home page at 1,440px.
+	{ heiNum : 844, ideStr : 'home-phone',        patStr : '/',        widNum : 390  }, // What: Home Phone State. Why: The phone layout narrows the page's columns and hides the bar's links behind the menu. How: This loads the home page at 390px.
+	{ heiNum : 900, ideStr : 'work-desktop',      patStr : '/work',    widNum : 1440 }, // What: Work Desktop State. Why: The Work page lays out several sections, such as the project cards. How: This loads the Work page at 1,440px.
+	{ heiNum : 844, ideStr : 'work-phone',        patStr : '/work',    widNum : 390  }, // What: Work Phone State. Why: The phone layout narrows the page's columns and hides the bar's links behind the menu. How: This loads the Work page at 390px.
+	{ heiNum : 900, ideStr : 'about-desktop',     patStr : '/about',   widNum : 1440 }, // What: About Desktop State. Why: The About page lays out several sections, such as the timeline. How: This loads the About page at 1,440px.
+	{ heiNum : 844, ideStr : 'about-phone',       patStr : '/about',   widNum : 390  }, // What: About Phone State. Why: The phone layout narrows the page's columns and hides the bar's links behind the menu. How: This loads the About page at 390px.
+	{ heiNum : 900, ideStr : 'contact-desktop',   patStr : '/contact', widNum : 1440 }, // What: Contact Desktop State. Why: The Contact page lays out several sections, such as the form. How: This loads the Contact page at 1,440px.
+	{ heiNum : 844, ideStr : 'contact-phone',     patStr : '/contact', widNum : 390  }, // What: Contact Phone State. Why: The phone layout narrows the page's columns and hides the bar's links behind the menu. How: This loads the Contact page at 390px.
 	{ heiNum : 900, ideStr : 'not-found-desktop', patStr : '/missing', widNum : 1440 }, // What: Not Found Desktop State. Why: Every unknown address lands on the 404 page. How: This loads an address the site doesn't have at 1,440px.
 	{ heiNum : 844, ideStr : 'not-found-phone',   patStr : '/missing', widNum : 390  }, // What: Not Found Phone State. Why: The phone bar hides its links behind the menu on the 404 page too. How: This loads an address the site doesn't have at 390px.
 
-	{ // What: Menu Phone State. Why: The open menu holds the phone's only copy of the page links. How: This loads the home page at 390px and opens the menu through its toggle button.
+	{ // What: Menu Phone State. Why: The open menu holds the page links the phone bar hides. How: This loads the home page at 390px and opens the menu through its toggle button.
 
 
 		heiNum : 844,
@@ -187,13 +192,13 @@ async function revPagFun ( curPagObj : Page ) : Promise< void > {
  *
  * @summary
  * Waits until the page has stayed still for half a second: no animation or
- * transition running except ones that repeat forever, such as the hero's
- * turning shapes, the skills ticker, and the pulsing status dots, which never
- * finish and so are skipped (the reduced motion check is what catches one that
- * shouldn't be playing). A single still moment isn't enough, since a fade can
- * start just after the last one ends, so the page has to read as still on five
- * checks in a row, 100ms apart. It fails after 5 seconds rather than hanging,
- * which leaves plenty of room for each page's entrance fade.
+ * transition running except ones that repeat forever, such as the pulsing
+ * status dots, which never finish and so are skipped (the reduced motion check
+ * is what catches one that shouldn't be playing). A single still moment isn't
+ * enough, since a fade can start just after the last one ends, so the page has
+ * to read as still on five checks in a row, 100ms apart. It fails after 5
+ * seconds rather than hanging, which leaves plenty of room for each page's
+ * entrance fade.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -226,7 +231,9 @@ async function waiSetFun ( curPagObj : Page ) : Promise< void > {
 
 		const stiPagBoo = await curPagObj.evaluate( () => document.getAnimations().every( ( aniCurObj ) => aniCurObj.playState !== 'running' || aniCurObj.effect?.getComputedTiming().iterations === Infinity ) ); // What: Still Page Boolean. Why: Each check asks whether anything that ends is still moving. How: This is true when every running animation or transition is one that repeats forever.
 
+
 		quiCouNum = stiPagBoo ? quiCouNum + 1 : 0; // What: Quiet Count Update. Why: Any movement restarts the count, so the page has to stay still the whole half second. How: This adds one for a still check and resets to zero otherwise.
+
 
 		await curPagObj.waitForTimeout( 100 ); // What: Check Pause Wait. Why: The checks have to span time to prove the page stays still. How: This waits 100ms before the next one.
 
@@ -274,9 +281,9 @@ async function opeStaFun ( curPagObj : Page, staRecObj : StaRecTyp ) : Promise< 
 
 	await curPagObj.setViewportSize( { height : staRecObj.heiNum, width : staRecObj.widNum } ); // What: Viewport Size Call. Why: The state's layout depends on its width. How: This sizes the page before it loads, so breakpoints apply from the first paint.
 
-	await curPagObj.goto( staRecObj.patStr ); // What: Page Load Call. Why: Each state starts from a fresh load of its route. How: This opens the path on the suite's dev server.
+	await curPagObj.goto( staRecObj.patStr ); // What: Page Load Call. Why: Each state starts from a fresh load of its route. How: This opens the path on the suite's server.
 
-	await curPagObj.evaluate( () => document.fonts.ready ); // What: Fonts Ready Wait. Why: Text measured before its web font loads would have the wrong size and wrapping. How: This waits until every font face has loaded.
+	await curPagObj.evaluate( () => document.fonts.ready ); // What: Fonts Ready Wait. Why: Text measured before its web font loads would have the wrong size and wrapping. How: This waits until the fonts the page uses have loaded.
 
 	await revPagFun( curPagObj ); // What: Page Reveal Call. Why: Lazy images stay blank until scrolled near. How: This scrolls through the page and back to the top.
 
@@ -301,7 +308,7 @@ async function opeStaFun ( curPagObj : Page, staRecObj : StaRecTyp ) : Promise< 
 
 // #region Exports
 
-export { opeStaFun, STA_REC_ARR }; // What: Named Exports. Why: The accessibility, interaction, rendering, and responsive specs share these states and their opener. How: This exports the state list and the helper that opens one.
+export { opeStaFun, STA_REC_ARR, type StaRecTyp }; // What: Named Exports. Why: The page suites share these states, their shape, and their opener. How: This exports the state list, its row type, and the helper that opens one.
 
 // #endregion Exports
 

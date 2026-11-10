@@ -3,13 +3,13 @@
 
 // #region Imports
 
-import cssModObj from './about.module.css';   // What: CSS Module Object. Why: The About page's own hero, skills, timeline, and values styles live in its own module. How: This maps each class name in about.module.css to its hashed module class.
+import cssModObj from './about.module.css';   // What: CSS Module Object. Why: The About page's own styles live in its own module. How: This maps each class name in about.module.css to its hashed module class.
 import selPorUrl from './self-portrait.webp'; // What: Self Portrait URL. Why: The hero shows z4nta0's portrait. How: Vite resolves this to the image's fingerprinted URL.
 
 
-import { GeoBacCom    } from '../../ui/geo-bg.tsx';                    // What: Geometric Background Component. Why: The hero and the timeline sit over faint patterns. How: This draws the dots and the grid.
+import { GeoBacCom    } from '../../ui/geo-bg.tsx';                    // What: Geometric Background Component. Why: Some sections, such as the hero, sit over faint patterns. How: This draws each section's pattern.
 import { Link         } from 'react-router';                           // What: Link. Why: The hero's button moves to the Contact page without a full page load. How: This renders it as a router link.
-import { SecHeaCom    } from '../../ui/section-header.tsx';            // What: Section Header Component. Why: The skills, timeline, and values sections open with a heading block. How: This renders each label, title, and subtitle.
+import { SecHeaCom    } from '../../ui/section-header.tsx';            // What: Section Header Component. Why: Several of the page's sections, such as the timeline, open with a heading block. How: This renders each label, title, and subtitle.
 import { SHI_COU_NUM  } from '../../ui/projects.ts';                   // What: Shipped Count Number. Why: The hero's floating fact counts the projects shipped. How: This is the count taken from the project list.
 import { TagLabCom    } from '../../ui/tag.tsx';                       // What: Tag Label Component. Why: Each skill shows as a pill. How: This renders one tag per skill.
 import { usePagDesFun } from 'techgeek-design/ui/page-description.ts'; // What: Use Page Description Function. Why: The page's search description differs from the home page's. How: The page calls it to swap the one description tag's text while it shows.
@@ -26,11 +26,11 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  *
  * @summary
  * The About page: a hero introducing z4nta0 beside a portrait framed by
- * hexagons, with two floating facts; the skills grouped by area; the
- * journey from a first computer in 2004 to today, as a timeline; and the
- * four values behind the work; and a closing invitation to support the work
- * with a tip on Ko-fi. The projects shipped fact is counted from the project
- * list, so it grows as projects are added.
+ * hexagons, which stacks above it at 768px and below, with two floating facts;
+ * the skills grouped by area; the journey from a first computer in 2004 to
+ * today, as a timeline; the four values behind the work; and a closing
+ * invitation to support the work with a tip on Ko-fi. The projects shipped
+ * fact is counted from the project list, so it grows as projects are added.
  *
  * Sections:
  *  - Constants
@@ -53,8 +53,10 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * @summary
  * The skills grid's groups, in the order they show. Every row shares one
  * shape, so its fields carry no comments of their own:
+ *
  * - `labStr` (String): Label String, the group's heading, also its React
  *   key.
+ *
  * - `skiArr` (Array): Skill Array, the technologies in the group, each shown
  *   as a tag.
  *
@@ -65,10 +67,41 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
 const SKI_GRO_ARR = [ // What: Skill Group Array. Why: The skills grid shows the same groups every visit. How: Each row names a group and its technologies.
 
 
-	{ labStr : 'Frontend', skiArr : [ 'React', 'TypeScript', 'Next.js', 'Vite', 'CSS / Sass', 'GreenSock', 'React Router' ] }, // What: Frontend Group Row. Why: The interface side of the work gets its own group. How: This lists its technologies.
-	{ labStr : 'Backend',  skiArr : [ 'Node.js', 'Express', 'REST APIs', 'PHP' ]                                            }, // What: Backend Group Row. Why: The server side of the work gets its own group. How: This lists its technologies.
-	{ labStr : 'Data',     skiArr : [ 'MongoDB', 'MySQL' ]                                                                  }, // What: Data Group Row. Why: The work's data stores get their own group. How: This lists its databases.
-	{ labStr : 'DevOps',   skiArr : [ 'Apache', 'Netlify', 'GitHub Actions' ]                                               }  // What: DevOps Group Row. Why: The tools that serve and deploy the work get their own group. How: This lists its tools.
+	{ // What: Frontend Group Row. Why: The interface side of the work gets its own group. How: This lists its technologies.
+
+
+		labStr : 'Frontend',
+		skiArr : [ 'React', 'TypeScript', 'Next.js', 'Vite', 'CSS / Sass', 'GreenSock', 'React Router' ]
+
+
+	},
+
+	{ // What: Backend Group Row. Why: The server side of the work gets its own group. How: This lists its technologies.
+
+
+		labStr : 'Backend',
+		skiArr : [ 'Node.js', 'Express', 'REST APIs', 'PHP' ]
+
+
+	},
+
+	{ // What: Data Group Row. Why: The work's data stores get their own group. How: This lists its databases.
+
+
+		labStr : 'Data',
+		skiArr : [ 'MongoDB', 'MySQL' ]
+
+
+	},
+
+	{ // What: DevOps Group Row. Why: The tools that serve and deploy the work get their own group. How: This lists its tools.
+
+
+		labStr : 'DevOps',
+		skiArr : [ 'Apache', 'Netlify', 'GitHub Actions' ]
+
+
+	}
 
 
 ];
@@ -85,9 +118,13 @@ const SKI_GRO_ARR = [ // What: Skill Group Array. Why: The skills grid shows the
  * @summary
  * The journey the timeline shows, newest first. Every row shares one shape,
  * so its fields carry no comments of their own:
+ *
  * - `desStr` (String): Description String, what happened that year.
+ *
  * - `orgStr` (String): Organization String, who the work was for.
+ *
  * - `titStr` (String): Title String, the milestone's name.
+ *
  * - `yeaStr` (String): Year String, the milestone's year, also its React
  *   key.
  *
@@ -98,19 +135,89 @@ const SKI_GRO_ARR = [ // What: Skill Group Array. Why: The skills grid shows the
 const TIM_MIL_ARR = [ // What: Timeline Milestone Array. Why: The timeline shows the same milestones every visit. How: Each row holds one milestone.
 
 
-	{ orgStr : 'Freelance', titStr : 'Web Veteran',          yeaStr : '2026', desStr : 'With the rise of AI, design is no longer a constraint, so I can focus on coding and deliver solutions far faster.' }, // What: Web Veteran Row. Why: This is the latest milestone. How: This is the 2026 entry.
+	{ // What: Web Veteran Row. Why: This is the latest milestone. How: This is the 2026 entry.
 
-	{ orgStr : 'Self',      titStr : 'Web App Developer',    yeaStr : '2018', desStr : 'A personal web app that creates a todo list using randomly generated tasks with a Node.js, Express.js and MongoDB backend.' }, // What: Web App Developer Row. Why: This marks the first web app. How: This is the 2018 entry.
 
-	{ orgStr : 'Freelance', titStr : 'Full Stack Developer', yeaStr : '2015', desStr : 'My first real website, built for a local church. Its simple social features taught me all about backend architecture using Apache, PHP, and MySQL.' }, // What: Full Stack Developer Row. Why: This marks the first website for someone else. How: This is the 2015 entry.
+		orgStr : 'Freelance',
+		titStr : 'Web Veteran',
+		yeaStr : '2026',
 
-	{ orgStr : 'Self',      titStr : 'Tech Veteran',         yeaStr : '2014', desStr : 'My first fully custom built computer, allowing me to explore advanced hardware configurations and performance optimizations.' }, // What: Tech Veteran Row. Why: This marks the first custom computer. How: This is the 2014 entry.
+		desStr : 'With the rise of AI, design is no longer a constraint, so I can focus on coding and deliver solutions far faster.'
 
-	{ orgStr : 'Self',      titStr : 'Web Newbie',           yeaStr : '2013', desStr : 'My first foray into coding, starting with developing websites using simple HTML and CSS.' }, // What: Web Newbie Row. Why: This marks the start of coding. How: This is the 2013 entry.
 
-	{ orgStr : 'Self',      titStr : 'Tech Tinkerer',        yeaStr : '2007', desStr : 'My first experiments with changing and upgrading my computer hardware, setting the stage for building my own custom computers.' }, // What: Tech Tinkerer Row. Why: This marks the first hardware upgrades. How: This is the 2007 entry.
+	},
 
-	{ orgStr : 'Self',      titStr : 'Tech Newbie',          yeaStr : '2004', desStr : 'I purchased my first personally owned computer, sparking my passion for technology.' } // What: Tech Newbie Row. Why: This is where it all began. How: This is the 2004 entry.
+	{ // What: Web App Developer Row. Why: This marks the first web app. How: This is the 2018 entry.
+
+
+		orgStr : 'Self',
+		titStr : 'Web App Developer',
+		yeaStr : '2018',
+
+		desStr : 'A personal web app that creates a todo list using randomly generated tasks with a Node.js, Express.js and MongoDB backend.'
+
+
+	},
+
+	{ // What: Full Stack Developer Row. Why: This marks the first website for someone else. How: This is the 2015 entry.
+
+
+		orgStr : 'Freelance',
+		titStr : 'Full Stack Developer',
+		yeaStr : '2015',
+
+		desStr : 'My first real website, built for a local church. Its simple social features taught me all about backend architecture using Apache, PHP, and MySQL.'
+
+
+	},
+
+	{ // What: Tech Veteran Row. Why: This marks the first custom computer. How: This is the 2014 entry.
+
+
+		orgStr : 'Self',
+		titStr : 'Tech Veteran',
+		yeaStr : '2014',
+
+		desStr : 'My first fully custom built computer, allowing me to explore advanced hardware configurations and performance optimizations.'
+
+
+	},
+
+	{ // What: Web Newbie Row. Why: This marks the start of coding. How: This is the 2013 entry.
+
+
+		orgStr : 'Self',
+		titStr : 'Web Newbie',
+		yeaStr : '2013',
+
+		desStr : 'My first foray into coding, starting with developing websites using simple HTML and CSS.'
+
+
+	},
+
+	{ // What: Tech Tinkerer Row. Why: This marks the first hardware upgrades. How: This is the 2007 entry.
+
+
+		orgStr : 'Self',
+		titStr : 'Tech Tinkerer',
+		yeaStr : '2007',
+
+		desStr : 'My first experiments with changing and upgrading my computer hardware, setting the stage for building my own custom computers.'
+
+
+	},
+
+	{ // What: Tech Newbie Row. Why: This is where it all began. How: This is the 2004 entry.
+
+
+		orgStr : 'Self',
+		titStr : 'Tech Newbie',
+		yeaStr : '2004',
+
+		desStr : 'I purchased my first personally owned computer, sparking my passion for technology.'
+
+
+	}
 
 
 ];
@@ -119,7 +226,7 @@ const TIM_MIL_ARR = [ // What: Timeline Milestone Array. Why: The timeline shows
 
 
 
-const TIP_URL_STR = 'https://ko-fi.com/techgeekdev'; // What: Tip URL String. Why: The Support section's button opens z4nta0's Ko-fi page, the same address every README links. How: This is the page's public address, written here since it never changes between builds.
+const TIP_URL_STR = 'https://ko-fi.com/techgeekdev'; // What: Tip URL String. Why: The Support section's button opens z4nta0's Ko-fi page. How: This is the page's public address, written here since it never changes between builds.
 
 
 
@@ -131,8 +238,11 @@ const TIP_URL_STR = 'https://ko-fi.com/techgeekdev'; // What: Tip URL String. Wh
  * @summary
  * The values section's cards, in the order they show. Every row shares one
  * shape, so its fields carry no comments of their own:
+ *
  * - `desStr` (String): Description String, the sentence under the title.
+ *
  * - `icoStr` (String): Icon String, the geometric symbol above the title.
+ *
  * - `titStr` (String): Title String, the value's name, also its React key.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -142,13 +252,10 @@ const TIP_URL_STR = 'https://ko-fi.com/techgeekdev'; // What: Tip URL String. Wh
 const VAL_CAR_ARR = [ // What: Value Card Array. Why: The values section shows the same four cards every visit. How: Each row holds one value.
 
 
-	{ icoStr : '⬡', titStr : 'Craft Over Speed',     desStr : 'I take time to do it right. Technical debt has compounding interest.' }, // What: Craft Over Speed Row. Why: Doing it right comes first. How: This is the first value.
-
-	{ icoStr : '◎', titStr : 'Accessibility First',  desStr : 'The web is for everyone. I build with WCAG compliance as a baseline, not an afterthought.' }, // What: Accessibility First Row. Why: The work serves everyone. How: This is the second value.
-
-	{ icoStr : '△', titStr : 'Honest Communication', desStr : "I'd rather tell you something takes three weeks than promise one and deliver late." }, // What: Honest Communication Row. Why: Clients hear the truth. How: This is the third value.
-
-	{ icoStr : '◇', titStr : 'Continuous Learning',  desStr : 'The best developers I know are the most curious. I read, I experiment, I teach.' } // What: Continuous Learning Row. Why: The craft keeps moving. How: This is the last value.
+	{ desStr : 'I take time to do it right. Technical debt has compounding interest.',                      icoStr : '⬡', titStr : 'Craft Over Speed'     }, // What: Craft Over Speed Row. Why: Doing it right comes first. How: This is the first value.
+	{ desStr : 'The web is for everyone. I build with WCAG compliance as a baseline, not an afterthought.', icoStr : '◎', titStr : 'Accessibility First'  }, // What: Accessibility First Row. Why: The work serves everyone. How: This is the second value.
+	{ desStr : "I'd rather tell you something takes three weeks than promise one and deliver late.",        icoStr : '△', titStr : 'Honest Communication' }, // What: Honest Communication Row. Why: Clients hear the truth. How: This is the third value.
+	{ desStr : 'The best developers I know are the most curious. I read, I experiment, I teach.',           icoStr : '◇', titStr : 'Continuous Learning'  }  // What: Continuous Learning Row. Why: The craft keeps moving. How: This is the last value.
 
 
 ];
@@ -169,11 +276,12 @@ const VAL_CAR_ARR = [ // What: Value Card Array. Why: The values section shows t
  * @summary
  * Renders the About page. The hero pairs the introduction and its button to
  * the Contact page with the portrait in its hexagon frame and two floating
- * facts, the second counted from the project list. The skills section shows
- * a card per group in SKI_GRO_ARR with a tag per skill; the timeline shows
+ * facts, the second counted from the project list. The skills section shows a
+ * card per group in SKI_GRO_ARR with a tag per skill; the timeline shows
  * TIM_MIL_ARR's milestones joined by a line that stops at the last one; and
- * the values section shows a card per value in VAL_CAR_ARR. Every
- * decorative frame, line, and symbol is hidden from screen readers.
+ * the values section shows a card per value in VAL_CAR_ARR. The portrait
+ * frame, the flourish drawings, the timeline connectors, and the value symbols
+ * are hidden from screen readers as decoration.
  *
  * It also sets the page's title and canonical address, which React moves
  * into the document head, and swaps the search description for its own
@@ -230,18 +338,22 @@ function AboPagCom () : JSX.Element {
 					<div className={ cssModObj.herGriDiv }>{ /* What: Hero Grid Div Element. Why: The introduction and the portrait sit side by side in the page's centered column. How: This lays out the two columns, the portrait beside the paragraphs below a full-width heading at 1,024px and below, and stacks them at 768px and below with the portrait first. */ }
 
 
-						<div className={ cssModObj.herTexDiv }>{ /* What: Hero Text Div Element. Why: The introduction reads as one column. How: This stacks the label, heading, paragraphs, and button. */ }
+						<div className={ cssModObj.herTexDiv }>{ /* What: Hero Text Div Element. Why: The introduction reads as one column above 1,024px. How: This stacks the label, heading, paragraphs, and button, and at 1,024px and below dissolves so each takes its own place in the hero grid. */ }
 
 
-							<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows About Me after a short rule. */ }
+							<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows "About Me" after a short rule. */ }
+
+
 								<span className={ cssModObj.herLinSpa } />{ /* What: Hero Line Span Element. Why: A short rule leads into the label. How: This draws the rule. */ }
 
 								About Me
+
+
 							</span>
 
-							<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up z4nta0 in three words. How: This sets Dev and Creator over Problem Solver, the second line in the accent. */ }
+							<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up z4nta0 in three phrases. How: This sets "Dev. Creator." over "Problem Solver.", the second line in the accent. */ }
 								Dev. Creator.<br />
-								<span className={ cssModObj.titAccSpa }>Problem Solver.</span>{ /* What: Title Accent Span Element. Why: The heading's second line carries the accent. How: This sets Problem Solver in the dark blue. */ }
+								<span className={ cssModObj.titAccSpa }>Problem Solver.</span>{ /* What: Title Accent Span Element. Why: The heading's second line carries the accent. How: This sets "Problem Solver." in the dark blue. */ }
 							</h1>
 
 							<p className={ cssModObj.herLeaPar }>{ /* What: Hero Lead Paragraph Element. Why: The opening line says who z4nta0 is. How: This shows it in the larger lead style. */ }
@@ -257,6 +369,8 @@ function AboPagCom () : JSX.Element {
 								websites for local businesses, I bring the same level of care to all of it.
 							</p>
 
+
+
 							<div className={ cssModObj.herActDiv }>{ /* What: Hero Actions Div Element. Why: The introduction ends with its next step. How: This holds the button. */ }
 
 
@@ -264,7 +378,7 @@ function AboPagCom () : JSX.Element {
 									className={ cssModObj.butPriAnc }
 
 									to='/contact'
-								>Work With Me</Link>{ /* What: Work With Me Link. Why: A visitor who likes what they read can get in touch. How: This routes to the Contact page as a button. */ }
+								>Work With Me</Link>{ /* What: Button Primary Anchor Link. Why: A visitor who likes what they read can get in touch. How: This routes to the Contact page as a button. */ }
 
 
 							</div>
@@ -274,7 +388,7 @@ function AboPagCom () : JSX.Element {
 
 
 
-						<div className={ cssModObj.herVisDiv }>{ /* What: Hero Visual Div Element. Why: The portrait and the facts illustrate the introduction. How: This holds the framed portrait, with room above and below it for the two floating facts, and on a phone the flourishes either side of it. */ }
+						<div className={ cssModObj.herVisDiv }>{ /* What: Hero Visual Div Element. Why: The portrait and the facts illustrate the introduction. How: This holds the framed portrait, with room above and below it for the two floating facts, and at 768px and below the flourishes either side of it. */ }
 
 
 							<svg
@@ -283,7 +397,7 @@ function AboPagCom () : JSX.Element {
 								viewBox='0 0 60 240'
 
 								aria-hidden='true'
-							>{ /* What: Portrait Flourish SVG Element. Why: A phone's single column leaves empty room beside the smaller portrait, which a little of the site's geometric style fills. How: This draws a hexagon, linked nodes, and a small filled hexagon down the portrait's left side, shown only once the hero stacks, hidden from screen readers as decoration. */ }
+							>{ /* What: Portrait Flourish SVG Left Element. Why: A phone's single column leaves empty room beside the smaller portrait, which a little of the site's geometric style fills. How: This draws a hexagon, linked nodes, and a small filled hexagon down the portrait's left side, shown only once the hero stacks, hidden from screen readers as decoration. */ }
 
 
 								<polygon
@@ -343,14 +457,13 @@ function AboPagCom () : JSX.Element {
 
 							</svg>
 
-
 							<svg
 								className={` ${ cssModObj.porFloSvg }   ${ cssModObj.porFloSvgRight } `}
 
 								viewBox='0 0 60 240'
 
 								aria-hidden='true'
-							>{ /* What: Portrait Flourish SVG Element. Why: A phone's single column leaves empty room beside the smaller portrait, which a little of the site's geometric style fills. How: This draws linked nodes, a small filled hexagon, and an outlined hexagon down the portrait's right side, mirroring the left drawing, shown only once the hero stacks, hidden from screen readers as decoration. */ }
+							>{ /* What: Portrait Flourish SVG Right Element. Why: A phone's single column leaves empty room beside the smaller portrait, which a little of the site's geometric style fills. How: This draws linked nodes, a small filled hexagon, and an outlined hexagon down the portrait's right side, mirroring the left drawing, shown only once the hero stacks, hidden from screen readers as decoration. */ }
 
 
 								<circle
@@ -440,29 +553,29 @@ function AboPagCom () : JSX.Element {
 								<img
 									className={ cssModObj.porPhoIma }
 
-									height='850' // What: Intrinsic Height. Why: The browser reserves the portrait's shape before it loads, so nothing moves. How: This is the encoded portrait's height in pixels.
+									height='963' // What: Intrinsic Height. Why: The browser reserves the portrait's shape before it loads, so nothing moves. How: This is the encoded portrait's height in pixels.
 									src={ selPorUrl }
-									width='642' // What: Intrinsic Width. Why: The browser reserves the portrait's shape before it loads, so nothing moves. How: This is the encoded portrait's width in pixels.
+									width='727' // What: Intrinsic Width. Why: The browser reserves the portrait's shape before it loads, so nothing moves. How: This is the encoded portrait's width in pixels.
 
 									alt='Portrait of z4nta0'
 								/>{ /* What: Portrait Photo Image Element. Why: A visitor sees who they'd be working with. How: This shows the portrait inside the frame. */ }
 
-								<div className={` ${ cssModObj.floFacDiv }   ${ cssModObj.floFacDivTop } `}>{ /* What: Floating Fact Div Element. Why: A floating fact highlights the years of experience. How: This shows the figure over its label above the portrait's top right corner. */ }
+								<div className={` ${ cssModObj.floFacDiv }   ${ cssModObj.floFacDivTop } `}>{ /* What: Floating Fact Div Top Element. Why: A floating fact highlights the years of experience. How: This shows the figure over its label above the portrait's top right corner. */ }
 
 
 									<span className={ cssModObj.facFigSpa }>10+</span>{ /* What: Fact Figure Span Element. Why: z4nta0 has been a developer since 2013. How: This shows ten plus. */ }
 
-									<span className={ cssModObj.facLabSpa }>Years Experience</span>{ /* What: Fact Label Span Element. Why: The label says what the figure counts. How: This shows Years Experience. */ }
+									<span className={ cssModObj.facLabSpa }>Years Experience</span>{ /* What: Fact Label Span Element. Why: The label says what the figure counts. How: This shows "Years Experience". */ }
 
 
 								</div>
 
-								<div className={` ${ cssModObj.floFacDiv }   ${ cssModObj.floFacDivBottom } `}>{ /* What: Floating Fact Div Element. Why: A floating fact highlights the projects shipped. How: This shows the figure over its label below the portrait's bottom left corner. */ }
+								<div className={` ${ cssModObj.floFacDiv }   ${ cssModObj.floFacDivBottom } `}>{ /* What: Floating Fact Div Bottom Element. Why: A floating fact highlights the projects shipped. How: This shows the figure over its label below the portrait's bottom left corner. */ }
 
 
 									<span className={ cssModObj.facFigSpa }>{ SHI_COU_NUM }+</span>{ /* What: Fact Figure Span Element. Why: The count should grow as projects are added, and older projects that are no longer online still count. How: This shows the project list's count with a plus. */ }
 
-									<span className={ cssModObj.facLabSpa }>Projects Shipped</span>{ /* What: Fact Label Span Element. Why: The label says what the figure counts. How: This shows Projects Shipped. */ }
+									<span className={ cssModObj.facLabSpa }>Projects Shipped</span>{ /* What: Fact Label Span Element. Why: The label says what the figure counts. How: This shows "Projects Shipped". */ }
 
 
 								</div>
@@ -518,6 +631,8 @@ function AboPagCom () : JSX.Element {
 
 									</div>
 
+
+
 									<div className={ cssModObj.skiTagDiv }>{ /* What: Skill Tags Div Element. Why: The group's technologies read as one cluster of pills. How: This wraps the tags. */ }
 
 
@@ -571,7 +686,7 @@ function AboPagCom () : JSX.Element {
 							aliPosStr='center'
 							labTexStr='Experience'
 							titTexStr='My Journey'
-						/>{ /* What: Section Header Component. Why: The section opens with its heading, centered over the timeline's center line on a tablet or wider. How: This shows its label and title centered. */ }
+						/>{ /* What: Section Header Component. Why: The section opens with its heading, centered over the timeline's center line above 768px. How: This shows its label and title centered. */ }
 
 
 
@@ -645,7 +760,7 @@ function AboPagCom () : JSX.Element {
 
 
 
-				<section className={ cssModObj.aboValSec }>{ /* What: About Values Section Element. Why: The page closes with what drives the work. How: This holds the heading block and the value cards. */ }
+				<section className={ cssModObj.aboValSec }>{ /* What: About Values Section Element. Why: The values show what drives the work. How: This holds the heading block and the value cards. */ }
 
 
 					<div className={ cssModObj.valInnDiv }>{ /* What: Values Inner Div Element. Why: The section sits in the page's centered column. How: This stacks the heading block and the grid. */ }
@@ -748,7 +863,7 @@ function AboPagCom () : JSX.Element {
 
 // #region Exports
 
-export { AboPagCom }; // What: Named Exports. Why: The router's About route renders this page. How: This exports AboPagCom.
+export { AboPagCom }; // What: Named Export. Why: The router's About route renders this page. How: This exports AboPagCom.
 
 // #endregion Exports
 

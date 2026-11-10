@@ -1,3 +1,6 @@
+
+
+
 <!doctype html><!-- What: Document Type Declaration. Why: Browsers render the page in standards mode only with a doctype. How: This declares HTML5. -->
 
 
@@ -62,7 +65,7 @@
 
 				fill         : none;
 				stroke       : var( --bor-mai-col ); /* Border Main Color = #D8CFBE */
-				stroke-width : 2;
+				stroke-width : var( --bor-wid-lar ); /* Border Width Large ~= 2.035px */
 
 
 			}
@@ -121,7 +124,7 @@
 
 			}
 
-			.worFirSpa { /* What: Wordmark First Span. Why: The brand reads in the main text color, as in the nav. How: This sets TechGeek in the ink. */
+			.worFirSpa { /* What: Wordmark First Span. Why: The brand reads in the main text color, as in the nav. How: This sets "TechGeek" in the ink. */
 
 
 				color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -129,7 +132,7 @@
 
 			}
 
-			.worLasSpa { /* What: Wordmark Last Span. Why: The domain ending carries the accent, as in the nav. How: This sets .dev in the dark orange. */
+			.worLasSpa { /* What: Wordmark Last Span. Why: The domain ending carries the accent, as in the nav. How: This sets ".dev" in the dark orange. */
 
 
 				color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
@@ -252,10 +255,11 @@
 				/><!-- What: Outer Hexagon Polygon Element. Why: The mark's outline is an orange hexagon. How: This traces it in the main accent. --><!-- Accent Main Color = #F26419 -->
 
 				<polygon
+					style='opacity : var( --cdn-pow-002-rec )'
+
 					fill='var( --acc-sec-col )'
-					opacity='0.6'
 					points='14,7 21,11 21,17 14,21 7,17 7,11'
-				/><!-- What: Inner Hexagon Polygon Element. Why: A softer blue hexagon fills the mark's center. How: This draws it in the secondary accent at 60% strength. --><!-- Accent Secondary Color = #7DB9D8 -->
+				/><!-- What: Inner Hexagon Polygon Element. Why: A softer blue hexagon fills the mark's center. How: This draws it in the secondary accent at about 57% strength, as the bar's mark does. --><!-- Core-Design-Number to the Power of 2 Reciprocal ~= 0.570, Accent Secondary Color = #7DB9D8 -->
 
 				<circle
 					cx='14'
@@ -267,7 +271,7 @@
 
 			</svg>
 
-			<p class='braWorPar'><span class='worFirSpa'>TechGeek</span><span class='worLasSpa'>.dev</span></p><!-- What: Brand Wordmark Paragraph Element. Why: The site's name reads under its mark. How: This sets its two parts in their own colors. -->
+			<p class='braWorPar'><span class='worFirSpa'>TechGeek</span><!-- What: Wordmark First Span Element. Why: The brand name reads in the main text color. How: This shows "TechGeek" in the ink. --><span class='worLasSpa'>.dev</span><!-- What: Wordmark Last Span Element. Why: The domain ending carries the accent. How: This shows ".dev" in the dark orange. --></p><!-- What: Brand Wordmark Paragraph Element. Why: The site's name reads under its mark. How: This sets its two parts in their own colors. -->
 
 			<p class='rolTitPar'>Full Stack Web Developer</p><!-- What: Role Title Paragraph Element. Why: The card says what the owner does. How: This shows the role. -->
 

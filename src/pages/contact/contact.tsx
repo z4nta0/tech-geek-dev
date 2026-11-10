@@ -3,11 +3,13 @@
 
 // #region Imports
 
-import cssModObj from './contact.module.css'; // What: CSS Module Object. Why: The Contact page's own hero, form, and sidebar styles live in its own module. How: This maps each class name in contact.module.css to its hashed module class.
+import cssModObj from './contact.module.css'; // What: CSS Module Object. Why: The Contact page's own styles live in its own module. How: This maps each class name in contact.module.css to its hashed module class.
 
 
 import { GeoBacCom    } from '../../ui/geo-bg.tsx';                    // What: Geometric Background Component. Why: The hero sits over a faint pattern. How: This draws the circuit.
+import { useEffect    } from 'react';                                  // What: Use Effect. Why: Focus has to follow the swap between the form and the thank-you. How: This runs the focus move once the swap has rendered.
 import { usePagDesFun } from 'techgeek-design/ui/page-description.ts'; // What: Use Page Description Function. Why: The page's search description differs from the home page's. How: The page calls it to swap the one description tag's text while it shows.
+import { useRef       } from 'react';                                  // What: Use Reference. Why: The focus moves need the elements they land on and whether the form is coming back. How: This holds each of those across renders.
 import { useState     } from 'react';                                  // What: Use State. Why: The page remembers the form's fields and whether a message is sending, sent, or failed. How: This holds each of those.
 
 
@@ -50,11 +52,16 @@ import type { JSX         } from 'react'; // What: JSX. Why: The component decla
  * @summary
  * The sidebar's contact details, in the order they show. Every row shares one
  * shape, so its fields carry no comments of their own:
+ *
  * - `extBoo` (Boolean): External Boolean, true for a profile on another site,
  *   which opens in a new tab, and false for the email address.
- * - `hreStr` (String): Hypertext Reference String, where the item links.
+ *
+ * - `hreStr` (String): Hypertext-Reference String, where the item links.
+ *
  * - `icoEle` (Element): Icon Element, the item's small icon.
+ *
  * - `labStr` (String): Label String, the item's name, also its React key.
+ *
  * - `valStr` (String): Value String, the address shown under the name.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -165,7 +172,7 @@ const CON_ITE_ARR = [ // What: Contact Item Array. Why: The sidebar lists the sa
 
 
 
-const EMP_FOR_OBJ = { 'bot-field' : '', budget : '', email : '', message : '', name : '' }; // What: Empty Form Object. Why: The form starts empty and empties again for another message. How: This holds a blank value for each field, keyed by the field's name attribute, which browsers read for autofill. // The bot-field key is the honeypot Netlify reads by that exact name, so it keeps Netlify's spelling.
+const EMP_FOR_OBJ = { 'bot-field' : '', budget : '', email : '', message : '', name : '' }; // What: Empty Form Object. Why: The form starts empty and empties again for another message. How: This holds a blank value for each field, keyed by the field's name attribute, which browsers read for autofill. // What: Bot Field String. Why: The honeypot starts blank. How: This is an empty string. // What: Budget String. Why: No range is chosen at first. How: This is an empty string. // What: Email String. Why: The address starts blank. How: This is an empty string. // What: Message String. Why: The message starts blank. How: This is an empty string. // What: Name String. Why: The name starts blank. How: This is an empty string. // The bot-field key is the honeypot Netlify reads by that exact name, so it keeps Netlify's spelling.
 
 // #endregion Constants
 
@@ -179,16 +186,24 @@ const EMP_FOR_OBJ = { 'bot-field' : '', budget : '', email : '', message : '', n
  * ConPagCom = Contact Page Component
  *
  * @summary
- * Renders the Contact page. The form keeps its fields in state, keyed by
- * each field's name attribute, and the browser checks the required fields
- * and the email format before letting it send. Sending it posts the fields to
- * Netlify Forms, disabling the button and showing Sending while it waits; a
- * reply Netlify doesn't answer with ok counts as an error, just like a
- * network failure, so either one leaves the form in place with an error above
- * the message field, while a sent message swaps the form for a thank-you with
- * a button that empties the form for another. The sidebar lists CON_ITE_ARR's
- * contact details, the profiles opening in a new tab, beside the availability
- * and response time.
+ * Renders the Contact page. The form keeps its fields in state, keyed by each
+ * field's name attribute, and the browser checks the required fields and the
+ * email format before letting it send. Sending it posts the fields to Netlify
+ * Forms, disabling the button and showing "Sending…" while it waits; a reply
+ * Netlify doesn't answer with ok counts as an error, just like a network
+ * failure, so either one leaves the form in place with an error above the
+ * message field, while a sent message swaps the form for a thank-you with a
+ * button that empties the form for another. The sidebar lists CON_ITE_ARR's
+ * contact details, the profiles opening in a new tab, above the availability
+ * and response time cards.
+ *
+ * Screen readers hear the result too. The error sits in an alert region that
+ * is in the form, empty, from the first render, and the thank-you takes focus
+ * as it replaces the form, which announces it, so focus never falls to the
+ * page. A failed send focuses the submit button again, since disabling it
+ * while sending can drop its focus. The thank-you's button puts focus back on
+ * the name field as the form returns, while a first visit leaves focus where
+ * it is.
  *
  * It also sets the page's title and canonical address, which React moves
  * into the document head, and swaps the search description for its own
@@ -218,7 +233,7 @@ function ConPagCom () : JSX.Element {
 
 	const [ errMesStr, setErrMesStr ] = useState< string | null >( null ); // What: Error Message String And Setter. Why: A failed send has to say so above the message field. How: This starts with no error.
 	const [ forDatObj, setForDatObj ] = useState( EMP_FOR_OBJ );           // What: Form Data Object And Setter. Why: The fields are controlled, so their values live here. How: This starts with every field blank.
-	const [ isaLoaBoo, setIsaLoaBoo ] = useState( false );                 // What: Is-A Loading Boolean And Setter. Why: The button shows Sending while the message is on its way. How: This starts false.
+	const [ isaLoaBoo, setIsaLoaBoo ] = useState( false );                 // What: Is-A Loading Boolean And Setter. Why: The button shows "Sending…" while the message is on its way. How: This starts false.
 	const [ isaSenBoo, setIsaSenBoo ] = useState( false );                 // What: Is-A Sent Boolean And Setter. Why: A sent message swaps the form for a thank-you. How: This starts false.
 
 
@@ -252,9 +267,22 @@ function ConPagCom () : JSX.Element {
 
 	// #endregion chaFieFun
 
+	// #endregion Form State
 
 
-	const resForFun = () => { // What: Reset Form Function. Why: The thank-you's button lets a visitor send another message. How: This hides the thank-you and empties the fields.
+
+	// #region Result Focus
+
+	const forNamRef = useRef< HTMLInputElement >( null );  // What: Form Name Reference. Why: Focus returns to the first field when the form comes back. How: This holds the name input.
+	const retForRef = useRef( false );                     // What: Return Form Reference. Why: Only a return from the thank-you moves focus to the name field and fades the form in, never a first visit. How: This starts false, and resForFun sets it true.
+	const senMesRef = useRef< HTMLButtonElement >( null ); // What: Send Message Reference. Why: A failed send puts focus back on the submit button. How: This holds the button.
+	const sucStaRef = useRef< HTMLDivElement >( null );    // What: Success State Reference. Why: The thank-you takes focus as it replaces the form. How: This holds the thank-you panel.
+
+
+	const resForFun = () => { // What: Reset Form Function. Why: The thank-you's button lets a visitor send another message. How: This marks the form as returning, hides the thank-you, and empties the fields.
+
+
+		retForRef.current = true; // What: Return Flag Set. Why: The focus effect moves focus to the name field, and the form fades in, only when the form comes back from the thank-you. How: This marks the return before the swap renders, so the render that brings the form back already reads it.
 
 
 		setIsaSenBoo( false ); // What: Sent Flag Reset Call. Why: The form shows again in place of the thank-you. How: This clears the sent flag.
@@ -264,7 +292,29 @@ function ConPagCom () : JSX.Element {
 
 	};
 
-	// #endregion Form State
+
+
+	useEffect( () => { // What: Result Focus Effect. Why: The swap removes the focused control, and focus must land on what replaces it rather than fall to the page. How: This focuses the thank-you once it shows, or the name field once the form returns from it.
+
+
+		if ( isaSenBoo ) sucStaRef.current?.focus(); // What: Thank-You Focus Call. Why: Focus on the panel announces it, standing in for a live region. How: This focuses the panel, which takes focus through its tabIndex of -1.
+
+		else if ( retForRef.current ) forNamRef.current?.focus(); // What: Name Field Focus Call. Why: A visitor writing another message starts at the first field, while a first visit shouldn't move focus at all. How: This focuses the name input only after resForFun has marked the return.
+
+
+	}, [ isaSenBoo ] ); // What: Effect Dependency Array. Why: Focus moves only when the form and the thank-you swap. How: isaSenBoo changes whenever one replaces the other.
+
+
+
+	useEffect( () => { // What: Error Focus Effect. Why: The submit button is disabled while the message sends, which can drop its focus to the page, and focus must never fall there. How: This focuses the button again once a failed send shows its error.
+
+
+		if ( errMesStr ) senMesRef.current?.focus(); // What: Submit Focus Call. Why: The visitor can try again from where they were, and focus never stays on the page. How: This focuses the button, enabled again by the same render that shows the error.
+
+
+	}, [ errMesStr ] ); // What: Effect Dependency Array. Why: Focus moves back only when a send fails. How: errMesStr gains its message when a send fails, and clears as the next one starts.
+
+	// #endregion Result Focus
 
 
 
@@ -279,7 +329,7 @@ function ConPagCom () : JSX.Element {
 	 * own submission, marks the form as sending, and clears any earlier error,
 	 * then posts the fields form-encoded to the site's root under the contact
 	 * form's name, which Netlify matches to the hidden copy of the form in
-	 * index.html, with the budget or Not specified when none was chosen and
+	 * index.html, with the budget or "Not specified" when none was chosen and
 	 * the honeypot as it stands. Netlify then emails the submission to the
 	 * address set in its dashboard. Only an ok reply counts as success; a
 	 * failed reply or a network failure is logged and shown as an error above
@@ -304,7 +354,7 @@ function ConPagCom () : JSX.Element {
 
 		subEveObj.preventDefault(); // What: Default Submission Prevention Call. Why: The browser would otherwise reload the page to submit the form. How: This stops it, so the message is sent in the background.
 
-		setIsaLoaBoo( true ); // What: Loading Flag Set Call. Why: The button shows Sending while the message is on its way. How: This sets the loading flag.
+		setIsaLoaBoo( true ); // What: Loading Flag Set Call. Why: The button shows "Sending…" while the message is on its way. How: This sets the loading flag.
 
 		setErrMesStr( null ); // What: Error Clear Call. Why: A new attempt shouldn't show the last one's error. How: This clears it.
 
@@ -316,14 +366,14 @@ function ConPagCom () : JSX.Element {
 			const senResObj = await fetch( '/', { // What: Send Response Object. Why: Netlify Forms takes a form-encoded POST on any path of the site, matches it to a detected form by its form-name field, and emails it on. How: This posts the fields to the site's root.
 
 
-				headers : { 'Content-Type' : 'application/x-www-form-urlencoded' }, // What: Headers. Why: Netlify only parses a form-encoded body. How: This sets the matching content type.
+				headers : { 'Content-Type' : 'application/x-www-form-urlencoded' }, // What: Headers. Why: Netlify Forms reads a form-encoded body. How: This sets the matching content type.
 				method  : 'POST',                                                   // What: Method. Why: A form submission is a POST. How: This sets it.
 
 				body : new URLSearchParams({ // What: Body. Why: Netlify reads a standard form-encoded body whose field names match the hidden form in index.html. How: This encodes the form's name, the honeypot, and the four real fields.
 
 
 					'bot-field' : forDatObj[ 'bot-field' ],            // What: Bot Field. Why: Netlify drops a submission whose honeypot is filled, which a person never does. How: This posts the hidden field as it stands.
-					budget      : forDatObj.budget || 'Not specified', // What: Budget. Why: The email shows the visitor's budget range. How: This sends the choice, or Not specified when none was made.
+					budget      : forDatObj.budget || 'Not specified', // What: Budget. Why: The email shows the visitor's budget range. How: This sends the choice, or "Not specified" when none was made.
 					email       : forDatObj.email,                     // What: Email. Why: Netlify sets a field named email as the notification's reply-to, so a reply goes straight back to the visitor. How: This sends the address they entered.
 					'form-name' : 'contact',                           // What: Form Name. Why: Netlify matches the POST to its detected form by this field. How: This names the contact form.
 					message     : forDatObj.message,                   // What: Message. Why: The message is the point of the email. How: This sends what they wrote.
@@ -401,13 +451,17 @@ function ConPagCom () : JSX.Element {
 					<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The hero's text sits in the page's centered column. How: This stacks the label, heading, and line. */ }
 
 
-						<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows Get In Touch after a short rule. */ }
+						<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows "Get In Touch" after a short rule. */ }
+
+
 							<span className={ cssModObj.herLinSpa } />{ /* What: Hero Line Span Element. Why: A short rule leads into the label. How: This draws the rule. */ }
 
 							Get In Touch
+
+
 						</span>
 
-						<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading makes the invitation. How: This sets Let's Build over Something Together, with Something in the accent. */ }
+						<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading makes the invitation. How: This sets "Let's Build" over "Something Together", with "Something" in the accent. */ }
 							Let's Build<br />
 							<span className={ cssModObj.titAccSpa }>Something</span> Together
 						</h1>
@@ -428,7 +482,7 @@ function ConPagCom () : JSX.Element {
 				<section className={ cssModObj.conBodSec }>{ /* What: Contact Body Section Element. Why: The form and the details sit together. How: This holds the two columns. */ }
 
 
-					<div className={ cssModObj.conGriDiv }>{ /* What: Contact Grid Div Element. Why: The form and the sidebar sit side by side in the page's centered column. How: This lays out the two columns. */ }
+					<div className={ cssModObj.conGriDiv }>{ /* What: Contact Grid Div Element. Why: The form and the sidebar sit side by side in the page's centered column, the sidebar stacking under the form at 1,024px and below. How: This lays out the two columns. */ }
 
 
 						<div className={ cssModObj.forWraDiv }>{ /* What: Form Wrap Div Element. Why: The form and its thank-you share one place. How: This holds whichever one shows. */ }
@@ -437,7 +491,13 @@ function ConPagCom () : JSX.Element {
 							{ isaSenBoo ? ( // What: Sent Or Form Check. Why: A sent message replaces the form with a thank-you. How: This renders the thank-you once sent, or the form otherwise.
 
 
-								<div className={ cssModObj.sucStaDiv }>{ /* What: Success State Div Element. Why: A visitor learns the message went out. How: This fades up into view with a check, a thank-you, and a button for another message. */ }
+								<div
+									ref={ sucStaRef }
+
+									className={ cssModObj.sucStaDiv }
+
+									tabIndex={ -1 }
+								>{ /* What: Success State Div Element. Why: A visitor learns the message went out, and screen reader users hear it as focus lands here. How: This fades up into view with a check, a thank-you, and a button for another message, taking focus by script though never by Tab. */ }
 
 
 									<svg
@@ -457,7 +517,7 @@ function ConPagCom () : JSX.Element {
 
 									</svg>
 
-									<h2 className={ cssModObj.sucTitHea }>Message Sent!</h2>{ /* What: Success Title Heading Element. Why: The thank-you's heading says what happened. How: This shows Message Sent. */ }
+									<h2 className={ cssModObj.sucTitHea }>Message Sent!</h2>{ /* What: Success Title Heading Element. Why: The thank-you's heading says what happened. How: This shows "Message Sent!". */ }
 
 									<p className={ cssModObj.sucTexPar }>Thanks for reaching out. I'll be in touch within 24 hours.</p>{ /* What: Success Text Paragraph Element. Why: A visitor learns when to expect a reply. How: This thanks them and promises a reply within a day. */ }
 
@@ -475,13 +535,14 @@ function ConPagCom () : JSX.Element {
 
 
 								<form
-									className={ cssModObj.conForFor }
+									className={` ${ cssModObj.conForFor }   ${ retForRef.current ? cssModObj.conForForReturning : '' } `}
 
 									onSubmit={ subForFun }
-								>{ /* What: Contact Form Form Element. Why: A visitor writes their message here. How: The browser first checks the required fields and the email format, then this sends the fields through subForFun. */ }
+								>{ /* What: Contact Form Form Element. Why: A visitor writes their message here. How: The browser first checks the required fields and the email format, then this sends the fields through subForFun, and on a return from the thank-you the form fades up into view. */ }
 
 
-									<h2 className={ cssModObj.forTitHea }>Send a Message</h2>{ /* What: Form Title Heading Element. Why: The form's heading names it. How: This shows Send a Message as an h2. */ }
+									<h2 className={ cssModObj.forTitHea }>Send a Message</h2>{ /* What: Form Title Heading Element. Why: The form's heading names it. How: This shows "Send a Message" as an h2. */ }
+
 
 									<p
 										className={ cssModObj.forHonPar }
@@ -513,7 +574,7 @@ function ConPagCom () : JSX.Element {
 									</p>
 
 
-									<div className={ cssModObj.forRowDiv }>{ /* What: Form Row Div Element. Why: The name and email fields share a row on wide screens. How: This sets them side by side. */ }
+									<div className={ cssModObj.forRowDiv }>{ /* What: Form Row Div Element. Why: The name and email fields share a row above 640px. How: This sets them side by side, stacking them at 640px and below. */ }
 
 
 										<div className={ cssModObj.forFieDiv }>{ /* What: Form Field Div Element. Why: The name's label and input read as one field. How: This stacks them. */ }
@@ -523,9 +584,11 @@ function ConPagCom () : JSX.Element {
 												className={ cssModObj.fieLabLab }
 
 												htmlFor='forNamInp'
-											>Full Name</label>{ /* What: Field Label Label Element. Why: The input needs a visible name. How: This labels it Full Name. */ }
+											>Full Name</label>{ /* What: Field Label Label Element. Why: The input needs a visible name. How: This labels it "Full Name". */ }
 
 											<input
+												ref={ forNamRef }
+
 												id='forNamInp'
 
 												className={ cssModObj.forConInp }
@@ -550,7 +613,7 @@ function ConPagCom () : JSX.Element {
 												className={ cssModObj.fieLabLab }
 
 												htmlFor='forEmaInp'
-											>Email</label>{ /* What: Field Label Label Element. Why: The input needs a visible name. How: This labels it Email. */ }
+											>Email</label>{ /* What: Field Label Label Element. Why: The input needs a visible name. How: This labels it "Email". */ }
 
 											<input
 												id='forEmaInp'
@@ -581,7 +644,7 @@ function ConPagCom () : JSX.Element {
 											className={ cssModObj.fieLabLab }
 
 											htmlFor='forBudSel'
-										>Project Budget</label>{ /* What: Field Label Label Element. Why: The menu needs a visible name. How: This labels it Project Budget. */ }
+										>Project Budget</label>{ /* What: Field Label Label Element. Why: The menu needs a visible name. How: This labels it "Project Budget". */ }
 
 										<select
 											id='forBudSel'
@@ -614,13 +677,24 @@ function ConPagCom () : JSX.Element {
 
 									</div>
 
-									{ errMesStr && ( // What: Error Presence Check. Why: An error shows only after a failed send. How: This renders the message when there is one.
+
+									<div
+										className={ cssModObj.errAleDiv }
+
+										role='alert'
+									>{ /* What: Error Alert Div Element. Why: Screen reader users have to hear a failed send, and a live region added at the moment it speaks is often missed. How: This alert region sits in the form, empty, from the first render, and gains the error when a send fails. */ }
 
 
-										<p className={ cssModObj.errMesPar }>{ errMesStr }</p> // What: Error Message Paragraph Element. Why: A visitor learns the message didn't go out. How: This fades the error up into view above the message field.
+										{ errMesStr && ( // What: Error Presence Check. Why: An error shows only after a failed send. How: This renders the message when there is one.
 
 
-									) }
+											<p className={ cssModObj.errMesPar }>{ errMesStr }</p> // What: Error Message Paragraph Element. Why: A visitor learns the message didn't go out. How: This fades the error up into view above the message field.
+
+
+										) }
+
+
+									</div>
 
 									<div className={ cssModObj.forFieDiv }>{ /* What: Form Field Div Element. Why: The message's label and box read as one field. How: This stacks them. */ }
 
@@ -629,7 +703,7 @@ function ConPagCom () : JSX.Element {
 											className={ cssModObj.fieLabLab }
 
 											htmlFor='forMesTex'
-										>Message</label>{ /* What: Field Label Label Element. Why: The box needs a visible name. How: This labels it Message. */ }
+										>Message</label>{ /* What: Field Label Label Element. Why: The box needs a visible name. How: This labels it "Message". */ }
 
 										<textarea
 											id='forMesTex'
@@ -651,42 +725,64 @@ function ConPagCom () : JSX.Element {
 
 
 									<button
+										ref={ senMesRef }
+
 										className={ cssModObj.senMesBut }
 
 										disabled={ isaLoaBoo }
 										type='submit'
-									>{ /* What: Send Message Button Element. Why: The visitor sends the message. How: This submits the form, disabled and reading Sending while it's on its way. */ }
+									>{ /* What: Send Message Button Element. Why: The visitor sends the message. How: This submits the form, disabled and reading "Sending…" while it's on its way. */ }
 
 
-										{ isaLoaBoo ? 'Sending…' : 'Send Message' }{ /* What: Submit Label Text. Why: The button says what's happening. How: This reads Sending while sending, or Send Message otherwise. */ }
-
-										{ !isaLoaBoo && ( // What: Send Icon Check. Why: The paper plane only shows while the button is ready. How: This renders it unless sending.
+										<span className={ cssModObj.senLabSpa }>{ /* What: Send Label Span Element. Why: The button's label cross-fades between its ready and sending words without the button changing width. How: This stacks both labels in one cell, sized to the wider. */ }
 
 
-											<svg
-												fill='none'
-												height='16'
-												stroke='currentColor'
-												strokeWidth='2.5'
-												viewBox='0 0 24 24'
-												width='16'
-											>{ /* What: Paper Plane SVG Element. Why: A paper plane stands for sending. How: This draws it after the label. */ }
+											<span
+												className={ cssModObj.senReaSpa }
+
+												aria-hidden={ isaLoaBoo || undefined } // What: Hidden While Sending. Why: Only the label showing should be announced as the button's name. How: This hides the ready label from assistive technology while the message sends.
+											>{ /* What: Send Ready Span Element. Why: The ready button says what it does. How: This shows "Send Message" and the paper plane, fading out while the message sends. */ }
 
 
-												<line
-													x1='22'
-													x2='11'
-													y1='2'
-													y2='13'
-												/>{ /* What: Plane Fold Line Element. Why: The fold splits the plane's wings. How: This draws it. */ }
-
-												<polygon points='22 2 15 22 11 13 2 9 22 2' />{ /* What: Plane Body Polygon Element. Why: The plane's outline is one shape. How: This traces it. */ }
+												Send Message
 
 
-											</svg>
+												<svg
+													className={ cssModObj.senPlaSvg }
+
+													fill='none'
+													height='16'
+													stroke='currentColor'
+													strokeWidth='2.5'
+													viewBox='0 0 24 24'
+													width='16'
+												>{ /* What: Send Plane SVG Element. Why: A paper plane stands for sending. How: This draws it after the label, passing a press through to the button. */ }
 
 
-										) }
+													<line
+														x1='22'
+														x2='11'
+														y1='2'
+														y2='13'
+													/>{ /* What: Plane Fold Line Element. Why: The fold splits the plane's wings. How: This draws it. */ }
+
+													<polygon points='22 2 15 22 11 13 2 9 22 2' />{ /* What: Plane Body Polygon Element. Why: The plane's outline is one shape. How: This traces it. */ }
+
+
+												</svg>
+
+
+											</span>
+
+
+											<span
+												className={ cssModObj.senPenSpa }
+
+												aria-hidden={ !isaLoaBoo || undefined } // What: Hidden While Ready. Why: Only the label showing should be announced as the button's name. How: This hides the sending label from assistive technology until the message sends.
+											>Sending…</span>{ /* What: Send Pending Span Element. Why: A visitor sees the message is on its way. How: This shows "Sending…", fading in while the message sends. */ }
+
+
+										</span>
 
 
 									</button>
@@ -702,7 +798,7 @@ function ConPagCom () : JSX.Element {
 
 
 
-						<aside className={ cssModObj.conSidAsi }>{ /* What: Contact Sidebar Aside Element. Why: The other ways to get in touch sit beside the form. How: This stacks the details, availability, and response time cards. */ }
+						<aside className={ cssModObj.conSidAsi }>{ /* What: Contact Sidebar Aside Element. Why: The other ways to get in touch sit beside the form, or under it at 1,024px and below. How: This stacks the details, availability, and response time cards. */ }
 
 
 							<div className={ cssModObj.sidCarDiv }>{ /* What: Sidebar Card Div Element. Why: A visitor may prefer email or a profile to the form. How: This lists each contact item. */ }
@@ -710,7 +806,9 @@ function ConPagCom () : JSX.Element {
 
 								<h3 className={ cssModObj.sidTitHea }>Contact Details</h3>{ /* What: Sidebar Title Heading Element. Why: The card is named. How: This shows its title. */ }
 
-								<div className={ cssModObj.conIteDiv }>{ /* What: Contact Item Div Element. Why: The items stack in a list. How: This holds one link per item. */ }
+
+
+								<div className={ cssModObj.conIteDiv }>{ /* What: Contact Items Div Element. Why: The items stack in a list. How: This holds one link per item. */ }
 
 
 									{ CON_ITE_ARR.map( ( conIteObj ) => ( // What: Contact Item Map Call. Why: Every contact item shows. How: This renders one link per row.
@@ -722,9 +820,9 @@ function ConPagCom () : JSX.Element {
 											className={ cssModObj.conIteAnc }
 
 											href={ conIteObj.hreStr }
-											rel={ conIteObj.extBoo ? 'noreferrer' : undefined } // What: Relationship Ternary. Why: A profile on another site shouldn't learn which page sent the visitor. How: This sets noreferrer on the external rows and leaves the email row without one.
+											rel={ conIteObj.extBoo ? 'noopener noreferrer' : undefined } // What: Relationship Ternary. Why: A profile on another site shouldn't reach back to this page or learn which page sent the visitor. How: This sets noopener and noreferrer on the external rows and leaves the email row without them.
 											target={ conIteObj.extBoo ? '_blank' : undefined } // What: Target Ternary. Why: A profile opens beside the site, while a mailto link in a new tab would leave an empty tab behind. How: This opens only the external rows in a new tab.
-										>{ /* What: Contact Item Anchor Element. Why: Each item links to its address. How: This opens a profile in a new tab, or the email address in the visitor's mail app, showing the icon beside the name and address. */ }
+										>{ /* What: Contact Item Anchor Element. Why: Each item links to its address. How: This opens a profile in a new tab, or the email address in the visitor's mail app, showing the icon beside the name and address, a profile's name ending in a hidden note that it opens a new tab. */ }
 
 
 											<span className={ cssModObj.conIcoSpa }>{ conIteObj.icoEle }</span>{ /* What: Contact Icon Span Element. Why: An icon marks each item at a glance. How: This frames the row's icon. */ }
@@ -738,6 +836,8 @@ function ConPagCom () : JSX.Element {
 
 
 											</div>
+
+											{ conIteObj.extBoo && <span className={ cssModObj.visHidSpa }> (opens in a new tab)</span> }{ /* What: New Tab Note Check. Why: Screen reader users should hear that a profile row opens a new tab, while the email row opens the mail app instead. How: This adds a visually hidden note to the external rows only. */ }
 
 
 										</a>

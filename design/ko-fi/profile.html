@@ -1,3 +1,6 @@
+
+
+
 <!doctype html><!-- What: Document Type Declaration. Why: Browsers render the page in standards mode only with a doctype. How: This declares HTML5. -->
 
 
@@ -10,7 +13,7 @@
 
 		<!-- #region Document -->
 
-		<meta charset='UTF-8' />                         <!-- What: Character Set Meta. Why: The page has to decode as UTF-8. How: This sits first in the head. -->
+		<meta charset='UTF-8' />                      <!-- What: Character Set Meta. Why: The page has to decode as UTF-8. How: This sits first in the head. -->
 		<title>TechGeek Ko-fi Profile Picture</title> <!-- What: Page Title Element. Why: The file should say what it is when opened in a browser. How: This names the picture. -->
 
 		<!-- #endregion Document -->
@@ -29,7 +32,7 @@
 
 			/* #region proBodBod */
 
-			.proBodBod { /* What: Profile Body Body. Why: The picture fills the whole 400x400 capture, which the renderer doubles, on the ink, so the bright mark stands out on Ko-fi's white page. How: This sizes it in literal pixels, the image's own fixed size, and hides anything past its edges. */
+			.proBodBod { /* What: Profile Body Body. Why: The picture fills the whole 400x400 capture, which the renderer doubles, on the ink, so the bright mark stands out on a white page. How: This sizes it in literal pixels, the image's own fixed size, and hides anything past its edges. */
 
 
 				background : var( --bac-inv-col ); /* Background Inverse Color = #1A1A2E */
@@ -40,6 +43,9 @@
 
 
 			}
+
+
+			/* #region proArtSvg */
 
 			.proArtSvg { /* What: Profile Artwork SVG. Why: The mark and its steam are one drawing, laid out in its own 400-unit square. How: This fills the whole picture. */
 
@@ -62,6 +68,8 @@
 
 			}
 
+			/* #endregion proArtSvg */
+
 			/* #endregion proBodBod */
 
 
@@ -83,7 +91,7 @@
 			viewBox='0 -22 400 400'
 
 			aria-hidden='true'
-		><!-- What: Profile Artwork SVG Element. Why: The picture is the mark with steam rising from it. How: This draws both inside the circle Ko-fi crops the square to, its view shifted up 22 units so the steam and mark together sit centered, hidden from screen readers since it's artwork. -->
+		><!-- What: Profile Artwork SVG Element. Why: The picture is the mark with steam rising from it. How: This draws both inside a centered circle, the shape a round crop leaves, its view shifted up 22 units so the steam and mark together sit centered, hidden from screen readers since it's artwork. -->
 
 
 			<path

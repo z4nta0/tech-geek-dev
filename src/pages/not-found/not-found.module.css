@@ -5,13 +5,12 @@
  * not-found.module.css = Not Found Module
  *
  * @summary
- * Styles for NotFouCom: a full-screen ivory panel that fades up into view
- * like every page, centering a huge quiet 404 with a hexagon drawing slowly
- * turning behind it, the heading and line above the drawing, and two ways
- * onward, an orange Go Home button and an outlined Get In Touch button. The
- * page's entrance and the drawing's turn play the shared contentEnterFadeUp
- * and shapeLoopSpin keyframes from the global sheet. Everything that moves
- * holds still under reduced motion.
+ * Styles for NotFouCom: a full-screen ivory panel that fades up into view like
+ * every page, centering a huge quiet 404 with a hexagon drawing slowly turning
+ * behind it, the heading and line layered over the drawing, and two ways
+ * onward, an orange "Go Home" button and an outlined "Get In Touch" button.
+ * The page's entrance and the drawing's turn play the shared
+ * contentEnterFadeUp and shapeLoopSpin keyframes from the global stylesheets.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -21,7 +20,7 @@
 
 /* #region pagEntDiv */
 
-.pagEntDiv { /* What: Page Enter Div. Why: The 404 content fills the screen and fades in like every page. How: This centers its content on a full-height ivory panel and plays the shared page entrance. */
+.pagEntDiv { /* What: Page Enter Div. Why: The 404 content fills the screen and fades in like every page. How: This centers its content on a full-height ivory panel, below the fixed bar's height plus a spacing step so even a short screen keeps the number clear of the bar, and plays the shared page entrance. */
 
 
 	align-items     : center;
@@ -30,7 +29,7 @@
 	display         : flex;
 	justify-content : center;
 	min-height      : 100vh;
-	padding         : var( --spa-ver-p04 ) var( --gut-sid-pad );                                   /* Spacing Vertical Base Plus 4 ~= 44.876px, Gutter Side Padding, about 19.304px - 44.876px */
+	padding         : calc( var( --nav-bar-hei ) + var( --spa-ver-p04 ) ) var( --gut-sid-pad ) var( --spa-ver-p04 ); /* Navigation Bar Height ~= 78.751px, Spacing Vertical Base Plus 4 ~= 44.876px, Gutter Side Padding, about 19.304px - 44.876px */
 
 
 }
@@ -64,7 +63,7 @@
 
 }
 
-.errCodDiv { /* What: Error Code Div. Why: A huge quiet 404 says what happened at a glance without shouting. How: This sets it in the display font, scaling with the screen, in a deep beige that still reaches the 3:1 large-text contrast, keeps it from being selected, and lifts it over the drawing. */
+.errCodDiv { /* What: Error Code Div. Why: A huge quiet "404" says what happened at a glance without shouting. How: This sets it in the display font, scaling with the screen, in a deep beige that still reaches the 3:1 large-text contrast, keeps it from being selected, and lifts it over the drawing. */
 
 
 	color          : oklch( from var( --bor-mai-col ) calc( l - 0.24 ) c h );                /* Border Main Color = #D8CFBE, darkened to about #8d8475 */
@@ -108,7 +107,7 @@
 
 }
 
-.nofTitHea { /* What: Not-Found Title Heading. Why: The heading sits above the turning drawing. How: This sets its size and color and lifts it over the drawing. */
+.nofTitHea { /* What: Not-Found Title Heading. Why: The heading sits over the turning drawing. How: This sets its size and color and lifts it over the drawing. */
 
 
 	color     : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -133,7 +132,7 @@
 
 /* #region nofActDiv */
 
-.nofActDiv { /* What: Not-Found Actions Div. Why: The two ways onward sit side by side, one height, and wrap on a narrow phone. How: This lines up the buttons centered in a wrapping row with gaps, stretching them to the taller one, and lifts them over the drawing. */
+.nofActDiv { /* What: Not-Found Actions Div. Why: The two ways onward sit side by side, one height, wrapping onto two lines at about 375px wide and below. How: This lines up the buttons centered in a wrapping row with gaps, stretching them to the taller one, and lifts them over the drawing. */
 
 
 	display         : flex;
@@ -160,7 +159,7 @@
 	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );    /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	padding        : var( --spa-ver-m01 ) var( --spa-hor-p03 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	text-transform : uppercase;
-	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition     : background var( --dur-tra-bas ) var( --mot-sta-eas ), transform var( --dur-tra-bas ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Transition Base Plus 1 ~= 209.1ms */
 
 
 }
@@ -193,7 +192,7 @@
 
 }
 
-.butSecAnc { /* What: Button Secondary Anchor. Why: The second way onward sits back from the first. How: This sets an outlined button in mono capitals, easing its border, color, lift, press, and focus, its hover and press matching Home's secondary button. */
+.butSecAnc { /* What: Button Secondary Anchor. Why: The second way onward sits back from the first. How: This sets an outlined button in mono capitals, easing its border, color, lift, press, and focus. */
 
 
 	align-items    : center;
@@ -207,7 +206,7 @@
 	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );          /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	padding        : var( --spa-ver-m01 ) var( --spa-hor-p03 );       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	text-transform : uppercase;
-	transition     : border-color var( --dur-tra-bas ), color var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition     : border-color var( --dur-tra-bas ) var( --mot-sta-eas ), color var( --dur-tra-bas ) var( --mot-sta-eas ), transform var( --dur-tra-bas ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Transition Base Plus 1 ~= 209.1ms */
 
 
 }

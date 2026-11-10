@@ -3,18 +3,18 @@
 
 // #region Imports
 
-import cssModObj from './work.module.css'; // What: CSS Module Object. Why: The Work page's own layout, filter, and process styles live in its own module. How: This maps each class name in work.module.css to its hashed module class.
+import cssModObj from './work.module.css'; // What: CSS Module Object. Why: The Work page's own styles live in its own module. How: This maps each class name in work.module.css to its hashed module class.
 
 
 import { Fragment     } from 'react';                                  // What: Fragment. Why: Each process step and the arrow after it render as one keyed pair with no wrapper. How: This groups them under one key.
-import { GeoBacCom    } from '../../ui/geo-bg.tsx';                    // What: Geometric Background Component. Why: The hero and the process section sit over faint patterns. How: This draws the grid and the dots.
+import { GeoBacCom    } from '../../ui/geo-bg.tsx';                    // What: Geometric Background Component. Why: Some sections, such as the hero, sit over faint patterns. How: This draws each section's pattern.
 import { PRO_REC_ARR  } from '../../ui/projects.ts';                   // What: Project Record Array. Why: The page shows every project. How: This is the list it filters and renders.
 import { ProCarCom    } from '../../ui/project-card.tsx';              // What: Project Card Component. Why: Each project shows as a card. How: This renders one card per project.
 import { SecHeaCom    } from '../../ui/section-header.tsx';            // What: Section Header Component. Why: The process section opens with a heading block. How: This renders its label, title, and subtitle.
 import { togFadFun    } from './edge-fade.ts';                         // What: Toggle Fade Function. Why: The filter row fades whichever edge still hides buttons. How: This sets the row's edge attributes from its scroll position.
 import { useEffect    } from 'react';                                  // What: Use Effect. Why: The filter row's fades have to follow its scrolling and resizing. How: This wires and tears down those listeners with the page.
 import { usePagDesFun } from 'techgeek-design/ui/page-description.ts'; // What: Use Page Description Function. Why: The page's search description differs from the home page's. How: The page calls it to swap the one description tag's text while it shows.
-import { useRef       } from 'react';                                  // What: Use Ref. Why: The fade effect needs the filter row's element. How: This holds it.
+import { useRef       } from 'react';                                  // What: Use Reference. Why: The fade effect needs the filter row's element. How: This holds it.
 import { useState     } from 'react';                                  // What: Use State. Why: The page remembers which technology the visitor filtered by. How: This holds the active tag.
 
 
@@ -55,9 +55,12 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * The four steps the process section walks through, in order, with an arrow
  * drawn between each pair. Every row shares one shape, so its fields carry no
  * comments of their own:
+ *
  * - `desStr` (String): Description String, the sentence under the step's
  *   title.
+ *
  * - `numStr` (String): Number String, the step's two-digit number.
+ *
  * - `titStr` (String): Title String, the step's one-word name.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -67,13 +70,10 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
 const PRC_STE_ARR = [ // What: Process Step Array. Why: The process section shows the same four steps every visit. How: Each row holds one step's number, title, and description.
 
 
-	{ numStr : '01', titStr : 'Discover', desStr : 'Deep-dive into your goals, users, and constraints. No assumptions.' }, // What: Discover Step Row. Why: Every project starts by learning what it needs. How: This is the first step.
-
-	{ numStr : '02', titStr : 'Design',   desStr : 'Architecture diagrams, wireframes, and API contracts before a line of code.' }, // What: Design Step Row. Why: The plan comes before the code. How: This is the second step.
-
-	{ numStr : '03', titStr : 'Build',    desStr : 'Iterative development with regular demos. Fully tested and documented.' }, // What: Build Step Row. Why: The site is built in steps the client can see. How: This is the third step.
-
-	{ numStr : '04', titStr : 'Ship',     desStr : 'CI/CD deployment, monitoring, and handover documentation included.' } // What: Ship Step Row. Why: Every project ends deployed and handed over. How: This is the last step.
+	{ desStr : 'Deep-dive into your goals, users, and constraints. No assumptions.',          numStr : '01', titStr : 'Discover' }, // What: Discover Step Row. Why: Every project starts by learning what it needs. How: This is the first step.
+	{ desStr : 'Architecture diagrams, wireframes, and API contracts before a line of code.', numStr : '02', titStr : 'Design'   }, // What: Design Step Row. Why: The plan comes before the code. How: This is the second step.
+	{ desStr : 'Iterative development with regular demos. Fully tested and documented.',      numStr : '03', titStr : 'Build'    }, // What: Build Step Row. Why: The site is built in steps the client can see. How: This is the third step.
+	{ desStr : 'CI/CD deployment, monitoring, and handover documentation included.',          numStr : '04', titStr : 'Ship'     }  // What: Ship Step Row. Why: Every project ends deployed and handed over. How: This is the last step.
 
 
 ];
@@ -82,7 +82,7 @@ const PRC_STE_ARR = [ // What: Process Step Array. Why: The process section show
 
 
 
-const TAG_FIL_ARR = [ 'All', ...Array.from( new Set( PRO_REC_ARR.flatMap( ( proRecObj ) => proRecObj.tagArr ) ) ).sort() ]; // What: Tag Filter Array. Why: The filter bar offers every technology the projects use, plus All. How: This gathers each project's tags, drops repeats, sorts them, and puts All first.
+const TAG_FIL_ARR = [ 'All', ...Array.from( new Set( PRO_REC_ARR.flatMap( ( proRecObj ) => proRecObj.tagArr ) ) ).sort() ]; // What: Tag Filter Array. Why: The filter bar offers every technology the projects use, plus "All". How: This gathers each project's tags, drops repeats, sorts them, and puts "All" first.
 
 // #endregion Constants
 
@@ -97,11 +97,14 @@ const TAG_FIL_ARR = [ 'All', ...Array.from( new Set( PRO_REC_ARR.flatMap( ( proR
  *
  * @summary
  * Renders the Work page. The filter bar's buttons set the active tag, which
- * narrows the grid to the projects using that technology (All shows every
- * one) and updates the count beside them; an empty grid says no projects
- * match. A visually hidden h2 heads the grid, so the cards' h3 titles follow
- * the page's h1 in order. The process section lists PRC_STE_ARR's steps
- * with an arrow, hidden from screen readers, between each pair.
+ * narrows the grid to the projects using that technology ("All" shows every
+ * one) and updates the count beside them, which screen readers hear through
+ * the status region around it; an empty grid says no projects match. A
+ * visually hidden h2 heads the grid, so the cards' h3 titles follow the
+ * page's h1 in order. The process section lists PRC_STE_ARR's steps
+ * with an arrow, hidden from screen readers, between each pair. The filter
+ * bar's measured height becomes the cards' links' scroll margin, so a link
+ * scrolled into view at the top lands clear of the bar.
  *
  * It also sets the page's title and canonical address, which React moves
  * into the document head, and swaps the search description for its own
@@ -127,9 +130,12 @@ function WorPagCom () : JSX.Element {
 
 
 
-	const [ actTagStr, setActTagStr ] = useState( 'All' ); // What: Active Tag String And Setter. Why: The grid shows only the projects using the chosen technology. How: This starts on All, showing every project.
+	const [ actTagStr, setActTagStr ] = useState( 'All' ); // What: Active Tag String And Setter. Why: The grid shows only the projects using the chosen technology. How: This starts on "All", showing every project.
+	const [ filChoBoo, setFilChoBoo ] = useState( false ); // What: Filter Chosen Boolean And Setter. Why: The grid's fade marks a filter's result, not the page's arrival. How: This starts false and turns true once a different filter is chosen, turning on the count's and the grid's arriving classes.
 
+	const filBarRef = useRef< HTMLElement | null >( null );    // What: Filter Bar Reference. Why: The clearance effect below measures the sticky filter bar. How: This is attached to the bar's ref prop.
 	const filScrRef = useRef< HTMLDivElement | null >( null ); // What: Filter Scroll Reference. Why: The fade effect below measures the filter row. How: This is attached to the row's ref prop.
+	const proLisRef = useRef< HTMLElement | null >( null );    // What: Projects List Reference. Why: The clearance effect below hands the bar's height to the cards. How: This is attached to the projects section's ref prop.
 
 
 	useEffect( () => { // What: Filter Row Fade Effect. Why: Once the filter buttons outgrow the row, its edges fade on whichever side still hides buttons, so a visitor can tell it scrolls. How: This measures the row now and on every scroll and resize, and removes the listeners when the page leaves.
@@ -172,8 +178,55 @@ function WorPagCom () : JSX.Element {
 
 
 
-	const filProArr = actTagStr === 'All' // What: Filtered Project Array. Why: The grid and the count show only what the filter allows. How: This keeps every project for All, or only those tagged with the active technology.
-		? PRO_REC_ARR                                                                    // What: All Projects Branch. Why: All means no filter. How: This keeps the whole list.
+	useEffect( () => { // What: Filter Bar Clearance Effect. Why: The filter bar sticks under the fixed bar, so a card's link scrolled into view at the top would land behind it, as WebKit's Shift+Tab showed. How: This hands the projects section the bar's measured height as the cards' links' scroll margin, now and whenever the bar resizes, and stops watching when the page leaves.
+
+
+		const filBarEle = filBarRef.current; // What: Filter Bar Element. Why: The bar's height is what the links have to clear. How: This reads it from its ref.
+		const proLisEle = proLisRef.current; // What: Projects List Element. Why: The cards read their links' margin from their section. How: This reads it from its ref.
+
+
+		if ( !filBarEle || !proLisEle ) return; // What: Missing Element Guard. Why: There's nothing to measure before both sections mount. How: This stops early when either ref is empty.
+
+
+
+		const setMarFun = () => proLisEle.style.setProperty( '--ove-but-mar', `${ filBarEle.offsetHeight }px` ); // What: Set Margin Function. Why: The bar's height comes from its content and grows where the filter row stacks on phones, so no token gives it. How: This writes the bar's height, borders included, as the cards' links' scroll margin.
+
+
+		setMarFun(); // What: Initial Margin Call. Why: The margin has to be right as soon as the page shows. How: This measures the bar once.
+
+
+		const resObsObj = new ResizeObserver( setMarFun ); // What: Resize Observer Object. Why: Resizing the window can change the bar's height. How: This re-measures whenever the bar's size changes.
+
+
+		resObsObj.observe( filBarEle ); // What: Resize Observer Start Call. Why: The observer does nothing until it's given an element. How: This starts watching the bar.
+
+
+
+		return () => resObsObj.disconnect(); // What: Clearance Cleanup Return. Why: The observer shouldn't outlive the page. How: This disconnects it.
+
+
+	}, [] ); // What: Effect Dependency Array. Why: The bar and the projects section never unmount while the page is open, so the observer is wired once. How: This empty list runs the effect only on mount and cleans it up on unmount.
+
+
+
+	const choFilFun = ( tagNamStr : string ) => { // What: Choose Filter Function. Why: A filter button should change the grid only when it picks a different technology, so the chosen pill pressed again doesn't replay the fade. How: This returns for the active tag, and otherwise sets the new tag and records that a filter has been chosen.
+
+
+		if ( tagNamStr === actTagStr ) return; // What: Same Filter Guard. Why: Pressing the chosen pill changes nothing. How: This stops before either setter runs.
+
+
+
+		setActTagStr( tagNamStr ); // What: Active Tag Setter Call. Why: The grid and the count follow the chosen technology. How: This stores the pill's tag, which remounts the grid under its new key.
+
+		setFilChoBoo( true ); // What: Filter Chosen Setter Call. Why: From now on each new result should fade in. How: This turns on the count's and the grid's arriving classes.
+
+
+	};
+
+
+
+	const filProArr = actTagStr === 'All' // What: Filtered Project Array. Why: The grid and the count show only what the filter allows. How: This keeps every project for "All", or only those tagged with the active technology.
+		? PRO_REC_ARR                                                                    // What: All Projects Branch. Why: The "All" filter means no filter. How: This keeps the whole list.
 		: PRO_REC_ARR.filter( ( proRecObj ) => proRecObj.tagArr.includes( actTagStr ) ); // What: Tagged Projects Branch. Why: A technology narrows the list. How: This keeps the projects whose tags include it.
 
 
@@ -209,15 +262,19 @@ function WorPagCom () : JSX.Element {
 					<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The hero's text sits in the page's centered column. How: This stacks the label, heading, and line. */ }
 
 
-						<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows My Work after a short rule. */ }
+						<span className={ cssModObj.herLabSpa }>{ /* What: Hero Label Span Element. Why: A small label names the page above its heading. How: This shows "My Work" after a short rule. */ }
+
+
 							<span className={ cssModObj.herLinSpa } />{ /* What: Hero Line Span Element. Why: A short rule leads into the label. How: This draws the rule. */ }
 
 							My Work
+
+
 						</span>
 
-						<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading names what it shows. How: This sets Projects and Case Studies over two lines, the second in the accent. */ }
+						<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading names what it shows. How: This sets "Projects &" and "Case Studies" over two lines, the second in the accent. */ }
 							Projects &<br />
-							<span className={ cssModObj.titAccSpa }>Case Studies</span>{ /* What: Title Accent Span Element. Why: The heading's second line carries the accent. How: This sets Case Studies in the dark blue. */ }
+							<span className={ cssModObj.titAccSpa }>Case Studies</span>{ /* What: Title Accent Span Element. Why: The heading's second line carries the accent. How: This sets "Case Studies" in the dark blue. */ }
 						</h1>
 
 						<p className={ cssModObj.herSubPar }>{ /* What: Hero Subtitle Paragraph Element. Why: A line under the heading says what the catalog holds. How: This describes the range of work. */ }
@@ -266,13 +323,17 @@ function WorPagCom () : JSX.Element {
 
 
 
-				<section className={ cssModObj.filBarSec }>{ /* What: Filter Bar Section Element. Why: A visitor can narrow the projects to one technology. How: This holds the label, the buttons, and the count. */ }
+				<section
+					ref={ filBarRef }
+
+					className={ cssModObj.filBarSec }
+				>{ /* What: Filter Bar Section Element. Why: A visitor can narrow the projects to one technology. How: This holds the label, the buttons, and the count, its height measured for the cards' links to clear. */ }
 
 
-					<div className={ cssModObj.filInnDiv }>{ /* What: Filter Inner Div Element. Why: The filter sits in the page's centered column. How: This lines up the label, the buttons, and the count. */ }
+					<div className={ cssModObj.filInnDiv }>{ /* What: Filter Inner Div Element. Why: The filter sits in the page's centered column. How: This lines up the label, the buttons, and the count, the buttons taking a line of their own under the label and the count at 640px and below. */ }
 
 
-						<span className={ cssModObj.filLabSpa }>{ /* What: Filter Label Span Element. Why: The row says what its buttons do. How: This shows Filter by tech after a funnel icon. */ }
+						<span className={ cssModObj.filLabSpa }>{ /* What: Filter Label Span Element. Why: The row says what its buttons do. How: This shows "Filter by tech" after a funnel icon. */ }
 
 
 							<svg
@@ -282,7 +343,7 @@ function WorPagCom () : JSX.Element {
 								strokeWidth='2'
 								viewBox='0 0 24 24'
 								width='14'
-							>{ /* What: Funnel Icon SVG Element. Why: A funnel is the familiar mark for a filter. How: This draws it at the label's size. */ }
+							>{ /* What: Funnel Icon SVG Element. Why: A funnel is the familiar mark for a filter. How: This draws it at 14px beside the label. */ }
 
 
 								<polygon points='22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3' />{ /* What: Funnel Polygon Element. Why: The funnel is a single outline. How: This traces it in the label's color. */ }
@@ -314,11 +375,11 @@ function WorPagCom () : JSX.Element {
 
 									className={ cssModObj.filOptBut }
 
-									data-filter-button-active={ actTagStr === tagNamStr || undefined }
+									aria-pressed={ actTagStr === tagNamStr } // What: Pressed State Attribute. Why: A screen reader should say which technology is chosen, and the module styles the chosen pill from the same state. How: This reads true while this pill's tag is the active one, and false otherwise.
 
-									onClick={ () => setActTagStr( tagNamStr ) }
+									onClick={ () => choFilFun( tagNamStr ) }
 									onFocus={ ( focEveObj ) => focEveObj.currentTarget.scrollIntoView( { block : 'nearest', inline : 'nearest' } ) } // What: Focus Scroll Handler. Why: A pill tabbed to past the row's edge would stay half hidden, since focusing it doesn't scroll the row. How: This scrolls the pill fully into the row, clear of the edge fades the row's scroll padding leaves room for.
-								>{ tagNamStr }</button> // What: Filter Option Button Element. Why: Each button narrows the grid to its technology. How: This sets the active tag, marked with data-filter-button-active while chosen, which its module styles.
+								>{ tagNamStr }</button> // What: Filter Option Button Element. Why: Each button narrows the grid to its technology. How: This sets the active tag, marked with aria-pressed while chosen, which its module styles.
 
 
 							))}
@@ -326,8 +387,22 @@ function WorPagCom () : JSX.Element {
 
 						</div>
 
-						<span className={ cssModObj.filCouSpa }>{ /* What: Filter Count Span Element. Why: The row says how many projects the filter leaves. How: This shows the count with project or projects to match. */ }
-							{ filProArr.length } project{ filProArr.length !== 1 ? 's' : '' }{ /* What: Project Count Text. Why: The count reads as a phrase. How: This adds an s for any count but one. */ }
+						<span
+							className={ cssModObj.filStaSpa }
+
+							role='status'
+						>{ /* What: Filter Status Span Element. Why: A screen reader should hear the new count when a filter changes it, and a live region is heard only once it's already in the page. How: This stays mounted around the count, so each new count replacing the old one is read out. */ }
+
+
+							<span
+								key={ actTagStr }
+
+								className={` ${ cssModObj.filCouSpa }   ${ filChoBoo ? cssModObj.filCouSpaArriving : '' } `}
+							>{ /* What: Filter Count Span Element. Why: The row says how many projects the filter leaves, and a new count should be seen arriving with its result. How: This shows the count with project or projects to match, keyed by the active tag so a new filter remounts it and replays its fade. */ }
+								{ filProArr.length } project{ filProArr.length !== 1 ? 's' : '' }{ /* What: Project Count Text. Why: The count reads as a phrase. How: This adds an s for any count but one. */ }
+							</span>
+
+
 						</span>
 
 
@@ -338,7 +413,11 @@ function WorPagCom () : JSX.Element {
 
 
 
-				<section className={ cssModObj.proLisSec }>{ /* What: Projects List Section Element. Why: The grid of cards is the page's main content. How: This holds the grid or the empty message. */ }
+				<section
+					ref={ proLisRef }
+
+					className={ cssModObj.proLisSec }
+				>{ /* What: Projects List Section Element. Why: The grid of cards is the page's main content. How: This holds the grid or the empty message, handing the cards' links the filter bar's height as their scroll margin. */ }
 
 
 					<div className={ cssModObj.proInnDiv }>{ /* What: Projects Inner Div Element. Why: The grid sits in the page's centered column. How: This holds the hidden heading and the grid. */ }
@@ -346,10 +425,16 @@ function WorPagCom () : JSX.Element {
 
 						<h2 className={ cssModObj.visHidHea }>Projects</h2>{ /* What: Visually Hidden Heading Element. Why: The cards' h3 titles need an h2 between them and the page's h1, and the hero already introduces the grid visually. How: This names the section for screen readers while staying out of sight. */ }
 
+
+
 						{ filProArr.length > 0 ? ( // What: Grid Or Empty Check. Why: A filter can leave nothing to show. How: This renders the grid when projects remain, or the empty message otherwise.
 
 
-							<div className={ cssModObj.proGriDiv }>{ /* What: Projects Grid Div Element. Why: The cards line up in columns. How: This lays out one card per filtered project. */ }
+							<div
+								key={ actTagStr }
+
+								className={` ${ cssModObj.proGriDiv }   ${ filChoBoo ? cssModObj.proGriDivArriving : '' } `}
+							>{ /* What: Projects Grid Div Element. Why: The cards line up in columns, and each filter's result should arrive as a whole. How: This lays out one card per filtered project, keyed by the active tag so a new filter remounts it and replays its fade. */ }
 
 
 								{ filProArr.map( ( proRecObj ) => ( // What: Project Card Map Call. Why: Every filtered project gets a card. How: This renders one per record.
@@ -412,7 +497,7 @@ function WorPagCom () : JSX.Element {
 
 
 
-						<div className={ cssModObj.prcSteDiv }>{ /* What: Process Steps Div Element. Why: The four steps read in order, with arrows between them where the layout runs in a line. How: This lays out each step and arrow in a row, a two-by-two grid without arrows on tablets, or a column with downward arrows on phones. */ }
+						<div className={ cssModObj.prcSteDiv }>{ /* What: Process Steps Div Element. Why: The four steps read in order, with arrows between them where the layout runs in a line. How: This lays out each step and arrow in a row, a two-by-two grid without arrows at 1,024px and below, or a column with downward arrows at 768px and below. */ }
 
 
 							{ PRC_STE_ARR.map( ( prcSteObj, steIndNum ) => ( // What: Process Step Map Call. Why: Every step shows in order. How: This renders each step, followed by an arrow unless it's the last.
@@ -500,7 +585,7 @@ function WorPagCom () : JSX.Element {
 
 // #region Exports
 
-export { WorPagCom }; // What: Named Exports. Why: The router's Work route renders this page. How: This exports WorPagCom.
+export { WorPagCom }; // What: Named Export. Why: The router's Work route renders this page. How: This exports WorPagCom.
 
 // #endregion Exports
 

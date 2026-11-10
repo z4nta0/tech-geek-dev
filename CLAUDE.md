@@ -72,15 +72,15 @@ Decided 2026-10-12 by the user, in the step 7 content review.
   Development, Backend Development, and Hosting & Maintenance, the fourth
   added after the greeting cards service was cut, so the four-column grid
   keeps even rows and the section covers a site from build to upkeep.
-- **Ko-fi** (decided by the user 2026-11-01): the README ends with the
-  shared Support section, and About closes with a white Support My Work band
-  inviting a tip, its "Buy Me a Coffee" button opening
-  https://ko-fi.com/techgeekdev in a new tab. The address is written into
-  `pages/about/about.tsx` (`TIP_URL_STR`) rather than read from a Netlify
-  environment variable as in ease-my-life, since it's public and the same in
-  every build. About was chosen over the shared footer, which would ask on
-  every page of all three sites, and over Contact, which is for paid work.
-  `tests/interaction/ko-fi.spec.ts` checks the link.
+- **Ko-fi** (decided by the user 2026-11-01): the README carries the shared
+  Support section directly above its License section, and About closes with a
+  white Support My Work band inviting a tip, its "Buy Me a Coffee" button
+  opening https://ko-fi.com/techgeekdev in a new tab. The address is written
+  into `pages/about/about.tsx` (`TIP_URL_STR`) rather than read from a
+  Netlify environment variable as in ease-my-life, since it's public and the
+  same in every build. About was chosen over the shared footer, which would
+  ask on every page of all three sites, and over Contact, which is for paid
+  work. `tests/interaction/ko-fi.spec.ts` checks the link.
 - **License** (decided by the user 2026-11-01, per the user-level Licenses
   rule): the code is source available under the PolyForm Noncommercial
   License 1.0.0 in `LICENSE.md`, whose note keeps the written content,
@@ -281,7 +281,7 @@ on `close-out`.
    2026-10-13 in fourteen commits.
    - **State and hooks**: the bar sets `data-nav-bar-scrolled`, the drawer
      `data-mobile-menu-open`, and Work's active filter pill
-     `data-filter-button-active`; the toggle's cross reads its own
+     `data-filter-button-active` (`aria-pressed` since 2026-11-10); the toggle's cross reads its own
      `aria-expanded` and the current link NavLink's `aria-current`. No
      JavaScript finds elements by class, so no hook attributes were needed.
      The closed drawer now turns invisible once its slide ends, which took
@@ -308,8 +308,9 @@ on `close-out`.
      (2026-10-13) they now play through `global()`, with the 404 drawing
      centered and Home's tipped square tilted through the `translate` and
      `rotate` properties so the turning transform can't undo them.
-   - **Reduced motion**: every animation and transition has a variant, html
-     stops smooth scrolling, and the reduced-motion check passes everywhere.
+   - **Reduced motion**: every animation and transition has a variant, the
+     `html` element stops smooth scrolling, and the reduced-motion check
+     passes everywhere.
      It also cleared Contact's "no visible focus indicator" failures: the
      check read the fields mid-transition.
    - **Global sheet**: `styles.css` holds only the tokens, the base element
@@ -475,16 +476,19 @@ on `close-out`.
       `robots.txt`, the sitemap, the Person and WebSite structured data, and
       the Open Graph and Twitter tags, checked by the SEO suite.
     - **Social preview card**: `npm run og-image` renders
-      `public/og-image.png` (52 KB) from `design/og-image/card.html`, the
+      `public/og-image-3.png` (52 KB) from `design/og-image/card.html`, the
       wordmark at the p05 size, since Syne is too wide to fit the center
-      square any larger.
+      square any larger. It was `og-image.png` until 2026-11-08, when its
+      mark's inner hexagon moved to the p02 reciprocal opacity and its side
+      hexagons' outline to the large border width, and each new name keeps
+      apps from showing their cached copy of the old card.
     - **Interaction feedback**: every control grows its focus ring in, presses
       in or dims, and has a hover; the footer and the project cards' overlay
       draw their rings in the bright orange, and the overlay also shows while a
       link in it has focus.
     - **Phone menu**: a scrim with the page inert, the four ways to close it,
       and the extras the user approved, arriving one after another: Home's
-      availability pill, the links in a labelled nav, Hire Me, the profile
+      availability pill, the links in a labeled nav, Hire Me, the profile
       tiles (from `ui/profile-links.ts`, which the footer shares), the email,
       and the tagline.
     - **Phone menu extras** (asked for by the user 2026-10-13, after the
@@ -584,9 +588,14 @@ on `close-out`.
       the package's artwork, copies it into `public/`, and draws the rest of
       the set from it.
     - **Installing it**: `package.json` names `github:z4nta0/techgeek-design#
-      v0.4.0` (moved from `v0.1.0` on 2026-10-17, bringing the bar's
+      v0.7.1` (moved from `v0.1.0` on 2026-10-17, bringing the bar's
       clearance for scrolled-to links, top and bottom, and its menu up to
-      1,024px). npm records the address over SSH, but falls back to HTTPS for
+      1,024px, then to `v0.6.0` on 2026-11-08, bringing the skip link, the
+      hook's own scroll restoration, and the menu closing on any link
+      click, to `v0.7.0` the same day, bringing the bar link underline's
+      leaving curve and a named easing token on every transition, and to
+      `v0.7.1` on 2026-11-10, bringing the footer icons' color-only hover
+      and the profile links' new tab note). npm records the address over SSH, but falls back to HTTPS for
       a public GitHub repository, which a clean install with SSH turned off
       and an empty cache confirmed, so Netlify fetches it without a key. While
       the package and this site change together, `npm install --install-links
@@ -597,46 +606,157 @@ on `close-out`.
       baseline unchanged, and the favicon set and social preview card
       re-rendered byte-identical.
 
+## Main content and skip link
+Decided 2026-11-07, in the audit. The shared bar opens every page with a skip
+link to `<main id='main'>` in `app.tsx`, which holds whichever page shows,
+between the bar and the footer. The skip link and the bar live in
+techgeek-design (from `v0.6.0`), and the main element here.
+
+## Audit interaction decisions
+Decided by the user 2026-11-08, in the audit.
+- **Card hover**: only card-like items lift (the user-level rule this
+  decision added). The project, service, value, and Work process step cards
+  are drawn surfaces and lift with the strong blue border; About's skill
+  groups and timeline entries sit straight on the page, and Home's stats are
+  cells of one band, so none of them take a hover look.
+- **Work's filter**: choosing a different technology fades the new count and
+  grid up about 6px over the p02 duration while the old ones go at once (the
+  count added at the user's choice later the same day). The page's load and
+  the chosen pill pressed again play nothing.
+- **Filter row edge fades**: each edge's fade offset is a registered length
+  (`@property`), so a fade eases in as the row scrolls away from that end and
+  eases out on reaching it.
+- **Contact's swaps arrive only**: the thank-you replacing the form, the form
+  coming back, and an error the next send clears each only arrive, the one
+  they replace going at once (the user-level rule this decision extended),
+  while the send button's label cross-fades between "Send Message" and
+  "Sending…" in one cell, keeping the button's width.
+- **The bar's scrolled look** is one state of the bar, so its background,
+  border, and shadow keep the decelerating curve both ways, like a morph
+  rather than indicators that arrive and leave.
+- **Contact's rendering baseline**: Chromium repaints the bottom corners of
+  one sidebar card a level apart between captures, so its desktop capture
+  masks those corners and checks every other pixel.
+
+## Second reset decisions
+Decided by the user 2026-11-10, answering the second reset's requirements
+audit.
+- **Contact's sidebar rows** (email, GitHub, LinkedIn) are tiles styled as
+  buttons, so they keep their 0.97 press scale.
+- **The project cards' overlay buttons** ("Live Site" and "GitHub") keep a
+  color-only hover, a decided exception to the button lift: during the
+  close-out WebKit stopped registering a press on a lifted one.
+- **Contact's sidebar cards and About's fact cards** are one-off information
+  panels, so they take no hover look.
+- **The footer's profile icons** hover by color only, with no lift, as links
+  in a row. The change shipped in techgeek-design's `v0.7.1`.
+- **Icons inside controls** all take the pointer pass-through, so a press on
+  one lands on its control. Measured that day, every engine registers a press
+  on an icon either way, so their comments give that plain reason rather than
+  the old WebKit claim.
+- **The 404 page** pads its top by the bar's height plus a spacing step, so
+  its number clears the bar on short screens.
+- **The images** are sized from frames measured in all three engines, three
+  times rounded down: the screenshots 1,995 by 1,122 and the portrait 727 by
+  963.
+- **The skip link's slide-in**: the reduced-motion Tab walk is enough beside
+  the navigation spec's whole-link-in-view check and the feedback probe's
+  hover with motion allowed.
+- **Work's filter state is announced** (R15): the chosen pill carries
+  `aria-pressed`, which its module styles, and the count sits in a
+  `role='status'` region that stays mounted while the count inside it
+  remounts for its fade, so each new count is read out.
+- **New tab links say so** (the user-level rule this decision added): the
+  project cards' "Live Site" and "GitHub" buttons and Contact's profile rows
+  end their names in a hidden "(opens in a new tab)", About's Ko-fi button
+  keeps its "(opens Ko-fi in a new tab)", and the package's menu tiles and
+  footer icons add it to their labels, from its `v0.7.1`.
+- **The reload test** also checks `history.scrollRestoration` reads `manual`,
+  since Chromium and WebKit restore a reload on their own.
+
 ## Test suites
 Added 2026-10-12, adapted from the-bernie-bears'. Playwright suites live in
 `tests/`, one project per suite and engine in `tests/playwright.config.ts`,
-which starts its own dev server on port 5194 (never the usual 5173, nor the
-sibling projects' 5190 through 5193) and stops it afterwards. Every suite
-runs in Chromium, Firefox, and WebKit. Results, screenshots, and traces go to
+which starts its own dev server on port 5194 (never the usual 5173, nor a
+sibling project's own port) and a production build served by `vite preview`
+on 5204 for the security suite, and stops both afterwards. Every suite runs
+in Chromium, Firefox, and WebKit, Chromium as full headless Chrome
+(`channel : 'chromium'`, added in the 2026-11-07 audit), per the user-level
+rule. Results, screenshots, and traces go to
 `tests/output/` (git-ignored); `npx playwright show-report
 tests/output/report` opens the HTML report. The states the suites visit
 (every route and the 404 page at 390px and 1,440px, plus the phone menu open
 at 390px) are listed in `tests/support/states.ts`, whose `opeStaFun` skips
 animations that repeat forever (the hero's turning shapes, the skills
-ticker, and the status dots) when waiting for the page to settle.
+ticker, and the status dots) when waiting for the page to settle. Work with
+GSAP chosen (`tests/support/work.ts`) and Contact after a refused empty send
+(`INV_STA_ARR` in `tests/support/contact.ts`), at both widths, join the axe
+scan, the scripted checks, and the policy check (decided by the user
+2026-11-10). Work's empty-filter message is left out, since every filter comes
+from a project's own tags and none can empty the grid.
 - `npm run test:accessibility`: the pre-commit accessibility scan. axe-core
   checks each state against WCAG 2.2 A and AA plus best practices
   (`axe.spec.ts`), and scripted checks (`scripted.spec.ts`) cover link and
-  button names, a Tab walk (order, traps, focus on screen, uncovered, and
-  visible), reflow at 320px, and motion under reduced motion. axe's "needs
-  review" results are printed and attached to the report rather than failing
-  the run.
+  button names (with every shown link that opens a new tab saying so), a Tab
+  walk (order, traps, focus on screen, uncovered, and visible, and, since
+  2026-11-10, every element from its first stop on that Tab should reach, so a
+  trap that cycles back or holds focus on one control fails), reflow at 320px,
+  and motion under reduced motion. axe's "needs review" results are printed
+  and attached to the report rather than failing the run, except `bypass`,
+  which fails, since every page opens with a skip link.
 - `npm run test:interaction`: how moving between pages and using controls
   behaves. `navigation.spec.ts` (from the-bernie-bears, added in step 11)
   checks that a footer link clicked at the bottom of each page opens the next
   page at its top, the current page's own bar link and a phone menu link do
-  the same, back returns near the earlier position, and the bar's Hire Me
-  switches to Contact without reloading the site.
-  `feedback.spec.ts` (from the-bernie-bears) checks the interaction feedback
-  rule on every state: each reachable link and button looks different
-  hovered than at rest and pressed than hovered, lists its focus ring's
-  outline in its transition, the first Tab stop grows its ring to full width,
-  and under reduced motion every control still changes but transitions
-  nothing. Real clicks are blocked while it probes.
+  the same, and the bar's "Hire Me" link switches to Contact without
+  reloading the site. Since the 2026-11-07 audit, when the shared package's scroll hook
+  took over restoring positions, it also checks that back, forward, and a
+  reload return to the exact earlier position, a fresh load opens at the top,
+  a hash wins over a saved position, malformed saved positions raise no
+  error, and the first Tab on every page reaches the skip link, which moves
+  focus to the main element without changing the address. Its pages fix
+  `Math.random`, since Home picks new featured projects each time it opens,
+  which changed its height on the way back.
+  `feedback.spec.ts` (from the-bernie-bears, its probe replaced in the
+  2026-11-07 audit, with its helpers in `tests/support/feedback.ts`) checks
+  the interaction feedback rule on every shared state and form result (the
+  filtered and refused-send states add no look of their own, since the chosen
+  filter's look is a toggled state it flips): each reachable link and
+  button looks different hovered than at rest, pressed than hovered, and
+  focused (through `focus( { focusVisible : true } )`) than unfocused, and
+  every property each of those changes, on it or anything inside it, has to
+  ease. The project, service, process step, and value cards, which lift
+  without being links, have to show and ease their hover, a project card's
+  overlay has to show and ease in when its first link takes keyboard focus,
+  and each toggled
+  state (the menu toggle's cross, the current bar and drawer links, the open
+  drawer and scrim, the scrolled bar, Work's chosen filter, and its filter
+  row's two edge fades) is flipped off, on, and
+  off by its attribute and has to ease both ways. The first Tab stop, now the
+  skip link, grows its ring to full width, and under reduced motion every
+  change stays but switches at once. Real clicks are blocked while it probes,
+  and each look is read once the element's animations have finished, since
+  WebKit's clock lags on Work's heavy cards. A full run takes about half an
+  hour across the three engines.
   `menu.spec.ts` (from the-bernie-bears) opens the phone menu on About and
   checks it lists the page links, both profiles, and the email over a scrim
   with the page inert, and that tapping the scrim, Escape (which returns focus
-  to the toggle), tapping the brand, and widening the screen each close it.
+  to the toggle), tapping the brand, and widening the screen each close it,
+  as does a Ctrl or Cmd click and a middle click on a page link, the
+  "Hire Me" link, and a profile, and a plain tap on a profile, each opening
+  a new tab.
   `form.spec.ts` (added in the close-out) answers the root's POST the way
   Netlify Forms does and checks that an empty form and a malformed email
   stay put and send nothing, while a filled-in form posts as form contact
   and shows the thank-you. It came from the audit finding that the form had
   turned the browser's validation off without checking anything itself.
+  `filter.spec.ts` (added 2026-11-08) chooses a filter on Work and checks the
+  count narrows and the new count and grid fade up, while the page's load and
+  a press of the chosen pill play nothing, and reduced motion shows the result
+  at once. Since 2026-11-10 it also walks back through the cards with
+  Shift+Tab and checks each card link lands below the sticky filter bar, which
+  WebKit's links didn't until Work handed the bar's measured height to them as
+  their scroll margin.
   `ko-fi.spec.ts` (added 2026-11-01) checks that About's Ko-fi button points
   at the Ko-fi page with `noopener` and `noreferrer` and opens it in a new
   tab, answering Ko-fi's address itself so the test never leaves the site.
@@ -668,9 +788,24 @@ ticker, and the status dots) when waiting for the page to settle.
   does (`head.spec.ts`): every page's own title, description, and canonical
   link, the 404 page's noindex, the tags swapping as a visitor moves between
   pages, the raw page carrying the home title and description for crawlers
-  that run no script, the Person and WebSite structured data against the
+  that run no script (read, with the social tags, from the production build
+  since 2026-11-10, since scrapers read the minified page), the Person and WebSite structured data against the
   footer's profiles and Contact's email, `robots.txt`, the sitemap, the
   social preview tags and card, and every icon the head links to.
+- `npm run test:security` (added in the 2026-11-07 audit, from
+  the-bernie-bears): the baseline security suite. `headers.spec.ts` reads
+  `public/_headers` for the policy (only the site's own origin, data images
+  on `img-src` for the select arrow, forms posting to itself) and the
+  hardening headers, searches the build for secrets, and runs `npm audit` on
+  the shipped dependencies (Chromium only, since files read the same in
+  every engine, skipping with a message when offline). `browser.spec.ts`
+  loads every state from the production build with the headers applied and
+  fails on any policy violation, or a new tab link without both `noopener`
+  and `noreferrer`. One violation is filtered out, in WebKit only (decided by
+  the user 2026-11-08): "style-src-attr blocked inline on select", which
+  WebKit reports for every `<select>` from its own native control rather than
+  anything the site sets. The fallback rule in `public/_redirects` is checked
+  too, since the dev and preview servers fall back to the app on their own. No browser key ships, so none is allowed.
 - `npm test` runs every suite.
 - **Flakes**: before step 8 the infinite animations kept moving while the
   suite captured, so a few states failed now and then. With every animation

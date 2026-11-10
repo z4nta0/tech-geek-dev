@@ -16,8 +16,10 @@ import { mkdirSync     } from 'node:fs';          // What: Make Directory Sync. 
  *
  * @summary
  * Takes a fresh screenshot of every project's live site for the project
- * cards. Each site opens at a 1,440 by 810 window, the cards' 16:9 shape, with
- * reduced motion so no entrance is caught partway, and is photographed once
+ * cards. Each site opens at a 1,440 by 810 window, the cards' 16:9 shape, at
+ * twice the pixel density, so render.mts has enough pixels to write each card
+ * at three times its shown size, with reduced motion so no entrance is caught
+ * partway, and is photographed once
  * its fonts and network have settled. The screenshots land in originals/,
  * which git ignores, under the names render.mts reads, so npm run
  * screenshots runs this and then render.mts, which scales and encodes them
@@ -35,6 +37,12 @@ import { mkdirSync     } from 'node:fs';          // What: Make Directory Sync. 
 
 // #region Constants
 
+const ORI_DIR_STR = fileURLToPath( new URL( './originals/', import.meta.url ) ); // What: Originals Directory String. Why: The screenshots are the originals render.mts encodes, kept outside git. How: This resolves the originals folder beside this script.
+const SCA_FAC_NUM = 2;                                                           // What: Scale Factor Number. Why: Each card's screenshot is written at three times its shown size, which a 1,440px capture is too small for. How: This captures every site at twice its pixel density.
+const SET_WAI_NUM = 1500;                                                        // What: Settle Wait Number. Why: A site may still be laying out or loading images just after its network goes quiet. How: Each capture waits this many milliseconds more.
+
+
+
 type SitRecTyp = { disStr? : string, namStr : string, urlStr : string }; // What: Site Record Type. Why: Every capture needs the same two facts, and a site that greets a first visit with a dialog needs a third. How: This names the project's file name, its live address, and any button to dismiss first.
 
 // #region SIT_REC_ARR
@@ -45,11 +53,14 @@ type SitRecTyp = { disStr? : string, namStr : string, urlStr : string }; // What
  * @summary
  * Every project the cards show, matching src/ui/projects.ts. Every row
  * shares the SitRecTyp shape, so its fields carry no comments of their own:
+ *
  * - `disStr` (String, optional): Dismiss String, the name of a button the
  *   site's first visit shows over its content, clicked before the capture:
- *   Ease My Life's welcome dialog, dismissed with I’ll explore myself.
+ *   Ease My Life's welcome dialog, dismissed with "I’ll explore myself".
+ *
  * - `namStr` (String): Name String, the project's file name, saved as
  *   originals/<name>-website.png, the original render.mts reads.
+ *
  * - `urlStr` (String): URL String, the project's live site.
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -75,10 +86,8 @@ const SIT_REC_ARR : SitRecTyp[] = [ // What: Site Record Array. Why: The script 
 
 
 
-const ORI_DIR_STR = fileURLToPath( new URL( './originals/', import.meta.url ) ); // What: Originals Directory String. Why: The screenshots are the originals render.mts encodes, kept outside git. How: This resolves the originals folder beside this script.
-const SET_WAI_NUM = 1500;                                                        // What: Settle Wait Number. Why: A site may still be laying out or loading images just after its network goes quiet. How: Each capture waits this many milliseconds more.
-const VIE_HEI_NUM = 810;                                                         // What: Viewport Height Number. Why: The cards show a 16:9 frame. How: This is 1,440 times nine sixteenths.
-const VIE_WID_NUM = 1440;                                                        // What: Viewport Width Number. Why: A common laptop width shows each site's desktop layout. How: Every site opens this wide.
+const VIE_HEI_NUM = 810;  // What: Viewport Height Number. Why: The cards show a 16:9 frame. How: This is 1,440 times nine sixteenths.
+const VIE_WID_NUM = 1440; // What: Viewport Width Number. Why: A common laptop width shows each site's desktop layout. How: Every site opens this wide.
 
 // #endregion Constants
 
@@ -96,11 +105,12 @@ const broInsObj = await chromium.launch(); // What: Browser Instance Object. Why
 for ( const sitRecObj of SIT_REC_ARR ) { // What: Site Record Loop. Why: Each project is captured the same way. How: This opens, settles, photographs, and closes one site per pass.
 
 
-	const capPagObj = await broInsObj.newPage({ // What: Capture Page Object. Why: Each site needs a fresh page at the cards' shape, with its entrances finished. How: This opens one at 1,440 by 810 with reduced motion.
+	const capPagObj = await broInsObj.newPage({ // What: Capture Page Object. Why: Each site needs a fresh page at the cards' shape, with its entrances finished. How: This opens one at 1,440 by 810, at twice the pixel density, with reduced motion.
 
 
-		reducedMotion : 'reduce',                                     // What: Reduced Motion. Why: An entrance caught partway would spoil the screenshot. How: This asks the site to skip its motion.
-		viewport      : { height : VIE_HEI_NUM, width : VIE_WID_NUM } // What: Viewport. Why: The cards show a 16:9 frame. How: This opens the page at 1,440 by 810.
+		deviceScaleFactor : SCA_FAC_NUM,                                  // What: Device Scale Factor. Why: A card's screenshot is written at three times its shown size, more pixels than a 1,440px capture holds. How: This draws the page at twice the pixel density, a 2,880 by 1,620 capture.
+		reducedMotion     : 'reduce',                                     // What: Reduced Motion. Why: An entrance caught partway would spoil the screenshot. How: This asks the site to skip its motion.
+		viewport          : { height : VIE_HEI_NUM, width : VIE_WID_NUM } // What: Viewport. Why: The cards show a 16:9 frame. How: This opens the page at 1,440 by 810.
 
 
 	});
@@ -108,7 +118,7 @@ for ( const sitRecObj of SIT_REC_ARR ) { // What: Site Record Loop. Why: Each pr
 
 	await capPagObj.goto( sitRecObj.urlStr, { waitUntil : 'networkidle' } ); // What: Site Navigation Call. Why: The screenshot should show the site fully loaded. How: This opens it and waits until its network goes quiet.
 
-	await capPagObj.evaluate( () => document.fonts.ready ); // What: Fonts Ready Wait. Why: A screenshot taken before the fonts arrive shows fallback text. How: This waits for every font to load.
+	await capPagObj.evaluate( () => document.fonts.ready ); // What: Fonts Ready Wait. Why: A screenshot taken before the fonts arrive shows fallback text. How: This waits for the fonts the page uses to load.
 
 	await capPagObj.waitForTimeout( SET_WAI_NUM ); // What: Settle Wait Call. Why: Late images and layout should land first. How: This waits a little longer.
 
@@ -136,7 +146,6 @@ for ( const sitRecObj of SIT_REC_ARR ) { // What: Site Record Loop. Why: Each pr
 	});
 
 	await capPagObj.close(); // What: Page Close Call. Why: Each site gets a fresh page. How: This closes the finished one.
-
 
 	console.log( `Captured ${ sitRecObj.urlStr }` ); // What: Progress Log Call. Why: A slow site shouldn't look like a hang. How: This prints each site as it finishes.
 

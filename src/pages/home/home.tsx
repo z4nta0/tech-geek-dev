@@ -3,15 +3,15 @@
 
 // #region Imports
 
-import cssModObj from './home.module.css'; // What: CSS Module Object. Why: The home page's own hero, stats, featured projects, services, and banner styles live in its own module. How: This maps each class name in home.module.css to its hashed module class.
+import cssModObj from './home.module.css'; // What: CSS Module Object. Why: The home page's own styles live in its own module. How: This maps each class name in home.module.css to its hashed module class.
 
 
 import { CLI_COU_NUM } from '../../ui/projects.ts';        // What: Client Count Number. Why: The stats count the clients served. How: This is the count taken from the project list.
-import { GeoBacCom   } from '../../ui/geo-bg.tsx';         // What: Geometric Background Component. Why: The hero and the services sit over faint patterns. How: This draws the circuit and the dots.
+import { GeoBacCom   } from '../../ui/geo-bg.tsx';         // What: Geometric Background Component. Why: Some sections, such as the hero, sit over faint patterns. How: This draws each section's pattern.
 import { Link        } from 'react-router';                // What: Link. Why: The page's buttons move between routes without a full page load. How: This renders each one as a router link.
 import { PRO_REC_ARR } from '../../ui/projects.ts';        // What: Project Record Array. Why: The featured section picks its projects from the featured ones. How: This is the list it filters.
 import { ProCarCom   } from '../../ui/project-card.tsx';   // What: Project Card Component. Why: Each featured project shows as a card. How: This renders one card per project.
-import { SecHeaCom   } from '../../ui/section-header.tsx'; // What: Section Header Component. Why: The featured and services sections open with a heading block. How: This renders each label, title, and subtitle.
+import { SecHeaCom   } from '../../ui/section-header.tsx'; // What: Section Header Component. Why: Several of the page's sections, such as the services, open with a heading block. How: This renders each label, title, and subtitle.
 import { SHI_COU_NUM } from '../../ui/projects.ts';        // What: Shipped Count Number. Why: The stats count the projects shipped. How: This is the count taken from the project list.
 import { useState    } from 'react';                       // What: Use State. Why: The featured projects picked on arrival have to stay put while the page is open. How: This holds the pick made when the page mounts.
 
@@ -26,12 +26,12 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * home.tsx = Home
  *
  * @summary
- * The home page: a hero introducing z4nta0 beside a code window, with a
- * ticker of the main technologies; a strip of stats; four featured projects
- * picked at random on each visit; the services offered; and a closing
- * banner inviting a visitor to start a project. The projects shipped and
- * clients served stats are counted from the project list, so they grow as
- * projects are added.
+ * The home page: a hero introducing z4nta0 beside a code window, which stacks
+ * above it at 768px and below, with a ticker of the main technologies; a strip
+ * of stats; four featured projects picked at random on each visit; the
+ * services offered; and a closing banner inviting a visitor to start a
+ * project. The projects shipped and clients served stats are counted from the
+ * project list, so they grow as projects are added.
  *
  * Sections:
  *  - Constants
@@ -71,8 +71,11 @@ const COD_WIN_STR = `const developer = {
  * @summary
  * The services the services section offers, in the order they show. Every
  * row shares one shape, so its fields carry no comments of their own:
+ *
  * - `desStr` (String): Description String, the sentence under the title.
+ *
  * - `icoEle` (Element): Icon Element, the service's line icon.
+ *
  * - `titStr` (String): Title String, the service's name, also the card's
  *   React key.
  *
@@ -293,9 +296,6 @@ const STA_REC_ARR = [ // What: Stat Record Array. Why: The stats strip shows the
 
 
 const TIC_COP_NUM = 4; // What: Ticker Copy Number. Why: The strip has to stay full while it slides one set's width, and one set is about 415px to 428px, depending on the browser, against a pitch column of up to about 927px, so it needs the column plus one set, a little over three sets. How: This repeats the skill list four times, and the strip's keyframe slides it by a quarter of its width, so the two have to change together.
-
-
-
 const TIC_ITE_ARR = Array.from( Array( TIC_COP_NUM ).keys() ).flatMap( ( copIndNum ) => SKI_TIC_ARR.map( ( skiNamStr ) => ( { copIndNum, skiNamStr } ) ) ); // What: Ticker Item Array. Why: The strip shows the skill list several times over so its loop has no seam. How: This lists every skill once per copy, each with its copy's index, which the strip uses to key the items and hide the repeats from screen readers.
 
 // #endregion Constants
@@ -371,10 +371,10 @@ function ranPicFun< T > ( souRecArr : readonly T[], picCouNum : number ) : T[] {
  * @summary
  * Renders the home page. The hero pairs the pitch, its two buttons, and a
  * ticker that scrolls SKI_TIC_ARR four times over, so the loop has no seam,
- * with a code window and a floating badge, all decoration hidden from screen
- * readers. Below it come the stats from STA_REC_ARR, four featured projects
- * picked at random with a link to the rest, a card per service in
- * SER_CAR_ARR, and a banner leading to the Contact page.
+ * with a code window and a floating badge, both hidden from screen readers as
+ * decoration. Below it come the stats from STA_REC_ARR, four featured projects
+ * picked at random with a link to the rest, a card per service in SER_CAR_ARR,
+ * and a banner leading to the Contact page.
  *
  * It also sets the page's canonical address, which React moves into the
  * document head.
@@ -432,18 +432,18 @@ function HomPagCom () : JSX.Element {
 					>{ /* What: Shape Layer Div Element. Why: Slowly turning shapes give the hero motion. How: This holds them, hidden from screen readers as decoration. */ }
 
 
-						<div className={` ${ cssModObj.herShaDiv }   ${ cssModObj.herShaDivHexagon } `} />{ /* What: Hero Shape Div Element. Why: A hexagon echoes the site's mark. How: This draws it turning slowly. */ }
+						<div className={` ${ cssModObj.herShaDiv }   ${ cssModObj.herShaDivHexagon } `} />{ /* What: Hero Shape Div Hexagon Element. Why: A hexagon echoes the site's mark. How: This draws it turning slowly. */ }
 
-						<div className={` ${ cssModObj.herShaDiv }   ${ cssModObj.herShaDivCircle } `} />{ /* What: Hero Shape Div Element. Why: A circle varies the shapes. How: This draws it turning slowly. */ }
+						<div className={` ${ cssModObj.herShaDiv }   ${ cssModObj.herShaDivCircle } `} />{ /* What: Hero Shape Div Circle Element. Why: A circle varies the shapes. How: This draws it turning slowly. */ }
 
-						<div className={` ${ cssModObj.herShaDiv }   ${ cssModObj.herShaDivSquare } `} />{ /* What: Hero Shape Div Element. Why: A square varies the shapes. How: This draws it turning slowly. */ }
+						<div className={` ${ cssModObj.herShaDiv }   ${ cssModObj.herShaDivSquare } `} />{ /* What: Hero Shape Div Square Element. Why: A square varies the shapes. How: This draws it turning slowly. */ }
 
 
 					</div>
 
 
 
-					<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The pitch and the code window sit side by side in the page's centered column. How: This lays out the two columns, stacking them on a phone with the code window first. */ }
+					<div className={ cssModObj.herInnDiv }>{ /* What: Hero Inner Div Element. Why: The pitch and the code window sit side by side in the page's centered column. How: This lays out the two columns, stacking them at 768px and below with the code window first. */ }
 
 
 						<div className={ cssModObj.herConDiv }>{ /* What: Hero Content Div Element. Why: The pitch reads as one column. How: This stacks the label, heading, line, buttons, and ticker. */ }
@@ -463,9 +463,9 @@ function HomPagCom () : JSX.Element {
 
 							</div>
 
-							<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up what z4nta0 does. How: This sets I Build Digital Experiences over two lines, with Digital in the accent and a closing dot. */ }
+							<h1 className={ cssModObj.herTitHea }>{ /* What: Hero Title Heading Element. Why: The page's heading sums up what z4nta0 does. How: This sets "I Build Digital Experiences", breaking the line after "Digital", with "Digital" in the accent and a closing dot. */ }
 								I Build <span className={ cssModObj.titAccSpa }>Digital</span>
-								<br />{ /* What: Title Break Element. Why: The heading sets Experiences on a line of its own. How: This breaks the line after Digital. */ }
+								<br />{ /* What: Title Break Element. Why: The heading sets "Experiences" on a line of its own. How: This breaks the line after "Digital". */ }
 								Experiences
 								<span className={ cssModObj.titDotSpa }>.</span>{ /* What: Title Dot Span Element. Why: The heading ends on an orange full stop. How: This shows the dot in the dark accent. */ }
 							</h1>
@@ -476,26 +476,30 @@ function HomPagCom () : JSX.Element {
 								pixel-perfect frontends.
 							</p>
 
-							<div className={ cssModObj.herActDiv }>{ /* What: Hero Actions Div Element. Why: The pitch ends with the two next steps. How: This sets the buttons side by side. */ }
+
+
+							<div className={ cssModObj.herActDiv }>{ /* What: Hero Actions Div Element. Why: The pitch ends with the two next steps. How: This sets the buttons side by side, wrapping onto two lines at about 490px wide and below, and from about 769px to 820px, where the pitch sits beside the code window. */ }
 
 
 								<Link
 									className={ cssModObj.butPriAnc }
 
 									to='/work'
-								>{ /* What: View My Work Link. Why: Most visitors want to see the work first. How: This routes to the Work page with an arrow. */ }
+								>{ /* What: Button Primary Anchor Link. Why: Most visitors want to see the work first. How: This routes to the Work page with an arrow. */ }
 
 
 									View My Work
 
 									<svg
+										className={ cssModObj.butArrSvg }
+
 										fill='none'
 										height='16'
 										stroke='currentColor'
 										strokeWidth='2.5'
 										viewBox='0 0 24 24'
 										width='16'
-									>{ /* What: Arrow SVG Element. Why: An arrow invites the click. How: This draws it after the label. */ }
+									>{ /* What: Button Arrow SVG Element. Why: An arrow invites the click. How: This draws it after the label, passing a press through to the link. */ }
 
 
 										<path d='M5 12h14M12 5l7 7-7 7' />{ /* What: Arrow Path Element. Why: The arrow is a shaft and a head. How: This traces both in one stroke. */ }
@@ -512,10 +516,11 @@ function HomPagCom () : JSX.Element {
 									className={ cssModObj.butSecAnc }
 
 									to='/contact'
-								>Get In Touch</Link>{ /* What: Get In Touch Link. Why: A visitor ready to talk can go straight to Contact. How: This routes there as the secondary button. */ }
+								>Get In Touch</Link>{ /* What: Button Secondary Anchor Link. Why: A visitor ready to talk can go straight to Contact. How: This routes there as the secondary button. */ }
 
 
 							</div>
+
 
 
 							<div className={ cssModObj.skiTicDiv }>{ /* What: Skills Ticker Div Element. Why: The main technologies scroll past under the pitch. How: This clips the scrolling row. */ }
@@ -562,13 +567,13 @@ function HomPagCom () : JSX.Element {
 								<div className={ cssModObj.winBarDiv }>{ /* What: Window Bar Div Element. Why: A title bar makes the window read as an editor. How: This shows three dots and the file name. */ }
 
 
-									<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaFirst } `} />{ /* What: Window Dot Span Element. Why: Editor windows have three colored dots. How: This draws the first. */ }
+									<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaFirst } `} />{ /* What: Window Dot Span First Element. Why: Editor windows have three colored dots. How: This draws the first. */ }
 
-									<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaSecond } `} />{ /* What: Window Dot Span Element. Why: Editor windows have three colored dots. How: This draws the second. */ }
+									<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaSecond } `} />{ /* What: Window Dot Span Second Element. Why: Editor windows have three colored dots. How: This draws the second. */ }
 
-									<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaThird } `} />{ /* What: Window Dot Span Element. Why: Editor windows have three colored dots. How: This draws the third. */ }
+									<span className={` ${ cssModObj.winDotSpa }   ${ cssModObj.winDotSpaThird } `} />{ /* What: Window Dot Span Third Element. Why: Editor windows have three colored dots. How: This draws the third. */ }
 
-									<span className={ cssModObj.winTitSpa }>techgeek.dev.ts</span>{ /* What: Window Title Span Element. Why: The window names its file after the site. How: This shows techgeek.dev.ts. */ }
+									<span className={ cssModObj.winTitSpa }>techgeek.dev.ts</span>{ /* What: Window Title Span Element. Why: The window names its file after the site. How: This shows "techgeek.dev.ts". */ }
 
 
 								</div>
@@ -671,7 +676,7 @@ function HomPagCom () : JSX.Element {
 
 									<div className={ cssModObj.badValDiv }>100%</div>{ /* What: Badge Value Div Element. Why: The figure is the badge's point. How: This shows one hundred percent. */ }
 
-									<div className={ cssModObj.badLabDiv }>Source Available</div>{ /* What: Badge Label Div Element. Why: The label says what the figure counts. How: This shows Source Available. */ }
+									<div className={ cssModObj.badLabDiv }>Source Available</div>{ /* What: Badge Label Div Element. Why: The label says what the figure counts. How: This shows "Source Available". */ }
 
 
 								</div>
@@ -700,7 +705,7 @@ function HomPagCom () : JSX.Element {
 					<div className={ cssModObj.staInnDiv }>{ /* What: Stats Inner Div Element. Why: The strip sits in the page's centered column. How: This holds the grid. */ }
 
 
-						<div className={ cssModObj.staGriDiv }>{ /* What: Stats Grid Div Element. Why: The figures line up in a row, or two by two below a desktop. How: This lays out one item per stat. */ }
+						<div className={ cssModObj.staGriDiv }>{ /* What: Stats Grid Div Element. Why: The figures line up in a row, or two by two at 1,024px and below. How: This lays out one item per stat. */ }
 
 
 							{ STA_REC_ARR.map( ( staRecObj ) => ( // What: Stat Map Call. Why: Every stat shows. How: This renders one item per row.
@@ -740,7 +745,7 @@ function HomPagCom () : JSX.Element {
 					<div className={ cssModObj.feaInnDiv }>{ /* What: Featured Inner Div Element. Why: The section sits in the page's centered column. How: This stacks the heading row and the grid. */ }
 
 
-						<div className={ cssModObj.feaHeaDiv }>{ /* What: Featured Header Div Element. Why: The heading and the link to every project share a row. How: This sets them side by side. */ }
+						<div className={ cssModObj.feaHeaDiv }>{ /* What: Featured Header Div Element. Why: The heading and the link to every project share a row. How: This sets them side by side, stacking the link under the heading at 640px and below. */ }
 
 
 							<SecHeaCom
@@ -755,7 +760,7 @@ function HomPagCom () : JSX.Element {
 								className={ cssModObj.vieAllAnc }
 
 								to='/work'
-							>{ /* What: View All Link. Why: Home shows only four projects, so the rest are a click away. How: This routes to the Work page with an arrow. */ }
+							>{ /* What: View All Anchor Link. Why: Home shows only four projects, so the rest are a click away. How: This routes to the Work page with an arrow. */ }
 
 
 								View all projects
@@ -782,6 +787,8 @@ function HomPagCom () : JSX.Element {
 
 
 						</div>
+
+
 
 						<div className={ cssModObj.proGriDiv }>{ /* What: Projects Grid Div Element. Why: The featured cards line up in columns. How: This lays out one card per featured project. */ }
 
@@ -832,7 +839,7 @@ function HomPagCom () : JSX.Element {
 
 
 
-						<div className={ cssModObj.serGriDiv }>{ /* What: Service Grid Div Element. Why: The service cards line up in columns. How: This lays out one card per service. */ }
+						<div className={ cssModObj.serGriDiv }>{ /* What: Services Grid Div Element. Why: The service cards line up in columns. How: This lays out one card per service. */ }
 
 
 							{ SER_CAR_ARR.map( ( serCarObj ) => ( // What: Service Card Map Call. Why: Every service gets a card. How: This renders one per row.
@@ -871,7 +878,7 @@ function HomPagCom () : JSX.Element {
 				<section className={ cssModObj.homCtaSec }>{ /* What: Home Call-To-Action Section Element. Why: The page ends by inviting a visitor to start a project. How: This holds the banner's line and button. */ }
 
 
-					<div className={ cssModObj.ctaInnDiv }>{ /* What: Call-To-Action Inner Div Element. Why: The banner sits in the page's centered column. How: This sets the text and the button side by side, stacking them below a desktop. */ }
+					<div className={ cssModObj.ctaInnDiv }>{ /* What: Call-To-Action Inner Div Element. Why: The banner sits in the page's centered column. How: This sets the text and the button side by side, stacking them at 1,024px and below. */ }
 
 
 						<div>{ /* What: Banner Text Div Element. Why: The label and heading read as one. How: This stacks them. */ }
@@ -884,6 +891,8 @@ function HomPagCom () : JSX.Element {
 
 						</div>
 
+
+
 						<div className={ cssModObj.ctaActDiv }>{ /* What: Call-To-Action Actions Div Element. Why: The banner's button sits apart from its text. How: This holds the button. */ }
 
 
@@ -891,7 +900,7 @@ function HomPagCom () : JSX.Element {
 								className={ cssModObj.ctaStaAnc }
 
 								to='/contact'
-							>Start a Project</Link>{ /* What: Start A Project Link. Why: A visitor ready to start goes straight to Contact. How: This routes there as the banner's button. */ }
+							>Start a Project</Link>{ /* What: Call-To-Action Start Anchor Link. Why: A visitor ready to start goes straight to Contact. How: This routes there as the banner's button. */ }
 
 
 						</div>
@@ -922,7 +931,7 @@ function HomPagCom () : JSX.Element {
 
 // #region Exports
 
-export { HomPagCom }; // What: Named Exports. Why: The router's home route renders this page. How: This exports HomPagCom.
+export { HomPagCom }; // What: Named Export. Why: The router's home route renders this page. How: This exports HomPagCom.
 
 // #endregion Exports
 

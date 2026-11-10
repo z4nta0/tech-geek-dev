@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './project-card.module.css'; // What: CSS Module Object. Why: The card's own layout, overlay, and badge styles live in its own module. How: This maps each class name in project-card.module.css to its hashed module class.
+import cssModObj from './project-card.module.css'; // What: CSS Module Object. Why: The card's own styles live in its own module. How: This maps each class name in project-card.module.css to its hashed module class.
 
 
 import { TagLabCom } from './tag.tsx'; // What: Tag Label Component. Why: The card lists the project's technologies as tags. How: This renders one pill per technology.
@@ -20,11 +20,11 @@ import type { ProRecTyp } from './projects.ts'; // What: Project Record Type. Wh
  * project-card.tsx = Project Card
  *
  * @summary
- * The card that shows one project on Home and the Work page: a screenshot of
- * the site with its year in a badge, an overlay that reveals links to the
- * live site and the source on hover or keyboard focus, then the project's
- * name, description, and technologies, finished with a small orange corner
- * accent.
+ * The card that shows one project on the pages that list projects: a
+ * screenshot of the site with its year in a badge, an overlay that reveals
+ * links to the live site and the source on hover or keyboard focus, then the
+ * project's name, description, and technologies, finished with a small orange
+ * corner accent.
  *
  * Sections:
  *  - Constants
@@ -39,8 +39,8 @@ import type { ProRecTyp } from './projects.ts'; // What: Project Record Type. Wh
 
 // #region Constants
 
-const SCR_HEI_NUM = 752;  // What: Screenshot Height Number. Why: The screenshot's img needs its intrinsic size so the card doesn't shift while it loads. How: This is the height every screenshot is written at, the project box in design/images/render.mts.
-const SCR_WID_NUM = 1336; // What: Screenshot Width Number. Why: The screenshot's img needs its intrinsic size so the card doesn't shift while it loads. How: This is the width every screenshot is written at, the project box in design/images/render.mts.
+const SCR_HEI_NUM = 1122; // What: Screenshot Height Number. Why: The screenshot's img needs its intrinsic size so the card doesn't shift while it loads. How: This is the height every screenshot is written at, the project box in design/images/render.mts.
+const SCR_WID_NUM = 1995; // What: Screenshot Width Number. Why: The screenshot's img needs its intrinsic size so the card doesn't shift while it loads. How: This is the width every screenshot is written at, the project box in design/images/render.mts.
 
 // #endregion Constants
 
@@ -101,6 +101,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 				/>{ /* What: Project Screenshot Image Element. Why: A screenshot shows what the project looks like. How: This loads the record's screenshot lazily, named by the project's title. */ }
 
 
+
 				<div className={ cssModObj.imaOveDiv }>{ /* What: Image Overlay Div Element. Why: The project's links appear over the screenshot on hover. How: This covers the frame and holds the links. */ }
 
 
@@ -114,9 +115,9 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 								className={ cssModObj.oveButAnc }
 
 								href={ proRecObj.livStr }
-								rel='noreferrer'
+								rel='noopener noreferrer'
 								target='_blank'
-							>{ /* What: Overlay Button Anchor Element. Why: A visitor can open the finished site. How: This links to the live site in a new tab. */ }
+							>{ /* What: Overlay Button Anchor Element. Why: A visitor can open the finished site. How: This links to the live site in a new tab, telling screen reader users so through a visually hidden note. */ }
 
 
 								<svg
@@ -128,7 +129,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 									strokeWidth='2.5'
 									viewBox='0 0 24 24'
 									width='14'
-								>{ /* What: Overlay Icon SVG Element. Why: An arrow out of a box marks the live site link as one that leaves the site. How: This draws the icon at the link text's size, letting presses pass through to the link. */ }
+								>{ /* What: Overlay Icon SVG Element. Why: An arrow out of a box marks the live site link as one that leaves the site. How: This draws the 14px icon beside the link text, letting presses pass through to the link. */ }
 
 
 									<path d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6' />{ /* What: Icon Box Path Element. Why: The open box is the icon's frame. How: This traces the box with its top right corner open. */ }
@@ -145,7 +146,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 
 								</svg>
 
-								Live Site
+								Live Site<span className={ cssModObj.visHidSpa }> (opens in a new tab)</span>
 
 
 							</a>
@@ -161,9 +162,9 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 								className={` ${ cssModObj.oveButAnc }   ${ cssModObj.oveButAncGhost } `}
 
 								href={ proRecObj.gitStr }
-								rel='noreferrer'
+								rel='noopener noreferrer'
 								target='_blank'
-							>{ /* What: Overlay Button Anchor Element. Why: A visitor can read the project's source. How: This links to its repository in a new tab, styled as the lighter ghost button. */ }
+							>{ /* What: Overlay Button Anchor Ghost Element. Why: A visitor can read the project's source. How: This links to its repository in a new tab, telling screen reader users so through a visually hidden note, styled as the lighter ghost button. */ }
 
 
 								<svg
@@ -173,7 +174,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 									height='14'
 									viewBox='0 0 24 24'
 									width='14'
-								>{ /* What: Overlay Icon SVG Element. Why: GitHub's mark tells a visitor where the GitHub link goes. How: This draws the mark at the link text's size, letting presses pass through to the link. */ }
+								>{ /* What: Overlay Icon SVG Element. Why: GitHub's mark tells a visitor where the GitHub link goes. How: This draws the 14px mark beside the link text, letting presses pass through to the link. */ }
 
 
 									<path d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z' />{ /* What: GitHub Mark Path Element. Why: The mark is GitHub's cat silhouette. How: This traces it in the link's text color. */ }
@@ -181,7 +182,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 
 								</svg>
 
-								GitHub
+								GitHub<span className={ cssModObj.visHidSpa }> (opens in a new tab)</span>
 
 
 							</a>
@@ -194,6 +195,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 
 
 				</div>
+
 
 
 				<div className={ cssModObj.yeaBadDiv }>{ proRecObj.yeaNum }</div>{ /* What: Year Badge Div Element. Why: The badge shows when the project was built. How: This prints the record's year over the screenshot's corner. */ }
@@ -209,6 +211,8 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 				<h3 className={ cssModObj.proTitHea }>{ proRecObj.titStr }</h3>{ /* What: Project Title Heading Element. Why: The card names its project. How: This shows the record's title as an h3. */ }
 
 				<p className={ cssModObj.proDesPar }>{ proRecObj.desStr }</p>{ /* What: Project Description Paragraph Element. Why: The card says what the project is. How: This shows the record's description. */ }
+
+
 
 				<div className={ cssModObj.proTagDiv }>{ /* What: Project Tags Div Element. Why: The project's technologies read as one row of pills. How: This wraps the tags. */ }
 
@@ -230,6 +234,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 
 
 			</div>
+
 
 
 			<svg
@@ -270,7 +275,7 @@ function ProCarCom ( { isaFeaBoo = false, proRecObj } : PccProTyp ) : JSX.Elemen
 
 // #region Exports
 
-export { ProCarCom }; // What: Named Exports. Why: Home and the Work page show projects as cards. How: This exports ProCarCom.
+export { ProCarCom }; // What: Named Export. Why: Pages that list projects show each as a card. How: This exports ProCarCom.
 
 // #endregion Exports
 

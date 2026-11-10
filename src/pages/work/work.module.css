@@ -10,14 +10,14 @@
  * blue accent, and a line in the secondary text color, with two faint
  * triangles in the corner. Below it a white filter bar sticks under the bar as
  * the page scrolls, holding the label, a sideways-scrolling row of pill
- * buttons (the active one marked with data-filter-button-active), and the
- * count. The projects grid steps from three columns to two to one, and the
- * closing process section lays its four step cards in a row with arrows
- * between them, forming a two-by-two grid without arrows at 1,024px and below
- * and stacking with turned arrows at 768px and below. The page's centered
- * columns take the shared container values, and its sections the shared
- * section padding, merged into their own rules. Everything that moves holds
- * still under reduced motion.
+ * buttons (the chosen one marked with aria-pressed), and the count, read out
+ * to screen readers as it changes. The projects grid steps from three columns
+ * to two at 1,024px and below and to one at 640px and below, and the closing
+ * process section lays its four step cards in a row with arrows between them,
+ * forming a two-by-two grid without arrows at 1,024px and below and stacking
+ * with turned arrows at 768px and below. The page's centered columns take the
+ * shared container values, and its sections the shared section padding, merged
+ * into their own rules.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -72,7 +72,7 @@
 	flex-direction : column;
 	gap            : var( --spa-ver-p02 );   /* Spacing Vertical Base Plus 2 ~= 25.572px */
 	margin         : 0 auto;
-	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */ /* What: Container Cap. Why: The global container rule loaded after this module, so its cap always beat the 640px this rule once asked for. How: This keeps the cap that has always applied. */
+	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */ /* What: Container Cap. Why: The hero's column takes the same cap as the page's other centered columns. How: This reads the container maximum width token. */
 	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position       : relative;
 	width          : 100%;
@@ -99,7 +99,7 @@
 
 }
 
-.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws a 26px orange stroke. */
+.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws an orange stroke about 26px long. */
 
 
 	background : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
@@ -111,6 +111,7 @@
 }
 
 /* #endregion herLabSpa */
+
 
 
 /* #region herTitHea */
@@ -174,7 +175,7 @@
 	padding       : var( --spa-ver-bas ) 0;                          /* Spacing Vertical Base ~= 14.572px */
 	position      : sticky;
 	top           : var( --nav-bar-hei );                            /* Navigation Bar Height ~= 78.751px */
-	z-index       : 2;                                               /* What: Filter Bar Layer. Why: The hero's and the process section's columns scrolling under the bar sit at 1, and the projects lift on hover, while the phone menu's scrim at 3 has to cover the bar. How: This puts it just above the projects. */
+	z-index       : 2;                                               /* What: Filter Bar Layer. Why: The hero's and the process section's columns scrolling under the bar sit at 1, and the projects lift on hover, while the phone menu's scrim at 3 has to cover this filter bar. How: This puts the filter bar just above the projects. */
 
 
 }
@@ -229,12 +230,12 @@
 
 /* #region filScrDiv */
 
-.filScrDiv { /* What: Filter Scroll Div. Why: The buttons can outgrow the row, and a faded edge tells a visitor there's more to scroll to. How: This lays them in a row that fills the space and scrolls sideways with its scrollbar hidden, with a gradient mask fading each end, the same as ease-my-life's filter rails. */
+.filScrDiv { /* What: Filter Scroll Div. Why: The buttons can outgrow the row, and a faded edge tells a visitor there's more to scroll to. How: This lays them in a row that fills the space and scrolls sideways with its scrollbar hidden, with a gradient mask fading each end, and eases each fade in as it returns. */
 
 
 	--fad-edg-off : calc( var( --ver-rhy-p02 ) * 1rem ); /* Vertical Rhythm Base Plus 2 ~= 25.572px */ /* What: Fade Edge Offset. Why: This is how far each edge fade reaches into the row. How: --fad-lef-off and --fad-rig-off start from it. */
-	--fad-lef-off : var( --fad-edg-off );                /* Fade Edge Offset ~= 25.572px */ /* What: Fade Left Offset. Why: The left edge fades until the row reaches its start. How: The mask reads this, and edge-fade.ts zeroes it through data-scroll-start-active. */
-	--fad-rig-off : var( --fad-edg-off );                /* Fade Edge Offset ~= 25.572px */ /* What: Fade Right Offset. Why: The right edge fades until the row reaches its end. How: The mask reads this, and edge-fade.ts zeroes it through data-scroll-end-active. */
+	--fad-lef-off : var( --fad-edg-off );                /* Fade Edge Offset ~= 25.572px */ /* What: Fade Left Offset. Why: The left edge fades until the row reaches its start. How: The mask reads this, and the start-reached rule below zeroes it while data-scroll-start-active is set. */
+	--fad-rig-off : var( --fad-edg-off );                /* Fade Edge Offset ~= 25.572px */ /* What: Fade Right Offset. Why: The right edge fades until the row reaches its end. How: The mask reads this, and the end-reached rule below zeroes it while data-scroll-end-active is set. */
 
 	-webkit-mask-image    : linear-gradient( to right, transparent 0, #000 var( --fad-lef-off ), #000 calc( 100% - var( --fad-rig-off ) ), transparent 100% ); /* Fade Left Offset ~= 25.572px, Fade Right Offset ~= 25.572px */
 	display               : flex;
@@ -244,6 +245,7 @@
 	overflow-x            : auto;
 	scroll-padding-inline : var( --fad-edg-off ); /* Fade Edge Offset ~= 25.572px */ /* What: Fade Clearance Padding. Why: A pill scrolled into view on focus should land clear of the edge fades. How: This keeps scrolling into view one fade's width in from each end. */
 	scrollbar-width       : none;
+	transition            : --fad-lef-off var( --dur-tra-p01 ) var( --mot-dec-eas ), --fad-rig-off var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Edge Fade Transition. Why: An edge fade arriving as the row scrolls away from its end should ease in rather than snap, and the mask has no compositor version, since it fades the buttons themselves, so only this one row repaints. How: This eases both offsets, registered below so they can animate, on the decelerating curve. */
 
 
 }
@@ -268,17 +270,60 @@
 
 
 }
-.filScrDiv[data-scroll-start-active] { /* What: Filter Scroll Div At Start. Why: No buttons hide past the left edge. How: This zeroes the left fade. */
+.filScrDiv[data-scroll-start-active] { /* What: Start-Reached Filter Scroll Div. Why: No buttons hide past the left edge. How: This zeroes the left fade, easing it out on the accelerating curve. */
 
 
 	--fad-lef-off : 0px;
 
+	transition-timing-function : var( --mot-acc-eas ), var( --mot-dec-eas ); /* Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ), Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
 
 }
-.filScrDiv[data-scroll-end-active] { /* What: Filter Scroll Div At End. Why: No buttons hide past the right edge. How: This zeroes the right fade. */
+.filScrDiv[data-scroll-end-active] { /* What: End-Reached Filter Scroll Div. Why: No buttons hide past the right edge. How: This zeroes the right fade, easing it out on the accelerating curve. */
 
 
 	--fad-rig-off : 0px;
+
+	transition-timing-function : var( --mot-dec-eas ), var( --mot-acc-eas ); /* Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */
+
+
+}
+.filScrDiv[data-scroll-start-active][data-scroll-end-active] { /* What: Fully Shown Filter Scroll Div. Why: When every button fits, neither edge hides any. How: This eases both fades out on the accelerating curve, since the two edge rules above each pick one curve. */
+
+
+	transition-timing-function : var( --mot-acc-eas ); /* Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Filter Scroll Div. Why: Someone who asked for less motion shouldn't see the fades ease. How: This applies only when the reduced-motion preference is set. */
+
+
+	.filScrDiv { /* What: Motionless Filter Scroll Div. Why: Each fade should simply switch. How: This turns the transition off, which the edge rules can't turn back on, since they set only its curves. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+@property --fad-lef-off { /* What: Fade Left Offset Registration. Why: An unregistered custom property switches at once, so the left fade couldn't ease. How: This registers it as a length that doesn't inherit, starting at zero. */
+
+
+	inherits      : false;
+	initial-value : 0px;
+	syntax        : '<length>';
+
+
+}
+
+@property --fad-rig-off { /* What: Fade Right Offset Registration. Why: An unregistered custom property switches at once, so the right fade couldn't ease. How: This registers it as a length that doesn't inherit, starting at zero. */
+
+
+	inherits      : false;
+	initial-value : 0px;
+	syntax        : '<length>';
 
 
 }
@@ -295,7 +340,7 @@
 	letter-spacing : 0.04em;
 	padding        : var( --spa-ver-m03 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 3 ~= 6.268px, Spacing Horizontal Base ~= 14.572px */
 	text-transform : uppercase;
-	transition     : background var( --dur-tra-bas ), border-color var( --dur-tra-bas ), color var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition     : background var( --dur-tra-bas ) var( --mot-sta-eas ), border-color var( --dur-tra-bas ) var( --mot-sta-eas ), color var( --dur-tra-bas ) var( --mot-sta-eas ), transform var( --dur-tra-bas ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Transition Base Plus 1 ~= 209.1ms */
 	white-space    : nowrap;
 
 
@@ -308,7 +353,7 @@
 
 
 }
-.filOptBut[data-filter-button-active] { /* What: Active Filter Option Button. Why: The chosen technology stands out. How: This fills the pill blue with ink text. */
+.filOptBut[aria-pressed='true'] { /* What: Active Filter Option Button. Why: The chosen technology stands out. How: This fills the pill blue with ink text. */
 
 
 	background   : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
@@ -317,7 +362,7 @@
 
 
 }
-.filOptBut[data-filter-button-active]:hover { /* What: Hovered Active Filter Option Button. Why: The chosen pill should respond to the pointer too. How: This lightens its fill and border to the bright blue. */
+.filOptBut[aria-pressed='true']:hover { /* What: Hovered Active Filter Option Button. Why: The chosen pill should respond to the pointer too. How: This lightens its fill and border to the bright blue. */
 
 
 	background   : var( --acc-sec-col ); /* Accent Secondary Color = #7DB9D8 */
@@ -349,16 +394,72 @@
 /* #endregion filScrDiv */
 
 
-.filCouSpa { /* What: Filter Count Span. Why: The row says how many projects remain. How: This sets the count in muted mono, never shrinking. */
+
+/* #region filStaSpa */
+
+.filStaSpa { /* What: Filter Status Span. Why: A screen reader should hear the new count when a filter changes it, from a region already in the page, and the count's fade needs a box to move in. How: This holds the count in a one-cell grid that never shrinks. */
+
+
+	display     : grid;
+	flex-shrink : 0;
+
+
+}
+
+.filCouSpa { /* What: Filter Count Span. Why: The row says how many projects remain. How: This sets the count in muted mono. */
 
 
 	color       : var( --tex-mut-col ); /* Text Muted Color = #646482 */
-	flex-shrink : 0;
 	font-family : var( --fon-fam-sec ); /* Font Family Secondary = 'DM Mono', monospace */
 	font-size   : var( --fon-siz-bas ); /* Font Size Base = 11px */
 
 
 }
+.filCouSpa--arriving { /* What: Filter Count Span Arriving. Why: The count changes with each filter's result, and the change should be seen. How: This plays the result's short fade up on the decelerating curve each time a filter remounts the count, while the old count goes at once. */
+
+
+	animation : resultArriveFadeUp var( --dur-ani-p02 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Filter Count Span Arriving. Why: Someone who asked for less motion shouldn't see the count rise. How: This applies only when the reduced-motion preference is set. */
+
+
+	.filCouSpa--arriving { /* What: Motionless Filter Count Span Arriving. Why: The new count should simply appear. How: This turns the fade off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
+@keyframes resultArriveFadeUp { /* What: Result Arrive Fade Up. Why: A filter's result, its count and its grid, eases in. How: This moves an element from transparent and about 6px low to fully shown in place. */
+
+
+	from {
+
+
+		opacity   : 0;
+		transform : translateY( var( --spa-ver-m03 ) ); /* Spacing Vertical Base Minus 3 ~= 6.268px */
+
+
+	}
+
+	to {
+
+
+		opacity   : 1;
+		transform : translateY( 0 );
+
+
+	}
+
+
+}
+
+/* #endregion filStaSpa */
 
 /* #endregion filInnDiv */
 
@@ -391,7 +492,7 @@
 
 }
 
-.visHidHea { /* What: Visually Hidden Heading. Why: The projects grid's h2 keeps the headings in order for screen readers, while the hero already introduces the grid on screen. How: This shrinks the heading to a clipped 1px box out of the layout, the standard technique that keeps it in the accessibility tree. */
+.visHidHea { /* What: Visually Hidden Heading. Why: The projects grid's h2 keeps the headings in order for screen readers, while the hero already introduces the grid on screen. How: This shrinks the heading to a clipped 1px box out of the layout while it stays readable to screen readers. */
 
 
 	border      : 0;
@@ -439,6 +540,26 @@
 
 
 		--pro-car-wid : 100%;
+
+
+	}
+
+
+}
+.proGriDiv--arriving { /* What: Projects Grid Div Arriving. Why: Choosing a filter should show its result arriving rather than the cards just swapping. How: This plays the grid's short fade up on the decelerating curve each time a filter remounts it, while the cards it replaces leave at once. */
+
+
+	animation : resultArriveFadeUp var( --dur-ani-p02 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Projects Grid Div Arriving. Why: Someone who asked for less motion shouldn't see the cards rise. How: This applies only when the reduced-motion preference is set. */
+
+
+	.proGriDiv--arriving { /* What: Motionless Projects Grid Div Arriving. Why: The filtered cards should simply appear. How: This turns the fade off. */
+
+
+		animation : none;
 
 
 	}
@@ -556,7 +677,7 @@
 
 /* #region steCarDiv */
 
-.steCarDiv { /* What: Step Card Div. Why: Each step is one white card. How: This sets the card, sharing the row evenly, and stacks its number, title, and description. */
+.steCarDiv { /* What: Step Card Div. Why: Each step is one white card. How: This sets the card, sharing the row evenly, stacks its number, title, and description, and eases its border color, lift, and shadow, the shadow leaving on the accelerating curve. */
 
 
 	background     : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
@@ -567,6 +688,31 @@
 	flex-direction : column;
 	gap            : var( --spa-ver-m01 );                            /* Spacing Vertical Base Minus 1 = 11px */
 	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );       /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	transition     : border-color var( --dur-tra-p02 ) var( --mot-sta-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-acc-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ), Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Shadow Transition. Why: A box-shadow animates on paint rather than the compositor, but a compositor version would need a second shadow layer faded through opacity, and only the one hovered card repaints. How: This eases the shadow alongside the lift. */
+
+
+}
+.steCarDiv:hover { /* What: Hovered Step Card Div. Why: A card should respond to the pointer. How: This lifts it 3px, turns its border the strong blue on the standard curve, and casts the medium shadow, easing the lift and shadow in on the decelerating curve. */
+
+
+	border-color : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
+	box-shadow   : var( --ele-med-sha ); /* Elevation Medium Shadow ~= 0 4.732px 14.572px plus 0 1.536px 3.572px -1.160px */
+	transform    : translateY( -3px );
+	transition   : border-color var( --dur-tra-p02 ) var( --mot-sta-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-dec-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Step Card Div. Why: Someone who asked for less motion shouldn't see the cards glide. How: This applies only when the reduced-motion preference is set. */
+
+
+	.steCarDiv,
+	.steCarDiv:hover { /* What: Motionless Step Card Div. Why: The lift and shadow should simply switch. How: This turns the transition off on both the resting and the hovered rule, since the hovered rule outranks the base. */
+
+
+		transition : none;
+
+
+	}
 
 
 }

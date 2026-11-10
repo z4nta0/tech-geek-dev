@@ -1,3 +1,6 @@
+
+
+
 <!doctype html><!-- What: Document Type Declaration. Why: Browsers render the page in standards mode only with a doctype. How: This declares HTML5. -->
 
 
@@ -10,7 +13,7 @@
 
 		<!-- #region Document -->
 
-		<meta charset='UTF-8' />                     <!-- What: Character Set Meta. Why: The cover's text has to decode as UTF-8. How: This sits first in the head. -->
+		<meta charset='UTF-8' />                  <!-- What: Character Set Meta. Why: The cover's text has to decode as UTF-8. How: This sits first in the head. -->
 		<title>TechGeek Ko-fi Cover Image</title> <!-- What: Page Title Element. Why: The file should say what it is when opened in a browser. How: This names the cover. -->
 
 		<!-- #endregion Document -->
@@ -30,7 +33,7 @@
 
 			/* #region covBodBod */
 
-			.covBodBod { /* What: Cover Body Body. Why: The cover fills the whole 1,200x400 capture, Ko-fi's 3:1 size, on the site's ivory page color. How: This sizes it in literal pixels, the image's own fixed size, and centers its row both ways. */
+			.covBodBod { /* What: Cover Body Body. Why: The cover fills the whole 1,200x400 capture, a 3:1 banner, on the site's ivory page color. How: This sizes it in literal pixels, the image's own fixed size, and centers its row both ways. */
 
 
 				align-items     : center;
@@ -49,7 +52,7 @@
 
 			/* #region hexDecSvg */
 
-			.hexDecSvg { /* What: Hexagon Decoration SVG. Why: Outlined hexagons at the cover's ends echo the site's geometric background, where Ko-fi crops on phones, so nothing that matters is lost. How: This lays the drawing over the whole cover behind the row. */
+			.hexDecSvg { /* What: Hexagon Decoration SVG. Why: Outlined hexagons at the cover's ends echo the site's geometric background toward the edges, where nothing that matters sits, in case the cover is cropped. How: This lays the drawing over the whole cover behind the row. */
 
 
 				inset    : 0;
@@ -84,7 +87,7 @@
 
 			/* #region covRowDiv */
 
-			.covRowDiv { /* What: Cover Row Div. Why: The brand and the code window sit side by side in the cover's middle, clear of the ends a phone crops and lifted a little above the bottom, where Ko-fi's page can overlap it. How: This lays them out in one row with a wide gap and nudges the row up. */
+			.covRowDiv { /* What: Cover Row Div. Why: The brand and the code window sit side by side in the cover's middle, clear of the edges in case the cover is cropped, and lifted a little above the bottom. How: This lays them out in one row with a wide gap and nudges the row up. */
 
 
 				align-items : center;
@@ -99,7 +102,7 @@
 
 			/* #region braColDiv */
 
-			.braColDiv { /* What: Brand Column Div. Why: The brand reads first, the way Ko-fi visitors meet the page. How: This stacks the wordmark row, the tagline, and the owner line. */
+			.braColDiv { /* What: Brand Column Div. Why: The brand reads first. How: This stacks the wordmark row, the tagline, and the owner line. */
 
 
 				display        : flex;
@@ -134,7 +137,7 @@
 
 			/* #region braWorPar */
 
-			.braWorPar { /* What: Brand Wordmark Paragraph. Why: The site's name is the cover's headline, set as the bar sets it. How: This sets it bold in the display font, a little tight, at the p05 step, small enough to keep the row clear of the ends a phone crops. */
+			.braWorPar { /* What: Brand Wordmark Paragraph. Why: The site's name is the cover's headline, set as the bar sets it. How: This sets it bold in the display font, a little tight, at the p05 step, small enough to keep the row clear of the edges in case the cover is cropped. */
 
 
 				font-family    : var( --fon-fam-mai ); /* Font Family Main = 'Syne', sans-serif */
@@ -147,7 +150,7 @@
 
 			}
 
-			.worFirSpa { /* What: Wordmark First Span. Why: The brand reads in the main text color, as in the bar. How: This sets TechGeek in the ink. */
+			.worFirSpa { /* What: Wordmark First Span. Why: The brand reads in the main text color, as in the bar. How: This sets "TechGeek" in the ink. */
 
 
 				color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -155,7 +158,7 @@
 
 			}
 
-			.worLasSpa { /* What: Wordmark Last Span. Why: The domain ending carries the accent, as in the bar. How: This sets .dev in the dark orange. */
+			.worLasSpa { /* What: Wordmark Last Span. Why: The domain ending carries the accent, as in the bar. How: This sets ".dev" in the dark orange. */
 
 
 				color : var( --acc-dar-col ); /* Accent Dark Color ~= #bd3000 */
@@ -166,6 +169,7 @@
 			/* #endregion braWorPar */
 
 			/* #endregion braRowDiv */
+
 
 
 			.tagLinPar { /* What: Tag Line Paragraph. Why: The family's tagline says what a supporter's coffee goes toward. How: This sets it in the accent serif's italic in the secondary text color under the wordmark. */
@@ -204,7 +208,7 @@
 
 				background    : var( --bac-inv-col );                                                                                                 /* Background Inverse Color = #1A1A2E */
 				border-radius : var( --rad-bor-lar );                                                                                                 /* Radius Border Large ~= 14.572px */
-				box-shadow    : var( --ele-lar-sha ), 0 0 0 var( --bor-wid-bas ) oklch( from var( --acc-sec-col ) l c h / var( --cdn-pow-007-rec ) ); /* Elevation Large Shadow ~= 0 11px 44.876px plus 0 3.572px 11px -2.696px, Border Width Base ~= 1.160px, Accent Secondary Color = #7DB9D8 @ 0.140 opacity */
+				box-shadow    : var( --ele-lar-sha ), 0 0 0 var( --bor-wid-bas ) oklch( from var( --acc-sec-col ) l c h / var( --cdn-pow-007-rec ) ); /* Elevation Large Shadow ~= 0 11px 44.876px plus 0 3.572px 11px -2.696px, Border Width Base ~= 1.160px, Accent Secondary Color = #7DB9D8, Core-Design-Number to the Power of 7 Reciprocal ~= 0.140 */
 				overflow      : hidden;
 
 
@@ -218,7 +222,7 @@
 
 				align-items   : center;
 				background    : oklch( from var( --bac-sur-col ) l c h / 0.04 );                                                /* Background Surface Color = #FFFFFF @ 0.04 opacity */
-				border-bottom : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-010-rec ) ); /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.060 opacity */
+				border-bottom : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-010-rec ) ); /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF, Core-Design-Number to the Power of 10 Reciprocal ~= 0.060 */
 				display       : flex;
 				gap           : var( --spa-hor-m01 );                                                                           /* Spacing Horizontal Base Minus 1 = 11px */
 				padding       : var( --spa-ver-bas ) var( --spa-hor-p01 );                                                      /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 1 ~= 19.304px */
@@ -235,7 +239,6 @@
 
 
 			}
-
 			.winDotSpa--first { /* What: Window Dot Span First. Why: The first dot is the editor's red. How: This fills it with the fixed editor red, the same whatever the theme. */
 
 
@@ -243,7 +246,6 @@
 
 
 			}
-
 			.winDotSpa--second { /* What: Window Dot Span Second. Why: The second dot is the editor's yellow. How: This fills it with the fixed editor yellow. */
 
 
@@ -251,7 +253,6 @@
 
 
 			}
-
 			.winDotSpa--third { /* What: Window Dot Span Third. Why: The third dot is the editor's green. How: This fills it with the fixed editor green. */
 
 
@@ -260,10 +261,10 @@
 
 			}
 
-			.winTitSpa { /* What: Window Title Span. Why: The window names its file, as on the home page. How: This sets it small in the mono font in a faint white. */
+			.winTitSpa { /* What: Window Title Span. Why: The window names its file, as on the home page. How: This sets it in the mono font in a faint white. */
 
 
-				color       : oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-004-rec ) ); /* Background Surface Color = #FFFFFF @ 0.325 opacity */
+				color       : oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-004-rec ) ); /* Background Surface Color = #FFFFFF, Core-Design-Number to the Power of 4 Reciprocal ~= 0.325 */
 				font-family : var( --fon-fam-sec );                                                /* Font Family Secondary = 'DM Mono', monospace */
 				font-size   : var( --fon-siz-p01 );                                                /* Font Size Base Plus 1 ~= 14.572px */
 				margin-left : var( --spa-hor-bas );                                                /* Spacing Horizontal Base ~= 14.572px */
@@ -377,6 +378,7 @@
 		</svg>
 
 
+
 		<div class='covRowDiv'><!-- What: Cover Row Div Element. Why: The brand and the code window sit side by side. How: This holds the brand column and the window. -->
 
 
@@ -408,7 +410,7 @@
 
 							fill='var( --acc-sec-col )'
 							points='16,8 24,12.5 24,19.5 16,24 8,19.5 8,12.5'
-						/><!-- What: Inner Hexagon Polygon Element. Why: A softer blue hexagon fills the mark's center. How: This draws it in the secondary accent. --><!-- Accent Secondary Color = #7DB9D8, Core-Design-Number to the Power of 2 Reciprocal ~= 0.570 -->
+						/><!-- What: Inner Hexagon Polygon Element. Why: A softer blue hexagon fills the mark's center. How: This draws it in the secondary accent. --><!-- Core-Design-Number to the Power of 2 Reciprocal ~= 0.570, Accent Secondary Color = #7DB9D8 -->
 
 						<circle
 							cx='16'
@@ -420,10 +422,11 @@
 
 					</svg>
 
-					<p class='braWorPar'><span class='worFirSpa'>TechGeek</span><span class='worLasSpa'>.dev</span></p><!-- What: Brand Wordmark Paragraph Element. Why: The site's name is the headline. How: This sets its two parts in their own colors. -->
+					<p class='braWorPar'><span class='worFirSpa'>TechGeek</span><!-- What: Wordmark First Span Element. Why: The brand name reads in the main text color. How: This shows "TechGeek" in the ink. --><span class='worLasSpa'>.dev</span><!-- What: Wordmark Last Span Element. Why: The domain ending carries the accent. How: This shows ".dev" in the dark orange. --></p><!-- What: Brand Wordmark Paragraph Element. Why: The site's name is the headline. How: This sets its two parts in their own colors. -->
 
 
 				</div>
+
 
 				<p class='tagLinPar'>Building the web, one commit at a time.</p><!-- What: Tag Line Paragraph Element. Why: The tagline says what the coffee fuels. How: This shows the family's tagline. -->
 
@@ -431,6 +434,7 @@
 
 
 			</div>
+
 
 
 			<div class='codWinDiv'><!-- What: Code Window Div Element. Why: A small editor window says what the coffee fuels. How: This holds the title bar and the code. -->
@@ -445,7 +449,7 @@
 
 					<span class='winDotSpa winDotSpa--third'></span><!-- What: Window Dot Span Third Element. Why: Editor windows have three colored dots. How: This draws the green one. -->
 
-					<span class='winTitSpa'>techgeek.dev.ts</span><!-- What: Window Title Span Element. Why: The window names its file after the site. How: This shows techgeek.dev.ts. -->
+					<span class='winTitSpa'>techgeek.dev.ts</span><!-- What: Window Title Span Element. Why: The window names its file after the site. How: This shows "techgeek.dev.ts". -->
 
 
 				</div>

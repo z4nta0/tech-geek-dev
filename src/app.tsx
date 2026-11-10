@@ -10,7 +10,7 @@ import { NavBarCom    } from 'techgeek-design/ui/nav.tsx';       // What: Naviga
 import { NotFouCom    } from './pages/not-found/not-found.tsx';  // What: Not Found Component. Why: Every unknown address shows the 404 page. How: The catch-all route renders it.
 import { PAG_LIN_ARR  } from './ui/page-links.ts';               // What: Page Link Array. Why: The bar and the footer link to the site's pages. How: This is the list the root hands them.
 import { Route        } from 'react-router';                     // What: Route. Why: Each page is matched to its path. How: This declares one route per page.
-import { Routes       } from 'react-router';                     // What: Routes. Why: Only one page should render for any path. How: This renders the first route whose path matches.
+import { Routes       } from 'react-router';                     // What: Routes. Why: Only one page should render for any path. How: This renders the route that best matches the current path.
 import { SitFooCom    } from 'techgeek-design/ui/footer.tsx';    // What: Site Footer Component. Why: Every page ends with the TechGeek family's shared footer. How: This renders below the routes.
 import { useLocation  } from 'react-router';                     // What: Use Location. Why: Each page change remounts the page, replaying its entrance. How: This reads the current path for the routes' key.
 import { useScrTopFun } from 'techgeek-design/ui/scroll-top.ts'; // What: Use Scroll Top Function. Why: A new page should open at its top rather than where the last one was scrolled. How: The app root calls it once inside the router.
@@ -54,8 +54,7 @@ const SIT_EMA_STR = 'contact@techgeek.dev';                    // What: Site Ema
 const SIT_TAG_STR = 'Building the web, one commit at a time.'; // What: Site Tagline String. Why: The phone menu and the footer end on the site's tagline. How: The bar and the footer both show it.
 const WOR_END_STR = '.dev';                                    // What: Wordmark Ending String. Why: The family's wordmark ends in each site's own domain. How: The bar's wordmark and the footer's copyright both show it after TechGeek.
 
-const CTA_LIN_OBJ : PagLinTyp = { labStr : 'Hire Me', patStr : '/contact' }; // What: Call-To-Action Link Object. Why: The bar's one button asks a visitor to hire z4nta0. How: The bar and the drawer both route it to the Contact page.
-
+const CTA_LIN_OBJ : PagLinTyp = { labStr : 'Hire Me', patStr : '/contact' }; // What: Call-To-Action Link Object. Why: The bar's one button asks a visitor to hire z4nta0. How: The bar and the drawer both route it to the Contact page. // What: Label String. Why: The button needs its words. How: This reads "Hire Me". // What: Path String. Why: The button needs a destination. How: This routes to the Contact page.
 
 const SIS_LIN_ARR : SisLinTyp[] = [ // What: Sister Link Array. Why: TechGeek.dev is one of three sister sites, and a visitor here may want tech support or a greeting card. How: The footer links to each row in the same tab.
 
@@ -78,13 +77,14 @@ const SIS_LIN_ARR : SisLinTyp[] = [ // What: Sister Link Array. Why: TechGeek.de
  * AppRooCom = App Root Component
  *
  * @summary
- * The top of the component tree: renders the bar, the page the address
- * matches inside the main landmark, and the footer, so every page shares the
- * same frame. The routes take the current location and use its path as their
- * key, so moving to another page replaces the old page's tree rather than
- * updating it, which restarts the new page's entrance animation. It calls
- * useScrTopFun so every link opens its page at the top, as a real page load
- * would, while back and forward keep the browser's restored position.
+ * The top of the component tree: renders the bar, the page the address matches
+ * inside the main landmark, and the footer, so every page shares the same
+ * frame. The routes take the current location and use its path as their key,
+ * so moving to another page replaces the old page's tree rather than updating
+ * it, which restarts the new page's entrance animation. It calls useScrTopFun
+ * so a link to another page opens it at the top, as a real page load would, or
+ * at its section when the link carries a hash, while back and forward return
+ * the visitor to where they were, as the hook restores it.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -106,7 +106,7 @@ function AppRooCom () : JSX.Element {
 
 
 
-	useScrTopFun(); // What: Scroll Top Call. Why: Every link to another page should open it at its top, and a link with a hash at its section. How: This runs the hook once from the root, which stays mounted across every route.
+	useScrTopFun(); // What: Scroll Top Call. Why: Every link to another page should open it at its top, a link with a hash at its section, and back, forward, and a reload where the visitor was. How: This runs the hook once from the root, which stays mounted across every route.
 
 
 
@@ -127,14 +127,18 @@ function AppRooCom () : JSX.Element {
 
 
 
-			<main>{ /* What: App Main Element. Why: Each page's content is the main landmark. How: This holds whichever page the address matches. */ }
+			<main
+				id='main'
+
+				tabIndex={ -1 } // What: Main Focus Target. Why: The bar's skip link moves focus here, and a main element can't take focus on its own. How: This makes it focusable without adding it to the Tab order.
+			>{ /* What: App Main Element. Why: Each page's content is the main landmark, and the skip link jumps here. How: This holds whichever page the address matches; its ID stays the plain word `main`, since the skip link's #main address names it as a navigation target. */ }
 
 
 				<Routes
 					key={ curLocObj.pathname } // What: Routes Key. Why: A new key makes React mount the new page fresh instead of reusing the old one, so its entrance fade replays. How: The path changes on every change of page.
 
 					location={ curLocObj }
-				>{ /* What: Page Routes. Why: Only one page should render for any path. How: This renders the first route below whose path matches the current location. */ }
+				>{ /* What: Page Routes. Why: Only one page should render for any path. How: This renders the route below that best matches the current location. */ }
 
 
 					<Route
@@ -202,7 +206,7 @@ function AppRooCom () : JSX.Element {
 
 // #region Exports
 
-export { AppRooCom }; // What: Named Exports. Why: main.tsx is the sole consumer, mounting this as the site's root. How: This exports AppRooCom.
+export { AppRooCom }; // What: Named Export. Why: The site's entry point mounts this as the root. How: This exports AppRooCom.
 
 // #endregion Exports
 

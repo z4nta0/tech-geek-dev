@@ -1,3 +1,6 @@
+
+
+
 <!doctype html><!-- What: Document Type Declaration. Why: Browsers render the page in standards mode only with a doctype. How: This declares HTML5. -->
 
 
@@ -71,8 +74,8 @@
 		<link href='/favicon.svg'         rel='icon' type='image/svg+xml' />             <!-- What: SVG Icon Link. Why: Modern browsers prefer a vector favicon that stays sharp at any tab density. How: This points at the hexagon mark in public/. -->
 		<link href='/favicon.ico'         rel='icon' sizes='any' />                      <!-- What: ICO Icon Link. Why: Older browsers read only a .ico favicon. How: This points at the root favicon.ico, which also answers the request browsers make for it on their own. -->
 		<link href='/favicon-16x16.png'   rel='icon' sizes='16x16'   type='image/png' /> <!-- What: Small PNG Icon Link. Why: Small tab icons look crisper drawn at their own size. How: This offers the 16px PNG. -->
-		<link href='/favicon-32x32.png'   rel='icon' sizes='32x32'   type='image/png' /> <!-- What: Medium PNG Icon Link. Why: A browser without SVG favicons needs a raster fallback, and most pick a 32px tab icon. How: This offers the 32px PNG. -->
-		<link href='/favicon-192x192.png' rel='icon' sizes='192x192' type='image/png' /> <!-- What: Large PNG Icon Link. Why: Some browsers and Android pick a large icon for shortcuts and tab previews. How: This offers the 192px PNG. -->
+		<link href='/favicon-32x32.png'   rel='icon' sizes='32x32'   type='image/png' /> <!-- What: Medium PNG Icon Link. Why: A browser without SVG favicons needs a raster fallback, and the set offers each size a tab, shortcut, or home screen may ask for. How: This offers the 32px PNG. -->
+		<link href='/favicon-192x192.png' rel='icon' sizes='192x192' type='image/png' /> <!-- What: Large PNG Icon Link. Why: The set offers each size a tab, shortcut, or home screen may ask for. How: This offers the 192px PNG. -->
 		<link href='/favicon-512x512.png' rel='icon' sizes='512x512' type='image/png' /> <!-- What: Extra Large PNG Icon Link. Why: High-density screens and app launchers can ask for a bigger icon still. How: This offers the 512px PNG. -->
 
 		<!-- #endregion Icons -->
@@ -104,7 +107,7 @@
 
 
 		<meta property='og:description'  content='Portfolio of z4nta0, a full stack web developer building fast, accessible websites and web apps for small local businesses.' /> <!-- What: Open Graph Description Meta. Why: A shared link shows a summary under its title. How: This matches the home page's description. -->
-		<meta property='og:image'        content='https://techgeek.dev/og-image.png' />                                                               <!-- What: Open Graph Image Meta. Why: A shared link shows a preview image. How: This points at the card npm run og-image renders, by its absolute address. -->
+		<meta property='og:image'        content='https://techgeek.dev/og-image-3.png' />                                                             <!-- What: Open Graph Image Meta. Why: A shared link shows a preview image. How: This points at the card npm run og-image renders, by its absolute address. -->
 		<meta property='og:image:alt'    content='The TechGeek.dev hexagon mark and wordmark above the words Full Stack Web Developer and z4nta0.' /> <!-- What: Open Graph Image Alt Meta. Why: Screen readers on social sites read the preview image's description. How: This describes the card. -->
 		<meta property='og:image:height' content='630' />                                                                                             <!-- What: Open Graph Image Height Meta. Why: Sites can lay out the preview before the image arrives. How: This gives the card's height. -->
 		<meta property='og:image:type'   content='image/png' />                                                                                       <!-- What: Open Graph Image Type Meta. Why: Some apps check an image's type before fetching it. How: This names the card a PNG. -->
@@ -120,11 +123,11 @@
 
 		<!-- #region Twitter Card -->
 
-		<meta name='twitter:card'        content='summary_large_image' />                                                                                                   <!-- What: Twitter Card Meta. Why: X and similar sites pick a preview layout from this tag. How: This asks for the large image card. -->
+		<meta name='twitter:card'        content='summary_large_image' /> <!-- What: Twitter Card Meta. Why: X and similar sites pick a preview layout from this tag. How: This asks for the large image card. -->
 		<meta name='twitter:description' content='Portfolio of z4nta0, a full stack web developer building fast, accessible websites and web apps for small local businesses.' /> <!-- What: Twitter Description Meta. Why: The preview shows a summary. How: This matches the home page's description. -->
-		<meta name='twitter:image'       content='https://techgeek.dev/og-image.png' />                                                                                     <!-- What: Twitter Image Meta. Why: The preview shows an image. How: This points at the same card as Open Graph. -->
-		<meta name='twitter:image:alt'   content='The TechGeek.dev hexagon mark and wordmark above the words Full Stack Web Developer and z4nta0.' />                       <!-- What: Twitter Image Alt Meta. Why: Screen readers read the preview image's description. How: This describes the card. -->
-		<meta name='twitter:title'       content='z4nta0, Full Stack Web Developer Portfolio | TechGeek.dev' />                                                             <!-- What: Twitter Title Meta. Why: The preview shows a title. How: This matches the home page's title. -->
+		<meta name='twitter:image'       content='https://techgeek.dev/og-image-3.png' />                                                                                         <!-- What: Twitter Image Meta. Why: The preview shows an image. How: This points at the same card as Open Graph. -->
+		<meta name='twitter:image:alt'   content='The TechGeek.dev hexagon mark and wordmark above the words Full Stack Web Developer and z4nta0.' />                             <!-- What: Twitter Image Alt Meta. Why: Screen readers read the preview image's description. How: This describes the card. -->
+		<meta name='twitter:title'       content='z4nta0, Full Stack Web Developer Portfolio | TechGeek.dev' />                                                                   <!-- What: Twitter Title Meta. Why: The preview shows a title. How: This matches the home page's title. -->
 
 		<!-- #endregion Twitter Card -->
 
@@ -171,7 +174,7 @@
 	<body><!-- What: Document Body Element. Why: This holds the site's mount point, the hidden copy of the contact form Netlify reads, and the entry script. How: The mount point stays empty until React renders the site into it. -->
 
 
-		<div id='appMouDiv'></div><!-- What: App Mount Div Element. Why: React needs one element to render the site into. How: main.tsx renders the app into this id. -->
+		<div id='appMouDiv'></div><!-- What: App Mount Div Element. Why: React needs one element to render the site into. How: main.tsx renders the app into this ID. -->
 
 		<form
 			name='contact'

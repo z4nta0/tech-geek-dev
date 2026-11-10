@@ -12,12 +12,11 @@
  * as the page scrolls; at 1,024px and below they stack. The fields share one
  * look, with an orange border and glow while focused, the select draws its own
  * arrow, and the thank-you replaces the form once a message is sent. The
- * thank-you and the error each fade up into view with the shared
- * contentEnterFadeUp keyframe, and the sidebar's availability dot pulses with
- * the shared statusLoopPulse keyframe.
- * The page's centered column takes the shared container values, and its
- * section the shared section padding, merged into their own rules. Everything
- * that moves holds still under reduced motion.
+ * thank-you, the error, and the form on its return each fade up into view with
+ * the shared contentEnterFadeUp keyframe, and the sidebar's availability dot
+ * pulses with the shared statusLoopPulse keyframe. The page's centered column
+ * takes the shared container values, and its section the shared section
+ * padding, merged into their own rules.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -72,11 +71,11 @@
 	flex-direction : column;
 	gap            : var( --spa-ver-p02 );   /* Spacing Vertical Base Plus 2 ~= 25.572px */
 	margin         : 0 auto;
-	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */ /* What: Container Cap. Why: The global container rule loaded after this module, so its cap always beat the 640px this rule once asked for. How: This keeps the cap that has always applied. */
+	max-width      : var( --con-max-wid );   /* Container Maximum Width ~= 1,449.365px */ /* What: Container Cap. Why: The hero's column takes the same cap as the page's other centered columns. How: This reads the container maximum width token. */
 	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position       : relative;
 	width          : 100%;
-	z-index        : 1;
+	z-index        : 1;                      /* What: Pattern Clearing Layer. Why: The hero's label, heading, and line have to sit above the hero's pattern, which is positioned at 0. How: This lifts the column one layer above the pattern. */
 
 
 }
@@ -99,7 +98,7 @@
 
 }
 
-.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws a 26px orange stroke. */
+.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws an orange stroke about 26px long. */
 
 
 	background : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
@@ -111,6 +110,7 @@
 }
 
 /* #endregion herLabSpa */
+
 
 
 /* #region herTitHea */
@@ -169,11 +169,11 @@
 
 	align-items           : start;
 	display               : grid;
-	gap                   : var( --spa-ver-p05 ) clamp( var( --spa-hor-p03 ), var( --hor-rhy-016 ), var( --spa-hor-p05 ) );              /* Spacing Vertical Base Plus 5 ~= 59.447px, Spacing Horizontal Base Plus 3 ~= 33.876px, Horizontal Rhythm 16 ~= 87.085px @ 1,920px width, Spacing Horizontal Base Plus 5 ~= 59.447px */
+	gap                   : var( --spa-ver-p05 ) clamp( var( --spa-hor-p03 ), var( --hor-rhy-016 ), var( --spa-hor-p05 ) ); /* Spacing Vertical Base Plus 5 ~= 59.447px, Spacing Horizontal Base Plus 3 ~= 33.876px, Horizontal Rhythm 16 ~= 87.085px @ 1,920px width, Spacing Horizontal Base Plus 5 ~= 59.447px */
 	grid-template-columns : 1fr clamp( calc( var( --ver-rhy-p10 ) * 1rem ), var( --hor-rhy-022 ), calc( var( --ver-rhy-p11 ) * 1rem ) ); /* Vertical Rhythm Base Plus 10 ~= 242.522px, Horizontal Rhythm 22 ~= 470.635px @ 1,920px width, Vertical Rhythm Base Plus 11 ~= 321.273px */
 	margin                : 0 auto;
-	max-width             : var( --con-max-wid );                                                                                        /* Container Maximum Width ~= 1,449.365px */
-	padding               : 0 var( --gut-sid-pad );                                                                                      /* Gutter Side Padding, about 19.304px - 44.876px */
+	max-width             : var( --con-max-wid );                                                                           /* Container Maximum Width ~= 1,449.365px */
+	padding               : 0 var( --gut-sid-pad );                                                                         /* Gutter Side Padding, about 19.304px - 44.876px */
 	width                 : 100%;
 
 
@@ -235,6 +235,13 @@
 
 
 }
+.sucStaDiv:focus { /* What: Focused Success State Div. Why: The thank-you takes focus by script so screen readers announce it, which is where the result lands rather than a control, so the shared focus ring around the whole card would only confuse. How: This removes its outline, outranking the shared focus visible rule. */
+
+
+	outline : none;
+
+
+}
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Success State Div. Why: Someone who asked for less motion shouldn't see the thank-you slide in. How: This applies only when the reduced-motion preference is set. */
 
 
@@ -249,7 +256,7 @@
 
 }
 
-.sucTitHea { /* What: Success Title Heading. Why: The thank-you's heading says the message went out. How: This sets it in the main text color, a little smaller than the global h2. */
+.sucTitHea { /* What: Success Title Heading. Why: The thank-you's heading says the message went out. How: This sets it in the main text color at the p03 size, the smallest the global h2 scales to. */
 
 
 	color     : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -267,7 +274,7 @@
 
 }
 
-.resForBut { /* What: Reset Form Button. Why: A visitor may want to send another message. How: This sets an orange outlined button in mono capitals, easing its fill, lift, press, and focus. */
+.resForBut { /* What: Reset Form Button. Why: A visitor may want to send another message. How: This sets an orange outlined button in mono capitals, easing its fill and text color, lift, press, and focus. */
 
 
 	border         : var( --bor-wid-bas ) solid var( --acc-mai-col ); /* Border Width Base ~= 1.160px, Accent Main Color = #F26419 */
@@ -278,7 +285,7 @@
 	letter-spacing : 0.04em;
 	padding        : var( --spa-ver-m01 ) var( --spa-hor-p02 );       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 	text-transform : uppercase;
-	transition     : background var( --dur-tra-bas ), color var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition     : background var( --dur-tra-bas ) var( --mot-sta-eas ), color var( --dur-tra-bas ) var( --mot-sta-eas ), transform var( --dur-tra-bas ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Transition Base Plus 1 ~= 209.1ms */
 
 
 }
@@ -327,6 +334,26 @@
 
 
 }
+.conForFor--returning { /* What: Contact Form Form Returning. Why: The form takes the thank-you's place again after "Send Another Message", and the swap should be seen, while a first visit arrives with the page's own entrance. How: This fades it up into view with the shared entrance, the same as the thank-you. */
+
+
+	animation : global( contentEnterFadeUp ) var( --dur-ani-p02 ) var( --mot-dec-eas ) both; /* Duration Animation Base Plus 2 ~= 277.0ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Contact Form Form Returning. Why: Someone who asked for less motion shouldn't see the form slide back in. How: This applies only when the reduced-motion preference is set. */
+
+
+	.conForFor--returning { /* What: Motionless Contact Form Form Returning. Why: The returning form should simply appear. How: This turns the entrance off. */
+
+
+		animation : none;
+
+
+	}
+
+
+}
 
 .forTitHea { /* What: Form Title Heading. Why: The form's heading is a little smaller than the page's sections. How: This sets it in the main text color with room below. */
 
@@ -338,7 +365,7 @@
 
 }
 
-.forHonPar { /* What: Form Honeypot Paragraph. Why: Bots should find and fill the honeypot while people never see it, and some bots skip fields hidden with display none. How: This moves it off screen into a 1px box instead, the same as ease-my-life's. */
+.forHonPar { /* What: Form Honeypot Paragraph. Why: Bots should find and fill the honeypot while people never see it. How: This moves it off screen into a 1px box instead of hiding it with display none. */
 
 
 	height   : 1px;
@@ -377,9 +404,6 @@
 
 }
 
-/* #endregion forRowDiv */
-
-
 
 /* #region forFieDiv */
 
@@ -408,29 +432,30 @@
 
 .forConInp,
 .forConSel,
-.forConTex { /* What: Form Control Fields. Why: The inputs, the select, and the textarea share one look. How: This sets them full width on the ivory with a pale border and rounded corners, easing their focus border and glow. */
+.forConTex { /* What: Form Control Fields. Why: The inputs, the select, and the textarea share one look. How: This sets them full width on the ivory with a pale border and rounded corners, easing their focus border, glow, and outline, which leave on the accelerating curve. */
 
 
-	background    : var( --bac-pag-col );                                               /* Background Page Color = #F5F0E8 */
-	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );                    /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
-	border-radius : var( --rad-bor-sma );                                               /* Radius Border Small ~= 8.304px */
-	color         : var( --tex-mai-col );                                               /* Text Main Color = #1A1A2E */
-	font-family   : var( --fon-fam-mai );                                               /* Font Family Main = 'Syne', sans-serif */
-	font-size     : var( --fon-siz-p01 );                                               /* Font Size Base Plus 1 ~= 14.572px */
-	padding       : var( --spa-ver-m01 ) var( --spa-hor-bas );                          /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
-	transition    : border-color var( --dur-tra-bas ), box-shadow var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */ /* What: Focus Glow Transition. Why: The glow is a spread around the field's rounded edge, which no transform or opacity change can draw, so its box-shadow animates instead. How: The border color and the glow ease in together on focus. */
+	background    : var( --bac-pag-col );                            /* Background Page Color = #F5F0E8 */
+	border        : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius : var( --rad-bor-sma );                            /* Radius Border Small ~= 8.304px */
+	color         : var( --tex-mai-col );                            /* Text Main Color = #1A1A2E */
+	font-family   : var( --fon-fam-mai );                            /* Font Family Main = 'Syne', sans-serif */
+	font-size     : var( --fon-siz-p01 );                            /* Font Size Base Plus 1 ~= 14.572px */
+	padding       : var( --spa-ver-m01 ) var( --spa-hor-bas );       /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base ~= 14.572px */
+	transition    : border-color var( --dur-tra-bas ) var( --mot-acc-eas ), box-shadow var( --dur-tra-bas ) var( --mot-acc-eas ), outline-color var( --dur-tra-bas ) var( --mot-acc-eas ), outline-offset var( --dur-tra-bas ) var( --mot-acc-eas ), outline-width var( --dur-tra-bas ) var( --mot-acc-eas ); /* Duration Transition Base ~= 157.8ms, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ) */ /* What: Focus Glow Transition. Why: The glow is a spread around the field's rounded edge, which no transform or opacity change can draw, so its box-shadow animates instead. How: The border color, the glow, and the outline ease out together on the accelerating curve as focus leaves, the outline listed so its forced colors ring shrinks away rather than snapping. */
 	width         : 100%;
 
 
 }
 .forConInp:focus,
 .forConSel:focus,
-.forConTex:focus { /* What: Focused Form Control Fields. Why: A visitor has to see which field they're typing in. How: This draws an orange border and a pale orange glow, over a transparent outline. */
+.forConTex:focus { /* What: Focused Form Control Fields. Why: A visitor has to see which field they're typing in. How: This draws an orange border and a pale orange glow, over a transparent outline, easing all three in on the decelerating curve. */
 
 
 	border-color : var( --foc-rin-col );                            /* Focus Ring Color ~= #bd3000 */
 	box-shadow   : 0 0 0 var( --bor-wid-xla ) var( --acc-tin-col ); /* Border Width Extra Large ~= 3.572px, Accent Tint Color = #FDDCC8 */
 	outline      : var( --bor-wid-bas ) solid transparent;          /* Border Width Base ~= 1.160px */ /* What: Transparent Outline. Why: Forced colors mode drops the glow and recolors the border, which would leave a focused field unmarked. How: Forced colors mode turns this transparent outline visible, while the border and glow carry the look otherwise. */
+	transition   : border-color var( --dur-tra-bas ) var( --mot-dec-eas ), box-shadow var( --dur-tra-bas ) var( --mot-dec-eas ), outline-color var( --dur-tra-bas ) var( --mot-dec-eas ), outline-offset var( --dur-tra-bas ) var( --mot-dec-eas ), outline-width var( --dur-tra-bas ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -439,7 +464,10 @@
 
 	.forConInp,
 	.forConSel,
-	.forConTex { /* What: Motionless Form Control Fields. Why: The focus border and glow should simply switch. How: This turns the transition off. */
+	.forConTex,
+	.forConInp:focus,
+	.forConSel:focus,
+	.forConTex:focus { /* What: Motionless Form Control Fields. Why: The focus border and glow should simply switch. How: This turns the transition off on both the resting and the focused rule, since the focused rule outranks the base. */
 
 
 		transition : none;
@@ -449,6 +477,18 @@
 
 
 }
+
+/* #endregion forFieDiv */
+
+/* #endregion forRowDiv */
+
+
+
+/* #region forFieDiv */
+
+/* What: Form Field Div Pointer. Why: The budget field takes the same stacked look as the name and email fields. How: Its rule sits in the forFieDiv region inside the forRowDiv region above. */
+
+/* What: Field Label Label Pointer. Why: The budget field's label reads like the others. How: Its rule sits in the forFieDiv region inside the forRowDiv region above. */
 
 .forConSel { /* What: Form Control Select. Why: The select draws its own arrow in the site's style. How: This removes the native arrow and draws a muted chevron at the right, making room for it. */
 
@@ -463,18 +503,19 @@
 
 }
 
-.forConTex { /* What: Form Control Textarea. Why: A message needs room and only grows downward. How: This sets a 138px minimum, roomy lines, and vertical resizing only. */
+/* #endregion forFieDiv */
 
 
-	line-height : var( --ver-rhy-p01 );                /* Vertical Rhythm Base Plus 1 ~= 1.755 */
-	min-height  : calc( var( --ver-rhy-p08 ) * 1rem ); /* Vertical Rhythm Base Plus 8 ~= 138.199px */
-	resize      : vertical;
+
+/* #region errAleDiv */
+
+.errAleDiv:empty { /* What: Empty Error Alert Div. Why: The alert region stays in the form from the first render so a failed send is announced, but as an empty flex item it would still add the form's gap above the message field. How: This takes it out of the form's flow while it holds no message, so it takes no space and adds no gap. */
+
+
+	position : absolute;
 
 
 }
-
-/* #endregion forFieDiv */
-
 
 .errMesPar { /* What: Error Message Paragraph. Why: A failed send has to stand out, and its arrival should be seen. How: This fades the message up into view with the shared entrance on a pale red panel with a red border and text. */
 
@@ -503,7 +544,33 @@
 
 }
 
-.senMesBut { /* What: Send Message Button. Why: Sending is the form's main action. How: This sets an orange button in mono capitals at the form's left, easing its color, sending dim, lift, press, and focus. */
+/* #endregion errAleDiv */
+
+
+
+/* #region forFieDiv */
+
+/* What: Form Field Div Pointer. Why: The message field takes the same stacked look as the name and email fields. How: Its rule sits in the forFieDiv region inside the forRowDiv region above. */
+
+/* What: Field Label Label Pointer. Why: The message field's label reads like the others. How: Its rule sits in the forFieDiv region inside the forRowDiv region above. */
+
+.forConTex { /* What: Form Control Textarea. Why: A message needs room and only grows downward. How: This sets a 138px minimum, roomy lines, and vertical resizing only. */
+
+
+	line-height : var( --ver-rhy-p01 );                /* Vertical Rhythm Base Plus 1 ~= 1.755 */
+	min-height  : calc( var( --ver-rhy-p08 ) * 1rem ); /* Vertical Rhythm Base Plus 8 ~= 138.199px */
+	resize      : vertical;
+
+
+}
+
+/* #endregion forFieDiv */
+
+
+
+/* #region senMesBut */
+
+.senMesBut { /* What: Send Message Button. Why: Sending is the form's main action. How: This sets an orange button in mono capitals at the form's left, centering its label, and eases its color, sending dim, lift, press, and focus. */
 
 
 	align-items    : center;
@@ -515,11 +582,10 @@
 	font-family    : var( --fon-fam-sec );                      /* Font Family Secondary = 'DM Mono', monospace */
 	font-size      : var( --fon-siz-p01 );                      /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight    : 500;
-	gap            : var( --spa-hor-m01 );                      /* Spacing Horizontal Base Minus 1 = 11px */
 	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );    /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	text-transform : uppercase;
-	transition     : background var( --dur-tra-bas ), opacity var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition     : background var( --dur-tra-bas ) var( --mot-sta-eas ), opacity var( --dur-tra-bas ) var( --mot-sta-eas ), transform var( --dur-tra-bas ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Transition Base Plus 1 ~= 209.1ms */
 
 
 }
@@ -575,6 +641,98 @@
 
 }
 
+
+/* #region senLabSpa */
+
+.senLabSpa { /* What: Send Label Span. Why: The ready and sending labels share one place, so the button keeps its width as they cross-fade. How: This sets a single grid cell, sized to the wider label, with both labels centered in it. */
+
+
+	display     : grid;
+	place-items : center;
+
+
+}
+
+
+/* #region senReaSpa */
+
+.senReaSpa { /* What: Send Ready Span. Why: The ready label pairs its words with the paper plane. How: This sets them side by side in the shared cell, line placed since both labels overlap there, and eases its fade on the standard curve. */
+
+
+	align-items : center;
+	display     : inline-flex;
+	gap         : var( --spa-hor-m01 );                              /* Spacing Horizontal Base Minus 1 = 11px */
+	grid-area   : 1 / 1;
+	transition  : opacity var( --dur-tra-bas ) var( --mot-sta-eas ); /* Duration Transition Base ~= 157.8ms, Motion Standard Easing = ease */
+
+
+}
+.senMesBut:disabled .senReaSpa { /* What: Sending Send Ready Span. Why: The ready label gives way while the message sends. How: This fades it out. */
+
+
+	opacity : 0;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Send Ready Span. Why: Someone who asked for less motion shouldn't see the labels fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.senReaSpa { /* What: Motionless Send Ready Span. Why: The label should simply switch. How: This turns the fade off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+.senPlaSvg { /* What: Send Plane SVG. Why: A press on the paper plane should land on its button. How: This lets every press fall through the plane to the button itself. */
+
+
+	pointer-events : none;
+
+
+}
+
+/* #endregion senReaSpa */
+
+
+.senPenSpa { /* What: Send Pending Span. Why: The sending label waits in the same cell, hidden until the message sends. How: This places it over the ready label, line placed since both labels overlap there, transparent, and eases its fade on the standard curve. */
+
+
+	grid-area  : 1 / 1;
+	opacity    : 0;
+	transition : opacity var( --dur-tra-bas ) var( --mot-sta-eas ); /* Duration Transition Base ~= 157.8ms, Motion Standard Easing = ease */
+
+
+}
+.senMesBut:disabled .senPenSpa { /* What: Sending Send Pending Span. Why: A visitor sees the message is on its way. How: This fades the sending label in. */
+
+
+	opacity : 1;
+
+
+}
+@media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Send Pending Span. Why: Someone who asked for less motion shouldn't see the labels fade. How: This applies only when the reduced-motion preference is set. */
+
+
+	.senPenSpa { /* What: Motionless Send Pending Span. Why: The label should simply switch. How: This turns the fade off. */
+
+
+		transition : none;
+
+
+	}
+
+
+}
+
+/* #endregion senLabSpa */
+
+/* #endregion senMesBut */
+
 /* #endregion conForFor */
 
 /* #endregion forWraDiv */
@@ -622,7 +780,7 @@
 
 }
 
-.sidTitHea { /* What: Sidebar Title Heading. Why: Each card is named. How: This sets the title small and bold with room below. */
+.sidTitHea { /* What: Sidebar Title Heading. Why: Each card is named. How: This sets the title at the body size, bold, with room below. */
 
 
 	color         : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */
@@ -637,7 +795,7 @@
 
 /* #region conIteDiv */
 
-.conIteDiv { /* What: Contact Item Div. Why: The contact details stack in a list. How: This stacks them with gaps. */
+.conIteDiv { /* What: Contact Items Div. Why: The contact details stack in a list. How: This stacks them with gaps. */
 
 
 	display        : flex;
@@ -658,7 +816,7 @@
 	display       : flex;
 	gap           : var( --spa-hor-m01 );                      /* Spacing Horizontal Base Minus 1 = 11px */
 	padding       : var( --spa-ver-m01 ) var( --spa-hor-m01 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Minus 1 = 11px */
-	transition    : background var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition    : background var( --dur-tra-bas ) var( --mot-sta-eas ), transform var( --dur-tra-bas ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Transition Base Plus 1 ~= 209.1ms */
 
 
 }
@@ -691,7 +849,7 @@
 
 }
 
-.conIcoSpa { /* What: Contact Icon Span. Why: Each detail's icon sits on a pale blue tile. How: This draws a 34px rounded tile centering the icon in dark blue, never shrinking. */
+.conIcoSpa { /* What: Contact Icon Span. Why: Each detail's icon sits on a pale blue tile, and a press on it should land on its row. How: This draws a 34px rounded tile centering the icon in dark blue, never shrinking, and lets every press fall through the tile and its icon to the link itself. */
 
 
 	align-items     : center;
@@ -702,6 +860,7 @@
 	flex-shrink     : 0;
 	height          : calc( var( --ver-rhy-p03 ) * 1rem ); /* Vertical Rhythm Base Plus 3 ~= 33.876px */
 	justify-content : center;
+	pointer-events  : none;
 	width           : calc( var( --ver-rhy-p03 ) * 1rem ); /* Vertical Rhythm Base Plus 3 ~= 33.876px */
 
 
@@ -727,6 +886,22 @@
 	display     : block;
 	font-size   : var( --fon-siz-p01 ); /* Font Size Base Plus 1 ~= 14.572px */
 	font-weight : 500;
+
+
+}
+
+.visHidSpa { /* What: Visually Hidden Span. Why: Screen reader users should hear that a profile row opens a new tab. How: This shrinks the note to a clipped 1px box out of the layout while it stays readable to screen readers. */
+
+
+	border      : 0;
+	clip-path   : inset( 50% );
+	height      : 1px;
+	margin      : -1px;
+	overflow    : hidden;
+	padding     : 0;
+	position    : absolute;
+	white-space : nowrap;
+	width       : 1px;
 
 
 }
@@ -805,7 +980,7 @@
 
 /* #region resTexPar */
 
-.resTexPar { /* What: Response Text Paragraph. Why: The response promise reads as small body text. How: This sets it in the secondary text color with roomy lines, no wider than the paragraph measure, which the full-width card on tablets would otherwise pass. */
+.resTexPar { /* What: Response Text Paragraph. Why: The response promise reads as body text. How: This sets it in the secondary text color with roomy lines, no wider than the paragraph measure, which the full-width card on tablets would otherwise pass. */
 
 
 	color       : var( --tex-sec-col ); /* Text Secondary Color = #3D3D5C */
@@ -816,7 +991,7 @@
 
 }
 
-.resTimStr { /* What: Response Time Strong. Why: The 24 hours is the promise's point. How: This sets it in the main text color. */
+.resTimStr { /* What: Response Time Strong. Why: The "24 hours" is the promise's point. How: This sets it in the main text color. */
 
 
 	color : var( --tex-mai-col ); /* Text Main Color = #1A1A2E */

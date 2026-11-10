@@ -18,19 +18,21 @@ import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why:
  * render.mts = Image Renderer
  *
  * @summary
- * Rebuilds every raster image the site shows from the originals in
- * originals/, a folder kept out of git so the large source files never bloat
- * the repository again. Each image is scaled so it covers its box, which is
- * twice the largest size the site shows it at, never scaled up, and encoded
- * at 0.85 quality, the lowest that showed no difference from the original at
- * 3x zoom. Everything is written as WebP where the site imports it (the
- * project screenshots into src/assets/images, the portrait beside the About
- * page), though a box can cut an image to exactly its size instead, and an
- * output named .jpg is written as a JPEG. Run it with npm run images whenever
- * an image is added or replaced, or a display size changes.
+ * Rebuilds the project screenshots and the About portrait from the originals
+ * in originals/, a folder kept out of git so the large source files never
+ * bloat the repository again. Each image is scaled so it covers its box, which
+ * is no more than three times the largest size the site shows it at, so it
+ * stays sharp on the densest phones, never scaled up, and encoded at 0.85
+ * quality, the lowest that showed no difference from the original at 3x zoom.
+ * Everything is written as WebP where the site imports it (the project
+ * screenshots into src/assets/images, the portrait beside the About page), and
+ * an output named .jpg is written as a JPEG, while a box can cut an image to
+ * exactly its size instead of only covering it. Run it with npm run images
+ * whenever an image is added or replaced, or a display size changes.
  *
  * Sections:
  *  - Constants
+ *  - Module State
  *  - Module Init
  *
  * @author z4nta0 <https://github.com/z4nta0>
@@ -43,11 +45,11 @@ import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why:
 
 type BoxRecTyp = { cutBoo : boolean, heiNum : number, widNum : number }; // What: Box Record Type. Why: A kind of image is either fitted to cover its box or cut to exactly its size. How: This names whether it's cut, and the box's height and width in pixels.
 
-const BOX_REC_OBJ : Record< string, BoxRecTyp > = { // What: Box Record Object. Why: Each kind of image is shown at a different largest size, and its file should be no more than twice that. How: This maps each kind to its box.
+const BOX_REC_OBJ : Record< string, BoxRecTyp > = { // What: Box Record Object. Why: Each kind of image is shown at a different largest size, and its file should be no more than three times that. How: This maps each kind to its box.
 
 
-	'portrait' : { cutBoo : true,  heiNum : 850, widNum : 642  }, // What: Portrait Box. Why: The About portrait fills a frame up to about 321 by 425 on a phone, which crops it the same way. How: This cuts it to twice that, centered, so no hidden pixels ship.
-	'project'  : { cutBoo : true,  heiNum : 752, widNum : 1336 }  // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 667px wide, in Home's two-by-two grid. How: This cuts it to exactly twice that, centered, since covering the box alone came out a pixel wider than the size the cards declare.
+	'portrait' : { cutBoo : true,  heiNum : 963,  widNum : 727  }, // What: Portrait Box. Why: The About portrait fills a frame up to about 242.5 by 321.3, measured in all three engines, which crops it the same way. How: This cuts it to three times that, rounded down, centered, so no hidden pixels ship.
+	'project'  : { cutBoo : true,  heiNum : 1122, widNum : 1995 }  // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 665.0 by 374.1, measured in all three engines at Home's widest two-by-two grid. How: This cuts it to three times that, rounded down, centered, since covering the box alone came out a pixel wider than the size the cards declare.
 
 
 };
@@ -56,7 +58,7 @@ const BOX_REC_OBJ : Record< string, BoxRecTyp > = { // What: Box Record Object. 
 
 type ImaRecTyp = { boxStr : string, outStr : string, souStr : string }; // What: Image Record Type. Why: Every image has a box, an output, and an original. How: This names its box key and its output and original paths, each relative to its own root.
 
-const IMA_REC_ARR : ImaRecTyp[] = [ // What: Image Record Array. Why: Every image the site shows is rebuilt from this one list. How: Each row names the original, where it's written, and which box it fits.
+const IMA_REC_ARR : ImaRecTyp[] = [ // What: Image Record Array. Why: The project screenshots and the portrait are rebuilt from this one list. How: Each row names the original, where it's written, and which box it fits.
 
 
 	...[ 'ease-my-life', 'hair-designs', 'reese-roofing', 'seal-and-shield', 'tech-geek-cards', 'tech-geek-support', 'the-bernie-bears', 'tonys-toppers' ].map( ( proNamStr ) => ({ // What: Project Screenshot Rows. Why: Every project card shows a screenshot of its site. How: This builds one row per project name.
@@ -84,16 +86,20 @@ const ROO_DIR_STR = fileURLToPath( new URL( '../../', import.meta.url ) );      
 
 
 
-// #region Module Init
-
-const broInsObj = await chromium.launch();   // What: Browser Instance Object. Why: The images are drawn by a real browser. How: This launches Chromium.
-const encPagObj = await broInsObj.newPage(); // What: Encode Page Object. Why: The canvas work runs in a page. How: This opens a blank one.
-
-
+// #region Module State
 
 let aftBytNum = 0; // What: After Bytes Number. Why: The run reports how much smaller the images got. How: This adds up the encoded files' sizes.
 let befBytNum = 0; // What: Before Bytes Number. Why: The run reports how much smaller the images got. How: This adds up the originals' sizes.
 let wriCouNum = 0; // What: Written Count Number. Why: The run reports how many images it wrote. How: This counts them.
+
+// #endregion Module State
+
+
+
+// #region Module Init
+
+const broInsObj = await chromium.launch();   // What: Browser Instance Object. Why: The images are drawn by a real browser. How: This launches Chromium.
+const encPagObj = await broInsObj.newPage(); // What: Encode Page Object. Why: The canvas work runs in a page. How: This opens a blank one.
 
 
 for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each original is rebuilt the same way. How: This scales, encodes, and writes one image per pass.
@@ -122,6 +128,7 @@ for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each o
 
 		souImaEle.src = souUrlStr; // What: Source Address Assignment. Why: The image loads the original's data. How: This sets its source.
 
+
 		await souImaEle.decode(); // What: Source Decode Wait. Why: Drawing an undecoded image draws nothing. How: This waits until it's ready.
 
 
@@ -143,6 +150,7 @@ for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each o
 
 
 		outConObj.imageSmoothingQuality = 'high'; // What: Smoothing Quality Assignment. Why: A large downscale should stay sharp without jagged edges. How: This asks for the browser's best resampling.
+
 
 		outConObj.drawImage( souImaEle, ( outWidNum - draWidNum ) / 2, ( outHeiNum - draHeiNum ) / 2, draWidNum, draHeiNum ); // What: Image Draw Call. Why: A cut image keeps its center, the way object-fit cover crops it. How: This draws the scaled original centered on the canvas, which crops nothing unless the box is cut.
 
@@ -176,7 +184,7 @@ await broInsObj.close(); // What: Browser Close Call. Why: The script should exi
 
 
 
-console.log( `Wrote ${ wriCouNum } images, ${ Math.round( befBytNum / 1024 ).toLocaleString() } KB down to ${ Math.round( aftBytNum / 1024 ).toLocaleString() } KB.` ); // What: Result Log Call. Why: The run should say what it wrote. How: This prints the count and the sizes before and after.
+console.log( `Wrote ${ wriCouNum } images, ${ Math.round( befBytNum / 1024 ).toLocaleString( 'en-US' ) } KB down to ${ Math.round( aftBytNum / 1024 ).toLocaleString( 'en-US' ) } KB.` ); // What: Result Log Call. Why: The run should say what it wrote. How: This prints the count and the sizes before and after.
 
 // #endregion Module Init
 

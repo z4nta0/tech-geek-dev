@@ -5,22 +5,22 @@
  * home.module.css = Home Page Module
  *
  * @summary
- * Styles for HomPagCom. The page fades up into view like every page. Its
- * ivory hero clears the fixed bar by a gap that grows with the screen, with
- * three faint shapes turning slowly behind it, the pitch fading up beside a
- * dark code window and a white badge that follow it in, a pulsing
- * availability dot, and a ticker of skills scrolling under the buttons; a
- * slanted white edge leads into the stats strip. Below come the featured
- * projects, the services in white cards that lift on hover, and an orange
- * closing card. On a tablet the code window keeps its natural width beside
- * the pitch, and on a phone it stacks above it, while the grids step down,
- * the projects and services reaching one column on a phone and the stats
- * staying in pairs. The shapes, the entrances, and the dot play the shared
- * shapeLoopSpin, contentEnterFadeUp, and statusLoopPulse keyframes from the
- * global sheet; the ticker plays its own. The page's centered
- * columns take the shared container values, and its sections the shared
- * section padding, merged into their own rules. Everything that moves holds
- * still under reduced motion.
+ * Styles for HomPagCom. The page fades up into view like every page. Its ivory
+ * hero clears the fixed bar by a gap that grows with the screen, with three
+ * faint shapes turning slowly behind it, the pitch fading up beside a dark
+ * code window and a white badge that follow it in, a pulsing availability dot,
+ * and a ticker of skills scrolling under the buttons; a slanted white edge
+ * leads into the stats strip. Below come the featured projects, the services
+ * in white cards that lift on hover, and an orange closing card. At 1,024px
+ * and below the code window keeps its natural width beside the pitch, and at
+ * 768px and below it stacks above it, while the services and stats grids step
+ * down to two columns at 1,024px and below, the projects and services reaching
+ * one column at 640px and below and the stats staying in pairs. The shapes,
+ * the entrances, and the dot play the shared shapeLoopSpin,
+ * contentEnterFadeUp, and statusLoopPulse keyframes from the global
+ * stylesheets; the ticker plays its own. The page's centered columns take the
+ * shared container values, and its sections the shared section padding, merged
+ * into their own rules.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -54,11 +54,11 @@
 
 /* #region homHerSec */
 
-.homHerSec { /* What: Home Hero Section. Why: The page opens on an introduction clear of the fixed bar, with the same breathing room on every screen shape. How: This sets the ivory background, centers the hero's row, clips the turning shapes, and pads it by the bar's height plus a gap that grows with the screen's width, so a tall window no longer opens a huge gap the way filling the window's height did. */
+.homHerSec { /* What: Home Hero Section. Why: The page opens on an introduction clear of the fixed bar, with the same breathing room on every screen shape. How: This sets the ivory background, centers the hero's row, clips the turning shapes, and pads it by the bar's height plus a gap that grows with the screen's width rather than the window's height. */
 
 
 	align-items : center;
-	background  : var( --bac-pag-col );                                                                                            /* Background Page Color = #F5F0E8 */
+	background  : var( --bac-pag-col ); /* Background Page Color = #F5F0E8 */
 	display     : flex;
 	overflow    : hidden;
 	padding     : calc( var( --nav-bar-hei ) + var( --her-gap-pad ) ) 0 clamp( var( --spa-ver-p06 ), 12vw, var( --spa-ver-p08 ) ); /* Navigation Bar Height ~= 78.751px, Hero Gap Padding, about 59.447px - 138.199px, Spacing Vertical Base Plus 6 ~= 78.751px, Spacing Vertical Base Plus 8 ~= 138.199px */ /* What: Hero Padding. Why: The gap under the bar and above the slanted edge should suit the screen. How: The top clears the bar plus the shared hero gap, and the bottom is 12vw, about 79px to 138px, which keeps the content clear of the 59px slanted edge. */
@@ -86,20 +86,20 @@
 
 
 }
-.herShaDiv--hexagon { /* What: Hexagon Hero Shape Div. Why: A large blue hexagon echoes the site's mark at the hero's right. How: This clips a 321px blue square to a hexagon past the right edge and turns it once every 33 seconds. */
+.herShaDiv--hexagon { /* What: Hero Shape Div Hexagon. Why: A large blue hexagon echoes the site's mark at the hero's right. How: This clips a 321px blue square to a hexagon past the right edge and turns it once every 33 seconds. */
 
 
-	animation  : global( shapeLoopSpin ) var( --dur-ani-p19 ) linear infinite; /* Duration Animation Base Plus 19 ~= 33,004.0ms */
-	background : var( --acc-sec-col );                                         /* Accent Secondary Color = #7DB9D8 */
+	animation  : global( shapeLoopSpin ) var( --dur-ani-p19 ) linear infinite;    /* Duration Animation Base Plus 19 ~= 33,004.0ms */
+	background : var( --acc-sec-col );                                            /* Accent Secondary Color = #7DB9D8 */
 	clip-path  : polygon( 50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25% );
-	height     : calc( var( --ver-rhy-p11 ) * 1rem );                          /* Vertical Rhythm Base Plus 11 ~= 321.273px */
-	right      : calc( var( --spa-hor-p06 ) * -1 );                            /* Spacing Horizontal Base Plus 6 ~= -78.751px */
+	height     : calc( var( --ver-rhy-p11 ) * 1rem );                             /* Vertical Rhythm Base Plus 11 ~= 321.273px */
+	right      : calc( var( --spa-hor-p06 ) * -1 );                               /* Spacing Horizontal Base Plus 6 ~= -78.751px */
 	top        : 10%;
-	width      : calc( var( --ver-rhy-p11 ) * 1rem );                          /* Vertical Rhythm Base Plus 11 ~= 321.273px */
+	width      : calc( var( --ver-rhy-p11 ) * 1rem );                             /* Vertical Rhythm Base Plus 11 ~= 321.273px */
 
 
 }
-.herShaDiv--circle { /* What: Circle Hero Shape Div. Why: An orange ring varies the shapes at the hero's lower left. How: This draws a 183px ring a little stronger than the others and turns it backward every 25 seconds. */
+.herShaDiv--circle { /* What: Hero Shape Div Circle. Why: An orange ring varies the shapes at the hero's lower left. How: This draws a 183px ring a little stronger than the others and turns it backward every 25 seconds. */
 
 
 	animation     : global( shapeLoopSpin ) var( --dur-ani-p18 ) linear infinite reverse; /* Duration Animation Base Plus 18 ~= 24,914.0ms */
@@ -114,7 +114,7 @@
 
 
 }
-.herShaDiv--square { /* What: Square Hero Shape Div. Why: A tilted outlined square varies the shapes near the hero's top. How: This draws a 104px strong blue square tipped 45 degrees through rotate, which the turning transform adds to, and turns it every 19 seconds. */
+.herShaDiv--square { /* What: Hero Shape Div Square. Why: A tilted outlined square varies the shapes near the hero's top. How: This draws a 104px strong blue square tipped 45 degrees through rotate, which the turning transform adds to, and turns it every 19 seconds. */
 
 
 	animation  : global( shapeLoopSpin ) var( --dur-ani-p17 ) linear infinite; /* Duration Animation Base Plus 17 ~= 18,807.0ms */
@@ -163,14 +163,14 @@
 	padding               : 0 var( --gut-sid-pad );                                                                         /* Gutter Side Padding, about 19.304px - 44.876px */ /* What: Container Padding. Why: The hero section already pads above and below this column, so the column only needs the page's side gutters. How: This pads its sides by the gutter and leaves its top and bottom at zero. */
 	position              : relative;
 	width                 : 100%;
-	z-index               : 1;
+	z-index               : 1;                                                                                              /* What: Shape Clearing Layer. Why: The pitch and the code window have to sit above the hero's pattern and turning shapes, which paint at layer 0. How: This lifts the row one layer above them. */
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Hero Inner Div. Why: On a tablet the code window would squeeze the pitch in a quarter of the row. How: This applies at 1,024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Hero Inner Div. Why: On a tablet the code window would be squeezed into a quarter of the row. How: This applies at 1,024px and below. */
 
 
-	.herInnDiv { /* What: Tablet Hero Inner Div Columns. Why: The window keeps its natural width beside the pitch, which takes the rest. How: This sets a flexible pitch column and a column sized to the window. */
+	.herInnDiv { /* What: Two Column Hero Inner Div. Why: The window keeps its natural width beside the pitch, which takes the rest. How: This sets a flexible pitch column and a column sized to the window. */
 
 
 		grid-template-columns : minmax( 0, 1fr ) auto;
@@ -284,19 +284,20 @@
 /* #endregion herLabDiv */
 
 
+
 /* #region herTitHea */
 
 .herTitHea { /* What: Hero Title Heading. Why: The heading reads large and tight. How: This sets its color, a size that follows its column, and a tight line height. */
 
 
 	color       : var( --tex-mai-col );                                        /* Text Main Color = #1A1A2E */
-	font-size   : clamp( var( --fon-siz-p02 ), 9.6cqi, var( --fon-siz-p07 ) ); /* Font Size Base Plus 2 ~= 19.304px, Font Size Base Plus 7 ~= 78.751px */ /* What: Column-Sized Heading. Why: Experiences is about 10em wide, so at the global h1 size it ran past its column on phones and under the code window on a desktop. How: The size is 9.6% of the column's width, which keeps the word inside it, within the p02 and p07 steps. */
+	font-size   : clamp( var( --fon-siz-p02 ), 9.6cqi, var( --fon-siz-p07 ) ); /* Font Size Base Plus 2 ~= 19.304px, Font Size Base Plus 7 ~= 78.751px */ /* What: Column-Sized Heading. Why: "Experiences" is about 10em wide, so at the global h1 size it ran past its column on phones and under the code window on a desktop. How: The size is 9.6% of the column's width, which keeps the word inside it, within the p02 and p07 steps. */
 	line-height : var( --ver-rhy-m01 );                                        /* Vertical Rhythm Base Minus 1 = 1 */
 
 
 }
 
-.titAccSpa { /* What: Title Accent Span. Why: Digital carries the accent with an underline stroke. How: This sets it dark blue and positions its stroke. */
+.titAccSpa { /* What: Title Accent Span. Why: "Digital" carries the accent with an underline stroke. How: This sets it dark blue and positions its stroke. */
 
 
 	color    : var( --acs-dar-col ); /* Accent-Secondary Dark Color ~= #126186 */
@@ -305,7 +306,7 @@
 
 
 }
-.titAccSpa::after { /* What: Title Accent Span Stroke. Why: A soft orange stroke underlines the accent word. How: This draws a 4px rounded orange bar along its bottom, partly faded. */
+.titAccSpa::after { /* What: Title Accent Span Stroke. Why: A soft orange stroke underlines the accent word. How: This draws a rounded orange bar about 3.6px thick along its bottom, partly faded. */
 
 
 	background    : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
@@ -346,7 +347,7 @@
 
 /* #region herActDiv */
 
-.herActDiv { /* What: Hero Actions Div. Why: The two next steps sit side by side. How: This lines them up with a gap, wrapping when they don't fit. */
+.herActDiv { /* What: Hero Actions Div. Why: The two next steps sit side by side. How: This lines them up with a gap, wrapping onto two lines at about 490px wide and below, and from about 769px to 820px, where the pitch sits beside the code window. */
 
 
 	display   : flex;
@@ -355,6 +356,9 @@
 
 
 }
+
+
+/* #region butPriAnc */
 
 .butPriAnc { /* What: Button Primary Anchor. Why: The main next step stands out. How: This sets an orange button in mono capitals with its arrow, easing its color, lift, press, and focus. */
 
@@ -371,7 +375,7 @@
 	letter-spacing : 0.04em;
 	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	text-transform : uppercase;
-	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition     : background var( --dur-tra-bas ) var( --mot-sta-eas ), transform var( --dur-tra-bas ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Transition Base Plus 1 ~= 209.1ms */
 
 
 }
@@ -404,6 +408,17 @@
 
 }
 
+.butArrSvg { /* What: Button Arrow SVG. Why: A press on the arrow should land on its button. How: This lets every press fall through the arrow to the link itself. */
+
+
+	pointer-events : none;
+
+
+}
+
+/* #endregion butPriAnc */
+
+
 .butSecAnc { /* What: Button Secondary Anchor. Why: The second next step sits back from the first. How: This sets an outlined button in mono capitals, easing its border, color, lift, press, and focus. */
 
 
@@ -418,7 +433,7 @@
 	letter-spacing : 0.04em;
 	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 );       /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	text-transform : uppercase;
-	transition     : border-color var( --dur-tra-bas ), color var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition     : border-color var( --dur-tra-bas ) var( --mot-sta-eas ), color var( --dur-tra-bas ) var( --mot-sta-eas ), transform var( --dur-tra-bas ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Transition Base Plus 1 ~= 209.1ms */
 
 
 }
@@ -555,7 +570,7 @@
 @media ( max-width : 768px ) { /* What: Phone Hero Visual Div. Why: On a phone the code window leads the stacked hero, above the pitch rather than beside it. How: This applies at 768px and below. */
 
 
-	.herVisDiv { /* What: Stacked Hero Visual Div. Why: The window should fill a phone's column without stretching too wide or tall on a large phone, sit centered above the pitch so the page opens on it, as every other site's stacked hero opens on its image, and never push the page sideways. How: This centers it at the column's full width, capped at the p11 rhythm step, the size the other sites' stacked hero images take, moves it ahead of the pitch in the grid's order, and lets it shrink below its code's width. */
+	.herVisDiv { /* What: Stacked Hero Visual Div. Why: The window should fill a phone's column without stretching too wide or tall on a large phone, sit centered above the pitch so the page opens on it, and never push the page sideways. How: This centers it at the column's full width, capped at the p11 rhythm step, moves it ahead of the pitch in the grid's order, and lets it shrink below its code's width. */
 
 
 		margin        : 0 auto;
@@ -590,10 +605,10 @@
 .codWinDiv { /* What: Code Window Div. Why: z4nta0 is introduced as code in a dark editor window. How: This sets a dark rounded window with a faint light border, a large shadow, and a faint blue outline. */
 
 
-	background    : var( --bac-inv-col );                                                                                                 /* Background Inverse Color = #1A1A2E */
-	border        : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-009-rec ) );                       /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.080 opacity */
-	border-radius : var( --rad-bor-med );                                                                                                 /* Radius Border Medium = 11px */
-	box-shadow    : var( --ele-lar-sha ), 0 0 0 var( --bor-wid-bas ) oklch( from var( --acc-sec-col ) l c h / var( --cdn-pow-007-rec ) ); /* Elevation Large Shadow, about 0 11px 44.9px plus 0 3.6px 11px -2.7px, Border Width Base ~= 1.160px, Accent Secondary Color = #7DB9D8 @ 0.140 opacity */
+	background    : var( --bac-inv-col );                                                                           /* Background Inverse Color = #1A1A2E */
+	border        : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-009-rec ) ); /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF, Core-Design-Number to the Power of 9 Reciprocal ~= 0.080 */
+	border-radius : var( --rad-bor-med );                                                                           /* Radius Border Medium = 11px */
+	box-shadow    : var( --ele-lar-sha ), 0 0 0 var( --bor-wid-bas ) oklch( from var( --acc-sec-col ) l c h / var( --cdn-pow-007-rec ) ); /* Elevation Large Shadow ~= 0 11px 44.876px plus 0 3.572px 11px -2.696px, Border Width Base ~= 1.160px, Accent Secondary Color = #7DB9D8, Core-Design-Number to the Power of 7 Reciprocal ~= 0.140 */
 	overflow      : hidden;
 	position      : relative;
 
@@ -608,7 +623,7 @@
 
 	align-items   : center;
 	background    : oklch( from var( --bac-sur-col ) l c h / 0.04 );                                                /* Background Surface Color = #FFFFFF @ 0.04 opacity */
-	border-bottom : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-010-rec ) ); /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF @ 0.060 opacity */
+	border-bottom : var( --bor-wid-bas ) solid oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-010-rec ) ); /* Border Width Base ~= 1.160px, Background Surface Color = #FFFFFF, Core-Design-Number to the Power of 10 Reciprocal ~= 0.060 */
 	display       : flex;
 	gap           : var( --spa-hor-m02 );                                                                           /* Spacing Horizontal Base Minus 2 ~= 8.304px */
 	padding       : var( --spa-ver-m01 ) var( --spa-hor-p02 );                                                      /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 2 ~= 25.572px */
@@ -625,21 +640,21 @@
 
 
 }
-.winDotSpa--first { /* What: First Window Dot Span. Why: The first dot is red. How: This sets its color. */
+.winDotSpa--first { /* What: Window Dot Span First. Why: The first dot is red. How: This sets its color. */
 
 
 	background : #ff5f56;
 
 
 }
-.winDotSpa--second { /* What: Second Window Dot Span. Why: The second dot is yellow. How: This sets its color. */
+.winDotSpa--second { /* What: Window Dot Span Second. Why: The second dot is yellow. How: This sets its color. */
 
 
 	background : #ffbd2e;
 
 
 }
-.winDotSpa--third { /* What: Third Window Dot Span. Why: The third dot is green. How: This sets its color. */
+.winDotSpa--third { /* What: Window Dot Span Third. Why: The third dot is green. How: This sets its color. */
 
 
 	background : #27c93f;
@@ -650,7 +665,7 @@
 .winTitSpa { /* What: Window Title Span. Why: The file name sits quietly after the dots. How: This sets it small in faint mono, spaced from the dots. */
 
 
-	color       : oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-004-rec ) ); /* Background Surface Color = #FFFFFF @ 0.325 opacity */
+	color       : oklch( from var( --bac-sur-col ) l c h / var( --cdn-pow-004-rec ) ); /* Background Surface Color = #FFFFFF, Core-Design-Number to the Power of 4 Reciprocal ~= 0.325 */
 	font-family : var( --fon-fam-sec );                                                /* Font Family Secondary = 'DM Mono', monospace */
 	font-size   : var( --fon-siz-bas );                                                /* Font Size Base = 11px */
 	margin-left : var( --spa-hor-m01 );                                                /* Spacing Horizontal Base Minus 1 = 11px */
@@ -659,6 +674,7 @@
 }
 
 /* #endregion winBarDiv */
+
 
 
 /* #region codBloPre */
@@ -743,7 +759,7 @@
 	background    : var( --bac-sur-col );                                                                             /* Background Surface Color = #FFFFFF */
 	border        : var( --bor-wid-bas ) solid var( --bor-mai-col );                                                  /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
 	border-radius : var( --rad-bor-med );                                                                             /* Radius Border Medium = 11px */
-	box-shadow    : var( --ele-med-sha );                                                                             /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
+	box-shadow    : var( --ele-med-sha );                                                                             /* Elevation Medium Shadow ~= 0 4.732px 14.572px plus 0 1.536px 3.572px -1.160px */
 	display       : flex;
 	gap           : var( --spa-hor-m01 );                                                                             /* Spacing Horizontal Base Minus 1 = 11px */
 	left          : calc( var( --spa-hor-p02 ) * -1 );                                                                /* Spacing Horizontal Base Plus 2 ~= -25.572px */
@@ -772,7 +788,7 @@
 	.floBadDiv { /* What: Fitted Floating Badge Div. Why: The badge should stick out past the window as far as the screen allows, like on a desktop, and tuck in on a narrow phone, and still cover only the lower part of the closing brace once the code's padding shrinks again. How: The overhang is the room left beside the centered window, less the gutter, held between the m02 and p02 steps, so it reaches the full p02 from about 412px wide and eases down to m02 below about 376px, and the top anchors to the code's phone padding. */
 
 
-		left : calc( clamp( var( --spa-hor-m02 ), calc( ( 100vw - var( --ver-rhy-p11 ) * 1rem ) / 2 - var( --gut-sid-pad ) ), var( --spa-hor-p02 ) ) * -1 ); /* Spacing Horizontal Base Minus 2 ~= -8.304px, Vertical Rhythm Base Plus 11 ~= 321.273px, Gutter Side Padding, about 19.304px - 44.876px, Spacing Horizontal Base Plus 2 ~= -25.572px */
+		left : calc( clamp( var( --spa-hor-m02 ), calc( ( 100vw - var( --ver-rhy-p11 ) * 1rem ) / 2 - var( --gut-sid-pad ) ), var( --spa-hor-p02 ) ) * -1 ); /* Spacing Horizontal Base Minus 2 ~= 8.304px, Vertical Rhythm Base Plus 11 ~= 321.273px, Gutter Side Padding, about 19.304px - 44.876px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 		top  : calc( 100% - var( --spa-ver-p01 ) - var( --spa-ver-m01 ) );                                                                                   /* Spacing Vertical Base Plus 1 ~= 19.304px, Spacing Vertical Base Minus 1 = 11px */
 
 
@@ -828,10 +844,10 @@
 .herDivDiv { /* What: Hero Divider Div. Why: A slanted white edge leads from the hero into the stats strip. How: This clips a 59px white band along the hero's bottom to a triangle. */
 
 
-	background : var( --bac-sur-col );                /* Background Surface Color = #FFFFFF */
-	bottom     : calc( var( --spa-ver-m09 ) * -1 );   /* Spacing Vertical Base Minus 9 ~= -1.160px */
+	background : var( --bac-sur-col );                 /* Background Surface Color = #FFFFFF */
+	bottom     : calc( var( --spa-ver-m09 ) * -1 );    /* Spacing Vertical Base Minus 9 ~= -1.160px */
 	clip-path  : polygon( 0 100%, 100% 0, 100% 100% );
-	height     : calc( var( --ver-rhy-p05 ) * 1rem ); /* Vertical Rhythm Base Plus 5 ~= 59.447px */
+	height     : calc( var( --ver-rhy-p05 ) * 1rem );  /* Vertical Rhythm Base Plus 5 ~= 59.447px */
 	left       : 0;
 	position   : absolute;
 	right      : 0;
@@ -912,7 +928,7 @@
 
 
 }
-.staIteDiv:last-child { /* What: Last Stat Item Div. Why: The last figure ends the row, so it needs no divider after it. How: This removes its right rule. */
+.staIteDiv:last-child { /* What: Stat Item Div Last. Why: The last figure ends the row, so it needs no divider after it. How: This removes its right rule. */
 
 
 	border-right : none;
@@ -922,7 +938,7 @@
 @media ( max-width : 1024px ) { /* What: Tablet Stat Item Div. Why: In two columns the second figure ends its row too, and its divider would sit against the grid's right edge. How: This applies at 1,024px and below. */
 
 
-	.staIteDiv:nth-child( 2n ) { /* What: Row End Stat Item Div. Why: Every figure in the right column ends its row. How: This removes the right rule from every second item. */
+	.staIteDiv:nth-child( 2n ) { /* What: Stat Item Div Row End. Why: Every figure in the right column ends its row. How: This removes the right rule from every second item. */
 
 
 		border-right : none;
@@ -953,14 +969,14 @@
 
 	color          : var( --tex-mai-col );                                       /* Text Main Color = #1A1A2E */
 	font-family    : var( --fon-fam-mai );                                       /* Font Family Main = 'Syne', sans-serif */
-	font-size      : clamp( var( --fon-siz-p02 ), 26cqi, var( --fon-siz-p05 ) ); /* Font Size Base Plus 2 ~= 19.304px, Font Size Base Plus 5 ~= 44.876px */ /* What: Item-Sized Figure. Why: 100% is about 3.8em wide, too wide for half a phone's width at the full size. How: The figure is 26% of its item's width, held between the p02 and p05 steps, so desktop keeps the full size. */
+	font-size      : clamp( var( --fon-siz-p02 ), 26cqi, var( --fon-siz-p05 ) ); /* Font Size Base Plus 2 ~= 19.304px, Font Size Base Plus 5 ~= 44.876px */ /* What: Item-Sized Figure. Why: "100%" is about 3.8em wide, too wide for half a phone's width at the full size. How: The figure is 26% of its item's width, held between the p02 and p05 steps, so desktop keeps the full size. */
 	font-weight    : 800;
 	letter-spacing : -0.04em;
 	line-height    : var( --ver-rhy-m01 );                                       /* Vertical Rhythm Base Minus 1 = 1 */
 
 
 }
-.staValSpa::after { /* What: Stat Value Span Underline. Why: A short orange stroke sits under each figure. How: This draws a 26px rounded orange bar centered below it. */
+.staValSpa::after { /* What: Stat Value Span Underline. Why: A short orange stroke sits under each figure. How: This draws a rounded orange bar about 26px long centered below it. */
 
 
 	background    : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
@@ -1066,7 +1082,7 @@
 	gap            : var( --spa-hor-m02 );                   /* Spacing Horizontal Base Minus 2 ~= 8.304px */
 	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em ); /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	text-transform : uppercase;
-	transition     : color var( --dur-tra-bas ), opacity var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition     : color var( --dur-tra-bas ) var( --mot-sta-eas ), opacity var( --dur-tra-bas ) var( --mot-sta-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Motion Standard Easing = ease, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -1098,10 +1114,11 @@
 
 }
 
-.vieArrSvg { /* What: View Arrow SVG. Why: The arrow nudges toward where the link goes. How: This eases its slide on hover, on the compositor rather than through the gap beside it. */
+.vieArrSvg { /* What: View Arrow SVG. Why: The arrow nudges toward where the link goes, and a press on it should land on its link. How: This lets every press fall through it to the link, and eases its slide on hover, on the compositor rather than through the gap beside it. */
 
 
-	transition : transform var( --dur-tra-bas ); /* Duration Transition Base ~= 157.8ms */
+	pointer-events : none;
+	transition     : transform var( --dur-tra-bas ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
@@ -1129,6 +1146,7 @@
 /* #endregion vieAllAnc */
 
 /* #endregion feaHeaDiv */
+
 
 
 .proGriDiv { /* What: Projects Grid Div. Why: The featured cards line up in even columns. How: This sets the four cards two by two, so every row stays even, with gaps. */
@@ -1188,7 +1206,7 @@
 	padding        : 0 var( --gut-sid-pad ); /* Gutter Side Padding, about 19.304px - 44.876px */
 	position       : relative;
 	width          : 100%;
-	z-index        : 1;
+	z-index        : 1;                      /* What: Pattern Clearing Layer. Why: The services heading and cards have to sit above the section's pattern, which is positioned at 0. How: This lifts the column one layer above the pattern. */
 
 
 }
@@ -1196,7 +1214,7 @@
 
 /* #region serGriDiv */
 
-.serGriDiv { /* What: Service Grid Div. Why: The service cards line up in even columns. How: This sets four full-width columns with gaps. */
+.serGriDiv { /* What: Services Grid Div. Why: The service cards line up in even columns. How: This sets four full-width columns with gaps. */
 
 
 	display               : grid;
@@ -1206,10 +1224,10 @@
 
 
 }
-@media ( max-width : 1024px ) { /* What: Tablet Service Grid Div. Why: Four cards crowd a tablet. How: This applies at 1,024px and below. */
+@media ( max-width : 1024px ) { /* What: Tablet Services Grid Div. Why: Four cards crowd a tablet. How: This applies at 1,024px and below. */
 
 
-	.serGriDiv { /* What: Two Column Service Grid Div. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
+	.serGriDiv { /* What: Two Column Services Grid Div. Why: Two cards fit side by side on a tablet. How: This sets two columns. */
 
 
 		grid-template-columns : repeat( 2, 1fr );
@@ -1219,10 +1237,10 @@
 
 
 }
-@media ( max-width : 640px ) { /* What: Phone Service Grid Div. Why: Two cards crowd a phone. How: This applies at 640px and below. */
+@media ( max-width : 640px ) { /* What: Phone Services Grid Div. Why: Two cards crowd a phone. How: This applies at 640px and below. */
 
 
-	.serGriDiv { /* What: One Column Service Grid Div. Why: One card fits across a phone. How: This sets one column. */
+	.serGriDiv { /* What: One Column Services Grid Div. Why: One card fits across a phone. How: This sets one column. */
 
 
 		grid-template-columns : 1fr;
@@ -1236,33 +1254,35 @@
 
 /* #region serCarDiv */
 
-.serCarDiv { /* What: Service Card Div. Why: Each service is one white card. How: This sets the bordered card, stacks its icon, title, and description, and eases its border color, lift, and shadow. */
+.serCarDiv { /* What: Service Card Div. Why: Each service is one white card. How: This sets the bordered card, stacks its icon, title, and description, and eases its border color, lift, and shadow, the shadow leaving on the accelerating curve. */
 
 
-	background     : var( --bac-sur-col );                                                                               /* Background Surface Color = #FFFFFF */
-	border         : var( --bor-wid-bas ) solid var( --bor-mai-col );                                                    /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
-	border-radius  : var( --rad-bor-med );                                                                               /* Radius Border Medium = 11px */
+	background     : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : var( --rad-bor-med );                            /* Radius Border Medium = 11px */
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --spa-ver-bas );                                                                               /* Spacing Vertical Base ~= 14.572px */
-	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );                                                          /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
-	transition     : border-color var( --dur-tra-p02 ), box-shadow var( --dur-tra-p02 ), transform var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms */ /* What: Shadow Transition. Why: A box-shadow animates on paint rather than the compositor, but a compositor version would need a second shadow layer faded through opacity, and only the one hovered card repaints. How: This eases the shadow alongside the lift. */
+	gap            : var( --spa-ver-bas );                            /* Spacing Vertical Base ~= 14.572px */
+	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );       /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	transition     : border-color var( --dur-tra-p02 ) var( --mot-sta-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-acc-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ), Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Shadow Transition. Why: A box-shadow animates on paint rather than the compositor, but a compositor version would need a second shadow layer faded through opacity, and only the one hovered card repaints. How: This eases the shadow alongside the lift. */
 
 
 }
-.serCarDiv:hover { /* What: Hovered Service Card Div. Why: A card should respond to the pointer. How: This lifts it 3px, turns its border the strong blue, and casts the medium shadow. */
+.serCarDiv:hover { /* What: Hovered Service Card Div. Why: A card should respond to the pointer. How: This lifts it 3px, turns its border the strong blue on the standard curve, and casts the medium shadow, easing the lift and shadow in on the decelerating curve. */
 
 
 	border-color : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
-	box-shadow   : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
+	box-shadow   : var( --ele-med-sha ); /* Elevation Medium Shadow ~= 0 4.732px 14.572px plus 0 1.536px 3.572px -1.160px */
 	transform    : translateY( -3px );
+	transition   : border-color var( --dur-tra-p02 ) var( --mot-sta-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-dec-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Service Card Div. Why: Someone who asked for less motion shouldn't see the cards glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.serCarDiv { /* What: Motionless Service Card Div. Why: The lift and shadow should simply switch. How: This turns the transition off. */
+	.serCarDiv,
+	.serCarDiv:hover { /* What: Motionless Service Card Div. Why: The lift and shadow should simply switch. How: This turns the transition off on both the resting and the hovered rule, since the hovered rule outranks the base. */
 
 
 		transition : none;
@@ -1392,7 +1412,7 @@
 
 /* #region ctaActDiv */
 
-.ctaActDiv { /* What: Call-To-Action Actions Div. Why: The banner's button holds its size. How: This lines up the button, never shrinking, wrapping if more join it. */
+.ctaActDiv { /* What: Call-To-Action Actions Div. Why: The banner's button holds its size. How: This lines up the button, never shrinking. */
 
 
 	display     : flex;
@@ -1415,7 +1435,7 @@
 	letter-spacing : 0.04em;
 	padding        : var( --spa-ver-bas ) var( --spa-hor-p04 ); /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 4 ~= 44.876px */
 	text-transform : uppercase;
-	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition     : background var( --dur-tra-bas ) var( --mot-sta-eas ), transform var( --dur-tra-bas ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Transition Base Plus 1 ~= 209.1ms */
 
 
 }

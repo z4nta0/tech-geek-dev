@@ -8,17 +8,17 @@
  * Styles for AboPagCom. The page fades up into view like every page. Its ivory
  * hero clears the fixed bar and sets the introduction beside the portrait in
  * its hexagon frame, with two white fact cards floating above and below the
- * portrait's corners; on a tablet the heading spans the row with the portrait
- * beside the paragraphs, and on a phone the portrait stacks centered above the
- * introduction, a step smaller, between two small geometric flourishes. The
- * skills grid steps from four groups across to two to one, the timeline
- * alternates its milestones either side of a center line on a tablet or wider
- * and runs each one's year, dot, and line, and text in three columns on a
- * phone, the values grid steps like the skills and lifts a card on hover, and
- * a white band closes the page with the Ko-fi invitation and its button.
- * The page's centered columns take the shared container values, and its
- * sections the shared section padding, merged into their own rules. Everything
- * that moves holds still under reduced motion.
+ * portrait's corners; at 1,024px and below the heading spans the row with the
+ * portrait beside the paragraphs, and at 768px and below the portrait stacks
+ * centered above the introduction, a step smaller, between two small geometric
+ * flourishes. The skills grid steps from four groups across to two at 1,024px
+ * and below and to one at 640px and below, the timeline alternates its
+ * milestones either side of a center line above 768px and runs each one's
+ * year, dot, and line, and text in three columns at 768px and below, the
+ * values grid steps like the skills and lifts a card on hover, and a white
+ * band closes the page with the Ko-fi invitation and its button. The page's
+ * centered columns take the shared container values, and its sections the
+ * shared section padding, merged into their own rules.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -71,21 +71,21 @@
 
 	align-items           : center;
 	display               : grid;
-	gap                   : var( --spa-ver-p08 ) clamp( var( --spa-hor-p05 ), var( --hor-rhy-018 ), var( --spa-hor-p08 ) );              /* Spacing Vertical Base Plus 8 ~= 138.199px, Spacing Horizontal Base Plus 5 ~= 59.447px, Horizontal Rhythm 18 ~= 152.824px @ 1,920px width, Spacing Horizontal Base Plus 8 ~= 138.199px */
-	grid-template-columns : 1fr clamp( calc( var( --ver-rhy-p10 ) * 1rem ), var( --hor-rhy-022 ), calc( var( --ver-rhy-p12 ) * 1rem ) ); /* Vertical Rhythm Base Plus 10 ~= 242.522px, Horizontal Rhythm 22 ~= 470.635px @ 1,920px width, Vertical Rhythm Base Plus 12 ~= 425.592px */
+	gap                   : var( --spa-ver-p08 ) clamp( var( --spa-hor-p05 ), var( --hor-rhy-018 ), var( --spa-hor-p08 ) ); /* Spacing Vertical Base Plus 8 ~= 138.199px, Spacing Horizontal Base Plus 5 ~= 59.447px, Horizontal Rhythm 18 ~= 152.824px @ 1,920px width, Spacing Horizontal Base Plus 8 ~= 138.199px */
+	grid-template-columns : 1fr clamp( calc( var( --ver-rhy-p10 ) * 1rem ), var( --hor-rhy-022 ), calc( var( --ver-rhy-p12 ) * 1rem ) ); /* Vertical Rhythm Base Plus 10 ~= 242.522px, Horizontal Rhythm 22 ~= 470.635px @ 1,920px width, Vertical Rhythm Base Plus 12 ~= 425.596px */
 	margin                : 0 auto;
-	max-width             : var( --con-max-wid );                                                                                        /* Container Maximum Width ~= 1,449.365px */
-	padding               : 0 var( --gut-sid-pad );                                                                                      /* Gutter Side Padding, about 19.304px - 44.876px */
+	max-width             : var( --con-max-wid );                                                                           /* Container Maximum Width ~= 1,449.365px */
+	padding               : 0 var( --gut-sid-pad );                                                                         /* Gutter Side Padding, about 19.304px - 44.876px */
 	position              : relative;
 	width                 : 100%;
-	z-index               : 1; /* What: Pattern Clearing Layer. Why: The introduction and the portrait have to sit above the hero's dot pattern, which is positioned at 0. How: This lifts the column one layer above the pattern. */
+	z-index               : 1;                                                                                              /* What: Pattern Clearing Layer. Why: The introduction and the portrait have to sit above the hero's dot pattern, which is positioned at 0. How: This lifts the column one layer above the pattern. */
 
 
 }
 @media ( max-width : 1024px ) { /* What: Tablet Hero Grid Div. Why: The portrait column crowds a tablet's row beside the heading. How: This applies at 1,024px and below. */
 
 
-	.herGriDiv { /* What: Tablet Hero Grid Div Layout. Why: The heading takes the full width, with the portrait beside the paragraphs below it. How: This sets a flexible text column and a column sized to the portrait, with the text's own row gap. */
+	.herGriDiv { /* What: Two Column Hero Grid Div. Why: The heading takes the full width, with the portrait beside the paragraphs below it. How: This sets a flexible text column and a column sized to the portrait, with the text's own row gap. */
 
 
 		gap                   : var( --spa-ver-p02 ) clamp( var( --spa-hor-p05 ), var( --hor-rhy-018 ), var( --spa-hor-p08 ) ); /* Spacing Vertical Base Plus 2 ~= 25.572px, Spacing Horizontal Base Plus 5 ~= 59.447px, Horizontal Rhythm 18 ~= 152.824px @ 1,920px width, Spacing Horizontal Base Plus 8 ~= 138.199px */
@@ -167,7 +167,7 @@
 
 }
 
-.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws a 26px orange stroke. */
+.herLinSpa { /* What: Hero Line Span. Why: A short rule leads into the label. How: This draws an orange stroke about 26px long. */
 
 
 	background : var( --acc-mai-col );                /* Accent Main Color = #F26419 */
@@ -179,6 +179,7 @@
 }
 
 /* #endregion herLabSpa */
+
 
 
 /* #region herTitHea */
@@ -242,7 +243,7 @@
 
 /* #region herActDiv */
 
-.herActDiv { /* What: Hero Actions Div. Why: The introduction ends with its button. How: This lines the button up, wrapping if more join it. */
+.herActDiv { /* What: Hero Actions Div. Why: The introduction ends with its button. How: This lines the button up. */
 
 
 	display   : flex;
@@ -252,7 +253,7 @@
 
 }
 
-.butPriAnc { /* What: Button Primary Anchor. Why: The page's actions, getting in touch and buying a coffee, stand out. How: This sets an orange button in mono capitals, easing its color, lift, press, and focus. */
+.butPriAnc { /* What: Button Primary Anchor. Why: The page's actions, such as getting in touch, stand out. How: This sets an orange button in mono capitals, easing its color, lift, press, and focus. */
 
 
 	align-items    : center;
@@ -266,7 +267,7 @@
 	letter-spacing : calc( var( --cdn-pow-010-rec ) * 1em );    /* Core-Design-Number to the Power of 10 Reciprocal ~= 0.060em */
 	padding        : var( --spa-ver-m01 ) var( --spa-hor-p03 ); /* Spacing Vertical Base Minus 1 = 11px, Spacing Horizontal Base Plus 3 ~= 33.876px */
 	text-transform : uppercase;
-	transition     : background var( --dur-tra-bas ), transform var( --dur-tra-bas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Duration Transition Base Plus 1 ~= 209.1ms, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
+	transition     : background var( --dur-tra-bas ) var( --mot-sta-eas ), transform var( --dur-tra-bas ) var( --mot-dec-eas ), outline-offset var( --dur-tra-p01 ) var( --mot-dec-eas ), outline-width var( --dur-tra-p01 ) var( --mot-dec-eas ); /* Duration Transition Base ~= 157.8ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ), Duration Transition Base Plus 1 ~= 209.1ms */
 
 
 }
@@ -337,7 +338,7 @@
 @media ( max-width : 768px ) { /* What: Phone Hero Visual Div. Why: On a phone the portrait leads the stacked hero, above the introduction. How: This applies at 768px and below. */
 
 
-	.herVisDiv { /* What: Stacked Hero Visual Div. Why: The portrait should sit centered above the label so the page opens on it, as every other site's stacked hero opens on its image, small enough that it doesn't take over a phone's first screen, with the flourishes filling the room beside it. How: This returns it to the single column ahead of the introduction in the grid's order with its tablet alignment and margin dropped, and spans the column so the flourishes can reach its edges while the portrait stays centered. */
+	.herVisDiv { /* What: Stacked Hero Visual Div. Why: The portrait should sit centered above the label so the page opens on it, small enough that it doesn't take over a phone's first screen, with the flourishes filling the room beside it. How: This returns it to the single column ahead of the introduction in the grid's order with its tablet alignment and margin dropped, and spans the column so the flourishes can reach its edges while the portrait stays centered. */
 
 
 		align-self    : auto;
@@ -370,7 +371,7 @@
 		height   : calc( var( --ver-rhy-p10 ) * 1rem );                                       /* Vertical Rhythm Base Plus 10 ~= 242.522px */
 		position : absolute;
 		top      : var( --spa-ver-p05 );                                                      /* Spacing Vertical Base Plus 5 ~= 59.447px */
-		width    : calc( ( 100% - var( --ver-rhy-p09 ) * 1rem ) / 2 - var( --spa-hor-p02 ) ); /* Vertical Rhythm Base Plus 9 ~= 183.073px, Spacing Horizontal Base Plus 2 ~= 25.572px */
+		width    : calc( ( 100% - var( --ver-rhy-p09 ) * 1rem ) / 2 - var( --spa-hor-p02 ) ); /* Vertical Rhythm Base Plus 9 ~= 183.074px, Spacing Horizontal Base Plus 2 ~= 25.572px */
 
 
 	}
@@ -412,7 +413,7 @@
 
 
 		height : calc( var( --ver-rhy-p10 ) * 1rem ); /* Vertical Rhythm Base Plus 10 ~= 242.522px */
-		width  : calc( var( --ver-rhy-p09 ) * 1rem ); /* Vertical Rhythm Base Plus 9 ~= 183.073px */
+		width  : calc( var( --ver-rhy-p09 ) * 1rem ); /* Vertical Rhythm Base Plus 9 ~= 183.074px */
 
 
 	}
@@ -452,7 +453,7 @@
 	background     : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
 	border         : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
 	border-radius  : var( --rad-bor-med );                            /* Radius Border Medium = 11px */
-	box-shadow     : var( --ele-med-sha );                            /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
+	box-shadow     : var( --ele-med-sha );                            /* Elevation Medium Shadow ~= 0 4.732px 14.572px plus 0 1.536px 3.572px -1.160px */
 	display        : flex;
 	flex-direction : column;
 	padding        : var( --spa-ver-bas ) var( --spa-hor-p02 );       /* Spacing Vertical Base ~= 14.572px, Spacing Horizontal Base Plus 2 ~= 25.572px */
@@ -460,7 +461,7 @@
 
 
 }
-.floFacDiv--top { /* What: Top Floating Fact Div. Why: The first fact sits off the portrait's top right corner, mostly above the photo, so it never covers the face. How: This places it a little past the portrait's right edge and lifts it so only its bottom edge, about 17px, overlaps the photo's top. */
+.floFacDiv--top { /* What: Floating Fact Div Top. Why: The first fact sits off the portrait's top right corner, mostly above the photo, so it never covers the face. How: This places it a little past the portrait's right edge and lifts it so only its bottom edge, about 17px, overlaps the photo's top. */
 
 
 	right : calc( var( --spa-hor-p02 ) * -1 ); /* Spacing Horizontal Base Plus 2 ~= -25.572px */
@@ -468,7 +469,7 @@
 
 
 }
-.floFacDiv--bottom { /* What: Bottom Floating Fact Div. Why: The second fact sits off the portrait's bottom left corner, mostly below the photo, matching the first. How: This places it a little past the portrait's left edge and drops it so only its top edge, about 17px, overlaps the photo's bottom. */
+.floFacDiv--bottom { /* What: Floating Fact Div Bottom. Why: The second fact sits off the portrait's bottom left corner, mostly below the photo, matching the first. How: This places it a little past the portrait's left edge and drops it so only its top edge, about 17px, overlaps the photo's bottom. */
 
 
 	bottom : calc( var( --spa-ver-p05 ) * -1 ); /* Spacing Vertical Base Plus 5 ~= -59.447px */
@@ -780,7 +781,7 @@
 
 
 	}
-	.timIteDiv:nth-child( odd ) .timLefDiv { /* What: Right Timeline Left Div. Why: A milestone on the left puts its year on the right of the line. How: This moves the year to the right column, aligned to the line. */
+	.timIteDiv:nth-child( odd ) .timLefDiv { /* What: Timeline Left Div In Odd Item. Why: A milestone on the left puts its year on the right of the line. How: This moves the year to the right column, aligned to the line. */
 
 
 		grid-column     : 3;
@@ -788,7 +789,7 @@
 
 
 	}
-	.timIteDiv:nth-child( even ) .timLefDiv { /* What: Left Timeline Left Div. Why: A milestone on the right puts its year on the left of the line. How: This places the year in the left column, still aligned to the line. */
+	.timIteDiv:nth-child( even ) .timLefDiv { /* What: Timeline Left Div In Even Item. Why: A milestone on the right puts its year on the left of the line. How: This places the year in the left column, still aligned to the line. */
 
 
 		grid-column : 1;
@@ -812,6 +813,7 @@
 }
 
 /* #endregion timLefDiv */
+
 
 
 /* #region timConDiv */
@@ -869,6 +871,7 @@
 /* #endregion timConDiv */
 
 
+
 /* #region timCotDiv */
 
 .timCotDiv { /* What: Timeline Content Div. Why: The milestone's text stacks in the last column, with room before the next. How: This stacks the title, organization, and description, padded below. */
@@ -891,7 +894,7 @@
 
 
 	}
-	.timIteDiv:nth-child( odd ) .timCotDiv { /* What: Left Timeline Content Div. Why: Odd milestones sit left of the line and read toward it. How: This places them in the left column, aligned right. */
+	.timIteDiv:nth-child( odd ) .timCotDiv { /* What: Timeline Content Div In Odd Item. Why: Odd milestones sit left of the line and read toward it. How: This places them in the left column, aligned right. */
 
 
 		align-items : flex-end;
@@ -900,7 +903,7 @@
 
 
 	}
-	.timIteDiv:nth-child( even ) .timCotDiv { /* What: Right Timeline Content Div. Why: Even milestones sit right of the line. How: This places them in the right column. */
+	.timIteDiv:nth-child( even ) .timCotDiv { /* What: Timeline Content Div In Even Item. Why: Even milestones sit right of the line. How: This places them in the right column. */
 
 
 		grid-column : 3;
@@ -959,7 +962,7 @@
 
 /* #region aboValSec */
 
-.aboValSec { /* What: About Values Section. Why: The page closes on a warmer band with the section spacing. How: This sets the warm ivory and the shared section padding. */
+.aboValSec { /* What: About Values Section. Why: The values sit on a warmer band with the section spacing. How: This sets the warm ivory and the shared section padding. */
 
 
 	background : var( --bac-sun-col );   /* Background Sunken Color = #EDE6D8 */
@@ -1025,33 +1028,35 @@
 
 /* #region valCarDiv */
 
-.valCarDiv { /* What: Value Card Div. Why: Each value is one white card. How: This sets the bordered card, stacks its symbol, title, and description, and eases its border color, lift, and shadow. */
+.valCarDiv { /* What: Value Card Div. Why: Each value is one white card. How: This sets the bordered card, stacks its symbol, title, and description, and eases its border color, lift, and shadow, the shadow leaving on the accelerating curve. */
 
 
-	background     : var( --bac-sur-col );                                                                               /* Background Surface Color = #FFFFFF */
-	border         : var( --bor-wid-bas ) solid var( --bor-mai-col );                                                    /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
-	border-radius  : var( --rad-bor-med );                                                                               /* Radius Border Medium = 11px */
+	background     : var( --bac-sur-col );                            /* Background Surface Color = #FFFFFF */
+	border         : var( --bor-wid-bas ) solid var( --bor-mai-col ); /* Border Width Base ~= 1.160px, Border Main Color = #D8CFBE */
+	border-radius  : var( --rad-bor-med );                            /* Radius Border Medium = 11px */
 	display        : flex;
 	flex-direction : column;
-	gap            : var( --spa-ver-m01 );                                                                               /* Spacing Vertical Base Minus 1 = 11px */
-	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );                                                          /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
-	transition     : border-color var( --dur-tra-p02 ), box-shadow var( --dur-tra-p02 ), transform var( --dur-tra-p02 ); /* Duration Transition Base Plus 2 ~= 277.0ms */ /* What: Shadow Transition. Why: A box-shadow animates on paint rather than the compositor, but a compositor version would need a second shadow layer faded through opacity, and only the one hovered card repaints. How: This eases the shadow alongside the lift. */
+	gap            : var( --spa-ver-m01 );                            /* Spacing Vertical Base Minus 1 = 11px */
+	padding        : var( --spa-ver-p03 ) var( --spa-hor-p03 );       /* Spacing Vertical Base Plus 3 ~= 33.876px, Spacing Horizontal Base Plus 3 ~= 33.876px */
+	transition     : border-color var( --dur-tra-p02 ) var( --mot-sta-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-acc-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Motion Accelerate Easing = cubic-bezier( .4, 0, 1, 1 ), Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */ /* What: Shadow Transition. Why: A box-shadow animates on paint rather than the compositor, but a compositor version would need a second shadow layer faded through opacity, and only the one hovered card repaints. How: This eases the shadow alongside the lift. */
 
 
 }
-.valCarDiv:hover { /* What: Hovered Value Card Div. Why: A card should respond to the pointer. How: This lifts it 3px, turns its border the strong blue, and casts the medium shadow. */
+.valCarDiv:hover { /* What: Hovered Value Card Div. Why: A card should respond to the pointer. How: This lifts it 3px, turns its border the strong blue on the standard curve, and casts the medium shadow, easing the lift and shadow in on the decelerating curve. */
 
 
 	border-color : var( --acs-str-col ); /* Accent-Secondary Strong Color = #4A91B8 */
-	box-shadow   : var( --ele-med-sha ); /* Elevation Medium Shadow, about 0 4.7px 14.6px plus 0 1.5px 3.6px -1.2px */
+	box-shadow   : var( --ele-med-sha ); /* Elevation Medium Shadow ~= 0 4.732px 14.572px plus 0 1.536px 3.572px -1.160px */
 	transform    : translateY( -3px );
+	transition   : border-color var( --dur-tra-p02 ) var( --mot-sta-eas ), box-shadow var( --dur-tra-p02 ) var( --mot-dec-eas ), transform var( --dur-tra-p02 ) var( --mot-dec-eas ); /* Duration Transition Base Plus 2 ~= 277.0ms, Motion Standard Easing = ease, Motion Decelerate Easing = cubic-bezier( .2, .7, .3, 1 ) */
 
 
 }
 @media ( prefers-reduced-motion : reduce ) { /* What: Reduced Motion Value Card Div. Why: Someone who asked for less motion shouldn't see the cards glide. How: This applies only when the reduced-motion preference is set. */
 
 
-	.valCarDiv { /* What: Motionless Value Card Div. Why: The lift and shadow should simply switch. How: This turns the transition off. */
+	.valCarDiv,
+	.valCarDiv:hover { /* What: Motionless Value Card Div. Why: The lift and shadow should simply switch. How: This turns the transition off on both the resting and the hovered rule, since the hovered rule outranks the base. */
 
 
 		transition : none;
@@ -1137,7 +1142,7 @@
 
 /* What: Button Primary Anchor Pointer. Why: The Ko-fi button shares the hero's orange button. How: Its rule sits in the herActDiv region. */
 
-.visHidSpa { /* What: Visually Hidden Span. Why: Screen reader users should hear that the button opens Ko-fi in a new tab, which sighted visitors learn from the text above it. How: This shrinks the note to a clipped 1px box out of the layout, the standard technique that keeps it in the accessibility tree. */
+.visHidSpa { /* What: Visually Hidden Span. Why: Screen reader users should hear that the button opens Ko-fi in a new tab. How: This shrinks the note to a clipped 1px box out of the layout while it stays readable to screen readers. */
 
 
 	border      : 0;

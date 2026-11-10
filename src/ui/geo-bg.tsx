@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './geo-bg.module.css'; // What: CSS Module Object. Why: The pattern's own positioning styles live in its own module. How: This maps each class name in geo-bg.module.css to its hashed module class.
+import cssModObj from './geo-bg.module.css'; // What: CSS Module Object. Why: The pattern's own styles live in its own module. How: This maps each class name in geo-bg.module.css to its hashed module class.
 
 
 import type { JSX } from 'react'; // What: JSX. Why: The component declares the element it returns. How: This types its return as a JSX element.
@@ -20,7 +20,7 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * field of dots, or a circuit board trace, drawn as a repeating SVG pattern in
  * the wrapper's blue and faded to the opacity each section asks for. It fills
  * its section behind the content and is hidden from screen readers, since it's
- * decoration only. Each variant's pattern has its own id, so two different
+ * decoration only. Each variant's pattern has its own ID, so two different
  * variants on one page never clash.
  *
  * Sections:
@@ -120,6 +120,7 @@ function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 
 					</defs>
 
+
 					<rect
 						fill='url(#geoGriPat)'
 						height='100%'
@@ -131,6 +132,8 @@ function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 
 
 			) }
+
+
 
 			{ patVarStr === 'dots' && ( // What: Dots Variant Check. Why: Only the chosen pattern draws. How: This renders the dots when the section asks for it.
 
@@ -169,6 +172,7 @@ function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 
 					</defs>
 
+
 					<rect
 						fill='url(#geoDotPat)'
 						height='100%'
@@ -180,6 +184,8 @@ function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 
 
 			) }
+
+
 
 			{ patVarStr === 'circuit' && ( // What: Circuit Variant Check. Why: Only the chosen pattern draws. How: This renders the circuit when the section asks for it.
 
@@ -219,7 +225,7 @@ function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 								r='2.5'
 								stroke='currentColor'
 								strokeWidth='0.8'
-							/>{ /* What: Circuit Pad Circle Element. Why: Each trace ends at a pad like a circuit board's. How: This draws one ring at a trace's bend. */ }
+							/>{ /* What: Circuit Pad Circle Element. Why: Each trace turns at a pad like a circuit board's. How: This draws one ring at a trace's bend. */ }
 
 							<path
 								d='M 40 0 L 40 40 L 80 40'
@@ -235,7 +241,7 @@ function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 								r='2.5'
 								stroke='currentColor'
 								strokeWidth='0.8'
-							/>{ /* What: Circuit Pad Circle Element. Why: Each trace ends at a pad like a circuit board's. How: This draws one ring at a trace's bend. */ }
+							/>{ /* What: Circuit Pad Circle Element. Why: Each trace turns at a pad like a circuit board's. How: This draws one ring at a trace's bend. */ }
 
 							<path
 								d='M 60 80 L 60 60 L 80 60'
@@ -251,7 +257,7 @@ function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 								r='2.5'
 								stroke='currentColor'
 								strokeWidth='0.8'
-							/>{ /* What: Circuit Pad Circle Element. Why: Each trace ends at a pad like a circuit board's. How: This draws one ring at a trace's bend. */ }
+							/>{ /* What: Circuit Pad Circle Element. Why: Each trace turns at a pad like a circuit board's. How: This draws one ring at a trace's bend. */ }
 
 							<rect
 								fill='none'
@@ -278,6 +284,7 @@ function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 
 
 					</defs>
+
 
 					<rect
 						fill='url(#geoCirPat)'
@@ -308,7 +315,7 @@ function GeoBacCom ( { patOpaStr, patVarStr } : GbcProTyp ) : JSX.Element {
 
 // #region Exports
 
-export { GeoBacCom }; // What: Named Exports. Why: Several pages draw a pattern behind their sections. How: This exports GeoBacCom.
+export { GeoBacCom }; // What: Named Export. Why: Several pages draw a pattern behind their sections. How: This exports GeoBacCom.
 
 // #endregion Exports
 

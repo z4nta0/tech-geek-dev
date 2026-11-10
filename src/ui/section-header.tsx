@@ -3,7 +3,7 @@
 
 // #region Imports
 
-import cssModObj from './section-header.module.css'; // What: CSS Module Object. Why: The header's own label, heading, and subtitle styles live in its own module. How: This maps each class name in section-header.module.css to its hashed module class.
+import cssModObj from './section-header.module.css'; // What: CSS Module Object. Why: The header's own styles live in its own module. How: This maps each class name in section-header.module.css to its hashed module class.
 
 
 import type { JSX } from 'react'; // What: JSX. Why: The component declares the element it returns. How: This types its return as a JSX element.
@@ -16,9 +16,9 @@ import type { JSX } from 'react'; // What: JSX. Why: The component declares the 
  * section-header.tsx = Section Header
  *
  * @summary
- * The heading block that opens most sections: a small label in the mono
- * font with a short rule before it, the section's heading, and an optional
- * subtitle, aligned to the left or centered.
+ * The heading block that opens most sections: a small label in the mono font
+ * with a short rule before it when left-aligned, the section's heading, and an
+ * optional subtitle, aligned to the left or centered.
  *
  * Sections:
  *  - Components
@@ -40,9 +40,9 @@ type ShcProTyp = { aliPosStr? : 'center' | 'left', labTexStr : string, subTexStr
  * SecHeaCom = Section Header Component
  *
  * @summary
- * Renders a section's heading block: the label with its decorative rule, the
- * heading as an h2, and the subtitle when one is given.
- * The block is left-aligned unless the section asks for it centered.
+ * Renders a section's heading block: the label, with its decorative rule when
+ * left-aligned, the heading as an h2, and the subtitle when one is given. The
+ * block is left-aligned unless the section asks for it centered.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -58,7 +58,7 @@ type ShcProTyp = { aliPosStr? : 'center' | 'left', labTexStr : string, subTexStr
  *
  * @example
  * ```tsx
- * SecHeaCom({ aliPosStr, labTexStr, subTexStr, titTexStr }) // => <SecHeaCom />
+ * SecHeaCom({ aliPosStr, labTexStr, subTexStr, ... }) // => <SecHeaCom />
  * ```
  *
 */
@@ -72,17 +72,21 @@ function SecHeaCom ( { aliPosStr = 'left', labTexStr, subTexStr, titTexStr } : S
 		<div className={` ${ cssModObj.secHeaDiv }   ${ aliPosStr === 'center' ? cssModObj.secHeaDivCenter : '' } `}>{ /* What: Section Header Div Element. Why: The label, heading, and subtitle read as one block. How: This stacks them, centered when the section asks. */ }
 
 
-			<span className={ cssModObj.secLabSpa }>{ /* What: Section Label Span Element. Why: A small label names the section before its heading. How: This shows the label after its decorative rule. */ }
+			<span className={ cssModObj.secLabSpa }>{ /* What: Section Label Span Element. Why: A small label names the section before its heading. How: This shows the label after its decorative rule when left-aligned. */ }
+
+
 				<span
 					className={ cssModObj.labLinSpa }
 
 					aria-hidden='true'
-				/>{ /* What: Label Line Span Element. Why: A short rule leads into the label. How: This draws the rule, hidden from screen readers as decoration. */ }
+				/>{ /* What: Label Line Span Element. Why: A short rule leads into the label in the left-aligned header. How: This draws the rule, hidden from screen readers as decoration, and the centered header hides it. */ }
 
 				{ labTexStr }
+
+
 			</span>
 
-			<h2 className={ cssModObj.secTitHea }>{ titTexStr }</h2>{ /* What: Section Title Heading Element. Why: Every section is introduced by its heading. How: This shows the title as an h2. */ }
+			<h2 className={ cssModObj.secTitHea }>{ titTexStr }</h2>{ /* What: Section Title Heading Element. Why: A section opened by this header is introduced by its heading. How: This shows the title as an h2. */ }
 
 			{ subTexStr && ( // What: Subtitle Presence Check. Why: Not every section has a subtitle. How: This renders the subtitle only when one is given.
 
@@ -109,7 +113,7 @@ function SecHeaCom ( { aliPosStr = 'left', labTexStr, subTexStr, titTexStr } : S
 
 // #region Exports
 
-export { SecHeaCom }; // What: Named Exports. Why: Most pages open their sections with this header. How: This exports SecHeaCom.
+export { SecHeaCom }; // What: Named Export. Why: Most pages open their sections with this header. How: This exports SecHeaCom.
 
 // #endregion Exports
 
