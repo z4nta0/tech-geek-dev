@@ -20,7 +20,7 @@
 
 /* #region pagEntDiv */
 
-.pagEntDiv { /* What: Page Enter Div. Why: The 404 content fills the screen and fades in like every page. How: This centers its content on a full-height ivory panel and plays the shared page entrance. */
+.pagEntDiv { /* What: Page Enter Div. Why: The 404 content fills the screen and fades in like every page. How: This centers its content on a full-height ivory panel, below the fixed bar's height plus a spacing step so even a short screen keeps the number clear of the bar, and plays the shared page entrance. */
 
 
 	align-items     : center;
@@ -29,7 +29,7 @@
 	display         : flex;
 	justify-content : center;
 	min-height      : 100vh;
-	padding         : var( --spa-ver-p04 ) var( --gut-sid-pad );                                   /* Spacing Vertical Base Plus 4 ~= 44.876px, Gutter Side Padding, about 19.304px - 44.876px */
+	padding         : calc( var( --nav-bar-hei ) + var( --spa-ver-p04 ) ) var( --gut-sid-pad ) var( --spa-ver-p04 ); /* Navigation Bar Height ~= 78.751px, Spacing Vertical Base Plus 4 ~= 44.876px, Gutter Side Padding, about 19.304px - 44.876px */
 
 
 }
