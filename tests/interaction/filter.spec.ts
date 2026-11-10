@@ -80,7 +80,7 @@ test( 'a new filter result simply appears under reduced motion', async ( { page 
 for ( const [ widNum, heiNum ] of [ [ 1440, 900 ], [ 390, 844 ] ] ) { // What: Clearance Width Loop. Why: The filter bar's height changes with the layout, so its clearance is checked at the desktop and phone widths the other suites use. How: This declares the test once per width and height.
 
 
-	test( `a card link reached by Shift+Tab lands clear of the sticky filter bar at ${ widNum }px`, async ( { browserName : engNamStr, page : curPagObj } ) => { // What: Filter Bar Clearance Test. Why: The filter bar sticks under the fixed bar, and WebKit scrolled a card's link reached backwards up behind it. How: This sizes the page, opens Work, focuses the footer's last link, presses Shift+Tab back through the cards, and checks each card link it reaches sits below the bar.
+	test( `a card link reached by Shift+Tab lands clear of the sticky filter bar at ${ widNum.toLocaleString( 'en-US' ) }px`, async ( { browserName : engNamStr, page : curPagObj } ) => { // What: Filter Bar Clearance Test. Why: The filter bar sticks under the fixed bar, and WebKit scrolled a card's link reached backwards up behind it. How: This sizes the page, opens Work, focuses the footer's last link, presses Shift+Tab back through the cards, and checks each card link it reaches sits below the bar.
 
 
 		await curPagObj.setViewportSize( { height : heiNum, width : widNum } ); // What: Viewport Size Call. Why: The bar is taller where the filter row takes its own line on phones. How: This sizes the page before it loads.
