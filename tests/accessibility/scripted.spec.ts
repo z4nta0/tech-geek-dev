@@ -448,6 +448,48 @@ function stoInfFun () : StoInfTyp | null {
 
 
 
+// #region tabStoFun
+
+/**
+ * tabStoFun = Tab Stops Function
+ *
+ * @summary
+ * Runs inside the page once the Tab walk ends and lists every element a Tab
+ * press should reach: links with an address, buttons, and form fields, plus
+ * anything else given a tabindex of 0 or more, leaving out what's disabled,
+ * inert, or not drawn. Each one is described the way {@link stoInfFun}
+ * describes a stop, with its position among every element in the page.
+ * Passed to Playwright's evaluate, so it can't read anything from this file.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+ * @param void - This function takes no parameters.
+ *
+ * @returns The description and position of every element Tab should reach.
+ *
+ * @example
+ * ```ts
+ * page.evaluate(tabStoFun) // => [ { desStr, ordNum }, ... ]
+ * ```
+ *
+*/
+
+function tabStoFun () : Pick< StoInfTyp, 'desStr' | 'ordNum' >[] {
+
+
+	const allEleArr = [ ...document.querySelectorAll( '*' ) ]; // What: All Element Array. Why: A stop's position is its place among every element, as the walk reads it. How: This lists every element in document order.
+
+
+
+	return [ ...document.querySelectorAll< HTMLElement >( 'a[href], button, input, select, textarea, [tabindex]' ) ].filter( ( tabCurEle ) => tabCurEle.tabIndex >= 0 && !tabCurEle.matches( ':disabled' ) && !tabCurEle.closest( '[inert]' ) && tabCurEle.checkVisibility( { visibilityProperty : true } ) ).map( ( tabCurEle ) => ( { desStr : `${ tabCurEle.tagName.toLowerCase() } "${ ( tabCurEle.getAttribute( 'aria-label' ) || tabCurEle.id || tabCurEle.textContent || '' ).trim().slice( 0, 40 ) }"`, ordNum : allEleArr.indexOf( tabCurEle ) } ) ); // What: Tab Stops Return. Why: The walk compares the stops it reached with every one it should have. How: This keeps the focusable elements that are enabled, outside any inert layer, and drawn, and describes each by its tag and its label, ID, or text, with its position.
+
+
+}
+
+// #endregion tabStoFun
+
+
+
 // #region keyProFun
 
 /**
@@ -463,9 +505,12 @@ function stoInfFun () : StoInfTyp | null {
  * comes back to the first stop, or stays on the same stop after a press, which
  * is how Firefox leaves its last stop; one that hasn't ended within
  * TAB_MAX_NUM presses counts as a keyboard trap, and one that ends before
- * reaching any stop is a problem too. WebKit only tabs to links with Alt held,
- * the way Safari does by default, so the walk presses Alt+Tab there. It
- * expects reduced motion already requested, so the page jumps to each stop
+ * reaching any stop is a problem too. Since a trap that cycles back to the
+ * first stop or holds focus on one stop ends the walk the same way, every
+ * element from the first stop on that {@link tabStoFun} says Tab should reach
+ * but the walk never did is a problem as well. WebKit only tabs to links with
+ * Alt held, the way Safari does by default, so the walk presses Alt+Tab there.
+ * It expects reduced motion already requested, so the page jumps to each stop
  * instead of gliding and focus styles appear at once, and each press waits for
  * scrolling to settle, so every stop is measured where and how it ends up.
  *
@@ -488,11 +533,12 @@ async function keyProFun ( curPagObj : Page, engNamStr : string ) : Promise< str
 
 
 	const posTabNum = await curPagObj.locator( '[tabindex]' ).evaluateAll( ( tabEleArr ) => tabEleArr.filter( ( tabCurEle ) => Number( tabCurEle.getAttribute( 'tabindex' ) ) > 0 ).length ); // What: Positive Tab-Index Number. Why: A positive tabindex pulls an element ahead of the document order. How: This counts every element carrying one.
+	const reaOrdSet = new Set< number >();                        // What: Reached Order Set. Why: A trap leaves some stops unreached, which the walk can only tell by remembering where it has been. How: This holds the position of every stop the walk reaches.
 	const tabKeyStr = engNamStr === 'webkit' ? 'Alt+Tab' : 'Tab'; // What: Tab Key String. Why: WebKit skips links on a plain Tab, the way Safari does by default. How: This picks Alt+Tab there and Tab everywhere else.
 
 	const proLisArr : string[] = posTabNum ? [ `${ posTabNum } element(s) use a positive tabindex` ] : []; // What: Problem List Array. Why: Every problem should be reported, not just the first. How: This starts with the positive tabindex count, when there is one, and collects the rest during the walk.
 
-	let firStoStr = ''; // What: First Stop String. Why: Focus coming back to the first stop means the walk went all the way around. How: This holds the first stop's description.
+	let firOrdNum = -1; // What: First Order Number. Why: Focus coming back to the first stop means the walk went all the way around, and the stops before it were never part of the walk. How: This holds the first stop's position among every element, -1 until a stop is reached.
 	let preOrdNum = -1; // What: Previous Order Number. Why: Each stop must come later in the document than the last. How: This holds the previous stop's position among every element.
 
 
@@ -505,14 +551,20 @@ async function keyProFun ( curPagObj : Page, engNamStr : string ) : Promise< str
 
 
 		const stoInfObj = await curPagObj.evaluate( stoInfFun );                                          // What: Stop Information Object. Why: The stop is described and measured inside the page. How: This runs stoInfFun there.
-		const walEndBoo = !stoInfObj || stoInfObj.desStr === firStoStr || stoInfObj.ordNum === preOrdNum; // What: Walk Ended Boolean. Why: Focus leaving the page, coming back around, or staying put means every stop was visited. How: This checks each in turn, the later two only once a stop exists, so the chain stays inline. // What: Firefox Walk End Note. Why: Firefox moves focus out to its own interface after the last stop but still reports that stop as focused. How: Focus staying on the same stop after a press is read as the walk leaving the page.
+		const walEndBoo = !stoInfObj || stoInfObj.ordNum === firOrdNum || stoInfObj.ordNum === preOrdNum; // What: Walk Ended Boolean. Why: Focus leaving the page, coming back around, or staying put means every stop was visited. How: This checks each in turn, the later two only once a stop exists, so the chain stays inline. // What: Firefox Walk End Note. Why: Firefox moves focus out to its own interface after the last stop but still reports that stop as focused. How: Focus staying on the same stop after a press is read as the walk leaving the page.
 
 
-		if ( walEndBoo ) return firStoStr ? proLisArr : [ ...proLisArr, 'the Tab walk reached no stop' ]; // What: Walk End Guard. Why: A walk that reaches its end has found every problem the checks look for, while one that ends before its first stop has checked nothing. How: This returns the problems, ending the walk, with one more when no stop was reached.
+		if ( walEndBoo && firOrdNum < 0 ) return [ ...proLisArr, 'the Tab walk reached no stop' ]; // What: Empty Walk Guard. Why: A walk that ends before its first stop has checked nothing. How: This returns the problems with one more, ending the walk.
 
 
 
-		if ( !firStoStr ) firStoStr = stoInfObj.desStr; // What: First Stop Record. Why: The walk ends if focus comes back to it. How: This remembers the first stop's description.
+		if ( walEndBoo ) return [ ...proLisArr, ...( await curPagObj.evaluate( tabStoFun ) ).filter( ( tabStoObj ) => tabStoObj.ordNum >= firOrdNum && !reaOrdSet.has( tabStoObj.ordNum ) ).map( ( tabStoObj ) => `${ tabStoObj.desStr } is never reached by Tab` ) ]; // What: Walk End Guard. Why: A walk that ends has found every problem the stop checks look for, but a trap that wraps around or holds focus on one stop ends it too, leaving later stops unreached. How: This returns the problems, ending the walk, with one more for every element from the first stop on that Tab should reach but never did.
+
+
+
+		if ( firOrdNum < 0 ) firOrdNum = stoInfObj.ordNum; // What: First Stop Record. Why: The walk ends if focus comes back to it. How: This remembers the first stop's position.
+
+		reaOrdSet.add( stoInfObj.ordNum ); // What: Reached Stop Record. Why: The stops reached are compared with every one Tab should reach once the walk ends. How: This adds this stop's position.
 
 
 
