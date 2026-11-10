@@ -588,13 +588,14 @@ on `close-out`.
       the package's artwork, copies it into `public/`, and draws the rest of
       the set from it.
     - **Installing it**: `package.json` names `github:z4nta0/techgeek-design#
-      v0.7.0` (moved from `v0.1.0` on 2026-10-17, bringing the bar's
+      v0.7.1` (moved from `v0.1.0` on 2026-10-17, bringing the bar's
       clearance for scrolled-to links, top and bottom, and its menu up to
       1,024px, then to `v0.6.0` on 2026-11-08, bringing the skip link, the
       hook's own scroll restoration, and the menu closing on any link
-      click, and to `v0.7.0` the same day, bringing the bar link
-      underline's leaving curve and a named easing token on every
-      transition). npm records the address over SSH, but falls back to HTTPS for
+      click, to `v0.7.0` the same day, bringing the bar link underline's
+      leaving curve and a named easing token on every transition, and to
+      `v0.7.1` on 2026-11-10, bringing the footer icons' color-only hover
+      and the profile links' new tab note). npm records the address over SSH, but falls back to HTTPS for
       a public GitHub repository, which a clean install with SSH turned off
       and an empty cache confirmed, so Netlify fetches it without a key. While
       the package and this site change together, `npm install --install-links
@@ -648,8 +649,7 @@ audit.
 - **Contact's sidebar cards and About's fact cards** are one-off information
   panels, so they take no hover look.
 - **The footer's profile icons** hover by color only, with no lift, as links
-  in a row. The change is on techgeek-design's `audit-footer-icons` branch,
-  waiting for its release.
+  in a row. The change shipped in techgeek-design's `v0.7.1`.
 - **Icons inside controls** all take the pointer pass-through, so a press on
   one lands on its control. Measured that day, every engine registers a press
   on an icon either way, so their comments give that plain reason rather than
@@ -670,8 +670,7 @@ audit.
   project cards' "Live Site" and "GitHub" buttons and Contact's profile rows
   end their names in a hidden "(opens in a new tab)", About's Ko-fi button
   keeps its "(opens Ko-fi in a new tab)", and the package's menu tiles and
-  footer icons add it to their labels, on its `audit-footer-icons` branch.
-  The names check fails until the site installs a release carrying it.
+  footer icons add it to their labels, from its `v0.7.1`.
 - **The reload test** also checks `history.scrollRestoration` reads `manual`,
   since Chromium and WebKit restore a reload on their own.
 
