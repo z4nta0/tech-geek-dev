@@ -20,7 +20,7 @@ import { test   } from '@playwright/test'; // What: Test. Why: Each check is its
  * the count and the grid and fades both up into view. Pressing the pill
  * that's already chosen changes nothing, and under reduced motion the result
  * simply appears. A card link reached backwards with Shift+Tab lands below the
- * sticky filter bar rather than behind it.
+ * sticky filter bar rather than behind it, at the desktop and phone widths.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -77,73 +77,81 @@ test( 'a new filter result simply appears under reduced motion', async ( { page 
 
 
 
-test( 'a card link reached by Shift+Tab lands clear of the sticky filter bar', async ( { browserName : engNamStr, page : curPagObj } ) => { // What: Filter Bar Clearance Test. Why: The filter bar sticks under the fixed bar, and WebKit scrolled a card's link reached backwards up behind it. How: This opens Work, focuses the footer's last link, presses Shift+Tab back through the cards, and checks each card link it reaches sits below the bar.
+for ( const [ widNum, heiNum ] of [ [ 1440, 900 ], [ 390, 844 ] ] ) { // What: Clearance Width Loop. Why: The filter bar's height changes with the layout, so its clearance is checked at the desktop and phone widths the other suites use. How: This declares the test once per width and height.
 
 
-	await curPagObj.emulateMedia( { reducedMotion : 'reduce' } ); // What: Reduced Motion Call. Why: Each link is measured where it lands, not partway through a smooth scroll. How: This makes the page match prefers-reduced-motion: reduce.
-
-	await curPagObj.goto( '/work' ); // What: Work Page Navigation. Why: The filter bar lives on the Work page. How: This loads it.
-
-	await curPagObj.locator( 'footer a' ).last().focus(); // What: Footer Focus Call. Why: The walk runs backwards from below the cards. How: This focuses the footer's last link.
+	test( `a card link reached by Shift+Tab lands clear of the sticky filter bar at ${ widNum }px`, async ( { browserName : engNamStr, page : curPagObj } ) => { // What: Filter Bar Clearance Test. Why: The filter bar sticks under the fixed bar, and WebKit scrolled a card's link reached backwards up behind it. How: This sizes the page, opens Work, focuses the footer's last link, presses Shift+Tab back through the cards, and checks each card link it reaches sits below the bar.
 
 
-	const keyNamStr = engNamStr === 'webkit' ? 'Alt+Shift+Tab' : 'Shift+Tab'; // What: Key Name String. Why: WebKit skips links on a plain Tab, the way Safari does by default. How: This picks Alt+Shift+Tab there and Shift+Tab everywhere else.
+		await curPagObj.setViewportSize( { height : heiNum, width : widNum } ); // What: Viewport Size Call. Why: The bar is taller where the filter row takes its own line on phones. How: This sizes the page before it loads.
 
-	const proLisArr : string[] = []; // What: Problem List Array. Why: Every link that lands behind the bar should be reported, not just the first. How: This collects them during the walk.
+		await curPagObj.emulateMedia( { reducedMotion : 'reduce' } ); // What: Reduced Motion Call. Why: Each link is measured where it lands, not partway through a smooth scroll. How: This makes the page match prefers-reduced-motion: reduce.
 
-	let carLinNum = 0; // What: Card Link Number. Why: A walk that never reached a card link would pass without checking anything. How: This counts the card links measured.
+		await curPagObj.goto( '/work' ); // What: Work Page Navigation. Why: The filter bar lives on the Work page. How: This loads it.
 
-
-	for ( let preCouNum = 0; preCouNum < 60; preCouNum++ ) { // What: Backward Walk Loop. Why: Every card link is reached on the way back up to the filter bar. How: This presses Shift+Tab once per pass, up to 60 presses.
-
-
-		await curPagObj.keyboard.press( keyNamStr ); // What: Backward Press Call. Why: Each pass moves focus to the stop before. How: This presses the engine's Shift+Tab.
+		await curPagObj.locator( 'footer a' ).last().focus(); // What: Footer Focus Call. Why: The walk runs backwards from below the cards. How: This focuses the footer's last link.
 
 
-		const stoPosObj = await curPagObj.evaluate( () => { // What: Stop Position Object. Why: The focused link and the bar are measured together, once the page has scrolled. How: This reads where focus is and, for a card link, its top and the bar's bottom.
+		const keyNamStr = engNamStr === 'webkit' ? 'Alt+Shift+Tab' : 'Shift+Tab'; // What: Key Name String. Why: WebKit skips links on a plain Tab, the way Safari does by default. How: This picks Alt+Shift+Tab there and Shift+Tab everywhere else.
+
+		const proLisArr : string[] = []; // What: Problem List Array. Why: Every link that lands behind the bar should be reported, not just the first. How: This collects them during the walk.
+
+		let carLinNum = 0; // What: Card Link Number. Why: A walk that never reached a card link would pass without checking anything. How: This counts the card links measured.
 
 
-			const actCurEle = document.activeElement; // What: Active Current Element. Why: The stop is whatever holds focus after the press. How: This reads the focused element.
+		for ( let preCouNum = 0; preCouNum < 60; preCouNum++ ) { // What: Backward Walk Loop. Why: Every card link is reached on the way back up to the filter bar. How: This presses Shift+Tab once per pass, up to 60 presses.
 
 
-
-			return { // What: Stop Position Return. Why: The walk decides from these whether to stop and what to check. How: This reports whether focus reached the bar, whether it's on a card link, and both edges.
-
-
-				barBotNum : document.querySelector( '[class*="filBarSec"]' )!.getBoundingClientRect().bottom, // What: Bar Bottom Number. Why: A card link has to sit below the bar. How: This measures the bar's bottom edge. // What: Non-Null Note. Why: The Work page always renders its filter bar. How: The bar is in the page as soon as Work shows.
-				barReaBoo : !!actCurEle?.closest( '[class*="filBarSec"]' ),                                  // What: Bar Reached Boolean. Why: The walk ends once focus is back in the filter bar. How: This is true when the focused element sits inside it.
-				carLinBoo : !!actCurEle?.closest( '[class*="proGriDiv"]' ),                                  // What: Card Link Boolean. Why: Only the cards' links are checked. How: This is true when the focused element sits inside the grid.
-				linTopNum : actCurEle?.getBoundingClientRect().top ?? 0                                      // What: Link Top Number. Why: The link's top edge is what the bar would hide. How: This measures it, or reads 0 when nothing is focused.
+			await curPagObj.keyboard.press( keyNamStr ); // What: Backward Press Call. Why: Each pass moves focus to the stop before. How: This presses the engine's Shift+Tab.
 
 
-			};
+			const stoPosObj = await curPagObj.evaluate( () => { // What: Stop Position Object. Why: The focused link and the bar are measured together, once the page has scrolled. How: This reads where focus is and, for a card link, its top and the bar's bottom.
 
 
-		} );
-
-
-		if ( stoPosObj.barReaBoo ) break; // What: Bar Reached Guard. Why: Past the filter bar there are no more card links. How: This ends the walk.
+				const actCurEle = document.activeElement; // What: Active Current Element. Why: The stop is whatever holds focus after the press. How: This reads the focused element.
 
 
 
-		if ( !stoPosObj.carLinBoo ) continue; // What: Other Stop Guard. Why: Only the cards' links can land behind the bar. How: This skips any other stop.
+				return { // What: Stop Position Return. Why: The walk decides from these whether to stop and what to check. How: This reports whether focus reached the bar, whether it's on a card link, and both edges.
+
+
+					barBotNum : document.querySelector( '[class*="filBarSec"]' )!.getBoundingClientRect().bottom, // What: Bar Bottom Number. Why: A card link has to sit below the bar. How: This measures the bar's bottom edge. // What: Non-Null Note. Why: The Work page always renders its filter bar. How: The bar is in the page as soon as Work shows.
+					barReaBoo : !!actCurEle?.closest( '[class*="filBarSec"]' ),                                  // What: Bar Reached Boolean. Why: The walk ends once focus is back in the filter bar. How: This is true when the focused element sits inside it.
+					carLinBoo : !!actCurEle?.closest( '[class*="proGriDiv"]' ),                                  // What: Card Link Boolean. Why: Only the cards' links are checked. How: This is true when the focused element sits inside the grid.
+					linTopNum : actCurEle?.getBoundingClientRect().top ?? 0                                      // What: Link Top Number. Why: The link's top edge is what the bar would hide. How: This measures it, or reads 0 when nothing is focused.
+
+
+				};
+
+
+			} );
+
+
+			if ( stoPosObj.barReaBoo ) break; // What: Bar Reached Guard. Why: Past the filter bar there are no more card links. How: This ends the walk.
 
 
 
-		carLinNum++; // What: Card Link Count Update. Why: The test needs proof that card links were measured. How: This counts this one.
-
-
-		if ( stoPosObj.linTopNum < stoPosObj.barBotNum ) proLisArr.push( `a card link lands ${ ( stoPosObj.barBotNum - stoPosObj.linTopNum ).toFixed( 1 ) }px behind the filter bar` ); // What: Behind Bar Check. Why: A focused link hidden by the bar fails WCAG's focus-not-obscured rule. How: This records a link whose top sits above the bar's bottom.
-
-
-	}
+			if ( !stoPosObj.carLinBoo ) continue; // What: Other Stop Guard. Why: Only the cards' links can land behind the bar. How: This skips any other stop.
 
 
 
-	expect( carLinNum ).toBeGreaterThan( 0 ); // What: Links Measured Assertion. Why: A walk that skipped every card link would prove nothing. How: This checks at least one was measured.
-	expect( proLisArr ).toEqual( [] );        // What: No Hidden Links Assertion. Why: Every card link should land clear of the bar. How: This compares the problems with an empty list, so a failure prints each one.
+			carLinNum++; // What: Card Link Count Update. Why: The test needs proof that card links were measured. How: This counts this one.
 
 
-} );
+			if ( stoPosObj.linTopNum < stoPosObj.barBotNum ) proLisArr.push( `a card link lands ${ ( stoPosObj.barBotNum - stoPosObj.linTopNum ).toFixed( 1 ) }px behind the filter bar` ); // What: Behind Bar Check. Why: A focused link hidden by the bar fails WCAG's focus-not-obscured rule. How: This records a link whose top sits above the bar's bottom.
+
+
+		}
+
+
+
+		expect( carLinNum ).toBeGreaterThan( 0 ); // What: Links Measured Assertion. Why: A walk that skipped every card link would prove nothing. How: This checks at least one was measured.
+		expect( proLisArr ).toEqual( [] );        // What: No Hidden Links Assertion. Why: Every card link should land clear of the bar. How: This compares the problems with an empty list, so a failure prints each one.
+
+
+	} );
+
+
+}
 
 
