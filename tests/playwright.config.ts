@@ -20,10 +20,10 @@ import { fileURLToPath } from 'node:url';         // What: File URL To Path. Why
  * nothing about the others. Each suite lives in its own folder under tests/,
  * such as the accessibility suite the pre-commit check runs. Playwright starts
  * the Vite dev server on port 5194 for the run, and a build served by vite
- * preview on 5204 for the security suite, and stops both afterwards, so a dev
- * server already running on the usual 5173, or a sibling project's suites on
- * their own ports, are never touched. Reports and failure screenshots land in
- * tests/output, which git ignores, while the rendering suite's approved
+ * preview on 5204 for checks of what ships, and stops both afterwards, so a
+ * dev server already running on the usual 5173, or a sibling project's suites
+ * on their own ports, are never touched. Reports and failure screenshots land
+ * in tests/output, which git ignores, while the rendering suite's approved
  * screenshots live in tests/rendering/baselines and are committed.
  *
  * Sections:
@@ -50,7 +50,7 @@ const ENG_NAM_ARR = [ // What: Engine Name Array. Why: Every suite runs in all t
 
 
 
-const PRE_URL_STR = 'http://localhost:5204';                           // What: Preview URL String. Why: The security suite loads the production build, since the dev server injects inline scripts the security policy would block. How: This is the address the preview server answers on.
+const PRE_URL_STR = 'http://localhost:5204';                           // What: Preview URL String. Why: The security suite loads the production build, since the dev server injects inline scripts the security policy would block. How: This is the address the preview server answers on, the security projects' baseURL.
 const ROO_DIR_STR = fileURLToPath( new URL( '..', import.meta.url ) ); // What: Root Directory String. Why: Both servers must run from the repo root, where vite.config.ts lives. How: This resolves the folder above tests/.
 const SER_URL_STR = 'http://localhost:5194';                           // What: Server URL String. Why: Every project but the security ones opens its pages from the dev server through its baseURL. How: This is the address Playwright waits on and the baseURL of every project but the security ones.
 
@@ -133,7 +133,7 @@ const PLA_CON_OBJ = defineConfig({ // What: Playwright Config Object. Why: Playw
 
 		},
 
-		{ // What: Preview Server. Why: The security suite reads what ships, and the dev server's inline scripts would break a strict policy. How: This builds the site and serves the build on 5204.
+		{ // What: Preview Server. Why: The security suite and the SEO suite's raw page checks read what ships, and the dev server's inline scripts would break a strict policy. How: This builds the site and serves the build on 5204.
 
 
 			command             : 'npm run build && npx vite preview --port 5204 --strictPort', // What: Command. Why: The preview serves only a fresh build, and a strict port fails loudly. How: This type checks and builds the site, then serves dist/ on 5204.

@@ -24,18 +24,18 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
  * has exactly one description, index.html's, which Work, About, and Contact
  * swap for their own, names z4nta0 as its author, and has one h1, and moving
  * between pages swaps the tags rather than piling them up, giving Home back
- * index.html's own. The raw page, read without running the site's script the
- * way link checkers read it, carries the home page's full title and
- * description. The structured data describes z4nta0 as a Person, with the
- * GitHub and LinkedIn profiles the footer links to and the email the Contact
- * page offers, and this domain as a WebSite z4nta0 wrote. The raw page's
- * required social preview tags all carry content, name a website and the large
- * image card, use absolute addresses, and match the home page's title and
- * description, and the theme color tag carries the brand orange; the card they
- * point at is a 1,200x630 PNG under 300 KB; and every icon the head links to
- * is served, the PNGs at the size their links promise. robots.txt lets every
- * crawler in and names the sitemap, which lists the four indexed pages.
- * Adapted from the-bernie-bears.
+ * index.html's own. The raw page, read from the build without running the
+ * site's script the way link checkers read it, carries the home page's full
+ * title and description. The structured data describes z4nta0 as a Person,
+ * with the GitHub and LinkedIn profiles the footer links to and the email the
+ * Contact page offers, and this domain as a WebSite z4nta0 wrote. The raw
+ * page's required social preview tags all carry content, name a website and
+ * the large image card, use absolute addresses, and match the home page's
+ * title and description, and the theme color tag carries the brand orange; the
+ * card they point at is a 1,200x630 PNG under 300 KB; and every icon the head
+ * links to is served, the PNGs at the size their links promise. robots.txt
+ * lets every crawler in and names the sitemap, which lists the four indexed
+ * pages. Adapted from the-bernie-bears.
  *
  * Sections:
  *  - Constants
@@ -52,6 +52,7 @@ import type { Page } from '@playwright/test'; // What: Page. Why: The head helpe
 
 const HOM_DES_STR = 'Portfolio of z4nta0, a full stack web developer building fast, accessible websites and web apps for small local businesses.'; // What: Home Description String. Why: The raw page and the social tags carry the home page's description. How: This is the exact text they should hold.
 const LIV_URL_STR = 'https://techgeek.dev/'; // What: Live URL String. Why: The pages' tags and files name the live site, such as the sitemap's addresses. How: This is its address.
+const PRE_URL_STR = 'http://localhost:5204'; // What: Preview URL String. Why: Link scrapers read the shipped page, which the build minifies, so the raw page is read from the build rather than the dev server. How: This is the address the preview server answers on.
 
 
 
@@ -353,10 +354,10 @@ test( 'the structured data describes z4nta0 and matches the pages', async ( { pa
 
 
 
-test( 'the raw page carries the home title and description for script-free readers', async ( { request : reqConObj } ) => { // What: Raw Head Test. Why: Link checkers and many crawlers read the page without running the site's script, so the title and description have to be in index.html itself. How: This fetches the root as raw HTML and checks both.
+test( 'the raw page carries the home title and description for script-free readers', async ( { request : reqConObj } ) => { // What: Raw Head Test. Why: Link checkers and many crawlers read the page without running the site's script, so the title and description have to be in index.html itself. How: This fetches the built root as raw HTML and checks both.
 
 
-	const rawHtmStr = await ( await reqConObj.get( '/' ) ).text();                                        // What: Raw HTML String. Why: The page is read the way a script-free reader reads it. How: This fetches the root's HTML without a browser.
+	const rawHtmStr = await ( await reqConObj.get( `${ PRE_URL_STR }/` ) ).text();                        // What: Raw HTML String. Why: The page is read the way a script-free reader reads what ships. How: This fetches the built root's HTML without a browser.
 	const titTexStr = rawHtmStr.match( /<title>([^<]*)<\/title>/ )?.[ 1 ].replace( /&amp;/g, '&' ) ?? ''; // What: Title Text String. Why: The raw title is checked as written. How: This reads the title element's text and decodes its ampersand.
 
 
@@ -396,13 +397,13 @@ test( 'the sitemap lists the four indexed pages', async ( { request : reqConObj 
 
 
 
-test( 'the social preview tags are complete in the raw page', async ( { page : curPagObj, request : reqConObj } ) => { // What: Social Tags Test. Why: A link shared anywhere should show a full card that matches the page, and link scrapers read the raw page without running the site's script. How: This fetches the root as raw HTML and checks every required social tag carries content, its card kinds, its absolute URLs, its image's type and size, and its copy against the loaded home page's title and description, then the theme color.
+test( 'the social preview tags are complete in the raw page', async ( { page : curPagObj, request : reqConObj } ) => { // What: Social Tags Test. Why: A link shared anywhere should show a full card that matches the page, and link scrapers read the raw page without running the site's script. How: This fetches the built root as raw HTML and checks every required social tag carries content, its card kinds, its absolute URLs, its image's type and size, and its copy against the loaded home page's title and description, then the theme color.
 
 
 	await curPagObj.goto( '/' ); // What: Home Load Call. Why: The cards' copy is compared with the title and description the home page shows. How: This opens the home page.
 
 
-	const rawHtmStr = await ( await reqConObj.get( '/' ) ).text(); // What: Raw HTML String. Why: The tags are read the way a link scraper reads them. How: This fetches the root's HTML without a browser.
+	const rawHtmStr = await ( await reqConObj.get( `${ PRE_URL_STR }/` ) ).text(); // What: Raw HTML String. Why: The tags are read the way a link scraper reads what ships. How: This fetches the built root's HTML without a browser.
 	const socTagArr = [ ...rawHtmStr.matchAll( /<meta\s+(?:property|name)=(['"])((?:og|twitter):[^'"]+)\1\s+content=(['"])(.*?)\3/g ) ].map( ( tagMatArr ) => [ tagMatArr[ 2 ], tagMatArr[ 4 ] ] ); // What: Social Tag Array. Why: The social tags are read by key and value. How: This reads each raw Open Graph and Twitter meta tag as a key and content pair, whichever quotes its attributes use.
 	const socTagObj = Object.fromEntries( socTagArr );             // What: Social Tag Object. Why: Tags are easier to check by key. How: This turns the pairs into an object.
 
