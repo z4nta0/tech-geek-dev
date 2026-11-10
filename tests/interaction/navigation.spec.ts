@@ -356,7 +356,7 @@ test( 'back and forward return to the exact position, from a page scrolled furth
 
 
 
-test( 'a reload returns the page to where it was left', async ( { page : curPagObj } ) => { // What: Reload Position Test. Why: The scroll hook takes over the browser's restoring, so a reload has to find the position it saved. How: This scrolls Home down, reloads it, and checks it opens at the same position.
+test( 'a reload returns the page to where it was left', async ( { page : curPagObj } ) => { // What: Reload Position Test. Why: The scroll hook takes over the browser's restoring, so a reload has to find the position it saved. How: This scrolls Home down, reloads it, and checks it opens at the same position with the browser's own restoring switched off.
 
 
 	await curPagObj.setViewportSize( { height : 844, width : 390 } ); // What: Phone Viewport Call. Why: Home's stacked phone layout scrolls well past 1,500px. How: This sizes the page before it loads.
@@ -372,6 +372,8 @@ test( 'a reload returns the page to where it was left', async ( { page : curPagO
 	await curPagObj.reload(); // What: Page Reload Call. Why: This is the navigation under test. How: This reloads Home.
 
 	await expect.poll( () => curPagObj.evaluate( () => window.scrollY ) ).toBe( leaTopNum ); // What: Reloaded Position Assertion. Why: A reload should open the page where it was left. How: This polls the scroll position until it matches the leaving position.
+
+	expect( await curPagObj.evaluate( () => history.scrollRestoration ) ).toBe( 'manual' ); // What: Manual Restoration Assertion. Why: Chromium and WebKit restore a reload's position on their own, so the position alone can't show the hook did it. How: This checks the browser's own restoring is switched off, leaving the hook as the only thing that could have restored it.
 
 
 } );
