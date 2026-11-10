@@ -540,8 +540,9 @@ on `close-out`.
         project card's links;
       - unused font faces and files, a dead pattern rule, unreachable
         defaults, and a decorative-only Person image were removed.
-      The open questions the audit raised are listed under "## Found for
-      later" for the user.
+      The open questions the audit raised were settled with the user, the
+      last (the sister sites' unguarded hash decode) once they took the
+      package's guarded hook.
     - **Decided with the user** (2026-10-14): the version is 2.0.0, marking
       the finished portfolio; the footer's copyright reads the base size like
       the footer's other text; headings take the m01 line height, exactly 1,
@@ -882,17 +883,6 @@ The steps techgeek.dev followed, for TechGeek.cards and TechGeek.support:
    Cloudflare shows Success, purge the domain at
    https://one.one.one.one/purge-cache/ and https://dns.google/cache, then
    check that answers come back verified.
-
-## Found for later
-Raised by the close-out's audit (2026-10-14) and left for the user to decide,
-since each changes how the site looks or is a judgment call the rules don't
-settle.
-- **The sibling sites' scroll hook**: `useScrTopFun` (copied from
-  the-bernie-bears) decodes the address's hash unguarded, so a router link to
-  a malformed escape (`/#%E0`) would throw and blank the site. No such link
-  exists, and typed or bookmarked addresses load as a POP the hook skips, so
-  it's unreachable today; this site's copy now guards the decode anyway, and
-  the siblings could take the same guard.
 
 ## Deferred items
 Decided 2026-10-12 to leave these until the cleanup plan is finished, and
