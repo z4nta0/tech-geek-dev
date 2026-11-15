@@ -722,6 +722,12 @@ from a project's own tags and none can empty the grid.
   focus to the main element without changing the address. Its pages fix
   `Math.random`, since Home picks new featured projects each time it opens,
   which changed its height on the way back.
+  The hash check fails on any `window.scrollTo` call after the hash change
+  (since 2026-11-15, from TechGeek.support's audit), rather than only on one
+  aimed at the saved position: Firefox records its own jump to the target as
+  the entry's saved position before the hook runs, so a wrong restore aimed
+  at the target. With the hook's hash guard broken, the old check passed in
+  Firefox and the new one fails in all three engines.
   `feedback.spec.ts` (from the-bernie-bears, its probe replaced in the
   2026-11-07 audit, with its helpers in `tests/support/feedback.ts`) checks
   the interaction feedback rule on every shared state and form result (the
