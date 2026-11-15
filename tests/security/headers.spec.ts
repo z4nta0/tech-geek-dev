@@ -73,7 +73,7 @@ test.skip( ( { browserName : broNamStr } ) => broNamStr !== 'chromium', 'These c
 
 // #region Headers Checks
 
-test( 'the content security policy allows only the site itself, apart from data images', () => { // What: Content Security Policy Test. Why: A strict policy stops injected or third-party script from running, which limits cross-site scripting. How: This reads the policy, checks each directive it depends on, and checks that it never allows inline or evaluated code or every origin.
+test( 'the content security policy allows only the site itself', () => { // What: Content Security Policy Test. Why: A strict policy stops injected or third-party script from running, which limits cross-site scripting. How: This reads the policy, checks each directive it depends on, and checks that it never allows inline or evaluated code or every origin.
 
 
 	const cspValStr = heaAllFun()[ 'content-security-policy' ] ?? ''; // What: Content-Security-Policy Value String. Why: Each directive is checked in the policy's own text. How: This reads the header, or an empty string if it's missing.
@@ -92,11 +92,10 @@ test( 'the content security policy allows only the site itself, apart from data 
 	for ( const dirTexStr of cspValStr.split( ';' ).map( ( dirRawStr ) => dirRawStr.trim() ).filter( ( dirCurStr ) => dirCurStr.length > 0 ) ) { // What: Directive Loop. Why: The site loads everything from itself, so any source but its own origin or none would let another site's files in, a blob address included. How: This checks each directive in turn.
 
 
-		const dirNamStr = dirTexStr.split( /\s+/ )[ 0 ];       // What: Directive Name String. Why: Only the image directive may allow data addresses. How: This reads the directive's name.
 		const souLisArr = dirTexStr.split( /\s+/ ).slice( 1 ); // What: Source List Array. Why: The sources follow the directive's name. How: This splits the directive and drops its name.
 
 
-		expect( souLisArr.filter( ( souCurStr ) => souCurStr !== "'self'" && souCurStr !== "'none'" && !( dirNamStr === 'img-src' && souCurStr === 'data:' ) ), dirTexStr ).toEqual( [] ); // What: Own Sources Assertion. Why: Only 'self' and 'none' keep every resource on the site's own origin, while the Contact page's select arrow is a small image written into the stylesheet as a data address. How: This checks the directive lists no other source, allowing data: on img-src alone, and names the directive when it fails.
+		expect( souLisArr.filter( ( souCurStr ) => souCurStr !== "'self'" && souCurStr !== "'none'" ), dirTexStr ).toEqual( [] ); // What: Own Sources Assertion. Why: Only 'self' and 'none' keep every resource on the site's own origin, and a data: image source would let markup injected into the page draw any picture it carries. How: This checks the directive lists no other source, data: included, and names the directive when it fails.
 
 
 	}

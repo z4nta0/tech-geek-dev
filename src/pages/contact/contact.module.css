@@ -494,7 +494,7 @@
 
 
 	appearance          : none;
-	background-image    : url( 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="%23646482" stroke-width="2.5"%3E%3Cpolyline points="6 9 12 15 18 9"/%3E%3C/svg%3E' ); /* What: Chevron Image. Why: The select's arrow should read as quiet as the other muted text. How: This draws it in #646482, the Text Muted Color's value, written out since a data URL can't read a custom property. */
+	background-image    : url( './select-arrow.svg' ); /* What: Chevron Image. Why: The select's arrow should read as quiet as the other muted text. How: This reads select-arrow.svg beside this module, drawn in #646482, the Text Muted Color's value, written out since an SVG file can't read a custom property. */
 	background-position : right var( --spa-hor-bas ) center; /* Spacing Horizontal Base ~= 14.572px */
 	background-repeat   : no-repeat;
 	cursor              : pointer;

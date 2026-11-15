@@ -466,8 +466,8 @@ on `close-out`.
     - **Hire Me** in the bar and the menu became router links.
     - **Security headers**: `public/_headers` with a strict
       Content-Security-Policy (only the site's own files, data images for the
-      select arrow, and form posts to itself), HSTS, and the rest of the
-      siblings' set.
+      select arrow until 2026-11-15, and form posts to itself), HSTS, and the
+      rest of the siblings' set.
     - **Images**: `npm run screenshots` captures each project's live site
       (`design/images/capture.mts`, its originals git-ignored) and encodes
       them, the portrait was rebuilt from its 1,374 by 2,048 original, and
@@ -810,9 +810,8 @@ from a project's own tags and none can empty the grid.
   social preview tags and card, and every icon the head links to.
 - `npm run test:security` (added in the 2026-11-07 audit, from
   the-bernie-bears): the baseline security suite. `headers.spec.ts` reads
-  `public/_headers` for the policy (only the site's own origin, data images
-  on `img-src` for the select arrow, forms posting to itself) and the
-  hardening headers, searches the build for secrets, and runs `npm audit` on
+  `public/_headers` for the policy (only the site's own origin, with no
+  `data:` source, and forms posting to itself) and the hardening headers, searches the build for secrets, and runs `npm audit` on
   the shipped dependencies (Chromium only, since files read the same in
   every engine, skipping with a message when offline). `browser.spec.ts`
   loads every state from the production build with the headers applied and
@@ -821,7 +820,12 @@ from a project's own tags and none can empty the grid.
   the user 2026-11-08): "style-src-attr blocked inline on select", which
   WebKit reports for every `<select>` from its own native control rather than
   anything the site sets. The fallback rule in `public/_redirects` is checked
-  too, since the dev and preview servers fall back to the app on their own. No browser key ships, so none is allowed.
+  too, since the dev and preview servers fall back to the app on their own.
+  No browser key ships, so none is allowed. Contact's select draws its
+  chevron from `pages/contact/select-arrow.svg` (since 2026-11-15, per the
+  user-level rule "## Dropdown Arrows: An SVG File", found in
+  TechGeek.support's audit), and `vite.config.ts` turns off asset inlining,
+  so the policy needs no `data:` images, which the headers check now fails.
 - `npm test` runs every suite.
 - **Flakes**: before step 8 the infinite animations kept moving while the
   suite captured, so a few states failed now and then. With every animation
