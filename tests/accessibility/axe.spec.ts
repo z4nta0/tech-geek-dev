@@ -40,6 +40,8 @@ for ( const staRecObj of [ ...STA_REC_ARR, ...FIL_STA_ARR, ...INV_STA_ARR ] ) { 
 	test( `${ staRecObj.ideStr } has no axe violations`, async ( { page : curPagObj }, tesInfObj ) => { // What: Axe Test. Why: A state passes only with zero axe violations. How: This opens the state, scans it, reports anything needing review, and fails on any violation.
 
 
+		test.setTimeout( 120000 ); // What: Test Timeout Call. Why: In WebKit, opening Work's nine project cards at phone width and scanning them ran past the default 30 seconds (measured 2026-11-15). How: This gives the test two minutes.
+
 		await opeStaFun( curPagObj, staRecObj ); // What: State Open Call. Why: The scan should see the state settled. How: This loads and settles it.
 
 		expect( await cheAxeFun( curPagObj, tesInfObj, staRecObj.ideStr ) ).toEqual( [] ); // What: No Violations Assertion. Why: The state passes only with zero violations. How: This scans the page and compares its summarized violations with an empty list, so a failure prints each one.
