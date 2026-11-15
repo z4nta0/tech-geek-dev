@@ -736,9 +736,13 @@ from a project's own tags and none can empty the grid.
   off by its attribute and has to ease both ways. The first Tab stop, now the
   skip link, grows its ring to full width, and under reduced motion every
   change stays but switches at once. Real clicks are blocked while it probes,
-  and each look is read once the element's animations have finished, since
-  WebKit's clock lags on Work's heavy cards. A full run takes about half an
-  hour across the three engines.
+  and each look is read two frames after its change, once every finite
+  animation on the element, inside it, and above it has finished, rather
+  than after a fixed pause (since 2026-11-15, from TechGeek.cards' audit).
+  Its tests run in parallel across the config's six workers, and the whole
+  suite now takes about 18 minutes across the three engines, down from about
+  an hour; the dev server's file watcher skips the test output, whose traces
+  had kept it busy.
   `menu.spec.ts` (from the-bernie-bears) opens the phone menu on About and
   checks it lists the page links, both profiles, and the email over a scrim
   with the page inert, and that tapping the scrim, Escape (which returns focus
