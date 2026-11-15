@@ -61,7 +61,7 @@ type ImaRecTyp = { boxStr : string, outStr : string, souStr : string }; // What:
 const IMA_REC_ARR : ImaRecTyp[] = [ // What: Image Record Array. Why: The project screenshots and the portrait are rebuilt from this one list. How: Each row names the original, where it's written, and which box it fits.
 
 
-	...[ 'ease-my-life', 'hair-designs', 'reese-roofing', 'seal-and-shield', 'tech-geek-cards', 'tech-geek-support', 'the-bernie-bears', 'tonys-toppers' ].map( ( proNamStr ) => ({ // What: Project Screenshot Rows. Why: Every project card shows a screenshot of its site. How: This builds one row per project name.
+	...[ 'come-hang', 'ease-my-life', 'hair-designs', 'reese-roofing', 'seal-and-shield', 'tech-geek-cards', 'tech-geek-support', 'the-bernie-bears', 'tonys-toppers' ].map( ( proNamStr ) => ({ // What: Project Screenshot Rows. Why: Every project card shows a screenshot of its site. How: This builds one row per project name.
 
 
 		boxStr : 'project',                                       // What: Box String. Why: Every screenshot shares the project box. How: This names it.

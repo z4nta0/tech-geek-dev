@@ -3,6 +3,7 @@
 
 // #region Imports
 
+import cohScrUrl from '../assets/images/come-hang-website.webp';         // What: Come-Hang Screenshot URL. Why: The Come Hang project card shows a screenshot of its app. How: Vite resolves this to the image's fingerprinted URL.
 import emlScrUrl from '../assets/images/ease-my-life-website.webp';      // What: Ease-My-Life Screenshot URL. Why: The Ease My Life project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
 import hadScrUrl from '../assets/images/hair-designs-website.webp';      // What: Hair-Designs Screenshot URL. Why: The Hair Designs project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
 import rerScrUrl from '../assets/images/reese-roofing-website.webp';     // What: Reese-Roofing Screenshot URL. Why: The Reese Roofing project card shows a screenshot of its site. How: Vite resolves this to the image's fingerprinted URL.
@@ -239,6 +240,24 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 		yeaNum : 2026,
 
 		desStr : 'A sister site to TechGeek.dev with animated digital greeting cards, each one hand-coded to play in the browser and sent as a link.'
+
+
+	},
+
+	{ // What: Come Hang Project Record. Why: Come Hang is one of the projects the site showcases. How: This holds its card's text, links, screenshot, and tags.
+
+
+		cliBoo : false,
+		feaBoo : true,
+		gitStr : 'https://github.com/z4nta0/come-hang',
+		ideStr : 'proj-09',
+		imaStr : cohScrUrl,
+		livStr : 'https://comehang.app/',
+		tagArr : [ 'React', 'TypeScript', 'Firebase', 'React Router', 'Vite' ],
+		titStr : 'Come Hang',
+		yeaNum : 2026,
+
+		desStr : 'A progressive web app for getting a group together, with a group chat, an event planner with a bring list, photo sharing, and location sharing on the day of the event.'
 
 
 	}

@@ -466,8 +466,8 @@ on `close-out`.
     - **Hire Me** in the bar and the menu became router links.
     - **Security headers**: `public/_headers` with a strict
       Content-Security-Policy (only the site's own files, data images for the
-      select arrow, and form posts to itself), HSTS, and the rest of the
-      siblings' set.
+      select arrow until 2026-11-15, and form posts to itself), HSTS, and the
+      rest of the siblings' set.
     - **Images**: `npm run screenshots` captures each project's live site
       (`design/images/capture.mts`, its originals git-ignored) and encodes
       them, the portrait was rebuilt from its 1,374 by 2,048 original, and
@@ -589,14 +589,15 @@ on `close-out`.
       the package's artwork, copies it into `public/`, and draws the rest of
       the set from it.
     - **Installing it**: `package.json` names `github:z4nta0/techgeek-design#
-      v0.7.1` (moved from `v0.1.0` on 2026-10-17, bringing the bar's
+      v0.7.2` (moved from `v0.1.0` on 2026-10-17, bringing the bar's
       clearance for scrolled-to links, top and bottom, and its menu up to
       1,024px, then to `v0.6.0` on 2026-11-08, bringing the skip link, the
       hook's own scroll restoration, and the menu closing on any link
       click, to `v0.7.0` the same day, bringing the bar link underline's
-      leaving curve and a named easing token on every transition, and to
+      leaving curve and a named easing token on every transition, to
       `v0.7.1` on 2026-11-10, bringing the footer icons' color-only hover
-      and the profile links' new tab note). npm records the address over SSH, but falls back to HTTPS for
+      and the profile links' new tab note, and to `v0.7.2` on 2026-11-15,
+      bringing the brand link closing the open phone menu). npm records the address over SSH, but falls back to HTTPS for
       a public GitHub repository, which a clean install with SSH turned off
       and an empty cache confirmed, so Netlify fetches it without a key. While
       the package and this site change together, `npm install --install-links
@@ -689,7 +690,11 @@ tests/output/report` opens the HTML report. The states the suites visit
 (every route and the 404 page at 390px and 1,440px, plus the phone menu open
 at 390px) are listed in `tests/support/states.ts`, whose `opeStaFun` skips
 animations that repeat forever (the hero's turning shapes, the skills
-ticker, and the status dots) when waiting for the page to settle. Work with
+ticker, and the status dots) when waiting for the page to settle. Its quick
+scroll to start the lazy screenshots loading is followed by a second pass that
+brings back any left unloaded (since 2026-11-15), since WebKit can drop a lazy
+load scrolled out of view before it arrives, which timed out Work's phone
+states once Come Hang made the page longer. Work with
 GSAP chosen (`tests/support/work.ts`) and Contact after a refused empty send
 (`INV_STA_ARR` in `tests/support/contact.ts`), at both widths, join the axe
 scan, the scripted checks, and the policy check (decided by the user
@@ -718,6 +723,12 @@ from a project's own tags and none can empty the grid.
   focus to the main element without changing the address. Its pages fix
   `Math.random`, since Home picks new featured projects each time it opens,
   which changed its height on the way back.
+  The hash check fails on any `window.scrollTo` call after the hash change
+  (since 2026-11-15, from TechGeek.support's audit), rather than only on one
+  aimed at the saved position: Firefox records its own jump to the target as
+  the entry's saved position before the hook runs, so a wrong restore aimed
+  at the target. With the hook's hash guard broken, the old check passed in
+  Firefox and the new one fails in all three engines.
   `feedback.spec.ts` (from the-bernie-bears, its probe replaced in the
   2026-11-07 audit, with its helpers in `tests/support/feedback.ts`) checks
   the interaction feedback rule on every shared state and form result (the
@@ -736,9 +747,13 @@ from a project's own tags and none can empty the grid.
   off by its attribute and has to ease both ways. The first Tab stop, now the
   skip link, grows its ring to full width, and under reduced motion every
   change stays but switches at once. Real clicks are blocked while it probes,
-  and each look is read once the element's animations have finished, since
-  WebKit's clock lags on Work's heavy cards. A full run takes about half an
-  hour across the three engines.
+  and each look is read two frames after its change, once every finite
+  animation on the element, inside it, and above it has finished, rather
+  than after a fixed pause (since 2026-11-15, from TechGeek.cards' audit).
+  Its tests run in parallel across the config's six workers, and the whole
+  suite now takes about 18 minutes across the three engines, down from about
+  an hour; the dev server's file watcher skips the test output, whose traces
+  had kept it busy.
   `menu.spec.ts` (from the-bernie-bears) opens the phone menu on About and
   checks it lists the page links, both profiles, and the email over a scrim
   with the page inert, and that tapping the scrim, Escape (which returns focus
@@ -795,9 +810,8 @@ from a project's own tags and none can empty the grid.
   social preview tags and card, and every icon the head links to.
 - `npm run test:security` (added in the 2026-11-07 audit, from
   the-bernie-bears): the baseline security suite. `headers.spec.ts` reads
-  `public/_headers` for the policy (only the site's own origin, data images
-  on `img-src` for the select arrow, forms posting to itself) and the
-  hardening headers, searches the build for secrets, and runs `npm audit` on
+  `public/_headers` for the policy (only the site's own origin, with no
+  `data:` source, and forms posting to itself) and the hardening headers, searches the build for secrets, and runs `npm audit` on
   the shipped dependencies (Chromium only, since files read the same in
   every engine, skipping with a message when offline). `browser.spec.ts`
   loads every state from the production build with the headers applied and
@@ -806,7 +820,12 @@ from a project's own tags and none can empty the grid.
   the user 2026-11-08): "style-src-attr blocked inline on select", which
   WebKit reports for every `<select>` from its own native control rather than
   anything the site sets. The fallback rule in `public/_redirects` is checked
-  too, since the dev and preview servers fall back to the app on their own. No browser key ships, so none is allowed.
+  too, since the dev and preview servers fall back to the app on their own.
+  No browser key ships, so none is allowed. Contact's select draws its
+  chevron from `pages/contact/select-arrow.svg` (since 2026-11-15, per the
+  user-level rule "## Dropdown Arrows: An SVG File", found in
+  TechGeek.support's audit), and `vite.config.ts` turns off asset inlining,
+  so the policy needs no `data:` images, which the headers check now fails.
 - `npm test` runs every suite.
 - **Flakes**: before step 8 the infinite animations kept moving while the
   suite captured, so a few states failed now and then. With every animation

@@ -22,8 +22,11 @@ import type { Plugin } from 'vite'; // What: Plugin. Why: The page minifier is a
  * The build and dev server config. It compiles React, reads CSS module class
  * names as camelCase keys, and, for production builds only, compacts
  * index.html, which Vite processes but never minifies, so the page's comments
- * and indentation stay out of what visitors download. Every other setting
- * stays at Vite's default, including building index.html as the one page and
+ * and indentation stay out of what visitors download. It also ships every
+ * asset as its own file rather than inlining small ones, which the security
+ * policy would refuse, and keeps the dev server's file watcher off folders
+ * that hold no app code, such as the test output. Every other setting stays
+ * at Vite's default, including building index.html as the one page and
  * copying the files in public/ (the icons, the social card, the crawler
  * files, and Netlify's _headers and _redirects) into the build untouched.
  *
@@ -108,8 +111,10 @@ const minHtmFun = () : Plugin => ({ // What: Minify HTML Function. Why: index.ht
 const VIT_CON_OBJ = defineConfig({ // What: Vite Config Object. Why: Vite reads its whole configuration from this file's default export. How: This builds the config, including the minHtmFun plugin above.
 
 
+	build   : { assetsInlineLimit : 0 },                            // What: Build. Why: Vite inlines any asset under 4 KB as a data: URI, which the Content-Security-Policy refuses as an image source, so the Contact select's arrow would vanish. How: This turns inlining off, so every asset ships as its own file on the site's own origin.
 	css     : { modules : { localsConvention : 'camelCaseOnly' } }, // What: CSS. Why: CSS modules expose each class name as a camelCase key only, so every module reads the same way, per the CSS modules rules. How: This sets the locals convention.
-	plugins : [ reaPluFun(), minHtmFun() ]                          // What: Plugins. Why: Vite builds the site through these plugins, in this order. How: This lists React and the page minifier.
+	plugins : [ reaPluFun(), minHtmFun() ],                         // What: Plugins. Why: Vite builds the site through these plugins, in this order. How: This lists React and the page minifier.
+	server  : { watch : { ignored : [ '**/*.log', '**/design/images/originals/**', '**/dist/**', '**/tests/output/**' ] } } // What: Server. Why: A test run writes thousands of trace frames into the test output, which kept every dev server watching the project busy for hours in tech-geek-cards (measured 2026-11-13), and none of these folders hold app code. How: This keeps the file watcher off logs, the image originals, the build, and the test output.
 
 
 });
