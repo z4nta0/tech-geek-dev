@@ -26,9 +26,10 @@ import { test          } from '@playwright/test';     // What: Test. Why: Each s
  * otherwise fail the baselines every January, and with Math.random fixed,
  * since Home picks its featured projects at random. Chromium and WebKit
  * capture with hide-patterns.css, which hides the faint background patterns
- * they tile slightly differently from run to run, and Chromium's Contact
- * desktop capture masks the bottom corners of one sidebar card, which it
- * repaints a color level apart between captures. Baselines live in
+ * they tile slightly differently from run to run. Chromium's Contact desktop
+ * capture masks the bottom corners of one sidebar card, and its open menu
+ * capture the rounded left ends of two drawer controls, each of which it
+ * repaints a few color levels apart between captures. Baselines live in
  * tests/rendering/baselines, one per state and engine, captured on Linux;
  * another system's font rendering would differ, so baselines are refreshed on
  * the machine that runs the suite. When a change is meant to alter how a page
@@ -113,6 +114,67 @@ function corMasFun () : void {
 
 // #endregion corMasFun
 
+
+
+// #region ediMasFun
+
+/**
+ * ediMasFun = Edge Mask Function
+ *
+ * @summary
+ * Runs inside the page and lays a marked strip over the rounded left end of
+ * the open drawer's availability pill and of its "Hire Me" button, so the
+ * screenshot can mask them. Both start at a fractional pixel, and Chromium
+ * draws that curved edge one of two ways from one capture to the next, a few
+ * color levels apart (measured 2026-11-15, failing about one run in three).
+ * Each strip is placed absolutely in page coordinates, which adds nothing to
+ * the layout, and is as wide as the control's corner curve, leaving every
+ * other pixel checked. It expects the menu already open.
+ *
+ * @author z4nta0 <https://github.com/z4nta0>
+ *
+ * @param void - This function takes no parameters.
+ *
+ * @returns This function does not return anything.
+ *
+ * @example
+ * ```ts
+ * curPagObj.evaluate(ediMasFun) // => void
+ * ```
+ *
+*/
+
+function ediMasFun () : void {
+
+
+	const draCurEle = [ ...document.querySelectorAll( 'div[data-mobile-menu-open]' ) ].find( ( divCurEle ) => divCurEle.querySelector( 'a' ) )!; // What: Drawer Current Element. Why: The unstable edges are the drawer's own, not the hero's pill behind it. How: This finds the open menu element that holds links, the drawer, rather than the scrim. // What: Non-Null Note. Why: The open menu state always shows the drawer. How: The find returns it, never undefined, there.
+
+
+	const pilCurEle = [ ...draCurEle.querySelectorAll( 'div' ) ].filter( ( divCurEle ) => divCurEle.textContent?.trim() === 'Available for freelance work' ).at( -1 )!; // What: Pill Current Element. Why: The pill's left end is one of the two that repaint. How: This takes the innermost div whose text is the availability line, the pill itself, since a nested match comes later in document order. // What: Non-Null Note. Why: The drawer always shows the pill. How: The filter keeps at least the pill.
+	const hirCurEle = [ ...draCurEle.querySelectorAll( 'a' ) ].find( ( ancCurEle ) => ancCurEle.textContent?.trim() === 'Hire Me' )!;                                    // What: Hire Current Element. Why: The button's left end is the other that repaints. How: This finds the drawer's "Hire Me" link. // What: Non-Null Note. Why: The drawer always shows the button. How: The find returns it, never undefined, there.
+
+
+	for ( const edgCurEle of [ pilCurEle, hirCurEle ] ) { // What: Edge Strip Loop. Why: Both left ends repaint. How: This lays one strip over each.
+
+
+		const edgRecObj = edgCurEle.getBoundingClientRect();                                                                     // What: Edge Rect Object. Why: The strip sits over the control's left end. How: This reads its box in the viewport.
+		const curWidNum = Math.min( parseFloat( getComputedStyle( edgCurEle ).borderTopLeftRadius ), edgRecObj.height / 2 ); // What: Curve Width Number. Why: The strip covers the curve and nothing past it. How: This takes the corner radius, capped at half the height, where a pill's rounding stops.
+		const masCurEle = document.createElement( 'div' );                                                                       // What: Mask Current Element. Why: The screenshot masks by element. How: This creates the strip.
+
+
+		masCurEle.setAttribute( 'data-render-mask', '' ); // What: Mask Attribute Call. Why: The screenshot finds the strips by it. How: This marks the strip.
+		masCurEle.setAttribute( 'style', `height : ${ edgRecObj.height }px; left : ${ edgRecObj.left + scrollX }px; pointer-events : none; position : absolute; top : ${ edgRecObj.top + scrollY }px; width : ${ curWidNum }px;` ); // What: Strip Style Call. Why: The strip has to sit over the left end in page coordinates. How: This sizes it to the curve and the control's height and places it at the control's left, offset by the scroll.
+
+		document.body.append( masCurEle ); // What: Strip Append Call. Why: The strip only takes part once it's in the page. How: This adds it to the body.
+
+
+	}
+
+
+}
+
+// #endregion ediMasFun
+
 // #endregion Helpers
 
 
@@ -136,21 +198,26 @@ for ( const staRecObj of STA_REC_ARR ) { // What: State Test Loop. Why: Every pa
 
 
 		const corMasBoo = engNamStr === 'chromium' && staRecObj.ideStr === 'contact-desktop'; // What: Corner Mask Boolean. Why: Only Chromium's Contact desktop capture repaints a card's corners from run to run. How: This is true for that one capture.
+		const ediMasBoo = engNamStr === 'chromium' && staRecObj.ideStr === 'menu-phone';      // What: Edge Mask Boolean. Why: Only Chromium's open menu capture repaints two drawer controls' left ends from run to run. How: This is true for that one capture.
 
 
 		if ( corMasBoo ) await curPagObj.evaluate( corMasFun ); // What: Corner Mask Call. Why: The unstable corners have to be covered before the capture. How: This lays the marked squares over them.
 
 
 
+		if ( ediMasBoo ) await curPagObj.evaluate( ediMasFun ); // What: Edge Mask Call. Why: The unstable left ends have to be covered before the capture. How: This lays the marked strips over them.
+
+
+
 		await expect( curPagObj ).toHaveScreenshot( `${ staRecObj.ideStr }.png`, { // What: Baseline Comparison Assertion. Why: The state should look exactly as approved. How: This captures the whole page with animations stopped and compares it with the state's baseline pixel for pixel, color for color.
 
 
-			animations        : 'disabled',                                                     // What: Animations. Why: A looping animation would never hold still for the capture. How: This fast-forwards every finite animation and transition to its end, and resets each looping one to its start, for the capture.
-			fullPage          : true,                                                           // What: Full Page. Why: The whole state has to match, not just the first screen. How: This captures the page's full height.
-			mask              : corMasBoo ? [ curPagObj.locator( '[data-render-mask]' ) ] : [], // What: Mask. Why: The two unstable corners shouldn't fail the comparison. How: This paints over the marked squares in Chromium's Contact desktop capture and masks nothing elsewhere.
-			maxDiffPixelRatio : MAX_DIF_NUM,                                                    // What: Maximum Diff Pixel Ratio. Why: No pixel may differ from the baseline. How: This reads the suite's zero tolerance.
-			stylePath         : engNamStr === 'firefox' ? [] : HID_PAT_STR,                     // What: Style Path. Why: Chromium and WebKit don't draw the background patterns the same every run, while Firefox does. How: This hides the patterns for those two engines' captures and leaves Firefox's untouched.
-			threshold         : PIX_THR_NUM                                                     // What: Threshold. Why: Even a slight color change should fail. How: This reads the suite's zero per-pixel threshold.
+			animations        : 'disabled',                                                                  // What: Animations. Why: A looping animation would never hold still for the capture. How: This fast-forwards every finite animation and transition to its end, and resets each looping one to its start, for the capture.
+			fullPage          : true,                                                                        // What: Full Page. Why: The whole state has to match, not just the first screen. How: This captures the page's full height.
+			mask              : corMasBoo || ediMasBoo ? [ curPagObj.locator( '[data-render-mask]' ) ] : [], // What: Mask. Why: The unstable corners and edges shouldn't fail the comparison. How: This paints over the marked squares and strips in Chromium's Contact desktop and open menu captures and masks nothing elsewhere.
+			maxDiffPixelRatio : MAX_DIF_NUM,                                                                 // What: Maximum Diff Pixel Ratio. Why: No pixel may differ from the baseline. How: This reads the suite's zero tolerance.
+			stylePath         : engNamStr === 'firefox' ? [] : HID_PAT_STR,                                  // What: Style Path. Why: Chromium and WebKit don't draw the background patterns the same every run, while Firefox does. How: This hides the patterns for those two engines' captures and leaves Firefox's untouched.
+			threshold         : PIX_THR_NUM                                                                  // What: Threshold. Why: Even a slight color change should fail. How: This reads the suite's zero per-pixel threshold.
 
 
 		} );
