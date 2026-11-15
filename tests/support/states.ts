@@ -138,8 +138,9 @@ const STA_REC_ARR : StaRecTyp[] = [ // What: State Record Array. Why: The page s
  * lazily only loads once it nears the screen, so a page that's never scrolled
  * would keep it blank, and a full-page screenshot or an axe scan would miss
  * it. Each step pauses briefly so the browser starts the images coming into
- * view, and every jump is instant, overriding any smooth scrolling the page
- * asks for.
+ * view, and any image the pass left unloaded is brought back into view and
+ * waited on, up to five seconds each. Every jump is instant, overriding any
+ * smooth scrolling the page asks for.
  *
  * @author z4nta0 <https://github.com/z4nta0>
  *
@@ -158,7 +159,7 @@ const STA_REC_ARR : StaRecTyp[] = [ // What: State Record Array. Why: The page s
 async function revPagFun ( curPagObj : Page ) : Promise< void > {
 
 
-	await curPagObj.evaluate( async () => { // What: Page Scroll Pass. Why: Images that load lazily have to be scrolled near before they're checked. How: This steps down the page half a screen at a time, pausing at each step, then returns to the top.
+	await curPagObj.evaluate( async () => { // What: Page Scroll Pass. Why: Images that load lazily have to be scrolled near before they're checked. How: This steps down the page half a screen at a time, pausing at each step, brings back any image left unloaded, then returns to the top.
 
 
 		for ( let scrTopNum = 0; scrTopNum < document.documentElement.scrollHeight; scrTopNum += window.innerHeight / 2 ) { // What: Scroll Step Loop. Why: Every image has to come near the viewport at some point. How: This moves the scroll position down by half the viewport's height each pass until it passes the page's end.
@@ -167,6 +168,18 @@ async function revPagFun ( curPagObj : Page ) : Promise< void > {
 			window.scrollTo( { behavior : 'instant', top : scrTopNum } ); // What: Scroll Step Call. Why: The next stretch of the page has to come into view. How: This jumps straight to the step's position, skipping any smooth scrolling.
 
 			await new Promise( ( resProFun ) => setTimeout( resProFun, 100 ) ); // What: Step Pause Wait. Why: The browser decides to start a lazy image on its own schedule, not the moment the page moves. How: This waits 100ms before the next step.
+
+
+		}
+
+
+
+		for ( const imaCurEle of Array.from( document.images ).filter( ( imaFilEle ) => !imaFilEle.complete ) ) { // What: Unloaded Image Loop. Why: WebKit can drop a lazy image's load when the pass moves it out of view before it arrives, leaving it blank for good (measured 2026-11-15 on Work at 390px). How: This brings back each image still unloaded after the pass.
+
+
+			imaCurEle.scrollIntoView( { behavior : 'instant', block : 'center' } ); // What: Image Return Call. Why: A lazy image starts loading only once it nears the screen again. How: This jumps it to the middle of the view.
+
+			await Promise.race( [ new Promise( ( resProFun ) => [ 'error', 'load' ].forEach( ( eveNamStr ) => imaCurEle.addEventListener( eveNamStr, resProFun, { once : true } ) ) ), new Promise( ( resProFun ) => setTimeout( resProFun, 5000 ) ) ] ); // What: Image Arrival Wait. Why: The image should finish loading before the page moves on. How: This waits for its load or error event, or five seconds, whichever comes first.
 
 
 		}

@@ -689,7 +689,11 @@ tests/output/report` opens the HTML report. The states the suites visit
 (every route and the 404 page at 390px and 1,440px, plus the phone menu open
 at 390px) are listed in `tests/support/states.ts`, whose `opeStaFun` skips
 animations that repeat forever (the hero's turning shapes, the skills
-ticker, and the status dots) when waiting for the page to settle. Work with
+ticker, and the status dots) when waiting for the page to settle. Its quick
+scroll to start the lazy screenshots loading is followed by a second pass that
+brings back any left unloaded (since 2026-11-15), since WebKit can drop a lazy
+load scrolled out of view before it arrives, which timed out Work's phone
+states once Come Hang made the page longer. Work with
 GSAP chosen (`tests/support/work.ts`) and Contact after a refused empty send
 (`INV_STA_ARR` in `tests/support/contact.ts`), at both widths, join the axe
 scan, the scripted checks, and the policy check (decided by the user
