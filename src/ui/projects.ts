@@ -23,8 +23,9 @@ import totScrUrl from '../assets/images/tonys-toppers-website.webp';     // What
  * @summary
  * The list of projects the site showcases, with the type every record
  * follows, which holds fields such as a project's name, links, and
- * screenshot. Two counts are taken from the list, the projects shipped and
- * the clients served, so both grow as projects are added. Each record's
+ * screenshot. Two counts are taken from the list, the projects shipped (plus
+ * this site, which the list leaves out) and the clients served, so both grow
+ * as projects are added. Each record's
  * screenshot comes from src/assets/images, rendered there by npm run images.
  *
  * Sections:
@@ -270,7 +271,7 @@ const PRO_REC_ARR : ProRecTyp[] = [ // What: Project Record Array. Why: Every pa
 
 
 const CLI_COU_NUM = PRO_REC_ARR.filter( ( proRecObj ) => proRecObj.cliBoo ).length; // What: Client Count Number. Why: The count should grow as client projects are added. How: This counts the records built for a client.
-const SHI_COU_NUM = PRO_REC_ARR.length;                                             // What: Shipped Count Number. Why: The count should grow as projects are added. How: This counts every record.
+const SHI_COU_NUM = PRO_REC_ARR.length + 1;                                         // What: Shipped Count Number. Why: The count should grow as projects are added, and this site is a shipped project too, though it's left off the Work page since its visitors are already here. How: This counts every record, plus 1 for this site.
 
 // #endregion Constants
 

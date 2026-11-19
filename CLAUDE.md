@@ -44,8 +44,10 @@ Decided 2026-10-12 by the user, in the step 7 content review.
 - **Stats** (Home's strip and About's floating facts): "10+ Years
   Experience" (z4nta0 has been a developer since 2013) and "100% Client
   Satisfaction" are written as is. "Projects Shipped" and "Happy Clients"
-  are counted from `ui/projects.ts` (`SHI_COU_NUM`, every record, and
-  `CLI_COU_NUM`, the records whose `cliBoo` is true), so they grow as
+  are counted from `ui/projects.ts` (`SHI_COU_NUM`, every record plus 1
+  for this site, which the Work page leaves out since its visitors are
+  already here, decided by the user 2026-11-19, and `CLI_COU_NUM`, the
+  records whose `cliBoo` is true), so they grow as
   projects are added, and always end in a plus, since older projects that
   are no longer online still count. The client sites are Hair Designs, The
   Bernie Bears, Tony's Toppers, Seal and Shield, and Reese Roofing; Ease My
