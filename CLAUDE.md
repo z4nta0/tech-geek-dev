@@ -664,7 +664,10 @@ audit.
   its number clears the bar on short screens.
 - **The images** are sized from frames measured in all three engines, three
   times rounded down: the screenshots 1,995 by 1,122 and the portrait 727 by
-  963.
+  963. Each kind has its own WebP quality in `design/images/render.mts`: the
+  screenshots 0.85, and the portrait 0.93 since 2026-11-19 (from
+  TechGeek.support's audit), the lowest at which its grain matched the
+  original at 3x zoom, where 0.85 had smoothed it.
 - **The skip link's slide-in**: the reduced-motion Tab walk is enough beside
   the navigation spec's whole-link-in-view check and the feedback probe's
   hover with motion allowed.

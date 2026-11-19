@@ -22,8 +22,9 @@ import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why:
  * in originals/, a folder kept out of git so the large source files never
  * bloat the repository again. Each image is scaled so it covers its box, which
  * is no more than three times the largest size the site shows it at, so it
- * stays sharp on the densest phones, never scaled up, and encoded at 0.85
- * quality, the lowest that showed no difference from the original at 3x zoom.
+ * stays sharp on the densest phones, never scaled up, and encoded at its
+ * kind's quality, the lowest that showed no difference from the original at
+ * 3x zoom.
  * Everything is written as WebP where the site imports it (the project
  * screenshots into src/assets/images, the portrait beside the About page), and
  * an output named .jpg is written as a JPEG, while a box can cut an image to
@@ -43,13 +44,13 @@ import { writeFileSync } from 'node:fs';          // What: Write File Sync. Why:
 
 // #region Constants
 
-type BoxRecTyp = { cutBoo : boolean, heiNum : number, widNum : number }; // What: Box Record Type. Why: A kind of image is either fitted to cover its box or cut to exactly its size. How: This names whether it's cut, and the box's height and width in pixels.
+type BoxRecTyp = { cutBoo : boolean, heiNum : number, quaNum : number, widNum : number }; // What: Box Record Type. Why: A kind of image is either fitted to cover its box or cut to exactly its size, and is encoded at its own quality. How: This names whether it's cut, the box's height in pixels, the encoding quality, and the box's width in pixels.
 
 const BOX_REC_OBJ : Record< string, BoxRecTyp > = { // What: Box Record Object. Why: Each kind of image is shown at a different largest size, and its file should be no more than three times that. How: This maps each kind to its box.
 
 
-	'portrait' : { cutBoo : true,  heiNum : 963,  widNum : 727  }, // What: Portrait Box. Why: The About portrait fills a frame up to about 242.5 by 321.3, measured in all three engines, which crops it the same way. How: This cuts it to three times that, rounded down, centered, so no hidden pixels ship.
-	'project'  : { cutBoo : true,  heiNum : 1122, widNum : 1995 }  // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 665.0 by 374.1, measured in all three engines at Home's widest two-by-two grid. How: This cuts it to three times that, rounded down, centered, since covering the box alone came out a pixel wider than the size the cards declare.
+	'portrait' : { cutBoo : true,  heiNum : 963,  quaNum : 0.93, widNum : 727  }, // What: Portrait Box. Why: The About portrait fills a frame up to about 242.5 by 321.3, measured in all three engines, which crops it the same way, and a photo's grain smooths away below 0.93 at 3x zoom (measured 2026-11-19, as TechGeek.support found for its copy). How: This cuts it to three times that, rounded down, centered, so no hidden pixels ship, and encodes it at 0.93.
+	'project'  : { cutBoo : true,  heiNum : 1122, quaNum : 0.85, widNum : 1995 }  // What: Project Box. Why: A project screenshot fills a 16:9 frame up to about 665.0 by 374.1, measured in all three engines at Home's widest two-by-two grid, and its flat site artwork shows no difference from the original at 0.85 at 3x zoom. How: This cuts it to three times that, rounded down, centered, since covering the box alone came out a pixel wider than the size the cards declare, and encodes it at 0.85.
 
 
 };
@@ -79,7 +80,6 @@ const IMA_REC_ARR : ImaRecTyp[] = [ // What: Image Record Array. Why: The projec
 
 
 const ORI_DIR_STR = fileURLToPath( new URL( './originals/', import.meta.url ) ); // What: Originals Directory String. Why: The originals live beside this script, outside git. How: This resolves that folder.
-const QUA_VAL_NUM = 0.85;                                                        // What: Quality Value Number. Why: This is the lowest quality that showed no difference from the originals at 3x zoom. How: Every image is encoded at it.
 const ROO_DIR_STR = fileURLToPath( new URL( '../../', import.meta.url ) );       // What: Root Directory String. Why: Outputs are named from the project root. How: This resolves it.
 
 // #endregion Constants
@@ -120,7 +120,7 @@ for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each o
 	const souUrlStr = `data:image/${ imaRecObj.souStr.endsWith( '.jpg' ) ? 'jpeg' : 'png' };base64,${ readFileSync( souPatStr ).toString( 'base64' ) }`; // What: Source URL String. Why: A canvas drawn from a file URL can't be read back, while one drawn from data can. How: This hands the original to the page as a data URL.
 
 
-	const encResStr = await encPagObj.evaluate( async ( [ souUrlStr, boxRecObj, mimTypStr, quaValNum ] ) => { // What: Encode Result String. Why: The browser scales and encodes the image. How: This decodes the original, draws it onto a canvas at the fitted size, and returns the encoded data.
+	const encResStr = await encPagObj.evaluate( async ( [ souUrlStr, boxRecObj, mimTypStr ] ) => { // What: Encode Result String. Why: The browser scales and encodes the image. How: This decodes the original, draws it onto a canvas at the fitted size, and returns the encoded data.
 
 
 		const souImaEle = new Image(); // What: Source Image Element. Why: The original has to be decoded before it's drawn. How: This creates an image to load it into.
@@ -156,10 +156,10 @@ for ( const imaRecObj of IMA_REC_ARR ) { // What: Image Record Loop. Why: Each o
 
 
 
-		return outCanEle.toDataURL( mimTypStr, quaValNum ).split( ',' )[ 1 ]; // What: Encoded Data Return. Why: Only text crosses back from the page. How: This encodes the canvas and keeps the base64 data after the data URL's comma.
+		return outCanEle.toDataURL( mimTypStr, boxRecObj.quaNum ).split( ',' )[ 1 ]; // What: Encoded Data Return. Why: Only text crosses back from the page. How: This encodes the canvas at its kind's quality and keeps the base64 data after the data URL's comma.
 
 
-	}, [ souUrlStr, boxRecObj, mimTypStr, QUA_VAL_NUM ] as const ); // What: Encode Arguments. Why: The page can't read this script's variables. How: This passes the original, its box, the format, and the quality in. // What: Type Assertion Note. Why: Without it the array widens to one mixed type, so the page function's destructured parameters lose their own types. How: as const keeps it a readonly tuple, so each parameter is typed by its position.
+	}, [ souUrlStr, boxRecObj, mimTypStr ] as const ); // What: Encode Arguments. Why: The page can't read this script's variables. How: This passes the original, its box with its quality, and the format in. // What: Type Assertion Note. Why: Without it the array widens to one mixed type, so the page function's destructured parameters lose their own types. How: as const keeps it a readonly tuple, so each parameter is typed by its position.
 
 
 	const outPatStr = `${ ROO_DIR_STR }${ imaRecObj.outStr }`; // What: Output Path String. Why: The image is written where the site reads it. How: This joins the project root and the output path.
