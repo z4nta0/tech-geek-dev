@@ -34,6 +34,10 @@ import { test        } from '@playwright/test';      // What: Test. Why: Each st
 
 
 
+test.describe.configure( { mode : 'parallel' } ); // What: Parallel Mode Call. Why: Each test opens its own state in its own page, so none depends on another. How: This lets the file's tests spread across the workers.
+
+
+
 for ( const staRecObj of [ ...STA_REC_ARR, ...FIL_STA_ARR, ...INV_STA_ARR ] ) { // What: State Test Loop. Why: Every page state must pass the scan, a chosen filter and a refused send included. How: This declares one axe test per state, the shared states first, then the filtered and invalid states.
 
 

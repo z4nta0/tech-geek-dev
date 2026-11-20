@@ -716,7 +716,9 @@ from a project's own tags and none can empty the grid.
   trap that cycles back or holds focus on one control fails), reflow at 320px,
   and motion under reduced motion. axe's "needs review" results are printed
   and attached to the report rather than failing the run, except `bypass`,
-  which fails, since every page opens with a skip link.
+  which fails, since every page opens with a skip link. Both specs run their
+  tests in parallel (since 2026-11-19, as ease-my-life's do), since each
+  opens its own state and the keyboard walks are slow.
 - `npm run test:interaction`: how moving between pages and using controls
   behaves. `navigation.spec.ts` (from the-bernie-bears, added in step 11)
   checks that a footer link clicked at the bottom of each page opens the next
