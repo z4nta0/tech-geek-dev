@@ -930,7 +930,7 @@ for ( const staRecObj of [ ...STA_REC_ARR, ...RES_STA_ARR ] ) { // What: State T
 	test( `${ staRecObj.ideStr } gives every reachable link and button hover, press, and focus feedback, every form field its focus, and every toggle its switch`, async ( { page : curPagObj } ) => { // What: Feedback Test. Why: Every interaction should visibly register. How: This opens the state, blocks clicks, probes every reachable link, button, and form field and each reachable element of the toggle kinds listed for the state, on the Home, Work, and About states every card, and on Home and Work every project card overlay, and checks it finds no problems.
 
 
-		test.setTimeout( 600000 ); // What: Test Timeout Call. Why: Probing every control's hover, press, and focus waits out each look's transitions, and the Work page's dozens of project links and filters ran WebKit past 90 seconds even before the toggles and cards joined. How: This gives the test ten minutes.
+		test.setTimeout( 1200000 ); // What: Test Timeout Call. Why: Probing every control's hover, press, and focus waits out each look's transitions, and WebKit's Work phone state took about 8.6 minutes alone once the list held nine projects, and past ten under the full suite's load. How: This gives the test twenty minutes.
 
 		await opeStaFun( curPagObj, staRecObj ); // What: State Open Call. Why: The controls are probed with the state settled. How: This loads and settles it.
 
@@ -981,7 +981,7 @@ for ( const staRecObj of [ ...STA_REC_ARR, ...RES_STA_ARR ] ) { // What: State T
 	test( `${ staRecObj.ideStr } keeps feedback without motion under reduced motion`, async ( { page : curPagObj } ) => { // What: Reduced Motion Feedback Test. Why: Visitors who ask for less motion still need to see their actions register. How: This probes every reachable link, button, and form field, each reachable element of the toggle kinds listed for the state, on the Home, Work, and About states every card, and on Home and Work every project card overlay, with reduced motion on, and checks it finds no problems.
 
 
-		test.setTimeout( 600000 ); // What: Test Timeout Call. Why: Probing every control's hover, press, and focus waits out each look's transitions, and the Work page's dozens of project links and filters ran WebKit past 90 seconds even before the toggles and cards joined. How: This gives the test ten minutes.
+		test.setTimeout( 1200000 ); // What: Test Timeout Call. Why: Probing every control's hover, press, and focus waits out each look's transitions, and WebKit's Work phone state took about 8.6 minutes alone once the list held nine projects, and past ten under the full suite's load. How: This gives the test twenty minutes.
 
 		await curPagObj.emulateMedia( { reducedMotion : 'reduce' } ); // What: Reduced Motion Emulation. Why: The preference has to be set before the page loads. How: This makes the page match prefers-reduced-motion: reduce.
 
